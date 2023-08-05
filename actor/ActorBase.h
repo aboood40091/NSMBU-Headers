@@ -69,13 +69,13 @@ protected:
     virtual s32 create_();                      // 0: Waiting, 1: Success, 2: Error
     virtual void postCreate_(MainState state);
 
-    virtual s32 preExecute_();
-    virtual s32 execute_();
+    virtual s32 preExecute_();                  // 0: Cancel,  1: Success
+    virtual s32 execute_();                     // 0: Error,   1: Success
     virtual void postExecute_(MainState state);
     virtual void finalUpdate_();
 
-    virtual s32 preDraw_();
-    virtual s32 draw_();
+    virtual s32 preDraw_();                     // 0: Cancel,  1: Success
+    virtual s32 draw_();                        // 0: Error,   1: Success
     virtual void postDraw_(MainState state);
 
     virtual s32 preDelete_();                   // 0: Cancel,  1: Success
