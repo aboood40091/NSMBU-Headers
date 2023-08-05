@@ -2,30 +2,21 @@
 
 #include <basis/seadTypes.h>
 
-class ProfileID
-{
-public:
-    enum
-    {
-        cNum = 913,
+namespace ProfileID {
 
-        cActorSpawner,
-        cFlipBlock,
-        cMagicPlatform,
-        cEffectPlayer,
+static const u32 cNum = 913;
 
-        cNumAll
-    };
+// -----------------------------------------------------
 
-public:
-    static const u32 cFloorHoleDokan;               // 210
+extern const u32 cFloorHoleDokan;               // 210
 
-    static const u32 cYoshi;                        // 442
-    static const u32 cTottenPlayer;                 // 443
-    static const u32 cPlayerObject;                 // 444
+extern const u32 cYoshi;                        // 442
+extern const u32 cTottenPlayer;                 // 443
+extern const u32 cPlayerObject;                 // 444
 
-    static const u32 cBgCenter;                     // 587
+extern const u32 cBgCenter;                     // 587
 
-    static const u32 cCourseSelectPlayer;           // 854
-    static const u32 cCourseSelectPlayer_2P_3P_4P;  // 855 (CS Player 2, 3 or 4)
-};
+extern const u32 cCourseSelectPlayer;           // 854
+extern const u32 cCourseSelectPlayer_2P_3P_4P;  // 855 (CS Player 2, 3 or 4)
+
+}
