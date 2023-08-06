@@ -14,15 +14,21 @@ class Actor : public ActorBase
     SEAD_RTTI_OVERRIDE(Actor, ActorBase)
 
 public:
+    // Address: 0x02000AC8
     Actor(const ActorInitArg& arg);
+    // Address: 0x02000F18
     virtual ~Actor();
 
 protected:
+    // Address: 0x02000FB8
     void postCreate_(MainState state) override;
 
+    // Address: 0x02000FE8
     s32 preExecute_() override;
+    // Address: 0x020010BC
     void postExecute_(MainState state) override;
 
+    // Address: 0x020011A0
     s32 preDraw_() override;
 
 public:
@@ -36,7 +42,9 @@ public:
         return mPlayerNo;
     }
 
+    // Address: 0x020002CC
     virtual void removeCollisionCheck();
+    // Address: 0x02000328
     virtual void reviveCollisionCheck();
 
     virtual ActorBgCollisionCheck* getBgCheck()
@@ -65,12 +73,18 @@ public:
     {
     }
 
+    // Address: 0x02002AD8
     virtual void killAtGoal();
+    // Address: 0x02002ADC
     virtual void splashWater(sead::Vector3f*);
+    // Address: 0x02002AE0
     virtual void splashLava(sead::Vector3f*);
+    // Address: 0x02000960
     virtual void splashLavaWave(sead::Vector3f*);
+    // Address: 0x02002AE4
     virtual void splashPoison(sead::Vector3f*);
-    virtual bool isOffScreen();
+    // Address: 0x02001254
+    virtual bool drawCullCheck();
 
     virtual void damageFromUnder()
     {
@@ -91,12 +105,16 @@ public:
         return mIsVisible;
     }
 
+    // Address: 0x020005A4
     s32 distanceToPlayer(sead::Vector2f& out);
+    // Address: 0x020005EC
     u8 directionToPlayerH(const sead::Vector3f& position);
+    // Address: 0x020006B4
     u8 directionToPlayerV(const sead::Vector3f& position);
+    // Address: 0x0200C7E4
     u8 directionToActorH(const Actor& other);
-    void cullCheck(u32 = 0);
-    bool deleteActorWhenOutOfView(u32);
+    // Address: 0x020007A0
+    bool screenOutCheck(u16);
 
     const sead::Vector3f& getPos() const
     {
