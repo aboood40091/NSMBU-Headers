@@ -4,6 +4,8 @@
 #include <heap/seadDisposer.h>
 #include <math/seadVector.h>
 
+enum LightType;
+
 class Light : public sead::IDisposer
 {
 public:
@@ -14,7 +16,7 @@ public:
 
     // Address: 0x024E26BC
     bool update(
-        u32 type,
+        LightType type,
         sead::Vector3f* p_position = nullptr,
         u32* = nullptr,
         f32* p_radius = nullptr,
