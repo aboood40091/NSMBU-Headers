@@ -48,6 +48,7 @@ public:
 
     u8 getEmitterSetGroupID(s32 set_id, u32 res_id = 0) const;
 
+    // Address: 0x22ADA08
     void setFrameBufferTexture(const agl::TextureSampler& texture, f32 x_offset = 0.0f, f32 y_offset = 0.0f, f32 x_scale = 1.0f, f32 y_scale = 1.0f);
 
 private:
