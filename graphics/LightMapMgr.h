@@ -22,6 +22,9 @@ public:
 
     void setModelLightMap(ModelNW* p_model, bool set_mdl_dl_dirty) const;
 
+    // Address: 0x024E51C8
+    void setCSLightMaps(u32 = 0);
+
 private:
     u32                     _cc[(0x2070 - 0xCC) / sizeof(u32)];
     agl::lght::LightMapMgr  mLightMapMgr;
