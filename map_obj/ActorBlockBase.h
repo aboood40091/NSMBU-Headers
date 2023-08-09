@@ -16,7 +16,7 @@ public:
     };
 
 public:
-    ActorBlockBase(const ActorInitArg& arg);
+    ActorBlockBase(const ActorCreateParam& param);
     virtual ~ActorBlockBase() { }
 
     bool init(bool register_collider, bool);

@@ -17,7 +17,7 @@ class ChangeBlockCoinBase : public BlockCoinBase
     SEAD_RTTI_OVERRIDE(ChangeBlockCoinBase, BlockCoinBase)
 
 public:
-    ChangeBlockCoinBase(const ActorInitArg& arg);
+    ChangeBlockCoinBase(const ActorCreateParam& param);
     virtual ~ChangeBlockCoinBase() { }
 
     void spawnItemUp() override;

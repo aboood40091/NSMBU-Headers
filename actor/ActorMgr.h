@@ -1,6 +1,7 @@
 #pragma once
 
-#include <actor/ActorObjBuffer.h>
+#include <actor/ActorBase.h>
+#include <actor/ActorPtrCache.h>
 
 #include <container/seadOffsetList.h>
 #include <container/seadPtrArray.h>
@@ -22,24 +23,24 @@ public:
     };
 
 public:
-    typedef ActorObjBuffer::iterator iterator;
+    typedef ActorPtrCache::iterator iterator;
 
 public:
     ActorMgr();
     ~ActorMgr();
 
 private:
-    ActorBase* create_(const ActorInitArg& arg, u8 lifecycle);
+    ActorBase* doConstructActor_(const ActorCreateParam& param, bool create_immediately);
     ActorBase::MainState doCreate_(ActorBase* p_actor);
 
     static void delete_(ActorBase* p_actor);
     void doDelete_(ActorBase* p_actor);
 
-    void addToExecuteAndDraw_(ActorBase* p_actor);
+    void pushExecuteAndDrawList_(ActorBase* p_actor);
 
     bool deleteNotRequested_(ActorBase* p_actor);
 
-    void moveCreateToDelete_();
+    void moveActorOnCreateListToDestoryList_();
     void doDeleteActors_(bool destroy);
 
 public:
@@ -50,26 +51,26 @@ public:
 
     void destroy();
 
-    void createNextFrame(const ActorInitArg& arg);
-    ActorBase* create(const ActorInitArg& arg, CreateOption option = cCreateOption_ActiveNextFrame);
+    void createLater(const ActorCreateParam& param);
+    ActorBase* createImmediately(const ActorCreateParam& param, CreateOption option = cCreateOption_ActiveNextFrame);
 
 public:
-    iterator searchBaseByProfID(u32 id, iterator pp_start) const;
-    iterator searchBaseByProfID(u32 id) const
+    iterator find(s32 prof_id, iterator pp_start) const;
+    iterator find(s32 prof_id) const
     {
-        return searchBaseByProfID(id, begin());
+        return find(prof_id, begin());
     }
 
-    u32 countBaseByProfID(u32 id) const;
+    u32 count(s32 prof_id) const;
 
     iterator begin() const
     {
-        return mActorObjBuffer.begin();
+        return mActorPtrCache.begin();
     }
 
     iterator end() const
     {
-        return mActorObjBuffer.end();
+        return mActorPtrCache.end();
     }
 
 private:
@@ -83,20 +84,20 @@ public:
     void draw();
 
 private:
-    sead::UnitHeap*                             mpPlayerHeap;
-    sead::UnitHeap*                             mpActorHeap;
-    sead::FixedRingBuffer<ActorInitArg, 520>    mDeferredActorCreate;
-    ActorBase::List                             mCreateManage;
-    ActorBase::List                             mDeleteManage;
-    ActorBase::List                             mExecuteManage;
-    ActorBase::List                             mDrawManage;
-    sead::FixedPtrArray<sead::Heap, 520>        mActorDeleteHeap;
-    sead::FixedPtrArray<ActorBase, 520>         mActorFinalUpdate;
-    ActorObjBuffer                              mActorObjBuffer;
-    u32                                         mActorCreateID;
-    u8                                          mActorCreateLifecycle;
-    u8                                          _6a3d[3];
-    bool                                        mActorDrawDone;
-    u8                                          _6a41[3];
+    sead::UnitHeap*                                 mpPlayerHeap;
+    sead::UnitHeap*                                 mpActorHeap;
+    sead::FixedRingBuffer<ActorCreateParam, 520>    mDeferredActorCreate;
+    ActorBase::List                                 mCreateManage;
+    ActorBase::List                                 mDeleteManage;
+    ActorBase::List                                 mExecuteManage;
+    ActorBase::List                                 mDrawManage;
+    sead::FixedPtrArray<sead::Heap, 520>            mActorDeleteHeap;
+    sead::FixedPtrArray<ActorBase, 520>             mActorFinalUpdate;
+    ActorPtrCache                                   mActorPtrCache;
+    u32                                             mActorCreateID;
+    bool                                            mActorCreateImmediately;
+    u8                                              _6a3d[3];
+    bool                                            mActorDrawDone;
+    u8                                              _6a41[3];
 };
 static_assert(sizeof(ActorMgr) == 0x6A44);

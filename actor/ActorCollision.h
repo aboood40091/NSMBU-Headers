@@ -9,7 +9,7 @@ class ActorCollision : public Actor
     SEAD_RTTI_OVERRIDE(ActorCollision, Actor)
 
 public:
-    ActorCollision(const ActorInitArg& arg);
+    ActorCollision(const ActorCreateParam& param);
     virtual ~ActorCollision() { }
 
 protected:

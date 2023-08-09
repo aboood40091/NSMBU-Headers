@@ -34,10 +34,10 @@ struct ActorCreateInfo
 static_assert(sizeof(ActorCreateInfo) == 0x24);
 
 class ActorBase;
-struct ActorInitArg;
+struct ActorCreateParam;
 class ModelResource;
 
-typedef ActorBase* (*ClassInit)(const ActorInitArg&);
+typedef ActorBase* (*ActorFactory)(const ActorCreateParam&);
 
 class Profile
 {
@@ -45,22 +45,22 @@ public:
     static const u32 cNum = ProfileID::cNum;
 
 public:
-    enum ResLoadAt
+    enum ResType
     {
-        cResLoadAt_Boot = 0,
-        cResLoadAt_Course,
-        cResLoadAt_CourseSelect
+        cResType_Boot = 0,
+        cResType_Course,
+        cResType_CourseSelect
     };
 
 public:
-    Profile(ClassInit p_class_init, u32 id, const sead::SafeString& name, const ActorCreateInfo* p_create_info, u32 flag);
+    Profile(ActorFactory p_actor_factory, s32 id, const sead::SafeString& name, const ActorCreateInfo* p_create_info, u32 flag);
 
-    ClassInit getClassInit() const
+    ActorFactory getActorFactory() const
     {
-        return mpClassInit;
+        return mpActorFactory;
     }
 
-    u32 getID() const
+    s32 getID() const
     {
         return mID;
     }
@@ -80,20 +80,20 @@ public:
         return mFlag;
     }
 
-    void loadRes(sead::Heap* heap);
-    void unloadRes(sead::Heap* heap);
-    ModelResource* getRes(u32 index) const;
+    void loadResource(sead::Heap* heap);
+    void unloadResource(sead::Heap* heap);
+    ModelResource* getResource(u32 index) const;
 
-    static Profile* get(u32 id);
+    static Profile* get(s32 id);
 
-    static s16 getDrawPriority(u32 id);
-    static ResLoadAt getResLoadAt(u32 id);
-    static u8 getResNum(u32 id);
-    static const sead::SafeString* getResList(u32 id);
+    static s16 getDrawPriority(s32 id);
+    static ResType getResType(s32 id);
+    static u8 getResNum(s32 id);
+    static const sead::SafeString* getResList(s32 id);
 
 protected:
-    ClassInit               mpClassInit;
-    u32                     mID;
+    ActorFactory            mpActorFactory;
+    s32                     mID;
     const ActorCreateInfo*  mpActorCreateInfo;
     bool                    mIsResLoaded;
     u32                     mFlag;
@@ -101,7 +101,7 @@ protected:
     static sead::SafeArray<Profile*, cNum>  sProfile;
 
     static const s16                cDrawPriority[cNum];
-    static const u8                 cResLoadAt[cNum];
+    static const u8                 cResType[cNum];
     static const u8                 cResNum[cNum];
     static const sead::SafeString*  cResList[cNum];
 };

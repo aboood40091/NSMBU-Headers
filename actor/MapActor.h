@@ -5,5 +5,5 @@
 class MapActor
 {
 public:
-    static const u32 cProfileID[];
+    static const s32 cProfileID[];
 };

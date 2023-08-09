@@ -36,7 +36,7 @@ public:
     };
 
 public:
-    BlockCoinBase(const ActorInitArg& arg);
+    BlockCoinBase(const ActorCreateParam& param);
     virtual ~BlockCoinBase() { }
 
     void spawnJumpdai();

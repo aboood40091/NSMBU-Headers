@@ -1,10 +1,10 @@
 #pragma once
 
+#include <actor/ActorUniqueID.h>
 #include <collision/ActorBgHitCheckCallback.h>
 #include <collision/BasicBgCollisionCheck.h>
 #include <collision/BgCheckUnitInfo.h>
 #include <collision/FollowArg.h>
-#include <system/ID.h>
 #include <system/LineNodeMgr.h>
 
 #include <container/seadPtrArray.h>
@@ -29,7 +29,7 @@ private:
     u32             mAngle;
     sead::Vector2f  _c;
     sead::Vector2f  _14;
-    ID              mActorID;
+    ActorUniqueID   mActorUniqueID;
     BgCollision*    mpOwner;
   //u32             _24[4 / sizeof(u32)];   // Alignment???
     BgCheckUnitInfo mBgCheckData;

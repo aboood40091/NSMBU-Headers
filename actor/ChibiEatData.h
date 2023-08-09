@@ -1,13 +1,13 @@
 #pragma once
 
-#include <system/ID.h>
+#include <actor/ActorUniqueID.h>
 
 #include <math/seadVector.h>
 
 class ChibiEatData
 {
 public:
-    ChibiEatData(ID owner_id);
+    ChibiEatData(ActorUniqueID owner_id);
 
     virtual u32 vf0C();
     virtual void* vf14(void*);
@@ -18,7 +18,7 @@ public:
     virtual void vf3C();
 
 protected:
-    ID              mOwnerID;
+    ActorUniqueID   mOwnerID;
     u32             mYoshiChibiID;
     sead::Vector3f  mScale;
     u32             _14;

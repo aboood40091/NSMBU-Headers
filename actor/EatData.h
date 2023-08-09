@@ -1,13 +1,13 @@
 #pragma once
 
-#include <system/ID.h>
+#include <actor/ActorUniqueID.h>
 
 #include <math/seadVector.h>
 
 class EatData
 {
 public:
-    EatData(ID owner_id);
+    EatData(ActorUniqueID owner_id);
 
     virtual void* vf0C();
     virtual void* vf14(void*);
@@ -22,7 +22,7 @@ public:
     virtual void* vf5C(void*);
 
 protected:
-    ID              mOwnerID;
+    ActorUniqueID   mOwnerID;
     u32             mYoshiID;
     u32             mState;
     u32             mSpitType;

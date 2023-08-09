@@ -1,6 +1,6 @@
 #pragma once
 
-#include <system/ID.h>
+#include <actor/ActorUniqueID.h>
 
 #include <container/seadOffsetList.h>
 #include <heap/seadHeap.h>
@@ -10,7 +10,7 @@
 
 class Profile;
 
-struct ActorInitArg
+struct ActorCreateParam
 {
     u32             param_0;
     u32             param_1;
@@ -28,7 +28,7 @@ struct ActorInitArg
     u8              _27[1];             // Unused, padding? (Intentionally byte array)
     u8*             _28;
 
-    ActorInitArg()
+    ActorCreateParam()
         : parent_id(0)
         , angle(0)
     {
@@ -37,10 +37,10 @@ struct ActorInitArg
 
     void initialize()
     {
-        sead::MemUtil::fillZero(this, sizeof(ActorInitArg));
+        sead::MemUtil::fillZero(this, sizeof(ActorCreateParam));
     }
 };
-static_assert(sizeof(ActorInitArg) == 0x2C);
+static_assert(sizeof(ActorCreateParam) == 0x2C);
 
 class ActorMgr;
 
@@ -61,7 +61,7 @@ public:
     typedef sead::OffsetList<ActorBase> List;
 
 public:
-    ActorBase(const ActorInitArg& arg);
+    ActorBase(const ActorCreateParam& param);
     virtual ~ActorBase();
 
 protected:
@@ -104,9 +104,9 @@ public:
         return mRequestDelete;
     }
 
-    ID getID() const
+    ActorUniqueID getActorUniqueID() const
     {
-        return mID;
+        return mActorUniqueID;
     }
 
     s32 getProfileID() const;
@@ -118,9 +118,9 @@ public:
 
 protected:
     sead::Heap*     mpHeap;
-    ID              mID;
+    ActorUniqueID   mActorUniqueID;
     Profile*        mpProfile;
-    u8              mLifecycle;     // 0: Wait for create, 1: Active, 2: Delete
+    bool            mCreateImmediately;
     bool            _d;
     bool            mIsActive;
     bool            mRequestDelete;
@@ -140,9 +140,8 @@ protected:
 };
 static_assert(sizeof(ActorBase) == 0x50);
 
-#define ACTOR_CLASS_INIT(CLASS)                                 \
-    public:                                                     \
-        static ActorBase* classInit(const ActorInitArg& arg)    \
-        {                                                       \
-            return new CLASS(arg);                              \
-        }
+template <typename T>
+ActorBase* TActorFactory(const ActorCreateParam& param)
+{
+    return new T(param);
+}

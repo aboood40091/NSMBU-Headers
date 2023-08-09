@@ -7,7 +7,7 @@ class BgCenter : public ActorBase
     SEAD_RTTI_OVERRIDE(BgCenter, ActorBase)
 
 public:
-    BgCenter(const ActorInitArg& arg);
+    BgCenter(const ActorCreateParam& param);
     virtual ~BgCenter() { }
 
     const sead::Vector3f& getPosition() const

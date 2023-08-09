@@ -25,7 +25,7 @@ public:
 
 public:
     // Address: 0x02000AC8
-    Actor(const ActorInitArg& arg);
+    Actor(const ActorCreateParam& param);
     // Address: 0x02000F18
     virtual ~Actor();
 
@@ -135,7 +135,7 @@ protected:
     u32                 mDirection;
     u8                  mPlayerNo;
     u8                  mControllerLytPlayerNo;
-    u8                  mLayer;                     // Inited to ActorInitArg::layer
+    u8                  mLayer;                     // Inited to ActorCreateParam::layer
     sead::BitFlag8      mCollisionMask;
     f32                 mSpeedF;                    // Horizontal speed
     f32                 mSpeedFMax;                 // Maximum horizontal speed
@@ -183,7 +183,7 @@ protected:
     EatData*            mpEatData;
     ChibiEatData*       mpChibiEatData;
     u32                 _26c;
-    u8*                 _270;                       // Inited to ActorInitArg::_28
+    u8*                 _270;                       // Inited to ActorCreateParam::_28
     f32                 _274;
     void*               mpChibiBubbleData;
 };
