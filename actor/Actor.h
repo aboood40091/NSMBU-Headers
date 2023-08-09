@@ -14,6 +14,16 @@ class Actor : public ActorBase
     SEAD_RTTI_OVERRIDE(Actor, ActorBase)
 
 public:
+    enum ActorType
+    {
+        cType_Actor = 0,
+        cType_Player,
+        cType_Yoshi,
+        cType_Enemy,
+        cType_ChibiYoshi
+    };
+
+public:
     // Address: 0x02000AC8
     Actor(const ActorInitArg& arg);
     // Address: 0x02000F18
@@ -151,7 +161,7 @@ protected:
     f32                 _destroyBoundDistanceLeft;  // Inited to  80.0 + ActorCreateInfo::_1C
     f32                 _destroyBoundDistanceRight; // Inited to  80.0 + ActorCreateInfo::_1E
     u8                  mAreaNo;
-    u8                  mType;                      // 0: Actor, 1: Player, 2: Yoshi, 3: Enemy, 4: Unknown
+    u8                  mType;                      // ActorType
     u8                  mIsActive;
     u8                  mIsVisible;
     bool                mIsNoRespawn;
