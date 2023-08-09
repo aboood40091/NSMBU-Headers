@@ -51,7 +51,7 @@ public:
     virtual void vf144(bool);           // nullsub
     virtual void vf14C(Actor*);         // nullsub
 
-    virtual bool vf154()
+    virtual bool vf154(const sead::Vector2f&)
     {
         return false;
     }

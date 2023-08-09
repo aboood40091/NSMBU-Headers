@@ -96,7 +96,7 @@ public:
     // Address: 0x02001254
     virtual bool drawCullCheck();
 
-    virtual void damageFromUnder()
+    virtual void blockHitInit()
     {
     }
 
