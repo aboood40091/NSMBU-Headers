@@ -25,7 +25,7 @@ public:
         return mValue;
     }
 
-    u32 getActorID() const
+    u32 getCreateIndex() const
     {
         return mValue & 0x3fffff;
     }

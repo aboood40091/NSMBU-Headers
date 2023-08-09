@@ -26,17 +26,17 @@ private:
 };
 static_assert(sizeof(ActorProfileFindFunc) == 8);
 
-class ActorNearestFindFunc : public ActorFindFunc
+class ActorCreateIndexFindFunc : public ActorFindFunc
 {
 public:
-    ActorNearestFindFunc(u32 id)
-        : mID(id)
+    ActorCreateIndexFindFunc(u32 index)
+        : mCreateIndex(index)
     {
     }
 
     virtual bool operator()(const ActorBase& actor);
 
 private:
-    u32 mID;
+    u32 mCreateIndex;
 };
-static_assert(sizeof(ActorNearestFindFunc) == 8);
+static_assert(sizeof(ActorCreateIndexFindFunc) == 8);

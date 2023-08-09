@@ -62,6 +62,6 @@ private:
     u32                         mCount;
     iterator                    mpActorLast;
     u32                         mCurrentCreateIndex;
-    u8                          _14;
+    bool                        mCreateIndexOverflow;
 };
 static_assert(sizeof(ActorPtrCache) == 0x18);
