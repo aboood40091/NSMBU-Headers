@@ -29,7 +29,7 @@ enum LightType
     cLightType_LightKurage,
     cLightType_Burner,
     cLightType_Bomhei,
-    cLightType_Chouchin, // a.k.a. ankou
+    cLightType_Chochin, // a.k.a. ankou
     cLightType_KazanRock,
     cLightType_FireBarL,
     cLightType_FireBarS,
