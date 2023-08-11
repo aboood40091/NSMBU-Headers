@@ -13,7 +13,7 @@ class Enemy : public ActorMultiState
 public:
     enum FumiType
     {
-        cFumiType_NoFumi = 0,
+        cFumiType_Hit = 0,
         cFumiType_Fumi,
         cFumiType_MameFumi,
         cFumiType_SpinFumi
