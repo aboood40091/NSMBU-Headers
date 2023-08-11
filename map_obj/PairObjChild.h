@@ -6,7 +6,7 @@ class PairObjChildBaseCB : public CollisionCallback
 {
 public:
     bool bcCallback1(Actor*, BgCollision*, const sead::Vector2f&) override;
-    bool bcCallback2(Actor*, BgCollision*, const sead::Vector2f&) override;
+    void bcCallback2(Actor*, BgCollision*, const sead::Vector2f&) override;
 };
 static_assert(sizeof(PairObjChildBaseCB) == sizeof(CollisionCallback));
 
