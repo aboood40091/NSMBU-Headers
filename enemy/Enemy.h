@@ -11,6 +11,15 @@ class Enemy : public ActorMultiState
     SEAD_RTTI_OVERRIDE(Enemy, ActorMultiState)
 
 public:
+    enum FumiType
+    {
+        cFumiType_NoFumi = 0,
+        cFumiType_Fumi,
+        cFumiType_MameFumi,
+        cFumiType_SpinFumi
+    };
+
+public:
     Enemy(const ActorCreateParam& param);
     virtual ~Enemy() { }
 
@@ -139,7 +148,7 @@ public:
 
     void startSound(const char* name);
 
-    s32 fumiCheck(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other, s32);
+    FumiType fumiCheck(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other, s32);
 
     void bound(f32, f32, f32);
 
