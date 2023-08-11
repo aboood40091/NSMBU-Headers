@@ -49,10 +49,10 @@ public:
     virtual bool chibiYoshiDamageCheck(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
     virtual bool etcDamageCheck(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
 
-    virtual void enemyCollisionCheck(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
-    virtual void playerCollisionCheck(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
-    virtual void yoshiCollisionCheck(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
-    virtual void chibiYoshiCollisionCheck(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other); // I think
+    virtual void vsEnemyHitCheck_Normal(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
+    virtual void vsPlayerHitCheck_Normal(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
+    virtual void vsYoshiHitCheck_Normal(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
+    virtual void vsChibiYoshiHitCheck_Normal(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other); // I think
 
     virtual bool hitCallback_Star(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
     virtual bool hitCallback_Slip(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
