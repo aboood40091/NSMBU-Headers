@@ -32,7 +32,7 @@ public:
     bool vf154(const sead::Vector2f&) override;
     void changeState(const IStateID& state_id) override;
 
-    virtual bool vf18C() // is frozen?
+    virtual bool vf18C() // is not carryable?
     {
         return false;
     }
@@ -160,9 +160,12 @@ protected:
     u32             _17e8;
     u32             mIceMgr[0x50 / sizeof(u32)];            // TODO: IceMgr
     u32             mChibiBubbleData[0x20 / sizeof(u32)];   // TODO: ChibiBubbleData
+
+    // This part is a struct
     Enemy*          _1860;
     void*           _1864;
     u8              _1868;
+
     u16             _186c;
     u16             _186e;
     u32             _1870;
