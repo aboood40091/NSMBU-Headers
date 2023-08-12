@@ -72,9 +72,9 @@ public:
         return 1;
     }
 
-    virtual u32 vf174()
+    virtual bool vf174(f32)
     {
-        return 0;
+        return false;
     }
 
     virtual void getBox(sead::BoundBox2f& box)
