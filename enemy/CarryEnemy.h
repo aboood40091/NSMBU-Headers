@@ -33,7 +33,7 @@ protected:
     virtual void reactSpinFumiProc(Actor*);
     virtual void playerHitCheck_Awake(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
     virtual void playerHitCheck_Sleep(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
-    virtual bool playerHitCheck_Carry(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
+    virtual void playerHitCheck_Carry(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
     virtual void playerHitCheck_Unknown(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
     virtual void setDropChangeState(Actor*) = 0;
     virtual void setThrowChangeState(Actor*) = 0;
