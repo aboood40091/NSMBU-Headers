@@ -4,10 +4,10 @@
 
 #include <math/seadVector.h>
 
-class EatData
+class GenericEatData
 {
 public:
-    EatData(ActorUniqueID owner_id);
+    GenericEatData(ActorUniqueID owner_id);
 
     virtual void* vf0C();
     virtual void* vf14(void*);
@@ -29,4 +29,4 @@ protected:
     sead::Vector3f  mScale;
     u32             mScore;
 };
-static_assert(sizeof(EatData) == 0x24);
+static_assert(sizeof(GenericEatData) == 0x24);

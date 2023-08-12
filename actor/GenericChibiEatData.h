@@ -4,10 +4,10 @@
 
 #include <math/seadVector.h>
 
-class ChibiEatData
+class GenericChibiEatData
 {
 public:
-    ChibiEatData(ActorUniqueID owner_id);
+    GenericChibiEatData(ActorUniqueID owner_id);
 
     virtual u32 vf0C();
     virtual void* vf14(void*);
@@ -25,4 +25,4 @@ protected:
     u32             _18;
     u32             mScore;
 };
-static_assert(sizeof(ChibiEatData) == 0x24);
+static_assert(sizeof(GenericChibiEatData) == 0x24);

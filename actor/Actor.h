@@ -1,13 +1,13 @@
 #pragma once
 
 #include <actor/ActorBase.h>
-#include <actor/ChibiEatData.h>
-#include <actor/EatData.h>
 #include <collision/ActorCollisionCheck.h>
 
 #include <math/seadVector.h>
 
 class ActorBgCollisionCheck;
+class GenericChibiEatData;
+class GenericEatData;
 
 class Actor : public ActorBase
 {
@@ -132,59 +132,59 @@ public:
     }
 
 protected:
-    u32                 mDirection;
-    u8                  mPlayerNo;
-    u8                  mControllerLytPlayerNo;
-    u8                  mLayer;                     // Inited to ActorCreateParam::layer
-    sead::BitFlag8      mCollisionMask;
-    f32                 mSpeedF;                    // Horizontal speed
-    f32                 mSpeedFMax;                 // Maximum horizontal speed
-    f32                 mAccelY;                    // Vertical acceleration
-    f32                 mFallSpeedMax;              // Maximum fall speed
-    f32                 mAccelF;                    // Horizontal acceleration
-    sead::Vector3f      mPos;
-    sead::Vector3f      mSpeed;
-    sead::Vector3f      mSpeedMax;
-    sead::Vector3f      mScale;
-    sead::Vector3u      mAngle;
-    sead::Vector3u      mAnglePrev;
-    sead::Vector2f      mPosDelta;
-    ActorCollisionCheck mCollisionCheck;
+    u32                     mDirection;
+    u8                      mPlayerNo;
+    u8                      mControllerLytPlayerNo;
+    u8                      mLayer;                     // Inited to ActorCreateParam::layer
+    sead::BitFlag8          mCollisionMask;
+    f32                     mSpeedF;                    // Horizontal speed
+    f32                     mSpeedFMax;                 // Maximum horizontal speed
+    f32                     mAccelY;                    // Vertical acceleration
+    f32                     mFallSpeedMax;              // Maximum fall speed
+    f32                     mAccelF;                    // Horizontal acceleration
+    sead::Vector3f          mPos;
+    sead::Vector3f          mSpeed;
+    sead::Vector3f          mSpeedMax;
+    sead::Vector3f          mScale;
+    sead::Vector3u          mAngle;
+    sead::Vector3u          mAnglePrev;
+    sead::Vector2f          mPosDelta;
+    ActorCollisionCheck     mCollisionCheck;
     struct
     {
-        sead::Vector2f offset;
-        sead::Vector2f size;
-    }                   mVisibleArea;               // Inited to ActorCreateInfo::spawn_range
-    sead::Vector2f      mSize;
-    f32                 _rectQ_0;                   // Inited to 256.0 + ActorCreateInfo::_18
-    f32                 _rectQ_1;                   // Inited to 256.0 + ActorCreateInfo::_1A
-    f32                 _destroyBoundDistanceLeft;  // Inited to  80.0 + ActorCreateInfo::_1C
-    f32                 _destroyBoundDistanceRight; // Inited to  80.0 + ActorCreateInfo::_1E
-    u8                  mAreaNo;
-    u8                  mType;                      // ActorType
-    u8                  mIsActive;
-    u8                  mIsVisible;
-    bool                mIsNoRespawn;
-    u8                  _211;
-    u8                  _212;
-    u8                  mEventID[2];
-    u16                 mCreateFlag;                // Inited to ActorCreateInfo::flag
-    u32                 mBumpDamageTimer;
-    u32                 _21c;
-    u32                 _220;
-    u32                 _224;
-    u32                 _228;
-    u32                 mKillStreak;
-    u32                 mProfFlag;                  // Inited to Profile::mFlag
-    sead::Vector3f      mCenterPos;
-    sead::Vector3f      mPosPrev;
-    sead::Vector3f      _24c;
-    sead::Vector3f      _258;
-    EatData*            mpEatData;
-    ChibiEatData*       mpChibiEatData;
-    u32                 _26c;
-    u8*                 _270;                       // Inited to ActorCreateParam::_28
-    f32                 _274;
-    void*               mpChibiBubbleData;
+        sead::Vector2f  offset;
+        sead::Vector2f  size;
+    }                       mVisibleArea;               // Inited to ActorCreateInfo::spawn_range
+    sead::Vector2f          mSize;
+    f32                     _rectQ_0;                   // Inited to 256.0 + ActorCreateInfo::_18
+    f32                     _rectQ_1;                   // Inited to 256.0 + ActorCreateInfo::_1A
+    f32                     _destroyBoundDistanceLeft;  // Inited to  80.0 + ActorCreateInfo::_1C
+    f32                     _destroyBoundDistanceRight; // Inited to  80.0 + ActorCreateInfo::_1E
+    u8                      mAreaNo;
+    u8                      mType;                      // ActorType
+    u8                      mIsActive;
+    u8                      mIsVisible;
+    bool                    mIsNoRespawn;
+    u8                      _211;
+    u8                      _212;
+    u8                      mEventID[2];
+    u16                     mCreateFlag;                // Inited to ActorCreateInfo::flag
+    u32                     mBumpDamageTimer;
+    u32                     _21c;
+    u32                     _220;
+    u32                     _224;
+    u32                     _228;
+    u32                     mKillStreak;
+    u32                     mProfFlag;                  // Inited to Profile::mFlag
+    sead::Vector3f          mCenterPos;
+    sead::Vector3f          mPosPrev;
+    sead::Vector3f          _24c;
+    sead::Vector3f          _258;
+    GenericEatData*         mpEatData;
+    GenericChibiEatData*    mpChibiEatData;
+    u32                     _26c;
+    u8*                     _270;                       // Inited to ActorCreateParam::_28
+    f32                     _274;
+    void*                   mpChibiBubbleData;
 };
 static_assert(sizeof(Actor) == 0x27C);

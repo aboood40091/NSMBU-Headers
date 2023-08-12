@@ -1,5 +1,7 @@
 #pragma once
 
+#include <actor/GenericChibiEatData.h>
+#include <actor/GenericEatData.h>
 #include <actor/Profile.h>
 #include <collision/CollisionCallback.h>
 #include <effect/LevelEffect.h>
@@ -27,8 +29,8 @@ public:
         : Enemy(param)
         , _18fc(0)
         , _1900(0.0f)
-        , mYoshiEatData(mActorUniqueID)
-        , mChibiYoshiEatData(mActorUniqueID)
+        , mEatData(mActorUniqueID)
+        , mChibiEatData(mActorUniqueID)
         , mScaler(this)
         , mTouchTimer(0)
         , mIsTouchDone(false)
@@ -77,11 +79,11 @@ protected:
     s32                 mAttackTimer;
     u32                 _18fc;
     f32                 _1900;
-    EatData             mYoshiEatData;
-    ChibiEatData        mChibiYoshiEatData;
+    GenericEatData      mEatData;
+    GenericChibiEatData mChibiEatData;
     Light               mLight;
     u8                  _1994; // bool?
-    ActorCollisionCheck mCc;
+    ActorCollisionCheck mCollisionCheck2;
     BirikyuCB           mCollisionCB;
     EnemyActorScaler    mScaler;
     s32                 mTouchTimer;
