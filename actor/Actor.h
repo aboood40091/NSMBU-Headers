@@ -116,7 +116,7 @@ public:
     }
 
     // Address: 0x020005A4
-    s32 distanceToPlayer(sead::Vector2f& out);
+    s32 searchNearPlayer(sead::Vector2f& out); // Returns -1 if no player found
     // Address: 0x020005EC
     u8 directionToPlayerH(const sead::Vector3f& position);
     // Address: 0x020006B4
