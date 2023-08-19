@@ -99,5 +99,7 @@ private:
     u8                                              _6a3d[3];
     bool                                            mActorDrawDone;
     u8                                              _6a41[3];
+
+    friend class ActorBase;
 };
 static_assert(sizeof(ActorMgr) == 0x6A44);
