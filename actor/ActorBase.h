@@ -61,34 +61,6 @@ public:
     typedef sead::OffsetList<ActorBase> List;
 
 public:
-    ActorBase(const ActorCreateParam& param);
-    virtual ~ActorBase();
-
-protected:
-    virtual s32 preCreate_();                   // 0: Cancel,  1: Success
-    virtual s32 create_();                      // 0: Waiting, 1: Success, 2: Error
-    virtual void postCreate_(MainState state);
-
-    virtual s32 preExecute_();                  // 0: Cancel,  1: Success
-    virtual s32 execute_();                     // 0: Error,   1: Success
-    virtual void postExecute_(MainState state);
-    virtual void finalUpdate_();
-
-    virtual s32 preDraw_();                     // 0: Cancel,  1: Success
-    virtual s32 draw_();                        // 0: Error,   1: Success
-    virtual void postDraw_(MainState state);
-
-    virtual s32 preDelete_();                   // 0: Cancel,  1: Success
-    virtual s32 doDelete_();                    // 0: Waiting, 1: Success, 2: Error
-    virtual void postDelete_(MainState state);
-
-protected:
-    void setActive_(bool active)
-    {
-        mIsActive = active;
-    }
-
-public:
     bool isActive() const
     {
         return mIsActive;
@@ -114,6 +86,36 @@ public:
     sead::Heap* getHeap() const
     {
         return mpHeap;
+    }
+
+    void removeChild(ActorBase* p_child);
+
+protected:
+    ActorBase(const ActorCreateParam& param);
+    virtual ~ActorBase();
+
+protected:
+    virtual s32 preCreate_();                   // 0: Cancel,  1: Success
+    virtual s32 create_();                      // 0: Waiting, 1: Success, 2: Error
+    virtual void postCreate_(MainState state);
+
+    virtual s32 preExecute_();                  // 0: Cancel,  1: Success
+    virtual s32 execute_();                     // 0: Error,   1: Success
+    virtual void postExecute_(MainState state);
+    virtual void finalUpdate_();
+
+    virtual s32 preDraw_();                     // 0: Cancel,  1: Success
+    virtual s32 draw_();                        // 0: Error,   1: Success
+    virtual void postDraw_(MainState state);
+
+    virtual s32 preDelete_();                   // 0: Cancel,  1: Success
+    virtual s32 doDelete_();                    // 0: Waiting, 1: Success, 2: Error
+    virtual void postDelete_(MainState state);
+
+protected:
+    void setActive_(bool active)
+    {
+        mIsActive = active;
     }
 
 protected:
