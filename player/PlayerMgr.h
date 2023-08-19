@@ -27,10 +27,7 @@ private:
     u32                                 _18;
     u32                                 _1c;
     sead::SafeArray<PlayerObject*, 4>   mPlayerObject;
-    PlayerObject**                      mppPlayerObject;
-    u32                                 _34;
-    u32                                 _38;
-    u32                                 _3c;
+    sead::SafeArray<PlayerObject*, 4>   mPlayerObject2; // Idk why
     u16                                 _40;
     u16                                 mPlayerFlag;
     Yoshi**                             mppYoshi;
