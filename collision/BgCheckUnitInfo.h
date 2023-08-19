@@ -40,7 +40,7 @@ public:
         cKind_GrrrolPassage     = 25,
         cKind_StreamCurrent     = 26,
         cKind_Carpet            = 27,
-        cKind_Leaves            = 28,
+        cKind_Leaf              = 28,
         cKind_Wood              = 29,
         cKind_Cloud             = 30,
         cKind_BoostBlock        = 31,
@@ -72,19 +72,19 @@ public:
 
     enum SurfaceType
     {
-        cSurfaceType_Normal         = 0,
-        cSurfaceType_Ice            = 1,
-        cSurfaceType_Snow           = 2,
-        cSurfaceType_Quicksand      = 3,
-        cSurfaceType_Sand           = 4,
-        cSurfaceType_Grass          = 5,
-        cSurfaceType_Cloud          = 6,
-        cSurfaceType_BeachSand      = 7,    // Unused
-        cSurfaceType_Carpet         = 8,    // Unused
-        cSurfaceType_Leaves         = 9,
-        cSurfaceType_Wood           = 10,
-        cSurfaceType_Water          = 11,
-        cSurfaceType_BeanstalkLeaf  = 12
+        cSurfaceType_Rock       = 0,
+        cSurfaceType_Ice        = 1,
+        cSurfaceType_Snow       = 2,
+        cSurfaceType_Quicksand  = 3,
+        cSurfaceType_Sand       = 4,
+        cSurfaceType_Grass      = 5,
+        cSurfaceType_Cloud      = 6,
+        cSurfaceType_BeachSand  = 7,    // Unused
+        cSurfaceType_Carpet     = 8,    // Unused
+        cSurfaceType_Leaf       = 9,
+        cSurfaceType_Wood       = 10,
+        cSurfaceType_Water      = 11,
+        cSurfaceType_Manta      = 12    // Now used for Beanstalk Leaf
     };
 
 public:
