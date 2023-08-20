@@ -11,6 +11,7 @@ class ExecuteControlMgr
     // sInstance                                    Address: 0x101D136C
     // SingletonDisposer_::~SingletonDisposer_()    Address: 0x024A6080
     // SingletonDisposer_::sStaticDisposer          Address: 0x101D1370
+    // SingletonDisposer_::vtbl                     Address: 0x100B49F8
     SEAD_SINGLETON_DISPOSER(ExecuteControlMgr)
 
 public:
