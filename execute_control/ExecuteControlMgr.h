@@ -34,10 +34,18 @@ public:
     // Address: 0x024A5F24
     void execute();
 
-    // Address: 0x024A5FDC
-    void removeControl(ExecuteControlBase* p_control);
+    void destroy()
+    {
+        mControlQueue.clear();
+    }
 
 protected:
-    sead::OffsetList<ExecuteControlBase>    mControlList;
+    // Address: 0x024A5FDC
+    void removeControl_(ExecuteControlBase* p_control);
+
+protected:
+    sead::OffsetList<ExecuteControlBase>    mControlQueue;
     ExecuteControlBase*                     mpCurrentControl;
+
+    friend class ExecuteControlBase;
 };
