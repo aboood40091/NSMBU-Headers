@@ -11,7 +11,7 @@
 class Actor;
 class CollisionCallback;
 
-class ActorCollisionCheck : public sead::IDisposer
+class ActorCollisionCheck : public sead::IDisposer  // vtbl Address: 0x10041C18
 {
 public:
     enum Shape
@@ -36,23 +36,35 @@ public:
         u32             mask_2;         // Sets allowed interactions, such as being pick-able
         HitCallback     callback;
 
+        // Address: 0x10041BC0
         static const Info cDefault;
     };
     static_assert(sizeof(Info) == 0x2C);
 
 public:
+    // Address: 0x0219A960
     ActorCollisionCheck();
+    // Address: 0x0219AB90
     virtual ~ActorCollisionCheck();
 
+    // Address: 0x0219AF1C
     void set(Actor* p_owner, const Info& info, CollisionCallback* p_callbacks = nullptr);
+    // Address: 0x0219B010
     void set(Actor* p_owner, const Info& info, const sead::BitFlag8& collision_mask, CollisionCallback* p_callbacks = nullptr);
+    // Address: 0x0219B054
     void set(Actor* p_owner, const Info& info, const sead::BitFlag8& collision_mask, u8 layer, CollisionCallback* p_callbacks = nullptr);
 
+    // Address: 0x0219B434
     f32 getTopPos() const;
+    // Address: 0x0219B450
     f32 getUnderPos() const;
+    // Address: 0x0219B46C
     f32 getCenterPosY() const;
+    // Address: 0x0219B480
     f32 getRightPos() const;
+    // Address: 0x0219B49C
     f32 getLeftPos() const;
+    // Address: 0x0219B4B8
     f32 getCenterPosX() const;
 
     Actor* getOwner() const

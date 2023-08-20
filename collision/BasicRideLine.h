@@ -6,6 +6,7 @@
 class BasicRideLine
 {
 public:
+    // Address: 0x021A1ACC
     BasicRideLine();
 
     Ride2Point& getRide2Point()

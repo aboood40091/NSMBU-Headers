@@ -7,30 +7,43 @@
 
 class ActorBgCollisionPlayerCheck;
 
-class PoleRopeBgCollision : public BgCollision
+class PoleRopeBgCollision : public BgCollision  // vtbl Address: 0x10042828
 {
+    // getRuntimeTypeInfoStatic()::typeInfo initialization guard variable   Address: 0x101EA380
+    // getRuntimeTypeInfoStatic()::typeInfo                                 Address: 0x101EA384
     SEAD_RTTI_OVERRIDE(PoleRopeBgCollision, BgCollision)
 
 public:
+    // Address: 0x021AD424
     PoleRopeBgCollision();
+    // Address: 0x021AD5C8
     virtual ~PoleRopeBgCollision();
 
-    bool vf24(u32*, u32) override;
-    u32 vf2C(u32*) override;
+    // Address: 0x021ADD60
     void vf34() override;
+    // Address: 0x021AE0AC
     void execute() override;
-    bool vf44(ActorBgCollisionCheckResult*, u8*, sead::Vector2f*, sead::Vector2f*, u8) override { return false; }
+    bool vf44(BgCollisionCheckResult*, u8*, sead::Vector2f*, sead::Vector2f*, u8) override { return false; }
+    // Address: 0x021AE13C
     bool vf4C(ActorBgCollisionCheckResult*, sead::Vector2f*, sead::Vector2f*, u8 direction, ActorBgCollisionCheck*) override;
+    // Address: 0x021AEB48
     bool vf54(u8*, sead::Vector2f*) override;
+    // Address: Deleted
     bool vf5C(u32*) override;
+    // Address: 0x021AEE08
     void vf64() override;
+    // Address: 0x021AEE6C
     void vf6C() override;
     void vf74(u32*) override { }
+    // Address: 0x021AF204
     bool vf7C(sead::Vector2f*, f32) override;
 
+    // Address: 0x021AD964
     void setCommon(const FollowArg& follow_arg, const PoleRopeInitArg& init_arg);
 
+    // Address: 0x021ADACC
     void set(Actor* p_owner, const PoleRopeInitArg& arg);
+    // Address: 0x021ADB34
     void set(Actor* p_owner, const PoleRopeInitArg& arg, s32 line_num, sead::Heap* heap = nullptr);
 
     const sead::Buffer<sead::Vector2f>& getPoints() const

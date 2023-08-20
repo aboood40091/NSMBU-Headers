@@ -5,8 +5,11 @@
 
 #include <container/seadSafeArray.h>
 
+// TODO: Fix inheritance
 class SquareBgCollision : public LoopRideLineBgCollision
 {
+    // getRuntimeTypeInfoStatic()::typeInfo initialization guard variable   Address: 0x101E9D38
+    // getRuntimeTypeInfoStatic()::typeInfo                                 Address: 0x101E9FBC
     SEAD_RTTI_OVERRIDE(SquareBgCollision, LoopRideLineBgCollision)
 
 public:

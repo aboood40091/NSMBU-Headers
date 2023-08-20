@@ -12,9 +12,10 @@
 class Actor;
 class ActorBgCollisionCheck;
 class ActorBgCollisionCheckResult;
+struct BgCollisionCheckResult;
 class CollisionCallback;
 
-class BgCollision : public sead::IDisposer
+class BgCollision : public sead::IDisposer  // vtbl Address: 0x10042528
 {
 public:
     typedef void (*Callback)(BgCollision*, ActorBgCollisionCheck*);
@@ -121,19 +122,26 @@ public:
     };
 
 public:
+    // Address: 0x021A5184
     BgCollision();
+    // Address: 0x021A5610
     virtual ~BgCollision();
 
+    // getRuntimeTypeInfoStatic()::typeInfo initialization guard variable   Address: 0x101E9D2C
+    // getRuntimeTypeInfoStatic()::typeInfo                                 Address: 0x101E9FA4
     SEAD_RTTI_BASE(BgCollision)
 
-    virtual bool vf24(u32*, u32);   // TODO: Define
-    virtual u32 vf2C(u32*);         // deleted
+    // Address: 0x021A7688 (TODO: This should be inline)
+    virtual bool vf24(u32*, u32);
+    // Address: Deleted
+    virtual u32 vf2C(u32*);
     virtual void vf34() = 0;
     virtual void execute() = 0;
-    virtual bool vf44(ActorBgCollisionCheckResult*, u8*, sead::Vector2f*, sead::Vector2f*, u8) = 0;
+    virtual bool vf44(BgCollisionCheckResult*, u8*, sead::Vector2f*, sead::Vector2f*, u8) = 0;
     virtual bool vf4C(ActorBgCollisionCheckResult*, sead::Vector2f*, sead::Vector2f*, u8 direction, ActorBgCollisionCheck*) = 0;
     virtual bool vf54(u8*, sead::Vector2f*) = 0;
     virtual bool vf5C(u32*) = 0;
+    // Address: 0x021A680C
     virtual void vf64();
     virtual void vf6C() = 0;
     virtual void vf74(u32*) = 0;
@@ -169,13 +177,18 @@ public:
         mAngle = angle;
     }
 
+    // Address: 0x021A5A70
     void setType(Type type);    // Sets all parameters of BgCheckUnitInfo
 
+    // Address: 0x021A5A04
     void setBgCheckData(const BgCheckUnitInfo& bc_data);
     const BgCheckUnitInfo& getBgCheckData() const { return mBgCheckData; }
 
+    // Address: 0x021A5A90
     void setSolidType(BgCheckUnitInfo::SolidType solid_type);
+    // Address: 0x021A5AD0
     void setSurfaceType(BgCheckUnitInfo::SurfaceType surface_type);
+    // Address: 0x021A5B14
     void setSlideType(BgCheckUnitInfo::SlideType slide_type);
 
     void setCallbackFlag(u32 flag)

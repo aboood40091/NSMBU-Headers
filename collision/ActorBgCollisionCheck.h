@@ -18,7 +18,16 @@ class BgCollision;
 class ActorBgCollisionCheckResult
 {
 public:
+    // Address: 0x0218A4D0
     ActorBgCollisionCheckResult();
+
+    // Address: 0x0218A5B4
+    void initialize();
+
+    // Address: 0x0218A608
+    BgCollision* getOwner() const;
+    // Address: 0x0218A658
+    void setOwner(BgCollision*);
 
 private:
     u8              _0;
@@ -40,8 +49,10 @@ static_assert(sizeof(ActorBgCollisionCheckResult) == 0x38);
 
 class Actor;
 
-class ActorBgCollisionCheck
+class ActorBgCollisionCheck // vtbl Address: 0x10041364
 {
+    // getRuntimeTypeInfoStatic()::typeInfo initialization guard variable   Address: Deleted
+    // getRuntimeTypeInfoStatic()::typeInfo                                 Address: Deleted
     SEAD_RTTI_BASE(ActorBgCollisionCheck)
 
 public:
@@ -129,20 +140,30 @@ public:
     static_assert(sizeof(Sensor) == 0xC);
 
 public:
+    // Address: 0x0218A6EC
     ActorBgCollisionCheck();
+    // Address: 0x0218ADFC
     virtual ~ActorBgCollisionCheck();
 
+    // Address: 0x0218D954
     virtual void process();
+    // Address: 0x0218E060
     virtual void vf2C();
+    // Address: 0x0218E180
     virtual void vf34();
     virtual u32 vf3C() = 0;
     virtual u32 vf44() = 0;
     virtual u32 vf4C() = 0;
+    // Address: 0x0219070C
     virtual void vf54();
-    virtual void vf5C();
-    virtual void vf64();
-    virtual void vf6C();
+    // Address: 0x02190C14
+    virtual void checkFoot();
+    // Address: 0x02191054
+    virtual void checkHead();
+    // Address: 0x02191494
+    virtual void checkWall(u8 direction);
 
+    // Address: 0x0218AF6C
     void set(Actor* p_owner, const Sensor* p_foot, const Sensor* p_head, const Sensor* p_wall);
 
     Actor* getOwner() const
@@ -150,7 +171,9 @@ public:
         return mpOwner;
     }
 
+    // Address: 0x0218AEFC
     void setSensor(const Sensor* sensor, u8 direction);
+    // Address: 0x0218CE74
     const Sensor* getSensor(u8 direction) const;
 
     const FollowArg& getFollowArg() const { return mFollowArg; }

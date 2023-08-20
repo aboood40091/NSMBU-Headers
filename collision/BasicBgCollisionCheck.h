@@ -10,10 +10,15 @@ struct BgCollisionCheckResult;
 class BasicBgCollisionCheck
 {
 public:
+    // Address: 0x021A0B8C
     BasicBgCollisionCheck();
+    // Address: 0x021A0C44
     BasicBgCollisionCheck(const BgCollisionCheckParam& param);
 
-    bool check(BgCollisionCheckResult* p_res, const sead::Vector2f& p0, const sead::Vector2f& p1, u32);
+    // Address: 0x021A1184
+    bool checkGround(BgCollisionCheckResult* p_res, const sead::Vector2f& p0, const sead::Vector2f& p1, u32);
+    // Address: 0x021A13F0
+    bool checkGroundAngle(BgCollisionCheckResult* p_res, const sead::Vector2f& p0, const sead::Vector2f& p1, u32);
 
 private:
     u8                  _0;
