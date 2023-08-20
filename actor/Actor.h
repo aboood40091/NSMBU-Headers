@@ -9,8 +9,10 @@ class ActorBgCollisionCheck;
 class GenericChibiEatData;
 class GenericEatData;
 
-class Actor : public ActorBase
+class Actor : public ActorBase  // vtbl Address: 0x10000268
 {
+    // getRuntimeTypeInfoStatic()::typeInfo initialization guard variable   Address: 0x101E9CBC
+    // getRuntimeTypeInfoStatic()::typeInfo                                 Address: 0x101E9CC0
     SEAD_RTTI_OVERRIDE(Actor, ActorBase)
 
 public:

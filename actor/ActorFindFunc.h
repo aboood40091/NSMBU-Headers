@@ -11,7 +11,7 @@ public:
 };
 static_assert(sizeof(ActorFindFunc) == 4);
 
-class ActorProfileFindFunc : public ActorFindFunc
+class ActorProfileFindFunc : public ActorFindFunc   // vtbl Address: 0x10000B6C
 {
 public:
     ActorProfileFindFunc(s32 id)
@@ -19,6 +19,7 @@ public:
     {
     }
 
+    // Address: 0x02008A54
     virtual bool operator()(const ActorBase& actor);
 
 private:
@@ -26,7 +27,7 @@ private:
 };
 static_assert(sizeof(ActorProfileFindFunc) == 8);
 
-class ActorCreateIndexFindFunc : public ActorFindFunc
+class ActorCreateIndexFindFunc : public ActorFindFunc   // vtbl Address: 0x10000B7C
 {
 public:
     ActorCreateIndexFindFunc(u32 index)
@@ -34,6 +35,7 @@ public:
     {
     }
 
+    // Address: 0x02008A94
     virtual bool operator()(const ActorBase& actor);
 
 private:

@@ -29,6 +29,7 @@ struct ActorCreateInfo
     u16             _1e;
     u16             flag;
 
+    // Address: 0x100018F4
     static const ActorCreateInfo cDefault;
 };
 static_assert(sizeof(ActorCreateInfo) == 0x24);
@@ -53,6 +54,7 @@ public:
     };
 
 public:
+    // Address: 0x02019554
     Profile(ActorFactory p_actor_factory, s32 id, const sead::SafeString& name, const ActorCreateInfo* p_create_info, u32 flag);
 
     ActorFactory getActorFactory() const
@@ -80,15 +82,23 @@ public:
         return mFlag;
     }
 
+    // Address: 0x020195FC
     void loadResource(sead::Heap* heap);
+    // Address: 0x020196CC
     void unloadResource(sead::Heap* heap);
+    // Address: 0x020196E4
     ModelResource* getResource(u32 index) const;
 
+    // Address: 0x02019774
     static Profile* get(s32 id);
 
+    // Address: 0x02019988
     static s16 getDrawPriority(s32 id);
+    // Address: 0x020199A8
     static ResType getResType(s32 id);
+    // Address: 0x020199CC
     static u8 getResNum(s32 id);
+    // Address: 0x020199EC
     static const sead::SafeString* getResList(s32 id);
 
 protected:
@@ -98,11 +108,16 @@ protected:
     bool                    mIsResLoaded;
     u32                     mFlag;
 
+    // Address: 0x101ED8DC
     static sead::SafeArray<Profile*, cNum>  sProfile;
 
+    // Address: 0x10001940
     static const s16                cDrawPriority[cNum];
+    // Address: 0x10002064
     static const u8                 cResType[cNum];
+    // Address: 0x100023F8
     static const u8                 cResNum[cNum];
+    // Address: 0x101C321C
     static const sead::SafeString*  cResList[cNum];
 };
 static_assert(sizeof(Profile) == 0x14);

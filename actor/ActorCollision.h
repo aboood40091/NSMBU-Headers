@@ -4,20 +4,27 @@
 #include <collision/ActorBgCollisionObjCheck.h>
 #include <collision/BgCollisionCheckParam.h>
 
-class ActorCollision : public Actor
+class ActorCollision : public Actor // vtbl Address: 0x1000084C
 {
+    // getRuntimeTypeInfoStatic()::typeInfo initialization guard variable   Address: 0x101E9CD4
+    // getRuntimeTypeInfoStatic()::typeInfo                                 Address: 0x101E9CD8
     SEAD_RTTI_OVERRIDE(ActorCollision, Actor)
 
 public:
+    // Address: 0x02002FB8
     ActorCollision(const ActorCreateParam& param);
     virtual ~ActorCollision() { }
 
 protected:
+    // Address: 0x0200354C
     void postCreate_(MainState state) override;
 
+    // Address: 0x020035FC
     s32 preExecute_() override;
+    // Address: 0x020036D8
     void postExecute_(MainState state) override;
 
+    // Address: 0x02003724
     s32 doDelete_() override;
 
 public:
@@ -31,7 +38,8 @@ public:
         _179A = unk;
     }
 
-    virtual u8 vf114();                 // deleted
+    // Address: Deleted
+    virtual u8 vf114();
 
     virtual void vf11C()
     {
@@ -46,9 +54,13 @@ public:
         return 0;
     }
 
-    virtual void vf134();               // deleted
+    // Address: Deleted
+    virtual void vf134();
+    // Address: 0x02004008
     virtual u32 vf13C();                // returns 0
+    // Address: 0x0200375C
     virtual void vf144(bool);           // nullsub
+    // Address: 0x02003760
     virtual void vf14C(Actor*);         // nullsub
 
     virtual bool vf154(const sead::Vector2f&)
@@ -85,7 +97,9 @@ public:
         );
     }
 
+    // Address: 0x020039AC
     void calcSpeedY();
+    // Address: 0x02003AE4
     void posMove();
 
     bool checkForSuitableGround(const sead::Vector2f& offset)
