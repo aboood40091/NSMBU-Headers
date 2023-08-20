@@ -2,7 +2,7 @@
 
 #include <math/seadVector.h>
 
-class IStateID;
+class StateID;
 
 class EnemyDeathInfo
 {
@@ -36,15 +36,15 @@ public:
 
 public:
     // Address: 0x101CE360
-    static sead::Vector2f sDefaultSpeed;        // 1.5f, 3.9f
+    static sead::Vector2f sDefaultSpeed;    // 1.5f, 3.9f
     // Address: 0x101CE368
-    static f32 sDefaultFallSpeedMax;            // -4.0f
+    static f32 sDefaultFallSpeedMax;        // -4.0f
     // Address: 0x101CE36C
-    static f32 sDefaultAccelY;                  // -0.24375f
+    static f32 sDefaultAccelY;              // -0.24375f
     // Address: 0x101CE370
-    static const IStateID* spDefaultStateID;    // nullptr
+    static const StateID* spDefaultStateID; // nullptr
     // Address: 0x101CE374
-    static KillArg sDefaultKillArg;             // { -1, 0, -1 }
+    static KillArg sDefaultKillArg;         // { -1, 0, -1 }
 
 public:
     EnemyDeathInfo()
@@ -60,7 +60,7 @@ public:
     EnemyDeathInfo(const sead::Vector2f& speed,
                    f32 fall_speed_max,
                    f32 accel_y,
-                   const IStateID* p_state_id)
+                   const StateID* p_state_id)
         : mSpeed(speed)
         , mFallSpeedMax(fall_speed_max)
         , mAccelY(accel_y)
@@ -82,7 +82,7 @@ private:
     sead::Vector2f  mSpeed;
     f32             mFallSpeedMax;
     f32             mAccelY;
-    const IStateID* mpStateID;
+    const StateID*  mpStateID;
     KillArg         mKillArg;
     bool            mIsNoRespawn;
 };

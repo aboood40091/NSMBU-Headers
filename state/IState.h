@@ -2,7 +2,7 @@
 
 #include <basis/seadTypes.h>
 
-class IStateID;
+class StateID;
 
 class IState
 {
@@ -15,7 +15,7 @@ public:
     {
     }
 
-    virtual const IStateID* getStateID() const = 0;
+    virtual const StateID* getStateID() const = 0;
     virtual void execute() = 0;
 };
 static_assert(sizeof(IState) == 4);

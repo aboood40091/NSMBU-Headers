@@ -1,21 +1,21 @@
 #pragma once
 
+#include <state/FStateID.h>
 #include <state/IState.h>
-#include <state/StateID.h>
 
 template <typename T>
-class State : public IState
+class FState : public IState
 {
 public:
-    State(T& obj)
+    FState(T& obj)
         : mpObject(&obj)
     {
     }
 
     T& getObject() const { return *mpObject; }
 
-    const IStateID* getStateID() const override { return mStateID; }
-    void setStateID(const StateID<T>* p_state_id) { mStateID = p_state_id; }
+    const StateID* getStateID() const override { return mStateID; }
+    void setStateID(const FStateID<T>* p_state_id) { mStateID = p_state_id; }
 
     void execute() override
     {
@@ -24,5 +24,5 @@ public:
 
 protected:
     T*                  mpObject;
-    const StateID<T>*   mStateID;
+    const FStateID<T>*  mStateID;
 };

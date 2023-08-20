@@ -1,18 +1,28 @@
 #pragma once
 
-#include <state/IStateMgr.h>
-#include <state/StateFactory.h>
+#include <basis/seadTypes.h>
 
-template <typename T, typename Method>
-class StateMgr : public IStateMgr< T, Method, StateFactory<T> >
+template <typename T, typename Method, template <typename FactoryT> class Factory>
+class StateMgr
 {
 public:
     StateMgr(T& obj)
-        : IStateMgr< T, Method, StateFactory<T> >(obj)
+        : mFactory(obj)
+        , mMethod(mFactory)
     {
     }
 
-    virtual ~StateMgr()
+    Method& getStateMethod()
     {
+        return mMethod;
     }
+
+    const Method& getStateMethod() const
+    {
+        return mMethod;
+    }
+
+protected:
+    Factory<T>  mFactory;
+    Method      mMethod;
 };

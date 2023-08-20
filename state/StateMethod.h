@@ -1,6 +1,6 @@
 #pragma once
 
-#include <state/IStateID.h>
+#include <state/StateID.h>
 
 class IState;
 class IStateFactory;
@@ -8,38 +8,45 @@ class IStateFactory;
 class StateMethod
 {
 public:
-    static const IStateID cNullStateID;
+    // Address: 0x1022D390
+    static const StateID cNullStateID;
 
 public:
-    StateMethod(IStateFactory& factory, const IStateID& state_id = cNullStateID);
+    // Address: 0x029C4A08
+    StateMethod(IStateFactory& factory, const StateID& state_id = cNullStateID);
+
+    // Address: 0x029C4A80
+    void executeStateMethod();
+
+    // Address: 0x029C4AF0
+    void changeStateMethod(const StateID& state_id);
 
     IState* getState() const { return mpState; }
-    IStateID* getNewStateID() const { return mpNewStateID; }
-    IStateID* getStateID() const;
-    IStateID* getOldStateID() const { return mpOldStateID; }
-
-    void executeStateMethod();
-    void changeStateMethod(const IStateID& state_id);
+    StateID* getNewStateID() const { return mpNewStateID; }
+    // Address: 0x029C4B88
+    StateID* getStateID() const;
+    StateID* getOldStateID() const { return mpOldStateID; }
 
 protected:
     IStateFactory*  mpFactory;
-    IStateID*       mpNewStateID;
+    StateID*        mpNewStateID;
     IState*         mpState;
-    IStateID*       mpOldStateID;
+    StateID*        mpOldStateID;
 };
 static_assert(sizeof(StateMethod) == 0x10);
 
 class StateMethodMulti : public StateMethod
 {
 public:
-    StateMethodMulti(IStateFactory& factory, const IStateID& state_id = cNullStateID)
+    StateMethodMulti(IStateFactory& factory, const StateID& state_id = cNullStateID)
         : StateMethod(factory, state_id)
     {
     }
 
-    void changeToSubStateMethod(const IStateID& state_id);
+    // Address: 0x029C4BC4
+    void changeToSubStateMethod(const StateID& state_id);
 
 protected:
-    IStateID*   mpReturnStateID;
+    StateID*    mpReturnStateID;
 };
 static_assert(sizeof(StateMethodMulti) == 0x14);

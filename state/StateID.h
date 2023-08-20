@@ -1,18 +1,20 @@
 #pragma once
 
-#include <state/IStateID.h>
+#include <basis/seadTypes.h>
 
-template <typename T>
-class StateID : public IStateID
+class StateID
 {
 public:
-    typedef void (T::*FunctionPtr)();
+    StateID()
+    {
+        // s_number_memo initialization guard variable  Address: 0x101E9E9C
+        // s_number_memo                                Address: 0x101E9F04
+        static s32 s_number_memo = 0;
+        mNumber = ++s_number_memo;
+    }
 
-public:
-    StateID(FunctionPtr p_initialize, FunctionPtr p_execute, FunctionPtr p_finalize)
-        : mpInitialize(p_initialize)
-        , mpExecute(p_execute)
-        , mpFinalize(p_finalize)
+    StateID(s32 number)
+        : mNumber(number)
     {
     }
 
@@ -20,35 +22,32 @@ public:
     {
     }
 
-    void initializeState(T& obj) const
+    virtual s32 number() const
     {
-        (obj.*mpInitialize)();
+        return mNumber;
     }
 
-    void executeState(T& obj) const
+    bool isNull() const
     {
-        (obj.*mpExecute)();
+        return mNumber == -1;
     }
 
-    void finalizeState(T& obj) const
+    bool isEqual(const StateID& rhs) const
     {
-        (obj.*mpFinalize)();
+        return number() == rhs.number();
+    }
+
+    bool operator==(const StateID& rhs) const
+    {
+        return isEqual(rhs);
+    }
+
+    bool operator!=(const StateID& rhs) const
+    {
+        return !isEqual(rhs);
     }
 
 protected:
-    FunctionPtr mpInitialize;
-    FunctionPtr mpExecute;
-    FunctionPtr mpFinalize;
+    s32 mNumber;
 };
-
-#define DECLARE_STATE_ID(CLASS, NAME)       \
-	static StateID<CLASS> StateID_##NAME;   \
-	void initializeState_##NAME();          \
-	void executeState_##NAME();             \
-    void finalizeState_##NAME();
-
-#define CREATE_STATE_ID(CLASS, NAME)        \
-    StateID<CLASS> CLASS::StateID_##NAME    \
-		(&CLASS::initializeState_##NAME,    \
-         &CLASS::executeState_##NAME,       \
-         &CLASS::finalizeState_##NAME);
+static_assert(sizeof(StateID) == 8);

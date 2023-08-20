@@ -1,8 +1,8 @@
 #pragma once
 
 #include <actor/ActorCollision.h>
+#include <state/FStateMgr.h>
 #include <state/StateMethod.h>
-#include <state/StateMgr.h>
 
 class ActorState : public ActorCollision
 {
@@ -12,13 +12,13 @@ public:
     ActorState(const ActorCreateParam& param);
     virtual ~ActorState() { }
 
-    void changeState(const IStateID& state_id)
+    void changeState(const StateID& state_id)
     {
         mStateMgr.getStateMethod().changeStateMethod(state_id);
     }
 
 protected:
-    StateMgr<ActorState, StateMethod>   mStateMgr;
+    FStateMgr<ActorState, StateMethod>  mStateMgr;
     u32                                 _17c4[4 / sizeof(u32)];
 };
 static_assert(sizeof(ActorState) == 0x17C8);
@@ -31,12 +31,12 @@ public:
     ActorMultiState(const ActorCreateParam& param);
     virtual ~ActorMultiState() { }
 
-    virtual void changeState(const IStateID& state_id)
+    virtual void changeState(const StateID& state_id)
     {
         mStateMgr.getStateMethod().changeStateMethod(state_id);
     }
 
 protected:
-    StateMgr<ActorMultiState, StateMethodMulti> mStateMgr;
+    FStateMgr<ActorMultiState, StateMethodMulti>    mStateMgr;
 };
 static_assert(sizeof(ActorMultiState) == 0x17C8);

@@ -1,7 +1,7 @@
 #pragma once
 
+#include <state/FStateMgr.h>
 #include <state/StateMethod.h>
-#include <state/StateMgr.h>
 
 #include <math/seadVector.h>
 
@@ -89,7 +89,7 @@ private:
 
     u8                      _c0[0xD4-0xC0];
 
-    StateMgr<
+    FStateMgr<
         ParentMovementMgr,
         StateMethod
     >                       mFStateMgr;

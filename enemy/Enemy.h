@@ -2,7 +2,7 @@
 
 #include <actor/ActorState.h>
 #include <enemy/EnemyDeathInfo.h>
-#include <state/StateVirtualID.h>
+#include <state/FStateVirtualID.h>
 
 class ActorCollisionCheck;
 
@@ -30,7 +30,7 @@ public:
     void blockHitInit() override;
     void vf14C(Actor*) override;
     bool vf154(const sead::Vector2f&) override;
-    void changeState(const IStateID& state_id) override;
+    void changeState(const StateID& state_id) override;
 
     virtual bool vf18C() // is not carryable?
     {
@@ -142,7 +142,7 @@ public:
 
     void setDeathInfo_Fall(u8 direction, s8 player_no, s8 score_lyt_type);
     void setDeathInfo_Fall(const sead::Vector2f* speeds, u8 direction, s8 player_no, s8 score_lyt_type);
-    void setDeathInfo_Fumi(Actor*, sead::Vector2f speed, const IStateID& state_id);
+    void setDeathInfo_Fumi(Actor*, sead::Vector2f speed, const StateID& state_id);
     void setDeathInfo_SpinFumi(Actor*);
     void setDeathInfo_YoshiFumi(Actor*);
 

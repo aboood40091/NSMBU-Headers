@@ -2,7 +2,7 @@
 
 #include <actor/ActorState.h>
 #include <collision/SquareBgCollision.h>
-#include <state/StateVirtualID.h>
+#include <state/FStateVirtualID.h>
 
 class BlockCoinBase : public ActorMultiState
 {
