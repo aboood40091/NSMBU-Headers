@@ -17,24 +17,24 @@ public:
     SEAD_RTTI_BASE(ExecuteControlBase)
 
 protected:
-    virtual void initialize_()
+    virtual void initializeCurrent_()
     {
     }
 
-    virtual bool isPauseDone_()
+    virtual s32 currentState_() // 0: Pause, 1: Pause Done
     {
-        return false;
+        return 0;
     }
 
-    virtual void finalize_()
-    {
-    }
-
-    virtual void onDetach_()
+    virtual void finalizeCurrent_()
     {
     }
 
-    virtual void onDetachCurrent_()
+    virtual void onDestroyQueued_()
+    {
+    }
+
+    virtual void onDestroyCurrent_()
     {
     }
 
