@@ -52,6 +52,8 @@ public:
 
     f32 getZoom() const { return mZoom; }
 
+    f32 getScreenWidth() const { return mScreenWidth; }
+    f32 getScreenHeight() const { return mScreenHeight; }
     f32 getScreenLeft() const { return mScreenLeft; }
     f32 getScreenCenterX() const { return mScreenCenterX; }
     f32 getScreenRight() const { return mScreenRight; }
