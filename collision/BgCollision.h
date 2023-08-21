@@ -156,6 +156,11 @@ public:
     virtual void vf74(u32*) = 0;
     virtual bool vf7C(sead::Vector2f*, f32) = 0;
 
+    const sead::BoundBox2f getAffectedArea() const
+    {
+        return mAffectedArea;
+    }
+
     Actor* getOwner() const
     {
         return mpOwner;
