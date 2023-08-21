@@ -16,7 +16,7 @@ class ActorCollisionCheck : public sead::IDisposer  // vtbl Address: 0x10041C18
 public:
     enum Shape
     {
-        cShape_Square   = 0,
+        cShape_Box      = 0,
         cShape_Circle,
         cShape_DaikeiUD,    // Vertical Trapezoid
         cShape_DaikeiLR     // Horizontal Trapezoid
