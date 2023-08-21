@@ -33,6 +33,16 @@ public:
     };
     static_assert(sizeof(InitArg) == 0x18);
 
+    struct BoxInitArg
+    {
+        sead::Vector2f          pos_offset;
+        sead::Vector2f          rot_pivot_offset;
+        sead::Vector2f          left_top_offset;
+        sead::Vector2f          right_under_offset;
+        u32                     angle;
+    };
+    static_assert(sizeof(BoxInitArg) == 0x24);
+
     struct CircleInitArg
     {
         sead::Vector2f          pos_offset;
@@ -53,15 +63,14 @@ public:
     };
     static_assert(sizeof(EllipseInitArg) == 0x24);
 
-    struct BoxInitArg
+    struct LineInitArg
     {
         sead::Vector2f          pos_offset;
         sead::Vector2f          rot_pivot_offset;
-        sead::Vector2f          left_top_offset;
-        sead::Vector2f          right_under_offset;
+        sead::Vector2f          points[2];
         u32                     angle;
     };
-    static_assert(sizeof(BoxInitArg) == 0x24);
+    static_assert(sizeof(LineInitArg) == 0x24);
 
     struct PoleRopeInitArg
     {
