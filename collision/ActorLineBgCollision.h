@@ -2,6 +2,8 @@
 
 #include <collision/BasicRideLineBgCollision.h>
 
+#include <container/seadSafeArray.h>
+
 class ActorLineBgCollision : public BasicRideLineBgCollision
 {
     // getRuntimeTypeInfoStatic()::typeInfo initialization guard variable   Address: 0x101EA0FC
