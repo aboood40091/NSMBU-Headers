@@ -53,7 +53,7 @@ public:
     };
     static_assert(sizeof(EllipseInitArg) == 0x24);
 
-    struct SquareInitArg
+    struct BoxInitArg
     {
         sead::Vector2f          pos_offset;
         sead::Vector2f          rot_pivot_offset;
@@ -61,7 +61,7 @@ public:
         sead::Vector2f          right_under_offset;
         u32                     angle;
     };
-    static_assert(sizeof(SquareInitArg) == 0x24);
+    static_assert(sizeof(BoxInitArg) == 0x24);
 
     struct PoleRopeInitArg
     {

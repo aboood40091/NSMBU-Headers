@@ -1,7 +1,7 @@
 #pragma once
 
 #include <actor/ActorState.h>
-#include <collision/SquareBgCollision.h>
+#include <collision/BoxBgCollision.h>
 #include <state/FStateVirtualID.h>
 
 class BlockCoinBase : public ActorMultiState
@@ -78,7 +78,7 @@ public:
 protected:
     ActorBgCollisionCheck::Sensor   _17c8;
     u8                              _17d4[4];
-    SquareBgCollision               mSquareBgCollision;
+    BoxBgCollision                  mBoxBgCollision;
     sead::Vector2f                  _1a68;
     sead::Vector2f                  _1a70;
     f32                             _1a78;
