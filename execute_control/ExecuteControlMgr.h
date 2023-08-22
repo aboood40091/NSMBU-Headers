@@ -1,7 +1,9 @@
 #pragma once
 
+#include <container/seadOffsetList.h>
 #include <heap/seadDisposer.h>
 
+class ActorBase;
 class ExecuteControlBase;
 
 class ExecuteControlMgr
@@ -50,3 +52,4 @@ protected:
 
     friend class ExecuteControlBase;
 };
+static_assert(sizeof(ExecuteControlMgr) == 0x24);
