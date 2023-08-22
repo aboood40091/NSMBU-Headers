@@ -2,6 +2,7 @@
 
 #include <container/seadListImpl.h>
 #include <heap/seadDisposer.h>
+#include <prim/seadRuntimeTypeInfo.h>
 
 class ActorBase;
 class ExecuteControlMgr;
