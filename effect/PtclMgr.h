@@ -52,9 +52,6 @@ public:
     void setFrameBufferTexture(const agl::TextureSampler& texture, f32 x_offset = 0.0f, f32 y_offset = 0.0f, f32 x_scale = 1.0f, f32 y_scale = 1.0f);
 
 private:
-    static u32 userDataToType_(u16 user_data);
-
-private:
     sead::ptcl::PtclSystem*                             mpPtclSystem;
     void*                                               mpPtclParallelTbl;
     PtclLightMgr*                                       mpLightMgr;
