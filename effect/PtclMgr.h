@@ -27,7 +27,7 @@ class RenderInfo;
 } } // namespace agl::lyr
 
 class LevelEffect;
-class PtclLightMgr;
+class PtclEmitterColorMgr;
 
 class PtclMgr
 {
@@ -54,7 +54,7 @@ public:
 private:
     sead::ptcl::PtclSystem*                             mpPtclSystem;
     void*                                               mpPtclParallelTbl;
-    PtclLightMgr*                                       mpLightMgr;
+    PtclEmitterColorMgr*                                mpEmitterColorMgr;
     void*                                               mpUserShaderParamTbl;
     sead::TList<LevelEffect*>                           mEffects;
     sead::FixedPtrArray<nw::eft::EmitterInstance, 256>  mpEmitter1;

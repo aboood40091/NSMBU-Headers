@@ -10,11 +10,11 @@ class EmitterController;
 
 } }
 
-class PtclLightMgr : public sead::IDisposer
+class PtclEmitterColorMgr : public sead::IDisposer
 {
 public:
-    PtclLightMgr();
-    virtual ~PtclLightMgr() {}
+    PtclEmitterColorMgr();
+    virtual ~PtclEmitterColorMgr() {}
 
     bool updateAmbientLight(bool update_emitter = true);
     void setEmitterColor(nw::eft::EmitterController* p_emitter_controller, u16 user_data);
@@ -22,4 +22,4 @@ public:
 private:
     sead::UnsafeArray<sead::Color4f, 6> mLightColor;
 };
-static_assert(sizeof(PtclLightMgr) == 0x70);
+static_assert(sizeof(PtclEmitterColorMgr) == 0x70);
