@@ -31,12 +31,21 @@ class PtclEmitterColorMgr;
 
 class PtclMgr
 {
+    // createInstance()                             Address: 0x022AC738
+    // deleteInstance()                             Address: Deleted
+    // sInstance                                    Address: 0x101CD3A8
+    // SingletonDisposer_::~SingletonDisposer_()    Address: 0x022ADADC
+    // SingletonDisposer_::sStaticDisposer          Address: 0x101CD3AC
+    // SingletonDisposer_::vtbl                     Address: 0x10058B48
     SEAD_SINGLETON_DISPOSER(PtclMgr)
 
 public:
+    // Address: 0x022AC634
     PtclMgr();
+    // Address: 0x022AC854
     ~PtclMgr();
 
+    // Address: 0x022AC7B8
     void cleanUp();
 
     sead::ptcl::PtclSystem* getPtclSystem()
@@ -44,8 +53,10 @@ public:
         return mpPtclSystem;
     }
 
+    // Address: 0x022ACA44
     void draw(const agl::lyr::RenderInfo& render_info, u32 type, const sead::PtrArray<nw::eft::EmitterInstance>* p_emitters = nullptr);
 
+    // Address: 0x022ACE58
     u8 getEmitterSetGroupID(s32 set_id, u32 res_id = 0) const;
 
     // Address: 0x022ADA08

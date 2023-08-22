@@ -10,13 +10,16 @@ class EmitterController;
 
 } }
 
-class PtclEmitterColorMgr : public sead::IDisposer
+class PtclEmitterColorMgr : public sead::IDisposer // vtbl Address: 0x10058888
 {
 public:
+    // Address: 0x022ABFC0
     PtclEmitterColorMgr();
     virtual ~PtclEmitterColorMgr() {}
 
+    // Address: 0x022AC078
     bool updateAmbientLight(bool update_emitter = true);
+    // Address: 0x022AC160
     void setEmitterColor(nw::eft::EmitterController* p_emitter_controller, u16 user_data);
 
 private:
