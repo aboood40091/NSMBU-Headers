@@ -6,6 +6,7 @@
 class Actor;
 struct BgCollisionCheckParam;
 struct BgCollisionCheckResult;
+class BgHitCheckCallback;
 
 class BasicBgCollisionCheck
 {
