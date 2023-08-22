@@ -7,9 +7,10 @@
 
 class DistantViewMgr;
 
-class DVCameraParam : public sead::IDisposer
+class DVCameraParam : public sead::IDisposer    // vtbl Address: 0x100584D4
 {
 public:
+    // Address: 0x022A98DC
     DVCameraParam(DistantViewMgr* dv_mgr, const sead::Vector3f* p_bg_pos, const sead::SafeString& dv_name);
 
     const sead::Vector2f& getProjOffset() const { return *mProjOffset; }
@@ -18,6 +19,7 @@ public:
     f32 getMagnifCameraPosY() const { return *mMagnifCameraPosY; }
     const sead::Vector2f& getIndirectScrollSpd() const { return *mIndirectScrollSpd; }
 
+    // Address: 0x022A9D54
     void getModelMtx(sead::Matrix34f* p_model_mtx) const;
 
 private:

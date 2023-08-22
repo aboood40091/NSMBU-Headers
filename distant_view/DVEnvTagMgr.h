@@ -2,11 +2,15 @@
 
 #include <basis/seadTypes.h>
 
+class DistantViewMgr;
+
 class DVEnvTagMgr
 {
 public:
-    DVEnvTagMgr();
+    // Address: 0x022AA4C0
+    DVEnvTagMgr(DistantViewMgr* dv_mgr);
 
+    // Address: 0x022AA4EC
     void initialize(const void* p_file);
 
 private:
