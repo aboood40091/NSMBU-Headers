@@ -4,7 +4,7 @@
 
 class Actor;
 
-class EnemyActorScaler
+class EnemyActorScaler  // vtbl Address: 0x10072588
 {
 public:
     EnemyActorScaler(Actor* p_owner)
@@ -20,6 +20,7 @@ public:
         return mScale;
     }
 
+    // Address: 0x0232AB5C
     virtual void updateFromScale(const sead::Vector3f& scale); // Unsure if parameter is Vec3 or EnemyActorScaler ref
 
 protected:
