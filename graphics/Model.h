@@ -12,8 +12,10 @@
 class ModelNW;
 class ModelResource;
 
-class Model : public RenderObj, public sead::IDisposer
+class Model : public RenderObj, public sead::IDisposer  // vtbl Address: 0x100BC908
 {
+    // getRuntimeTypeInfoStatic()::typeInfo initialization guard variable   Address: 0x101E9D08
+    // getRuntimeTypeInfoStatic()::typeInfo                                 Address: 0x101E9F9C
     SEAD_RTTI_OVERRIDE(Model, RenderObj)
 
 public:
@@ -25,15 +27,20 @@ public:
     };
 
     // Why are these here... ?
+
+    // Address: 0x024EE440
     static ModelNW* createNW(const ModelResource& res, const sead::SafeString& name, s32 num_skl_anim, s32 num_tex_anim, s32 num_shu_anim, s32 num_vis_anim, s32 num_sha_anim, BoundingMode bounding_mode, sead::Heap* heap);
+    // Address: 0x024EE320
     static ModelNW* createNW(const ModelResource& res, const sead::SafeString& name, s32 num_view, s32 num_skl_anim, s32 num_tex_anim, s32 num_shu_anim, s32 num_vis_anim, s32 num_sha_anim, BoundingMode bounding_mode, sead::Heap* heap);
 
 public:
+    // Address: 0x024EE298
     Model();
+    // Address: 0x024EE230
     virtual ~Model();
 
-    virtual void updateAnimations() = 0;
-    virtual void updateModel() = 0;
+    virtual void calcAnm() = 0;
+    virtual void calcMdl() = 0;
     virtual void setMtxRT(const sead::Matrix34f& rt) = 0;
     virtual const sead::Matrix34f& getMtxRT() const = 0;
     virtual void setScale(const sead::Vector3f& scale) = 0;

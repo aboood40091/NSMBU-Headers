@@ -23,8 +23,10 @@
 
 class CullViewFrustum;
 
-class ModelNW : public Model
+class ModelNW : public Model    // vtbl Address: 0x100BCF30
 {
+    // getRuntimeTypeInfoStatic()::typeInfo initialization guard variable   Address: 0x101E9F78
+    // getRuntimeTypeInfoStatic()::typeInfo                                 Address: 0x101E9FA0
     SEAD_RTTI_OVERRIDE(ModelNW, Model)
 
 public:
@@ -176,9 +178,11 @@ private:
     static_assert(sizeof(BoundingFlagArray) == 0x28);
 
 public:
+    // Address: 0x024F301C
     // Calculates the drawing resources for skeleton matrices, shapes and materials
     void calc() override;
 
+    // Address: 0x024F30DC
     // Updates buffers for the GPU
     void calcGPU(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderMgr* p_render_mgr) override;
 
@@ -193,14 +197,19 @@ public:
     // 1. Shadow-only shapes and reflection-only shapes are always invisible
     // 2. Shadow casting for a shape is automatically enabled if "shadow_cast" is not present in its material's render info
 
+    // Address: 0x024F3884
     void drawOpa(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderMgr* p_render_mgr) override;
+    // Address: 0x024F398C
     void drawXlu(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderMgr* p_render_mgr) override;
 
+    // Address: 0x024F3A94
     // This draws the shadow of shadow-casting shapes
     void drawShadowOpa(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderMgr* p_render_mgr) override;
 
     // These draws the reflection on shapes
+    // Address: 0x024F3D64
     void drawReflectionOpa(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderMgr* p_render_mgr) override;
+    // Address: 0x024F3E6C
     void drawReflectionXlu(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderMgr* p_render_mgr) override;
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -211,11 +220,15 @@ public:
     }
 
 public:
+    // Address: 0x024F0800
     ModelNW();
+    // Address: 0x024F078C
     virtual ~ModelNW();
 
-    void updateAnimations() override;
-    void updateModel() override;
+    // Address: 0x024F4094
+    void calcAnm() override;
+    // Address: 0x024F4518
+    void calcMdl() override;
 
     // Rotation + Translation matrix
     void setMtxRT(const sead::Matrix34f& rt) override
@@ -240,26 +253,40 @@ public:
         return mScale;
     }
 
+    // Address: 0x024F3F74
     // Determines if there are any shapes that can be drawn by draw*Opa()
     bool hasOpa() const override;
+    // Address: 0x024F3FD0
     // Determines if there are any shapes that can be drawn by draw*Xlu()
     bool hasXlu() const override;
 
+    // Address: 0x024F476C
     s32 searchBoneIndex(const sead::SafeString& name) const override;
+    // Address: 0x024F47D8
     const char* getBoneName(s32 index) const override;
+    // Address: 0x024F4820
     u32 getBoneNum() const override;
 
+    // Address: 0x024F4628
     void setBoneLocalMatrix(s32 index, const sead::Matrix34f& rt, const sead::Vector3f& scale) override;
+    // Address: 0x024F46A4
     void getBoneLocalMatrix(s32 index, sead::Matrix34f* rt = nullptr, sead::Vector3f* scale = nullptr) const override;
 
+    // Address: 0x024F4724
     void setBoneWorldMatrix(s32 index, const sead::Matrix34f& mtx) override;
+    // Address: 0x024F4748
     void getBoneWorldMatrix(s32 index, sead::Matrix34f* mtx) const override;
 
+    // Address: 0x024F4B3C
     void setBoneVisible(s32 index, bool visible) override;
-    bool isBoneVisible(s32 index) const override; // deleted
+    // Address: Deleted
+    bool isBoneVisible(s32 index) const override;
 
+    // Address: 0x024F4A54
     u32 getMaterialNum() const override;
+    // Address: 0x024F4A5C
     s32 searchMaterialIndex(const sead::SafeString& name) const override;
+    // Address: 0x024F4AC8
     const char* getMaterialName(s32 index) const override;
 
     Material* getMaterial(s32 index) const override
@@ -267,8 +294,10 @@ public:
         return mpMaterial[index];
     }
 
+    // Address: 0x024F4B0C
     void setMaterialVisible(s32 index, bool visible) override;
-    bool isMaterialVisible(s32 index) const override; // deleted
+    // Address: Deleted
+    bool isMaterialVisible(s32 index) const override;
 
     void setBoundingEnable(bool enable) override // deleted
     {
@@ -285,6 +314,7 @@ public:
         return mBounding;
     }
 
+    // Address: 0x024F4B6C
     void calcViewShapeShadowFlags(agl::sdw::DepthShadow* p_depth_shadow, RenderObjLayerBase* p_shadow_layer, RenderMgr* p_render_mgr) override;
 
     sead::SafeString getName() const override
@@ -302,10 +332,15 @@ public:
         return mSklAnimBlendWeight[index];
     }
 
+    // Address: 0x024F4830
     void setSklAnim(s32 index, Animation* anim) override;
+    // Address: 0x024F489C
     void setTexAnim(s32 index, Animation* anim) override;
+    // Address: 0x024F4910
     void setShuAnim(s32 index, Animation* anim) override;
+    // Address: 0x024F497C
     void setVisAnim(s32 index, Animation* anim) override;
+    // Address: 0x024F49E8
     void setShaAnim(s32 index, Animation* anim) override;
 
 private:
@@ -361,6 +396,7 @@ public:
     }
 
 public:
+    // Address: 0x024F1860
     void initialize(nw::g3d::res::ResModel* res_model, const agl::ShaderProgramArchive* shader_archive, s32 num_view, s32 num_skl_anim, s32 num_tex_anim, s32 num_shu_anim, s32 num_vis_anim, s32 num_sha_anim, BoundingMode bounding_mode, sead::Heap* heap);
 
     agl::g3d::ModelEx& getModelEx() { return mModelEx; }
@@ -369,21 +405,32 @@ public:
     Shape& getShape(s32 index) { return mShape[index]; }
     const Shape& getShape(s32 index) const { return mShape[index]; }
 
+    // Address: 0x024F0FE0
     void activateMaterial(const agl::g3d::ModelShaderAssign& shader_assign, const nw::g3d::MaterialObj* p_material, const LightMap& light_map) const;
 
+    // Address: 0x024F50D8
     void setDisplayListDirty();
 
 private:
+    // Address: 0x024F0B70
     void createViewShapeShadowFlagBuffer_(s32 num_view, sead::Heap* heap);
+    // Address: 0x024F1098
     void initializeShapeRenderInfo_(ShapeRenderInfo& render_info, const nw::g3d::MaterialObj* p_material, const nw::g3d::ShapeObj* p_shape);
+    // Address: 0x024F1850
     static s32 sortShapeRenderInfoCmp(const ShapeRenderInfo* a, const ShapeRenderInfo* b);
+    // Address: 0x024F0C9C
     void calcBounding_();
+    // Address: 0x024F2CEC
     void applyBlendWeight_(s32 shape_index);
+    // Address: 0x024F402C
     static void setBoundingFlagArray_(BoundingFlagArray& flag_array, const SkeletalAnimation& anim);
 
+    // Address: 0x024F37B4
     void drawOpa_(DrawInfo& draw_info, const RenderMgr* p_render_mgr) const;
+    // Address: 0x024F381C
     void drawXlu_(DrawInfo& draw_info, const RenderMgr* p_render_mgr) const;
 
+    // Address: 0x024F30E8
     void drawShape_(DrawInfo& draw_info, const ShapeRenderInfo& render_info, const RenderMgr* p_render_mgr) const;
 
 private:
