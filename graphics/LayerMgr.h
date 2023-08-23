@@ -4,8 +4,12 @@
 
 class RenderMgr;
 
-class LayerMgr : public sead::TaskBase
+class LayerMgr : public sead::TaskBase  // vtbl Address: 0x100BB268
 {
+    // setInstance_()                               Address: 0x024E013C
+    // deleteInstance()                             Address: Deleted
+    // sInstance                                    Address: 0x101D2BE4
+    // SingletonDisposer_::~SingletonDisposer_()    Address: 0x024DFFE4
     SEAD_TASK_SINGLETON_DISPOSER(LayerMgr)
 
 public:
@@ -47,10 +51,12 @@ public:
     static_assert(cLayer_Num == 31);
 
 public:
+    // Address: 0x024E015C
     LayerMgr(const sead::TaskConstructArg& arg);
 
     // TODO
     // virtual ...
 
+    // Address: 0x024E1260
     void removeRenderMgr(RenderMgr* p_render_mgr);
 };
