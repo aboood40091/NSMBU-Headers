@@ -7,5 +7,6 @@
 class ModelNWShadowUtil
 {
 public:
+    // Address: 0x024F54E0
     static void allocBuffer(sead::Buffer<sead::BitFlag32>& buffer, s32 num_shape, sead::Heap* heap, s32 alignment = 0x20);
 };
