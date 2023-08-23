@@ -61,6 +61,7 @@ public:
     );
 
 public:
+    // Address: 0x024D4798
     BasicModel(ModelNW* p_model, u32 skl_anim_num, u32 tex_anim_num, u32 shu_anim_num, u32 vis_anim_num, u32 sha_anim_num);
 
     ModelNW* getModel() const { return mpModel; }
@@ -72,10 +73,14 @@ public:
     VisibilityAnimation*        getVisAnim(s32 index) const { return mpVisAnim[index]; }
     ShapeAnimation*             getShaAnim(s32 index) const { return mpShaAnim[index]; }
 
+    // Address: 0x024D49A0
     void init(ModelResource* p_mdl_res, const sead::PtrArray<ModelResource>* p_anim_mdl_res_array = nullptr, sead::Heap* heap = nullptr);
 
-    void updateAnimations();
-    void updateModel();
+    // Address: 0x024D4D20
+    void playAnmFrameCtrl();
+
+    // Address: 0x024D4E84
+    void calcMdl();
 
 private:
     ModelNW*                                mpModel;
