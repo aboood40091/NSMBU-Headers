@@ -37,6 +37,7 @@ public:
     };
     static_assert(cMemberNum == 11);
 
+    // Address: 0x100BCB70
     static const Member cMember[cMemberNum];
 
     static const s32 cLightObjMax = 8;
@@ -44,9 +45,11 @@ public:
     static const s32 cFogMax = 8;
 
 public:
+    // Address: 0x024EE6C8
     ModelEnvView();
     ~ModelEnvView() {}
 
+    // Address: 0x024EE8A0
     void setUniformData(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx,
                         const sead::Matrix44f*, const agl::env::EnvObjSet*, void*);
 
