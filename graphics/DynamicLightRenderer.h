@@ -6,5 +6,6 @@
 class DynamicLightRenderer
 {
 public:
+    // Address: 0x024DB5DC
     static void initializeShader(agl::ShaderProgramArchive* p_archive, sead::Heap* heap);
 };
