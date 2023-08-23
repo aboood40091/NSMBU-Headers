@@ -6,7 +6,7 @@
 
 enum LightType;
 
-class Light : public sead::IDisposer
+class Light : public sead::IDisposer    // vtbl Address: 0x100BB350
 {
 public:
     // Address: 0x024E24BC
