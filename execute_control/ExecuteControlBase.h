@@ -7,7 +7,7 @@
 class ActorBase;
 class ExecuteControlMgr;
 
-class ExecuteControlBase : public sead::IDisposer
+class ExecuteControlBase : public sead::IDisposer   // vtbl Address: 0x100B4480
 {
 public:
     // Address: 0x024A4AC8
@@ -15,6 +15,8 @@ public:
     // Address: 0x024A4B28
     virtual ~ExecuteControlBase();
 
+    // getRuntimeTypeInfoStatic()::typeInfo initialization guard variable   Address: 0x101E9E8C
+    // getRuntimeTypeInfoStatic()::typeInfo                                 Address: 0x101EA7C8
     SEAD_RTTI_BASE(ExecuteControlBase)
 
 protected:
