@@ -12,10 +12,16 @@ public:
     };
 
 public:
+    // Address: 0x024DEE24
     FrameCtrl();
 
+    // Address: 0x024DEEAC
     void reset();
+
+    // Address: 0x024DEED4
     void setPlayMode(PlayMode mode);
+
+    // Address: 0x024DEF04
     void play();
 
     f32 getFrameStart() const { return mFrameStart; }
@@ -48,6 +54,7 @@ public:
         return mFlag.isOn(cFlag_IsStop);
     }
 
+    // Address: 0x024DF0B8
     bool checkFrame(f32) const;
 
 protected:
