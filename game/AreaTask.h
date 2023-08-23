@@ -5,19 +5,28 @@
 #include <layer/aglRenderInfo.h>
 #include <math/seadBoundBox.h>
 
-class AreaTask : public sead::CalculateTask
+class AreaTask : public sead::CalculateTask // vtbl Address: 0x100B6984
 {
+    // setInstance_()                               Address: 0x024B5378
+    // deleteInstance()                             Address: Deleted
+    // sInstance                                    Address: 0x101D1598
+    // SingletonDisposer_::~SingletonDisposer_()    Address: 0x024B5228
     SEAD_TASK_SINGLETON_DISPOSER(AreaTask)
 
 public:
+    // Address: 0x024B5398
     AreaTask(const sead::TaskConstructArg& arg);
+    // Address: 0x024B5254
     virtual ~AreaTask();
 
     sead::BoundBox2f& getBound() { return mBound; }
     const sead::BoundBox2f& getBound() const { return mBound; }
 
+    // Address: 0x024B5B20
     void setLoopType();
+    // Address: 0x024B84A8
     void drawLayer3D(const agl::lyr::RenderInfo& render_info);
+    // Address: 0x024B8B98
     void debugDraw(const agl::lyr::RenderInfo& render_info);
 
 private:
