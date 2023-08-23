@@ -5,7 +5,7 @@
 
 class BlendModel : public BasicModel
 {
-    // I don't know the actual name of this class
+    // Actual name of this class is unknown.
 
 public:
     static BlendModel* create(
@@ -51,22 +51,29 @@ public:
     );
 
 public:
+    // Address: 0x024DFBF0
     BlendModel(ModelNW* p_model, u32 skl_anim_num, u32 tex_anim_num, u32 shu_anim_num, u32 vis_anim_num, u32 sha_anim_num);
 
+    // Address: 0x024DFC78
     void init(ModelResource* p_mdl_res, const sead::PtrArray<ModelResource>* p_anim_mdl_res_array = nullptr, sead::Heap* heap = nullptr);
 
-    void updateAnimations();
-    void updateModel();
+    // Address: 0x024dfc7c
+    void playAnmFrameCtrl();
 
+    // Address: 0x024DFD04
+    void calcMdl();
+    // Address: 0x024DFC80
     void calcBlend();
 
-    void setAnimation(
+    // Address: 0x024DFF9C
+    void setAnm(
         ModelResource* p_mdl_res,
         const sead::SafeString& name,
         f32 blend_duration
     );
 
-    void setAnimation(
+    // Address: 0x024DFFB4
+    void setAnm(
         const sead::SafeString& name,
         f32 blend_duration,
 
@@ -75,7 +82,8 @@ public:
         f32 frame = 0.0f
     );
 
-    void setAnimation(
+    // Address: 0x024DFFC4
+    void setAnm(
         const sead::SafeString& name,
 
         FrameCtrl::PlayMode mode = FrameCtrl::cMode_Repeat,
@@ -84,7 +92,8 @@ public:
     );
 
 private:
-    void setAnimation_(
+    // Address: 0x024DFD38
+    void setAnm_(
         ModelResource* p_mdl_res,
         const sead::SafeString& name,
         f32 blend_duration,
