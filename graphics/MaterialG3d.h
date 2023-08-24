@@ -7,10 +7,10 @@
 
 #include <nw/g3d/g3d_MaterialObj.h>
 
-class MaterialNW : public Material  // vtbl Address: 0x100BBC1C
+class MaterialG3d : public Material  // vtbl Address: 0x100BBC1C
 {
 public:
-    MaterialNW(nw::g3d::MaterialObj* material)
+    MaterialG3d(nw::g3d::MaterialObj* material)
         : mMaterialObj(material)
     {
     }
@@ -37,4 +37,4 @@ private:
     nw::g3d::MaterialObj*               mMaterialObj;
     sead::SafeArray<sead::Matrix34f, 8> mTexSrtMtx;
 };
-static_assert(sizeof(MaterialNW) == 0x188);
+static_assert(sizeof(MaterialG3d) == 0x188);

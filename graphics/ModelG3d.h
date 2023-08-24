@@ -1,7 +1,7 @@
 #pragma once
 
 #include <graphics/LightMapMgr.h>
-#include <graphics/MaterialNW.h>
+#include <graphics/MaterialG3d.h>
 #include <graphics/Model.h>
 #include <graphics/ShaderParamAnimation.h>
 #include <graphics/ShapeAnimation.h>
@@ -23,11 +23,11 @@
 
 class CullViewFrustum;
 
-class ModelNW : public Model    // vtbl Address: 0x100BCF30
+class ModelG3d : public Model    // vtbl Address: 0x100BCF30
 {
     // getRuntimeTypeInfoStatic()::typeInfo initialization guard variable   Address: 0x101E9F78
     // getRuntimeTypeInfoStatic()::typeInfo                                 Address: 0x101E9FA0
-    SEAD_RTTI_OVERRIDE(ModelNW, Model)
+    SEAD_RTTI_OVERRIDE(ModelG3d, Model)
 
 public:
     struct ShaderAssign
@@ -221,9 +221,9 @@ public:
 
 public:
     // Address: 0x024F0800
-    ModelNW();
+    ModelG3d();
     // Address: 0x024F078C
-    virtual ~ModelNW();
+    virtual ~ModelG3d();
 
     // Address: 0x024F4094
     void calcAnm() override;
@@ -449,7 +449,7 @@ private:
     sead::PtrArray<ShapeRenderInfo>                 mOpaShapeInfo;
     sead::PtrArray<ShapeRenderInfo>                 mXluShapeInfo;
     sead::Buffer<ShaderAssign>                      mShaderAssign;
-    sead::Buffer<MaterialNW*>                       mpMaterial;
+    sead::Buffer<MaterialG3d*>                      mpMaterial;
     sead::Buffer<Shape>                             mShape;
     sead::Matrix34f                                 mMtxRT;
     sead::Vector3f                                  mScale;
@@ -465,4 +465,4 @@ private:
     sead::BitFlag32                                 mViewDepthShadowEnableFlag;
     bool                                            mDisplayListDirty;
 };
-static_assert(sizeof(ModelNW) == 0x1AC);
+static_assert(sizeof(ModelG3d) == 0x1AC);

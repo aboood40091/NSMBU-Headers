@@ -4,7 +4,7 @@
 #include <framework/seadTaskMgr.h>
 #include <lighting/aglLightMapMgr.h>
 
-class ModelNW;
+class ModelG3d;
 
 class LightMapMgr : public sead::CalculateTask  // vtbl Address: 0x100BBA94
 {
@@ -27,7 +27,7 @@ public:
     const agl::lght::LightMapMgr& getLightMapMgr() const { return mLightMapMgr; }
 
     // Address: 0x024E5040
-    void setModelLightMap(ModelNW* p_model, bool set_mdl_dl_dirty) const;
+    void setModelLightMap(ModelG3d* p_model, bool set_mdl_dl_dirty) const;
 
     // Address: 0x024E51C8
     void initializeForCourseSelect(sead::Heap* heap);
