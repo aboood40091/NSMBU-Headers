@@ -36,7 +36,7 @@ public:
         BasicRideLineBgCollision::set(p_owner, base_arg);
     }
 
-    void set(Actor* p_owner, const sead::Vector2f& p0, const sead::Vector2f& p1, u32 angle = 0)
+    void set(Actor* p_owner, const sead::Vector2f& p0, const sead::Vector2f& p1, s32 angle = 0)
     {
         const sead::Vector2f points[2] = { p0, p1 };
         InitArg base_arg = { sead::Vector2f(0.0f, 0.0f), sead::Vector2f(0.0f, 0.0f), points, angle };

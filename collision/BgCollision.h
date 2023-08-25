@@ -3,6 +3,7 @@
 #include <collision/BgCheckUnitInfo.h>
 #include <collision/FollowArg.h>
 #include <system/LineNodeMgr.h>
+#include <utility/Angle.h>
 
 #include <heap/seadDisposer.h>
 #include <math/seadBoundBox.h>
@@ -29,7 +30,7 @@ public:
         sead::Vector2f          pos_offset;
         sead::Vector2f          rot_pivot_offset;
         const sead::Vector2f*   points;
-        u32                     angle;
+        Angle                   angle;
     };
     static_assert(sizeof(InitArg) == 0x18);
 
@@ -39,7 +40,7 @@ public:
         sead::Vector2f          rot_pivot_offset;
         sead::Vector2f          left_top_offset;
         sead::Vector2f          right_under_offset;
-        u32                     angle;
+        Angle                   angle;
     };
     static_assert(sizeof(BoxInitArg) == 0x24);
 
@@ -49,7 +50,7 @@ public:
         sead::Vector2f          rot_pivot_offset;
         sead::Vector2f          center_offset;
         f32                     radius;
-        u32                     angle;
+        Angle                   angle;
     };
     static_assert(sizeof(CircleInitArg) == 0x20);
 
@@ -59,7 +60,7 @@ public:
         sead::Vector2f          rot_pivot_offset;
         sead::Vector2f          center_offset;
         sead::Vector2f          half_size;          // Radii
-        u32                     angle;
+        Angle                   angle;
     };
     static_assert(sizeof(EllipseInitArg) == 0x24);
 
@@ -68,7 +69,7 @@ public:
         sead::Vector2f          pos_offset;
         sead::Vector2f          rot_pivot_offset;
         sead::Vector2f          points[2];
-        u32                     angle;
+        Angle                   angle;
     };
     static_assert(sizeof(LineInitArg) == 0x24);
 
@@ -79,8 +80,8 @@ public:
         sead::Vector2f          start_point;
         f32                     line_length;
         f32                     range;
-        u32*                    line_angles;
-        u32                     angle;
+        Angle*                  line_angles;
+        Angle                   angle;
     };
     static_assert(sizeof(PoleRopeInitArg) == 0x28);
 
@@ -181,12 +182,12 @@ public:
         return mFollowArg.p_position->y + mPosOffset.y;
     }
 
-    u32 getAngle() const
+    Angle getAngle() const
     {
         return mAngle;
     }
 
-    void setAngle(u32 angle)
+    void setAngle(Angle angle)
     {
         mAngle = angle;
     }
@@ -257,8 +258,8 @@ protected:
     u8                  _dc;
     u32                 _e0;
     sead::Matrix22f     mRotMtx;
-    u32                 mAngle;
-    u32                 mAnglePrev;
+    Angle               mAngle;
+    Angle               mAnglePrev;
     BcList              mBcListDown;
     BcList              mBcListUp;
     BcList              mBcListRight;

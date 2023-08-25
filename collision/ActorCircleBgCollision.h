@@ -1,6 +1,7 @@
 #pragma once
 
 #include <collision/BgCollision.h>
+#include <utility/Angle.h>
 
 class ActorCircleBgCollision : public BgCollision   // vtbl Address: 0x10041B28
 {
@@ -45,7 +46,7 @@ public:
     // Address: 0x02197FF0
     void set(Actor* p_owner, const CircleInitArg& arg);
     // Address: 0x02198058
-    void set(Actor* p_owner, const CircleInitArg& arg, const u32& angle_start, const u32& angle_end);
+    void set(Actor* p_owner, const CircleInitArg& arg, Angle angle_start, Angle angle_end);
 
     f32 getCenterPosX() const
     {
@@ -62,12 +63,12 @@ public:
         return mRadius;
     }
 
-    u32 getArcStart() const
+    Angle getArcStart() const
     {
         return mArcStart;
     }
 
-    u32 getArcEnd() const
+    Angle getArcEnd() const
     {
         return mArcEnd;
     }
@@ -78,11 +79,11 @@ private:
     sead::Vector2f  mCenterOffsetPrev;
     f32             mRadius;
     f32             mRadiusPrev;
-    u32             mBaseArcStart;
-    u32             mBaseArcEnd;
-    u32             mArcStart;
-    u32             mArcEnd;
-    u32             mArcStartPrev;
-    u32             mArcEndPrev;
+    Angle           mBaseArcStart;
+    Angle           mBaseArcEnd;
+    Angle           mArcStart;
+    Angle           mArcEnd;
+    Angle           mArcStartPrev;
+    Angle           mArcEndPrev;
 };
 static_assert(sizeof(ActorCircleBgCollision) == 0x190);

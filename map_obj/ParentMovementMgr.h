@@ -2,6 +2,7 @@
 
 #include <state/FStateMgr.h>
 #include <state/StateMethod.h>
+#include <utility/Angle.h>
 
 #include <math/seadVector.h>
 
@@ -38,7 +39,7 @@ public:
         return mPosition;
     }
 
-    u32 getAngle() const
+    Angle getAngle() const
     {
         return mAngle;
     }
@@ -56,7 +57,7 @@ private:
     u32                     _44;
     u32                     mTypeMask;
     u8                      mMovementId;
-    u32                     mAngle;
+    Angle                   mAngle;
     u8                      _54;
     f32                     _58;
 

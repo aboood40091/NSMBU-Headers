@@ -1,6 +1,7 @@
 #pragma once
 
 #include <actor/ActorUniqueID.h>
+#include <utility/Angle.h>
 
 #include <container/seadOffsetList.h>
 #include <heap/seadHeap.h>
@@ -14,10 +15,10 @@ struct ActorCreateParam
 {
     u32             param_0;
     u32             param_1;
-    u32             parent_id;
+    ActorUniqueID   parent_id;
     Profile*        p_profile;
     sead::Vector3f  position;
-    u32             angle;
+    Angle           angle;
     u8              layer;
     u8              event_id_0;
     u8              event_id_1;
@@ -29,13 +30,6 @@ struct ActorCreateParam
     u8*             _28;
 
     ActorCreateParam()
-        : parent_id(0)
-        , angle(0)
-    {
-        initialize();
-    }
-
-    void initialize()
     {
         sead::MemUtil::fillZero(this, sizeof(ActorCreateParam));
     }

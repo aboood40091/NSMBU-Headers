@@ -60,7 +60,7 @@ protected:
     LineNodeMgr<ActorBgCollisionPlayerCheck>    mPlayerBcList;
     sead::UnsafeArray<s32,              4>      _164;
     sead::UnsafeArray<sead::BitFlag32,  4>      _174;   // I think? (unused)
-    sead::Buffer<u32>                           mLineAngle;
+    sead::Buffer<Angle>                         mLineAngle;
     sead::Buffer<sead::Vector2f>                mPoint;
     sead::Buffer<sead::Vector2f>                mPointPrev;
     sead::Vector2f                              mBaseStartPoint;

@@ -6,6 +6,7 @@
 #include <collision/BgCheckUnitInfo.h>
 #include <collision/FollowArg.h>
 #include <system/LineNodeMgr.h>
+#include <utility/Angle.h>
 
 #include <container/seadPtrArray.h>
 #include <container/seadSafeArray.h>
@@ -35,7 +36,7 @@ private:
     u8              _2;
     u8              _3;
     u32             _4;
-    u32             mAngle;
+    Angle           mAngle;
     sead::Vector2f  _c;
     sead::Vector2f  _14;
     ActorUniqueID   mActorUniqueID;
