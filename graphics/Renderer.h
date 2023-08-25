@@ -6,28 +6,12 @@
 #include <layer/aglLayer.h>
 #include <math/seadBoundBox.h>
 
+class   Angle;
 class   BasicModel;
 class   Model;
 class   ModelFFL;
 class   RenderObjLayerBase;
 enum    UnitID;
-
-class Angle
-{
-public:
-    Angle(u32 angle)
-        : value(angle)
-    {
-    }
-
-    operator u32() const
-    {
-        return value;
-    }
-
-private:
-    u32 value;
-};
 
 class Renderer
 {
