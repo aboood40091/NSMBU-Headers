@@ -5,16 +5,92 @@
 class Angle
 {
 public:
-    Angle(u32 angle)
-        : value(angle)
+    Angle()
+        : mValue(0)
     {
     }
 
-    operator u32() const
+    Angle(s32 value)
+        : mValue(value)
     {
-        return value;
     }
 
-private:
-    u32 value;
+    operator s32() const
+    {
+        return mValue;
+    }
+
+    Angle& operator=(const Angle& rhs)
+    {
+        mValue = rhs.mValue;
+        return *this;
+    }
+
+    Angle& operator+=(const Angle& rhs)
+    {
+        mValue += rhs.mValue;
+        return *this;
+    }
+
+    Angle& operator-=(const Angle& rhs)
+    {
+        mValue -= rhs.mValue;
+        return *this;
+    }
+
+    Angle operator+() const
+    {
+        return +mValue;
+    }
+
+    Angle operator-() const
+    {
+        return -mValue;
+    }
+
+    Angle operator+(const Angle& rhs)
+    {
+        return mValue + rhs.mValue;
+    }
+
+    Angle operator-(const Angle& rhs)
+    {
+        return mValue - rhs.mValue;
+    }
+
+    bool operator==(const Angle& rhs) const
+    {
+        return mValue == rhs.mValue;
+    }
+
+    bool operator!=(const Angle& rhs) const
+    {
+        return mValue != rhs.mValue;
+    }
+
+public:
+    // Address: 0x029E0EA8
+    bool chaseAngle(const Angle& target, f32 ratio, const Angle& max);
+    // Address: 0x029E0EE8
+    bool chaseAngle(const Angle& target, f32 ratio, const Angle& max, const Angle& min);
+    // Address: 0x029E116C
+    bool chaseDecrease(const Angle& target, f32 ratio, const Angle& max, const Angle& min);
+    // Address: 0x029E117C
+    bool chaseRest(const Angle& target, const Angle& step);
+    // Address: 0x029E1188
+    bool chaseConstant(const Angle& target, const Angle& step);
+
+protected:
+    // Address: 0x029E0E34
+    bool chaseAngle_(s32 target, s32 distance, f32 ratio, s32 max, s32 min);
+    // Address: 0x029E0F8C
+    bool chaseDecrease_(s32 target, f32 ratio, s32 max, s32 min);
+    // Address: 0x029E0DE8
+    bool chaseRest_(s32 target, s32 step);
+    // Address: 0x029E0F2C
+    bool chaseConstant_(s32 target, s32 step);
+
+protected:
+    s32 mValue;
 };
+static_assert(sizeof(Angle) == 4);
