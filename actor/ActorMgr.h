@@ -78,23 +78,23 @@ public:
 
 public:
     // Address: 0x02009B6C
-    iterator find(s32 prof_id, iterator pp_start) const;
+    iterator find(s32 prof_id, iterator it_start) const;
     iterator find(s32 prof_id) const
     {
-        return find(prof_id, begin());
+        return find(prof_id, getActorBegin());
     }
 
     // Address: 0x02009BA4
     u32 count(s32 prof_id) const;
 
-    iterator begin() const
+    iterator getActorBegin() const
     {
-        return mActorPtrCache.begin();
+        return mActorPtrCache.getActorBegin();
     }
 
-    iterator end() const
+    iterator getActorEnd() const
     {
-        return mActorPtrCache.end();
+        return mActorPtrCache.getActorEnd();
     }
 
 private:
@@ -122,7 +122,7 @@ private:
     sead::FixedPtrArray<sead::Heap, 520>            mActorDeleteHeap;
     sead::FixedPtrArray<ActorBase, 520>             mActorFinalUpdate;
     ActorPtrCache                                   mActorPtrCache;
-    u32                                             mActorCreateID;
+    ActorUniqueID                                   mActorCreateID;
     bool                                            mActorCreateImmediately;
     u8                                              _6a3d[3];
     bool                                            mActorDrawDone;

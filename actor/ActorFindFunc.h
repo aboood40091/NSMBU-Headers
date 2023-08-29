@@ -30,9 +30,10 @@ static_assert(sizeof(ActorProfileFindFunc) == 8);
 class ActorCreateIndexFindFunc : public ActorFindFunc   // vtbl Address: 0x10000B7C
 {
 public:
-    ActorCreateIndexFindFunc(u32 index)
-        : mCreateIndex(index)
+    ActorCreateIndexFindFunc(u32 i_create_index)
+        : mCreateIndex(i_create_index)
     {
+        // SEAD_ASSERT(i_create_index <= ActorUniqueId::cCreateIndexMax);
     }
 
     // Address: 0x02008A94

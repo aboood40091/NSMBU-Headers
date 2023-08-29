@@ -15,41 +15,32 @@ public:
 
 public:
     // Address: 0x0200A14C
-    ActorPtrCache(sead::Heap* heap, s32 size);
+    ActorPtrCache(sead::Heap* heap, s32 i_max_actor_num);
     // Address: 0x0200A278
     ~ActorPtrCache();
 
     // Address: 0x0200A300
-    iterator find(ActorFindFunc* p_func, iterator pp_start) const;
-    iterator find(ActorFindFunc* p_func) const
+    iterator find(ActorFindFunc* io_find_func, iterator it_start) const;
+    iterator find(ActorFindFunc* io_find_func) const
     {
-        return find(p_func, begin());
+        return find(io_find_func, getActorBegin());
     }
 
-    iterator begin() const
+    iterator getActorBegin() const
     {
-        return &mActor.front();
+        // SEAD_ASSERT(mActorPtrArray.isBufferReady());
+        return mActorPtrArray.unsafeGet(0);
     }
 
-    iterator end() const
+    iterator getActorEnd() const
     {
-        return mpActorLast;
-    }
-
-    u32 size() const
-    {
-        return mCount;
-    }
-
-    u32 maxSize() const
-    {
-        return mActor.size();
+        return mLiveActorEnd;
     }
 
     // Address: 0x0200A3A8
-    void pushActor(ActorBase* p_actor);
+    void pushActor(ActorBase* io_actor);
     // Address: 0x0200A550
-    void popActor(const ActorBase* p_actor);
+    void popActor(const ActorBase* i_actor);
     // Address: 0x0200A5C8
     ActorBase* getActorPtr(ActorUniqueID id) const;
     // Address: Deleted
@@ -61,16 +52,21 @@ public:
     // Address: 0x0200A6AC
     void forEach(void (*p_callback)(ActorBase* p_actor, u32), u32) const;
 
-    u32 currentCreateIndex() const
+    u32 getEmptyHeadIndex() const
     {
-        return mCurrentCreateIndex;
+        return mEmptyHeadIndex;
+    }
+
+    u32 getNextCreateIndex() const
+    {
+        return mNextCreateIndex;
     }
 
 private:
-    sead::Buffer<ActorBase*>    mActor;
-    u32                         mCount;
-    iterator                    mpActorLast;
-    u32                         mCurrentCreateIndex;
+    sead::Buffer<ActorBase*>    mActorPtrArray;
+    u32                         mEmptyHeadIndex;
+    iterator                    mLiveActorEnd;
+    u32                         mNextCreateIndex;
     bool                        mCreateIndexOverflow;
 };
 static_assert(sizeof(ActorPtrCache) == 0x18);

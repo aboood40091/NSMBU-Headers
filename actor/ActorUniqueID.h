@@ -11,13 +11,18 @@ public:
 
 public:
     ActorUniqueID()
-        : mValue(0)
     {
+        setValue(0);
     }
 
     ActorUniqueID(u32 id)
-        : mValue(id)
     {
+        setValue(id);
+    }
+
+    ActorUniqueID(u32 i_array_index, u32 i_create_index)
+    {
+        setValue(i_array_index, i_create_index);
     }
 
     void setValue(u32 id)
@@ -25,9 +30,21 @@ public:
         mValue = id;
     }
 
+    void setValue(u32 i_array_index, u32 i_create_index)
+    {
+        // SEAD_ASSERT(i_array_index <= cArrayIndexMax);
+        // SEAD_ASSERT(i_create_index <= cCreateIndexMax);
+        mValue = i_array_index << /* log2(cCreateIndexMax + 1) */ 22 | i_create_index;
+    }
+
     u32 getValue() const
     {
         return mValue;
+    }
+
+    u32 getArrayIndex() const
+    {
+        return mValue >> /* log2(cCreateIndexMax + 1) */ 22;
     }
 
     u32 getCreateIndex() const
