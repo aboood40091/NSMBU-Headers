@@ -95,7 +95,7 @@ public:
     // Address: 0x020199A8
     static ResType getResType(s32 id);
     // Address: 0x020199CC
-    static u8 getResNum(s32 id);
+    static u32 getResNum(s32 id);
     // Address: 0x020199EC
     static const sead::SafeString* getResList(s32 id);
 
@@ -112,7 +112,7 @@ protected:
     // Address: 0x10001940
     static const s16                cDrawPriority[cProfileID_Max];
     // Address: 0x10002064
-    static const u8                 cResType[cProfileID_Max];
+    static const s8                 cResType[cProfileID_Max];
     // Address: 0x100023F8
     static const u8                 cResNum[cProfileID_Max];
     // Address: 0x101C321C
