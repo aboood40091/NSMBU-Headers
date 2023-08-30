@@ -43,9 +43,6 @@ typedef ActorBase* (*ActorFactory)(const ActorCreateParam&);
 class Profile
 {
 public:
-    static const u32 cNum = ProfileID::cNum;
-
-public:
     enum ResType
     {
         cResType_Boot = 0,
@@ -55,11 +52,12 @@ public:
 
 public:
     // Address: 0x02019554
-    Profile(ActorFactory p_actor_factory, s32 id, const sead::SafeString& name, const ActorCreateInfo* p_create_info, u32 flag);
+    Profile(ActorFactory factory, s32 id, const sead::SafeString& name, const ActorCreateInfo* p_create_info, u32 flag);
 
     ActorFactory getActorFactory() const
     {
-        return mpActorFactory;
+        // SEAD_ASSERT(mFactory);
+        return mFactory;
     }
 
     s32 getID() const
@@ -102,22 +100,22 @@ public:
     static const sead::SafeString* getResList(s32 id);
 
 protected:
-    ActorFactory            mpActorFactory;
+    ActorFactory            mFactory;
     s32                     mID;
     const ActorCreateInfo*  mpActorCreateInfo;
     bool                    mIsResLoaded;
     u32                     mFlag;
 
     // Address: 0x101ED8DC
-    static sead::SafeArray<Profile*, cNum>  sProfile;
+    static sead::SafeArray<Profile*, cProfileID_Max>    sProfile;
 
     // Address: 0x10001940
-    static const s16                cDrawPriority[cNum];
+    static const s16                cDrawPriority[cProfileID_Max];
     // Address: 0x10002064
-    static const u8                 cResType[cNum];
+    static const u8                 cResType[cProfileID_Max];
     // Address: 0x100023F8
-    static const u8                 cResNum[cNum];
+    static const u8                 cResNum[cProfileID_Max];
     // Address: 0x101C321C
-    static const sead::SafeString*  cResList[cNum];
+    static const sead::SafeString*  cResList[cProfileID_Max];
 };
 static_assert(sizeof(Profile) == 0x14);
