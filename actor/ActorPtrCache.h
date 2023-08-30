@@ -47,7 +47,7 @@ public:
     ActorBase* getActorPtrIncludingAboutToBeErased(ActorUniqueID id) const;
 
     // Address: 0x0200A608
-    u32 count(ActorFindFunc* p_func) const;
+    u32 count(ActorFindFunc* io_find_func) const;
 
     // Address: 0x0200A6AC
     void forEach(void (*p_callback)(ActorBase* p_actor, u32), u32) const;

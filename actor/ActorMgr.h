@@ -78,14 +78,14 @@ public:
 
 public:
     // Address: 0x02009B6C
-    iterator find(s32 prof_id, iterator it_start) const;
-    iterator find(s32 prof_id) const
+    iterator find(s32 i_profile_id, iterator it_start) const;
+    iterator find(s32 i_profile_id) const
     {
-        return find(prof_id, getActorBegin());
+        return find(i_profile_id, getActorBegin());
     }
 
     // Address: 0x02009BA4
-    u32 count(s32 prof_id) const;
+    u32 count(s32 i_profile_id) const;
 
     iterator getActorBegin() const
     {
@@ -112,8 +112,8 @@ public:
     void draw();
 
 private:
-    sead::UnitHeap*                                 mpPlayerHeap;
-    sead::UnitHeap*                                 mpActorHeap;
+    sead::UnitHeap*                                 mpPlayerUnitHeap;
+    sead::UnitHeap*                                 mpActorUnitHeap;
     sead::FixedRingBuffer<ActorCreateParam, 520>    mDeferredActorCreate;
     ActorBase::List                                 mCreateManage;
     ActorBase::List                                 mDeleteManage;

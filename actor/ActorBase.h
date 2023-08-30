@@ -80,9 +80,9 @@ public:
     // Address: 0x02002C80
     s32 getProfileID() const;
 
-    sead::Heap* getHeap() const
+    sead::Heap* getActorHeap() const
     {
-        return mpHeap;
+        return mpActorHeap;
     }
 
     // Address: 0x02002C8C
@@ -132,9 +132,9 @@ protected:
     }
 
 protected:
-    sead::Heap*     mpHeap;
+    sead::Heap*     mpActorHeap;
     ActorUniqueID   mActorUniqueID;
-    Profile*        mpProfile;
+    Profile*        mpActorProfile;
     bool            mCreateImmediately;
     bool            _d;
     bool            mIsActive;
