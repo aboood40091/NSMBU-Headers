@@ -191,83 +191,83 @@ public:
 
     // ------------------------------------ EnemyDeath.cpp ------------------------------------ //
 
-    // StateID_         Address: 0x10200FB0
-    // initializeState_ Address: 0x0232E518
-    // executeState_    Address: 0x0232E5E8
-    // finalizeState_   Address: 0x0232EED0
+    // StateID_DieFumi          Address: 0x10200FB0
+    // initializeState_DieFumi  Address: 0x0232E518
+    // executeState_DieFumi     Address: 0x0232E5E8
+    // finalizeState_DieFumi    Address: 0x0232EED0
     DECLARE_STATE_VIRTUAL_ID_BASE(Enemy, DieFumi)
-    // StateID_         Address: 0x10200FD4
-    // initializeState_ Address: 0x0232E63C
-    // executeState_    Address: 0x0232E640
-    // finalizeState_   Address: 0x0232EED4
+    // StateID_DieFall          Address: 0x10200FD4
+    // initializeState_DieFall  Address: 0x0232E63C
+    // executeState_DieFall     Address: 0x0232E640
+    // finalizeState_DieFall    Address: 0x0232EED4
     DECLARE_STATE_VIRTUAL_ID_BASE(Enemy, DieFall)
-    // StateID_         Address: 0x10200FF8
-    // initializeState_ Address: 0x0232E72C
-    // executeState_    Address: 0x0232E79C
-    // finalizeState_   Address: 0x0232EED8
+    // StateID_DieSmoke         Address: 0x10200FF8
+    // initializeState_DieSmoke Address: 0x0232E72C
+    // executeState_DieSmoke    Address: 0x0232E79C
+    // finalizeState_DieSmoke   Address: 0x0232EED8
     DECLARE_STATE_VIRTUAL_ID_BASE(Enemy, DieSmoke)
-    // StateID_         Address: 0x1020101C
-    // initializeState_ Address: 0x0232E7A8
-    // executeState_    Address: 0x0232E7B8
-    // finalizeState_   Address: 0x0232EEDC
+    // StateID_DieYoshiFumi         Address: 0x1020101C
+    // initializeState_DieYoshiFumi Address: 0x0232E7A8
+    // executeState_DieYoshiFumi    Address: 0x0232E7B8
+    // finalizeState_DieYoshiFumi   Address: 0x0232EEDC
     DECLARE_STATE_VIRTUAL_ID_BASE(Enemy, DieYoshiFumi)
-    // StateID_         Address: 0x10201040
-    // initializeState_ Address: 0x0232E7C4
-    // executeState_    Address: 0x0232E7C8
-    // finalizeState_   Address: 0x0232EEE0
+    // StateID_DieIceVanish         Address: 0x10201040
+    // initializeState_DieIceVanish Address: 0x0232E7C4
+    // executeState_DieIceVanish    Address: 0x0232E7C8
+    // finalizeState_DieIceVanish   Address: 0x0232EEE0
     DECLARE_STATE_VIRTUAL_ID_BASE(Enemy, DieIceVanish)
-    // StateID_         Address: 0x10201064
-    // initializeState_ Address: 0x0232E7D4
-    // executeState_    Address: 0x0232EEE4
-    // finalizeState_   Address: 0x0232EEE8
+    // StateID_DieGoal          Address: 0x10201064
+    // initializeState_DieGoal  Address: 0x0232E7D4
+    // executeState_DieGoal     Address: 0x0232EEE4
+    // finalizeState_DieGoal    Address: 0x0232EEE8
     DECLARE_STATE_VIRTUAL_ID_BASE(Enemy, DieGoal)
-    // StateID_         Address: 0x10201088
-    // initializeState_ Address: 0x0232E7E0
-    // executeState_    Address: 0x0232EEEC
-    // finalizeState_   Address: 0x0232EEF0
+    // StateID_DieOther         Address: 0x10201088
+    // initializeState_DieOther Address: 0x0232E7E0
+    // executeState_DieOther    Address: 0x0232EEEC
+    // finalizeState_DieOther   Address: 0x0232EEF0
     DECLARE_STATE_VIRTUAL_ID_BASE(Enemy, DieOther)
 
     // ------------------------------------ EnemyState.cpp ------------------------------------ //
 
-    // StateID_         Address: 0x1020111C
-    // initializeState_ Address: 0x023305E4
-    // executeState_    Address: 0x023305EC
-    // finalizeState_   Address: 0x023310C4
+    // StateID_EatIn            Address: 0x1020111C
+    // initializeState_EatIn    Address: 0x023305E4
+    // executeState_EatIn       Address: 0x023305EC
+    // finalizeState_EatIn      Address: 0x023310C4
     DECLARE_STATE_VIRTUAL_ID_BASE(Enemy, EatIn)
-    // StateID_         Address: 0x10201140
-    // initializeState_ Address: 0x023310C8
-    // executeState_    Address: 0x023310CC
-    // finalizeState_   Address: 0x023310D0
+    // StateID_EatNow           Address: 0x10201140
+    // initializeState_EatNow   Address: 0x023310C8
+    // executeState_EatNow      Address: 0x023310CC
+    // finalizeState_EatNow     Address: 0x023310D0
     DECLARE_STATE_VIRTUAL_ID_BASE(Enemy, EatNow)
-    // StateID_         Address: 0x10201164
-    // initializeState_ Address: 0x023310D4
-    // executeState_    Address: 0x023310D8
-    // finalizeState_   Address: 0x023310DC
+    // StateID_EatOut           Address: 0x10201164
+    // initializeState_EatOut   Address: 0x023310D4
+    // executeState_EatOut      Address: 0x023310D8
+    // finalizeState_EatOut     Address: 0x023310DC
     DECLARE_STATE_VIRTUAL_ID_BASE(Enemy, EatOut)
-    // StateID_         Address: 0x10201188
-    // initializeState_ Address: 0x023306E8
-    // executeState_    Address: 0x023306F0
-    // finalizeState_   Address: 0x023310E0
+    // StateID_ChibiEatIn           Address: 0x10201188
+    // initializeState_ChibiEatIn   Address: 0x023306E8
+    // executeState_ChibiEatIn      Address: 0x023306F0
+    // finalizeState_ChibiEatIn     Address: 0x023310E0
     DECLARE_STATE_VIRTUAL_ID_BASE(Enemy, ChibiEatIn)
-    // StateID_         Address: 0x102011AC
-    // initializeState_ Address: 0x023310E4
-    // executeState_    Address: 0x023310E8
-    // finalizeState_   Address: 0x023310EC
+    // StateID_ChibiEatNow          Address: 0x102011AC
+    // initializeState_ChibiEatNow  Address: 0x023310E4
+    // executeState_ChibiEatNow     Address: 0x023310E8
+    // finalizeState_ChibiEatNow    Address: 0x023310EC
     DECLARE_STATE_VIRTUAL_ID_BASE(Enemy, ChibiEatNow)
-    // StateID_         Address: 0x102011D0
-    // initializeState_ Address: 0x023310F0
-    // executeState_    Address: 0x023310F4
-    // finalizeState_   Address: 0x023310F8
+    // StateID_ChibiEatOut          Address: 0x102011D0
+    // initializeState_ChibiEatOut  Address: 0x023310F0
+    // executeState_ChibiEatOut     Address: 0x023310F4
+    // finalizeState_ChibiEatOut    Address: 0x023310F8
     DECLARE_STATE_VIRTUAL_ID_BASE(Enemy, ChibiEatOut)
-    // StateID_         Address: 0x102011F4
-    // initializeState_ Address: 0x023310FC
-    // executeState_    Address: 0x02331100
-    // finalizeState_   Address: 0x02331104
+    // StateID_HitSpin          Address: 0x102011F4
+    // initializeState_HitSpin  Address: 0x023310FC
+    // executeState_HitSpin     Address: 0x02331100
+    // finalizeState_HitSpin    Address: 0x02331104
     DECLARE_STATE_VIRTUAL_ID_BASE(Enemy, HitSpin)
-    // StateID_         Address: 0x10201218
-    // initializeState_ Address: 0x02330720
-    // executeState_    Address: 0x023307A0
-    // finalizeState_   Address: 0x02330944
+    // StateID_Ice          Address: 0x10201218
+    // initializeState_Ice  Address: 0x02330720
+    // executeState_Ice     Address: 0x023307A0
+    // finalizeState_Ice    Address: 0x02330944
     DECLARE_STATE_VIRTUAL_ID_BASE(Enemy, Ice)
 
     // ---------------------------------------------------------------------------------------- //
