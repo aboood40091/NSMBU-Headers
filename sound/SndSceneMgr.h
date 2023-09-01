@@ -7,22 +7,22 @@ class SndSceneMgr
 public:
     enum EffectType
     {
-                            // NSMBW    | NSMBU         | NSMBU (Translated)
-        cEffect_Soto = 0,   // SOTO     | 外             | Outside
-        cEffect_Chika,      // CHIKA    | 地下            | Underground
-        cEffect_Chika_S,    // CHIKA_S  | 小地下           | Underground Small
-        cEffect_Water,      // WATER    | 水中            | Underwater
-        cEffect_Boss,       // BOSS     | ボス部屋          | Boss Room
-        cEffect_Toride,     // TORIDE   | 砦             | Fortress / Tower
-        cEffect_Shiro,      // SHIRO    | 城             | Castle
-        cEffect_Obake,      // OBAKE    | お化け屋敷         | Ghost House
-        cEffect_Dokan,      // DOKAN    | 絵画            | Painting
-        cEffect_Gake,       // GAKE     | 崖             | Cliff / Mountain
-        cEffect_House,      // HOUSE    | 小部屋           | Small Room
-        cEffect_Chika_Sa,   // CHIKA_SA | 砂漠地下          | Desert Underground (Sa = Sabaku)
-        cEffect_Boss_Jr,    // BOSS_JR  | Jr.戦          | Jr. Battle
-        cEffect_Kurayami,   // KURAYAMI | 暗闇地下          | Darkness Underground
-        cEffect_Chika_Ka,   // CHIKA_KA | 火山内部          | Lava Underground (Ka = Kazan)
-        cEffect_Default     // DEFAULT  | デフォルト（コース以外）  | Default (non-course)
+                            // NSMBW    | NSMBU (Translated)    | NSMBU (Original)
+        cEffect_Soto = 0,   // SOTO     | Outside               | 外
+        cEffect_Chika,      // CHIKA    | Underground           | 地下
+        cEffect_Chika_S,    // CHIKA_S  | Underground Small     | 小地下           | (S = Small)
+        cEffect_Water,      // WATER    | Underwater            | 水中
+        cEffect_Boss,       // BOSS     | Boss Room             | ボス部屋
+        cEffect_Toride,     // TORIDE   | Fortress / Tower      | 砦
+        cEffect_Shiro,      // SHIRO    | Castle                | 城
+        cEffect_Obake,      // OBAKE    | Ghost House           | お化け屋敷
+        cEffect_Dokan,      // DOKAN    | Painting              | 絵画
+        cEffect_Gake,       // GAKE     | Cliff / Mountain      | 崖
+        cEffect_House,      // HOUSE    | Small Room            | 小部屋
+        cEffect_Chika_Sa,   // CHIKA_SA | Desert Underground    | 砂漠地下          | (Sa = Sabaku)
+        cEffect_Boss_Jr,    // BOSS_JR  | Jr. Battle            | Jr.戦
+        cEffect_Kurayami,   // KURAYAMI | Darkness Underground  | 暗闇地下
+        cEffect_Chika_Ka,   // CHIKA_KA | Lava Underground      | 火山内部          | (Ka = Kazan)
+        cEffect_Default     // DEFAULT  | Default (non-course)  | デフォルト（コース以外）
     };
 };
