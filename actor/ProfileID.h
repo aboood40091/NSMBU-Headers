@@ -536,13 +536,13 @@ extern const s32 c104;                          // 260
 // Address: 0x10004168
 extern const s32 c105;                          // 261
 // Address: 0x1000416C
-extern const s32 c106;                          // 262
+extern const s32 cKokoopaShipWarpCannon;        // 262
 // Address: 0x10004170
 extern const s32 c107;                          // 263
 // Address: 0x10004174
 extern const s32 c108;                          // 264
 // Address: 0x10004178
-extern const s32 c109;                          // 265
+extern const s32 cKoopaShutter;                 // 265
 // Address: 0x1000417C
 extern const s32 c10A;                          // 266
 // Address: 0x10004180
@@ -550,17 +550,17 @@ extern const s32 c10B;                          // 267
 // Address: 0x10004184
 extern const s32 c10C;                          // 268
 // Address: 0x10004188
-extern const s32 c10D;                          // 269
+extern const s32 cPeachFinalCastleKoopaJrLift;  // 269
 // Address: 0x1000418C
-extern const s32 c10E;                          // 270
+extern const s32 cPeachFinalCastleKoopaJrLiftHmove; // 270
 // Address: 0x10004190
-extern const s32 c10F;                          // 271
+extern const s32 cPeachFinalCastleKoopaJrLiftPairObj; // 271
 // Address: 0x10004194
-extern const s32 c110;                          // 272
+extern const s32 cRoyLiftWakiStep;              // 272
 // Address: 0x10004198
-extern const s32 c111;                          // 273
+extern const s32 cWendyFloor;                   // 273
 // Address: 0x1000419C
-extern const s32 c112;                          // 274
+extern const s32 cIggyRoom;                     // 274
 // Address: 0x100041A0
 extern const s32 c113;                          // 275
 // Address: 0x100041A4
@@ -714,9 +714,9 @@ extern const s32 c15D;                          // 349
 // Address: 0x100042CC
 extern const s32 c15E;                          // 350
 // Address: 0x100042D0
-extern const s32 c15F;                          // 351
+extern const s32 cLemmyBall;                    // 351
 // Address: 0x100042D4
-extern const s32 c160;                          // 352
+extern const s32 cLemmyBomb;                    // 352
 // Address: 0x100042D8
 extern const s32 c161;                          // 353
 // Address: 0x100042DC
@@ -748,19 +748,19 @@ extern const s32 c16E;                          // 366
 // Address: 0x10004310
 extern const s32 c16F;                          // 367
 // Address: 0x10004314
-extern const s32 c170;                          // 368
+extern const s32 cKameckIce;                    // 368
 // Address: 0x10004318
-extern const s32 c171;                          // 369
+extern const s32 cWendyIcicle;                  // 369
 // Address: 0x1000431C
-extern const s32 c172;                          // 370
+extern const s32 cPeachFinalCastleKoopaJrClown; // 370
 // Address: 0x10004320
-extern const s32 c173;                          // 371
+extern const s32 cBoxingKoopaJrClown;           // 371
 // Address: 0x10004324
 extern const s32 c174;                          // 372
 // Address: 0x10004328
-extern const s32 c175;                          // 373
+extern const s32 cFinalKoopaJrClown;            // 373
 // Address: 0x1000432C
-extern const s32 c176;                          // 374
+extern const s32 cFinalKoopa;                   // 374
 // Address: 0x10004330
 extern const s32 c177;                          // 375
 // Address: 0x10004334
@@ -1284,7 +1284,7 @@ extern const s32 c278;                          // 632
 // Address: 0x10004738
 extern const s32 c279;                          // 633
 // Address: 0x1000473C
-extern const s32 c27A;                          // 634
+extern const s32 cWakiSearchMagKiller;          // 634
 // Address: 0x10004740
 extern const s32 c27B;                          // 635
 // Address: 0x10004744
@@ -1372,127 +1372,127 @@ extern const s32 c2A4;                          // 676
 // Address: 0x100047E8
 extern const s32 c2A5;                          // 677
 // Address: 0x100047EC
-extern const s32 c2A6;                          // 678
+extern const s32 cBun;                          // 678
 // Address: 0x100047F0
-extern const s32 c2A7;                          // 679
+extern const s32 cBunW2;                        // 679
 // Address: 0x100047F4
-extern const s32 c2A8;                          // 680
+extern const s32 cBunW3;                        // 680
 // Address: 0x100047F8
-extern const s32 c2A9;                          // 681
+extern const s32 cBunW4;                        // 681
 // Address: 0x100047FC
-extern const s32 c2AA;                          // 682
+extern const s32 cBunW5;                        // 682
 // Address: 0x10004800
-extern const s32 c2AB;                          // 683
+extern const s32 cBunW6;                        // 683
 // Address: 0x10004804
-extern const s32 c2AC;                          // 684
+extern const s32 cBunDemo;                      // 684
 // Address: 0x10004808
-extern const s32 c2AD;                          // 685
+extern const s32 cKokoopaDemo;                  // 685
 // Address: 0x1000480C
-extern const s32 c2AE;                          // 686
+extern const s32 cKoopaJrDemo;                  // 686
 // Address: 0x10004810
-extern const s32 c2AF;                          // 687
+extern const s32 cKameckDemo;                   // 687
 // Address: 0x10004814
-extern const s32 c2B0;                          // 688
+extern const s32 cBossKKDemo;                   // 688
 // Address: 0x10004818
-extern const s32 c2B1;                          // 689
+extern const s32 cPeachFinalCastleKoopaJrDemo;  // 689
 // Address: 0x1000481C
-extern const s32 c2B2;                          // 690
+extern const s32 cKoopaDemo;                    // 690
 // Address: 0x10004820
-extern const s32 c2B3;                          // 691
+extern const s32 cFinalKoopaDemo;               // 691
 // Address: 0x10004824
-extern const s32 c2B4;                          // 692
+extern const s32 cPeachDemo;                    // 692
 // Address: 0x10004828
-extern const s32 c2B5;                          // 693
+extern const s32 cLarry;                        // 693
 // Address: 0x1000482C
-extern const s32 c2B6;                          // 694
+extern const s32 cKokoopaSearchFire;            // 694
 // Address: 0x10004830
-extern const s32 c2B7;                          // 695
+extern const s32 cLemmy;                        // 695
 // Address: 0x10004834
-extern const s32 c2B8;                          // 696
+extern const s32 cMorton;                       // 696
 // Address: 0x10004838
-extern const s32 c2B9;                          // 697
+extern const s32 cMortonSanbo;                  // 697
 // Address: 0x1000483C
-extern const s32 c2BA;                          // 698
+extern const s32 cMortonSanboParts;             // 698
 // Address: 0x10004840
-extern const s32 c2BB;                          // 699
+extern const s32 cWendy;                        // 699
 // Address: 0x10004844
-extern const s32 c2BC;                          // 700
+extern const s32 cWendyRing;                    // 700
 // Address: 0x10004848
-extern const s32 c2BD;                          // 701
+extern const s32 cLudwig;                       // 701
 // Address: 0x1000484C
-extern const s32 c2BE;                          // 702
+extern const s32 cLudwigAlterEgo;               // 702
 // Address: 0x10004850
-extern const s32 c2BF;                          // 703
+extern const s32 cIggy;                         // 703
 // Address: 0x10004854
-extern const s32 c2C0;                          // 704
+extern const s32 cIggyMagic;                    // 704
 // Address: 0x10004858
-extern const s32 c2C1;                          // 705
+extern const s32 cWoogan;                       // 705
 // Address: 0x1000485C
-extern const s32 c2C2;                          // 706
+extern const s32 cRoy;                          // 706
 // Address: 0x10004860
-extern const s32 c2C3;                          // 707
+extern const s32 cRoyLiftWaki;                  // 707
 // Address: 0x10004864
-extern const s32 c2C4;                          // 708
+extern const s32 cBossKK;                       // 708
 // Address: 0x10004868
-extern const s32 c2C5;                          // 709
+extern const s32 cBossKKThunder;                // 709
 // Address: 0x1000486C
-extern const s32 c2C6;                          // 710
+extern const s32 cKameck;                       // 710
 // Address: 0x10004870
-extern const s32 c2C7;                          // 711
+extern const s32 cKameckIceConfig;              // 711
 // Address: 0x10004874
-extern const s32 c2C8;                          // 712
+extern const s32 cKameckWarpPos;                // 712
 // Address: 0x10004878
-extern const s32 c2C9;                          // 713
+extern const s32 cKameckMagic;                  // 713
 // Address: 0x1000487C
-extern const s32 c2CA;                          // 714
+extern const s32 cPeachFinalCastleKoopaJr;      // 714
 // Address: 0x10004880
-extern const s32 c2CB;                          // 715
+extern const s32 cKoopa;                        // 715
 // Address: 0x10004884
-extern const s32 c2CC;                          // 716
+extern const s32 cKoopaFireWaki;                // 716
 // Address: 0x10004888
-extern const s32 c2CD;                          // 717
+extern const s32 cKoopaFire;                    // 717
 // Address: 0x1000488C
-extern const s32 c2CE;                          // 718
+extern const s32 cDemoKoopaJrClown;             // 718
 // Address: 0x10004890
-extern const s32 c2CF;                          // 719
+extern const s32 cDemoKoopaJr;                  // 719
 // Address: 0x10004894
-extern const s32 c2D0;                          // 720
+extern const s32 cBunDemoKameck;                // 720
 // Address: 0x10004898
-extern const s32 c2D1;                          // 721
+extern const s32 cKoopaDemoKameck;              // 721
 // Address: 0x1000489C
-extern const s32 c2D2;                          // 722
+extern const s32 cBossKKDemoKameck;             // 722
 // Address: 0x100048A0
-extern const s32 c2D3;                          // 723
+extern const s32 cBossKKDemoKK;                 // 723
 // Address: 0x100048A4
-extern const s32 c2D4;                          // 724
+extern const s32 cFinalKoopaFire;               // 724
 // Address: 0x100048A8
-extern const s32 c2D5;                          // 725
+extern const s32 cFinalKoopaJr;                 // 725
 // Address: 0x100048AC
-extern const s32 c2D6;                          // 726
+extern const s32 cFinalKoopaJrFire;             // 726
 // Address: 0x100048B0
-extern const s32 c2D7;                          // 727
+extern const s32 cFinalBomhei;                  // 727
 // Address: 0x100048B4
-extern const s32 c2D8;                          // 728
+extern const s32 cKokoopaShipLemmy;             // 728
 // Address: 0x100048B8
-extern const s32 c2D9;                          // 729
+extern const s32 cKokoopaShipMorton;            // 729
 // Address: 0x100048BC
-extern const s32 c2DA;                          // 730
+extern const s32 cKokoopaShipLarry;             // 730
 // Address: 0x100048C0
-extern const s32 c2DB;                          // 731
+extern const s32 cKokoopaShipWendy;             // 731
 // Address: 0x100048C4
-extern const s32 c2DC;                          // 732
+extern const s32 cKokoopaShipIggy;              // 732
 // Address: 0x100048C8
-extern const s32 c2DD;                          // 733
+extern const s32 cKokoopaShipRoy;               // 733
 // Address: 0x100048CC
-extern const s32 c2DE;                          // 734
+extern const s32 cKokoopaShipLudwig;            // 734
 // Address: 0x100048D0
-extern const s32 c2DF;                          // 735
+extern const s32 cPeach;                        // 735
 // Address: 0x100048D4
 extern const s32 c2E0;                          // 736
 // Address: 0x100048D8
-extern const s32 c2E1;                          // 737
+extern const s32 cFinalDVPeach;                 // 737
 // Address: 0x100048DC
-extern const s32 c2E2;                          // 738
+extern const s32 cFinalDVShutter;               // 738
 // Address: 0x100048E0
 extern const s32 c2E3;                          // 739
 // Address: 0x100048E4
@@ -1652,21 +1652,21 @@ extern const s32 c330;                          // 816
 // Address: 0x10004A18
 extern const s32 c331;                          // 817
 // Address: 0x10004A1C
-extern const s32 c332;                          // 818
+extern const s32 cKoopaJrFire;                  // 818
 // Address: 0x10004A20
-extern const s32 c333;                          // 819
+extern const s32 cKoopaJrBall;                  // 819
 // Address: 0x10004A24
-extern const s32 c334;                          // 820
+extern const s32 cUnderwaterKoopaJr;            // 820
 // Address: 0x10004A28
-extern const s32 c335;                          // 821
+extern const s32 cUnderwaterKoopaJrClown;       // 821
 // Address: 0x10004A2C
-extern const s32 c336;                          // 822
+extern const s32 cUnderwaterKoopaJrRetreatPos;  // 822
 // Address: 0x10004A30
-extern const s32 c337;                          // 823
+extern const s32 cBoxingKoopaJr;                // 823
 // Address: 0x10004A34
-extern const s32 c338;                          // 824
+extern const s32 cBoxingKoopaJrPostBattleDemo;  // 824
 // Address: 0x10004A38
-extern const s32 c339;                          // 825
+extern const s32 cBoxingKoopaJrClownPostBattleDemo; // 825
 // Address: 0x10004A3C
 extern const s32 c33A;                          // 826
 // Address: 0x10004A40
