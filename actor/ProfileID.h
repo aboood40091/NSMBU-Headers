@@ -76,7 +76,7 @@ extern const s32 c01F;                          //  31
 // Address: 0x10003DD4
 extern const s32 c020;                          //  32
 // Address: 0x10003DD8
-extern const s32 c021;                          //  33
+extern const s32 cShootingStar;                 //  33
 // Address: 0x10003DDC
 extern const s32 c022;                          //  34
 // Address: 0x10003DE0
@@ -940,7 +940,7 @@ extern const s32 c1CD;                          // 461
 // Address: 0x1000448C
 extern const s32 c1CE;                          // 462
 // Address: 0x10004490
-extern const s32 c1CF;                          // 463
+extern const s32 cQuestPrizeItem;               // 463
 // Address: 0x10004494
 extern const s32 c1D0;                          // 464
 // Address: 0x10004498
@@ -1198,25 +1198,25 @@ extern const s32 c24D;                          // 589
 // Address: 0x1000468C
 extern const s32 c24E;                          // 590
 // Address: 0x10004690
-extern const s32 c24F;                          // 591
+extern const s32 cKinoko;                       // 591
 // Address: 0x10004694
-extern const s32 c250;                          // 592
+extern const s32 cFireFlower;                   // 592
 // Address: 0x10004698
-extern const s32 c251;                          // 593
+extern const s32 cMameKinoko;                   // 593
 // Address: 0x1000469C
-extern const s32 c252;                          // 594
+extern const s32 cIceFlower;                    // 594
 // Address: 0x100046A0
-extern const s32 c253;                          // 595
+extern const s32 cPropeller;                    // 595
 // Address: 0x100046A4
-extern const s32 c254;                          // 596
+extern const s32 cPenguin;                      // 596
 // Address: 0x100046A8
-extern const s32 c255;                          // 597
+extern const s32 cOneUpKinoko;                  // 597
 // Address: 0x100046AC
-extern const s32 c256;                          // 598
+extern const s32 cMusasabi;                     // 598
 // Address: 0x100046B0
-extern const s32 c257;                          // 599
+extern const s32 cSuperMoon;                    // 599
 // Address: 0x100046B4
-extern const s32 c258;                          // 600
+extern const s32 cTitleDemoItem;                // 600
 // Address: 0x100046B8
 extern const s32 c259;                          // 601
 // Address: 0x100046BC
@@ -1634,11 +1634,11 @@ extern const s32 c327;                          // 807
 // Address: 0x100049F4
 extern const s32 c328;                          // 808
 // Address: 0x100049F8
-extern const s32 c329;                          // 809
+extern const s32 cBattleItem;                   // 809
 // Address: 0x100049FC
 extern const s32 c32A;                          // 810
 // Address: 0x10004A00
-extern const s32 c32B;                          // 811
+extern const s32 cVsBattleItem;                 // 811
 // Address: 0x10004A04
 extern const s32 c32C;                          // 812
 // Address: 0x10004A08
@@ -1720,9 +1720,9 @@ extern const s32 c352;                          // 850
 // Address: 0x10004AA0
 extern const s32 c353;                          // 851
 // Address: 0x10004AA4
-extern const s32 c354;                          // 852
+extern const s32 cRealizeFeverStar;             // 852
 // Address: 0x10004AA8
-extern const s32 c355;                          // 853
+extern const s32 cStar;                         // 853
 
 // Address: 0x10004AAC
 extern const s32 cCourseSelectPlayer;           // 854
