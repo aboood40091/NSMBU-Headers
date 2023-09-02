@@ -1728,114 +1728,114 @@ extern const s32 c355;                          // 853
 extern const s32 cCourseSelectPlayer;           // 854
 // Address: 0x10004AB0
 extern const s32 cCourseSelectPlayer2PSub;      // 855 (CS Player 2, 3 or 4)
-
 // Address: 0x10004AB4
-extern const s32 c358;                          // 856
+extern const s32 cCourseSelectChibiYoshi;       // 856
+
 // Address: 0x10004AB8
-extern const s32 c359;                          // 857
+extern const s32 cCourseSelectCamera;           // 857
 // Address: 0x10004ABC
-extern const s32 c35A;                          // 858
+extern const s32 cCourseSelectCastle;           // 858
 // Address: 0x10004AC0
-extern const s32 c35B;                          // 859
+extern const s32 cCourseSelectToride;           // 859
 // Address: 0x10004AC4
-extern const s32 c35C;                          // 860
+extern const s32 cCourseSelectKinokoHouse1up;   // 860
 // Address: 0x10004AC8
-extern const s32 c35D;                          // 861
+extern const s32 cCourseSelectKinokoHouseShuffle; // 861
 // Address: 0x10004ACC
-extern const s32 c35E;                          // 862
+extern const s32 cCourseSelectKinokoHouseSlot;  // 862
 // Address: 0x10004AD0
-extern const s32 c35F;                          // 863
+extern const s32 cCourseSelectPeachGates1st;    // 863
 // Address: 0x10004AD4
-extern const s32 c360;                          // 864
+extern const s32 cCourseSelectPeachGates2nd;    // 864
 // Address: 0x10004AD8
-extern const s32 c361;                          // 865
+extern const s32 cCourseSelectCoursePoint;      // 865
 // Address: 0x10004ADC
-extern const s32 c362;                          // 866
+extern const s32 cCourseSelectWorldMoveDokan;   // 866
 // Address: 0x10004AE0
-extern const s32 c363;                          // 867
+extern const s32 cCourseSelectW8Cloud;          // 867
 // Address: 0x10004AE4
-extern const s32 c364;                          // 868
+extern const s32 cCourseSelectGhost;            // 868
 // Address: 0x10004AE8
-extern const s32 c365;                          // 869
+extern const s32 cCourseSelectW2Bros;           // 869 (The Japanese Profile name says "Hammer Bros" LOL)
 // Address: 0x10004AEC
-extern const s32 c366;                          // 870
+extern const s32 cCourseSelectShipW1;           // 870
 // Address: 0x10004AF0
-extern const s32 c367;                          // 871
+extern const s32 cCourseSelectShipW2;           // 871
 // Address: 0x10004AF4
-extern const s32 c368;                          // 872
+extern const s32 cCourseSelectShipW3;           // 872
 // Address: 0x10004AF8
-extern const s32 c369;                          // 873
+extern const s32 cCourseSelectShipW4;           // 873
 // Address: 0x10004AFC
-extern const s32 c36A;                          // 874
+extern const s32 cCourseSelectShipW5;           // 874
 // Address: 0x10004B00
-extern const s32 c36B;                          // 875
+extern const s32 cCourseSelectShipW6;           // 875
 // Address: 0x10004B04
-extern const s32 c36C;                          // 876
+extern const s32 cCourseSelectShipW7;           // 876
 // Address: 0x10004B08
-extern const s32 c36D;                          // 877
+extern const s32 cCourseSelectShipW8;           // 877
 // Address: 0x10004B0C
-extern const s32 c36E;                          // 878
+extern const s32 cCourseSelectShipW8Broken;     // 878
 // Address: 0x10004B10
-extern const s32 c36F;                          // 879
+extern const s32 cCourseSelectSurrender;        // 879
 // Address: 0x10004B14
-extern const s32 c370;                          // 880
+extern const s32 cCourseSelectSwitchA;          // 880
 // Address: 0x10004B18
-extern const s32 c371;                          // 881
+extern const s32 cCourseSelectSwitchB;          // 881
 // Address: 0x10004B1C
-extern const s32 c372;                          // 882
+extern const s32 cCourseSelectTeresa;           // 882
 // Address: 0x10004B20
-extern const s32 c373;                          // 883
+extern const s32 cCourseSelectOpeningKameck;    // 883
 // Address: 0x10004B24
-extern const s32 c374;                          // 884
+extern const s32 cCourseSelectTorideBoss;       // 884
 // Address: 0x10004B28
-extern const s32 c375;                          // 885
+extern const s32 cCourseSelectPakkun;           // 885
 // Address: 0x10004B2C
-extern const s32 c376;                          // 886
+extern const s32 cCourseSelectShadowFirstDemoKinopio; // 886
 // Address: 0x10004B30
-extern const s32 c377;                          // 887
+extern const s32 cCourseSelectTobiPuku;         // 887
 // Address: 0x10004B34
-extern const s32 c378;                          // 888
+extern const s32 cCourseSelectChorobon;         // 888
 // Address: 0x10004B38
-extern const s32 c379;                          // 889
+extern const s32 cCourseSelectW7Item;           // 889
 // Address: 0x10004B3C
-extern const s32 c37A;                          // 890
+extern const s32 cCourseSelectW5Teresa;         // 890
 // Address: 0x10004B40
-extern const s32 c37B;                          // 891
+extern const s32 cCourseSelectFlag;             // 891
 // Address: 0x10004B44
-extern const s32 c37C;                          // 892
+extern const s32 cCourseSelectMusasabi;         // 892
 // Address: 0x10004B48
-extern const s32 c37D;                          // 893
+extern const s32 cCourseSelectWPillar;          // 893
 // Address: 0x10004B4C
-extern const s32 c37E;                          // 894
+extern const s32 cCourseSelectW7Bridge;         // 894
 // Address: 0x10004B50
-extern const s32 c37F;                          // 895
+extern const s32 cCourseSelectMiiBalloon;       // 895
 // Address: 0x10004B54
-extern const s32 c380;                          // 896
+extern const s32 cCourseSelectPenguin;          // 896
 // Address: 0x10004B58
-extern const s32 c381;                          // 897
+extern const s32 cCourseSelectW4Item;           // 897
 // Address: 0x10004B5C
-extern const s32 c382;                          // 898
+extern const s32 cCourseSelectW2Kuribo;         // 898
 // Address: 0x10004B60
-extern const s32 c383;                          // 899
+extern const s32 cCourseSelectPakkunBig;        // 899
 // Address: 0x10004B64
-extern const s32 c384;                          // 900
+extern const s32 cCourseSelectShadowKunIcon;    // 900
 // Address: 0x10004B68
-extern const s32 c385;                          // 901
+extern const s32 cCourseSelectDekaUnira;        // 901
 // Address: 0x10004B6C
-extern const s32 c386;                          // 902
+extern const s32 cCourseSelectTomb;             // 902
 // Address: 0x10004B70
-extern const s32 c387;                          // 903
+extern const s32 cCourseSelectShadowFirstDemoShadowKun; // 903
 // Address: 0x10004B74
-extern const s32 c388;                          // 904
+extern const s32 cCourseSelectKotsuCoaster;     // 904
 // Address: 0x10004B78
-extern const s32 c389;                          // 905
+extern const s32 cCourseSelectKoopaJr;          // 905
 // Address: 0x10004B7C
-extern const s32 c38A;                          // 906
+extern const s32 cCourseSelectPeach;            // 906
 // Address: 0x10004B80
-extern const s32 c38B;                          // 907
+extern const s32 cCourseSelectW1Item;           // 907
 // Address: 0x10004B84
-extern const s32 c38C;                          // 908
+extern const s32 cCourseSelectStarGate;         // 908
 // Address: 0x10004B88
-extern const s32 c38D;                          // 909
+extern const s32 cCourseSelectEventAssistant;   // 909
 
 }
