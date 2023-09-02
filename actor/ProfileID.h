@@ -962,13 +962,13 @@ extern const s32 c1D8;                          // 472
 // Address: 0x100044B8
 extern const s32 c1D9;                          // 473
 // Address: 0x100044BC
-extern const s32 c1DA;                          // 474
+extern const s32 cIceBall;                      // 474
 // Address: 0x100044C0
-extern const s32 c1DB;                          // 475
+extern const s32 cIceBallPakkun;                // 475
 // Address: 0x100044C4
-extern const s32 c1DC;                          // 476
+extern const s32 cFireBallPlayer;               // 476
 // Address: 0x100044C8
-extern const s32 c1DD;                          // 477
+extern const s32 cFireBallPakkun;               // 477
 // Address: 0x100044CC
 extern const s32 c1DE;                          // 478
 // Address: 0x100044D0
@@ -1130,9 +1130,9 @@ extern const s32 c22C;                          // 556
 // Address: 0x10004608
 extern const s32 c22D;                          // 557
 // Address: 0x1000460C
-extern const s32 c22E;                          // 558
+extern const s32 cFireBallKeronpa;              // 558
 // Address: 0x10004610
-extern const s32 c22F;                          // 559
+extern const s32 cFireBallKeronpaRDash;         // 559
 // Address: 0x10004614
 extern const s32 c230;                          // 560
 // Address: 0x10004618
@@ -1250,7 +1250,7 @@ extern const s32 c267;                          // 615
 // Address: 0x100046F4
 extern const s32 c268;                          // 616
 // Address: 0x100046F8
-extern const s32 c269;                          // 617
+extern const s32 cSpanner;                      // 617
 // Address: 0x100046FC
 extern const s32 c26A;                          // 618
 // Address: 0x10004700
@@ -1296,17 +1296,17 @@ extern const s32 c27E;                          // 638
 // Address: 0x10004750
 extern const s32 c27F;                          // 639
 // Address: 0x10004754
-extern const s32 c280;                          // 640
+extern const s32 cGabonRock;                    // 640
 // Address: 0x10004758
 extern const s32 c281;                          // 641
 // Address: 0x1000475C
 extern const s32 c282;                          // 642
 // Address: 0x10004760
-extern const s32 c283;                          // 643
+extern const s32 cRockGabonRock;                // 643
 // Address: 0x10004764
 extern const s32 c284;                          // 644
 // Address: 0x10004768
-extern const s32 c285;                          // 645
+extern const s32 cSeichanSnowBall;              // 645
 // Address: 0x1000476C
 extern const s32 c286;                          // 646
 // Address: 0x10004770
@@ -1532,23 +1532,23 @@ extern const s32 c2F4;                          // 756
 // Address: 0x10004928
 extern const s32 c2F5;                          // 757
 // Address: 0x1000492C
-extern const s32 c2F6;                          // 758
+extern const s32 cHammer;                       // 758
 // Address: 0x10004930
 extern const s32 c2F7;                          // 759
 // Address: 0x10004934
-extern const s32 c2F8;                          // 760
+extern const s32 cBoomerang;                    // 760
 // Address: 0x10004938
 extern const s32 c2F9;                          // 761
 // Address: 0x1000493C
-extern const s32 c2FA;                          // 762
+extern const s32 cFireBallBros;                 // 762
 // Address: 0x10004940
 extern const s32 c2FB;                          // 763
 // Address: 0x10004944
-extern const s32 c2FC;                          // 764
+extern const s32 cIceBallBros;                  // 764
 // Address: 0x10004948
 extern const s32 c2FD;                          // 765
 // Address: 0x1000494C
-extern const s32 c2FE;                          // 766
+extern const s32 cMegaHammer;                   // 766
 // Address: 0x10004950
 extern const s32 c2FF;                          // 767
 // Address: 0x10004954
