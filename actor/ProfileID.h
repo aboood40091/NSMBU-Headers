@@ -58,15 +58,15 @@ extern const s32 c016;                          //  22
 // Address: 0x10003DB0
 extern const s32 c017;                          //  23
 // Address: 0x10003DB4
-extern const s32 c018;                          //  24
+extern const s32 cMiniGameMgr;                  //  24
 // Address: 0x10003DB8
-extern const s32 c019;                          //  25
+extern const s32 cMiniGameMgrRDash;             //  25
 // Address: 0x10003DBC
-extern const s32 c01A;                          //  26
+extern const s32 cShuffleBlockMgr;              //  26
 // Address: 0x10003DC0
-extern const s32 c01B;                          //  27
+extern const s32 cSlotMgr;                      //  27
 // Address: 0x10003DC4
-extern const s32 c01C;                          //  28
+extern const s32 cCoinmakiMgr;                  //  28
 // Address: 0x10003DC8
 extern const s32 c01D;                          //  29
 // Address: 0x10003DCC
@@ -78,9 +78,9 @@ extern const s32 c020;                          //  32
 // Address: 0x10003DD8
 extern const s32 cShootingStar;                 //  33
 // Address: 0x10003DDC
-extern const s32 c022;                          //  34
+extern const s32 cStaffRollMgr;                 //  34
 // Address: 0x10003DE0
-extern const s32 c023;                          //  35
+extern const s32 cStaffRollMgrRDash;            //  35
 // Address: 0x10003DE4
 extern const s32 c024;                          //  36
 // Address: 0x10003DE8
@@ -534,7 +534,7 @@ extern const s32 c103;                          // 259
 // Address: 0x10004164
 extern const s32 c104;                          // 260
 // Address: 0x10004168
-extern const s32 c105;                          // 261
+extern const s32 cShuffleBlock;                 // 261
 // Address: 0x1000416C
 extern const s32 cKokoopaShipWarpCannon;        // 262
 // Address: 0x10004170
@@ -888,7 +888,7 @@ extern const s32 c1B4;                          // 436
 // Address: 0x10004428
 extern const s32 c1B5;                          // 437
 // Address: 0x1000442C
-extern const s32 c1B6;                          // 438
+extern const s32 cCoinmakiCoin;                 // 438
 // Address: 0x10004430
 extern const s32 c1B7;                          // 439
 // Address: 0x10004434
@@ -920,7 +920,7 @@ extern const s32 c1C3;                          // 451
 // Address: 0x10004464
 extern const s32 c1C4;                          // 452
 // Address: 0x10004468
-extern const s32 c1C5;                          // 453
+extern const s32 cSlotYoshiChibi;               // 453
 // Address: 0x1000446C
 extern const s32 c1C6;                          // 454
 // Address: 0x10004470
@@ -1668,15 +1668,15 @@ extern const s32 cBoxingKoopaJrPostBattleDemo;  // 824
 // Address: 0x10004A38
 extern const s32 cBoxingKoopaJrClownPostBattleDemo; // 825
 // Address: 0x10004A3C
-extern const s32 c33A;                          // 826
+extern const s32 cMiniGamePanelItem;            // 826
 // Address: 0x10004A40
-extern const s32 c33B;                          // 827
+extern const s32 cSlotItem;                     // 827
 // Address: 0x10004A44
-extern const s32 c33C;                          // 828
+extern const s32 cCoinmakiCannon;               // 828
 // Address: 0x10004A48
-extern const s32 c33D;                          // 829
+extern const s32 cCoinmakiItem;                 // 829
 // Address: 0x10004A4C
-extern const s32 c33E;                          // 830
+extern const s32 cMiniGameKinopio;              // 830
 // Address: 0x10004A50
 extern const s32 c33F;                          // 831
 // Address: 0x10004A54
@@ -1696,21 +1696,21 @@ extern const s32 c346;                          // 838
 // Address: 0x10004A70
 extern const s32 c347;                          // 839
 // Address: 0x10004A74
-extern const s32 c348;                          // 840
+extern const s32 cStaffCreditChibiYoshiABC;     // 840
 // Address: 0x10004A78
-extern const s32 c349;                          // 841
+extern const s32 cStaffCreditChibiYoshiBalloon; // 841
 // Address: 0x10004A7C
-extern const s32 c34A;                          // 842
+extern const s32 cStaffCreditChibiYoshiBalloonCheer; // 842
 // Address: 0x10004A80
-extern const s32 c34B;                          // 843
+extern const s32 cStaffCreditChibiYoshiLight;   // 843
 // Address: 0x10004A84
-extern const s32 c34C;                          // 844
+extern const s32 cStaffCreditChibiYoshiLightCheer; // 844
 // Address: 0x10004A88
-extern const s32 c34D;                          // 845
+extern const s32 cStaffCreditSoapABC;           // 845
 // Address: 0x10004A8C
-extern const s32 c34E;                          // 846
+extern const s32 cStaffCreditSoapCoin;          // 846
 // Address: 0x10004A90
-extern const s32 c34F;                          // 847
+extern const s32 cStaffCreditTottenKun;         // 847
 // Address: 0x10004A94
 extern const s32 c350;                          // 848
 // Address: 0x10004A98
