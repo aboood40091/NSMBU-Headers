@@ -1727,7 +1727,7 @@ extern const s32 c355;                          // 853
 // Address: 0x10004AAC
 extern const s32 cCourseSelectPlayer;           // 854
 // Address: 0x10004AB0
-extern const s32 cCourseSelectPlayer_2P_3P_4P;  // 855 (CS Player 2, 3 or 4)
+extern const s32 cCourseSelectPlayer2PSub;      // 855 (CS Player 2, 3 or 4)
 
 // Address: 0x10004AB4
 extern const s32 c358;                          // 856
