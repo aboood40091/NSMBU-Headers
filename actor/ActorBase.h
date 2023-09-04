@@ -1,40 +1,11 @@
 #pragma once
 
-#include <actor/ActorUniqueID.h>
-#include <utility/Angle.h>
+#include <actor/ActorCreateParam.h>
 
 #include <container/seadOffsetList.h>
 #include <heap/seadHeap.h>
-#include <math/seadVector.h>
 #include <prim/seadBitFlag.h>
 #include <prim/seadRuntimeTypeInfo.h>
-
-class Profile;
-
-struct ActorCreateParam
-{
-    u32             param_0;
-    u32             param_1;
-    ActorUniqueID   parent_id;
-    Profile*        p_profile;
-    sead::Vector3f  position;
-    Angle           angle;
-    u8              layer;
-    u8              event_id_0;
-    u8              event_id_1;
-    u8              _23[1];             // Unused, padding? (Intentionally byte array)
-    u8              movement_id;
-    u8              link_id;
-    u8              init_state_flag;
-    u8              _27[1];             // Unused, padding? (Intentionally byte array)
-    u8*             _28;
-
-    ActorCreateParam()
-    {
-        sead::MemUtil::fillZero(this, sizeof(ActorCreateParam));
-    }
-};
-static_assert(sizeof(ActorCreateParam) == 0x2C);
 
 class ActorMgr;
 
@@ -141,9 +112,7 @@ protected:
     bool            mRequestDelete;
     u32             mParam0;
     u32             mParam1;
-    u8              mMovementID;
-    u8              mLinkID;
-    u8              mInitStateFlag;
+    ActorParamEx1   mParamEx;
     List            mChildList;
     sead::ListNode  mChildNode;
     ActorBase*      mpParent;
