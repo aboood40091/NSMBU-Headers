@@ -22,9 +22,9 @@ protected:
     sead::FileDevice*               mpPlatformFileDevice;   // sead::AliasFileDevice*
     sead::FileDevice*               mpAnyFileDevice;        // sead::AnyFileDevice*
     sead::ControllerMgr::Parameter  mControllerParameter;
-    agl::TextureData                mTextureData1;
-    agl::TextureData                mTextureData2;
-    bool                            mIsTextureData1Valid;
-    bool                            mIsTextureData2Valid;
+    agl::TextureData                mLastFrame;
+    agl::TextureData                mLastFrameDRC;
+    bool                            mIsLastFrameValid;
+    bool                            mIsLastFrameDRCValid;
 };
 static_assert(sizeof(RootTask) == 0x220);
