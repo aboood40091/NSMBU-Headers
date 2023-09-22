@@ -1,6 +1,6 @@
 #pragma once
 
-#include <basis/seadTypes.h>
+#include <heap/seadDisposer.h>
 
 class SndSceneMgr
 {
@@ -25,4 +25,14 @@ public:
         cEffect_Chika_Ka,   // CHIKA_KA | Volcano Interior / Lava Underground   | 火山内部          | (Ka = Kazan)
         cEffect_Default     // DEFAULT  | Default (non-course)                  | デフォルト（コース以外）
     };
+
+public:
+    SndSceneMgr();
+
+    void enterHBM();
+    void exitHBM();
+
+    void exit();
+
+    SEAD_SINGLETON_DISPOSER(SndSceneMgr)
 };
