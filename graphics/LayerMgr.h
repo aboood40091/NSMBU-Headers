@@ -57,6 +57,15 @@ public:
     // TODO
     // virtual ...
 
+    // Address: 0x024E0E50
+    void clearRenderMgr();
+
+    // Address: 0x024E0F84
+    void calcDL();
+
+    // Address: 0x024E0FEC
+    void calcParallelExec();
+
     // Address: 0x024E1260
     void removeRenderMgr(RenderMgr* p_render_mgr);
 };
