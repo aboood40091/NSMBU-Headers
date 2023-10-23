@@ -2,6 +2,8 @@
 
 #include <heap/seadHeap.h>
 
+#include <nn/ffl.h>
+
 namespace Mii {
 
 class CafeResInitializer
@@ -14,6 +16,17 @@ public:
     bool initialize();
     // Address: 0x024E7E7C
     void destroy();
+
+private:
+    // Address: 0x024E79E8
+    bool createHeaps_(const FFLInitDesc* p_init_desc);
+    // Address: 0x024E7E08
+    void destroyHeaps_();
+
+    // Address: 0x024E7AFC
+    bool loadFFLShader_();
+    // Address: 0x024E7DF0
+    void unloadFFLShader_();
 
 private:
     void*       mpWorkMemory;
