@@ -5,7 +5,7 @@
 
 namespace Mii {
 
-class IconFaceline
+class IconFacelineShader
 {
 public:
     // Address: 0x024E90EC
