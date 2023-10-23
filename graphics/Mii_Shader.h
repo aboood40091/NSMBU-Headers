@@ -23,10 +23,16 @@ public:
     // Address: 0x024EA39C
     static void initializeShader(agl::ShaderProgramArchive* p_archive, sead::Heap* heap);
 
+    // Address: 0x024EB448
+    void initialize(sead::Heap* heap = nullptr);
+
     void setModel(ModelFFL* p_model)
     {
         mpModel = p_model;
     }
+
+    // Address: 0x024EB8AC
+    void setCallback() const;
 
     // Address: 0x024EB8B4
     void activate() const;

@@ -8,7 +8,12 @@ class CafeResInitializer
 {
 public:
     // Address: 0x024E7990
-    CafeResInitializer();
+    CafeResInitializer(bool param);
+
+    // Address: 0x024E7B7C
+    bool initialize();
+    // Address: 0x024E7E7C
+    void destroy();
 
 private:
     void*       mpWorkMemory;

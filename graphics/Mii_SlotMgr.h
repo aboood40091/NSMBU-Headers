@@ -14,6 +14,16 @@ public:
     // Address: 0x024ECA98
     SlotMgr();
 
+    virtual ~SlotMgr()
+    {
+        destroy();
+    }
+
+    // Address: 0x024ECDDC
+    bool initialize();
+    // Address: 0x024ECF34
+    void destroy();
+
 public:
     static bool getStoreData(FFLStoreData* p_store_data, const SlotID& slotID);
 

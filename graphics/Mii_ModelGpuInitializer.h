@@ -13,6 +13,11 @@ class ModelGpuInitializer
 public:
     // Address: 0x024E9974
     ModelGpuInitializer();
+    // Address: 0x024E9B28
+    ~ModelGpuInitializer();
+
+    // Address: 0x024E9BA4
+    void initialize(sead::Heap* heap = nullptr);
 
     // Address: 0x024E9C04
     void pushBack(ModelFFL* p_model);

@@ -27,6 +27,8 @@ public:
         destroy();
     }
 
+    // Address: 0x024E815C
+    bool initialize();
     // Address: 0x024E8154
     void destroy();
 
