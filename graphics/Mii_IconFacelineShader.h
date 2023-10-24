@@ -11,11 +11,25 @@ namespace Mii {
 class IconFacelineShader
 {
 public:
+    enum Uniform
+    {
+        cUniform_WorldMtx = 0,
+        cUniform_ViewMtx,
+        cUniform_ProjMtx,
+        cUniform_ResolutionX,
+        cUniform_ResolutionY,
+        cUniform_LineWidth,
+        cUniform_Num
+    };
+    static_assert(cUniform_Num == 6);
+
     enum Sampler
     {
         cSampler_Depth = 0,
-        cSampler_Color
+        cSampler_Color,
+        cSampler_Num
     };
+    static_assert(cSampler_Num == 2);
 
 public:
     // Address: 0x024E9078
@@ -34,9 +48,9 @@ public:
     // Address: 0x024E9704
     void destroy();
 
-    void activate() const
+    agl::ShaderMode activate() const
     {
-        mpShaderProgram->activate();
+        return mpShaderProgram->activate();
     }
 
     // Address: 0x024E92C4
@@ -47,11 +61,15 @@ public:
     void setLineWidthUniform(s32 line_width) const;
 
     // Address: 0x024E9580
-    void activateTexture(const agl::TextureData& texture_data, Sampler sampler);
+    bool activateTexture(const agl::TextureData& texture_data, Sampler sampler);
 
 private:
-    agl::ShaderProgramArchive*              mpShaderArchive;
-    agl::ShaderProgram*                     mpShaderProgram;
+    // Address: 0x024E9210
+    bool initializeShader_();
+
+private:
+    const agl::ShaderProgramArchive*        mpShaderArchive;
+    const agl::ShaderProgram*               mpShaderProgram;
     sead::SafeArray<agl::TextureSampler, 2> mTextureSampler;
 };
 static_assert(sizeof(IconFacelineShader) == 0x348);
