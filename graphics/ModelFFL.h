@@ -114,6 +114,18 @@ public:
     // Address: 0x024F03C8
     void initializeGpu();
 
+    void setMtxRT(const sead::Matrix34f& mtx)
+    {
+        mMtxRT = mtx;
+        updateMtxSRT();
+    }
+
+    void setScale(const sead::Vector3f& scale)
+    {
+        mScale.set(scale);
+        updateMtxSRT();
+    }
+
 private:
     // Address: 0x024EF840
     bool allocBuffer_();

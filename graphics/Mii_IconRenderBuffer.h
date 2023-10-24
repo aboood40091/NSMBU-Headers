@@ -24,7 +24,7 @@ public:
     void destroy();
 
     // Address: 0x024E9868
-    bool doesNothing(const ModelFFL* p_model);
+    bool registerModel(const ModelFFL* p_model);
 };
 static_assert(sizeof(IconRenderBuffer) == 0x460);
 

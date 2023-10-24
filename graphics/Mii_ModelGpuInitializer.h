@@ -1,10 +1,11 @@
 #pragma once
 
+#include <graphics/ModelFFL.h>
+
 #include <container/seadPtrArray.h>
 #include <layer/aglDrawMethod.h>
 #include <thread/seadCriticalSection.h>
-
-class ModelFFL;
+#include <thread/seadEvent.h>
 
 namespace Mii {
 
@@ -21,6 +22,18 @@ public:
 
     // Address: 0x024E9C04
     void pushBack(ModelFFL* p_model);
+    // Address: 0x024E9CB8
+    void pushBack(sead::Event* p_event);
+
+    // Address: 0x024E9D6C
+    void calc();
+
+private:
+    // Address: 0x024E9E08
+    void initializeGpu_();
+
+    // Address: 0x024E9EC4
+    void initializeGpuDrawMethod_(const agl::lyr::RenderInfo& render_info);
 
 private:
     enum ElementType
@@ -32,6 +45,18 @@ private:
 
     struct Element
     {
+        Element(ModelFFL* p_model)
+            : type(cElementType_ModelFFL)
+            , element(p_model)
+        {
+        }
+
+        Element(sead::Event* p_event)
+            : type(cElementType_SeadEvent)
+            , element(p_event)
+        {
+        }
+
         ElementType type;
         void*       element;
     };
