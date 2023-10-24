@@ -93,6 +93,8 @@ public:
     // Address: 0x024EFBE8
     void setSpecialDrawType();
 
+    // Address: 0x024F0708
+    void calc() override;
     // Address: 0x024EFBF4
     void updateView(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderMgr* p_render_mgr) override;
     // Address: 0x024EFBF8
