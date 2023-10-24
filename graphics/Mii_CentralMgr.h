@@ -42,6 +42,11 @@ public:
         return mShader;
     }
 
+    IconFacelineShader& getIconFacelineShader()
+    {
+        return mIconFacelineShader;
+    }
+
 private:
     CafeResInitializer  mResInitializer;
     ModelGpuInitializer mModelGpuInitializer;
