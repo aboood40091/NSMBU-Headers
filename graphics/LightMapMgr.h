@@ -32,6 +32,11 @@ public:
     // Address: 0x024E51C8
     void initializeForCourseSelect(sead::Heap* heap);
 
+    // Address: 0x024E54E4
+    const agl::TextureSampler& getLightmap01p(s32 index) const;
+    // Address: 0x024E5534
+    const agl::TextureSampler& getLightmap02p(s32 index) const;
+
 private:
     u32                     _cc[(0x2070 - 0xCC) / sizeof(u32)];
     agl::lght::LightMapMgr  mLightMapMgr;
