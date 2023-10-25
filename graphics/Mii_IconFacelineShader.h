@@ -48,9 +48,9 @@ public:
     // Address: 0x024E9704
     void destroy();
 
-    agl::ShaderMode activate() const
+    void activate() const
     {
-        return mpShaderProgram->activate();
+        mpShaderProgram->activate();
     }
 
     // Address: 0x024E92C4
