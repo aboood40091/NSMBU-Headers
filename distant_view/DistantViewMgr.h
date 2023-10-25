@@ -45,9 +45,9 @@ private:
     void calcModelMtx_();
 
     // Address: 0x022A7B10
-    void drawParticle_(const agl::lyr::RenderInfo& render_info);
+    void drawParticle_(const agl::lyr::RenderInfo& render_info) const;
     // Address: 0x022A7B24
-    void applyDepthOfField_(const agl::lyr::RenderInfo& render_info);
+    void applyDepthOfField_(const agl::lyr::RenderInfo& render_info) const;
 
 public:
     // Address: 0x022A7C00
