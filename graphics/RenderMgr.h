@@ -84,6 +84,9 @@ public:
     void setShadowMap(agl::TextureSampler* p_sampler) { mpShadowMap = p_sampler; }
     void setReflectionMap(agl::TextureSampler* p_sampler) { mpReflectionMap = p_sampler; }
 
+    agl::env::EnvObjMgr& getEnvObjMgr() { return mEnvObjMgr; }
+    const agl::env::EnvObjMgr& getEnvObjMgr() const { return mEnvObjMgr; }
+
     ViewInfo& getViewInfo(s32 view_index) { return mViewInfo[view_index]; }
     const ViewInfo& getViewInfo(s32 view_index) const { return mViewInfo[view_index]; }
 
