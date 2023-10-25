@@ -126,6 +126,26 @@ public:
         updateMtxSRT();
     }
 
+    agl::TextureData* getLightmap02p_0() const
+    {
+        return mLightmap02p_0;
+    }
+
+    agl::TextureData* getLightmap02p_1() const
+    {
+        return mLightmap02p_1;
+    }
+
+    Lightmap02pType getLightmap02pType() const
+    {
+        return mLightmap02pType;
+    }
+
+    LightMapType getLightMapType() const
+    {
+        return mLightMapType;
+    }
+
 private:
     // Address: 0x024EF840
     bool allocBuffer_();
