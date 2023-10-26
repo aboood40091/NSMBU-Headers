@@ -6,7 +6,7 @@ struct FFLStoreData;
 
 namespace Mii {
 
-class SlotID;
+class DataSource;
 
 class SlotMgr : public sead::IDisposer
 {
@@ -25,7 +25,7 @@ public:
     void destroy();
 
 public:
-    static bool getStoreData(FFLStoreData* p_store_data, const SlotID& slotID);
+    static bool getStoreData(FFLStoreData* p_store_data, const DataSource& source);
 
 private:
     u32 mSlotNum;

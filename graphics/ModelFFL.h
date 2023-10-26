@@ -1,6 +1,6 @@
 #pragma once
 
-#include <graphics/Mii_SlotID.h>
+#include <graphics/Mii_DataSource.h>
 #include <graphics/Mii_WmModeDB.h>
 #include <graphics/RenderObj.h>
 
@@ -74,7 +74,7 @@ public:
     // Address: 0x024EF900
     bool initialize(const FFLCharModelDesc* p_desc, const sead::Vector3f& scale, sead::Heap* heap, sead::Heap* heap_tmp);
     // Address: 0x024EFAC0
-    bool initialize(Mii::SlotID id, const FFLCharModelDesc* p_desc, const sead::Vector3f& scale, sead::Heap* heap, sead::Heap* heap_tmp);
+    bool initialize(Mii::DataSource source, const FFLCharModelDesc* p_desc, const sead::Vector3f& scale, sead::Heap* heap, sead::Heap* heap_tmp);
 
     template <typename T>
     bool initialize(const InitArg<T>& arg, const sead::Vector3f& scale, sead::Heap* heap, sead::Heap* heap_tmp);
@@ -201,7 +201,7 @@ private:
     InitializeStep          mInitializeStep;
     DrawType                mDrawType;
     Mii::WmModeDB::Model*   mpWmModeDBModel;
-    Mii::SlotID             mSlotID;
+    Mii::DataSource         mDataSource;
     s32                     mOpaBufferIdx;
     s32                     mXluBufferIdx;
 };
