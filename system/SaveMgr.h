@@ -3,6 +3,8 @@
 #include <heap/seadDisposer.h>
 #include <thread/seadDelegateThread.h>
 
+struct FFLStoreData;
+
 class SaveMgr
 {
     SEAD_SINGLETON_DISPOSER(SaveMgr)
@@ -31,6 +33,8 @@ public:
     {
         return _14 == 2 || _30 != -1;
     }
+
+    const FFLStoreData& getStoreData(s32 index) const;
 
 protected:
     sead::DelegateThread*   mpDelegateThread;
