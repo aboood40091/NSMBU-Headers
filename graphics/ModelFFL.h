@@ -157,14 +157,14 @@ private:
     // Address: 0x024EFCD4
     void setEnvViewUniformWithLightmapEnable_(const sead::Matrix34f& model_mtx, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderMgr* p_render_mgr);
 
-    // Addres: 0x024EFD74
+    // Address: 0x024EFD74
     void drawOpaNormal_();
-    // Addres: 0x024EFD08
+    // Address: 0x024EFD08
     void drawOpaSpecial_();
 
-    // Addres: 0x024EFFB8
+    // Address: 0x024EFFB8
     void drawXluNormal_();
-    // Addres: 0x024EFEC4
+    // Address: 0x024EFEC4
     void drawXluSpecial_();
 
     // Address: 0x024EF9C4
@@ -173,7 +173,7 @@ private:
     void initializeGpu_();
 
     // Address: 0x024EFA44
-    bool setCharModelSource_(const FFLStoreData* p_store_data);
+    bool setCharModelSource_(const FFLStoreData* p_store_data, u16);
     // Address: 0x024F041C
     bool setCharModelSource_(const FFLMiddleDB* p_middle_db, u16 index);
 
@@ -207,23 +207,8 @@ private:
 };
 static_assert(sizeof(ModelFFL) == 0x8F0);
 
-// Address: 0x024F070C
-template <>
-bool ModelFFL::initialize<FFLStoreData>(const InitArgStoreData& arg, const sead::Vector3f& scale, sead::Heap* heap, sead::Heap* heap_tmp)
-{
-    if (!initialize(&mCharModelDesc, scale, heap, heap_tmp))
-        return false;
-
-    if (!setCharModelSource_(arg.data))
-        return false;
-
-    pushBackModelGpuInitializer_();
-    return true;
-}
-
-// Address: 0x024EE1B0
-template <>
-bool ModelFFL::initialize<FFLMiddleDB>(const InitArgMiddleDB& arg, const sead::Vector3f& scale, sead::Heap* heap, sead::Heap* heap_tmp)
+template <typename T>
+bool ModelFFL::initialize(const InitArg<T>& arg, const sead::Vector3f& scale, sead::Heap* heap, sead::Heap* heap_tmp)
 {
     if (!initialize(&mCharModelDesc, scale, heap, heap_tmp))
         return false;
