@@ -210,7 +210,7 @@ static_assert(sizeof(ModelFFL) == 0x8F0);
 template <typename T>
 bool ModelFFL::initialize(const InitArg<T>& arg, const sead::Vector3f& scale, sead::Heap* heap, sead::Heap* heap_tmp)
 {
-    if (!initialize(&mCharModelDesc, scale, heap, heap_tmp))
+    if (!initialize(&arg.desc, scale, heap, heap_tmp))
         return false;
 
     if (!setCharModelSource_(arg.data, arg.index))
