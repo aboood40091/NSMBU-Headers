@@ -47,14 +47,14 @@ public:
         cAmbColorType_EffectColor14_1,
         cAmbColorType_EffectColor15_0,
         cAmbColorType_EffectColor15_1,
-        AmbColorType_WaterHalfFrontColor0,
-        AmbColorType_WaterHalfFrontKonst0,
-        AmbColorType_WaterHalfFrontKonst1,
-        AmbColorType_WaterHalfBehindColor0,
-        AmbColorType_WaterHalfBehindColor1,
-        AmbColorType_Num
+        cAmbColorType_WaterHalfFrontColor0,
+        cAmbColorType_WaterHalfFrontKonst0,
+        cAmbColorType_WaterHalfFrontKonst1,
+        cAmbColorType_WaterHalfBehindColor0,
+        cAmbColorType_WaterHalfBehindColor1,
+        cAmbColorType_Num
     };
-    static_assert(AmbColorType_Num == 11);
+    static_assert(cAmbColorType_Num == 11);
 
 private:
     class CalcObj : public RenderObjBase
@@ -190,7 +190,7 @@ private:
     >                               mLightMapIndexCourse;
     sead::SafeArray<
         s32,
-        AmbColorType_Num
+        cAmbColorType_Num
     >                               mAmbientLightTypeIndex;
     const void*                     mpAglEnvBinary1;
     const void*                     mpAglEnvBinary2;
