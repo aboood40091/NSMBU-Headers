@@ -31,8 +31,8 @@ public:
         cMemberIndex_FogStart,
         cMemberIndex_FogStartEndInv,
         cMemberIndex_Unk_8,
-        cMemberIndex_Unk_9,
-        cMemberIndex_Unk_10,
+        cMemberIndex_FogDir,
+        cMemberIndex_ProjectorViewProj,
         cMemberNum
     };
     static_assert(cMemberNum == 11);

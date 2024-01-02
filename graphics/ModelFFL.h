@@ -27,8 +27,8 @@ public:
 
     enum LightMapType
     {
-        cLightmapType_LightMapMgr_Index_4 = 0,
-        cLightmapType_LightMapMgr_Index_0
+        cLightmapType_Player = 0,
+        cLightmapType_Enemy
     };
     static_assert(sizeof(LightMapType) == 4);
 
