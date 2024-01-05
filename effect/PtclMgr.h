@@ -53,6 +53,9 @@ public:
         return mpPtclSystem;
     }
 
+    // Address: 0x022AC984
+    void updateAmbientLight(bool update_emitter = true);
+
     // Address: 0x022ACA44
     void draw(const agl::lyr::RenderInfo& render_info, u32 type, const sead::PtrArray<nw::eft::EmitterInstance>* p_emitters = nullptr);
 
