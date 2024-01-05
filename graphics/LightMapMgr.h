@@ -3,7 +3,6 @@
 #include <graphics/RenderObj.h>
 
 #include <container/seadSafeArray.h>
-#include <environment/aglEnvObjMgr.h>
 #include <framework/seadCalculateTask.h>
 #include <framework/seadTaskMgr.h>
 #include <gfx/seadCamera.h>
@@ -24,7 +23,7 @@ class LightMapMgr : public sead::CalculateTask  // vtbl Address: 0x100BBA94
     SEAD_TASK_SINGLETON_DISPOSER(LightMapMgr)
 
 public:
-    static const u32 cLightMapNum = 2;
+    static const s32 cLightMapNum = 2;
 
     enum EnvTypeCourse
     {
@@ -38,6 +37,40 @@ public:
         cEnvTypeCourse_Num
     };
     static_assert(cEnvTypeCourse_Num == 7);
+
+    enum EnvTypeCourseSelect
+    {
+        cEnvTypeCourseSelect_W1a = 0,
+        cEnvTypeCourseSelect_W2a,
+        cEnvTypeCourseSelect_W2b,
+        cEnvTypeCourseSelect_W3a,
+        cEnvTypeCourseSelect_W4a,
+        cEnvTypeCourseSelect_W5a,
+        cEnvTypeCourseSelect_W5b,
+        cEnvTypeCourseSelect_W6a,
+        cEnvTypeCourseSelect_W6b,
+        cEnvTypeCourseSelect_W7a,
+        cEnvTypeCourseSelect_W8a,
+        cEnvTypeCourseSelect_W8b,
+        cEnvTypeCourseSelect_W9a,
+        cEnvTypeCourseSelect_Num
+    };
+    static_assert(cEnvTypeCourseSelect_Num == 13);
+
+    static const s32 cLightMapNumAll = (cEnvTypeCourse_Num + cEnvTypeCourseSelect_Num) * cLightMapNum;
+
+    static const s32 cLightMapHemisphereLightNum = 2;
+    static const s32 cHemisphereLightNum = cLightMapHemisphereLightNum;
+
+    static const s32 cLightMapDirectionalLightNumMain = 2;
+    static const s32 cLightMapDirectionalLightNumCourse = 4;
+    static const s32 cLightMapDirectionalLightNumCourseSelect = 2;
+    static const s32 cLightMapDirectionalLightNum = 4; // max(cLightMapDirectionalLightNumMain, cLightMapDirectionalLightNumCourse, cLightMapDirectionalLightNumCourseSelect)
+
+    static const s32 cDirectionalLightNumMain = cLightMapDirectionalLightNumMain;
+    static const s32 cDirectionalLightNumCourse = cEnvTypeCourse_Num * cLightMapDirectionalLightNumCourse;
+    static const s32 cDirectionalLightNumCourseSelect = cEnvTypeCourseSelect_Num * cLightMapDirectionalLightNumCourseSelect;
+    static const s32 cDirectionalLightNumAll = cDirectionalLightNumMain + cDirectionalLightNumCourse + cDirectionalLightNumCourseSelect;
 
     enum AmbColorType
     {
@@ -56,6 +89,15 @@ public:
     };
     static_assert(cAmbColorType_Num == 11);
 
+    enum RenderStep
+    {
+        cRenderStep_CalcView = 0,
+        cRenderStep_UpdateGPUBuffer,
+        cRenderStep_LightDraw,
+        cRenderStep_Num
+    };
+    static_assert(cRenderStep_Num == 3);
+
 private:
     class CalcObj : public RenderObjBase
     {
@@ -64,6 +106,8 @@ private:
 
     private:
         agl::lght::LightMapMgr* mpLightMapMgr;
+
+        friend class LightMapMgr;
     };
     static_assert(sizeof(CalcObj) == 8);
 
@@ -126,20 +170,17 @@ public:
     void loadAglEnvBinaryWithType(const sead::SafeString& name, const sead::SafeString& type, sead::Heap* heap = nullptr);
 
     // Address: 0x024E51C8
-    void initializeForCourseSelect(sead::Heap* heap);
+    void initializeForCourseSelect(sead::Heap* heap = nullptr);
     // Address: 0x024E53B4
     void loadAglEnvBinaryWithLerpForCourseSelect(f32 t);
 
     // Address: 0x024E54E4
-    const agl::TextureSampler& getLightmap1(EnvTypeCourse index) const;
+    const agl::TextureSampler& getLightmap1(EnvTypeCourse type) const;
     // Address: 0x024E5534
-    const agl::TextureSampler& getLightmap2(EnvTypeCourse index) const;
+    const agl::TextureSampler& getLightmap2(EnvTypeCourse type) const;
 
     // Address: 0x024E5584
-    void getAmbColor(sead::Color4f* p_color, AmbColorType index) const;
-
-    // Address: 0x024E5734
-    void setModelLightMapWithName(ModelG3d* p_model, const sead::SafeString& name, s32 index, bool set_mdl_dl_dirty) const;
+    void getAmbColor(sead::Color4f* p_color, AmbColorType type) const;
 
     // Address: 0x024E5900
     void setCobModelLightMapForCourseSelect(ModelG3d* p_model, u8 world, u8 world_sub_letter) const;
@@ -152,6 +193,9 @@ public:
 private:
     // Address: 0x024E3F20
     void initializeViewDependent_();
+
+    // Address: 0x024E5734
+    void setModelLightMapWithName_(ModelG3d* p_model, const sead::SafeString& name, s32 idx_lghtmap, s32 model_light_map_index) const;
 
     // Address: 0x024E5B0C
     void draw_(const agl::lyr::RenderInfo& render_info, View view, bool view_dependent, const sead::Matrix34f* p_view_mtx, const sead::Projection* p_projection);
@@ -167,8 +211,8 @@ private:
 
 private:
     u32                             _cc[4 / sizeof(u32)];
-    nw::g3d::res::ResTexture*       mpResTexture[40];
-    nw::g3d::res::ResTextureData    mResTextureData[40];
+    nw::g3d::res::ResTexture*       mpResTexture[cLightMapNumAll];
+    nw::g3d::res::ResTextureData    mResTextureData[cLightMapNumAll];
     agl::lyr::DrawMethod            mDrawMethodMain;
     agl::lyr::DrawMethod            mDrawMethodMainDRC;
     agl::lyr::DrawMethod            mDrawMethodReflection;
