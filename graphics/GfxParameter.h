@@ -23,6 +23,11 @@ public:
     // Address: 0x024DF5A8
     void setDelegateForParameter(agl::utl::IParameterIO* p_param);
 
+    // Address: 0x024DF5CC
+    void* getAglEnvBinary(const sead::SafeString& name, sead::Heap* heap = nullptr) const;
+    // Address: 0x024DF6C4
+    void* getAglLmapBinary(const sead::SafeString& name, sead::Heap* heap = nullptr) const;
+
 private:
     sead::SharcArchiveRes*  mpPackArc;
     u32                     mDelegateData[8]; // Same idea as agl::lyr::DrawMethod
