@@ -67,14 +67,14 @@ public:
     // Address: 0x022AAE8C
     void setVisible(bool visible, s32 emitter_controller_index);
 
-public:
+    void* getShaderParam() const { return mpShaderParam; }
+
+private:
     // Address: 0x022AA64C
     bool createEffect_(EffectID id);    // Assumes effect is not alive and has been cleared
 
     // Address: 0x022AA618
-    nw::eft::EmitterSet* getEmitterSet();
-
-    void* getShaderParam() const { return mpShaderParam; }
+    nw::eft::EmitterSet* getEmitterSet_();
 
 protected:
     sead::Matrixf   mMtx;
