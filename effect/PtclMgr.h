@@ -12,7 +12,8 @@ class PtclSystem;
 
 namespace nw { namespace eft {
 
-struct EmitterInstance;
+struct  EmitterInstance;
+class   EmitterSet;
 
 } } // namespace nw::eft
 
@@ -64,6 +65,10 @@ public:
 
     // Address: 0x022ADA08
     void setFrameBufferTexture(const agl::TextureSampler& texture, f32 x_offset = 0.0f, f32 y_offset = 0.0f, f32 x_scale = 1.0f, f32 y_scale = 1.0f);
+
+private:
+    // Address: 0x022AC8F8
+    void setEmitterColor_(nw::eft::EmitterSet* p_emitter_set);
 
 private:
     sead::ptcl::PtclSystem*                             mpPtclSystem;
