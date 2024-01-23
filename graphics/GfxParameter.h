@@ -29,6 +29,10 @@ public:
     void* getAglLmapBinary(const sead::SafeString& name, sead::Heap* heap = nullptr) const;
 
 private:
+    // Address: 0x024DF5B4
+    void* getFileFromPack_(const sead::SafeString& filename, sead::Heap* heap) const;
+
+private:
     sead::SharcArchiveRes*  mpPackArc;
     u32                     mDelegateData[8]; // Same idea as agl::lyr::DrawMethod
     u32                     _34;
