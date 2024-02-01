@@ -15,7 +15,7 @@ public:
 
 private:
     agl::ShaderProgramArchive* createShaderArchive_(const sead::SafeString& filename, sead::Heap* heap) const;
-    void pushBackShaderArchive_(const sead::SafeString& filename, agl::ShaderProgramArchive* p_archive, sead::Heap* heap);
+    void pushBackShaderArchive_(const sead::SafeString& filename, agl::ShaderProgramArchive* archive, sead::Heap* heap);
 
     void createAndPushBackShaderArchive_(const sead::SafeString& filename, sead::Heap* heap);
 

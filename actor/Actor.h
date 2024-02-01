@@ -182,11 +182,11 @@ protected:
     sead::Vector3f          mPosPrev;
     sead::Vector3f          _24c;
     sead::Vector3f          _258;
-    GenericEatData*         mpEatData;
-    GenericChibiEatData*    mpChibiEatData;
+    GenericEatData*         mEatData;
+    GenericChibiEatData*    mChibiEatData;
     u32                     _26c;
     u8*                     _270;                       // Inited to ActorCreateParam::_28
     f32                     _274;
-    void*                   mpChibiBubbleData;
+    void*                   mChibiBubbleData;
 };
 static_assert(sizeof(Actor) == 0x27C);

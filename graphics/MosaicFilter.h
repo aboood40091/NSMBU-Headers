@@ -7,5 +7,5 @@ class MosaicFilter
 {
 public:
     // Address: 0x024F864C
-    static void initializeShader(agl::ShaderProgramArchive* p_archive, sead::Heap* heap);
+    static void initializeShader(agl::ShaderProgramArchive* archive, sead::Heap* heap);
 };

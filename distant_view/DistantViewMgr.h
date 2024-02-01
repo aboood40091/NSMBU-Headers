@@ -71,7 +71,7 @@ public:
     // Address: 0x022A9070
     void update();
     // Address: 0x022A9334
-    void draw(agl::lyr::Layer* p_layer) const;
+    void draw(agl::lyr::Layer* layer) const;
 
     // Address: 0x022A93A8
     void performMiiCheer(bool);
@@ -98,11 +98,11 @@ private:
     sead::LookAtCamera          mCamera;
     sead::PerspectiveProjection mProjection;
     CullViewFrustum             mCull;
-    BasicModel*                 mpBasicModel;
+    BasicModel*                 mBasicModel;
     DVEnvTagMgr                 mEnvTagMgr;
-    DVCameraParam*              mpCameraParam;
-    DistantViewEffectMgr*       mpEffectMgr;
-    DistantViewFFLMgr*          mpFFLMgr;
+    DVCameraParam*              mCameraParam;
+    DistantViewEffectMgr*       mEffectMgr;
+    DistantViewFFLMgr*          mFFLMgr;
     sead::Vector3f              mBgPos; // Position relative to the Bg / level camera
     f32                         mAreaMinY;
     agl::pfx::DepthOfField      mDof;

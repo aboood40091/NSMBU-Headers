@@ -17,10 +17,10 @@ public:
     virtual void calc();
 
 protected:
-    sead::FileDevice*               mpCommonFileDevice;     // sead::AliasFileDevice*
-    sead::FileDevice*               mpLocalFileDevice;      // sead::AliasFileDevice*
-    sead::FileDevice*               mpPlatformFileDevice;   // sead::AliasFileDevice*
-    sead::FileDevice*               mpAnyFileDevice;        // sead::AnyFileDevice*
+    sead::FileDevice*               mCommonFileDevice;     // sead::AliasFileDevice*
+    sead::FileDevice*               mLocalFileDevice;      // sead::AliasFileDevice*
+    sead::FileDevice*               mPlatformFileDevice;   // sead::AliasFileDevice*
+    sead::FileDevice*               mAnyFileDevice;        // sead::AnyFileDevice*
     sead::ControllerMgr::Parameter  mControllerParameter;
     agl::TextureData                mLastFrame;
     agl::TextureData                mLastFrameDRC;

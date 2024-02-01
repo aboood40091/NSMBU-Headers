@@ -105,7 +105,7 @@ private:
         void calc() override;
 
     private:
-        agl::lght::LightMapMgr* mpLightMapMgr;
+        agl::lght::LightMapMgr* mLightMapMgr;
 
         friend class LightMapMgr;
     };
@@ -141,7 +141,7 @@ public:
     void calc() override;
 
     // Address: 0x024E3DC0
-    void loadAglEnvBinary(void* p_data, s32 = -1);
+    void loadAglEnvBinary(void* data, s32 = -1);
     // Address: 0x024E3EC0
     void loadAglEnvBinary(const sead::SafeString& name, s32 = -1, sead::Heap* heap = nullptr);
     // Address: 0x024E3F14
@@ -149,14 +149,14 @@ public:
 
     // Address: 0x024E3FB0
     void initializeViewDependent(
-        const sead::Camera* p_camera, const sead::Projection* p_projection,
-        const sead::Camera* p_camera_drc = nullptr, const sead::Projection* p_projection_drc = nullptr
+        const sead::Camera* camera, const sead::Projection* projection,
+        const sead::Camera* camera_drc = nullptr, const sead::Projection* projection_drc = nullptr
     );
     // Address: 0x024E3FFC
     void initializeViewIndependent();
 
     // Address: 0x024E4094
-    void loadAglLmapBinary(void* p_data);
+    void loadAglLmapBinary(void* data);
     // Address: 0x024E42D8
     void loadAglLmapBinary(const sead::SafeString& name, sead::Heap* heap = nullptr);
 
@@ -164,7 +164,7 @@ public:
     void initialize(sead::Heap* heap = nullptr);
 
     // Address: 0x024E5040
-    void setModelLightMap(ModelG3d* p_model, bool set_mdl_dl_dirty) const;
+    void setModelLightMap(ModelG3d* model, bool set_mdl_dl_dirty) const;
 
     // Address: 0x024E51C0
     void loadAglEnvBinaryWithType(const sead::SafeString& name, const sead::SafeString& type, sead::Heap* heap = nullptr);
@@ -180,12 +180,12 @@ public:
     const agl::TextureSampler& getLightmap2(EnvTypeCourse type) const;
 
     // Address: 0x024E5584
-    void getAmbColor(sead::Color4f* p_color, AmbColorType type) const;
+    void getAmbColor(sead::Color4f* color, AmbColorType type) const;
 
     // Address: 0x024E5900
-    void setCobModelLightMapForCourseSelect(ModelG3d* p_model, u8 world, u8 world_sub_letter) const;
+    void setCobModelLightMapForCourseSelect(ModelG3d* model, u8 world, u8 world_sub_letter) const;
     // Address: 0x024E5A14
-    void setModelLightMapForCourseSelect(ModelG3d* p_model) const;
+    void setModelLightMapForCourseSelect(ModelG3d* model) const;
 
     // Address: 0x024E5AF8
     const sead::SafeString& getEnvTypeCourseStr(EnvTypeCourse type) const;
@@ -195,10 +195,10 @@ private:
     void initializeViewDependent_();
 
     // Address: 0x024E5734
-    void setModelLightMapWithName_(ModelG3d* p_model, const sead::SafeString& name, s32 idx_lghtmap, s32 model_light_map_index) const;
+    void setModelLightMapWithName_(ModelG3d* model, const sead::SafeString& name, s32 idx_lghtmap, s32 model_light_map_index) const;
 
     // Address: 0x024E5B0C
-    void draw_(const agl::lyr::RenderInfo& render_info, View view, bool view_dependent, const sead::Matrix34f* p_view_mtx, const sead::Projection* p_projection);
+    void draw_(const agl::lyr::RenderInfo& render_info, View view, bool view_dependent, const sead::Matrix34f* view_mtx, const sead::Projection* projection);
 
     // Address: 0x024E5DB0
     void drawMain_(const agl::lyr::RenderInfo& render_info);
@@ -211,7 +211,7 @@ private:
 
 private:
     u32                             _cc[4 / sizeof(u32)];
-    nw::g3d::res::ResTexture*       mpResTexture[cLightMapNumAll];
+    nw::g3d::res::ResTexture*       mResTexture[cLightMapNumAll];
     nw::g3d::res::ResTextureData    mResTextureData[cLightMapNumAll];
     agl::lyr::DrawMethod            mDrawMethodMain;
     agl::lyr::DrawMethod            mDrawMethodMainDRC;
@@ -221,10 +221,10 @@ private:
     CalcObj                         mCalcObj;
     agl::env::EnvObjMgr             mEnvObjMgr;
     bool                            mIsViewDependent;
-    const sead::Camera*             mpCamera;
-    const sead::Projection*         mpProjection;
-    const sead::Camera*             mpCameraDRC;
-    const sead::Projection*         mpProjectionDRC;
+    const sead::Camera*             mCamera;
+    const sead::Projection*         mProjection;
+    const sead::Camera*             mCameraDRC;
+    const sead::Projection*         mProjectionDRC;
     sead::SafeArray<
         sead::SafeArray<
             s32,
@@ -236,8 +236,8 @@ private:
         s32,
         cAmbColorType_Num
     >                               mAmbientLightTypeIndex;
-    const void*                     mpAglEnvBinary1;
-    const void*                     mpAglEnvBinary2;
+    const void*                     mAglEnvBinary1;
+    const void*                     mAglEnvBinary2;
     bool                            mOverrideModelLightMap;
 };
 static_assert(sizeof(LightMapMgr) == 0x52CC);

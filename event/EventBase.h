@@ -48,7 +48,7 @@ public:
     {
     }
 
-    virtual bool isJoin(const ActorBase* p_actor) const
+    virtual bool isJoin(const ActorBase* actor) const
     {
         return false;
     }

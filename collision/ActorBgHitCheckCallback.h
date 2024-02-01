@@ -7,8 +7,8 @@ class ActorBgCollisionCheck;
 class ActorBgHitCheckCallback : public BgHitCheckCallback   // vtbl Address: 0x10041A30
 {
 public:
-    ActorBgHitCheckCallback(ActorBgCollisionCheck* p_bc)
-        : mpBgCollisionCheck(p_bc)
+    ActorBgHitCheckCallback(ActorBgCollisionCheck* bc)
+        : mBgCollisionCheck(bc)
     {
     }
 
@@ -18,6 +18,6 @@ public:
     bool hit(const BgCollisionCheckResult& hit_res) override;
 
 protected:
-    ActorBgCollisionCheck*  mpBgCollisionCheck;
+    ActorBgCollisionCheck*  mBgCollisionCheck;
 };
 static_assert(sizeof(ActorBgHitCheckCallback) == 8);

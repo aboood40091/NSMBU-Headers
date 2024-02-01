@@ -9,10 +9,10 @@ public:
     typedef void (T::*FunctionPtr)();
 
 public:
-    FStateID(FunctionPtr p_initialize, FunctionPtr p_execute, FunctionPtr p_finalize)
-        : mpInitialize(p_initialize)
-        , mpExecute(p_execute)
-        , mpFinalize(p_finalize)
+    FStateID(FunctionPtr initialize, FunctionPtr execute, FunctionPtr finalize)
+        : mInitialize(initialize)
+        , mExecute(execute)
+        , mFinalize(finalize)
     {
     }
 
@@ -22,23 +22,23 @@ public:
 
     void initializeState(T& obj) const
     {
-        (obj.*mpInitialize)();
+        (obj.*mInitialize)();
     }
 
     void executeState(T& obj) const
     {
-        (obj.*mpExecute)();
+        (obj.*mExecute)();
     }
 
     void finalizeState(T& obj) const
     {
-        (obj.*mpFinalize)();
+        (obj.*mFinalize)();
     }
 
 protected:
-    FunctionPtr mpInitialize;
-    FunctionPtr mpExecute;
-    FunctionPtr mpFinalize;
+    FunctionPtr mInitialize;
+    FunctionPtr mExecute;
+    FunctionPtr mFinalize;
 };
 
 #define DECLARE_STATE_ID(CLASS, NAME)       \

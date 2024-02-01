@@ -16,18 +16,18 @@ class SkeletalAnimation : public Animation
 public:
     SkeletalAnimation();
 
-    bool init(const ModelG3d* p_model, const ModelResource* p_mdl_res, const sead::PtrArray<ModelResource>* p_anim_mdl_res_array, sead::Heap* heap);
+    bool init(const ModelG3d* model, const ModelResource* mdl_res, const sead::PtrArray<ModelResource>* anim_mdl_res_array, sead::Heap* heap);
 
-    bool isValid() const { return mpRes && mpModel; }
+    bool isValid() const { return mRes && mModel; }
 
-    void bindModel(const ModelG3d* p_model, s32 index);
+    void bindModel(const ModelG3d* model, s32 index);
     void unbindModel();
 
 private:
     void bindAnimObj_();
 
 public:
-    void play(const ModelResource* p_mdl_res, const sead::SafeString& name);
+    void play(const ModelResource* mdl_res, const sead::SafeString& name);
 
     void unbindTarget(s32 idx_target);
 
@@ -39,19 +39,19 @@ public:
     nw::g3d::SkeletalAnimObj& getAnimObj() { return mAnimObj; }
     const nw::g3d::SkeletalAnimObj& getAnimObj() const { return mAnimObj; }
 
-    nw::g3d::res::ResSkeletalAnim* getResource() const { return mpRes; }
+    nw::g3d::res::ResSkeletalAnim* getResource() const { return mRes; }
 
-    const ModelG3d* getModel() const { return mpModel; }
+    const ModelG3d* getModel() const { return mModel; }
     s32 getIndex() const { return mIndex; }
 
 private:
-    static void updateInitArg_(nw::g3d::SkeletalAnimObj::InitArg* p_arg, const ModelResource* p_mdl_res);
+    static void updateInitArg_(nw::g3d::SkeletalAnimObj::InitArg* arg, const ModelResource* mdl_res);
 
 private:
     nw::g3d::SkeletalAnimObj        mAnimObj;
-    void*                           mpBuffer;
-    const ModelG3d*                 mpModel;
+    void*                           mBuffer;
+    const ModelG3d*                 mModel;
     s32                             mIndex;
-    nw::g3d::res::ResSkeletalAnim*  mpRes;
+    nw::g3d::res::ResSkeletalAnim*  mRes;
 };
 static_assert(sizeof(SkeletalAnimation) == 0x98);

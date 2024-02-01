@@ -23,7 +23,7 @@ private:
 
     private:
         sead::FixedSafeString<32>   mKey;
-        sead::ArchiveRes*           mpArchiveRes;
+        sead::ArchiveRes*           mArchiveRes;
 
         friend class ResMgr;
     };
@@ -36,11 +36,11 @@ private:
 
         virtual ~CourseArchiveResHolder()
         {
-            ResMgr::instance()->mpCourseArchiveRes = nullptr;
+            ResMgr::instance()->mCourseArchiveRes = nullptr;
         }
 
     private:
-        sead::ArchiveRes*   mpArchiveRes;
+        sead::ArchiveRes*   mArchiveRes;
 
         friend class ResMgr;
     };
@@ -54,12 +54,12 @@ public:
 
     bool isCourseArchiveResLoaded() const
     {
-        return mpCourseArchiveRes != nullptr;
+        return mCourseArchiveRes != nullptr;
     }
 
     sead::ArchiveRes* getCourseArchiveRes() const
     {
-        return mpCourseArchiveRes;
+        return mCourseArchiveRes;
     }
 
     void* getFileFromCourseArchiveRes(const sead::SafeString& filename, u32* length = nullptr) const;
@@ -86,8 +86,8 @@ private:
     static void* getFileFromArchiveResImpl_(sead::ArchiveRes* archive, const sead::SafeString& filename, u32* length);
 
 private:
-    sead::ArchiveRes*                           mpCourseArchiveRes;
+    sead::ArchiveRes*                           mCourseArchiveRes;
     sead::FixedStrTreeMap<32, ResHolder*, 256>  mResHolderTreeMap;
-    sead::SZSDecompressor*                      mpSZSDecompressor;
+    sead::SZSDecompressor*                      mSZSDecompressor;
 };
 static_assert(sizeof(ResMgr) == 0x442C);

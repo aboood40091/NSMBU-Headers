@@ -21,9 +21,9 @@ public:
     void initialize(sead::Heap* heap = nullptr);
 
     // Address: 0x024E9C04
-    void pushBack(ModelFFL* p_model);
+    void pushBack(ModelFFL* model);
     // Address: 0x024E9CB8
-    void pushBack(sead::Event* p_event);
+    void pushBack(sead::Event* event);
 
     // Address: 0x024E9D6C
     void calc();
@@ -45,15 +45,15 @@ private:
 
     struct Element
     {
-        Element(ModelFFL* p_model)
+        Element(ModelFFL* model)
             : type(cElementType_ModelFFL)
-            , element(p_model)
+            , element(model)
         {
         }
 
-        Element(sead::Event* p_event)
+        Element(sead::Event* event)
             : type(cElementType_SeadEvent)
-            , element(p_event)
+            , element(event)
         {
         }
 
@@ -62,7 +62,7 @@ private:
     };
     static_assert(sizeof(Element) == 8);
 
-    sead::Heap*                         mpHeap;
+    sead::Heap*                         mHeap;
     sead::FixedPtrArray<Element, 64>    mElement;
     sead::FixedPtrArray<Element, 64>    mDoubleBuffer[2];
     s32                                 mDoubleBufferIndex;

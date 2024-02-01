@@ -41,7 +41,7 @@ public:
     void setCommon(const FollowArg& follow_arg, const EllipseInitArg& init_arg);
 
     // Address: 0x0219ED80
-    void set(Actor* p_owner, const EllipseInitArg& arg);
+    void set(Actor* owner, const EllipseInitArg& arg);
 
     f32 getCenterPosX() const
     {

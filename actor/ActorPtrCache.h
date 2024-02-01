@@ -50,7 +50,7 @@ public:
     u32 count(ActorFindFunc* io_find_func) const;
 
     // Address: 0x0200A6AC
-    void forEach(void (*p_callback)(ActorBase* p_actor, u32), u32) const;
+    void forEach(void (*callback)(ActorBase* actor, u32), u32) const;
 
     u32 getEmptyHeadIndex() const
     {

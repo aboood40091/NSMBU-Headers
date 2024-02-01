@@ -48,11 +48,11 @@ public:
     virtual ~ActorCollisionCheck();
 
     // Address: 0x0219AF1C
-    void set(Actor* p_owner, const Info& info, CollisionCallback* p_callbacks = nullptr);
+    void set(Actor* owner, const Info& info, CollisionCallback* callbacks = nullptr);
     // Address: 0x0219B010
-    void set(Actor* p_owner, const Info& info, const sead::BitFlag8& collision_mask, CollisionCallback* p_callbacks = nullptr);
+    void set(Actor* owner, const Info& info, const sead::BitFlag8& collision_mask, CollisionCallback* callbacks = nullptr);
     // Address: 0x0219B054
-    void set(Actor* p_owner, const Info& info, const sead::BitFlag8& collision_mask, u8 layer, CollisionCallback* p_callbacks = nullptr);
+    void set(Actor* owner, const Info& info, const sead::BitFlag8& collision_mask, u8 layer, CollisionCallback* callbacks = nullptr);
 
     // Address: 0x0219B434
     f32 getTopPos() const;
@@ -69,7 +69,7 @@ public:
 
     Actor* getOwner() const
     {
-        return mpOwner;
+        return mOwner;
     }
 
     bool isInactive() const
@@ -84,7 +84,7 @@ public:
 
     CollisionCallback* getCollisionCallback() const
     {
-        return mpCallbacks;
+        return mCallbacks;
     }
 
     const Info& getInfo() const
@@ -133,8 +133,8 @@ private:
     List::Node                  mCreateNode;
     List::Node                  _28;
     List::Node                  _34;
-    Actor*                      mpOwner;
-    Actor*                      mpFriend;   // Collisions with this are ignored
+    Actor*                      mOwner;
+    Actor*                      mFriend;   // Collisions with this are ignored
     u32                         _48;
     sead::Vector2f              _4C;
     sead::Vector2f              _54;
@@ -145,7 +145,7 @@ private:
     sead::BitFlag8              mCollisionMask;
     u8                          mLayer;
     u8                          mFlag;
-    CollisionCallback*          mpCallbacks;
+    CollisionCallback*          mCallbacks;
     Info                        mInfo;
     sead::SafeArray<f32, 4>     mDaikei;
     sead::UnsafeArray<f32, 15>  _b0;

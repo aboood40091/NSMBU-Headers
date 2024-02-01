@@ -15,6 +15,6 @@ public:
 private:
     bool                        mIsDrivePresent;
     bool                        mIsNSLU;
-    sead::CafeFSAFileDevice*    mpFileDevice;
+    sead::CafeFSAFileDevice*    mFileDevice;
 };
 static_assert(sizeof(RDashMgr) == 0x18);

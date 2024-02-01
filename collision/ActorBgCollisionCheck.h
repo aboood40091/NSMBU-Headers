@@ -40,7 +40,7 @@ private:
     sead::Vector2f  _c;
     sead::Vector2f  _14;
     ActorUniqueID   mActorUniqueID;
-    BgCollision*    mpOwner;
+    BgCollision*    mOwner;
   //u32             _24[4 / sizeof(u32)];   // Alignment???
     BgCheckUnitInfo mBgCheckData;
     f32             _30;
@@ -165,11 +165,11 @@ public:
     virtual void checkWall(u8 direction);
 
     // Address: 0x0218AF6C
-    void set(Actor* p_owner, const Sensor* p_foot, const Sensor* p_head, const Sensor* p_wall);
+    void set(Actor* owner, const Sensor* foot, const Sensor* head, const Sensor* wall);
 
     Actor* getOwner() const
     {
-        return mpOwner;
+        return mOwner;
     }
 
     // Address: 0x0218AEFC
@@ -190,7 +190,7 @@ protected:
     List::Node                              _86c;
     List::Node                              _878;
     List::Node                              _884;
-    Actor*                                  mpOwner;
+    Actor*                                  mOwner;
     Actor*                                  _894;
     FollowArg                               mFollowArg;
     Output                                  mOutput;

@@ -33,7 +33,7 @@ private:
     {
         bool    playing;
         bool    reverse;
-        u32*    p_frame_delays;
+        u32*    frame_delays;
         u32     frame_max;
         u32     frame;
         u32     delay_timer;

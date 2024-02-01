@@ -34,12 +34,12 @@ public:
 
     void calcForAreaTask();
 
-    void setLayer(agl::lyr::Layer* p_layer, GatherType type);
+    void setLayer(agl::lyr::Layer* layer, GatherType type);
     void resetLayer();
 
-    void drawModel(Model* p_model);
-    void drawModel(const BasicModel* p_model);
-    void drawModel(ModelFFL* p_model);
+    void drawModel(Model* model);
+    void drawModel(const BasicModel* model);
+    void drawModel(ModelFFL* model);
 
     void drawActorBgUnit(UnitID unit, const sead::Vector3f& pos, Angle angle, const sead::Vector3f& scale);
     void drawActorBgUnitLayer0(UnitID unit, const sead::Vector3f& pos, Angle angle, const sead::Vector3f& scale);
@@ -48,7 +48,7 @@ private:
     sead::BoundBox2f        mViewBoundBox;
     sead::OrthoProjection   mProjection3D;
     sead::OrthoCamera       mCamera3D;
-    RenderObjLayerBase*     mpLayer;
+    RenderObjLayerBase*     mLayer;
     s32                     mDefaultOpaBufferIdx;
     s32                     mDefaultXluBufferIdx;
     sead::OrthoProjection   mProjectionFinalKoopa;

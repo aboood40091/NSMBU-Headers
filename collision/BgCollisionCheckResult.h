@@ -1,6 +1,7 @@
 #pragma once
 
 #include <collision/BgCheckUnitInfo.h>
+#include <utility/Angle.h>
 
 #include <math/seadVector.h>
 #include <prim/seadBitFlag.h>
@@ -15,7 +16,7 @@ struct BgCollisionCheckResult
     Angle           _10;
   //u32             _14[4 / sizeof(u32)];   // Alignment???
     BgCheckUnitInfo bg_check_data;
-    BgCollision*    p_bg_collision;
+    BgCollision*    bg_collision;
   //u32             _24[4 / sizeof(u32)];   // More alignment???
 };
 static_assert(sizeof(BgCollisionCheckResult) == 0x28);

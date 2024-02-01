@@ -25,7 +25,7 @@ public:
     void destroy();
 
 public:
-    static bool getStoreData(FFLStoreData* p_store_data, const DataSource& source);
+    static bool getStoreData(FFLStoreData* store_data, const DataSource& source);
 
 private:
     u32 mSlotNum;

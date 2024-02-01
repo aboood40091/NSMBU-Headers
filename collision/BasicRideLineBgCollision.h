@@ -42,9 +42,9 @@ public:
     void setCommon(const FollowArg& follow_arg, const InitArg& init_arg);
 
     // Address: 0x021A2310
-    void set(Actor* p_owner, const InitArg& arg);
+    void set(Actor* owner, const InitArg& arg);
     // Address: 0x021A2378
-    void set(Actor* p_owner, const InitArg& arg, s32 point_num, sead::Heap* heap = nullptr);
+    void set(Actor* owner, const InitArg& arg, s32 point_num, sead::Heap* heap = nullptr);
 
     const sead::Buffer<sead::Vector2f>& getPoints() const
     {

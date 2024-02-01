@@ -65,14 +65,14 @@ public:
     ~Shader();
 
     // Address: 0x024EA39C
-    static void initializeShader(agl::ShaderProgramArchive* p_archive, sead::Heap* heap);
+    static void initializeShader(agl::ShaderProgramArchive* archive, sead::Heap* heap);
 
     // Address: 0x024EB448
     void initialize(sead::Heap* heap = nullptr);
 
-    void setModel(ModelFFL* p_model)
+    void setModel(ModelFFL* model)
     {
-        mpModel = p_model;
+        mModel = model;
     }
 
     // Address: 0x024EB8AC
@@ -84,11 +84,11 @@ public:
     // Address: 0x024EB8F4
     void setViewUniform(const sead::Matrix34f& model_mtx, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx) const;
     // Address: 0x024EBA4C
-    void setExRegColorUniform(const sead::Color4f* p_color) const;
+    void setExRegColorUniform(const sead::Color4f* color) const;
     // Address: 0x024EBB20
     void setLightmapEnableUniform(bool enable) const;
     // Address: 0x024EBB98
-    void setFogUniform(RenderMgr* p_render_mgr) const;
+    void setFogUniform(RenderMgr* render_mgr) const;
 
     // Address: 0x024EA654
     static void setCulling(FFLCullMode mode);
@@ -107,12 +107,12 @@ private:
     // Address: 0x024EAC74
     void draw_(const FFLDrawParam& draw_param);
     // Address: 0x024EB304
-    static void drawCallback_(void* p_obj, const FFLDrawParam& draw_param);
+    static void drawCallback_(void* obj, const FFLDrawParam& draw_param);
 
     // Address: 0x024EB308
     void setMatrix_(const Mat44& matrix);
     // Address: 0x024EB444
-    static void setMatrixCallback_(void* p_obj, const Mat44& matrix);
+    static void setMatrixCallback_(void* obj, const Mat44& matrix);
 
 private:
     struct LightParam
@@ -159,13 +159,13 @@ private:
     };
     static_assert(sizeof(SpecularParam) == 0x14);
 
-    const agl::ShaderProgramArchive*    mpShaderArchive;
-    const agl::ShaderProgram*           mpShaderProgram;
+    const agl::ShaderProgramArchive*    mShaderArchive;
+    const agl::ShaderProgram*           mShaderProgram;
     sead::Buffer<GX2AttribStream>       mAttribute;
     GX2FetchShader                      mFetchShader;
     FFLShaderCallback                   mCallback;
     GX2Sampler                          mSampler;
-    ModelFFL*                           mpModel;
+    ModelFFL*                           mModel;
     agl::TextureSampler                 mLightmap02p_0;
     agl::TextureSampler                 mLightmap02p_1;
     LightParam                          mLightParam;

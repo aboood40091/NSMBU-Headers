@@ -25,7 +25,7 @@ public:
 class ParameterBase : public sead::IDisposer
 {
 public:
-    ParameterBase(ParameterListBase* p_list, const char* name);
+    ParameterBase(ParameterListBase* list, const char* name);
     virtual ~ParameterBase();
 
     virtual void read(sead::ReadStream& stream);
@@ -42,8 +42,8 @@ template <typename T>
 class Parameter : public ParameterBase
 {
 public:
-    Parameter(const T& default_value, ParameterListBase* p_list, const char* name)
-        : ParameterBase(p_list, name)
+    Parameter(const T& default_value, ParameterListBase* list, const char* name)
+        : ParameterBase(list, name)
     {
         mValue = default_value;
     }

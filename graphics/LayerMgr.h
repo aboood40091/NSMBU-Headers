@@ -67,5 +67,5 @@ public:
     void calcParallelExec();
 
     // Address: 0x024E1260
-    void removeRenderMgr(RenderMgr* p_render_mgr);
+    void removeRenderMgr(RenderMgr* render_mgr);
 };

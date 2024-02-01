@@ -20,15 +20,15 @@ public:
 
     RenderMgr* getRenderMgr() const
     {
-        return mpRenderMgr;
+        return mRenderMgr;
     }
 
-    void setRenderMgr(RenderMgr* p_render_mgr);
+    void setRenderMgr(RenderMgr* render_mgr);
 
     // ...
 
 protected:
-    RenderMgr*  mpRenderMgr;
+    RenderMgr*  mRenderMgr;
     s32         mViewIndex;
     void*       _428;
 };
@@ -54,7 +54,7 @@ public:
     virtual ~RenderObjLayer();
 
     u32 getRenderStepNum() const override { return cRenderStep_Num; }
-    void getRenderStepName(sead::SafeString* p_name, s32 idx) const override;
+    void getRenderStepName(sead::SafeString* name, s32 idx) const override;
     void initialize(sead::Heap* heap) override;
     bool isRenderStepGPUCalc(s32 idx) override { return idx == cRenderStep_UpdateGPUBuffer; }
 

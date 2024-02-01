@@ -30,7 +30,7 @@ private:
     sead::SafeArray<PlayerObject*, 4>   mPlayerObject2; // Idk why
     u16                                 _40;
     u16                                 mPlayerFlag;
-    Yoshi**                             mppYoshi;
+    Yoshi**                             mYoshi;
     u32                                 mYoshiRelated1;
     u32                                 mYoshiRelated2;
     s32                                 mActiveYoshiNumMaybe;

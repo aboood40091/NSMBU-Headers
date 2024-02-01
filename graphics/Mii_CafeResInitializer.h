@@ -19,7 +19,7 @@ public:
 
 private:
     // Address: 0x024E79E8
-    bool createHeaps_(const FFLInitDesc* p_init_desc);
+    bool createHeaps_(const FFLInitDesc* init_desc);
     // Address: 0x024E7E08
     void destroyHeaps_();
 
@@ -29,10 +29,10 @@ private:
     void unloadFFLShader_();
 
 private:
-    void*       mpWorkMemory;
-    sead::Heap* mpWorkMemoryHeap;
-    sead::Heap* mpGraphicsHeap;
-    u8*         mpFFLShaderData;
+    void*       mWorkMemory;
+    sead::Heap* mWorkMemoryHeap;
+    sead::Heap* mGraphicsHeap;
+    u8*         mFFLShaderData;
     bool        _10;
 };
 static_assert(sizeof(CafeResInitializer) == 0x14);

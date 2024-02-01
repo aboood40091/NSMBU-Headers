@@ -42,9 +42,9 @@ public:
     void setCommon(const FollowArg& follow_arg, const PoleRopeInitArg& init_arg);
 
     // Address: 0x021ADACC
-    void set(Actor* p_owner, const PoleRopeInitArg& arg);
+    void set(Actor* owner, const PoleRopeInitArg& arg);
     // Address: 0x021ADB34
-    void set(Actor* p_owner, const PoleRopeInitArg& arg, s32 line_num, sead::Heap* heap = nullptr);
+    void set(Actor* owner, const PoleRopeInitArg& arg, s32 line_num, sead::Heap* heap = nullptr);
 
     const sead::Buffer<sead::Vector2f>& getPoints() const
     {

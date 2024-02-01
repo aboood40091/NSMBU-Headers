@@ -29,13 +29,13 @@ public:
     // Address: 0x024E9074
     void calc() override;
     // Address: 0x024E8B58
-    void updateView(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderMgr* p_render_mgr) override;
+    void updateView(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderMgr* render_mgr) override;
     // Address: 0x024E8B5C
-    void calcGPU(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderMgr* p_render_mgr) override;
+    void calcGPU(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderMgr* render_mgr) override;
     // Address: 0x024E8B60
-    void drawOpa(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderMgr* p_render_mgr) override;
+    void drawOpa(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderMgr* render_mgr) override;
     // Address: 0x024E8B64
-    void drawXlu(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderMgr* p_render_mgr) override;
+    void drawXlu(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderMgr* render_mgr) override;
 
 public:
     virtual ~IconFacelineObj()
@@ -44,7 +44,7 @@ public:
     }
 
     // Address: 0x024E8DE8
-    bool initialize(const IconRenderBuffer* p_render_buffer);
+    bool initialize(const IconRenderBuffer* render_buffer);
     // Address: 0x024E9070
     void destroy();
 
@@ -52,7 +52,7 @@ public:
     void setPosition(const sead::Vector3f& position);
 
     // Address: 0x024E8EB0
-    void setVertex(const Vertex* p_vertex, u32 num);
+    void setVertex(const Vertex* vertex, u32 num);
 
 private:
     // Address: 0x024E89FC
@@ -71,7 +71,7 @@ private:
     sead::UnsafeArray<u32,      6>  mIndex;
     u32                             _398;   // Unused?
     u32                             _39c;   // ^^^
-    const IconRenderBuffer*         mpRenderBuffer;
+    const IconRenderBuffer*         mRenderBuffer;
     sead::Matrix34f                 mWorldMtx;
 };
 static_assert(sizeof(IconFacelineObj) == 0x3D4);

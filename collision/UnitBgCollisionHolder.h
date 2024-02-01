@@ -29,7 +29,7 @@ public:
 
     BgCollision* getBgCollision() const
     {
-        return mpBgCollision;
+        return mBgCollision;
     }
 
 protected:
@@ -43,7 +43,7 @@ protected:
     ActorLineBgCollision    mLineBgCollision;
     UnitTriangleBgCollision mTriangleBgCollision;
     UnitQuadBgCollision     mQuadBgCollision;
-    BgCollision*            mpBgCollision;
+    BgCollision*            mBgCollision;
     u32                     _70C[4 / sizeof(u32)];
 };
 static_assert(sizeof(UnitBgCollisionHolder) == 0x710);
