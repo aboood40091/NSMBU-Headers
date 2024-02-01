@@ -72,9 +72,9 @@ public:
     }
 
     // Address: 0x024EF900
-    bool initialize(const FFLCharModelDesc* p_desc, const sead::Vector3f& scale, sead::Heap* heap, sead::Heap* heap_tmp);
+    bool initialize(const FFLCharModelDesc* desc, const sead::Vector3f& scale, sead::Heap* heap, sead::Heap* heap_tmp);
     // Address: 0x024EFAC0
-    bool initialize(Mii::DataSource source, const FFLCharModelDesc* p_desc, const sead::Vector3f& scale, sead::Heap* heap, sead::Heap* heap_tmp);
+    bool initialize(Mii::DataSource source, const FFLCharModelDesc* desc, const sead::Vector3f& scale, sead::Heap* heap, sead::Heap* heap_tmp);
 
     template <typename T>
     bool initialize(const InitArg<T>& arg, const sead::Vector3f& scale, sead::Heap* heap, sead::Heap* heap_tmp);
@@ -96,21 +96,21 @@ public:
     // Address: 0x024F0708
     void calc() override;
     // Address: 0x024EFBF4
-    void updateView(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderMgr* p_render_mgr) override;
+    void updateView(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderMgr* render_mgr) override;
     // Address: 0x024EFBF8
-    void calcGPU(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderMgr* p_render_mgr) override;
+    void calcGPU(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderMgr* render_mgr) override;
     // Address: 0x024EFE58
-    void drawOpa(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderMgr* p_render_mgr) override;
+    void drawOpa(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderMgr* render_mgr) override;
     // Address: 0x024F009C
-    void drawXlu(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderMgr* p_render_mgr) override;
+    void drawXlu(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderMgr* render_mgr) override;
 
     // Address: 0x024F0134
-    bool getAdditionalInfo(FFLAdditionalInfo* p_additional_info, BOOL checkFontRegion) const;
+    bool getAdditionalInfo(FFLAdditionalInfo* additional_info, BOOL checkFontRegion) const;
     // Address: 0x024F01E0
     sead::Color4f getFavoriteColor() const;
 
     // Address: 0x024EF9F4
-    bool initializeCpu(const FFLCharModelSource* p_source, const FFLCharModelDesc* p_desc);
+    bool initializeCpu(const FFLCharModelSource* source, const FFLCharModelDesc* desc);
     // Address: 0x024F03C8
     void initializeGpu();
 
@@ -151,11 +151,11 @@ private:
     bool allocBuffer_();
 
     // Address: 0x024EFBFC
-    void setEnvUniform_(RenderMgr* p_render_mgr);
+    void setEnvUniform_(RenderMgr* render_mgr);
     // Address: 0x024EFC70
-    void setEnvViewUniform_(const sead::Matrix34f& model_mtx, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderMgr* p_render_mgr);
+    void setEnvViewUniform_(const sead::Matrix34f& model_mtx, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderMgr* render_mgr);
     // Address: 0x024EFCD4
-    void setEnvViewUniformWithLightmapEnable_(const sead::Matrix34f& model_mtx, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderMgr* p_render_mgr);
+    void setEnvViewUniformWithLightmapEnable_(const sead::Matrix34f& model_mtx, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderMgr* render_mgr);
 
     // Address: 0x024EFD74
     void drawOpaNormal_();
@@ -168,21 +168,21 @@ private:
     void drawXluSpecial_();
 
     // Address: 0x024EF9C4
-    bool initializeCpu_(const FFLCharModelSource* p_source, const FFLCharModelDesc* p_desc);
+    bool initializeCpu_(const FFLCharModelSource* source, const FFLCharModelDesc* desc);
     // Address: 0x024F0358
     void initializeGpu_();
 
     // Address: 0x024EFA44
-    bool setCharModelSource_(const FFLStoreData* p_store_data, u16);
+    bool setCharModelSource_(const FFLStoreData* store_data, u16);
     // Address: 0x024F041C
-    bool setCharModelSource_(const FFLMiddleDB* p_middle_db, u16 index);
+    bool setCharModelSource_(const FFLMiddleDB* middle_db, u16 index);
 
     // Address: 0x024EFAAC
     void pushBackModelGpuInitializer_();
 
 private:
-    sead::Heap*             mpHeap;
-    sead::Heap*             mpHeapTmp;
+    sead::Heap*             mHeap;
+    sead::Heap*             mHeapTmp;
     FFLCharModel            mCharModel;
     FFLCharModelBuffer      mCharModelBuffer;
     u32                     _814;
@@ -200,7 +200,7 @@ private:
     bool                    mDrawOpaWithXlu;
     InitializeStep          mInitializeStep;
     DrawType                mDrawType;
-    Mii::WmModeDB::Model*   mpWmModeDBModel;
+    Mii::WmModeDB::Model*   mWmModeDBModel;
     Mii::DataSource         mDataSource;
     s32                     mOpaBufferIdx;
     s32                     mXluBufferIdx;

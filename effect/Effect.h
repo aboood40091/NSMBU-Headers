@@ -67,7 +67,7 @@ public:
     // Address: 0x022AAE8C
     void setVisible(bool visible, s32 emitter_controller_index);
 
-    void* getShaderParam() const { return mpShaderParam; }
+    void* getShaderParam() const { return mShaderParam; }
 
 private:
     // Address: 0x022AA64C
@@ -80,6 +80,6 @@ protected:
     sead::Matrixf   mMtx;
     bool            mMtxHasScale;
     nw::eft::Handle mHandle;
-    void*           mpShaderParam;
+    void*           mShaderParam;
 };
 static_assert(sizeof(Effect) == 0x40);

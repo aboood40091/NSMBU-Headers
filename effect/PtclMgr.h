@@ -51,14 +51,14 @@ public:
 
     sead::ptcl::PtclSystem* getPtclSystem()
     {
-        return mpPtclSystem;
+        return mPtclSystem;
     }
 
     // Address: 0x022AC984
     void updateAmbientLight(bool update_emitter = true);
 
     // Address: 0x022ACA44
-    void draw(const agl::lyr::RenderInfo& render_info, u32 type, const sead::PtrArray<nw::eft::EmitterInstance>* p_emitters = nullptr);
+    void draw(const agl::lyr::RenderInfo& render_info, u32 type, const sead::PtrArray<nw::eft::EmitterInstance>* emitters = nullptr);
 
     // Address: 0x022ACE58
     u8 getEmitterSetGroupID(s32 set_id, u32 res_id = 0) const;
@@ -68,16 +68,16 @@ public:
 
 private:
     // Address: 0x022AC8F8
-    void setEmitterColor_(nw::eft::EmitterSet* p_emitter_set);
+    void setEmitterColor_(nw::eft::EmitterSet* emitter_set);
 
 private:
-    sead::ptcl::PtclSystem*                             mpPtclSystem;
-    void*                                               mpPtclParallelTbl;
-    PtclEmitterColorMgr*                                mpEmitterColorMgr;
-    void*                                               mpUserShaderParamTbl;
+    sead::ptcl::PtclSystem*                             mPtclSystem;
+    void*                                               mPtclParallelTbl;
+    PtclEmitterColorMgr*                                mEmitterColorMgr;
+    void*                                               mUserShaderParamTbl;
     sead::TList<LevelEffect*>                           mEffects;
-    sead::FixedPtrArray<nw::eft::EmitterInstance, 256>  mpEmitter1;
-    sead::FixedPtrArray<nw::eft::EmitterInstance, 256>  mpEmitter2;
+    sead::FixedPtrArray<nw::eft::EmitterInstance, 256>  mEmitter1;
+    sead::FixedPtrArray<nw::eft::EmitterInstance, 256>  mEmitter2;
     s32                                                 mPlayerId;
     bool                                                mIsUseDisplayList;
     bool                                                mIsDrawDisable;

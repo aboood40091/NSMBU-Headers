@@ -53,11 +53,11 @@ public:
 
     sead::Heap* getActorHeap() const
     {
-        return mpActorHeap;
+        return mActorHeap;
     }
 
     // Address: 0x02002C8C
-    void removeChild(ActorBase* p_child);
+    void removeChild(ActorBase* child);
 
 protected:
     // Address: 0x02002CE0
@@ -103,9 +103,9 @@ protected:
     }
 
 protected:
-    sead::Heap*     mpActorHeap;
+    sead::Heap*     mActorHeap;
     ActorUniqueID   mActorUniqueID;
-    Profile*        mpActorProfile;
+    Profile*        mActorProfile;
     bool            mCreateImmediately;
     bool            _d;
     bool            mIsActive;
@@ -115,7 +115,7 @@ protected:
     ActorParamEx1   mParamEx;
     List            mChildList;
     sead::ListNode  mChildNode;
-    ActorBase*      mpParent;
+    ActorBase*      mParent;
     sead::ListNode  mExecuteNode;
     sead::ListNode  mDrawNode;
     sead::BitFlag32 mFlag;

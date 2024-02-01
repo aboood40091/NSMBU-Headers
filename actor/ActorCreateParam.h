@@ -109,7 +109,7 @@ struct ActorCreateParam
     u32             param_0;
     u32             param_1;
     ActorUniqueID   parent_id;
-    Profile*        p_profile;
+    Profile*        profile;
     sead::Vector3f  position;
     Angle           angle;
     ActorParamEx0   param_ex_0;

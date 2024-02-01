@@ -23,19 +23,19 @@ public:
 
 public:
     LineNodeMgr()
-        : mpHead(nullptr)
-        , mpTail(nullptr)
+        : mHead(nullptr)
+        , mTail(nullptr)
     {
     }
 
     Node* front() const
     {
-        return mpHead;
+        return mHead;
     }
 
     Node* back() const
     {
-        return mpTail;
+        return mTail;
     }
 
     bool contains(const Node* node) const
@@ -43,7 +43,7 @@ public:
         if (node == nullptr)
             return false;
 
-        return node->next != nullptr || node->prev != nullptr || node == mpHead;
+        return node->next != nullptr || node->prev != nullptr || node == mHead;
     }
 
     virtual void insertAfter(Node* node, Node* basis)
@@ -65,7 +65,7 @@ public:
             node->next->prev = node;
 
         if (node->next == nullptr)
-            mpTail = node;
+            mTail = node;
     }
 
     virtual void erase(Node* node)
@@ -76,14 +76,14 @@ public:
         if (node->prev != nullptr)
             node->prev->next = node->next;
 
-        else if (node == mpHead)
-            mpHead = node->next;
+        else if (node == mHead)
+            mHead = node->next;
 
         if (node->next != nullptr)
             node->next->prev = node->prev;
 
-        else if (node == mpTail)
-            mpTail = node->prev;
+        else if (node == mTail)
+            mTail = node->prev;
 
         node->next = nullptr;
         node->prev = nullptr;
@@ -94,17 +94,17 @@ public:
         if (node == nullptr)
             return;
 
-        if (mpTail != nullptr)
+        if (mTail != nullptr)
         {
-            mpTail->next = node;
-            node->prev = mpTail;
+            mTail->next = node;
+            node->prev = mTail;
         }
         else
         {
-            mpHead = node;
+            mHead = node;
         }
 
-        mpTail = node;
+        mTail = node;
     }
 
     virtual void pushFront(Node* node)
@@ -112,27 +112,27 @@ public:
         if (node == nullptr)
             return;
 
-        if (mpHead != nullptr)
+        if (mHead != nullptr)
         {
-            mpHead->prev = node;
-            node->next = mpHead;
+            mHead->prev = node;
+            node->next = mHead;
         }
         else
         {
-            mpTail = node;
+            mTail = node;
         }
 
-        mpHead = node;
+        mHead = node;
     }
 
     virtual void clear()
     {
-        while (mpHead != nullptr)
-            erase(mpHead);
+        while (mHead != nullptr)
+            erase(mHead);
     }
 
 protected:
-    Node* mpHead;
-    Node* mpTail;
+    Node* mHead;
+    Node* mTail;
 };
 static_assert(sizeof(LineNodeMgr<void>) == 0xC);

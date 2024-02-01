@@ -17,11 +17,11 @@ public:
     // Address: 0x024E26BC
     bool update(
         LightType type,
-        sead::Vector3f* p_position = nullptr,
+        sead::Vector3f* position = nullptr,
         u32* = nullptr,
-        f32* p_radius = nullptr,
+        f32* radius = nullptr,
         f32* = nullptr,
-        sead::Color4f* p_color = nullptr,
+        sead::Color4f* color = nullptr,
         f32* = nullptr,
         f32* = nullptr
     );

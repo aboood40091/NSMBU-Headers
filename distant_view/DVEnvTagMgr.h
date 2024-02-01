@@ -11,7 +11,7 @@ public:
     DVEnvTagMgr(DistantViewMgr* dv_mgr);
 
     // Address: 0x022AA4EC
-    void initialize(const void* p_file);
+    void initialize(const void* file);
 
 private:
     u8  _0;

@@ -12,7 +12,7 @@ class ActorLineBgCollision : public BasicRideLineBgCollision
 
 private:
     // Deleted
-    void set(Actor* p_owner, const InitArg& arg, s32 point_num, sead::Heap* heap = nullptr);
+    void set(Actor* owner, const InitArg& arg, s32 point_num, sead::Heap* heap = nullptr);
 
 public:
     ActorLineBgCollision()
@@ -31,22 +31,22 @@ public:
         }
     }
 
-    void set(Actor* p_owner, const InitArg& base_arg)
+    void set(Actor* owner, const InitArg& base_arg)
     {
-        BasicRideLineBgCollision::set(p_owner, base_arg);
+        BasicRideLineBgCollision::set(owner, base_arg);
     }
 
-    void set(Actor* p_owner, const sead::Vector2f& p0, const sead::Vector2f& p1, s32 angle = 0)
+    void set(Actor* owner, const sead::Vector2f& p0, const sead::Vector2f& p1, s32 angle = 0)
     {
         const sead::Vector2f points[2] = { p0, p1 };
         InitArg base_arg = { sead::Vector2f(0.0f, 0.0f), sead::Vector2f(0.0f, 0.0f), points, angle };
-        set(p_owner, base_arg);
+        set(owner, base_arg);
     }
 
-    void set(Actor* p_owner, const LineInitArg& arg)
+    void set(Actor* owner, const LineInitArg& arg)
     {
         InitArg base_arg = { arg.pos_offset, arg.rot_pivot_offset, arg.points, arg.angle };
-        set(p_owner, base_arg);
+        set(owner, base_arg);
     }
 
 protected:

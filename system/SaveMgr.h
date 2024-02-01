@@ -37,13 +37,13 @@ public:
     const FFLStoreData& getStoreData(s32 index) const;
 
 protected:
-    sead::DelegateThread*   mpDelegateThread;
+    sead::DelegateThread*   mDelegateThread;
     s32                     _14;                    // enum ?
     ReadError               mReadError;
     WriteError              mWriteError;
     s32                     _20;                    // enum ?
-    void*                   mpSavedata;             // rp_savedata
-    void*                   mpPersonalSavedata;     // rp_personal_savedata
+    void*                   mSavedata;              // rp_savedata
+    void*                   mPersonalSavedata;      // rp_personal_savedata
     bool                    mButtonLayoutChanged;
     u8                      _2d;
     u8                      _2e;

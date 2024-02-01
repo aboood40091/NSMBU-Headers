@@ -44,9 +44,9 @@ private:
 
 public:
     // Address: 0x02197FF0
-    void set(Actor* p_owner, const CircleInitArg& arg);
+    void set(Actor* owner, const CircleInitArg& arg);
     // Address: 0x02198058
-    void set(Actor* p_owner, const CircleInitArg& arg, Angle angle_start, Angle angle_end);
+    void set(Actor* owner, const CircleInitArg& arg, Angle angle_start, Angle angle_end);
 
     f32 getCenterPosX() const
     {

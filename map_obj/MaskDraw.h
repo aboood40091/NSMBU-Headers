@@ -42,8 +42,8 @@ protected:
     f32             mRadius;
     f32             _8;
     sead::Vector3f  mPos;
-    Mask*           mpMask;
-    Quad*           mpQuad;
+    Mask*           mMask;
+    Quad*           mQuad;
     MaskTextureType mMaskTextureType;
     u32             _24;
 };

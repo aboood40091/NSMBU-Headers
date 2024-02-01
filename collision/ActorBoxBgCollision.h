@@ -15,9 +15,9 @@ public:
         LoopRideLineBgCollisionUtil::setCommon(this, follow_arg, init_arg);
     }
 
-    void set(Actor* p_owner, const BoxInitArg& arg)
+    void set(Actor* owner, const BoxInitArg& arg)
     {
-        LoopRideLineBgCollisionUtil::set(this, p_owner, arg);
+        LoopRideLineBgCollisionUtil::set(this, owner, arg);
     }
 
     void setOfs(const sead::Vector2f& p0, const sead::Vector2f& p1) // left top and right bottom

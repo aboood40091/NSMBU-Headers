@@ -23,7 +23,7 @@ public:
     bool isEnableCacheHeap() const;
 
 private:
-    sead::FrameHeap*    mpCacheHeap;
+    sead::FrameHeap*    mCacheHeap;
     bool                mIsEnableCacheHeap;
 };
 static_assert(sizeof(ChallengeResCacheMgr) == 0xD4);

@@ -17,9 +17,9 @@ public:
     BasicBgCollisionCheck(const BgCollisionCheckParam& param);
 
     // Address: 0x021A1184
-    bool checkGround(BgCollisionCheckResult* p_res, const sead::Vector2f& p0, const sead::Vector2f& p1, u32);
+    bool checkGround(BgCollisionCheckResult* res, const sead::Vector2f& p0, const sead::Vector2f& p1, u32);
     // Address: 0x021A13F0
-    bool checkGroundAngle(BgCollisionCheckResult* p_res, const sead::Vector2f& p0, const sead::Vector2f& p1, u32);
+    bool checkGroundAngle(BgCollisionCheckResult* res, const sead::Vector2f& p0, const sead::Vector2f& p1, u32);
 
 private:
     u8                  _0;
@@ -27,8 +27,8 @@ private:
     u8                  mLayer;
     sead::BitFlag8      mCollisionMask;
     u32                 _4;
-    Actor*              mpActor;
-    BgHitCheckCallback* mpCallback;
+    Actor*              mActor;
+    BgHitCheckCallback* mCallback;
     u32                 _10[(0x48 - 0x10) / sizeof(u32)]; // sead::FixedRingBuffer<Actor*, 10>
     u32                 _48;
 };

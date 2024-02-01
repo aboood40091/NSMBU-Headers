@@ -32,9 +32,9 @@ class ModelG3d : public Model    // vtbl Address: 0x100BCF30
 public:
     struct ShaderAssign
     {
-        void initialize(const agl::ShaderProgram* p_shader_program)
+        void initialize(const agl::ShaderProgram* shader_program)
         {
-            this->p_shader_program = p_shader_program;
+            this->shader_program = shader_program;
 
             env_location.setName("MdlEnvView");
             mtx_location.setName("MdlMtx");
@@ -48,18 +48,18 @@ public:
 
         void updateLocation()
         {
-            if (p_shader_program)
+            if (shader_program)
             {
-                env_location.search(*p_shader_program);
-                mtx_location.search(*p_shader_program);
-                shp_location.search(*p_shader_program);
-                mat_location.search(*p_shader_program);
-                sdw_location.search(*p_shader_program);
-                rfl_location.search(*p_shader_program);
+                env_location.search(*shader_program);
+                mtx_location.search(*shader_program);
+                shp_location.search(*shader_program);
+                mat_location.search(*shader_program);
+                sdw_location.search(*shader_program);
+                rfl_location.search(*shader_program);
             }
         }
 
-        const agl::ShaderProgram*   p_shader_program;
+        const agl::ShaderProgram*   shader_program;
         agl::UniformBlockLocation   env_location;
         agl::UniformBlockLocation   mtx_location;
         agl::UniformBlockLocation   shp_location;
@@ -104,16 +104,16 @@ public:
     struct DrawInfo
     {
         s32                         view_index;
-        const sead::Matrix34f*      p_view_mtx;
-        const sead::Matrix44f*      p_proj_mtx;
-        const agl::ShaderProgram*   p_shader_program;
-        ShaderAssign*               p_shader_assign;
+        const sead::Matrix34f*      view_mtx;
+        const sead::Matrix44f*      proj_mtx;
+        const agl::ShaderProgram*   shader_program;
+        ShaderAssign*               shader_assign;
         s32                         material_index;
         bool                        draw_shape;
         bool                        draw_reflection;
         agl::ShaderMode             shader_mode;
         s32                         polygon_offset;
-        const CullViewFrustum*      p_cull;
+        const CullViewFrustum*      cull;
     };
     static_assert(sizeof(DrawInfo) == 0x28);
 
@@ -184,10 +184,10 @@ public:
 
     // Address: 0x024F30DC
     // Updates buffers for the GPU
-    void calcGPU(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderMgr* p_render_mgr) override;
+    void calcGPU(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderMgr* render_mgr) override;
 
     // (Does nothing)
-    void updateView(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderMgr* p_render_mgr) override
+    void updateView(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderMgr* render_mgr) override
     {
     }
 
@@ -198,19 +198,19 @@ public:
     // 2. Shadow casting for a shape is automatically enabled if "shadow_cast" is not present in its material's render info
 
     // Address: 0x024F3884
-    void drawOpa(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderMgr* p_render_mgr) override;
+    void drawOpa(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderMgr* render_mgr) override;
     // Address: 0x024F398C
-    void drawXlu(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderMgr* p_render_mgr) override;
+    void drawXlu(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderMgr* render_mgr) override;
 
     // Address: 0x024F3A94
     // This draws the shadow of shadow-casting shapes
-    void drawShadowOpa(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderMgr* p_render_mgr) override;
+    void drawShadowOpa(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderMgr* render_mgr) override;
 
     // These draws the reflection on shapes
     // Address: 0x024F3D64
-    void drawReflectionOpa(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderMgr* p_render_mgr) override;
+    void drawReflectionOpa(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderMgr* render_mgr) override;
     // Address: 0x024F3E6C
-    void drawReflectionXlu(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderMgr* p_render_mgr) override;
+    void drawReflectionXlu(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderMgr* render_mgr) override;
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -291,7 +291,7 @@ public:
 
     Material* getMaterial(s32 index) const override
     {
-        return mpMaterial[index];
+        return mMaterial[index];
     }
 
     // Address: 0x024F4B0C
@@ -315,7 +315,7 @@ public:
     }
 
     // Address: 0x024F4B6C
-    void calcViewShapeShadowFlags(agl::sdw::DepthShadow* p_depth_shadow, RenderObjLayerBase* p_shadow_layer, RenderMgr* p_render_mgr) override;
+    void calcViewShapeShadowFlags(agl::sdw::DepthShadow* depth_shadow, RenderObjLayerBase* shadow_layer, RenderMgr* render_mgr) override;
 
     sead::SafeString getName() const override
     {
@@ -346,27 +346,27 @@ public:
 private:
     Animation* const* getSklAnims() const override
     {
-        return reinterpret_cast<Animation* const*>(mpSklAnim.getBufferPtr());
+        return reinterpret_cast<Animation* const*>(mSklAnim.getBufferPtr());
     }
 
     Animation* const* getTexAnims() const override
     {
-        return reinterpret_cast<Animation* const*>(mpTexAnim.getBufferPtr());
+        return reinterpret_cast<Animation* const*>(mTexAnim.getBufferPtr());
     }
 
     Animation* const* getShuAnims() const override
     {
-        return reinterpret_cast<Animation* const*>(mpShuAnim.getBufferPtr());
+        return reinterpret_cast<Animation* const*>(mShuAnim.getBufferPtr());
     }
 
     Animation* const* getVisAnims() const override
     {
-        return reinterpret_cast<Animation* const*>(mpVisAnim.getBufferPtr());
+        return reinterpret_cast<Animation* const*>(mVisAnim.getBufferPtr());
     }
 
     Animation* const* getShaAnims() const override
     {
-        return reinterpret_cast<Animation* const*>(mpShaAnim.getBufferPtr());
+        return reinterpret_cast<Animation* const*>(mShaAnim.getBufferPtr());
     }
 
 public:
@@ -406,7 +406,7 @@ public:
     const Shape& getShape(s32 index) const { return mShape[index]; }
 
     // Address: 0x024F0FE0
-    void activateMaterial(const agl::g3d::ModelShaderAssign& shader_assign, const nw::g3d::MaterialObj* p_material, const LightMap& light_map) const;
+    void activateMaterial(const agl::g3d::ModelShaderAssign& shader_assign, const nw::g3d::MaterialObj* material, const LightMap& light_map) const;
 
     // Address: 0x024F50D8
     void setDisplayListDirty();
@@ -415,7 +415,7 @@ private:
     // Address: 0x024F0B70
     void createViewShapeShadowFlagBuffer_(s32 num_view, sead::Heap* heap);
     // Address: 0x024F1098
-    void initializeShapeRenderInfo_(ShapeRenderInfo& render_info, const nw::g3d::MaterialObj* p_material, const nw::g3d::ShapeObj* p_shape);
+    void initializeShapeRenderInfo_(ShapeRenderInfo& render_info, const nw::g3d::MaterialObj* material, const nw::g3d::ShapeObj* shape);
     // Address: 0x024F1850
     static s32 sortShapeRenderInfoCmp(const ShapeRenderInfo* a, const ShapeRenderInfo* b);
     // Address: 0x024F0C9C
@@ -426,30 +426,30 @@ private:
     static void setBoundingFlagArray_(BoundingFlagArray& flag_array, const SkeletalAnimation& anim);
 
     // Address: 0x024F37B4
-    void drawOpa_(DrawInfo& draw_info, const RenderMgr* p_render_mgr) const;
+    void drawOpa_(DrawInfo& draw_info, const RenderMgr* render_mgr) const;
     // Address: 0x024F381C
-    void drawXlu_(DrawInfo& draw_info, const RenderMgr* p_render_mgr) const;
+    void drawXlu_(DrawInfo& draw_info, const RenderMgr* render_mgr) const;
 
     // Address: 0x024F30E8
-    void drawShape_(DrawInfo& draw_info, const ShapeRenderInfo& render_info, const RenderMgr* p_render_mgr) const;
+    void drawShape_(DrawInfo& draw_info, const ShapeRenderInfo& render_info, const RenderMgr* render_mgr) const;
 
 private:
     agl::g3d::ModelEx                               mModelEx;
     nw::g3d::SkeletalAnimBlender                    mSklAnimBlender;
-    sead::Buffer<SkeletalAnimation*>                mpSklAnim;
-    sead::Buffer<TexturePatternAnimation*>          mpTexAnim;
-    sead::Buffer<ShaderParamAnimation*>             mpShuAnim;
-    sead::Buffer<VisibilityAnimation*>              mpVisAnim;
-    sead::Buffer<ShapeAnimation*>                   mpShaAnim;
-    void*                                           mpBuffer;
-    void*                                           mpBlockBuffer;
+    sead::Buffer<SkeletalAnimation*>                mSklAnim;
+    sead::Buffer<TexturePatternAnimation*>          mTexAnim;
+    sead::Buffer<ShaderParamAnimation*>             mShuAnim;
+    sead::Buffer<VisibilityAnimation*>              mVisAnim;
+    sead::Buffer<ShapeAnimation*>                   mShaAnim;
+    void*                                           mBuffer;
+    void*                                           mBlockBuffer;
     size_t                                          mBlockBufferSize;
-    void*                                           mpSklAnimBlenderBuffer;
+    void*                                           mSklAnimBlenderBuffer;
     sead::Buffer<f32>                               mSklAnimBlendWeight;
     sead::PtrArray<ShapeRenderInfo>                 mOpaShapeInfo;
     sead::PtrArray<ShapeRenderInfo>                 mXluShapeInfo;
     sead::Buffer<ShaderAssign>                      mShaderAssign;
-    sead::Buffer<MaterialG3d*>                      mpMaterial;
+    sead::Buffer<MaterialG3d*>                      mMaterial;
     sead::Buffer<Shape>                             mShape;
     sead::Matrix34f                                 mMtxRT;
     sead::Vector3f                                  mScale;
@@ -458,7 +458,7 @@ private:
     sead::BitFlag32                                 mBoundingEnableFlag;
     sead::Buffer< sead::Buffer<sead::BitFlag32> >   mViewShapeShadowFlagBuffer;
     sead::Sphere3f                                  mBounding;
-    sead::BoundBox3f*                               mpSubBounding;
+    sead::BoundBox3f*                               mSubBounding;
     sead::BitFlag32                                 mShapeFlag;                 // & 4: a shape has shadow cast, & 2: a shape has reflection, & 1: a shape is visible
     BoundingFlagArray                               mBoundingFlagArray;
     BoundingFlagArray                               mSubBoundingFlagArray;

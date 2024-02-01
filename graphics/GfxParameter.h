@@ -21,7 +21,7 @@ public:
     virtual ~GfxParameter();
 
     // Address: 0x024DF5A8
-    void setDelegateForParameter(agl::utl::IParameterIO* p_param);
+    void setDelegateForParameter(agl::utl::IParameterIO* param);
 
     // Address: 0x024DF5CC
     void* getAglEnvBinary(const sead::SafeString& name, sead::Heap* heap = nullptr) const;
@@ -33,7 +33,7 @@ private:
     void* getFileFromPack_(const sead::SafeString& filename, sead::Heap* heap) const;
 
 private:
-    sead::SharcArchiveRes*  mpPackArc;
+    sead::SharcArchiveRes*  mPackArc;
     u32                     mDelegateData[8]; // Same idea as agl::lyr::DrawMethod
     u32                     _34;
 };
