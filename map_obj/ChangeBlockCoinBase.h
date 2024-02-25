@@ -8,7 +8,7 @@
 class ChangeBlockCoinBaseCB : public CollisionCallback
 {
 public:
-    bool bcCallback1(Actor*, BgCollision*, const sead::Vector2f&) override;
+    bool bcCallback1(BgCollision*, const sead::Vector2f&) override;
 };
 static_assert(sizeof(ChangeBlockCoinBaseCB) == 4);
 

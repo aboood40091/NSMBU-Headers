@@ -13,9 +13,9 @@ class BirikyuCB : public CollisionCallback
 {
 public:
     // Address: 0x022CF75C
-    bool ccCallback1(Actor*, ActorCollisionCheck*, const sead::Vector2f&) override;
+    bool ccCallback1(ActorCollisionCheck*, const sead::Vector2f&) override;
     // Address: 0x022CF7E8
-    void ccCallback2(Actor*, ActorCollisionCheck*, const sead::Vector2f&) override;
+    void ccCallback2(ActorCollisionCheck*, const sead::Vector2f&) override;
 };
 static_assert(sizeof(BirikyuCB) == 4);
 

@@ -14,9 +14,9 @@ class BomheiCB : public CollisionCallback
 {
 public:
     // Address: 0x022D053C
-    bool ccCallback1(Actor*, ActorCollisionCheck*, const sead::Vector2f&) override;
+    bool ccCallback1(ActorCollisionCheck*, const sead::Vector2f&) override;
     // Address: 0x022D0584
-    void ccCallback2(Actor*, ActorCollisionCheck*, const sead::Vector2f&) override;
+    void ccCallback2(ActorCollisionCheck*, const sead::Vector2f&) override;
 
 protected:
     u32 _4;
