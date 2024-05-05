@@ -11,7 +11,7 @@ class DVCameraParam : public sead::IDisposer    // vtbl Address: 0x100584D4
 {
 public:
     // Address: 0x022A98DC
-    DVCameraParam(DistantViewMgr* dv_mgr, const sead::Vector3f* p_bg_pos, const sead::SafeString& dv_name);
+    DVCameraParam(DistantViewMgr* dv_mgr, const sead::Vector3f* bg_pos, const sead::SafeString& dv_name);
 
     const sead::Vector2f& getProjOffset() const { return *mProjOffset; }
     s32 getTypeDirY() const { return *mTypeDirY; }
@@ -20,7 +20,7 @@ public:
     const sead::Vector2f& getIndirectScrollSpd() const { return *mIndirectScrollSpd; }
 
     // Address: 0x022A9D54
-    void getModelMtx(sead::Matrix34f* p_model_mtx) const;
+    void getModelMtx(sead::Matrix34f* model_mtx) const;
 
 private:
     DVCameraParamList       mParamList;
@@ -32,6 +32,6 @@ private:
     ParamF32                mModelOffsetY;
     ParamF32                mModelOffsetZ;
     ParamVec2               mIndirectScrollSpd;
-    const sead::Vector3f*   mpBgPos;
+    const sead::Vector3f*   mBgPos;
 };
 static_assert(sizeof(DVCameraParam) == 0x16C);

@@ -51,7 +51,7 @@ public:
         : mSpeed(sDefaultSpeed)
         , mFallSpeedMax(sDefaultFallSpeedMax)
         , mAccelY(sDefaultAccelY)
-        , mpStateID(spDefaultStateID)
+        , mStateID(spDefaultStateID)
         , mKillArg(sDefaultKillArg)
         , mIsNoRespawn(false)
     {
@@ -60,11 +60,11 @@ public:
     EnemyDeathInfo(const sead::Vector2f& speed,
                    f32 fall_speed_max,
                    f32 accel_y,
-                   const StateID* p_state_id)
+                   const StateID* state_id)
         : mSpeed(speed)
         , mFallSpeedMax(fall_speed_max)
         , mAccelY(accel_y)
-        , mpStateID(p_state_id)
+        , mStateID(state_id)
     {
     }
 
@@ -82,7 +82,7 @@ private:
     sead::Vector2f  mSpeed;
     f32             mFallSpeedMax;
     f32             mAccelY;
-    const StateID*  mpStateID;
+    const StateID*  mStateID;
     KillArg         mKillArg;
     bool            mIsNoRespawn;
 };

@@ -107,7 +107,7 @@ public:
     DECLARE_STATE_ID(Birikyu, Touch)
 
 protected:
-    BasicModel*         mpBasicModel;
+    BasicModel*         mBasicModel;
     sead::Vector3f      mEffectPos;
     LevelEffect         mEffect;
     s32                 mAttackTimer;

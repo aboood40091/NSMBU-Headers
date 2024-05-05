@@ -41,18 +41,18 @@ private:
     // Address: 0x020090CC
     ActorBase* doConstructActor_(const ActorCreateParam& param, bool create_immediately);
     // Address: 0x02009218
-    ActorBase::MainState doCreate_(ActorBase* p_actor);
+    ActorBase::MainState doCreate_(ActorBase* actor);
 
     // Address: 0x0200932C
-    static void delete_(ActorBase* p_actor);
+    static void delete_(ActorBase* actor);
     // Address: 0x02009338
-    void doDelete_(ActorBase* p_actor);
+    void doDelete_(ActorBase* actor);
 
     // Address: 0x0200940C
-    void pushExecuteAndDrawList_(ActorBase* p_actor);
+    void pushExecuteAndDrawList_(ActorBase* actor);
 
     // Address: 0x02009590
-    bool deleteNotRequested_(ActorBase* p_actor);
+    bool deleteNotRequested_(ActorBase* actor);
 
     // Address: 0x02008D34
     void moveActorOnCreateListToDestoryList_();
@@ -64,9 +64,9 @@ public:
     void initialize(sead::Heap* heap);
 
     // Address: 0x02009648
-    void createAdditionalHeap(sead::Heap** pp_heap);
+    void createAdditionalHeap(sead::Heap** heap);
     // Address: 0x020096B0
-    void destroyAdditionalHeap(sead::Heap** pp_heap);
+    void destroyAdditionalHeap(sead::Heap** heap);
 
     // Address: 0x020098A8
     void destroy();
@@ -106,14 +106,14 @@ public:
     void execute();
 
     // Address: 0x02009EA0
-    void addToFinalUpdate(ActorBase* p_actor);
+    void addToFinalUpdate(ActorBase* actor);
 
     // Address: 0x02009ECC
     void draw();
 
 private:
-    sead::UnitHeap*                                 mpPlayerUnitHeap;
-    sead::UnitHeap*                                 mpActorUnitHeap;
+    sead::UnitHeap*                                 mPlayerUnitHeap;
+    sead::UnitHeap*                                 mActorUnitHeap;
     sead::FixedRingBuffer<ActorCreateParam, 520>    mDeferredActorCreate;
     ActorBase::List                                 mCreateManage;
     ActorBase::List                                 mDeleteManage;

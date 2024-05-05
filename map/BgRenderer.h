@@ -12,7 +12,7 @@ class BgRenderer
     SEAD_SINGLETON_DISPOSER(BgRenderer)
 
 public:
-    static void initializeShader(agl::ShaderProgramArchive* p_archive, sead::Heap* heap);
+    static void initializeShader(agl::ShaderProgramArchive* archive, sead::Heap* heap);
 
 public:
     BgRenderer();

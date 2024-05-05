@@ -52,7 +52,7 @@ public:
 
 public:
     // Address: 0x02019554
-    Profile(ActorFactory factory, s32 id, const sead::SafeString& name, const ActorCreateInfo* p_create_info, u32 flag);
+    Profile(ActorFactory factory, s32 id, const sead::SafeString& name, const ActorCreateInfo* create_info, u32 flag);
 
     ActorFactory getActorFactory() const
     {
@@ -67,7 +67,7 @@ public:
 
     const ActorCreateInfo& getActorCreateInfo() const
     {
-        return *mpActorCreateInfo;
+        return *mActorCreateInfo;
     }
 
     bool isResLoaded() const
@@ -102,7 +102,7 @@ public:
 protected:
     ActorFactory            mFactory;
     s32                     mID;
-    const ActorCreateInfo*  mpActorCreateInfo;
+    const ActorCreateInfo*  mActorCreateInfo;
     bool                    mIsResLoaded;
     u32                     mFlag;
 

@@ -213,8 +213,8 @@ public:
     void explode();
 
 protected:
-    BlendModel*         mpBlendModel;
-    ModelResource*      mpModelResource;
+    BlendModel*         mBlendModel;
+    ModelResource*      mModelResource;
     s32                 mCurrentSklAnimIndex;
     sead::BitFlag16     mBomHeiFlag;
     EnemyEatData        mEatData;
@@ -237,7 +237,7 @@ protected:
     EnemyActorScaler    mScaler;
     BomheiCB            mCollisionCB;
     f32                 _1a44;
-    ActorState*         mpKoopaJr;
+    ActorState*         mKoopaJr;
     ActorCollisionCheck mCollisionCheck2;
     u8                  _1b74;
     u8                  _1b75;

@@ -7,11 +7,11 @@ class Actor;
 class EnemyActorScaler  // vtbl Address: 0x10072588
 {
 public:
-    EnemyActorScaler(Actor* p_owner)
+    EnemyActorScaler(Actor* owner)
         : mScale(1.0f, 1.0f, 1.0f)
         , _c(1.0f)
         , _14(0)
-        , mpOwner(p_owner)
+        , mOwner(owner)
     {
     }
 
@@ -28,6 +28,6 @@ protected:
     f32             _c;
     f32             _10;
     u32             _14;
-    Actor*          mpOwner;
+    Actor*          mOwner;
 };
 static_assert(sizeof(EnemyActorScaler) == 0x20);

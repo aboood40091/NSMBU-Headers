@@ -22,17 +22,17 @@ public:
 
     EventBase* getCurrentEvent() const
     {
-        return mpCurrentEvent;
+        return mCurrentEvent;
     }
 
     // Address: 0x024A5BAC
     bool isNormal() const;
 
     // Address: 0x024A5E48
-    bool isJoin(const ActorBase* p_actor) const;
+    bool isJoin(const ActorBase* actor) const;
 
     // Address: 0x024A5EA4
-    bool pushEvent(EventBase* p_event);
+    bool pushEvent(EventBase* event);
 
     // Address: 0x024A5F24
     void execute();
@@ -43,10 +43,10 @@ public:
     }
 
     // Address: 0x024A5FDC
-    void eraseEvent(EventBase* p_event);
+    void eraseEvent(EventBase* event);
 
 protected:
     sead::OffsetList<EventBase> mEventList;     // This actually functions like a queue
-    EventBase*                  mpCurrentEvent;
+    EventBase*                  mCurrentEvent;
 };
 static_assert(sizeof(EventMgr) == 0x24);

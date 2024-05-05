@@ -164,7 +164,7 @@ public:
 
     Actor* getOwner() const
     {
-        return mpOwner;
+        return mOwner;
     }
 
     const FollowArg& getFollowArg() const
@@ -174,12 +174,12 @@ public:
 
     f32 getPosX() const
     {
-        return mFollowArg.p_position->x + mPosOffset.x;
+        return mFollowArg.position->x + mPosOffset.x;
     }
 
     f32 getPosY() const
     {
-        return mFollowArg.p_position->y + mPosOffset.y;
+        return mFollowArg.position->y + mPosOffset.y;
     }
 
     Angle getAngle() const
@@ -225,9 +225,9 @@ public:
         mCheckRevWall = check_rev_wall;
     }
 
-    void setCollisionCallback(CollisionCallback* p_callbacks)
+    void setCollisionCallback(CollisionCallback* callbacks)
     {
-        mpCallbacks = p_callbacks;
+        mCallbacks = callbacks;
     }
 
 protected:
@@ -246,7 +246,7 @@ protected:
     sead::Vector2f      _80;
     sead::BitFlag32     mCallbackFlag;  // I assume
     sead::BitFlag32     mCheckRevFlag;  // ^^^
-    Actor*              mpOwner;
+    Actor*              mOwner;
     Actor*              _94;
     FollowArg           mFollowArg;
     sead::Vector2f      mPosOffset;
@@ -272,7 +272,7 @@ protected:
     CheckRev            mCheckRevFoot;
     CheckRev            mCheckRevHead;
     CheckRevWall        mCheckRevWall;
-    CollisionCallback*  mpCallbacks;
+    CollisionCallback*  mCallbacks;
     u32                 _154;
 };
 static_assert(sizeof(BgCollision) == 0x158);

@@ -57,10 +57,10 @@ public:
 private:
     agl::RenderTargetColor  mColorTarget;
     agl::TextureData        mColorTexture;
-    u8*                     mpColorImage;
+    u8*                     mColorImage;
     agl::RenderTargetDepth  mDepthTarget;
     agl::TextureData        mDepthTexture;
-    u8*                     mpDepthImage;
+    u8*                     mDepthImage;
     agl::RenderBuffer       mRenderBuffer;
     TextureInfo             mInfo;
 };

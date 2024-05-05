@@ -21,7 +21,7 @@ private:
     {
     public:
         // Address: 0x024F5F88
-        ModelResourceHolder(const sead::SafeString& key, ModelResource* p_mdl_res);
+        ModelResourceHolder(const sead::SafeString& key, ModelResource* mdl_res);
 
         virtual ~ModelResourceHolder()
         {
@@ -31,7 +31,7 @@ private:
 
     private:
         sead::FixedSafeString<32>   mKey;
-        ModelResource*              mpModelResource;
+        ModelResource*              mModelResource;
 
         friend class ModelResourceMgr;
     };

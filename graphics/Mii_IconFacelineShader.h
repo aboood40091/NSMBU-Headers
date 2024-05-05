@@ -41,7 +41,7 @@ public:
     }
 
     // Address: 0x024E90EC
-    static void initializeShader(agl::ShaderProgramArchive* p_archive, sead::Heap* heap);
+    static void initializeShader(agl::ShaderProgramArchive* archive, sead::Heap* heap);
 
     // Address: 0x024E92C0
     bool initialize();
@@ -50,7 +50,7 @@ public:
 
     void activate() const
     {
-        mpShaderProgram->activate();
+        mShaderProgram->activate();
     }
 
     // Address: 0x024E92C4
@@ -68,8 +68,8 @@ private:
     bool initializeShader_();
 
 private:
-    const agl::ShaderProgramArchive*        mpShaderArchive;
-    const agl::ShaderProgram*               mpShaderProgram;
+    const agl::ShaderProgramArchive*        mShaderArchive;
+    const agl::ShaderProgram*               mShaderProgram;
     sead::SafeArray<agl::TextureSampler, 2> mTextureSampler;
 };
 static_assert(sizeof(IconFacelineShader) == 0x348);

@@ -21,17 +21,17 @@ public:
     // Address: 0x029C4AF0
     void changeStateMethod(const StateID& state_id);
 
-    IState* getState() const { return mpState; }
-    StateID* getNewStateID() const { return mpNewStateID; }
+    IState* getState() const { return mState; }
+    StateID* getNewStateID() const { return mNewStateID; }
     // Address: 0x029C4B88
     StateID* getStateID() const;
-    StateID* getOldStateID() const { return mpOldStateID; }
+    StateID* getOldStateID() const { return mOldStateID; }
 
 protected:
-    IStateFactory*  mpFactory;
-    StateID*        mpNewStateID;
-    IState*         mpState;
-    StateID*        mpOldStateID;
+    IStateFactory*  mFactory;
+    StateID*        mNewStateID;
+    IState*         mState;
+    StateID*        mOldStateID;
 };
 static_assert(sizeof(StateMethod) == 0x10);
 
@@ -47,6 +47,6 @@ public:
     void changeToSubStateMethod(const StateID& state_id);
 
 protected:
-    StateID*    mpReturnStateID;
+    StateID*    mReturnStateID;
 };
 static_assert(sizeof(StateMethodMulti) == 0x14);

@@ -22,7 +22,7 @@ public:
     // Address: 0x022AC078
     bool updateAmbientLight(bool update_emitter = true);
     // Address: 0x022AC160
-    void setEmitterColor(nw::eft::EmitterController* p_emitter_controller, u16 user_data_bit);
+    void setEmitterColor(nw::eft::EmitterController* emitter_controller, u16 user_data_bit);
 
 private:
     sead::UnsafeArray<sead::Color4f, cColorMax> mLightColor;

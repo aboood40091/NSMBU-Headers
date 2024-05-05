@@ -65,7 +65,7 @@ public:
     virtual void setBoundingEnable(bool enable) = 0;
     virtual bool isBoundingEnable() const = 0;
     virtual const sead::Sphere3f& getBounding() const = 0;
-    virtual void calcViewShapeShadowFlags(agl::sdw::DepthShadow* p_depth_shadow, RenderObjLayerBase* p_shadow_layer, RenderMgr* p_render_mgr) = 0;
+    virtual void calcViewShapeShadowFlags(agl::sdw::DepthShadow* depth_shadow, RenderObjLayerBase* shadow_layer, RenderMgr* render_mgr) = 0;
     virtual sead::SafeString getName() const = 0;
     virtual void setSklAnimBlendWeight(s32 index, f32 weight) = 0;
     virtual f32 getSklAnimBlendWeight(s32 index) const = 0;
