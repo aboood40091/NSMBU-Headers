@@ -9,6 +9,7 @@ class FState : public IState
 public:
     FState(T& obj)
         : mpObject(&obj)
+        , mStateID(nullptr)
     {
     }
 
