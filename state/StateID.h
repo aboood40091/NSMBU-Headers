@@ -51,36 +51,3 @@ protected:
     s32 mNumber;
 };
 static_assert(sizeof(StateID) == 8);
-
-class StateIDHolder
-{
-public:
-    StateIDHolder()
-    {
-        reset();
-    }
-
-    void set(const StateID& state_id)
-    {
-        mpStateID = &state_id;
-    }
-
-    void reset()
-    {
-        mpStateID = nullptr;
-    }
-
-    bool isSet() const
-    {
-        return mpStateID != nullptr;
-    }
-
-    const StateID* get() const
-    {
-        return mpStateID;
-    }
-
-protected:
-    const StateID*  mpStateID;
-};
-static_assert(sizeof(StateIDHolder) == 4);
