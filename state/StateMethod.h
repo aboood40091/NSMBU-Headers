@@ -47,6 +47,6 @@ public:
     void changeToSubStateMethod(const StateID& state_id);
 
 protected:
-    StateID*    mpReturnStateID;
+    StateIDHolder   mMain;
 };
 static_assert(sizeof(StateMethodMulti) == 0x14);
