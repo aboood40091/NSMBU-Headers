@@ -16,27 +16,27 @@ public:
     {
     }
 
-    IState* build(const StateID& state_id) override
+    IState* buildWithInitialize(const StateID& state_id) override
     {
         mState.setStateID(static_cast<const FStateID<T>*>(&state_id));
         mState.initialize();
         return &mState;
     }
 
-    void dispose(IState*& p_state) override
+    void disposeWithFinalize(IState*& p_state) override
     {
         mState.finalize();
         mState.setStateID(nullptr);
         p_state = nullptr;
     }
 
-    IState* buildNoInitializeState(const StateID& state_id) override
+    IState* build(const StateID& state_id) override
     {
         mState.setStateID(static_cast<const FStateID<T>*>(&state_id));
         return &mState;
     }
 
-    void disposeNoFinalizeState(IState*& p_state) override
+    void dispose(IState*& p_state) override
     {
         mState.setStateID(nullptr);
         p_state = nullptr;

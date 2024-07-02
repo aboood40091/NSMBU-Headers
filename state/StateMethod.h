@@ -54,16 +54,16 @@ public:
     void returnToMainStateMethod()
     {
         mpOldStateID = mpState->getStateID();
-        mpFactory->dispose(mpState);
+        mpFactory->disposeWithFinalize(mpState);
         const StateID& main_state_id = *(mMain.get());
         mMain.reset();
-        mpState = mpFactory->buildNoInitializeState(main_state_id);
+        mpState = mpFactory->build(main_state_id);
     }
 
     void replaceStateMethod(const StateID& state_id)
     {
-        mpFactory->dispose(mpState);
-        mpState = mpFactory->build(state_id);
+        mpFactory->disposeWithFinalize(mpState);
+        mpState = mpFactory->buildWithInitialize(state_id);
     }
 
     const StateID* getMainStateID() const
