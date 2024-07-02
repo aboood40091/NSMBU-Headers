@@ -1,19 +1,14 @@
 #pragma once
 
+#include <state/IState.h>
+#include <state/IStateFactory.h>
 #include <state/StateID.h>
-
-class IState;
-class IStateFactory;
 
 class StateMethod
 {
 public:
-    // Address: 0x1022D390
-    static const StateID cNullStateID;
-
-public:
     // Address: 0x029C4A08
-    StateMethod(IStateFactory& factory, const StateID& state_id = cNullStateID);
+    StateMethod(IStateFactory& factory, const StateID& state_id);
 
     // Address: 0x029C4A80
     void executeStateMethod();
@@ -28,53 +23,47 @@ public:
     const StateID* getOldStateID() const { return mpOldStateID; }
 
 protected:
-    IStateFactory*  mpFactory;
+    void initializeStateLocalMethod_();
+    void executeStateLocalMethod_();
+    void finalizeStateLocalMethod_();
+    void changeStateLocalMethod_();
+
+protected:
+    IStateFactory&  mFactory;
     const StateID*  mpNewStateID;
     IState*         mpState;
     const StateID*  mpOldStateID;
 };
 static_assert(sizeof(StateMethod) == 0x10);
 
-class StateMethodMulti : public StateMethod
+inline void StateMethod::initializeStateLocalMethod_()
 {
-public:
-    StateMethodMulti(IStateFactory& factory, const StateID& state_id = cNullStateID)
-        : StateMethod(factory, state_id)
+    if (mpNewStateID != nullptr)
     {
+        mpState = mFactory.buildWithInitialize(*mpNewStateID);
+        mpNewStateID = nullptr;
     }
+}
 
-    // Address: 0x029C4BC4
-    void changeToSubStateMethod(const StateID& state_id);
+inline void StateMethod::executeStateLocalMethod_()
+{
+    initializeStateLocalMethod_();
 
-    bool isSubStateMethod() const
-    {
-        return mMain.isSet();
-    }
+    if (mpState != nullptr)
+        mpState->execute();
+}
 
-    void returnToMainStateMethod()
+inline void StateMethod::finalizeStateLocalMethod_()
+{
+    if (mpState != nullptr && mpNewStateID != nullptr)
     {
         mpOldStateID = mpState->getStateID();
-        mpFactory->disposeWithFinalize(mpState);
-        const StateID& main_state_id = *(mMain.get());
-        mMain.reset();
-        mpState = mpFactory->build(main_state_id);
+        mFactory.disposeWithFinalize(mpState);
     }
+}
 
-    void replaceStateMethod(const StateID& state_id)
-    {
-        mpFactory->disposeWithFinalize(mpState);
-        mpState = mpFactory->buildWithInitialize(state_id);
-    }
-
-    const StateID* getMainStateID() const
-    {
-        const StateID* p_state_id = mMain.get();
-        if (p_state_id == nullptr)
-            p_state_id = getStateID();
-        return p_state_id;
-    }
-
-protected:
-    StateIDHolder   mMain;
-};
-static_assert(sizeof(StateMethodMulti) == 0x14);
+inline void StateMethod::changeStateLocalMethod_()
+{
+    finalizeStateLocalMethod_();
+    initializeStateLocalMethod_();
+}

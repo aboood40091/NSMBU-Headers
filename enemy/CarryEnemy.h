@@ -21,7 +21,7 @@ protected:
 
     bool isSpinLiftUpEnable() override
     {
-        return mStateMgr.getStateMethod().getStateID()->isEqual(StateID_Sleep);
+        return mStateMgr.getStateID()->isEqual(StateID_Sleep);
     }
 
     // Address: 0x022EB368

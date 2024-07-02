@@ -1,7 +1,6 @@
 #pragma once
 
 #include <state/FStateID.h>
-#include <state/StateMethod.h>
 
 template <typename T>
 class FStateVirtualID : public FStateID<T>
@@ -10,7 +9,7 @@ public:
     typedef typename FStateID<T>::FunctionPtr FunctionPtr;
 
 public:
-    FStateVirtualID(FunctionPtr p_initialize, FunctionPtr p_execute, FunctionPtr p_finalize, const StateID& super_id = StateMethod::cNullStateID)
+    FStateVirtualID(FunctionPtr p_initialize, FunctionPtr p_execute, FunctionPtr p_finalize, const StateID& super_id)
         : FStateID<T>(p_initialize, p_execute, p_finalize)
         , mpSuperID(&super_id)
     {
@@ -53,7 +52,8 @@ protected:
     FStateVirtualID<CLASS> CLASS::StateID_##NAME            \
         (&CLASS::initializeState_##NAME,                    \
          &CLASS::executeState_##NAME,                       \
-         &CLASS::finalizeState_##NAME);
+         &CLASS::finalizeState_##NAME,                      \
+         StateID::cNull);
 
 #define CREATE_STATE_VIRTUAL_ID_OVERRIDE(CLASS, BASE, NAME) \
     FStateVirtualID<CLASS> CLASS::StateID_##NAME            \

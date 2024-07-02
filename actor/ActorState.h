@@ -3,6 +3,7 @@
 #include <actor/ActorCollision.h>
 #include <state/FStateMgr.h>
 #include <state/StateMethod.h>
+#include <state/StateMethodMulti.h>
 
 class ActorState : public ActorCollision    // vtbl Address: 0x10000EC8
 {
@@ -17,7 +18,7 @@ public:
 
     void changeState(const StateID& state_id)
     {
-        mStateMgr.getStateMethod().changeStateMethod(state_id);
+        mStateMgr.changeState(state_id);
     }
 
 protected:
@@ -39,7 +40,7 @@ public:
 
     virtual void changeState(const StateID& state_id)
     {
-        mStateMgr.getStateMethod().changeStateMethod(state_id);
+        mStateMgr.changeState(state_id);
     }
 
 protected:

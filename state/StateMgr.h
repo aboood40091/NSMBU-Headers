@@ -6,9 +6,9 @@ template <typename T, typename Method, template <typename FactoryT> class Factor
 class StateMgr
 {
 public:
-    StateMgr(T& obj)
+    StateMgr(T& obj, const StateID& state_id)
         : mFactory(obj)
-        , mMethod(mFactory)
+        , mMethod(mFactory, state_id)
     {
     }
 
@@ -24,6 +24,36 @@ public:
     const Method& getStateMethod() const
     {
         return mMethod;
+    }
+
+    void executeState()
+    {
+        mMethod.executeStateMethod();
+    }
+
+    void changeState(const StateID& state_id)
+    {
+        mMethod.changeStateMethod(state_id);
+    }
+
+    IState* getState() const
+    {
+        return mMethod.getState();
+    }
+
+    const StateID* getNewStateID() const
+    {
+        return mMethod.getNewStateID();
+    }
+
+    const StateID* getStateID() const
+    {
+        return mMethod.getStateID();
+    }
+
+    const StateID* getOldStateID() const
+    {
+        return mMethod.getOldStateID();
     }
 
 protected:
