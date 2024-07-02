@@ -46,6 +46,34 @@ public:
     // Address: 0x029C4BC4
     void changeToSubStateMethod(const StateID& state_id);
 
+    bool isSubStateMethod() const
+    {
+        return mMain.isSet();
+    }
+
+    void returnToMainStateMethod()
+    {
+        mpOldStateID = mpState->getStateID();
+        mpFactory->dispose(mpState);
+        const StateID& main_state_id = *(mMain.get());
+        mMain.reset();
+        mpState = mpFactory->buildNoInitializeState(main_state_id);
+    }
+
+    void replaceStateMethod(const StateID& state_id)
+    {
+        mpFactory->dispose(mpState);
+        mpState = mpFactory->build(state_id);
+    }
+
+    const StateID* getMainStateID() const
+    {
+        const StateID* p_state_id = mMain.get();
+        if (p_state_id == nullptr)
+            p_state_id = getStateID();
+        return p_state_id;
+    }
+
 protected:
     StateIDHolder   mMain;
 };
