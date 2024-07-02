@@ -18,9 +18,19 @@ public:
     const StateID* getStateID() const override { return mStateID; }
     void setStateID(const FStateID<T>* p_state_id) { mStateID = p_state_id; }
 
+    void initialize()
+    {
+        mStateID->initializeState(getObject());
+    }
+
     void execute() override
     {
         mStateID->executeState(getObject());
+    }
+
+    void finalize()
+    {
+        mStateID->finalizeState(getObject());
     }
 
 protected:
