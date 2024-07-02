@@ -22,16 +22,16 @@ public:
     void changeStateMethod(const StateID& state_id);
 
     IState* getState() const { return mpState; }
-    StateID* getNewStateID() const { return mpNewStateID; }
+    const StateID* getNewStateID() const { return mpNewStateID; }
     // Address: 0x029C4B88
-    StateID* getStateID() const;
-    StateID* getOldStateID() const { return mpOldStateID; }
+    const StateID* getStateID() const;
+    const StateID* getOldStateID() const { return mpOldStateID; }
 
 protected:
     IStateFactory*  mpFactory;
-    StateID*        mpNewStateID;
+    const StateID*  mpNewStateID;
     IState*         mpState;
-    StateID*        mpOldStateID;
+    const StateID*  mpOldStateID;
 };
 static_assert(sizeof(StateMethod) == 0x10);
 
