@@ -18,24 +18,21 @@ public:
 
     IState* build(const StateID& state_id) override
     {
-        const FStateID<T>& sid = static_cast<const FStateID<T>&>(state_id);
-        mState.setStateID(&sid);
-        sid.initializeState(mState.getObject());
+        mState.setStateID(static_cast<const FStateID<T>*>(&state_id));
+        mState.initialize();
         return &mState;
     }
 
     void dispose(IState*& p_state) override
     {
-        const FStateID<T>& sid = static_cast<const FStateID<T>&>(*mState.getStateID());
-        sid.finalizeState(mState.getObject());
+        mState.finalize();
         mState.setStateID(nullptr);
         p_state = nullptr;
     }
 
     IState* buildNoInitializeState(const StateID& state_id) override
     {
-        const FStateID<T>& sid = static_cast<const FStateID<T>&>(state_id);
-        mState.setStateID(&sid);
+        mState.setStateID(static_cast<const FStateID<T>*>(&state_id));
         return &mState;
     }
 
@@ -47,8 +44,7 @@ public:
 
     void initializeState(IState* p_state) override
     {
-        const FStateID<T>& sid = static_cast<const FStateID<T>&>(*(static_cast<FState<T>*>(p_state)->getStateID()));
-        sid.initializeState(mState.getObject());
+        static_cast<FState<T>*>(p_state)->initialize();
     }
 
 protected:
