@@ -8,32 +8,32 @@ class FState : public IState
 {
 public:
     FState(T& obj)
-        : mpObject(&obj)
+        : mObject(obj)
         , mpStateID(nullptr)
     {
     }
 
-    T& getObject() const { return *mpObject; }
+    T& getObject() const { return mObject; }
 
     const StateID* getStateID() const override { return mpStateID; }
     void setStateID(const FStateID<T>* p_state_id) { mpStateID = p_state_id; }
 
     void initialize()
     {
-        mpStateID->initializeState(getObject());
+        mpStateID->initializeState(mObject);
     }
 
     void execute() override
     {
-        mpStateID->executeState(getObject());
+        mpStateID->executeState(mObject);
     }
 
     void finalize()
     {
-        mpStateID->finalizeState(getObject());
+        mpStateID->finalizeState(mObject);
     }
 
 protected:
-    T*                  mpObject;
+    T&                  mObject;
     const FStateID<T>*  mpStateID;
 };
