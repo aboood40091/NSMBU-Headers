@@ -12,6 +12,10 @@ public:
     {
     }
 
+    virtual ~StateMgr()
+    {
+    }
+
     Method& getStateMethod()
     {
         return mMethod;
