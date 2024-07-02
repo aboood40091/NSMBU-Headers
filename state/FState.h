@@ -9,31 +9,31 @@ class FState : public IState
 public:
     FState(T& obj)
         : mpObject(&obj)
-        , mStateID(nullptr)
+        , mpStateID(nullptr)
     {
     }
 
     T& getObject() const { return *mpObject; }
 
-    const StateID* getStateID() const override { return mStateID; }
-    void setStateID(const FStateID<T>* p_state_id) { mStateID = p_state_id; }
+    const StateID* getStateID() const override { return mpStateID; }
+    void setStateID(const FStateID<T>* p_state_id) { mpStateID = p_state_id; }
 
     void initialize()
     {
-        mStateID->initializeState(getObject());
+        mpStateID->initializeState(getObject());
     }
 
     void execute() override
     {
-        mStateID->executeState(getObject());
+        mpStateID->executeState(getObject());
     }
 
     void finalize()
     {
-        mStateID->finalizeState(getObject());
+        mpStateID->finalizeState(getObject());
     }
 
 protected:
     T*                  mpObject;
-    const FStateID<T>*  mStateID;
+    const FStateID<T>*  mpStateID;
 };
