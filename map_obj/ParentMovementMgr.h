@@ -1,7 +1,6 @@
 #pragma once
 
 #include <state/FStateMgr.h>
-#include <state/StateMethod.h>
 #include <utility/Angle.h>
 
 #include <math/seadVector.h>
@@ -91,8 +90,7 @@ private:
     u8                      _c0[0xD4-0xC0];
 
     FStateMgr<
-        ParentMovementMgr,
-        StateMethod
+        ParentMovementMgr
     >                       mFStateMgr;
 };
 static_assert(sizeof(ParentMovementMgr) == 0xF8);

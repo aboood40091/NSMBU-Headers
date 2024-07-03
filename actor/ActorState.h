@@ -2,8 +2,7 @@
 
 #include <actor/ActorCollision.h>
 #include <state/FStateMgr.h>
-#include <state/StateMethod.h>
-#include <state/StateMethodMulti.h>
+#include <state/FStateStateMgr.h>
 
 class ActorState : public ActorCollision    // vtbl Address: 0x10000EC8
 {
@@ -22,8 +21,8 @@ public:
     }
 
 protected:
-    FStateMgr<ActorState, StateMethod>  mStateMgr;
-    u32                                 _17c4[4 / sizeof(u32)];
+    FStateMgr<ActorState>   mStateMgr;
+    u32                     _17c4[4 / sizeof(u32)];
 };
 static_assert(sizeof(ActorState) == 0x17C8);
 
@@ -44,6 +43,6 @@ public:
     }
 
 protected:
-    FStateMgr<ActorMultiState, StateMethodMulti>    mStateMgr;
+    FStateStateMgr<ActorMultiState> mStateMgr;
 };
 static_assert(sizeof(ActorMultiState) == 0x17C8);
