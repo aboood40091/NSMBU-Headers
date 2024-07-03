@@ -109,28 +109,6 @@ public:
     };
     static_assert(sizeof(SensorFlag) == 8);
 
-    struct Unk
-    {
-        Unk();
-
-        u8              _0;
-        u8              _1;
-        u8              _2;
-        u8              _3;
-        u32             _4;
-        u32             _8;
-        sead::Vector2f  _c;
-        sead::Vector2f  _14;
-        u32             _1c;
-        u32             _20;
-        u32             _24[4 / sizeof(u32)];
-        u32             _28;
-        u32             _2c;
-        f32             _30;
-        u32             _34;
-    };
-    static_assert(sizeof(Unk) == 0x38);
-
 public:
     struct Sensor
     {
@@ -222,11 +200,17 @@ protected:
     sead::UnsafeArray<u32, 4>               _a04;
     u32                                     _a14[4 / sizeof(u32)];
     sead::UnsafeArray<
-        sead::UnsafeArray<Unk, 6>,
+        sead::UnsafeArray<
+            ActorBgCollisionCheckResult,
+            6
+        >,
         4
     >                                       _a18;
     sead::UnsafeArray<
-        sead::UnsafeArray<Unk, 6>,
+        sead::UnsafeArray<
+            ActorBgCollisionCheckResult,
+            6
+        >,
         4
     >                                       _f58;
     sead::UnsafeArray<u8, 32>               _1498;
