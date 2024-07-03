@@ -1,10 +1,10 @@
 #include <state/StateIDHolder.h>
 #include <state/StateMethod.h>
 
-class StateMethodMulti : public StateMethod
+class StateStateMethod : public StateMethod
 {
 public:
-    StateMethodMulti(IStateFactory& factory, const StateID& state_id)
+    StateStateMethod(IStateFactory& factory, const StateID& state_id)
         : StateMethod(factory, state_id)
     {
     }
@@ -43,4 +43,4 @@ public:
 protected:
     StateIDHolder   mMain;
 };
-static_assert(sizeof(StateMethodMulti) == 0x14);
+static_assert(sizeof(StateStateMethod) == 0x14);

@@ -1,10 +1,10 @@
-#include <state/StateMethodMulti.h>
+#include <state/StateStateMethod.h>
 #include <state/StateMgr.h>
 
 template <typename T, template <typename FactoryT> class Factory>
 class StateStateMgr
 {
-    STATE_MGR_BASE_BODY(StateStateMgr, StateMethodMulti)
+    STATE_MGR_BASE_BODY(StateStateMgr, StateStateMethod)
 
 public:
     void changeToSubState(const StateID& state_id)
