@@ -17,7 +17,7 @@ public:
         return mMain.isSet();
     }
 
-    void returnToMainStateMethod()
+    void returnStateMethod()
     {
         mpOldStateID = mpState->getStateID();
         mFactory.disposeWithFinalize(mpState);
