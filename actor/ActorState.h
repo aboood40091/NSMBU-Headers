@@ -22,7 +22,7 @@ public:
 
 protected:
     FStateMgr<ActorState>   mStateMgr;
-    u32                     _17c4[4 / sizeof(u32)];
+  //u32                     _17c4[4 / sizeof(u32)]; // Alignment???
 };
 static_assert(sizeof(ActorState) == 0x17C8);
 
