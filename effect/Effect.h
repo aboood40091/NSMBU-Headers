@@ -1,24 +1,33 @@
 #pragma once
 
 #include <effect/EffectID.h>
+#include <utility/Angle3.h>
 
 #include <gfx/seadColor.h>
 #include <math/seadMatrix.h>
-#include <math/seadVector.h>
 #include <ptcl/seadPtclSystem.h>
+
+class PtclParam;
 
 class Effect
 {
     // NSMBW: mEf::effect_c
 
+protected:
+    // Address: 0x022AA5DC
+    void reset_();
+
+    // Address: 0x022AA618
+    nw::eft::EmitterSet* getEmitterSet_();
+
+    // Address: 0x022AA64C
+    bool createEffect_(EffectID id);    // Assumes effect is not alive and has been resetted
+
 public:
     Effect()
     {
-        clear();
+        reset_();
     }
-
-    // Address: 0x022AA5DC
-    void clear();
 
     // Address: 0x022AA780
     bool createEffect(EffectID id); // Will abort and return false if
@@ -37,7 +46,7 @@ public:
     void kill();
 
     // Address: 0x022AA8A8
-    u32 getUserData() const;
+    s32 getGroupID() const;
 
     // Address: 0x022AA8D4
     void setColor(const sead::Color4f& color);
@@ -54,32 +63,27 @@ public:
     // Address: 0x022AAA3C
     void setRandomSeed(u32 seed);
 
-    // Address: 0x022AAA68
-    void update();
-
     // Address: 0x022AAB48
-    void follow(const sead::Vector3f& trans, const sead::Vector3u& rotat, const sead::Vector3f& scale);
+    bool follow(const sead::Vector3f* p_trans = nullptr, const Angle3* p_angle = nullptr, const sead::Vector3f* p_scale = nullptr);
     // Address: 0x022AAD70
-    void follow(const sead::Matrixf& mtx, bool mtx_has_scale);
+    bool follow(const sead::Matrixf& mtx, bool mtx_has_scale);
 
+protected:
+    // Address: 0x022AAA68
+    void updateMtx_();
+
+public:
     // Address: 0x022AAE5C
     void setStopCalc(bool stop_calc);
     // Address: 0x022AAE8C
     void setVisible(bool visible, s32 emitter_controller_index);
 
-    void* getShaderParam() const { return mpShaderParam; }
-
-private:
-    // Address: 0x022AA64C
-    bool createEffect_(EffectID id);    // Assumes effect is not alive and has been cleared
-
-    // Address: 0x022AA618
-    nw::eft::EmitterSet* getEmitterSet_();
+    const PtclParam* getParam() const { return mpParam; }
 
 protected:
-    sead::Matrixf   mMtx;
-    bool            mMtxHasScale;
-    nw::eft::Handle mHandle;
-    void*           mpShaderParam;
+    sead::Matrixf       mMtx;
+    bool                mMtxHasScale;
+    nw::eft::Handle     mHandle;
+    const PtclParam*    mpParam;
 };
 static_assert(sizeof(Effect) == 0x40);
