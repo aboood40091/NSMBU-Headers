@@ -45,6 +45,27 @@ class PtclMgr
     SEAD_SINGLETON_DISPOSER(PtclMgr)
 
 public:
+    class PlayerNoSetter
+    {
+    public:
+        PlayerNoSetter(u32 player_no)
+            : mPrevPlayerNo(PtclMgr::instance()->mPlayerNo)
+        {
+            if (player_no < 4)
+                PtclMgr::instance()->mPlayerNo = player_no;
+        }
+
+        ~PlayerNoSetter()
+        {
+            PtclMgr::instance()->mPlayerNo = mPrevPlayerNo;
+        }
+
+    private:
+        u32 mPrevPlayerNo;
+    };
+    static_assert(sizeof(PlayerNoSetter) == 4);
+
+public:
     // Address: 0x022AC634
     PtclMgr();
     // Address: 0x022AC854
@@ -88,7 +109,7 @@ private:
     sead::TList<LevelEffect*>                           mEffects;
     sead::FixedPtrArray<nw::eft::EmitterInstance, 256>  mpEmitter1;
     sead::FixedPtrArray<nw::eft::EmitterInstance, 256>  mpEmitter2;
-    s32                                                 mPlayerId;
+    s32                                                 mPlayerNo;
     bool                                                mIsUseDisplayList;
     bool                                                mIsDrawDisable;
     bool                                                mIsUseParallel;
