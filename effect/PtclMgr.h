@@ -3,6 +3,7 @@
 #include <container/seadPtrArray.h>
 #include <container/seadTList.h>
 #include <heap/seadDisposer.h>
+#include <math/seadMatrix.h>
 
 namespace sead { namespace ptcl {
 
@@ -14,6 +15,7 @@ namespace nw { namespace eft {
 
 struct  EmitterInstance;
 class   EmitterSet;
+class   Handle;
 
 } } // namespace nw::eft
 
@@ -27,8 +29,10 @@ class RenderInfo;
 
 } } // namespace agl::lyr
 
-class LevelEffect;
-class PtclEmitterColorMgr;
+enum    EffectID;
+class   LevelEffect;
+class   PtclEmitterColorMgr;
+struct  PtclParam;
 
 class PtclMgr
 {
@@ -62,6 +66,12 @@ public:
 
     // Address: 0x022ACE58
     u8 getEmitterSetGroupID(s32 set_id, u32 res_id = 0) const;
+
+    // Address: 0x022AD948
+    bool createEmitterSet(nw::eft::Handle* p_handle, const sead::Matrix34f& mtxRT, EffectID id);
+
+    // Address: 0x022AD930
+    const PtclParam* getParam(EffectID id) const;
 
     // Address: 0x022ADA08
     void setFrameBufferTexture(const agl::TextureSampler& texture, f32 x_offset = 0.0f, f32 y_offset = 0.0f, f32 x_scale = 1.0f, f32 y_scale = 1.0f);
