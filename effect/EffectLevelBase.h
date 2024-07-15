@@ -11,12 +11,12 @@ class EffectLevelBase : public sead::IDisposer, public Effect, public sead::TLis
 
 public:
     // Address: 0x022AB52C
-    bool createEffect(EffectID id, const sead::Vector3f& trans, const sead::Vector3u& rotat, const sead::Vector3f& scale);
+    bool createEffect(EffectID id, const sead::Vector3f* p_trans = nullptr, const Angle3* p_angle = nullptr, const sead::Vector3f* p_scale = nullptr);
     // Address: 0x022AB6EC
     bool createEffect(EffectID id, const sead::Matrixf& mtx, bool mtx_has_scale);
 
     // Address: 0x022AB448
-    bool follow(const sead::Vector3f& trans, const sead::Vector3u& rotat, const sead::Vector3f& scale);
+    bool follow(const sead::Vector3f* p_trans = nullptr, const Angle3* p_angle = nullptr, const sead::Vector3f* p_scale = nullptr);
     // Address: 0x022AB608
     bool follow(const sead::Matrixf& mtx, bool mtx_has_scale);
 

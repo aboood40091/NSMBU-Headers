@@ -8,7 +8,7 @@ class FollowEffect : public Effect
 
 public:
     // Address: 0x022AB980
-    bool createEffect(EffectID id, const sead::Vector3f& trans, const sead::Vector3u& rotat, const sead::Vector3f& scale);
+    bool createEffect(EffectID id, const sead::Vector3f* p_trans = nullptr, const Angle3* p_angle = nullptr, const sead::Vector3f* p_scale = nullptr);
     // Address: 0x022AB9F0
     bool createEffect(EffectID id, const sead::Matrixf& mtx, bool mtx_has_scale);
 };
