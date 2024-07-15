@@ -32,4 +32,7 @@ public:
     static bool createPlayerEffect(s32 player_no, FollowEffect* p_effect, EffectID id, const sead::Vector3f* p_trans = nullptr, const Angle3* p_angle = nullptr, const sead::Vector3f* p_scale = nullptr);
     // Address: Deleted
     static bool createPlayerEffect(s32 player_no, FollowEffect* p_effect, EffectID id, const sead::Matrixf& mtx, bool mtx_has_scale);
+
+    // Address: 0x022AB2F0
+    static bool isCreateAboveLayer0(const sead::Vector3f& effect_pos);
 };
