@@ -1,14 +1,14 @@
 #pragma once
 
-#include <effect/EffectLevelBase.h>
+#include <effect/EffectDisposable.h>
 
-class LevelEffect : public EffectLevelBase
+class LevelEffect : public EffectDisposable
 {
     // NSMBW: dEf::dLevelEffect_c
 
 public:
     LevelEffect()
-        : EffectLevelBase()
+        : EffectDisposable()
     {
     }
 
@@ -18,6 +18,6 @@ public:
 
     // getRuntimeTypeInfoStatic()::typeInfo initialization guard variable   Address: Deleted
     // getRuntimeTypeInfoStatic()::typeInfo                                 Address: Deleted
-    SEAD_RTTI_OVERRIDE(LevelEffect, EffectLevelBase)
+    SEAD_RTTI_OVERRIDE(LevelEffect, EffectDisposable)
 };
-static_assert(sizeof(LevelEffect) == sizeof(EffectLevelBase));
+static_assert(sizeof(LevelEffect) == sizeof(EffectDisposable));

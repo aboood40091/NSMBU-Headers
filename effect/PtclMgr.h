@@ -30,7 +30,8 @@ class RenderInfo;
 } } // namespace agl::lyr
 
 enum    EffectID;
-class   LevelEffect;
+class   EffectDisposable;
+class   EffectDisposableBase;
 class   PtclEmitterColorMgr;
 struct  PtclParam;
 
@@ -106,12 +107,14 @@ private:
     void*                                               mpPtclParallelTbl;
     PtclEmitterColorMgr*                                mpEmitterColorMgr;
     void*                                               mpUserShaderParamTbl;
-    sead::TList<LevelEffect*>                           mEffects;
+    sead::TList<EffectDisposableBase*>                  mEffects;
     sead::FixedPtrArray<nw::eft::EmitterInstance, 256>  mpEmitter1;
     sead::FixedPtrArray<nw::eft::EmitterInstance, 256>  mpEmitter2;
     s32                                                 mPlayerNo;
     bool                                                mIsUseDisplayList;
     bool                                                mIsDrawDisable;
     bool                                                mIsUseParallel;
+
+    friend class EffectDisposable;
 };
 static_assert(sizeof(PtclMgr) == 0x84C);
