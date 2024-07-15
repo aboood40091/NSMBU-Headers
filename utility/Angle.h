@@ -40,12 +40,12 @@ public:
 
     Angle operator+() const
     {
-        return +mValue;
+        return *this;
     }
 
     Angle operator-() const
     {
-        return -mValue;
+        return Angle(-mValue);
     }
 
     Angle operator+(const Angle& rhs)
