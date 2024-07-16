@@ -39,9 +39,9 @@ public:
     bool isAlive() const;
 
     // Address: 0x022AA7F0
-    void fade();
+    void followFade();
     // Address: 0x022AA824
-    void fadeAndKill();
+    void fade();
     // Address: 0x022AA84C
     void kill();
 
@@ -70,7 +70,7 @@ public:
 
 protected:
     // Address: 0x022AAA68
-    void updateMtx_();
+    void update_();
 
 public:
     // Address: 0x022AAE5C
