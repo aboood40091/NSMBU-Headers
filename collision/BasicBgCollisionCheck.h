@@ -1,11 +1,14 @@
 #pragma once
 
 #include <collision/BgCollisionCheckType.h>
+#include <system/LineNodeMgr.h>
 
 #include <math/seadVector.h>
 #include <prim/seadBitFlag.h>
 
 class   Actor;
+struct  BgCheckUnitInfo;
+class   BgCollision;
 struct  BgCollisionCheckParam;
 struct  BgCollisionCheckResultArea;
 struct  BgCollisionCheckResultPoint;
@@ -13,11 +16,24 @@ class   BgHitCheckCallback;
 
 class BasicBgCollisionCheck
 {
+protected:
+    // Address: 0x021A09A4
+    const LineNodeMgr<BgCollision>& getActorBgCollisionList_() const;
+
+    // Address: 0x021A09D8
+    bool isMatching_(const BgCheckUnitInfo& bc_data) const;
+
+    // Address: 0x021A0A44
+    bool isConsider_(const BgCollision& bg_collision) const;
+
 public:
     // Address: 0x021A0B8C
     BasicBgCollisionCheck();
     // Address: 0x021A0C44
     BasicBgCollisionCheck(const BgCollisionCheckParam& param);
+
+    // Address: 0x021A0D04
+    void initialize(const BgCollisionCheckParam& param);
 
     // Address: 0x021A0D40
     bool checkAreaUnit(BgCollisionCheckResultArea* p_res, const sead::Vector2f& p0, const sead::Vector2f& p1, u8 unk_mask) const;
