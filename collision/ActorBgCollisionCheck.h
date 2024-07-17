@@ -169,7 +169,7 @@ protected:
     List::Node                              _878;
     List::Node                              _884;
     Actor*                                  mpOwner;
-    Actor*                                  _894;
+    Actor*                                  mpIgnoreActor;  // Force mBgCheck to ignore BgCollision owned by this actor
     FollowArg                               mFollowArg;
     Output                                  mOutput;
     Output                                  _8b0;
