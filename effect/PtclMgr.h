@@ -49,10 +49,10 @@ public:
     class PlayerNoSetter
     {
     public:
-        PlayerNoSetter(u32 player_no)
+        PlayerNoSetter(s32 player_no)
             : mPrevPlayerNo(PtclMgr::instance()->mPlayerNo)
         {
-            if (player_no < 4)
+            if (0 <= player_no && player_no < 4)
                 PtclMgr::instance()->mPlayerNo = player_no;
         }
 
@@ -62,7 +62,7 @@ public:
         }
 
     private:
-        u32 mPrevPlayerNo;
+        s32 mPrevPlayerNo;
     };
     static_assert(sizeof(PlayerNoSetter) == 4);
 
@@ -87,7 +87,7 @@ public:
     void draw(const agl::lyr::RenderInfo& render_info, u32 type, const sead::PtrArray<nw::eft::EmitterInstance>* p_emitters = nullptr);
 
     // Address: 0x022ACE58
-    u8 getEmitterSetGroupID(s32 set_id, u32 res_id = 0) const;
+    s32 getEmitterSetGroupID(s32 set_id, u32 res_id = 0) const;
 
     // Address: 0x022AD948
     bool createEmitterSet(nw::eft::Handle* p_handle, const sead::Matrix34f& mtxRT, EffectID id);
