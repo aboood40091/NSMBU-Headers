@@ -5,6 +5,7 @@
 #include <collision/BasicBgCollisionCheck.h>
 #include <collision/BgCheckUnitInfo.h>
 #include <collision/FollowArg.h>
+#include <map/WaterType.h>
 #include <system/LineNodeMgr.h>
 #include <utility/Angle.h>
 
@@ -157,6 +158,8 @@ public:
 
     const FollowArg& getFollowArg() const { return mFollowArg; }
     const Output& getOutput() const { return mOutput; }
+
+    static WaterType checkWater(const sead::Vector3f& pos, u8 layer);
 
 protected:
     typedef LineNodeMgr<ActorBgCollisionCheck> List;
