@@ -52,6 +52,9 @@ public:
 
     f32 getZoom() const { return mZoom; }
 
+    const sead::BoundBox2f& getScreenRect() const { return mScreen; }
+    const sead::BoundBox2f& getScreenRectDefault() const { return mScreenDefault; }
+
     f32 getScreenWidth() const { return mScreenWidth; }
     f32 getScreenHeight() const { return mScreenHeight; }
     f32 getScreenLeft() const { return mScreenLeft; }
@@ -68,12 +71,12 @@ public:
 
 private:
     f32                 mZoom;
-    f32                 _14;
-    sead::BoundBox2f    _18;
-    sead::BoundBox2f    _28;
-    sead::BoundBox2f    _38;
-    sead::BoundBox2f    _48;
-    sead::BoundBox2f    _58;
+    f32                 mZoomPrev;
+    sead::BoundBox2f    mScroll;
+    sead::BoundBox2f    mScreen;
+    sead::BoundBox2f    mScreenPrev;
+    sead::BoundBox2f    mScreenZoom;        // Same center as mScreen, but size is determined by mZoom
+    sead::BoundBox2f    mScreenDefault;     // Same center as mScreen, but size is (796.44, 448)
     f32                 mScreenWidth;       // In world space
     f32                 mScreenHeight;      // ^^^
     f32                 mScreenLeft;        // ^^^
@@ -82,8 +85,8 @@ private:
     f32                 mScreenTop;         // ^^^
     f32                 mScreenCenterY;     // ^^^
     f32                 mScreenBottom;      // ^^^
-    sead::BoundBox2f    _88;
-    sead::BoundBox2f    _98;
+    sead::BoundBox2f    mScreenBg;          // Same as mScreen, but Y is inverted
+    sead::BoundBox2f    mScreenBgPrev;
     void*               mBoundMgr;
     void*               mScrollLimitMgr;
     void*               mZoomAreaMgr;
