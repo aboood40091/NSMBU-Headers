@@ -27,6 +27,21 @@ public:
     // Address: 0x0219282C
     void release(const BgCollision& bg_collision);
 
+    const LineNodeMgr<BgCollision>& getSolidList() const
+    {
+        return mSolidList;
+    }
+
+    const LineNodeMgr<BgCollision>& getNonSolidList() const
+    {
+        return mNonSolidList;
+    }
+
+    const LineNodeMgr<BgCollision>& getCoinList() const
+    {
+        return mCoinList;
+    }
+
     const LineNodeMgr<BgCollision>& getPoleList() const
     {
         return mPoleList;
