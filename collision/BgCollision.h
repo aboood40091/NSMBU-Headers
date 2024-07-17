@@ -240,7 +240,7 @@ protected:
     List::Node          mNonSolidListNode;
     List::Node          _34;
     List::Node          mCoinListNode;
-    List::Node          _4c;
+    List::Node          mPoleListNode;
     List::Node          _58;
     List::Node          _64;
     sead::BoundBox2f    mAffectedArea;  // Current Area & Prev Area
@@ -248,7 +248,7 @@ protected:
     sead::BitFlag32     mCallbackFlag;  // I assume
     sead::BitFlag32     mCheckRevFlag;  // ^^^
     Actor*              mpOwner;
-    Actor*              _94;
+    Actor*              mpIgnoreActor;  // Force BasicBgCollisionCheck owned by this actor to ignore this BgCollision
     FollowArg           mFollowArg;
     sead::Vector2f      mPosOffset;
     sead::Vector2f      mPosOffsetPrev;
@@ -256,7 +256,7 @@ protected:
     sead::Vector2f      mRotPivotOffsetPrev;
     sead::Vector2f      mTypeOffset;
     sead::Vector2f      mTypeOffsetPrev;
-    u8                  _dc;
+    bool                mIsInactive;    // If true, forces BasicBgCollisionCheck to ignore this BgCollision
     u32                 _e0;
     sead::Matrix22f     mRotMtx;
     Angle               mAngle;
