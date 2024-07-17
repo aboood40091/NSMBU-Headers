@@ -1,15 +1,23 @@
 #pragma once
 
 #include <collision/BgCheckUnitInfo.h>
+#include <utility/Angle.h>
 
 #include <math/seadVector.h>
-#include <prim/seadBitFlag.h>
 
 class BgCollision;
 
-struct BgCollisionCheckResult
+struct BgCollisionCheckResultPoint
 {
-    sead::BitFlag8  hit_direction_flag;
+    BgCheckUnitInfo bg_check_data;
+    BgCollision*    p_bg_collision;
+  //u32             _c[4 / sizeof(u32)];    // Alignment???
+};
+static_assert(sizeof(BgCollisionCheckResultPoint) == 0x10);
+
+struct BgCollisionCheckResultArea
+{
+    u8              hit_direction_flag;
     sead::Vector2f  _4;
     Angle           _c;
     Angle           _10;
@@ -17,5 +25,14 @@ struct BgCollisionCheckResult
     BgCheckUnitInfo bg_check_data;
     BgCollision*    p_bg_collision;
   //u32             _24[4 / sizeof(u32)];   // More alignment???
+
+    BgCollisionCheckResultArea()
+    {
+    }
+
+    BgCollisionCheckResultArea(f32 x, f32 y)
+        : _4(x, y)
+    {
+    }
 };
-static_assert(sizeof(BgCollisionCheckResult) == 0x28);
+static_assert(sizeof(BgCollisionCheckResultArea) == 0x28);

@@ -22,9 +22,9 @@ public:
     // Address: 0x0219EDF8
     void execute() override;
     // Address: 0x0219F260
-    bool vf44(BgCollisionCheckResult*, u8*, sead::Vector2f*, sead::Vector2f*, u8) override;
+    bool checkAreaBasic(BgCollisionCheckResultArea* p_res, const BasicBgCollisionCheck& bc, const sead::Vector2f& p0, const sead::Vector2f& p1, u8 unk_mask) override;
     // Address: 0x021A035C
-    bool vf4C(ActorBgCollisionCheckResult*, sead::Vector2f*, sead::Vector2f*, u8 direction, ActorBgCollisionCheck*) override;
+    bool checkAreaActor(ActorBgCollisionCheckResult*, sead::Vector2f*, sead::Vector2f*, u8 direction, ActorBgCollisionCheck*) override;
     // Address: 0x0219FCF4
     bool vf54(u8*, sead::Vector2f*) override;
     // Address: Deleted

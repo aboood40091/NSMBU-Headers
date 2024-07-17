@@ -113,7 +113,7 @@ public:
         sead::Vector2f a(mPos.x, mPos.y);
         sead::Vector2f b(a + offset);
 
-        return tile_check.checkGroundAngle(nullptr, a, b, 8);
+        return tile_check.checkArea(nullptr, a, b, 8);
     }
 
 protected:

@@ -10,11 +10,12 @@
 #include <math/seadMatrix.h>
 #include <prim/seadRuntimeTypeInfo.h>
 
-class Actor;
-class ActorBgCollisionCheck;
-class ActorBgCollisionCheckResult;
-struct BgCollisionCheckResult;
-class CollisionCallback;
+class   Actor;
+class   ActorBgCollisionCheck;
+class   ActorBgCollisionCheckResult;
+class   BasicBgCollisionCheck;
+struct  BgCollisionCheckResultArea;
+class   CollisionCallback;
 
 class BgCollision : public sead::IDisposer  // vtbl Address: 0x10042528
 {
@@ -147,8 +148,8 @@ public:
     virtual u32 vf2C(u32*);
     virtual void vf34() = 0;
     virtual void execute() = 0;
-    virtual bool vf44(BgCollisionCheckResult*, u8*, sead::Vector2f*, sead::Vector2f*, u8) = 0;
-    virtual bool vf4C(ActorBgCollisionCheckResult*, sead::Vector2f*, sead::Vector2f*, u8 direction, ActorBgCollisionCheck*) = 0;
+    virtual bool checkAreaBasic(BgCollisionCheckResultArea* p_res, const BasicBgCollisionCheck& bc, const sead::Vector2f& p0, const sead::Vector2f& p1, u8 unk_mask) = 0;
+    virtual bool checkAreaActor(ActorBgCollisionCheckResult*, sead::Vector2f*, sead::Vector2f*, u8 direction, ActorBgCollisionCheck*) = 0;
     virtual bool vf54(u8*, sead::Vector2f*) = 0;
     virtual bool vf5C(u32*) = 0;
     // Address: 0x021A680C

@@ -13,9 +13,9 @@ public:
     }
 
     // Address: 0x02197C14
-    bool vf0C() override /* { return true; } */ ;
+    bool hit(const BgCollisionCheckResultPoint& hit_res) override /* { return true; } */ ;
     // Address: 0x02197B4C
-    bool hit(const BgCollisionCheckResult& hit_res) override;
+    bool hit(const BgCollisionCheckResultArea& hit_res) override;
 
 protected:
     ActorBgCollisionCheck*  mpBgCollisionCheck;
