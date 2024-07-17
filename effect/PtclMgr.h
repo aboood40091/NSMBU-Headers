@@ -83,11 +83,42 @@ public:
     // Address: 0x022AC984
     void updateAmbientLight(bool update_emitter = true);
 
+    // Address: 0x022ACA14
+    static s32 compare(const nw::eft::EmitterInstance* a, const nw::eft::EmitterInstance* b);
+
     // Address: 0x022ACA44
     void draw(const agl::lyr::RenderInfo& render_info, u32 type, const sead::PtrArray<nw::eft::EmitterInstance>* p_emitters = nullptr);
 
     // Address: 0x022ACE58
     s32 getEmitterSetGroupID(s32 set_id, u32 res_id = 0) const;
+
+    // Address: 0x022ACF0C
+    void initialize(sead::Heap* heap);
+
+    // Address: 0x022AD370
+    void enableDisplayList();
+
+    void enableDraw()
+    {
+        mIsDrawDisable = false;
+    }
+
+    // Address: 0x022AD37C
+    void pushBackDrawMethod();
+
+    // Address: 0x022AD434
+    void exit();
+
+    // Address: 0x022ACE84
+    void setUserDataCallbacks();
+    // Address: 0x022AD468
+    void resetUserDataCallbacks();
+
+    // Address: 0x022AD4E0
+    void execute();
+
+    // Address: 0x022AD8BC
+    void drawMulti(const agl::lyr::RenderInfo& render_info, u32 typeMin, u32 typeMax);
 
     // Address: 0x022AD948
     bool createEmitterSet(nw::eft::Handle* p_handle, const sead::Matrix34f& mtxRT, EffectID id);
