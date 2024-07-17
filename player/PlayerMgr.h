@@ -16,6 +16,11 @@ public:
         return mPlayerObject[player_no];
     }
 
+    PlayerObject* getPlayerObject2(s32 player_no)
+    {
+        return mPlayerObject2[player_no];
+    }
+
     bool isPlayerActive(s32 player_no)
     {
         return mPlayerFlag & (1 << player_no);
