@@ -93,7 +93,7 @@ public:
     s32 getEmitterSetGroupID(s32 set_id, u32 res_id = 0) const;
 
     // Address: 0x022ACF0C
-    void initialize(sead::Heap* heap);
+    void enterScene(sead::Heap* heap);
 
     // Address: 0x022AD370
     void enableDisplayList();
@@ -107,7 +107,7 @@ public:
     void pushBackDrawMethod();
 
     // Address: 0x022AD434
-    void exit();
+    void exitScene();
 
     // Address: 0x022ACE84
     void setUserDataCallbacks();
