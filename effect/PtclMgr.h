@@ -33,6 +33,7 @@ enum    EffectID;
 class   EffectDisposable;
 class   EffectDisposableBase;
 class   PtclEmitterColorMgr;
+class   PtclParallelExecuter;
 struct  PtclParam;
 
 class PtclMgr
@@ -135,7 +136,7 @@ private:
 
 private:
     sead::ptcl::PtclSystem*                             mpPtclSystem;
-    void*                                               mpPtclParallelTbl;
+    PtclParallelExecuter*                               mpParallelExecuter;
     PtclEmitterColorMgr*                                mpEmitterColorMgr;
     void*                                               mpUserShaderParamTbl;
     sead::TList<EffectDisposableBase*>                  mEffects;
