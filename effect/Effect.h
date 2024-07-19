@@ -7,7 +7,7 @@
 #include <math/seadMatrix.h>
 #include <ptcl/seadPtclSystem.h>
 
-class PtclParam;
+struct PtclParam;
 
 class Effect
 {
