@@ -37,6 +37,11 @@ public:
         return mIsActive;
     }
 
+    void setActive(bool active)
+    {
+        mIsActive = active;
+    }
+
 protected:
     sead::TListNode<EffectDisposableBase*>  mNode;
     EffectID                                mEffectID;
