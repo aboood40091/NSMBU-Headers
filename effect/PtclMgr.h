@@ -35,6 +35,7 @@ class   EffectDisposableBase;
 class   PtclEmitterColorMgr;
 class   PtclParallelExecuter;
 struct  PtclParam;
+class   PtclParamMgr;
 
 class PtclMgr
 {
@@ -138,7 +139,7 @@ private:
     sead::ptcl::PtclSystem*                             mpPtclSystem;
     PtclParallelExecuter*                               mpParallelExecuter;
     PtclEmitterColorMgr*                                mpEmitterColorMgr;
-    void*                                               mpUserShaderParamTbl;
+    PtclParamMgr*                                       mpParamMgr;
     sead::TList<EffectDisposableBase*>                  mEffects;
     sead::FixedPtrArray<nw::eft::EmitterInstance, 256>  mpEmitter1;
     sead::FixedPtrArray<nw::eft::EmitterInstance, 256>  mpEmitter2;
