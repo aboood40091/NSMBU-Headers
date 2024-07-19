@@ -4,7 +4,6 @@
 #include <utility/Angle3.h>
 
 #include <gfx/seadColor.h>
-#include <math/seadMatrix.h>
 #include <ptcl/seadPtclSystem.h>
 
 struct PtclParam;
