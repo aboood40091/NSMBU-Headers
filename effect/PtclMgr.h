@@ -89,7 +89,7 @@ public:
     static s32 compare(const nw::eft::EmitterInstance* a, const nw::eft::EmitterInstance* b);
 
     // Address: 0x022ACA44
-    void draw(const agl::lyr::RenderInfo& render_info, u32 type, const sead::PtrArray<nw::eft::EmitterInstance>* p_emitters = nullptr);
+    void draw(const agl::lyr::RenderInfo& render_info, s32 type, const sead::PtrArray<nw::eft::EmitterInstance>* p_emitters = nullptr);
 
     // Address: 0x022ACE58
     s32 getEmitterSetGroupID(s32 set_id, u32 res_id = 0) const;
@@ -120,7 +120,7 @@ public:
     void execute();
 
     // Address: 0x022AD8BC
-    void drawMulti(const agl::lyr::RenderInfo& render_info, u32 typeMin, u32 typeMax);
+    void drawRange(const agl::lyr::RenderInfo& render_info, s32 typeMin, s32 typeMax);
 
     // Address: 0x022AD948
     bool createEmitterSet(nw::eft::Handle* p_handle, const sead::Matrix34f& mtxRT, EffectID id);
@@ -129,7 +129,7 @@ public:
     const PtclParam* getParam(EffectID id) const;
 
     // Address: 0x022ADA08
-    void setFrameBufferTexture(const agl::TextureSampler& texture, f32 x_offset = 0.0f, f32 y_offset = 0.0f, f32 x_scale = 1.0f, f32 y_scale = 1.0f);
+    void setFrameBufferTexture(const agl::TextureSampler& sampler, f32 x_offset = 0.0f, f32 y_offset = 0.0f, f32 x_scale = 1.0f, f32 y_scale = 1.0f);
 
 private:
     // Address: 0x022AC8F8
