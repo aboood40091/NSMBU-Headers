@@ -11,10 +11,11 @@ class PtclMgr;
 
 class PtclParallelExecuter : public sead::IDisposer // vtable Address: 0x10058B74
 {
-protected:
+public:
     static const s32 cExecuterNum = 2;
     static const s32 cEmitterMaxNum = 256;
 
+protected:
     enum Step
     {
         cStep_Ptcl = 1,
