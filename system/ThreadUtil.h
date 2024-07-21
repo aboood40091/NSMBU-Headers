@@ -25,3 +25,5 @@ public:
         return sead::ThreadUtil::ConvertPrioritySeadToPlatform(prio);
     }
 };
+
+#define THREAD_PRIORITY(NAME) ThreadUtil::getPriority(ThreadUtil::cSeadPriority_##NAME)
