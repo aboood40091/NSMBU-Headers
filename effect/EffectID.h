@@ -2,7 +2,9 @@
 
 #include <basis/seadTypes.h>
 
-enum EffectID
+typedef s32 EffectID;
+
+enum EffectID_
 {
     // RP_1upGet
     // User Data: 0x00200000
@@ -3502,6 +3504,6 @@ enum EffectID
     // Emitter Count: 3
     Wm_ob_wpillarsign = 0x01D,
 
-    cEffectID_None = 0xFFFFFFFF,
-    cEffectID_Num = 0x4D2,
+    cEffectID_None = -1,
+    cEffectID_NumOriginal = 0x4D2,
 };

@@ -29,7 +29,8 @@ class RenderInfo;
 
 } } // namespace agl::lyr
 
-enum    EffectID;
+typedef s32 EffectID;
+
 class   EffectDisposable;
 class   EffectDisposableBase;
 class   PtclEmitterColorMgr;
