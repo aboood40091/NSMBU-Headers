@@ -1,16 +1,42 @@
 #pragma once
 
-#include <basis/seadTypes.h>
+#include <controller/seadController.h>
 
-class SeadController // : public sead::Controller
+class SeadController : public sead::Controller  // vtbl Address: 0x100BF504
 {
+    // getRuntimeTypeInfoStatic()::typeInfo initialization guard variable   Address: 0x101E9D40
+    // getRuntimeTypeInfoStatic()::typeInfo                                 Address: 0x101EAE78
+    SEAD_RTTI_OVERRIDE(SeadController, sead::Controller)
+
 public:
     enum Id
     {
-        cId_CafeRemote_1 = 0,
-        cId_CafeRemote_2 = 1,
-        cId_CafeRemote_3 = 2,
-        cId_CafeRemote_4 = 3,
-        cId_CafeDRC      = 4
+        // Single player mode
+        cId_CafeDRC_SinglePlayer    = 0,
+
+        // Multiplayer mode
+        cId_CafeRemote_1            = cId_CafeDRC_SinglePlayer,
+        cId_CafeRemote_2,
+        cId_CafeRemote_3,
+        cId_CafeRemote_4,
+        cId_CafeDRC_Multiplayer,
     };
+
+public:
+    // Address: 0x02511C40
+    SeadController(sead::ControllerMgr* mgr, Id id);
+
+protected:
+    // Address: 0x025124D8
+    void calcRemote_Core_(const sead::Controller* controller);
+    // Address: 0x025127F8
+    void calcRemote_Nunchuk_(const sead::Controller* controller);
+    // Address: 0x02512088
+    void calcRemote_URCC_(const sead::Controller* controller);
+    // Address: 0x025121F4
+    void calcRemote_URCC_Acc_(const sead::Controller* controller);
+
+protected:
+    u32 _15c[(0x1D4 - 0x15C) / sizeof(u32)];
 };
+static_assert(sizeof(SeadController) == 0x1D4);
