@@ -1,16 +1,17 @@
 #pragma once
 
+#include <graphics/RenderObjLayer.h>
+
 #include <gfx/seadCamera.h>
 #include <gfx/seadProjection.h>
-#include <heap/seadDisposer.h>
 #include <layer/aglLayer.h>
+#include <layer/aglRenderer.h>
 #include <math/seadBoundBox.h>
 
 class   Angle;
 class   BasicModel;
 class   Model;
 class   ModelFFL;
-class   RenderObjLayerBase;
 enum    UnitID;
 
 class Renderer
@@ -24,6 +25,26 @@ public:
         cGatherType_1,      // CourseSelectTask, DarkCloudDemoScene, GameSetupScene, MultiPlayCourseSelectScene, ResultScene
         cGatherType_2,      // DemoTestScene
         cGatherType_3       // CourseTask, ChallengeResultScene, WithMiiPackSelectScene
+    };
+
+public:
+    class LayerSetter
+    {
+    public:
+        LayerSetter(s32 layer_id, GatherType type)
+        {
+            Renderer::instance()->setLayer(sead::DynamicCast<RenderObjLayerBase>(agl::lyr::Renderer::instance()->getLayer(layer_id)), type);
+        }
+
+        LayerSetter(RenderObjLayerBase* p_layer, GatherType type)
+        {
+            Renderer::instance()->setLayer(p_layer, type);
+        }
+
+        ~LayerSetter()
+        {
+            Renderer::instance()->resetLayer();
+        }
     };
 
 public:
