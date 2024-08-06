@@ -18,4 +18,20 @@ public:
 
     // Address: 0x029CEAD4
     void initMiiIconRenderBuffer(sead::Heap* heap = nullptr);
+
+    bool isSinglePlayerDRC() const
+    {
+        return mIsSinglePlayerDRC;
+    }
+
+    bool isMultiplayer() const
+    {
+        return !mIsSinglePlayerDRC;
+    }
+
+protected:
+    u32     _10;
+    bool    mIsSinglePlayerDRC;
+    u32     _18[(0x21E18 - 0x18) / sizeof(u32)];
 };
+static_assert(sizeof(MainGame) == 0x21E18);
