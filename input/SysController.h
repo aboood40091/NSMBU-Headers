@@ -2,11 +2,11 @@
 
 #include <controller/seadController.h>
 
-class SeadController : public sead::Controller  // vtbl Address: 0x100BF504
+class SysController : public sead::Controller  // vtbl Address: 0x100BF504
 {
     // getRuntimeTypeInfoStatic()::typeInfo initialization guard variable   Address: 0x101E9D40
     // getRuntimeTypeInfoStatic()::typeInfo                                 Address: 0x101EAE78
-    SEAD_RTTI_OVERRIDE(SeadController, sead::Controller)
+    SEAD_RTTI_OVERRIDE(SysController, sead::Controller)
 
 public:
     enum Id
@@ -24,7 +24,7 @@ public:
 
 public:
     // Address: 0x02511C40
-    SeadController(sead::ControllerMgr* mgr, Id id);
+    SysController(sead::ControllerMgr* mgr, Id id);
 
 protected:
     // Address: 0x025124D8
@@ -39,4 +39,4 @@ protected:
 protected:
     u32 _15c[(0x1D4 - 0x15C) / sizeof(u32)];
 };
-static_assert(sizeof(SeadController) == 0x1D4);
+static_assert(sizeof(SysController) == 0x1D4);

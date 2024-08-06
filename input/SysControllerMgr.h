@@ -2,12 +2,12 @@
 
 #include <heap/seadDisposer.h>
 
-class SeadControllerMgr
+class SysControllerMgr
 {
-    SEAD_SINGLETON_DISPOSER(SeadControllerMgr)
+    SEAD_SINGLETON_DISPOSER(SysControllerMgr)
 
 public:
-    SeadControllerMgr();
+    SysControllerMgr();
 
     void enterHBM();
     void exitHBM();

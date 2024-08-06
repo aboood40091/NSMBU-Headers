@@ -1,10 +1,10 @@
 #pragma once
 
-#include <input/SeadController.h>
+#include <input/SysController.h>
 
 #include <controller/seadControllerWrapper.h>
 
-class SeadControllerWrapper : public sead::ControllerWrapper
+class SysControllerWrapper : public sead::ControllerWrapper
 {
 public:
     enum PadIdx
@@ -55,11 +55,11 @@ public:
     static const u8 cPadConfig[cPadIdx_Num];
 
 public:
-    SeadControllerWrapper();
-    virtual ~SeadControllerWrapper();
+    SysControllerWrapper();
+    virtual ~SysControllerWrapper();
 
     virtual void calc(u32, bool);
 
-    void registerWith(SeadController::Id id);
+    void registerWith(SysController::Id id);
 };
-static_assert(sizeof(SeadControllerWrapper) == sizeof(sead::ControllerWrapper));
+static_assert(sizeof(SysControllerWrapper) == sizeof(sead::ControllerWrapper));
