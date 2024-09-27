@@ -176,13 +176,13 @@ static_assert(sizeof(Multi2D) == 0xE88);
 class ArcResAccMulti;
 class UtilCursorButtonMgr;
 
-class LayoutBase : public Multi2D   // vtbl Address: 0x100E2A2C
+class AnimLayoutBase : public Multi2D   // vtbl Address: 0x100E2A2C
 {
 public:
     // Address: 0x02672F04
-    LayoutBase(Animation* p_anim_buf, s32 anim_buf_size);
+    AnimLayoutBase(Animation* p_anim_buf, s32 anim_buf_size);
     // Address: 0x02672F80
-    virtual ~LayoutBase();
+    virtual ~AnimLayoutBase();
 
     // Address: 0x02673008
     void readResource(const sead::SafeString& res_name);
@@ -193,13 +193,13 @@ public:
 protected:
     ArcResAccMulti* mpResAcc;
 };
-static_assert(sizeof(LayoutBase) == 0xE8C);
+static_assert(sizeof(AnimLayoutBase) == 0xE8C);
 
-class PartsLayoutBase : public Multi2D   // vtbl Address: 0x100E29D0
+class PartsAnimLayoutBase : public Multi2D  // vtbl Address: 0x100E29D0
 {
 public:
     // Address: 0x02673124
-    PartsLayoutBase(Animation* p_anim_buf, s32 anim_buf_size);
+    PartsAnimLayoutBase(Animation* p_anim_buf, s32 anim_buf_size);
 
     // Address: 0x026731A0
     void createLayoutObj(const Multi2D& p_parent, const sead::SafeString& parts_name);
@@ -208,14 +208,14 @@ protected:
     // Address: 0x02673198
     void setLayoutObj_(LayoutObj* p_obj);
 };
-static_assert(sizeof(PartsLayoutBase) == 0xE88);
+static_assert(sizeof(PartsAnimLayoutBase) == 0xE88);
 
 template <s32 N>
-class AnimLayout : public LayoutBase
+class AnimLayout : public AnimLayoutBase
 {
 public:
     AnimLayout()
-        : LayoutBase(mAnimation, N)
+        : AnimLayoutBase(mAnimation, N)
     {
     }
 
@@ -224,11 +224,11 @@ protected:
 };
 
 template <s32 N>
-class AnimPartsLayout : public PartsLayoutBase
+class PartsAnimLayout : public PartsAnimLayoutBase
 {
 public:
-    AnimPartsLayout()
-        : PartsLayoutBase(mAnimation, N)
+    PartsAnimLayout()
+        : PartsAnimLayoutBase(mAnimation, N)
     {
     }
 
