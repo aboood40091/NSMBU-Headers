@@ -6,6 +6,8 @@
 
 class RenderObjBase
 {
+    // getRuntimeTypeInfoStatic()::typeInfo initialization guard variable   Address: 0x101E9D00
+    // getRuntimeTypeInfoStatic()::typeInfo                                 Address: 0x101E9F94
     SEAD_RTTI_BASE(RenderObjBase)
 
 public:
@@ -21,6 +23,8 @@ class RenderMgr;
 
 class RenderObj : public RenderObjBase
 {
+    // getRuntimeTypeInfoStatic()::typeInfo initialization guard variable   Address: 0x101E9D04
+    // getRuntimeTypeInfoStatic()::typeInfo                                 Address: 0x101E9F98
     SEAD_RTTI_OVERRIDE(RenderObj, RenderObjBase)
 
 public:

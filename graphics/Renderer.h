@@ -16,6 +16,12 @@ enum    UnitID;
 
 class Renderer
 {
+    // createInstance()                             Address: 0x024FA650
+    // deleteInstance()                             Address: Deleted
+    // sInstance                                    Address: 0x101D2D88
+    // SingletonDisposer_::~SingletonDisposer_()    Address: 0x024FAE28
+    // SingletonDisposer_::sStaticDisposer          Address: 0x101D2D8C
+    // SingletonDisposer_::vtbl                     Address: 0x100BDA98
     SEAD_SINGLETON_DISPOSER(Renderer)
 
 public:
@@ -48,21 +54,32 @@ public:
     };
 
 public:
+    // Address: 0x024FA5A0
     Renderer();
+    // Address: 0x024FA6D0
     ~Renderer();
 
+    // Address: 0x024FA748
     void setViewBoundBox(const sead::BoundBox2f& box);
 
+    // Address: 0x024FA76C
     void calcForAreaTask();
 
+    // Address: 0x024FAA50
     void setLayer(agl::lyr::Layer* p_layer, GatherType type);
+    // Address: 0x024FAB4C
     void resetLayer();
 
+    // Address: 0x024FAB58
     void drawModel(Model* p_model);
+    // Address: 0x024FAC98
     void drawModel(const BasicModel* p_model);
+    // Address: 0x024FACA0
     void drawModel(ModelFFL* p_model);
 
+    // Address: 0x024FAD28
     void drawActorBgUnit(UnitID unit, const sead::Vector3f& pos, Angle angle, const sead::Vector3f& scale);
+    // Address: 0x024FADD8
     void drawActorBgUnitLayer0(UnitID unit, const sead::Vector3f& pos, Angle angle, const sead::Vector3f& scale);
 
 private:
