@@ -54,7 +54,7 @@ public:
     virtual ~RenderObjLayer();
 
     u32 getRenderStepNum() const override { return cRenderStep_Num; }
-    void getRenderStepName(sead::SafeString* p_name, s32 idx) const override;
+    sead::SafeString getRenderStepName(s32 idx) const override;
     void initialize(sead::Heap* heap) override;
     bool isRenderStepGPUCalc(s32 idx) override { return idx == cRenderStep_UpdateGPUBuffer; }
 
