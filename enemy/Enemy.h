@@ -13,6 +13,10 @@ class Enemy : public ActorMultiState    // vtbl Address: 0x1007209C
     SEAD_RTTI_OVERRIDE(Enemy, ActorMultiState)
 
 public:
+    // Address: 0x10200DD8
+    static const Angle cBaseAngleY[DIRECTION_NUM_X];
+
+public:
     enum FumiType
     {
         cFumiType_Hit = 0,
