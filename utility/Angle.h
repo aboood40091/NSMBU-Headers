@@ -53,9 +53,19 @@ public:
         return mValue + rhs.mValue;
     }
 
+    Angle operator+(s32 rhs)
+    {
+        return mValue + rhs;
+    }
+
     Angle operator-(const Angle& rhs)
     {
         return mValue - rhs.mValue;
+    }
+
+    Angle operator-(s32 rhs)
+    {
+        return mValue - rhs;
     }
 
     bool operator==(const Angle& rhs) const
@@ -63,9 +73,19 @@ public:
         return mValue == rhs.mValue;
     }
 
+    bool operator==(s32 rhs) const
+    {
+        return mValue == rhs;
+    }
+
     bool operator!=(const Angle& rhs) const
     {
         return mValue != rhs.mValue;
+    }
+
+    bool operator!=(s32 rhs) const
+    {
+        return mValue != rhs;
     }
 
 public:
