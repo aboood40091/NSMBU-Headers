@@ -8,6 +8,7 @@
 #include <map/WaterType.h>
 #include <system/LineNodeMgr.h>
 #include <utility/Angle.h>
+#include <utility/Direction.h>
 
 #include <container/seadPtrArray.h>
 #include <container/seadSafeArray.h>
@@ -82,13 +83,13 @@ public:
         bool checkRightWall()   const { return mFlag & cFlag_WallRCollision; }
         bool checkLeftWall()    const { return mFlag & cFlag_WallLCollision; }
 
-        bool checkWall(u8 direction)
+        bool checkWall(u8 direction) const
         {
             switch (direction)
             {
-            case 0:     return checkRightWall();
-            case 1:     return checkLeftWall();
-            default:    return false;
+            case DIRECTION_RIGHT:   return checkRightWall();
+            case DIRECTION_LEFT:    return checkLeftWall();
+            default:                return false;
             }
         }
 

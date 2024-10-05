@@ -2,6 +2,7 @@
 
 #include <actor/ActorBase.h>
 #include <collision/ActorCollisionCheck.h>
+#include <utility/Direction.h>
 
 #include <math/seadVector.h>
 
