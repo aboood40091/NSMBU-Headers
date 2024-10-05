@@ -2,6 +2,7 @@
 
 #include <actor/ActorBase.h>
 #include <collision/ActorCollisionCheck.h>
+#include <utility/Angle3.h>
 #include <utility/Direction.h>
 
 #include <math/seadVector.h>
@@ -149,8 +150,8 @@ protected:
     sead::Vector3f          mSpeed;
     sead::Vector3f          mSpeedMax;
     sead::Vector3f          mScale;
-    sead::Vector3u          mAngle;
-    sead::Vector3u          mAnglePrev;
+    Angle3                  mAngle;
+    Angle3                  mAnglePrev;
     sead::Vector2f          mPosDelta;
     ActorCollisionCheck     mCollisionCheck;
     struct

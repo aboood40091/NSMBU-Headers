@@ -11,13 +11,6 @@ public:
     {
     }
 
-    Angle3(s32 x, s32 y, s32 z)
-        : mX(x)
-        , mY(y)
-        , mZ(z)
-    {
-    }
-
     Angle3(const Angle& x, const Angle& y, const Angle& z)
         : mX(x)
         , mY(y)

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <utility/Angle3.h>
+
 #include <common/aglShaderProgramArchive.h>
 #include <heap/seadHeap.h>
 #include <math/seadVector.h>
@@ -18,5 +20,5 @@ public:
     BgRenderer();
     ~BgRenderer();
 
-    void drawActorBgUnit(LayerID layer, UnitID unit, const sead::Vector3f& pos, const sead::Vector3u& rot, const sead::Vector3f& scale);
+    void drawActorBgUnit(LayerID layer, UnitID unit, const sead::Vector3f& pos, const Angle3& rot, const sead::Vector3f& scale);
 };

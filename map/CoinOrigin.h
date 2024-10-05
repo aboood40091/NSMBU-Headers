@@ -1,6 +1,6 @@
 #pragma once
 
-#include <utility/Angle.h>
+#include <utility/Angle3.h>
 
 #include <gfx/seadCamera.h>
 #include <gfx/seadProjection.h>
@@ -41,9 +41,9 @@ public:
         return mCoinAngle;
     }
 
-    sead::Vector3u getCoinRotation() const
+    Angle3 getCoinRotation() const
     {
-        return sead::Vector3u(0, mCoinAngle, 0);
+        return Angle3(0, mCoinAngle, 0);
     }
 
 private:
