@@ -21,7 +21,12 @@ public:
     }
 
     // Address: 0x0232AB5C
-    virtual void updateFromScale(const sead::Vector3f& scale); // Unsure if parameter is Vec3 or EnemyActorScaler ref
+    virtual void updateFromOwnerScale(const EnemyActorScaler& other);
+
+    void updateFromOwnerScale()
+    {
+        updateFromOwnerScale(*this);
+    }
 
 protected:
     sead::Vector3f  mScale;

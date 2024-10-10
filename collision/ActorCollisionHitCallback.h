@@ -6,8 +6,7 @@ class Actor;
 class ActorCollisionCheck;
 class BgCollision;
 
-// Actual name is ActorCollision{Something}, comes after ActorCollisionCheckMgr
-class CollisionCallback
+class ActorCollisionHitCallback
 {
 public:
     // Address: 0x0219E7E8
@@ -26,4 +25,4 @@ public:
     virtual void bcCallback3(BgCollision*, const sead::Vector2f&) { }
     virtual void bcCallback4(BgCollision*, const sead::Vector2f&) { }
 };
-static_assert(sizeof(CollisionCallback) == 4);
+static_assert(sizeof(ActorCollisionHitCallback) == 4);

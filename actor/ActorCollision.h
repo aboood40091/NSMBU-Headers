@@ -119,8 +119,8 @@ public:
 protected:
     u32                         _27C;
     ActorBgCollisionObjCheck    mBgCheck;
-    f32                         _1760;
-    f32                         _1764;
+    f32                         mAdditionalSpeedF;
+    f32                         mAdditionalAccelF;
     sead::Vector3f*             _1768;
     u8                          _176C;
     u32                         _1770;
@@ -131,8 +131,8 @@ protected:
     f32                         mSpeedYMin;
     f32                         _1790;
     u8                          _1794;
-    u8                          _1795;
-    u8                          _1796;
+    bool                        mIsInQuicksand;
+    bool                        mIsInLiquid;
     u8                          _1797;
     u8                          _1798;
     u8                          _1799;

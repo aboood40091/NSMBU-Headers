@@ -10,6 +10,7 @@
 class ActorBgCollisionCheck;
 class GenericChibiEatData;
 class GenericEatData;
+class PropelParts;
 
 class Actor : public ActorBase  // vtbl Address: 0x10000268
 {
@@ -186,9 +187,9 @@ protected:
     sead::Vector3f          _258;
     GenericEatData*         mpEatData;
     GenericChibiEatData*    mpChibiEatData;
-    u32                     _26c;
+    PropelParts*            mpPropelParts;
     u8*                     _270;                       // Inited to ActorCreateParam::_28
-    f32                     _274;
+    f32                     mJumpAddSpeed;
     void*                   mpChibiBubbleData;
 };
 static_assert(sizeof(Actor) == 0x27C);

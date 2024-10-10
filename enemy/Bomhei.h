@@ -1,7 +1,7 @@
 #pragma once
 
 #include <actor/Profile.h>
-#include <collision/CollisionCallback.h>
+#include <collision/ActorCollisionHitCallback.h>
 #include <effect/LevelEffect.h>
 #include <enemy/CarryEnemy.h>
 #include <enemy/EnemyActorScaler.h>
@@ -10,7 +10,7 @@
 #include <graphics/Light.h>
 #include <map_obj/MaskDraw.h>
 
-class BomheiCB : public CollisionCallback
+class BomheiCB : public ActorCollisionHitCallback
 {
 public:
     // Address: 0x022D053C
@@ -235,7 +235,7 @@ protected:
     Light               mLight;
     LevelEffect         mEffect;
     EnemyActorScaler    mScaler;
-    BomheiCB            mCollisionCB;
+    BomheiCB            mCollisionHitCallback;
     f32                 _1a44;
     ActorState*         mpKoopaJr;
     ActorCollisionCheck mCollisionCheck2;

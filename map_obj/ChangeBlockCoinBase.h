@@ -1,11 +1,11 @@
 #pragma once
 
-#include <collision/CollisionCallback.h>
+#include <collision/ActorCollisionHitCallback.h>
 #include <map/UnitID.h>
 #include <map_obj/BlockCoinBase.h>
 #include <map_obj/ParentMovementMgr.h>
 
-class ChangeBlockCoinBaseCB : public CollisionCallback
+class ChangeBlockCoinBaseCB : public ActorCollisionHitCallback
 {
 public:
     bool bcCallback1(BgCollision*, const sead::Vector2f&) override;
@@ -46,7 +46,7 @@ protected:
     ParentMovementType              mParentMovementType;
     u32                             mParentMovementID;
     u8                              _1c7c[0x1CA0 - 0x1C7C];
-    ChangeBlockCoinBaseCB           mCollisionCallback;
-    u8 _1ca4[4];
+    ChangeBlockCoinBaseCB           mCollisionHitCallback;
+    u8                              _1ca4[4];
 };
 static_assert(sizeof(ChangeBlockCoinBase) == 0x1CA8);

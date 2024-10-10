@@ -9,7 +9,7 @@
 #include <prim/seadBitFlag.h>
 
 class Actor;
-class CollisionCallback;
+class ActorCollisionHitCallback;
 
 class ActorCollisionCheck : public sead::IDisposer  // vtbl Address: 0x10041C18
 {
@@ -48,11 +48,11 @@ public:
     virtual ~ActorCollisionCheck();
 
     // Address: 0x0219AF1C
-    void set(Actor* p_owner, const Info& info, CollisionCallback* p_callbacks = nullptr);
+    void set(Actor* p_owner, const Info& info, ActorCollisionHitCallback* p_actor_hit_callback = nullptr);
     // Address: 0x0219B010
-    void set(Actor* p_owner, const Info& info, const sead::BitFlag8& collision_mask, CollisionCallback* p_callbacks = nullptr);
+    void set(Actor* p_owner, const Info& info, const sead::BitFlag8& collision_mask, ActorCollisionHitCallback* p_actor_hit_callback = nullptr);
     // Address: 0x0219B054
-    void set(Actor* p_owner, const Info& info, const sead::BitFlag8& collision_mask, u8 layer, CollisionCallback* p_callbacks = nullptr);
+    void set(Actor* p_owner, const Info& info, const sead::BitFlag8& collision_mask, u8 layer, ActorCollisionHitCallback* p_actor_hit_callback = nullptr);
 
     // Address: 0x0219B434
     f32 getTopPos() const;
@@ -82,9 +82,9 @@ public:
         return mCollisionMask.getDirect() != 0;
     }
 
-    CollisionCallback* getCollisionCallback() const
+    ActorCollisionHitCallback* getActorHitCallback() const
     {
-        return mpCallbacks;
+        return mpActorHitCallback;
     }
 
     const Info& getInfo() const
@@ -145,7 +145,7 @@ private:
     sead::BitFlag8              mCollisionMask;
     u8                          mLayer;
     u8                          mFlag;
-    CollisionCallback*          mpCallbacks;
+    ActorCollisionHitCallback*  mpActorHitCallback;
     Info                        mInfo;
     sead::SafeArray<f32, 4>     mDaikei;
     sead::UnsafeArray<f32, 15>  _b0;

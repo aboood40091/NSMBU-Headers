@@ -3,13 +3,13 @@
 #include <actor/GenericChibiEatData.h>
 #include <actor/GenericEatData.h>
 #include <actor/Profile.h>
-#include <collision/CollisionCallback.h>
+#include <collision/ActorCollisionHitCallback.h>
 #include <effect/LevelEffect.h>
 #include <enemy/Enemy.h>
 #include <enemy/EnemyActorScaler.h>
 #include <graphics/Light.h>
 
-class BirikyuCB : public CollisionCallback
+class BirikyuCB : public ActorCollisionHitCallback
 {
 public:
     // Address: 0x022CF75C
@@ -118,7 +118,7 @@ protected:
     Light               mLight;
     u8                  _1994; // bool?
     ActorCollisionCheck mCollisionCheck2;
-    BirikyuCB           mCollisionCB;
+    BirikyuCB           mCollisionHitCallback;
     EnemyActorScaler    mScaler;
     s32                 mTouchTimer;
     bool                mIsTouchDone;

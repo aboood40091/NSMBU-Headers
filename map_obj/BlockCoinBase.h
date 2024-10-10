@@ -114,7 +114,7 @@ protected:
     u32                             mSpawnDirection;
     u8                              _1ac4;
     u32                             _1ac8;
-    u8                              _1acc;
+    bool                            mBlockHitNotBoundable;
     u8                              _1acd;
     u8                              _1ace;
     u8                              _1acf;

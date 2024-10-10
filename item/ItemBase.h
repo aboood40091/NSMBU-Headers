@@ -2,12 +2,12 @@
 
 #include <actor/ActorState.h>
 
-class Yoshi;
+class YoshiObject;
 
 class ItemBase : public ActorMultiState
 {
     SEAD_RTTI_OVERRIDE(ItemBase, ActorMultiState)
 
 public:
-    Yoshi* getEatenByYoshi() const;
+    YoshiObject* getEatenByYoshi() const;
 };
