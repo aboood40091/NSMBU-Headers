@@ -698,13 +698,13 @@ extern const s32 c156;                                      // 342
 // Address: 0x100042B0
 extern const s32 c157;                                      // 343
 // Address: 0x100042B4
-extern const s32 c158;                                      // 344
+extern const s32 cSwitchHatenaButton;                       // 344
 // Address: 0x100042B8
-extern const s32 c159;                                      // 345
+extern const s32 cSwitchPbutton;                            // 345
 // Address: 0x100042BC
-extern const s32 c15A;                                      // 346
+extern const s32 cSwitchPbuttonRDash;                       // 346
 // Address: 0x100042C0
-extern const s32 c15B;                                      // 347
+extern const s32 cSwitchPbuttonNoWallKick;                  // 347
 // Address: 0x100042C4
 extern const s32 c15C;                                      // 348
 // Address: 0x100042C8
