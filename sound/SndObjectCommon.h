@@ -62,3 +62,50 @@ protected:
     sead::Vector2f      mPos;
 };
 static_assert(sizeof(NMSndObject) == 0x11C);
+
+class NMSndObjectCmn : public NMSndObjectBase   // vtbl Address: 0x1017DDEC
+{
+public:
+    static const u32 cPlayableSoundNum = 12;
+    static const u32 cHandleNum = cPlayableSoundNum + cExtraHandleNum;
+
+public:
+    class SoundHandlePrm    // Name unknown
+    {
+    public:
+        SoundHandlePrm()
+            : mIndex(-1)
+            , _c(1.0f)
+            , mPriority(64)
+        {
+        }
+
+    private:
+        nw::snd::SoundHandle    mSoundHandle;
+        s32                     mIndex;
+        f32                     mVolume;
+        f32                     _c;
+        s32                     mPriority;
+
+        friend class NMSndObjectCmn;
+    };
+    static_assert(sizeof(SoundHandlePrm) == 0x14);
+
+public:
+    // Address: 0x029BD358
+    NMSndObjectCmn(nw::snd::OutputLine line_flag);
+
+    // Address: 0x029BD65C
+    virtual nw::snd::SoundHandle* startSound(const char* label, const sead::Vector2f& pos, nw::snd::OutputLine line_flag);
+    // Address: 0x029BDA2C
+    virtual nw::snd::SoundHandle* startSound(const char* label, const sead::Vector2f& pos, s16 seq_var, nw::snd::OutputLine line_flag);
+
+    // Address: 0x029BDE98
+    void holdSound(const char* label, s32 handle_index, const sead::Vector2f& pos, nw::snd::OutputLine line_flag);
+    // Address: 0x029BE094
+    void holdSound(const char* label, s32 handle_index, const sead::Vector2f& pos, s16 seq_var, nw::snd::OutputLine line_flag);
+
+protected:
+    SoundHandlePrm  mSoundHandlePrm[cHandleNum];
+};
+static_assert(sizeof(NMSndObjectCmn) == 0x18C);
