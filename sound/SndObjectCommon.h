@@ -109,3 +109,41 @@ protected:
     SoundHandlePrm  mSoundHandlePrm[cHandleNum];
 };
 static_assert(sizeof(NMSndObjectCmn) == 0x18C);
+
+class NMNonPosSndObject : public NMSndObjectBase   // vtbl Address: 0x1017DE34
+{
+public:
+    class SoundHandlePrm
+    {
+    public:
+        SoundHandlePrm()
+        {
+        }
+
+    private:
+        nw::snd::SoundHandle    mSoundHandle;
+
+        friend class NMNonPosSndObject;
+    };
+    static_assert(sizeof(SoundHandlePrm) == 4);
+
+public:
+    // Address: 0x029BE2F0
+    NMNonPosSndObject(nw::snd::OutputLine line_flag, s32 playable_sound_num);
+    // Address: 0x029BE3A4
+    virtual ~NMNonPosSndObject();
+
+    // Address: 0x029BE428
+    virtual nw::snd::SoundHandle* startSound(const char* label, nw::snd::OutputLine line_flag);
+    // Address: Deleted
+    virtual nw::snd::SoundHandle* startSound(const char* label, s16 seq_var, nw::snd::OutputLine line_flag);
+
+    // Address: 0x029BE578
+    virtual void holdSound(const char* label, nw::snd::OutputLine line_flag);
+    // Address: 0x029BE648
+    virtual void holdSound(const char* label, s16 seq_var, nw::snd::OutputLine line_flag);
+
+protected:
+    SoundHandlePrm* mpSoundHandlePrm;
+};
+static_assert(sizeof(NMNonPosSndObject) == 0x78);
