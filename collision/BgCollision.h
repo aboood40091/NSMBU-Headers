@@ -212,6 +212,16 @@ public:
         mCallbackFlag.setDirect(flag);
     }
 
+    void resetCallbackFlag(u32 mask)
+    {
+        mCallbackFlag.reset(mask);
+    }
+
+    void clearCallbackFlag()
+    {
+        mCallbackFlag.makeAllZero();
+    }
+
     void setCallback(Callback callback_foot, Callback callback_head, CallbackWall callback_wall)
     {
         mCallbackFoot = callback_foot;
