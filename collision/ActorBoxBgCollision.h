@@ -10,6 +10,11 @@ class ActorBoxBgCollision : public SimpleBoxBgCollision
     SEAD_RTTI_OVERRIDE(ActorBoxBgCollision, SimpleBoxBgCollision)
 
 public:
+    void setOfs(const sead::Vector2f& p0, const sead::Vector2f& p1) // left top and right bottom
+    {
+        LoopRideLineBgCollisionUtil::setOfs(this, p0, p1);
+    }
+
     void setCommon(const FollowArg& follow_arg, const BoxInitArg& init_arg)
     {
         LoopRideLineBgCollisionUtil::setCommon(this, follow_arg, init_arg);
@@ -18,11 +23,6 @@ public:
     void set(Actor* p_owner, const BoxInitArg& arg)
     {
         LoopRideLineBgCollisionUtil::set(this, p_owner, arg);
-    }
-
-    void setOfs(const sead::Vector2f& p0, const sead::Vector2f& p1) // left top and right bottom
-    {
-        LoopRideLineBgCollisionUtil::setOfs(this, p0, p1);
     }
 };
 static_assert(sizeof(ActorBoxBgCollision) == sizeof(SimpleBoxBgCollision));
