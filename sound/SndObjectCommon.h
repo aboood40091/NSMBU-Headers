@@ -74,7 +74,7 @@ public:
     {
     public:
         SoundHandlePrm()
-            : mIndex(-1)
+            : mID(-1)
             , _c(1.0f)
             , mPriority(64)
         {
@@ -82,7 +82,7 @@ public:
 
     private:
         nw::snd::SoundHandle    mSoundHandle;
-        s32                     mIndex;
+        s32                     mID;
         f32                     mVolume;
         f32                     _c;
         s32                     mPriority;
@@ -101,9 +101,9 @@ public:
     virtual nw::snd::SoundHandle* startSound(const char* label, const sead::Vector2f& pos, s16 seq_var, nw::snd::OutputLine line_flag);
 
     // Address: 0x029BDE98
-    void holdSound(const char* label, s32 handle_index, const sead::Vector2f& pos, nw::snd::OutputLine line_flag);
+    void holdSound(const char* label, s32 handle_id, const sead::Vector2f& pos, nw::snd::OutputLine line_flag);
     // Address: 0x029BE094
-    void holdSound(const char* label, s32 handle_index, const sead::Vector2f& pos, s16 seq_var, nw::snd::OutputLine line_flag);
+    void holdSound(const char* label, s32 handle_id, const sead::Vector2f& pos, s16 seq_var, nw::snd::OutputLine line_flag);
 
 protected:
     SoundHandlePrm  mSoundHandlePrm[cHandleNum];
