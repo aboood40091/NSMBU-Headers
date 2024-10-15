@@ -27,7 +27,7 @@ protected:
     s32 draw_() override;
 
 public:
-    void setBelowSensor() override;
+    void setFootSensor() override;
     void spawnItemUp() override;
     void spawnItemDown() override;
     void vf1CC() override;
@@ -39,7 +39,7 @@ public:
     virtual void vf2DC();
     virtual u8 getContent();
     virtual void vf2EC();
-    virtual void vf2F4(void*);
+    virtual sead::Vector3f getPosForSomething() const;
     virtual void executeBlock();
     virtual void destroy();
     virtual void destroy2();
@@ -52,11 +52,11 @@ public:
     DECLARE_STATE_VIRTUAL_ID_BASE(ActorBlockBase, HitWait)
 
 protected:
-    f32     _1ca8;
-    f32     _1cac;
-    f32     _1cb0;
-    f32     _1cb4;
-    f32     _1cb8;
+    f32     mItemCreateZPos;
+    f32     mItemCreateAddYPosUp1;
+    f32     mItemCreateAddYPosDown1;
+    f32     mItemCreateAddYPosUp2;
+    f32     mItemCreateAddYPosDown2;
     Type    mType;
     u32     _1cc0;
     u8      _1cc4;

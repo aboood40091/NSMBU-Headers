@@ -41,11 +41,11 @@ public:
 
     void spawnJumpdai();
     void spawnYoshiEgg(bool multi);
-    void spawnVine();
+    void spawnVine(u8);
     void spawnPowerup(const sead::Vector3f& pos, u32, u32, bool spawn_as_child);
     void spawnMultiPowerup(const sead::Vector3f& pos, u32, u32, bool spawn_as_child);
 
-    virtual void vf18C();
+    virtual void initializeHeadSensor();    // Maybe
     virtual void vf194();
     virtual void setFootSensor();
     virtual void vf1A4();
@@ -75,12 +75,34 @@ public:
     static void callbackHead_Hit(BgCollision* self, ActorBgCollisionCheck* other);
     static void callBackWall_Hit(BgCollision* self, ActorBgCollisionCheck* other, u8 direction);
 
+    void updateBoxBgCollisionOfs()
+    {
+        mBoxBgCollision.setOfs(mBoxBgCollision_Ofs.p0, mBoxBgCollision_Ofs.p1);
+    }
+
+    void setBoxBgCollisionOfs(f32 left, f32 top, f32 right, f32 bottom)
+    {
+        mBoxBgCollision_Ofs.p0.set(left, top);
+        mBoxBgCollision_Ofs.p1.set(right, bottom);
+        updateBoxBgCollisionOfs();
+    }
+
+    void setBoxBgCollisionOfs(const sead::Vector2f& p0, const sead::Vector2f& p1)
+    {
+        mBoxBgCollision_Ofs.p0 = p0;
+        mBoxBgCollision_Ofs.p1 = p1;
+        updateBoxBgCollisionOfs();
+    }
+
 protected:
-    ActorBgCollisionCheck::Sensor   _17c8;
-    u8                              _17d4[4];
+    ActorBgCollisionCheck::Sensor   mHeadSensor;
+    u32                             _17d4[4 / sizeof(u32)];
     ActorBoxBgCollision             mBoxBgCollision;
-    sead::Vector2f                  _1a68;
-    sead::Vector2f                  _1a70;
+    struct
+    {
+        sead::Vector2f  p0;
+        sead::Vector2f  p1;
+    }                               mBoxBgCollision_Ofs;
     f32                             _1a78;
     f32                             _1a7c;
     f32                             _1a80;
@@ -110,14 +132,14 @@ protected:
     u8                              _1ab3;
     u32                             _1ab4;
     Content                         mContent;
-    u32                             mHitPlayerNo;
+    s32                             mHitPlayerNo;
     u32                             mSpawnDirection;
     u8                              _1ac4;
     u32                             _1ac8;
     bool                            mBlockHitNotBoundable;
     u8                              _1acd;
     u8                              _1ace;
-    u8                              _1acf;
+    bool                            mNoAddScoreOnDestroy;
     f32                             _1ad0;
     f32                             _1ad4;
     f32                             _1ad8;
@@ -126,7 +148,7 @@ protected:
     u32                             _1ae4;
     u32                             _1ae8;
     u32                             _1aec;
-    s8                              _1af0[48];
+    sead::SafeArray<s8[12], 4>      _1af0;
     u8                              _1b20;
     u32                             _1b24;
 };

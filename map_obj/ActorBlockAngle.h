@@ -17,7 +17,7 @@ protected:
 
 public:
     u8 getContent() override;
-    void vf2F4(void*) override;
+    sead::Vector3f getPosForSomething() const override;
     void executeBlock() override;
 };
 static_assert(sizeof(ActorBlockAngle) == sizeof(ActorBlockBase));
