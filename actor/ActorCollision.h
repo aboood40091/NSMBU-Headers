@@ -30,7 +30,7 @@ protected:
 public:
     ActorBgCollisionCheck* getBgCheck() override
     {
-        return &mBgCheck;
+        return &mBgCheckObj;
     }
 
     virtual void vf10C(u8 unk)
@@ -118,7 +118,7 @@ public:
 
 protected:
     u32                         _27C;
-    ActorBgCollisionObjCheck    mBgCheck;
+    ActorBgCollisionObjCheck    mBgCheckObj;
     f32                         mAdditionalSpeedF;
     f32                         mAdditionalAccelF;
     sead::Vector3f*             _1768;
