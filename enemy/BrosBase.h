@@ -76,15 +76,15 @@ public:
     // Address: 0x022DB954
     bool hitCallback_ChibiYoshiGlow(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other) override; // I think
 
-    // StateID_DieFumi          Address: 0x101ff488
-    // initializeState_DieFumi  Address: 0x022dce14
-    // executeState_DieFumi     Address: 0x022dcea8
-    // finalizeState_DieFumi    Address: 0x022de860
+    // StateID_DieFumi          Address: 0x101FF488
+    // initializeState_DieFumi  Address: 0x022DCE14
+    // executeState_DieFumi     Address: 0x022DCEA8
+    // finalizeState_DieFumi    Address: 0x022DE860
     DECLARE_STATE_VIRTUAL_ID_OVERRIDE(BrosBase, DieFumi)
-    // StateID_DieFall          Address: 0x101ff4ac
-    // initializeState_DieFall  Address: 0x022dcef4
-    // executeState_DieFall     Address: 0x022dcf88
-    // finalizeState_DieFall    Address: 0x022de864
+    // StateID_DieFall          Address: 0x101FF4AC
+    // initializeState_DieFall  Address: 0x022DCEF4
+    // executeState_DieFall     Address: 0x022DCF88
+    // finalizeState_DieFall    Address: 0x022DE864
     DECLARE_STATE_VIRTUAL_ID_OVERRIDE(BrosBase, DieFall)
 
 public:
