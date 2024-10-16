@@ -9,7 +9,7 @@
 #include <enemy/EnemyActorScaler.h>
 #include <graphics/Light.h>
 
-class BirikyuCB : public ActorCollisionHitCallback
+class BirikyuCB : public ActorCollisionHitCallback  // vtbl Address: 0x1005CD9C
 {
 public:
     // Address: 0x022CF75C
@@ -17,7 +17,7 @@ public:
     // Address: 0x022CF7E8
     void ccCallback2(ActorCollisionCheck*, const sead::Vector2f&) override;
 };
-static_assert(sizeof(BirikyuCB) == 4);
+static_assert(sizeof(BirikyuCB) == sizeof(ActorCollisionHitCallback));
 
 class BasicModel;
 

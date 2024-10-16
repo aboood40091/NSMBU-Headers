@@ -10,9 +10,14 @@
 #include <graphics/Light.h>
 #include <map_obj/MaskDraw.h>
 
-class BomheiCB : public ActorCollisionHitCallback
+class BomheiCB : public ActorCollisionHitCallback   // vtbl Address: 0x1005D73C
 {
 public:
+    BomheiCB()
+        : _4(0)
+    {
+    }
+
     // Address: 0x022D053C
     bool ccCallback1(ActorCollisionCheck*, const sead::Vector2f&) override;
     // Address: 0x022D0584
