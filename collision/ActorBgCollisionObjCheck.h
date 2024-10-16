@@ -12,11 +12,19 @@ public:
     // Address: 0x021933C0
     ActorBgCollisionObjCheck();
 
-    // Address: 0x0219343C
-    u32 vf3C() override;
-    // Address: 0x02193444
-    u32 vf44() override;
-    // Address: 0x0219344C
-    u32 vf4C() override;
+    Actor* vf3C(f32) const override
+    {
+        return mpOwner;
+    }
+
+    Actor* vf44(const BgCollision&, s32) const override
+    {
+        return mpOwner;
+    }
+
+    u8* vf4C(f32) const override
+    {
+        return mFollowArg.p_player_no;
+    }
 };
 static_assert(sizeof(ActorBgCollisionObjCheck) == sizeof(ActorBgCollisionCheck));
