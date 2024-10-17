@@ -21,7 +21,7 @@ static_assert(sizeof(BirikyuCB) == sizeof(ActorCollisionHitCallback));
 
 class BasicModel;
 
-class Birikyu : public Enemy
+class Birikyu : public Enemy    // vtbl Address: 0x1005CDF4
 {
 public:
     // Address: 0x1005CC30
