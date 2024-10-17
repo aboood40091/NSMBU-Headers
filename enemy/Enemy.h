@@ -2,6 +2,7 @@
 
 #include <actor/ActorState.h>
 #include <enemy/EnemyDeathInfo.h>
+#include <enemy/IceMgr.h>
 #include <state/FStateVirtualID.h>
 
 class ActorCollisionCheck;
@@ -309,7 +310,7 @@ protected:
     EnemyDeathInfo  mDeathInfo;
     u16             _17e4[4];
     u32             _17e8;
-    u32             mIceMgr[0x50 / sizeof(u32)];            // TODO: IceMgr
+    IceMgr          mIceMgr;
     u32             mChibiBubbleData[0x20 / sizeof(u32)];   // TODO: ChibiBubbleData
 
     // This part is a struct
