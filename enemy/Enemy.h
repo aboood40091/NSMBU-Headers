@@ -279,7 +279,7 @@ public:
     // Address: 0x02328C50
     static void normal_collcheck(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
 
-    // Address: 0x2329A0C
+    // Address: 0x02329A0C
     static void iceballInvalid(ActorCollisionCheck* cc_other);
 
     // Address: 0x0232CBA4
@@ -293,7 +293,7 @@ public:
     // Address: 0x0232D31C
     void setDeathInfo_YoshiFumi(Actor*);
 
-    // Address: 0x2329AA8
+    // Address: 0x02329AA8
     void startSound(const char* name);
 
     // Address: 0x02329B88

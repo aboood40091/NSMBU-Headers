@@ -212,9 +212,9 @@ public:
     // finalizeState_Frozen     Address: 0x022D6634
     DECLARE_STATE_ID(Bomhei, Frozen)
 
-    // Address: 0x22D0680
+    // Address: 0x022D0680
     void activateFuse();
-    // Address: 0x22D0A30
+    // Address: 0x022D0A30
     void explode();
 
 protected:

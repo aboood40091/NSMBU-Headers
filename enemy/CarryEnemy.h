@@ -73,7 +73,7 @@ protected:
     // finalizeState_Kick   Address: 0x022ED07C
     DECLARE_STATE_VIRTUAL_ID_BASE(CarryEnemy, Kick)
 
-    // Address: 0x22EB1CC
+    // Address: 0x022EB1CC
     void forceDrop();
 
 protected:
