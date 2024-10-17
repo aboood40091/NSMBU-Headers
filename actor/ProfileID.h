@@ -212,27 +212,27 @@ extern const s32 c063;                                      //  99
 // Address: 0x10003EE4
 extern const s32 c064;                                      // 100
 // Address: 0x10003EE8
-extern const s32 c065;                                      // 101
+extern const s32 cKillerHoudai;                             // 101
 // Address: 0x10003EEC
-extern const s32 c066;                                      // 102
+extern const s32 cStretchKillerHoudai;                      // 102
 // Address: 0x10003EF0
-extern const s32 c067;                                      // 103
+extern const s32 cMagnumKillerHoudai;                       // 103
 // Address: 0x10003EF4
-extern const s32 c068;                                      // 104
+extern const s32 cMagnumKillerHoudaiDown;                   // 104
 // Address: 0x10003EF8
-extern const s32 c069;                                      // 105
+extern const s32 cSearchKillerHoudai;                       // 105
 // Address: 0x10003EFC
-extern const s32 c06A;                                      // 106
+extern const s32 cSearchMagnumKillerHoudai;                 // 106
 // Address: 0x10003F00
-extern const s32 c06B;                                      // 107
+extern const s32 cSearchMagnumKillerHoudaiDown;             // 107
 // Address: 0x10003F04
-extern const s32 c06C;                                      // 108
+extern const s32 cMagnumKillerHoudaiRDash;                  // 108
 // Address: 0x10003F08
-extern const s32 c06D;                                      // 109
+extern const s32 cMagnumKillerHoudaiDownRDash;              // 109
 // Address: 0x10003F0C
-extern const s32 c06E;                                      // 110
+extern const s32 cSearchMagnumKillerHoudaiRDash;            // 110
 // Address: 0x10003F10
-extern const s32 c06F;                                      // 111
+extern const s32 cSearchMagnumKillerHoudaiDownRDash;        // 111
 // Address: 0x10003F14
 extern const s32 c070;                                      // 112
 // Address: 0x10003F18
