@@ -103,15 +103,16 @@ public:
     };
     static_assert(sizeof(AttackMask) == 4);
 
-    enum InfoFlag
-    {
-        cInfoFlag_Passive   = 1 << 2    // If set, this instance does not trigger other instances
-    };
-
     typedef void (*HitCallback)(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
 
     struct Info
     {
+        enum Flag
+        {
+            cFlag_Passive   = 1 << 2    // If set, this instance does not trigger other instances
+        };
+        static_assert(sizeof(Flag) == 4);
+
         f32         center_offset_x;
         f32         center_offset_y;
         f32         half_size_x;
@@ -121,7 +122,7 @@ public:
         Attack      attack;             // Type of attack this instance performs
         TypeMask    type_mask;          // Mask of owner types to interact with
         AttackMask  attack_mask;        // Mask of attack types to receive
-        u32         flag;               // Sets allowed interactions, such as being pick-able
+        Flag        flag;               // Sets allowed interactions, such as being pick-able
         HitCallback callback;
 
         // Address: 0x10041BC0
