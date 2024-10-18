@@ -17,17 +17,20 @@ struct ActorCreateInfo
         cFlag_Unknown2          = 0x0100
     };
 
-    sead::Vector2i  offset;         // Offset to be added to the initial actor position
+    s32 offset_x;           // (X) Offset to be added to the initial actor position
+    s32 offset_y;           // (Y) ^^^
     struct
     {
-        sead::Vector2i offset;      // Offset to center of the spawn range bounding box
-        sead::Vector2i half_size;   // Half the size of the spawn range bounding box
-    }               spawn_range;
-    u16             _18;
-    u16             _1a;
-    u16             _1c;
-    u16             _1e;
-    u16             flag;           // See enum Flag
+        s32 offset_x;       // (X) Offset to center of the spawn range bounding box
+        s32 offset_y;       // (Y) ^^^
+        s32 half_size_x;    // (X) Half the size of the spawn range bounding box
+        s32 half_size_y;    // (Y) ^^^
+    }   spawn_range;
+    u16 _18;
+    u16 _1a;
+    u16 _1c;
+    u16 _1e;
+    u16 flag;               // See enum Flag
 
     // Address: 0x100018F4
     static const ActorCreateInfo cDefault;

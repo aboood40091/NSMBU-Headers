@@ -26,8 +26,6 @@ public:
 
     struct Info
     {
-        sead::Vector2f  center_offset;
-        sead::Vector2f  half_size;
         Shape           shape;
         u32             _14;
         u32             _18;
@@ -35,6 +33,10 @@ public:
         u32             collision_mask; // Sets allowed collisions, such as colliding with Yoshi
         u32             mask_2;         // Sets allowed interactions, such as being pick-able
         HitCallback     callback;
+        f32         center_offset_x;
+        f32         center_offset_y;
+        f32         half_size_x;
+        f32         half_size_y;
 
         // Address: 0x10041BC0
         static const Info cDefault;
