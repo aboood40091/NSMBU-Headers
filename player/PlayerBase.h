@@ -3,8 +3,12 @@
 #include <actor/Actor.h>
 #include <player/PlayerKey.h>
 
-class PlayerBase : public Actor
+class PlayerBase : public Actor // vtbl Address: 0x10166E84
 {
+    // getRuntimeTypeInfoStatic()::typeInfo initialization guard variable   Address: 0x101E9CCC
+    // getRuntimeTypeInfoStatic()::typeInfo                                 Address: 0x101E9CD0
+    SEAD_RTTI_OVERRIDE(PlayerBase, Actor)
+
 public:
     const PlayerKey& getPlayerKey() const
     {
