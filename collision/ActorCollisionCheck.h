@@ -21,22 +21,108 @@ public:
         cShape_DaikeiUD,    // Vertical Trapezoid
         cShape_DaikeiLR     // Horizontal Trapezoid
     };
+    static_assert(sizeof(Shape) == 4);
+
+    enum Type
+    {
+        cType_Generic   = 0,
+        cType_Player,
+        cType_Yoshi,
+        cType_Enemy,
+        // ...
+    };
+    static_assert(sizeof(Type) == 4);
+
+    enum TypeMask
+    {
+        cTypeMask_Generic   = 1 << cType_Generic,
+        cTypeMask_Player    = 1 << cType_Player,
+        cTypeMask_Yoshi     = 1 << cType_Yoshi,
+        cTypeMask_Enemy     = 1 << cType_Enemy,
+
+        cTypeMask_None      = 0,
+        cTypeMask_All       = 0xFFFFFFFF
+    };
+    static_assert(sizeof(TypeMask) == 4);
+
+    enum Attack
+    {
+        cAttack_Generic         = 0,
+        cAttack_Fire,
+        cAttack_Ice,
+        cAttack_Star,
+        cAttack_IceBreak,
+        cAttack_Slip,
+        cAttack_KoopaFire,
+        cAttack_HipAttk,
+        cAttack_WireNet,
+        cAttack_Shell,
+        cAttack_PenguinSlide,
+
+        cAttack_Spin            = 13,
+        cAttack_Explosion,
+
+        cAttack_PipeCannon      = 17,
+
+        cAttack_YoshiBullet     = 19,
+        cAttack_YoshiFire,
+        cAttack_YoshiIce,
+
+        cAttack_ChibiYoshiGlow  = 26,
+        // ... ?
+    };
+    static_assert(sizeof(Attack) == 4);
+
+    enum AttackMask
+    {
+        cAttackMask_Generic         = 1 << cAttack_Generic,
+        cAttackMask_Fire            = 1 << cAttack_Fire,
+        cAttackMask_Ice             = 1 << cAttack_Ice,
+        cAttackMask_Star            = 1 << cAttack_Star,
+        cAttackMask_IceBreak        = 1 << cAttack_IceBreak,
+        cAttackMask_Slip            = 1 << cAttack_Slip,
+        cAttackMask_KoopaFire       = 1 << cAttack_KoopaFire,
+        cAttackMask_HipAttk         = 1 << cAttack_HipAttk,
+        cAttackMask_WireNet         = 1 << cAttack_WireNet,
+        cAttackMask_Shell           = 1 << cAttack_Shell,
+        cAttackMask_PenguinSlide    = 1 << cAttack_PenguinSlide,
+
+        cAttackMask_Spin            = 1 << cAttack_Spin,
+        cAttackMask_Explosion       = 1 << cAttack_Explosion,
+
+        cAttackMask_PipeCannon      = 1 << cAttack_PipeCannon,
+
+        cAttackMask_YoshiBullet     = 1 << cAttack_YoshiBullet,
+        cAttackMask_YoshiFire       = 1 << cAttack_YoshiFire,
+        cAttackMask_YoshiIce        = 1 << cAttack_YoshiIce,
+
+        cAttackMask_ChibiYoshiGlow  = 1 << cAttack_ChibiYoshiGlow,
+
+        cAttackMask_None            = 0,
+        cAttackMask_All             = 0xFFFFFFFF
+    };
+    static_assert(sizeof(AttackMask) == 4);
+
+    enum InfoFlag
+    {
+        cInfoFlag_Passive   = 1 << 2    // If set, this instance does not trigger other instances
+    };
 
     typedef void (*HitCallback)(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
 
     struct Info
     {
-        Shape           shape;
-        u32             _14;
-        u32             _18;
-        u32             _1c;
-        u32             collision_mask; // Sets allowed collisions, such as colliding with Yoshi
-        u32             mask_2;         // Sets allowed interactions, such as being pick-able
-        HitCallback     callback;
         f32         center_offset_x;
         f32         center_offset_y;
         f32         half_size_x;
         f32         half_size_y;
+        Shape       shape;
+        Type        type;               // Type of the owner of this instance
+        Attack      attack;             // Type of attack this instance performs
+        TypeMask    type_mask;          // Mask of owner types to interact with
+        AttackMask  attack_mask;        // Mask of attack types to receive
+        u32         flag;               // Sets allowed interactions, such as being pick-able
+        HitCallback callback;
 
         // Address: 0x10041BC0
         static const Info cDefault;
@@ -140,9 +226,9 @@ private:
     u32                         _48;
     sead::Vector2f              _4C;
     sead::Vector2f              _54;
-    u32                         mHitFlag1;
-    u32                         mHitFlag2;
-    u32                         mHitFlag3;
+    TypeMask                    mHit;               // Owner types of others we've collided with
+    AttackMask                  mAttacksPerformed;  // Attacks performed on non-passive others
+    AttackMask                  mAttacksReceived;   // Attacks received from non-passive others
     u32                         _68;
     sead::BitFlag8              mCollisionMask;
     u8                          mLayer;
