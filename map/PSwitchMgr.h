@@ -42,6 +42,13 @@ public:
         return mEventFlag & (1ULL << event);
     }
 
+    u32 checkSwitch(SwType type);
+
+    bool isPSwitch()
+    {
+        return checkSwitch(SwType(0)) != 0;
+    }
+
 private:
     u64                                 mEventFlag;
     sead::SafeArray<Unk1, 64>           _18;
