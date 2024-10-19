@@ -592,7 +592,7 @@ extern const s32 c121;                                      // 289
 // Address: 0x100041DC
 extern const s32 c122;                                      // 290
 // Address: 0x100041E0
-extern const s32 c123;                                      // 291
+extern const s32 cActorBlockRenga;                          // 291
 // Address: 0x100041E4
 extern const s32 c124;                                      // 292
 // Address: 0x100041E8
@@ -800,7 +800,7 @@ extern const s32 c189;                                      // 393
 // Address: 0x1000437C
 extern const s32 c18A;                                      // 394
 // Address: 0x10004380
-extern const s32 c18B;                                      // 395
+extern const s32 cActorCoin;                                // 395
 // Address: 0x10004384
 extern const s32 c18C;                                      // 396
 // Address: 0x10004388
@@ -860,7 +860,7 @@ extern const s32 c1A7;                                      // 423
 // Address: 0x100043F4
 extern const s32 c1A8;                                      // 424
 // Address: 0x100043F8
-extern const s32 c1A9;                                      // 425
+extern const s32 cBlueCoin;                                 // 425
 // Address: 0x100043FC
 extern const s32 c1AA;                                      // 426
 // Address: 0x10004400
