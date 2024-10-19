@@ -42,7 +42,7 @@ struct MapActorData
 {
     // Speculated official name.
 
-    u16 id;
+    u16 type;
     struct
     {
         u16 x;
@@ -189,12 +189,12 @@ public:
         return mBlock[block];
     }
 
-    const DistantViewData* getBg2Data(u8 index) const;
-    const MapActorData* getMapActor(u8 index, void*) const;
-    const AreaData* getAreaData(u8 index, sead::BoundBox2f* p_box = nullptr) const;
-    const Location* getLocation(sead::BoundBox2f* p_box, u8 index) const;
-    const RailInfo* getRailInfo(u8 index) const;
-    const RailPoint* getRailPoint(u8 index) const;
+    const DistantViewData* getBg2Data(u16 id) const;
+    const MapActorData* getMapActor(u16 type, const MapActorData* p_start = nullptr) const;
+    const AreaData* getAreaData(u8 id, sead::BoundBox2f* p_box = nullptr) const;
+    const Location* getLocation(sead::BoundBox2f* p_box, u8 id) const;
+    const RailInfo* getRailInfo(u8 id) const;
+    const RailPoint* getRailPoint(u8 rail_id) const;
 
 private:
     void getAreaBox_(sead::BoundBox2f* p_box, const AreaData& area_data, f32 delta = 0.0f) const;
