@@ -110,7 +110,7 @@ public:
 
         BasicBgCollisionCheck tile_check(param);
 
-        sead::Vector2f a(mPos.x, mPos.y);
+        const sead::Vector2f& a = getPos2D();
         sead::Vector2f b(a + offset);
 
         return tile_check.checkArea(nullptr, a, b, 8);

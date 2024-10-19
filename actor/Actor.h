@@ -136,6 +136,11 @@ public:
         return mPos;
     }
 
+    const sead::Vector2f& getPos2D() const
+    {
+        return reinterpret_cast<const sead::Vector2f&>(mPos.x);
+    }
+
 protected:
     u32                     mDirection;
     u8                      mPlayerNo;
