@@ -127,9 +127,9 @@ protected:
     f32                         _1774;
     sead::Vector2f              _1778;
     sead::Vector2f              _1780;
-    f32                         mSpeedYMax;
-    f32                         mSpeedYMin;
-    f32                         _1790;
+    f32                         mLiquidSpeedMaxY_MaxClamp;
+    f32                         mLiquidSpeedMaxY_MinClamp;
+    f32                         mLiquidAccelY;
     u8                          _1794;
     bool                        mIsInQuicksand;
     bool                        mIsInLiquid;
