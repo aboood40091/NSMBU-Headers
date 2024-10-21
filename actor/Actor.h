@@ -149,8 +149,8 @@ protected:
     sead::BitFlag8          mCollisionMask;
     f32                     mSpeedF;                    // Horizontal speed
     f32                     mSpeedFMax;                 // Maximum horizontal speed
-    f32                     mAccelY;                    // Vertical acceleration
     f32                     mFallSpeedMax;              // Maximum fall speed
+    f32                     mAccelY;                    // Vertical acceleration
     f32                     mAccelF;                    // Horizontal acceleration
     sead::Vector3f          mPos;
     sead::Vector3f          mSpeed;
