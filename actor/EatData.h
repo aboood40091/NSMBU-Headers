@@ -4,11 +4,11 @@
 
 #include <math/seadVector.h>
 
-class GenericEatData    // vtbl Address: 0x10001594
+class EatData   // vtbl Address: 0x10001594
 {
 public:
     // Address: 0x0200D6C4
-    GenericEatData(ActorUniqueID owner_id);
+    EatData(ActorUniqueID owner_id);
 
     // Address: 0x0200D4B8
     virtual void* vf0C();
@@ -41,4 +41,4 @@ protected:
     sead::Vector3f  mScale;
     u32             mScore;
 };
-static_assert(sizeof(GenericEatData) == 0x24);
+static_assert(sizeof(EatData) == 0x24);

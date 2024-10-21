@@ -1,6 +1,6 @@
 #pragma once
 
-#include <actor/GenericEatData.h>
+#include <actor/EatData.h>
 #include <collision/ActorBgCollisionEnemyCheck.h>
 #include <collision/ActorCollisionHitCallback.h>
 #include <effect/LevelEffect.h>
@@ -270,7 +270,7 @@ protected:
     ActorUniqueID               mWeaponID;              // I think?
     bool                        _19b8;
     LevelEffect                 mEffect;
-    GenericEatData              mEatData;
+    EatData                     mEatData;
     u32                         _1a48;
     ActorBgCollisionEnemyCheck  mBgCheckEnemy;
     u32                         _2f30;

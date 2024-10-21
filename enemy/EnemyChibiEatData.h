@@ -1,10 +1,10 @@
 #pragma once
 
-#include <actor/GenericChibiEatData.h>
+#include <actor/ChibiEatData.h>
 
 class Enemy;
 
-class EnemyChibiEatData : public GenericChibiEatData    // vtbl Address: 0x10072738
+class EnemyChibiEatData : public ChibiEatData   // vtbl Address: 0x10072738
 {
 public:
     // Address: 0x0232ADAC
@@ -21,4 +21,4 @@ protected:
     // Address: 0x0232AE14
     Enemy* getOwner_() const;
 };
-static_assert(sizeof(EnemyChibiEatData) == sizeof(GenericChibiEatData));
+static_assert(sizeof(EnemyChibiEatData) == sizeof(ChibiEatData));

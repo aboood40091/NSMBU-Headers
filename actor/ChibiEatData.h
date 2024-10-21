@@ -4,11 +4,11 @@
 
 #include <math/seadVector.h>
 
-class GenericChibiEatData   // vtbl Address: 0x1000145C
+class ChibiEatData  // vtbl Address: 0x1000145C
 {
 public:
     // Address: 0x0200CF1C
-    GenericChibiEatData(ActorUniqueID owner_id);
+    ChibiEatData(ActorUniqueID owner_id);
 
     // Address: 0x0200D308
     virtual u32 vf0C();
@@ -33,4 +33,4 @@ protected:
     u32             _18;
     u32             mScore;
 };
-static_assert(sizeof(GenericChibiEatData) == 0x24);
+static_assert(sizeof(ChibiEatData) == 0x24);

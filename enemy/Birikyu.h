@@ -1,7 +1,7 @@
 #pragma once
 
-#include <actor/GenericChibiEatData.h>
-#include <actor/GenericEatData.h>
+#include <actor/ChibiEatData.h>
+#include <actor/EatData.h>
 #include <actor/Profile.h>
 #include <collision/ActorCollisionHitCallback.h>
 #include <effect/LevelEffect.h>
@@ -113,8 +113,8 @@ protected:
     s32                 mAttackTimer;
     u32                 _18fc;
     f32                 _1900;
-    GenericEatData      mEatData;
-    GenericChibiEatData mChibiEatData;
+    EatData             mEatData;
+    ChibiEatData        mChibiEatData;
     Light               mLight;
     u8                  _1994; // bool?
     ActorCollisionCheck mCollisionCheck2;

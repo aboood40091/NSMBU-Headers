@@ -1,10 +1,10 @@
 #pragma once
 
-#include <actor/GenericEatData.h>
+#include <actor/EatData.h>
 
 class Enemy;
 
-class EnemyEatData : public GenericEatData  // vtbl Address: 0x10072F9C
+class EnemyEatData : public EatData // vtbl Address: 0x10072F9C
 {
 public:
     // Address: 0x0232F00C
@@ -21,4 +21,4 @@ protected:
     // Address: 0x0232F074
     Enemy* getOwner_() const;
 };
-static_assert(sizeof(EnemyEatData) == sizeof(GenericEatData));
+static_assert(sizeof(EnemyEatData) == sizeof(EatData));

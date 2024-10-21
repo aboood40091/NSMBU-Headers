@@ -8,8 +8,8 @@
 #include <math/seadVector.h>
 
 class ActorBgCollisionCheck;
-class GenericChibiEatData;
-class GenericEatData;
+class ChibiEatData;
+class EatData;
 class PropelParts;
 
 class Actor : public ActorBase  // vtbl Address: 0x10000268
@@ -190,8 +190,8 @@ protected:
     sead::Vector3f          mPosPrev;
     sead::Vector3f          _24c;
     sead::Vector3f          _258;
-    GenericEatData*         mpEatData;
-    GenericChibiEatData*    mpChibiEatData;
+    EatData*                mpEatData;
+    ChibiEatData*           mpChibiEatData;
     PropelParts*            mpPropelParts;
     u8*                     _270;                       // Inited to ActorCreateParam::_28
     f32                     mJumpAddSpeed;
