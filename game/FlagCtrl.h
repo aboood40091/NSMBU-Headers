@@ -23,7 +23,7 @@ private:
                 u16 cd_file_no;
                 u16 x;
                 u16 y;
-                u16 flag;
+                u16 data;
             };
             u64 value;
         };
@@ -41,7 +41,7 @@ public:
     u16 getFlagData(u16 cd_file_no, f32 x, f32 y);
 
     // Address: 0x024C2B78
-    bool setFlagData(u16 cd_file_no, f32 x, f32 y, u16 flag);
+    bool setFlagData(u16 cd_file_no, f32 x, f32 y, u16 data);
 
 private:
     // Address: 0x024C2A10
