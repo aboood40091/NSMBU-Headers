@@ -22,60 +22,60 @@ public:
         {
         }
 
-        nw::snd::SoundHandle* startSound(const char* label, const sead::Vector2f& pos, nw::snd::OutputLine line_flag = nw::snd::OUTPUT_LINE_MAIN) override
+        void startSound(const char* label, const sead::Vector2f& pos, nw::snd::OutputLine line_flag = nw::snd::OUTPUT_LINE_MAIN) override
         {
             sead::Vector2f screen_pos;
             convertAudioObjctPos(&screen_pos, pos);
-            return SndObjctCmnMap::startSound(label, screen_pos, line_flag);
+            SndObjctCmnMap::startSound(label, screen_pos, line_flag);
         }
 
-        nw::snd::SoundHandle* startSound(const char* label, const sead::Vector3f& pos, nw::snd::OutputLine line_flag = nw::snd::OUTPUT_LINE_MAIN)
+        void startSound(const char* label, const sead::Vector3f& pos, nw::snd::OutputLine line_flag = nw::snd::OUTPUT_LINE_MAIN)
         {
             sead::Vector2f screen_pos;
             convertAudioObjctPos(&screen_pos, pos);
-            return SndObjctCmnMap::startSound(label, screen_pos, line_flag);
+            SndObjctCmnMap::startSound(label, screen_pos, line_flag);
         }
 
-        nw::snd::SoundHandle* startSound(const char* label, const sead::Vector2f& pos, s16 seq_var, nw::snd::OutputLine line_flag = nw::snd::OUTPUT_LINE_MAIN) override
+        void startSound(const char* label, const sead::Vector2f& pos, s16 seq_var, nw::snd::OutputLine line_flag = nw::snd::OUTPUT_LINE_MAIN) override
         {
             sead::Vector2f screen_pos;
             convertAudioObjctPos(&screen_pos, pos);
-            return SndObjctCmnMap::startSound(label, screen_pos, seq_var, line_flag);
+            SndObjctCmnMap::startSound(label, screen_pos, seq_var, line_flag);
         }
 
-        nw::snd::SoundHandle* startSound(const char* label, const sead::Vector3f& pos, s16 seq_var, nw::snd::OutputLine line_flag = nw::snd::OUTPUT_LINE_MAIN)
+        void startSound(const char* label, const sead::Vector3f& pos, s16 seq_var, nw::snd::OutputLine line_flag = nw::snd::OUTPUT_LINE_MAIN)
         {
             sead::Vector2f screen_pos;
             convertAudioObjctPos(&screen_pos, pos);
-            return SndObjctCmnMap::startSound(label, screen_pos, seq_var, line_flag);
+            SndObjctCmnMap::startSound(label, screen_pos, seq_var, line_flag);
         }
 
         void holdSound(const char* label, s32 handle_id, const sead::Vector2f& pos, nw::snd::OutputLine line_flag = nw::snd::OUTPUT_LINE_MAIN)
         {
             sead::Vector2f screen_pos;
             convertAudioObjctPos(&screen_pos, pos);
-            return SndObjctCmnMap::holdSound(label, handle_id, screen_pos, line_flag);
+            SndObjctCmnMap::holdSound(label, handle_id, screen_pos, line_flag);
         }
 
         void holdSound(const char* label, s32 handle_id, const sead::Vector3f& pos, nw::snd::OutputLine line_flag = nw::snd::OUTPUT_LINE_MAIN)
         {
             sead::Vector2f screen_pos;
             convertAudioObjctPos(&screen_pos, pos);
-            return SndObjctCmnMap::holdSound(label, handle_id, screen_pos, line_flag);
+            SndObjctCmnMap::holdSound(label, handle_id, screen_pos, line_flag);
         }
 
         void holdSound(const char* label, s32 handle_id, const sead::Vector2f& pos, s16 seq_var, nw::snd::OutputLine line_flag = nw::snd::OUTPUT_LINE_MAIN)
         {
             sead::Vector2f screen_pos;
             convertAudioObjctPos(&screen_pos, pos);
-            return SndObjctCmnMap::holdSound(label, handle_id, screen_pos, seq_var, line_flag);
+            SndObjctCmnMap::holdSound(label, handle_id, screen_pos, seq_var, line_flag);
         }
 
         void holdSound(const char* label, s32 handle_id, const sead::Vector3f& pos, s16 seq_var, nw::snd::OutputLine line_flag = nw::snd::OUTPUT_LINE_MAIN)
         {
             sead::Vector2f screen_pos;
             convertAudioObjctPos(&screen_pos, pos);
-            return SndObjctCmnMap::holdSound(label, handle_id, screen_pos, seq_var, line_flag);
+            SndObjctCmnMap::holdSound(label, handle_id, screen_pos, seq_var, line_flag);
         }
     };
     static_assert(sizeof(AudioObjctCmnMap) == sizeof(SndObjctCmnMap));

@@ -39,22 +39,58 @@ public:
     // Address: 0x029BC52C
     NMSndObject(ObjType type, nw::snd::OutputLine line_flag);
 
+    // Address: 0x029BC850
+    void calc(const sead::Vector2f& pos);
+
+protected:
     // Address: 0x029BC8C8
-    virtual nw::snd::SoundHandle* startSound(const char* label, nw::snd::OutputLine line_flag);
-    // Address: 0x029BCC3C
-    virtual nw::snd::SoundHandle* startSound(const char* label, s16 seq_var, nw::snd::OutputLine line_flag);
-    // Address: 0x029BCFA4
-    virtual nw::snd::SoundHandle* startSound(const char* label, const sead::Vector2f& pos, nw::snd::OutputLine line_flag);
-
+    nw::snd::SoundHandle* startSound_(const char* label, nw::snd::OutputLine line_flag);
     // Address: 0x029BCAC4
-    virtual void holdSound(const char* label, nw::snd::OutputLine line_flag);
-    // Address: 0x029BCDE8
-    virtual void holdSound(const char* label, s16 seq_var, nw::snd::OutputLine line_flag);
-    // Address: 0x029BD148
-    virtual void holdSound(const char* label, const sead::Vector2f& pos, nw::snd::OutputLine line_flag);
+    nw::snd::SoundHandle* holdSound_(const char* label, nw::snd::OutputLine line_flag);
 
-    // Address: 0x029bc850
-    virtual void calc(const sead::Vector2f& pos);
+    // Address: 0x029BCC3C
+    nw::snd::SoundHandle* startSound_(const char* label, s16 seq_var, nw::snd::OutputLine line_flag);
+    // Address: 0x029BCDE8
+    nw::snd::SoundHandle* holdSound_(const char* label, s16 seq_var, nw::snd::OutputLine line_flag);
+
+    // Address: 0x029BCFA4
+    nw::snd::SoundHandle* startSound_(const char* label, const sead::Vector2f& pos, nw::snd::OutputLine line_flag);
+    // Address: 0x029BD148
+    nw::snd::SoundHandle* holdSound_(const char* label, const sead::Vector2f& pos, nw::snd::OutputLine line_flag);
+
+public:
+    virtual void startSound(const char* label, nw::snd::OutputLine line_flag)
+    {
+        startSound_(label, line_flag);
+    }
+
+    virtual void startSound(const char* label, s16 seq_var, nw::snd::OutputLine line_flag)
+    {
+        startSound_(label, seq_var, line_flag);
+    }
+
+    virtual void startSound(const char* label, const sead::Vector2f& pos, nw::snd::OutputLine line_flag)
+    {
+        startSound_(label, pos, line_flag);
+    }
+
+    virtual void holdSound(const char* label, nw::snd::OutputLine line_flag)
+    {
+        holdSound_(label, line_flag);
+    }
+
+    virtual void holdSound(const char* label, s16 seq_var, nw::snd::OutputLine line_flag)
+    {
+        holdSound_(label, seq_var, line_flag);
+    }
+
+    virtual void holdSound(const char* label, const sead::Vector2f& pos, nw::snd::OutputLine line_flag)
+    {
+        holdSound_(label, pos, line_flag);
+    }
+
+    // Address: Deleted
+    virtual void prepareSound(const char* label, nw::snd::OutputLine line_flag);
 
 protected:
     Snd2DCalc::Param    mSnd2DCalcPrm;
@@ -95,15 +131,37 @@ public:
     // Address: 0x029BD358
     NMSndObjectCmn(nw::snd::OutputLine line_flag);
 
+protected:
     // Address: 0x029BD65C
-    virtual nw::snd::SoundHandle* startSound(const char* label, const sead::Vector2f& pos, nw::snd::OutputLine line_flag);
+    nw::snd::SoundHandle* startSound_(const char* label, const sead::Vector2f& pos, nw::snd::OutputLine line_flag);
     // Address: 0x029BDA2C
-    virtual nw::snd::SoundHandle* startSound(const char* label, const sead::Vector2f& pos, s16 seq_var, nw::snd::OutputLine line_flag);
+    nw::snd::SoundHandle* startSound_(const char* label, const sead::Vector2f& pos, s16 seq_var, nw::snd::OutputLine line_flag);
 
     // Address: 0x029BDE98
-    void holdSound(const char* label, s32 handle_id, const sead::Vector2f& pos, nw::snd::OutputLine line_flag);
+    nw::snd::SoundHandle* holdSound_(const char* label, s32 handle_id, const sead::Vector2f& pos, nw::snd::OutputLine line_flag);
     // Address: 0x029BE094
-    void holdSound(const char* label, s32 handle_id, const sead::Vector2f& pos, s16 seq_var, nw::snd::OutputLine line_flag);
+    nw::snd::SoundHandle* holdSound_(const char* label, s32 handle_id, const sead::Vector2f& pos, s16 seq_var, nw::snd::OutputLine line_flag);
+
+public:
+    virtual void startSound(const char* label, const sead::Vector2f& pos, nw::snd::OutputLine line_flag)
+    {
+        startSound_(label, pos, line_flag);
+    }
+
+    virtual void startSound(const char* label, const sead::Vector2f& pos, s16 seq_var, nw::snd::OutputLine line_flag)
+    {
+        startSound_(label, pos, seq_var, line_flag);
+    }
+
+    void holdSound(const char* label, s32 handle_id, const sead::Vector2f& pos, nw::snd::OutputLine line_flag)
+    {
+        holdSound_(label, handle_id, pos, line_flag);
+    }
+
+    void holdSound(const char* label, s32 handle_id, const sead::Vector2f& pos, s16 seq_var, nw::snd::OutputLine line_flag)
+    {
+        holdSound_(label, handle_id, pos, seq_var, line_flag);
+    }
 
 protected:
     SoundHandlePrm  mSoundHandlePrm[cHandleNum];
@@ -133,15 +191,37 @@ public:
     // Address: 0x029BE3A4
     virtual ~NMNonPosSndObject();
 
+protected:
     // Address: 0x029BE428
-    virtual nw::snd::SoundHandle* startSound(const char* label, nw::snd::OutputLine line_flag);
+    nw::snd::SoundHandle* startSound_(const char* label, nw::snd::OutputLine line_flag);
     // Address: Deleted
-    virtual nw::snd::SoundHandle* startSound(const char* label, s16 seq_var, nw::snd::OutputLine line_flag);
+    nw::snd::SoundHandle* startSound_(const char* label, s16 seq_var, nw::snd::OutputLine line_flag);
 
     // Address: 0x029BE578
-    virtual void holdSound(const char* label, nw::snd::OutputLine line_flag);
+    nw::snd::SoundHandle* holdSound_(const char* label, nw::snd::OutputLine line_flag);
     // Address: 0x029BE648
-    virtual void holdSound(const char* label, s16 seq_var, nw::snd::OutputLine line_flag);
+    nw::snd::SoundHandle* holdSound_(const char* label, s16 seq_var, nw::snd::OutputLine line_flag);
+
+public:
+    virtual void startSound(const char* label, nw::snd::OutputLine line_flag)
+    {
+        startSound_(label, line_flag);
+    }
+
+    virtual void startSound(const char* label, s16 seq_var, nw::snd::OutputLine line_flag)
+    {
+        startSound_(label, seq_var, line_flag);
+    }
+
+    virtual void holdSound(const char* label, nw::snd::OutputLine line_flag)
+    {
+        holdSound_(label, line_flag);
+    }
+
+    virtual void holdSound(const char* label, s16 seq_var, nw::snd::OutputLine line_flag)
+    {
+        holdSound_(label, seq_var, line_flag);
+    }
 
 protected:
     SoundHandlePrm* mpSoundHandlePrm;

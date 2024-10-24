@@ -14,9 +14,9 @@ public:
     virtual ~SndObjctCmnMap();
 
     // Address: 0x029BED48
-    nw::snd::SoundHandle* startSound(const char* label, const sead::Vector2f& pos, nw::snd::OutputLine line_flag) override;
+    void startSound(const char* label, const sead::Vector2f& pos, nw::snd::OutputLine line_flag) override;
     // Address: 0x029BED4C
-    nw::snd::SoundHandle* startSound(const char* label, const sead::Vector2f& pos, s16 seq_var, nw::snd::OutputLine line_flag) override;
+    void startSound(const char* label, const sead::Vector2f& pos, s16 seq_var, nw::snd::OutputLine line_flag) override;
 
     // Address: 0x029BED50
     void holdSound(const char* label, s32 handle_id, const sead::Vector2f& pos, nw::snd::OutputLine line_flag);
