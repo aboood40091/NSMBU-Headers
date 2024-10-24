@@ -81,6 +81,9 @@ public:
     static_assert(sizeof(AudioObjctCmnMap) == sizeof(SndObjctCmnMap));
 
 public:
+    static AudioObjctCmnMap* getAudioObjMap() { return sAudioObjMap; }
+
+private:
     // Address: 0x101C63D0
     static AudioObjctCmnMap* sAudioObjMap;
 };
