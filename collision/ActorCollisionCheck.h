@@ -29,6 +29,12 @@ public:
         cType_Player,
         cType_Yoshi,
         cType_Enemy,
+        cType_Unk4,
+        cType_Unk5,
+        cType_Unk6,
+        cType_Unk7,
+        cType_Unk8,
+        cType_Unk9,
         // ...
     };
     static_assert(sizeof(Type) == 4);
@@ -39,6 +45,12 @@ public:
         cTypeMask_Player    = 1 << cType_Player,
         cTypeMask_Yoshi     = 1 << cType_Yoshi,
         cTypeMask_Enemy     = 1 << cType_Enemy,
+        cTypeMask_Unk4      = 1 << cType_Unk4,
+        cTypeMask_Unk5      = 1 << cType_Unk5,
+        cTypeMask_Unk6      = 1 << cType_Unk6,
+        cTypeMask_Unk7      = 1 << cType_Unk7,
+        cTypeMask_Unk8      = 1 << cType_Unk8,
+        cTypeMask_Unk9      = 1 << cType_Unk9,
 
         cTypeMask_None      = 0,
         cTypeMask_All       = 0xFFFFFFFF
@@ -109,7 +121,9 @@ public:
     {
         enum Flag
         {
-            cFlag_Passive   = 1 << 2    // If set, this instance does not trigger other instances
+            cFlag_Passive   = 1 << 2,   // If set, this instance does not trigger other instances
+
+            cFlag_None      = 0
         };
         static_assert(sizeof(Flag) == 4);
 
@@ -241,3 +255,36 @@ private:
     sead::UnsafeArray<f32, 15>  _ec;
 };
 static_assert(sizeof(ActorCollisionCheck) == 0x128);
+
+inline ActorCollisionCheck::TypeMask operator|(const ActorCollisionCheck::TypeMask& lhs, const ActorCollisionCheck::TypeMask& rhs)
+{
+    return (ActorCollisionCheck::TypeMask)((u32)lhs | (u32)rhs);
+}
+
+inline ActorCollisionCheck::TypeMask& operator|=(ActorCollisionCheck::TypeMask& lhs, const ActorCollisionCheck::TypeMask& rhs)
+{
+    lhs = lhs | rhs;
+    return lhs;
+}
+
+inline ActorCollisionCheck::AttackMask operator|(const ActorCollisionCheck::AttackMask& lhs, const ActorCollisionCheck::AttackMask& rhs)
+{
+    return (ActorCollisionCheck::AttackMask)((u32)lhs | (u32)rhs);
+}
+
+inline ActorCollisionCheck::AttackMask& operator|=(ActorCollisionCheck::AttackMask& lhs, const ActorCollisionCheck::AttackMask& rhs)
+{
+    lhs = lhs | rhs;
+    return lhs;
+}
+
+inline ActorCollisionCheck::Info::Flag operator|(const ActorCollisionCheck::Info::Flag& lhs, const ActorCollisionCheck::Info::Flag& rhs)
+{
+    return (ActorCollisionCheck::Info::Flag)((u32)lhs | (u32)rhs);
+}
+
+inline ActorCollisionCheck::Info::Flag& operator|=(ActorCollisionCheck::Info::Flag& lhs, const ActorCollisionCheck::Info::Flag& rhs)
+{
+    lhs = lhs | rhs;
+    return lhs;
+}
