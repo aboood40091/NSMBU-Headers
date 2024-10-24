@@ -24,6 +24,12 @@ public:
 
     // Address: 0x024B5B20
     void setLoopType();
+
+    // Address: 0x024B77DC
+    void requestCourseOut_Normal();
+    // Address: 0x024B8158
+    void requestCourseOut_Secret();
+
     // Address: 0x024B84A8
     void drawLayer3D(const agl::lyr::RenderInfo& render_info);
     // Address: 0x024B8B98
