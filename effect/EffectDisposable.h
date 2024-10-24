@@ -4,7 +4,7 @@
 
 class EffectDisposable : public EffectDisposableBase
 {
-    // NSMBW: Other part of mEf::levelEffect_c
+    // NSMBW: Other part of mEf::levelEffect_c & dEf::dLevelEffect_c
 
 public:
     EffectDisposable()

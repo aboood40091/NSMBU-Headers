@@ -4,7 +4,7 @@
 #include <actor/EatData.h>
 #include <actor/Profile.h>
 #include <collision/ActorCollisionHitCallback.h>
-#include <effect/LevelEffect.h>
+#include <effect/EffectDisposable.h>
 #include <enemy/Enemy.h>
 #include <enemy/EnemyActorScaler.h>
 #include <graphics/Light.h>
@@ -109,7 +109,7 @@ public:
 protected:
     BasicModel*         mpBasicModel;
     sead::Vector3f      mEffectPos;
-    LevelEffect         mEffect;
+    EffectDisposable    mEffect;
     s32                 mAttackTimer;
     u32                 _18fc;
     f32                 _1900;
