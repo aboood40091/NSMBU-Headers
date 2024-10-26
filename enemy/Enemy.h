@@ -16,6 +16,8 @@ class Enemy : public ActorMultiState    // vtbl Address: 0x1007209C
 public:
     // Address: 0x10200DD8
     static const Angle cBaseAngleY[DIRECTION_NUM_X];
+    // Address: 0x10072094
+    static const s8 cDirSign[DIRECTION_NUM_X];  // Actual name unknown
 
 public:
     enum FumiType
