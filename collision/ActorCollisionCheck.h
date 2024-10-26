@@ -35,6 +35,8 @@ public:
         cType_Unk7,
         cType_Unk8,
         cType_Unk9,
+        cType_Unk10,
+        cType_Unk11,
         // ...
     };
     static_assert(sizeof(Type) == 4);
@@ -51,6 +53,8 @@ public:
         cTypeMask_Unk7      = 1 << cType_Unk7,
         cTypeMask_Unk8      = 1 << cType_Unk8,
         cTypeMask_Unk9      = 1 << cType_Unk9,
+        cTypeMask_Unk10     = 1 << cType_Unk10,
+        cTypeMask_Unk11     = 1 << cType_Unk11,
 
         cTypeMask_None      = 0,
         cTypeMask_All       = 0xFFFFFFFF
@@ -74,9 +78,10 @@ public:
         cAttack_Spin            = 13,
         cAttack_Explosion,
 
-        cAttack_PipeCannon      = 17,
-
-        cAttack_YoshiBullet     = 19,
+        cAttack_Unk16           = 16,
+        cAttack_PipeCannon,
+        cAttack_Unk18,
+        cAttack_YoshiBullet,
         cAttack_YoshiFire,
         cAttack_YoshiIce,
 
@@ -102,8 +107,9 @@ public:
         cAttackMask_Spin            = 1 << cAttack_Spin,
         cAttackMask_Explosion       = 1 << cAttack_Explosion,
 
+        cAttackMask_Unk16           = 1 << cAttack_Unk16,
         cAttackMask_PipeCannon      = 1 << cAttack_PipeCannon,
-
+        cAttackMask_Unk18           = 1 << cAttack_Unk18,
         cAttackMask_YoshiBullet     = 1 << cAttack_YoshiBullet,
         cAttackMask_YoshiFire       = 1 << cAttack_YoshiFire,
         cAttackMask_YoshiIce        = 1 << cAttack_YoshiIce,
@@ -267,6 +273,11 @@ inline ActorCollisionCheck::TypeMask& operator|=(ActorCollisionCheck::TypeMask& 
     return lhs;
 }
 
+inline ActorCollisionCheck::TypeMask operator~(const ActorCollisionCheck::TypeMask& val)
+{
+    return (ActorCollisionCheck::TypeMask)(~(u32)val);
+}
+
 inline ActorCollisionCheck::AttackMask operator|(const ActorCollisionCheck::AttackMask& lhs, const ActorCollisionCheck::AttackMask& rhs)
 {
     return (ActorCollisionCheck::AttackMask)((u32)lhs | (u32)rhs);
@@ -276,6 +287,11 @@ inline ActorCollisionCheck::AttackMask& operator|=(ActorCollisionCheck::AttackMa
 {
     lhs = lhs | rhs;
     return lhs;
+}
+
+inline ActorCollisionCheck::AttackMask operator~(const ActorCollisionCheck::AttackMask& val)
+{
+    return (ActorCollisionCheck::AttackMask)(~(u32)val);
 }
 
 inline ActorCollisionCheck::Info::Flag operator|(const ActorCollisionCheck::Info::Flag& lhs, const ActorCollisionCheck::Info::Flag& rhs)
