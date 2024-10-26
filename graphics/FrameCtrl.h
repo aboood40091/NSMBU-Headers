@@ -54,6 +54,11 @@ public:
         return mFlag.isOn(cFlag_IsStop);
     }
 
+    void stop()
+    {
+        mFlag.set(cFlag_IsStop);
+    }
+
     // Address: 0x024DF0B8
     bool checkFrame(f32) const;
 
