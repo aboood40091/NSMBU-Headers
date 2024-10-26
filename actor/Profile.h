@@ -14,6 +14,7 @@ struct ActorCreateInfo
         cFlag_IgnoreSpawnRange  = 0x0002,
         cFlag_MapObj            = 0x0008,
         cFlag_Grouped           = 0x0010,
+        cFlag_Unknown           = 0x0020,
         cFlag_Unknown2          = 0x0100
     };
 
