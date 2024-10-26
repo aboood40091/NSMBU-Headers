@@ -132,11 +132,11 @@ public:
     // Address: 0x022ADA08
     void setFrameBufferTexture(const agl::TextureSampler& sampler, f32 x_offset = 0.0f, f32 y_offset = 0.0f, f32 x_scale = 1.0f, f32 y_scale = 1.0f);
 
-private:
+protected:
     // Address: 0x022AC8F8
     void setEmitterColor_(nw::eft::EmitterSet* p_emitter_set);
 
-private:
+protected:
     sead::ptcl::PtclSystem*                             mpPtclSystem;
     PtclParallelExecuter*                               mpParallelExecuter;
     PtclEmitterColorMgr*                                mpEmitterColorMgr;
