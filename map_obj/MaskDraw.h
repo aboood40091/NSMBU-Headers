@@ -38,6 +38,11 @@ public:
     bool execute() override;
     bool draw() override;
 
+    void setPosition(const sead::Vector3f& pos)
+    {
+        mPos = pos;
+    }
+
 protected:
     f32             mRadius;
     f32             _8;
