@@ -127,7 +127,10 @@ public:
     {
         enum Flag
         {
+            cFlag_Unk0      = 1 << 0,
             cFlag_Passive   = 1 << 2,   // If set, this instance does not trigger other instances
+            cFlag_Unk9      = 1 << 9,
+            cFlag_Unk12     = 1 << 12,
 
             cFlag_None      = 0
         };
