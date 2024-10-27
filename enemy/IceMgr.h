@@ -4,6 +4,14 @@
 
 #include <container/seadSafeArray.h>
 
+struct IceInfo
+{
+    u32             ice_param_0;
+    sead::Vector3f  position;
+    sead::Vector3f  scale;
+    u32             _1c;        // Angle? (Seems to be unused)
+};
+
 class Enemy;
 
 class IceMgr
@@ -54,6 +62,9 @@ public:
 
     // Address: 0x0237CB94
     void setIceStatus(const IceStatus& status);
+
+    // Address: 0x0237D63C
+    bool createIce(IceInfo* p_info, s32 num);
 
 protected:
     u8                                          mIceNum;
