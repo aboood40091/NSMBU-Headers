@@ -1,5 +1,6 @@
 #pragma once
 
+#include <sound/SndObjectEnemy.h>
 #include <sound/SndObjectMap.h>
 
 class GameAudio
@@ -14,6 +15,72 @@ public:
     }
 
 public:
+    class AudioObjctCmnEmy : public SndObjctCmnEmy
+    {
+    public:
+        AudioObjctCmnEmy(nw::snd::OutputLine line_flag = nw::snd::OUTPUT_LINE_MAIN)
+            : SndObjctCmnEmy(line_flag)
+        {
+        }
+
+        void startSound(const char* label, const sead::Vector2f& pos, nw::snd::OutputLine line_flag = nw::snd::OUTPUT_LINE_MAIN) override
+        {
+            sead::Vector2f screen_pos;
+            convertAudioObjctPos(&screen_pos, pos);
+            SndObjctCmnEmy::startSound(label, screen_pos, line_flag);
+        }
+
+        void startSound(const char* label, const sead::Vector3f& pos, nw::snd::OutputLine line_flag = nw::snd::OUTPUT_LINE_MAIN)
+        {
+            sead::Vector2f screen_pos;
+            convertAudioObjctPos(&screen_pos, pos);
+            SndObjctCmnEmy::startSound(label, screen_pos, line_flag);
+        }
+
+        void startSound(const char* label, const sead::Vector2f& pos, s16 seq_var, nw::snd::OutputLine line_flag = nw::snd::OUTPUT_LINE_MAIN) override
+        {
+            sead::Vector2f screen_pos;
+            convertAudioObjctPos(&screen_pos, pos);
+            SndObjctCmnEmy::startSound(label, screen_pos, seq_var, line_flag);
+        }
+
+        void startSound(const char* label, const sead::Vector3f& pos, s16 seq_var, nw::snd::OutputLine line_flag = nw::snd::OUTPUT_LINE_MAIN)
+        {
+            sead::Vector2f screen_pos;
+            convertAudioObjctPos(&screen_pos, pos);
+            SndObjctCmnEmy::startSound(label, screen_pos, seq_var, line_flag);
+        }
+
+        void holdSound(const char* label, s32 handle_id, const sead::Vector2f& pos, nw::snd::OutputLine line_flag = nw::snd::OUTPUT_LINE_MAIN)
+        {
+            sead::Vector2f screen_pos;
+            convertAudioObjctPos(&screen_pos, pos);
+            SndObjctCmnEmy::holdSound(label, handle_id, screen_pos, line_flag);
+        }
+
+        void holdSound(const char* label, s32 handle_id, const sead::Vector3f& pos, nw::snd::OutputLine line_flag = nw::snd::OUTPUT_LINE_MAIN)
+        {
+            sead::Vector2f screen_pos;
+            convertAudioObjctPos(&screen_pos, pos);
+            SndObjctCmnEmy::holdSound(label, handle_id, screen_pos, line_flag);
+        }
+
+        void holdSound(const char* label, s32 handle_id, const sead::Vector2f& pos, s16 seq_var, nw::snd::OutputLine line_flag = nw::snd::OUTPUT_LINE_MAIN)
+        {
+            sead::Vector2f screen_pos;
+            convertAudioObjctPos(&screen_pos, pos);
+            SndObjctCmnEmy::holdSound(label, handle_id, screen_pos, seq_var, line_flag);
+        }
+
+        void holdSound(const char* label, s32 handle_id, const sead::Vector3f& pos, s16 seq_var, nw::snd::OutputLine line_flag = nw::snd::OUTPUT_LINE_MAIN)
+        {
+            sead::Vector2f screen_pos;
+            convertAudioObjctPos(&screen_pos, pos);
+            SndObjctCmnEmy::holdSound(label, handle_id, screen_pos, seq_var, line_flag);
+        }
+    };
+    static_assert(sizeof(AudioObjctCmnEmy) == sizeof(SndObjctCmnEmy));
+
     class AudioObjctCmnMap : public SndObjctCmnMap
     {
     public:
@@ -81,9 +148,12 @@ public:
     static_assert(sizeof(AudioObjctCmnMap) == sizeof(SndObjctCmnMap));
 
 public:
+    static AudioObjctCmnEmy* getAudioObjEmy() { return sAudioObjEmy; }
     static AudioObjctCmnMap* getAudioObjMap() { return sAudioObjMap; }
 
 private:
+    // Address: 0x101C63CC
+    static AudioObjctCmnEmy* sAudioObjEmy;
     // Address: 0x101C63D0
     static AudioObjctCmnMap* sAudioObjMap;
 };
