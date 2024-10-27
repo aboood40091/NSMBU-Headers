@@ -25,6 +25,12 @@ public:
     // Address: 0x0200D318
     virtual void vf3C();
 
+    // Maybe?
+    void activate()
+    {
+        _18 = 1;
+    }
+
 protected:
     ActorUniqueID   mOwnerID;
     u32             mYoshiChibiID;
