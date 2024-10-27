@@ -10,10 +10,19 @@ class PlayerBase : public Actor // vtbl Address: 0x10166E84
     SEAD_RTTI_OVERRIDE(PlayerBase, Actor)
 
 public:
+    enum DamageType
+    {
+        cDamageType_Ice = 11,
+        cDamageType_Num = 20
+    };
+
+public:
     const PlayerKey& getPlayerKey() const
     {
         return mPlayerKey;
     }
+
+    bool isTotten() const;
 
 protected:
     u32         _27c[(0x2A8 - 0x27C) / sizeof(u32)];
