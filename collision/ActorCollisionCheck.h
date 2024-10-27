@@ -77,8 +77,8 @@ public:
 
         cAttack_Spin            = 13,
         cAttack_Explosion,
-
-        cAttack_Unk16           = 16,
+        cAttack_Unk15,
+        cAttack_Unk16,
         cAttack_PipeCannon,
         cAttack_Unk18,
         cAttack_YoshiBullet,
@@ -106,7 +106,7 @@ public:
 
         cAttackMask_Spin            = 1 << cAttack_Spin,
         cAttackMask_Explosion       = 1 << cAttack_Explosion,
-
+        cAttackMask_Unk15           = 1 << cAttack_Unk15,
         cAttackMask_Unk16           = 1 << cAttack_Unk16,
         cAttackMask_PipeCannon      = 1 << cAttack_PipeCannon,
         cAttackMask_Unk18           = 1 << cAttack_Unk18,
