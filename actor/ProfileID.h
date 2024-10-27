@@ -266,7 +266,7 @@ extern const s32 c07E;                                      // 126
 // Address: 0x10003F50
 extern const s32 c07F;                                      // 127
 // Address: 0x10003F54
-extern const s32 c080;                                      // 128
+extern const s32 cYoganIntermittent;                        // 128
 // Address: 0x10003F58
 extern const s32 c081;                                      // 129
 // Address: 0x10003F5C
@@ -1132,7 +1132,7 @@ extern const s32 cFireBallKeronpaRDash;                     // 559
 // Address: 0x10004614
 extern const s32 c230;                                      // 560
 // Address: 0x10004618
-extern const s32 c231;                                      // 561
+extern const s32 cFireSnake;                                // 561
 // Address: 0x1000461C
 extern const s32 c232;                                      // 562
 // Address: 0x10004620
@@ -1158,7 +1158,7 @@ extern const s32 c23C;                                      // 572
 // Address: 0x10004648
 extern const s32 c23D;                                      // 573
 // Address: 0x1000464C
-extern const s32 c23E;                                      // 574
+extern const s32 cKazandan;                                 // 574
 // Address: 0x10004650
 extern const s32 c23F;                                      // 575
 // Address: 0x10004654
@@ -1310,7 +1310,7 @@ extern const s32 c288;                                      // 648
 // Address: 0x10004778
 extern const s32 c289;                                      // 649
 // Address: 0x1000477C
-extern const s32 c28A;                                      // 650
+extern const s32 cWoochan;                                  // 650
 // Address: 0x10004780
 extern const s32 c28B;                                      // 651
 // Address: 0x10004784
@@ -1318,13 +1318,13 @@ extern const s32 c28C;                                      // 652
 // Address: 0x10004788
 extern const s32 c28D;                                      // 653
 // Address: 0x1000478C
-extern const s32 c28E;                                      // 654
+extern const s32 cBubble;                                   // 654
 // Address: 0x10004790
-extern const s32 c28F;                                      // 655
+extern const s32 cBubbleSync;                               // 655
 // Address: 0x10004794
-extern const s32 c290;                                      // 656
+extern const s32 cBubbleRDash;                              // 656
 // Address: 0x10004798
-extern const s32 c291;                                      // 657
+extern const s32 cBubbleSyncRDash;                          // 657
 // Address: 0x1000479C
 extern const s32 c292;                                      // 658
 // Address: 0x100047A0
