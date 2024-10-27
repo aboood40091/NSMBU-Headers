@@ -141,6 +141,11 @@ public:
         return reinterpret_cast<const sead::Vector2f&>(mPos.x);
     }
 
+    ActorType getType() const
+    {
+        return ActorType(mType);
+    }
+
 protected:
     u32                     mDirection;
     u8                      mPlayerNo;
