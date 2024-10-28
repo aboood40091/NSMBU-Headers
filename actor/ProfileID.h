@@ -1034,7 +1034,7 @@ extern const s32 c1FE;                                      // 510
 // Address: 0x10004550
 extern const s32 c1FF;                                      // 511
 // Address: 0x10004554
-extern const s32 c200;                                      // 512
+extern const s32 cNokonoko;                                 // 512
 // Address: 0x10004558
 extern const s32 c201;                                      // 513
 // Address: 0x1000455C
