@@ -151,6 +151,16 @@ public:
         return reinterpret_cast<const sead::Vector2f&>(mPos.x);
     }
 
+    sead::Vector3f& getSpeedVec()
+    {
+        return mSpeed;
+    }
+
+    const sead::Vector3f& getSpeedVec() const
+    {
+        return mSpeed;
+    }
+
     ActorType getType() const
     {
         return ActorType(mType);
