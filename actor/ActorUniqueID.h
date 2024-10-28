@@ -12,7 +12,7 @@ public:
 public:
     ActorUniqueID()
     {
-        setValue(0);
+        setValue(cInvalidID);
     }
 
     ActorUniqueID(u32 id)
@@ -55,6 +55,16 @@ public:
     bool isValid() const
     {
         return mValue != cInvalidID;
+    }
+
+    friend bool operator==(const ActorUniqueID& lhs, const ActorUniqueID& rhs)
+    {
+        return lhs.mValue == rhs.mValue;
+    }
+
+    friend bool operator!=(const ActorUniqueID& lhs, const ActorUniqueID& rhs)
+    {
+        return lhs.mValue != rhs.mValue;
     }
 
 private:
