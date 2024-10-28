@@ -131,6 +131,16 @@ public:
     // Address: 0x020007A0
     bool screenOutCheck(u16);
 
+    u32 getDirection() const
+    {
+        return mDirection;
+    }
+
+    void setDirection(u32 dir)
+    {
+        mDirection = dir;
+    }
+
     const sead::Vector3f& getPos() const
     {
         return mPos;
