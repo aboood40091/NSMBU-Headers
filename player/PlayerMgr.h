@@ -4,7 +4,7 @@
 #include <heap/seadDisposer.h>
 
 class PlayerObject;
-class YoshiObject;
+class Yoshi;
 
 class PlayerMgr
 {
@@ -37,7 +37,7 @@ private:
     sead::SafeArray<PlayerObject*, 4>   mPlayerObject2; // Idk why
     u16                                 _40;
     u16                                 mPlayerFlag;
-    YoshiObject**                       mppYoshi;
+    Yoshi**                             mppYoshi;
     u32                                 mYoshiRelated1;
     u32                                 mYoshiRelated2;
     s32                                 mActiveYoshiNumMaybe;
