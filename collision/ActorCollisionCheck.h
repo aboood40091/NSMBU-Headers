@@ -74,6 +74,7 @@ public:
         cAttack_WireNet,
         cAttack_Shell,
         cAttack_PenguinSlide,
+        cAttack_Unk11,
 
         cAttack_Spin            = 13,
         cAttack_Explosion,
@@ -84,6 +85,8 @@ public:
         cAttack_YoshiBullet,
         cAttack_YoshiFire,
         cAttack_YoshiIce,
+        cAttack_Unk22,
+        cAttack_Unk23,
 
         cAttack_ChibiYoshiGlow  = 26,
         // ... ?
@@ -103,6 +106,7 @@ public:
         cAttackMask_WireNet         = 1 << cAttack_WireNet,
         cAttackMask_Shell           = 1 << cAttack_Shell,
         cAttackMask_PenguinSlide    = 1 << cAttack_PenguinSlide,
+        cAttackMask_Unk11           = 1 << cAttack_Unk11,
 
         cAttackMask_Spin            = 1 << cAttack_Spin,
         cAttackMask_Explosion       = 1 << cAttack_Explosion,
@@ -113,6 +117,8 @@ public:
         cAttackMask_YoshiBullet     = 1 << cAttack_YoshiBullet,
         cAttackMask_YoshiFire       = 1 << cAttack_YoshiFire,
         cAttackMask_YoshiIce        = 1 << cAttack_YoshiIce,
+        cAttackMask_Unk22           = 1 << cAttack_Unk22,
+        cAttackMask_Unk23           = 1 << cAttack_Unk23,
 
         cAttackMask_ChibiYoshiGlow  = 1 << cAttack_ChibiYoshiGlow,
 
