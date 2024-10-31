@@ -26,6 +26,8 @@ public:
         return mPlayerFlag & (1 << player_no);
     }
 
+    s32 getNumInGame();
+
 private:
     u32                                 _10;
     u32                                 _14;
