@@ -1270,7 +1270,7 @@ extern const s32 c274;                                      // 628
 // Address: 0x10004728
 extern const s32 c275;                                      // 629
 // Address: 0x1000472C
-extern const s32 c276;                                      // 630
+extern const s32 cSearchKiller;                             // 630
 // Address: 0x10004730
 extern const s32 c277;                                      // 631
 // Address: 0x10004734
