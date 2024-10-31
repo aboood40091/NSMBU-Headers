@@ -966,7 +966,7 @@ extern const s32 cFireBallPlayer;                           // 476
 // Address: 0x100044C8
 extern const s32 cFireBallPakkun;                           // 477
 // Address: 0x100044CC
-extern const s32 c1DE;                                      // 478
+extern const s32 cYoshiFlame;                               // 478
 // Address: 0x100044D0
 extern const s32 c1DF;                                      // 479
 // Address: 0x100044D4
