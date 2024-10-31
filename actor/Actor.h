@@ -197,7 +197,7 @@ protected:
     f32                     _destroyBoundDistanceRight; // Inited to  80.0 + ActorCreateInfo::_1E
     u8                      mAreaNo;
     u8                      mType;                      // ActorType
-    u8                      mIsActive;
+    u8                      mIsActive2;
     u8                      mIsVisible;
     bool                    mIsNoRespawn;
     u8                      _211;
