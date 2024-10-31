@@ -56,6 +56,11 @@ public:
         return mpActorHeap;
     }
 
+    ActorBase* getParent() const
+    {
+        return mpParent;
+    }
+
     // Address: 0x02002C8C
     void removeChild(ActorBase* p_child);
 
