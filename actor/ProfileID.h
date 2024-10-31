@@ -1058,7 +1058,7 @@ extern const s32 c20A;                                      // 522
 // Address: 0x10004580
 extern const s32 c20B;                                      // 523
 // Address: 0x10004584
-extern const s32 c20C;                                      // 524
+extern const s32 cMechaKoopa;                               // 524
 // Address: 0x10004588
 extern const s32 c20D;                                      // 525
 // Address: 0x1000458C
