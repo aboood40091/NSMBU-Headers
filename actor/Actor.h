@@ -166,6 +166,11 @@ public:
         return ActorType(mType);
     }
 
+    bool isNoRespawn() const
+    {
+        return mIsNoRespawn;
+    }
+
 protected:
     u32                     mDirection;
     u8                      mPlayerNo;
