@@ -21,11 +21,11 @@ class Actor : public ActorBase  // vtbl Address: 0x10000268
 public:
     enum ActorType
     {
-        cType_Actor = 0,
-        cType_Player,
-        cType_Yoshi,
-        cType_Enemy,
-        cType_ChibiYoshi
+        cActorType_Generic  = 0,
+        cActorType_Player,
+        cActorType_Yoshi,
+        cActorType_Enemy,
+        cActorType_ChibiYoshi
     };
 
 public:
@@ -161,9 +161,9 @@ public:
         return mSpeed;
     }
 
-    ActorType getType() const
+    ActorType getActorType() const
     {
-        return ActorType(mType);
+        return ActorType(mActorType);
     }
 
     bool isNoRespawn() const
@@ -201,7 +201,7 @@ protected:
     f32                     _destroyBoundDistanceLeft;  // Inited to  80.0 + ActorCreateInfo::_1C
     f32                     _destroyBoundDistanceRight; // Inited to  80.0 + ActorCreateInfo::_1E
     u8                      mAreaNo;
-    u8                      mType;                      // ActorType
+    u8                      mActorType;                 // ActorType
     u8                      mIsActive2;
     u8                      mIsVisible;
     bool                    mIsNoRespawn;
