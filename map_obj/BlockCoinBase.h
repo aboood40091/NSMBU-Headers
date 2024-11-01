@@ -94,6 +94,28 @@ public:
         updateBoxBgCollisionOfs();
     }
 
+    const ActorBoxBgCollision& getBoxBgCollision() const
+    {
+        return mBoxBgCollision;
+    }
+
+    Content getBaseContent() const
+    {
+        return mContent;
+    }
+
+    u32 getSpawnDirection() const
+    {
+        return mSpawnDirection;
+    }
+
+    void setSpawnItemUp()
+    {
+        _1aae = 1;
+        mSpawnDirection = DIRECTION_UP;
+        spawnItemUp();
+    }
+
 protected:
     ActorBgCollisionCheck::Sensor   mHeadSensor;
     u32                             _17d4[4 / sizeof(u32)];
