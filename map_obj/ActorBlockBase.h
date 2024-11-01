@@ -22,6 +22,11 @@ public:
     bool init(bool register_collider, bool);
     void initMover();
 
+    Type getBlockType() const
+    {
+        return mType;
+    }
+
 protected:
     s32 execute_() override;
     s32 draw_() override;
@@ -35,7 +40,7 @@ public:
 
     bool vf2C4() override;
 
-    virtual bool isActive();
+    virtual bool isBlockActive();
     virtual void vf2DC();
     virtual u8 getContent();
     virtual void vf2EC();
