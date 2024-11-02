@@ -3,6 +3,7 @@
 #include <collision/ActorCollisionHitCallback.h>
 #include <map/UnitID.h>
 #include <map_obj/BlockCoinBase.h>
+#include <map_obj/ObjBgCollisionCullCheck.h>
 #include <map_obj/ParentMovementMgr.h>
 
 class ChangeBlockCoinBaseCB : public ActorCollisionHitCallback
@@ -53,7 +54,7 @@ protected:
     ActorBgCollisionCheck::Sensor   mFootSensor;
     sead::Vector3f                  mPosForState;
     ParentMovementMgr               mParentMovementMgr;
-    u8                              mColliderActiveInfo[0x28];
+    ObjBgCollisionCullCheck         mColliderActiveInfo;
     sead::Vector2f                  mColliderActiveAreaSize;
     u32                             _1c68;
     u8                              _1c6c[4];
