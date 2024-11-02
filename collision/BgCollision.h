@@ -155,7 +155,7 @@ public:
     // Address: 0x021A680C
     virtual void vf64();
     virtual void vf6C() = 0;
-    virtual void vf74(u32*) = 0;
+    virtual void onBgCheckDataChange(const BgCheckUnitInfo& bc_data) = 0;
     virtual bool vf7C(sead::Vector2f*, f32) = 0;
 
     const sead::BoundBox2f getAffectedArea() const

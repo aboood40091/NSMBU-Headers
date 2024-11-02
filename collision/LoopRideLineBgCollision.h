@@ -38,7 +38,7 @@ public:
     // Address: 0x021ACBB4
     void vf6C() override;
     // Address: 0x021ACE40
-    void vf74(u32*) override;
+    void onBgCheckDataChange(const BgCheckUnitInfo& bc_data) override;
     // Address: 0x021ACE8C
     bool vf7C(sead::Vector2f*, f32) override;
 
