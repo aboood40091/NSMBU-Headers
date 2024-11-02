@@ -16,7 +16,7 @@ protected:
     s32 draw_() override;
 
 public:
-    sead::Vector3f getPosForSomething() const override;
+    sead::Vector3f getItemCreatePos() const override;
     void executeBlock() override;
 };
 static_assert(sizeof(ActorBlockAngle) == sizeof(ActorBlockBase));

@@ -51,9 +51,9 @@ public:
         return (mParam1 >> 28 & 1) << 4 | (mParam1 & 0xF);
     }
 
-    virtual void vf2EC();
+    virtual void preSpawnItem();
 
-    virtual sead::Vector3f getPosForSomething() const
+    virtual sead::Vector3f getItemCreatePos() const
     {
         return mPos;
     }
