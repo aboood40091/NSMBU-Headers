@@ -20,6 +20,8 @@ class   ActorCollisionHitCallback;
 class BgCollision : public sead::IDisposer  // vtbl Address: 0x10042528
 {
 public:
+    typedef LineNodeMgr<ActorBgCollisionCheck> BcList;
+
     typedef void (*Callback)(BgCollision*, ActorBgCollisionCheck*);
     typedef void (*CallbackWall)(BgCollision*, ActorBgCollisionCheck*, u8 direction);
 
@@ -173,6 +175,16 @@ public:
         return mFollowArg;
     }
 
+    sead::Vector2f& getPosOffset()
+    {
+        return mPosOffset;
+    }
+
+    const sead::Vector2f& getPosOffset() const
+    {
+        return mPosOffset;
+    }
+
     f32 getPosX() const
     {
         return mFollowArg.p_position->x + mPosOffset.x;
@@ -191,6 +203,26 @@ public:
     void setAngle(Angle angle)
     {
         mAngle = angle;
+    }
+
+    const BcList& getBcListDown() const
+    {
+        return mBcListDown;
+    }
+
+    const BcList& getBcListUp() const
+    {
+        return mBcListUp;
+    }
+
+    const BcList& getBcListRight() const
+    {
+        return mBcListRight;
+    }
+
+    const BcList& getBcListLeft() const
+    {
+        return mBcListLeft;
     }
 
     // Address: 0x021A5A70
@@ -243,7 +275,6 @@ public:
 
 protected:
     typedef LineNodeMgr<BgCollision> List;
-    typedef LineNodeMgr<ActorBgCollisionCheck> BcList;
 
     List::Node                  mActiveListNode;
     List::Node                  mSolidListNode;
