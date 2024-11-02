@@ -129,7 +129,7 @@ public:
     // Address: 0x0218D954
     virtual void process();
     // Address: 0x0218E060
-    virtual void vf2C();
+    virtual void reset();
     // Address: 0x0218E180
     virtual void vf34();
     virtual Actor* vf3C(f32) const = 0;
