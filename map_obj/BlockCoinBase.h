@@ -44,6 +44,7 @@ public:
     void spawnVine(u8);
     void spawnPowerup(const sead::Vector3f& pos, u32, u32, bool spawn_as_child);
     void spawnMultiPowerup(const sead::Vector3f& pos, u32, u32, bool spawn_as_child);
+    void spawnPropellerOrCoin(const sead::Vector3f& pos, u32, u32, bool spawn_as_child);
 
     virtual void onUpMoveStart()
     {
@@ -153,7 +154,7 @@ public:
 
 protected:
     ActorBgCollisionCheck::Sensor   mHeadSensor;
-    u32                             _17d4[4 / sizeof(u32)];
+  //u32                             _17d4[4 / sizeof(u32)]; // Alignment???
     ActorBoxBgCollision             mBoxBgCollision;
     struct
     {

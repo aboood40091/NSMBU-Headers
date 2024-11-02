@@ -83,6 +83,9 @@ public:
     DECLARE_STATE_VIRTUAL_ID_BASE(ActorBlockBase, HitWait)
 
 protected:
+    void preSpawnItem_PropellerOrCoin_();
+
+protected:
     f32     mItemCreateZPos;
     f32     mItemCreateAddYPosUp1;
     f32     mItemCreateAddYPosDown1;
