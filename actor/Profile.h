@@ -54,6 +54,13 @@ public:
         cResType_CourseSelect
     };
 
+    enum Flag
+    {
+        cFlag_DrawCullCheck = 1 << 1,
+
+        cFlag_None = 0
+    };
+
 public:
     // Address: 0x02019554
     Profile(ActorFactory factory, s32 id, const sead::SafeString& name, const ActorCreateInfo* p_create_info, u32 flag);
