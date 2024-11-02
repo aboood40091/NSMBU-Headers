@@ -32,11 +32,11 @@ protected:
     s32 draw_() override;
 
 public:
-    void setFootSensor() override;
+    void onDownMove_DiffStart() override;
     void spawnItemUp() override;
     void spawnItemDown() override;
-    void vf1CC() override;
-    void vf1EC() override;
+    void onDownMove_DiffEnd() override;
+    void onMove_Diff() override;
 
     bool vf2C4() override;
 

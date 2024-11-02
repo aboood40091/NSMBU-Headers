@@ -45,19 +45,19 @@ public:
     void spawnPowerup(const sead::Vector3f& pos, u32, u32, bool spawn_as_child);
     void spawnMultiPowerup(const sead::Vector3f& pos, u32, u32, bool spawn_as_child);
 
-    virtual void initializeHeadSensor();    // Maybe
-    virtual void vf194();
-    virtual void setFootSensor();
-    virtual void vf1A4();
+    virtual void onUpMoveStart();
+    virtual void onDownMoveStart();
+    virtual void onDownMove_DiffStart();
+    virtual void onUpMove();
     virtual void spawnItemUp();
-    virtual void vf1B4();
-    virtual void vf1BC();
+    virtual void onDownMove();
+    virtual void onDownMoveEnd();
     virtual void spawnItemDown();
-    virtual void vf1CC();
-    virtual void vf1D4(bool);
+    virtual void onDownMove_DiffEnd();
+    virtual void vf1D4(s32);
     virtual u32 vf1DC();
     virtual void spawnCoinShower();
-    virtual void vf1EC();
+    virtual void onMove_Diff(); // For NSLU
 
     DECLARE_STATE_VIRTUAL_ID_BASE(BlockCoinBase, UpMove)
     DECLARE_STATE_VIRTUAL_ID_BASE(BlockCoinBase, UpMoveEnd)
