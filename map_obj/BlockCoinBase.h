@@ -153,6 +153,9 @@ public:
     }
 
 protected:
+    void executeCommon_();
+
+protected:
     ActorBgCollisionCheck::Sensor   mHeadSensor;
   //u32                             _17d4[4 / sizeof(u32)]; // Alignment???
     ActorBoxBgCollision             mBoxBgCollision;
