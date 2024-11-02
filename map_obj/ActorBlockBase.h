@@ -41,17 +41,43 @@ public:
     bool vf2C4() override;
 
     virtual bool isBlockActive();
-    virtual void vf2DC();
-    virtual u8 getContent();
+
+    virtual void vf2DC()
+    {
+    }
+
+    virtual u8 getContentIndex() const
+    {
+        return (mParam1 >> 28 & 1) << 4 | (mParam1 & 0xF);
+    }
+
     virtual void vf2EC();
-    virtual sead::Vector3f getPosForSomething() const;
+
+    virtual sead::Vector3f getPosForSomething() const
+    {
+        return mPos;
+    }
+
     virtual void executeBlock();
     virtual void destroy();
     virtual void destroy2();
-    virtual void vf314();
-    virtual void vf31C();
-    virtual void vf324();
-    virtual u32 vf32C();
+
+    virtual void vf314()
+    {
+    }
+
+    virtual void vf31C()
+    {
+    }
+
+    virtual void vf324()
+    {
+    }
+
+    virtual u32 vf32C()
+    {
+        return 0;
+    }
 
     DECLARE_STATE_VIRTUAL_ID_BASE(ActorBlockBase, Wait)
     DECLARE_STATE_VIRTUAL_ID_BASE(ActorBlockBase, HitWait)

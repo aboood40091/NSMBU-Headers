@@ -24,11 +24,26 @@ public:
     void spawnItemDown() override;
     u32 vf1DC() override;
 
-    virtual void vf29C();
+    virtual void vf29C()
+    {
+    }
+
     virtual void setTileFlag();
-    virtual u32 vf2AC();
-    virtual void vf2B4();
-    virtual void vf2BC();
+
+    virtual u32 vf2AC()
+    {
+        return 0;
+    }
+
+    virtual void vf2B4()
+    {
+    }
+
+    virtual void vf2BC()
+    {
+    }
+
+    // TODO: inline
     virtual bool vf2C4(); // Checks if current state is StateID_Wait or equivalent
     virtual void vf2CC();
 

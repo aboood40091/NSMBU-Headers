@@ -15,7 +15,7 @@ public:
         cContent_MiniMushroom,
         cContent_LifeMushroom,
         cContent_Mushroom,
-        cContent_FireFlower,
+        cContent_FireFlower,        // Always a Fire Flower, even if player is small
         cContent_IceMushroom,
         cContent_PenguinMushroom,
         cContent_PropellerMushroom,
@@ -45,19 +45,54 @@ public:
     void spawnPowerup(const sead::Vector3f& pos, u32, u32, bool spawn_as_child);
     void spawnMultiPowerup(const sead::Vector3f& pos, u32, u32, bool spawn_as_child);
 
-    virtual void onUpMoveStart();
-    virtual void onDownMoveStart();
-    virtual void onDownMove_DiffStart();
-    virtual void onUpMove();
-    virtual void spawnItemUp();
-    virtual void onDownMove();
-    virtual void onDownMoveEnd();
-    virtual void spawnItemDown();
-    virtual void onDownMove_DiffEnd();
+    virtual void onUpMoveStart()
+    {
+    }
+
+    virtual void onDownMoveStart()
+    {
+    }
+
+    virtual void onDownMove_DiffStart()
+    {
+    }
+
+    virtual void onUpMove()
+    {
+    }
+
+    virtual void spawnItemUp()
+    {
+    }
+
+    virtual void onDownMove()
+    {
+    }
+
+    virtual void onDownMoveEnd()
+    {
+    }
+
+    virtual void spawnItemDown()
+    {
+    }
+
+    virtual void onDownMove_DiffEnd()
+    {
+    }
+
     virtual void vf1D4(s32);
-    virtual u32 vf1DC();
+
+    virtual u32 vf1DC()
+    {
+        return 0;
+    }
+
     virtual void spawnCoinShower();
-    virtual void onMove_Diff(); // For NSLU
+
+    virtual void onMove_Diff()  // For NSLU
+    {
+    }
 
     DECLARE_STATE_VIRTUAL_ID_BASE(BlockCoinBase, UpMove)
     DECLARE_STATE_VIRTUAL_ID_BASE(BlockCoinBase, UpMoveEnd)

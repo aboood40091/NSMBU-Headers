@@ -16,7 +16,6 @@ protected:
     s32 draw_() override;
 
 public:
-    u8 getContent() override;
     sead::Vector3f getPosForSomething() const override;
     void executeBlock() override;
 };
