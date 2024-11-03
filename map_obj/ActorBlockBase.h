@@ -27,6 +27,16 @@ public:
         return mType;
     }
 
+    void forceSpawnItemUp(u8 player_no_2, s32 hit_player_no)
+    {
+        mPlayerNo2 = player_no_2;
+        mHitPlayerNo = hit_player_no;
+        mSpawnDirection = DIRECTION_UP;
+
+        preSpawnItem();
+        spawnItemUp();
+    }
+
 protected:
     s32 execute_() override;
     s32 draw_() override;

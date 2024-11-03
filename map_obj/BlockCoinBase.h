@@ -145,13 +145,6 @@ public:
         return mSpawnDirection;
     }
 
-    void setSpawnItemUp()
-    {
-        _1aae = 1;
-        mSpawnDirection = DIRECTION_UP;
-        spawnItemUp();
-    }
-
 protected:
     void executeCommon_();
 
