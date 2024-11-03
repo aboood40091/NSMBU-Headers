@@ -12,6 +12,8 @@ class ActorPtrCache
 {
 public:
     typedef ActorBase* const* iterator;
+    typedef u32 ActorForEachParam;
+    typedef void (*ActorForEachCallback)(ActorBase*, ActorForEachParam);
 
 public:
     // Address: 0x0200A14C
@@ -50,7 +52,7 @@ public:
     u32 count(ActorFindFunc* io_find_func) const;
 
     // Address: 0x0200A6AC
-    void forEach(void (*p_callback)(ActorBase* p_actor, u32), u32) const;
+    void forEach(ActorForEachCallback p_callback, ActorForEachParam param) const;
 
     u32 getEmptyHeadIndex() const
     {
