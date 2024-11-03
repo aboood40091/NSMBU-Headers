@@ -14,6 +14,9 @@ public:
         convertAudioObjctPos(p_screen_pos, sead::Vector2f(bg_pos.x, bg_pos.y));
     }
 
+    // Address: 0x02029ACC
+    static void setClapSE();
+
 public:
     class AudioObjctCmnEmy : public SndObjctCmnEmy
     {
