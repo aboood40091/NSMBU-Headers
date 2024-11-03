@@ -30,6 +30,8 @@ public:
 
 public:
     typedef ActorPtrCache::iterator iterator;
+    typedef ActorPtrCache::ActorForEachParam ActorForEachParam;
+    typedef ActorPtrCache::ActorForEachCallback ActorForEachCallback;
 
 public:
     // Address: 0x02008AB0
@@ -87,6 +89,16 @@ public:
     // Address: 0x02009BA4
     u32 count(s32 i_profile_id) const;
 
+    iterator find(ActorFindFunc* io_find_func, iterator it_start) const
+    {
+        return mActorPtrCache.find(io_find_func, it_start);
+    }
+
+    iterator find(ActorFindFunc* io_find_func) const
+    {
+        return mActorPtrCache.find(io_find_func);
+    }
+
     iterator getActorBegin() const
     {
         return mActorPtrCache.getActorBegin();
@@ -95,6 +107,21 @@ public:
     iterator getActorEnd() const
     {
         return mActorPtrCache.getActorEnd();
+    }
+
+    ActorBase* getActorPtr(ActorUniqueID id) const
+    {
+        return mActorPtrCache.getActorPtr(id);
+    }
+
+    u32 count(ActorFindFunc* io_find_func) const
+    {
+        return mActorPtrCache.count(io_find_func);
+    }
+
+    void forEach(ActorForEachCallback p_callback, ActorForEachParam param) const
+    {
+        return mActorPtrCache.forEach(p_callback, param);
     }
 
 private:
