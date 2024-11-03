@@ -57,6 +57,11 @@ public:
         return mValue != cInvalidID;
     }
 
+    void invalidate()
+    {
+        mValue = cInvalidID;
+    }
+
     friend bool operator==(const ActorUniqueID& lhs, const ActorUniqueID& rhs)
     {
         return lhs.mValue == rhs.mValue;
