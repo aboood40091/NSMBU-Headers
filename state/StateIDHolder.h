@@ -1,3 +1,5 @@
+#pragma once
+
 #include <basis/seadTypes.h>
 
 class StateID;

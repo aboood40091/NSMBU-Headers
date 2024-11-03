@@ -1,3 +1,5 @@
+#pragma once
+
 #include <state/StateIDHolder.h>
 #include <state/StateMethod.h>
 

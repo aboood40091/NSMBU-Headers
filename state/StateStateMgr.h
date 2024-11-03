@@ -1,3 +1,5 @@
+#pragma once
+
 #include <state/StateStateMethod.h>
 #include <state/StateMgr.h>
 
