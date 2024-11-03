@@ -59,6 +59,11 @@ public:
         mFlag.set(cFlag_IsStop);
     }
 
+    void setSkipFirstFrame(bool skip)
+    {
+        mFlag.change(cFlag_Unk1, !skip);
+    }
+
     // Address: 0x024DF0B8
     bool checkFrame(f32) const;
 
