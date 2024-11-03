@@ -13,4 +13,7 @@ class SndAudioMgr : public AudAudioMgr
 public:
     // Address: 0x029B3BA8
     nw::snd::SoundArchive* getSoundArchive();
+
+    // Address: 0x029B3D8C
+    bool isSndPlaying(const char* label);
 };
