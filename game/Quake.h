@@ -14,8 +14,24 @@ class Quake
     SEAD_SINGLETON_DISPOSER(Quake)
 
 public:
+    enum ShockType
+    {
+        cShockType_Pow = 12,
+        cShockType_Max = 26
+    };
+
+    enum ShockFlag
+    {
+        cShockFlag_ShockCamera  = 1 << 0,
+        cShockFlag_ShockMotor   = 1 << 1
+    };
+
+public:
     // Address: 0x024C46CC
     Quake();
+
+    // Address: 0x024C4BD8
+    void startShock(s8 player_no, ShockType type, s32 shock_flag, s32 unk_flag, bool motor_related);
 
     const sead::Vector2f& getOffset() const { return mOffset; }
 
