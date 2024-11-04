@@ -67,7 +67,7 @@ public:
         return nullptr;
     }
 
-    virtual void vfAC()
+    virtual void vfAC(Actor*, u32)  // SpinLiftUp related
     {
     }
 
