@@ -151,6 +151,16 @@ public:
         return reinterpret_cast<const sead::Vector2f&>(mPos.x);
     }
 
+    sead::Vector3f getCenterPos() const
+    {
+        return getPos() + mCenterOffset;
+    }
+
+    sead::Vector2f getCenterPos2D() const
+    {
+        return getPos2D() + reinterpret_cast<const sead::Vector2f&>(mCenterOffset.x);
+    }
+
     sead::Vector3f& getSpeedVec()
     {
         return mSpeed;
@@ -216,7 +226,7 @@ protected:
     u32                     _228;
     u32                     mKillStreak;
     u32                     mProfFlag;                  // Inited to Profile::mFlag
-    sead::Vector3f          mCenterPos;
+    sead::Vector3f          mCenterOffset;
     sead::Vector3f          mPosPrev;
     sead::Vector3f          _24c;
     sead::Vector3f          _258;
