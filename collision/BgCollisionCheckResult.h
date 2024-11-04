@@ -18,7 +18,7 @@ static_assert(sizeof(BgCollisionCheckResultPoint) == 0x10);
 struct BgCollisionCheckResultArea
 {
     u8              hit_direction_flag;
-    sead::Vector2f  _4;
+    sead::Vector2f  hit_pos;
     Angle           _c;
     Angle           _10;
   //u32             _14[4 / sizeof(u32)];   // Alignment???
