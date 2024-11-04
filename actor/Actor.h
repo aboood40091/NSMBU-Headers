@@ -120,6 +120,8 @@ public:
         return mIsVisible;
     }
 
+    // Address: 0x02000970
+    f32 getEffectZPos() const;
     // Address: 0x020005A4
     s32 searchNearPlayer(sead::Vector2f& out); // Returns -1 if no player found
     // Address: 0x020005EC
