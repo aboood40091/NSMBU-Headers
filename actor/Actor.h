@@ -185,7 +185,7 @@ public:
 
 protected:
     u32                     mDirection;
-    u8                      mPlayerNo;
+    s8                      mPlayerNo;
     u8                      mControllerLytPlayerNo;
     u8                      mLayer;                     // Inited to ActorCreateParam::layer
     sead::BitFlag8          mCollisionMask;

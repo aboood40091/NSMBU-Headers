@@ -81,7 +81,7 @@ protected:
     u8                                          _48;
     u8                                          _49;
     u8                                          _4a;
-    u8                                          mPlayerNo;
+    s8                                          mPlayerNo;
     u8                                          _4c;
 };
 static_assert(sizeof(IceMgr) == 0x50);
