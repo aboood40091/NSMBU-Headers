@@ -143,6 +143,11 @@ public:
         mDirection = dir;
     }
 
+    sead::Vector3f& getPos()
+    {
+        return mPos;
+    }
+
     const sead::Vector3f& getPos() const
     {
         return mPos;
@@ -171,6 +176,26 @@ public:
     const sead::Vector3f& getSpeedVec() const
     {
         return mSpeed;
+    }
+
+    sead::Vector3f& getScale()
+    {
+        return mScale;
+    }
+
+    const sead::Vector3f& getScale() const
+    {
+        return mScale;
+    }
+
+    Angle3& getAngle()
+    {
+        return mAngle;
+    }
+
+    const Angle3& getAngle() const
+    {
+        return mAngle;
     }
 
     ActorType getActorType() const
