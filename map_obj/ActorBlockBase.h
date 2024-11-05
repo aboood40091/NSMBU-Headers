@@ -107,7 +107,7 @@ protected:
     u8      _1cc5;
     u8      _1cc6;
     u32     _1cc8;
-    u8      _1ccc;
+    bool    mScreenOutCheckEnable;      // Initialized to true
     u8      _1ccd;
 };
 static_assert(sizeof(ActorBlockBase) == 0x1CD0);
