@@ -12,6 +12,7 @@ class PlayerBase : public Actor // vtbl Address: 0x10166E84
 public:
     enum DamageType
     {
+        cDamageType_Knock   =  4,
         cDamageType_Ice     = 11,
         cDamageType_Spark   = 13,
         cDamageType_Num     = 20
