@@ -6,10 +6,10 @@ class PlayerObject : public PlayerBase
 {
 public:
     // ...
-    bool setDamage(Actor*, DamageType) /* override */;  // vf8CC
-    bool setDamageState(Actor*, u32) /* override */;    // vf8D4
+    bool setDamage(Actor*, DamageType) /* override */;          // vf8CC
+    bool setForcedDamage(Actor*, DamageType) /* override */;    // vf8D4
     // ...
-    bool isStar() const /* override */;                 // vf914
+    bool isStar() const /* override */;                         // vf914
     // ...
 
     s32 getJumpFallType();
