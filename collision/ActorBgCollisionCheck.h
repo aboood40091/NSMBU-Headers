@@ -64,9 +64,10 @@ public:
     public:
         enum Flag
         {
-            cFlag_OnGround          = 1 << 0,
-            cFlag_OnSlope           = 1 << 1,
-            cFlag_OnRide            = 1 << 4,
+            cFlag_OnGround          = 1 <<  0,
+            cFlag_OnSlope           = 1 <<  1,
+            cFlag_OnRide            = 1 <<  4,
+            cFlag_HeadCollision     = 1 << 10,
             cFlag_WallRCollision    = 1 << 18,
             cFlag_WallLCollision    = 1 << 19
         };
@@ -80,6 +81,8 @@ public:
         u32 get() const { return mFlag; }
 
         bool isOnGround()       const { return mFlag & cFlag_OnGround; }
+        bool checkFoot()        const { return isOnGround(); }
+        bool checkHead()        const { return mFlag & cFlag_HeadCollision; }
         bool checkRightWall()   const { return mFlag & cFlag_WallRCollision; }
         bool checkLeftWall()    const { return mFlag & cFlag_WallLCollision; }
 
