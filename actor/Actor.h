@@ -153,6 +153,11 @@ public:
         return mPos;
     }
 
+    sead::Vector2f& getPos2D()
+    {
+        return reinterpret_cast<sead::Vector2f&>(mPos.x);
+    }
+
     const sead::Vector2f& getPos2D() const
     {
         return reinterpret_cast<const sead::Vector2f&>(mPos.x);
