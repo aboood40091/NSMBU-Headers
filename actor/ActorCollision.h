@@ -70,8 +70,7 @@ public:
 
     virtual void move(const sead::Vector2f& dst)
     {
-        mPos.x = dst.x;
-        mPos.y = dst.y;
+        getPos2D() = dst;
     }
 
     virtual void setSpeedY(f32 speed)
