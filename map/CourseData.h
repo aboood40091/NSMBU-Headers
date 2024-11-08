@@ -8,8 +8,8 @@ struct Options
 {
     // Official name not known, but is called area options by the modding community.
 
-    u32 course_default_events;
-    u32 file_default_events;
+    u32 course_default_switch_flags;
+    u32 file_default_switch_flags;
     u16 loop;
     u16 time_0;
     u8  _unused0[4];
@@ -48,7 +48,7 @@ struct MapActorData
         u16 x;
         u16 y;
     }   offset;
-    u16 event_id;   // Lower byte: event id 2, higher byte: event id 1.
+    u16 switch_flags;   // Lower byte: switch flag 0, higher byte: switch flag 1.
     u32 param_0;
     u32 param_1;
     u8  area;

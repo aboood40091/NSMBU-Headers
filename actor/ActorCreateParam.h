@@ -22,8 +22,8 @@ struct ActorParamEx0
         struct
         {
             u8  layer;
-            u8  event_id_0;
-            u8  event_id_1;
+            u8  switch_flag_0;
+            u8  switch_flag_1;
         }   course;
         struct
         {

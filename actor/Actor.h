@@ -249,7 +249,7 @@ protected:
     bool                    mIsNoRespawn;
     u8                      _211;
     u8                      _212;
-    u8                      mEventID[2];
+    u8                      mSwitchFlag[2];
     u16                     mCreateFlag;                // Inited to ActorCreateInfo::flag
     u32                     mBumpDamageTimer;
     u32                     _21c;
