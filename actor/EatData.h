@@ -9,6 +9,26 @@ class Actor;
 class EatData   // vtbl Address: 0x10001594
 {
 public:
+    enum EatType
+    {
+        cEatType_None = 0,
+        cEatType_HoldAndSpit,
+        cEatType_HoldPermanent,
+        cEatType_Swallow,
+        cEatType_SwallowBig,
+        cEatType_SpitFireball,
+        cEatType_SpitIceball,
+    };
+    static_assert(sizeof(EatType) == 4);
+
+    enum ScoreType
+    {
+        cScoreType_Point_200 = 0,
+        cScoreType_Point_1000,
+        cScoreType_None,
+    };
+    static_assert(sizeof(ScoreType) == 4);
+
     // Address: 0x0200D6C4
     EatData(ActorUniqueID owner_id);
 
@@ -35,12 +55,57 @@ public:
     // Address: 0x0200D9AC
     virtual void vf5C(void*);
 
+    u32 getState() const
+    {
+        return mState;
+    }
+
+    void setState(u32 state)
+    {
+        mState = state;
+    }
+
+    EatType getEatType() const
+    {
+        return mEatType;
+    }
+
+    void setEatType(EatType eat_type)
+    {
+        mEatType = eat_type;
+    }
+
+    sead::Vector3f& getScale()
+    {
+        return mScale;
+    }
+
+    const sead::Vector3f& getScale() const
+    {
+        return mScale;
+    }
+
+    void setScale(const sead::Vector3f& scale)
+    {
+        mScale = scale;
+    }
+
+    ScoreType getScoreType() const
+    {
+        return mScoreType;
+    }
+
+    void setScoreType(ScoreType score_type)
+    {
+        mScoreType = score_type;
+    }
+
 protected:
     ActorUniqueID   mOwnerID;
     u32             mYoshiID;
     u32             mState;
-    u32             mSpitType;
+    EatType         mEatType;
     sead::Vector3f  mScale;
-    u32             mScore;
+    ScoreType       mScoreType;
 };
 static_assert(sizeof(EatData) == 0x24);
