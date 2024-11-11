@@ -7,6 +7,21 @@
 class ChibiEatData  // vtbl Address: 0x1000145C
 {
 public:
+    enum EatType
+    {
+        cEatType_None = 0,
+        cEatType_Swallow,
+    };
+    static_assert(sizeof(EatType) == 4);
+
+    enum ScoreType
+    {
+        cScoreType_Point_200 = 0,
+        cScoreType_Point_1000,
+        cScoreType_None,
+    };
+    static_assert(sizeof(ScoreType) == 4);
+
     // Address: 0x0200CF1C
     ChibiEatData(ActorUniqueID owner_id);
 
@@ -25,18 +40,57 @@ public:
     // Address: 0x0200D318
     virtual void vf3C();
 
-    // Maybe?
-    void activate()
+    u32 getState() const
     {
-        _18 = 1;
+        return mState;
+    }
+
+    void setState(u32 state)
+    {
+        mState = state;
+    }
+
+    EatType getEatType() const
+    {
+        return mEatType;
+    }
+
+    void setEatType(EatType eat_type)
+    {
+        mEatType = eat_type;
+    }
+
+    sead::Vector3f& getScale()
+    {
+        return mScale;
+    }
+
+    const sead::Vector3f& getScale() const
+    {
+        return mScale;
+    }
+
+    void setScale(const sead::Vector3f& scale)
+    {
+        mScale = scale;
+    }
+
+    ScoreType getScoreType() const
+    {
+        return mScoreType;
+    }
+
+    void setScoreType(ScoreType score_type)
+    {
+        mScoreType = score_type;
     }
 
 protected:
     ActorUniqueID   mOwnerID;
     u32             mYoshiChibiID;
     sead::Vector3f  mScale;
-    u32             _14;
-    u32             _18;
-    u32             mScore;
+    u32             mState;
+    EatType         mEatType;
+    ScoreType       mScoreType;
 };
 static_assert(sizeof(ChibiEatData) == 0x24);
