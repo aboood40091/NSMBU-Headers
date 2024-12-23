@@ -70,11 +70,6 @@ public:
         return mScale;
     }
 
-    void setScale(const sead::Vector3f& scale)
-    {
-        mScale = scale;
-    }
-
     ScoreType getScoreType() const
     {
         return mScoreType;
