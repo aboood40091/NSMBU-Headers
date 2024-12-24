@@ -48,7 +48,7 @@ public:
     // Address: 0x0202F110
     virtual void vf1E4();   // Starts music?
     // Address: 0x0202F158
-    virtual void vf1EC();   // Starts music...2?
+    virtual void vf1EC();   // Stops music?
 
     virtual bool checkBattleStDemo()
     {
@@ -79,6 +79,16 @@ public:
         SndSceneMgr::instance()->startBossClearFanfare(SndSceneMgr::cBossClear_Toride);
     }
 
+    void setBattleEdDemo()
+    {
+        mIsBattleEdDemo = true;
+    }
+
+    void setClear()
+    {
+        mIsClear = true;
+    }
+
 protected:
     // Address: 0x0202ED24
     void setCourseOutFaderPos_() const;
@@ -87,7 +97,7 @@ protected:
     u8              _17c8;
     u8              _17c9;
     bool            mIsBattleEdDemo;
-    u8              _17cb;
+    u8              mIsClear;
     u32             _17cc;
     u32             mBattleEdDemoState;
     ActorUniqueID   mBossID;
