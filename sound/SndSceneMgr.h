@@ -26,6 +26,19 @@ public:
         cEffect_Default     // DEFAULT  | Default (non-course)                  | デフォルト（コース以外）
     };
 
+    enum BossClearType
+    {
+        cBossClear_Toride = 0,      // STRM_BGM_TORIDEBOSS_CREAR
+        cBossClear_Shiro,           // STRM_BGM_SHIRO_BOSS_CLEAR
+        cBossClear_Hikousen,        // STRM_BGM_HIKOUSENBOSS_CREAR
+        cBossClear_LastBoss,        // STRM_BGM_LAST_BOSS_CLEAR
+        cBossClear_LastBoss2,       // STRM_BGM_LAST_BOSS2_CLEAR
+        cBossClear_LastBoss_Harp,   // STRM_BGM_LAST_BOSS_HARP
+        cBossClear_LastBoss2_Harp,  // STRM_BGM_LAST_BOSS2_HARP
+        cBossClear_Num
+    };
+    static_assert(cBossClear_Num == 7);
+
 public:
     SndSceneMgr();
 
@@ -33,6 +46,8 @@ public:
     void exitHBM();
 
     void exit();
+
+    void startBossClearFanfare(BossClearType type);
 
     SEAD_SINGLETON_DISPOSER(SndSceneMgr)
 };
