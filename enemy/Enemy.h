@@ -1,6 +1,7 @@
 #pragma once
 
 #include <actor/ActorState.h>
+#include <audio/GameAudio.h>
 #include <enemy/EnemyDeathInfo.h>
 #include <enemy/IceMgr.h>
 #include <state/FStateVirtualID.h>
@@ -281,6 +282,11 @@ public:
 
     // Address: 0x02328C50
     static void normal_collcheck(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
+
+    static void fireballInvalid(ActorCollisionCheck* cc_other)  // Inline in NSMBU, but not NSMBW
+    {
+        GameAudio::getAudioObjMap()->startSound("SE_OBJ_FIREBALL_DISAPP", cc_other->getOwner()->getPos());
+    }
 
     // Address: 0x02329A0C
     static void iceballInvalid(ActorCollisionCheck* cc_other);
