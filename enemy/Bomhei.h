@@ -58,7 +58,7 @@ protected:
 
 public:
     // Address: 0x022D3F08
-    void killAtGoal() override;
+    void allEnemyDeathEffSet() override;
     // Address: 0x022D3F60
     void splashWater(sead::Vector3f*) override;
     // Address: 0x022D3F74

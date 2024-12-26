@@ -47,7 +47,7 @@ protected:
 
 public:
     // Address: 0x022DD66C
-    void killAtGoal() override;
+    void allEnemyDeathEffSet() override;
 
     // Address: 0x022DD264
     bool setDamage(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other) override;

@@ -89,7 +89,7 @@ public:
     }
 
     // Address: 0x02002AD8
-    virtual void killAtGoal();
+    virtual void allEnemyDeathEffSet(); // Spawn burst effect at instances where all enemies die (such as touching goal pole or defeating boss), called if profile flag bit 4, 5 or 7 is set
     // Address: 0x02002ADC
     virtual void splashWater(sead::Vector3f*);
     // Address: 0x02002AE0
