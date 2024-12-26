@@ -36,7 +36,8 @@ public:
         cType_Unk8,
         cType_Unk9,
         cType_Unk10,
-        cType_Unk11,
+        cType_Unk11,    // DRC Touch?
+        cType_Boss,
         // ...
     };
     static_assert(sizeof(Type) == 4);
@@ -55,6 +56,7 @@ public:
         cTypeMask_Unk9      = 1 << cType_Unk9,
         cTypeMask_Unk10     = 1 << cType_Unk10,
         cTypeMask_Unk11     = 1 << cType_Unk11,
+        cTypeMask_Boss      = 1 << cType_Boss,
 
         cTypeMask_None      = 0,
         cTypeMask_All       = 0xFFFFFFFF
