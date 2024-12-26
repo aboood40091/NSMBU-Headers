@@ -46,9 +46,9 @@ public:
     DECLARE_STATE_VIRTUAL_ID_BASE(BossDemo, BattleEdDemo)
 
     // Address: 0x0202F110
-    virtual void vf1E4();   // Starts music?
+    virtual void startBGM();
     // Address: 0x0202F158
-    virtual void vf1EC();   // Stops music?
+    virtual void stopBGM();
 
     virtual bool checkBattleStDemo()
     {
