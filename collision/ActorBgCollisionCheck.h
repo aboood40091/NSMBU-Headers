@@ -80,8 +80,7 @@ public:
 
         u32 get() const { return mFlag; }
 
-        bool isOnGround()       const { return mFlag & cFlag_OnGround; }
-        bool checkFoot()        const { return isOnGround(); }
+        bool checkFoot()        const { return mFlag & cFlag_OnGround; }
         bool checkHead()        const { return mFlag & cFlag_HeadCollision; }
         bool checkRightWall()   const { return mFlag & cFlag_WallRCollision; }
         bool checkLeftWall()    const { return mFlag & cFlag_WallLCollision; }

@@ -144,7 +144,7 @@ public:
     virtual bool setDeathInfo_Star(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
 
     // Address: 0x0232E2EC
-    virtual bool isOnGround();
+    virtual bool isQuakeDamage();   // Return if enemy is on ground && damageable by quake
 
     // Address: 0x0232E2F8
     virtual void setDeathSound_Fire();
