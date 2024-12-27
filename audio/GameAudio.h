@@ -18,6 +18,64 @@ public:
     static void setClapSE();
 
 public:
+    class AudioObjctEmy : public SndObjctEmy
+    {
+    public:
+        AudioObjctEmy(ObjType type = ObjType(0), nw::snd::OutputLine line_flag = nw::snd::OUTPUT_LINE_MAIN)
+            : SndObjctEmy(type, line_flag)
+        {
+        }
+
+        void startSound(const char* label, nw::snd::OutputLine line_flag = nw::snd::OUTPUT_LINE_MAIN) override
+        {
+            SndObjctEmy::startSound(label, line_flag);
+        }
+
+        void holdSound(const char* label, nw::snd::OutputLine line_flag = nw::snd::OUTPUT_LINE_MAIN) override
+        {
+            SndObjctEmy::holdSound(label, line_flag);
+        }
+
+        void startSound(const char* label, s16 seq_var, nw::snd::OutputLine line_flag = nw::snd::OUTPUT_LINE_MAIN) override
+        {
+            SndObjctEmy::startSound(label, seq_var, line_flag);
+        }
+
+        void holdSound(const char* label, s16 seq_var, nw::snd::OutputLine line_flag = nw::snd::OUTPUT_LINE_MAIN) override
+        {
+            SndObjctEmy::holdSound(label, seq_var, line_flag);
+        }
+
+        void startSound(const char* label, const sead::Vector2f& pos, nw::snd::OutputLine line_flag = nw::snd::OUTPUT_LINE_MAIN) override
+        {
+            sead::Vector2f screen_pos;
+            convertAudioObjctPos(&screen_pos, pos);
+            SndObjctEmy::startSound(label, screen_pos, line_flag);
+        }
+
+        void startSound(const char* label, const sead::Vector3f& pos, nw::snd::OutputLine line_flag = nw::snd::OUTPUT_LINE_MAIN)
+        {
+            sead::Vector2f screen_pos;
+            convertAudioObjctPos(&screen_pos, pos);
+            SndObjctEmy::startSound(label, screen_pos, line_flag);
+        }
+
+        void holdSound(const char* label, const sead::Vector2f& pos, nw::snd::OutputLine line_flag = nw::snd::OUTPUT_LINE_MAIN) override
+        {
+            sead::Vector2f screen_pos;
+            convertAudioObjctPos(&screen_pos, pos);
+            SndObjctEmy::holdSound(label, screen_pos, line_flag);
+        }
+
+        void holdSound(const char* label, const sead::Vector3f& pos, nw::snd::OutputLine line_flag = nw::snd::OUTPUT_LINE_MAIN)
+        {
+            sead::Vector2f screen_pos;
+            convertAudioObjctPos(&screen_pos, pos);
+            SndObjctEmy::holdSound(label, screen_pos, line_flag);
+        }
+    };
+    static_assert(sizeof(AudioObjctEmy) == sizeof(SndObjctEmy));
+
     class AudioObjctCmnEmy : public SndObjctCmnEmy
     {
     public:
