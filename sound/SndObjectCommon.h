@@ -8,6 +8,17 @@
 
 #include <nw/snd/snd_SoundHandle.h>
 
+inline nw::snd::OutputLine operator|(const nw::snd::OutputLine& lhs, const nw::snd::OutputLine& rhs)
+{
+    return (nw::snd::OutputLine)((u32)lhs | (u32)rhs);
+}
+
+inline nw::snd::OutputLine& operator|=(nw::snd::OutputLine& lhs, const nw::snd::OutputLine& rhs)
+{
+    lhs = lhs | rhs;
+    return lhs;
+}
+
 class NMSndObject : public NMSndObjectBase
 {
 public:
