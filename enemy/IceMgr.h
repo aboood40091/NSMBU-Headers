@@ -59,12 +59,16 @@ public:
 public:
     // Address: 0x0237CBBC
     IceMgr(Enemy* p_owner);
+    // Address: 0x0237CD54
+    ~IceMgr();
 
     // Address: 0x0237CB94
     void setIceStatus(const IceStatus& status);
 
     // Address: 0x0237D63C
     bool createIce(IceInfo* p_info, s32 num);
+    // Address: 0x0237CCC8
+    void removeIce();
 
 protected:
     u8                                          mIceNum;
