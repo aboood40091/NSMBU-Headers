@@ -314,6 +314,11 @@ public:
     // Address: 0x0232CAEC
     bool isNoRespawn() const;
 
+    void killIce()
+    {
+        mIceMgr.removeIce();
+    }
+
 protected:
     EnemyDeathInfo  mDeathInfo;
     u16             _17e4[4];
