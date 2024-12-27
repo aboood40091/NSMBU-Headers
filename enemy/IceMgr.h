@@ -70,6 +70,11 @@ public:
     // Address: 0x0237CCC8
     void removeIce();
 
+    bool hasIce() const
+    {
+        return mHasIce;
+    }
+
 protected:
     u8                                          mIceNum;
     sead::SafeArray<ActorUniqueID, cIceMaxNum>  mIceID;
@@ -78,7 +83,7 @@ protected:
     Enemy*                                      mpOwner;
     s16                                         mTimer1;
     s16                                         mTimer2;
-    bool                                        mDisabled;  // Maybe?
+    bool                                        mHasIce;  // Maybe?
     bool                                        mPermanent; // Maybe??
     u8                                          _46;
     u8                                          _47;
