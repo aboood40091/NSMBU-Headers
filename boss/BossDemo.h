@@ -103,6 +103,6 @@ protected:
     ActorUniqueID   mBossID;
     u32             _17d8;
     bool            _17dc;
-    u8              _17dd;
+    bool            mSkipKameckAtSt;    // Encountering the boss with this set to true will skip the Kameck laugh cutscene (useful when re-encountering the boss after dying mid-fight)
 };
 static_assert(sizeof(BossDemo) == 0x17E0);
