@@ -101,7 +101,7 @@ protected:
     u32             _17cc;
     u32             mBattleEdDemoState;
     ActorUniqueID   mBossID;
-    u32             _17d8;
+    s32             mIdleTimer;         // A counter value that can be used freely in executeState_BattleStDemo and/or executeState_BattleEdDemo
     bool            _17dc;
     bool            mSkipKameckAtSt;    // Encountering the boss with this set to true will skip the Kameck laugh cutscene (useful when re-encountering the boss after dying mid-fight)
 };
