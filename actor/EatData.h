@@ -33,27 +33,27 @@ public:
     EatData(ActorUniqueID owner_id);
 
     // Address: 0x0200D4B8
-    virtual void* vf0C();
+    virtual void setAfterEatScale();
     // Address: 0x0200D504
-    virtual void vf14(Actor* p_yoshi);
+    virtual void calcSpitOutPos(Actor* p_yoshi);
     // Address: 0x0200D5F0
-    virtual f32 vf1C(void*);
+    virtual f32 calcEatScaleRate(Actor* p_yoshi);
     // Address: 0x0200D76C
     virtual void eatMove(Actor* p_yoshi);
     // Address: 0x0200DA8C
     virtual void vf2C();
     // Address: 0x0200D830
-    virtual bool handleEaten(Actor*);
+    virtual bool setEatTongue(Actor* p_yoshi);
     // Address: 0x0200DA90
-    virtual void vf3C();
+    virtual void setEatTongueOff(Actor* p_yoshi);
     // Address: 0x0200DA94
-    virtual void vf44();
+    virtual void setEatMouth(Actor* p_yoshi);
     // Address: 0x0200DA98
-    virtual bool vf4C(Actor* p_yoshi);
+    virtual bool setEatSpitOut(Actor* p_yoshi);
     // Address: 0x0200D880
-    virtual bool vf54(void*);
+    virtual bool setEatGlupDown(Actor* p_yoshi);
     // Address: 0x0200D9AC
-    virtual void vf5C(void*);
+    virtual void calcEatInScale(Actor* p_yoshi);
 
     u32 getState() const
     {
