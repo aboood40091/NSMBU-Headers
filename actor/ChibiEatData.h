@@ -10,7 +10,7 @@ public:
     enum EatType
     {
         cEatType_None = 0,
-        cEatType_Swallow,
+        cEatType_Drink,
     };
     static_assert(sizeof(EatType) == 4);
 

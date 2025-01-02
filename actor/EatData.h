@@ -12,12 +12,12 @@ public:
     enum EatType
     {
         cEatType_None = 0,
-        cEatType_HoldAndSpit,
-        cEatType_HoldPermanent,
-        cEatType_Swallow,
-        cEatType_SwallowBig,
-        cEatType_SpitFireball,
-        cEatType_SpitIceball,
+        cEatType_Eat,
+        cEatType_EatPermanent,
+        cEatType_Drink,
+        cEatType_DrinkBig,
+        cEatType_YoshiFire,
+        cEatType_YoshiFire_Ice
     };
     static_assert(sizeof(EatType) == 4);
 
