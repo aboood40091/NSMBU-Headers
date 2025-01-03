@@ -213,6 +213,11 @@ public:
         return mIsNoRespawn;
     }
 
+    void posMove(sead::Vector3f& delta)
+    {
+        mPos += delta;
+    }
+
 protected:
     u32                     mDirection;
     s8                      mPlayerNo;
