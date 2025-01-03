@@ -60,11 +60,11 @@ public:
     // Address: 0x022D3F08
     void allEnemyDeathEffSet() override;
     // Address: 0x022D3F60
-    void splashWater(sead::Vector3f*) override;
+    void waterSplashEffect(const sead::Vector3f&) override;
     // Address: 0x022D3F74
-    void splashLava(sead::Vector3f*) override;
+    void yoganSplashEffect(const sead::Vector3f&) override;
     // Address: 0x022D3F88
-    void splashPoison(sead::Vector3f*) override;
+    void poisonSplashEffect(const sead::Vector3f&) override;
     // Address: 0x022D2F48
     void blockHitInit() override;
 

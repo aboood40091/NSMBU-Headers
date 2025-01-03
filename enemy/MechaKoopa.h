@@ -44,11 +44,11 @@ public:
     // Address: 0x023EB8C8
     bool isSpinLiftUpEnable() override;
     // Address: 0x023EA364
-    void splashWater(sead::Vector3f*) override;
+    void waterSplashEffect(const sead::Vector3f&) override;
     // Address: 0x023EA378
-    void splashLava(sead::Vector3f*) override;
+    void yoganSplashEffect(const sead::Vector3f&) override;
     // Address: 0x023EA38C
-    void splashPoison(sead::Vector3f*) override;
+    void poisonSplashEffect(const sead::Vector3f&) override;
     // Address: 0x023EA184
     void blockHitInit() override;
 
