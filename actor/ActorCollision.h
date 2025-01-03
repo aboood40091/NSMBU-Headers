@@ -49,9 +49,9 @@ public:
     {
     }
 
-    virtual u32 vf12C()
+    virtual bool vf12C()
     {
-        return 0;
+        return false;
     }
 
     // Address: Deleted
