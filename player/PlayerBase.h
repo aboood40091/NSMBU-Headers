@@ -12,10 +12,27 @@ class PlayerBase : public Actor // vtbl Address: 0x10166E84
 public:
     enum DamageType
     {
-        cDamageType_Knock   =  4,
-        cDamageType_Ice     = 11,
-        cDamageType_Spark   = 13,
-        cDamageType_Num     = 20
+        cDamageType_Hit = 0, 
+        cDamageType_Hit2,
+        cDamageType_HitKnock,
+        cDamageType_Hit3,
+        cDamageType_Knock,
+        cDamageType_Knock2,
+        cDamageType_SmallKnock,
+        cDamageType_SmallKnock2,
+        cDamageType_SmallKnock3,
+        cDamageType_Hit4,
+        cDamageType_Lava,
+        cDamageType_Ice,
+        cDamageType_Ice2,
+        cDamageType_Spark,
+        cDamageType_Poison,
+        cDamageType_Kill,
+        cDamageType_Kill2,
+        cDamageType_RunInPlace,
+        cDamageType_RunInPlace2,
+        cDamageType_SteppedOn,
+        cDamageType_Num
     };
 
 public:
