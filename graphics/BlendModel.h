@@ -65,6 +65,8 @@ public:
     // Address: 0x024DFC80
     void calcBlend();
 
+    SkeletalAnimation* getCurSklAnim() const { return getSklAnim(mCurAnmIdx); }
+
     // Address: 0x024DFF9C
     void setAnm(
         ModelResource* p_mdl_res,
