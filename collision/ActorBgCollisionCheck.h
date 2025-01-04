@@ -68,8 +68,13 @@ public:
             cFlag_OnSlope           = 1 <<  1,
             cFlag_OnRide            = 1 <<  4,
             cFlag_HeadCollision     = 1 << 10,
+            cFlag_Unk16             = 1 << 16,
             cFlag_WallRCollision    = 1 << 18,
-            cFlag_WallLCollision    = 1 << 19
+            cFlag_WallLCollision    = 1 << 19,
+            cFlag_Unk22             = 1 << 22,  // Right Wall related
+            cFlag_Unk23             = 1 << 23,  // Left Wall related
+            cFlag_Unk28             = 1 << 28,  // Right Wall related
+            cFlag_Unk29             = 1 << 29   // Left Wall related
         };
 
     public:
@@ -93,6 +98,26 @@ public:
             case DIRECTION_LEFT:    return checkLeftWall();
             default:                return false;
             }
+        }
+
+        bool checkHeadEx() const
+        {
+            return checkHead() && !(mFlag & cFlag_Unk16);
+        }
+
+        bool checkRightWallEx() const
+        {
+            return (checkRightWall() || (mFlag & cFlag_Unk22)) && !(mFlag & cFlag_Unk28);
+        }
+
+        bool checkLeftWallEx() const
+        {
+            return (checkLeftWall() || (mFlag & cFlag_Unk23)) && !(mFlag & cFlag_Unk29);
+        }
+
+        bool checkWallEx(u8 direction) const
+        {
+            return ((mFlag & (1 << (18 + direction))) || (mFlag & (1 << (22 + direction)))) && !(mFlag & (1 << (28 + direction)));
         }
 
     private:
