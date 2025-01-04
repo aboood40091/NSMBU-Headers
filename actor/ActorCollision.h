@@ -11,6 +11,16 @@ class ActorCollision : public Actor // vtbl Address: 0x1000084C
     SEAD_RTTI_OVERRIDE(ActorCollision, Actor)
 
 public:
+    enum BgCheckFlag
+    {
+        cBgCheckFlag_Foot = 1 << 0,
+        cBgCheckFlag_Head = 1 << 1,
+        cBgCheckFlag_Wall = 1 << 2,
+
+        cBgCheckFlag_None = 0
+    };
+
+public:
     // Address: 0x02002FB8
     ActorCollision(const ActorCreateParam& param);
     virtual ~ActorCollision() { }
@@ -100,6 +110,13 @@ public:
     void calcSpeedY();
     // Address: 0x02003AE4
     void posMove();
+
+    // Address: 0x020037F4
+    BgCheckFlag bgCheck();
+    // Address: 0x02003764
+    bool bgCheckFoot() const;   // Must process mBgCheckObj before calling this, or just use bgCheck()
+    // Address: 0x02003770
+    bool bgCheckWall() const;   // ^^^
 
     bool checkForSuitableGround(const sead::Vector2f& offset)
     {
