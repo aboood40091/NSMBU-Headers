@@ -123,6 +123,7 @@ public:
     // Address: 0x023DCA88
     virtual void reactFumiProc(Actor*);
 
+    // Address: Deleted
     virtual void reactMameFumiProc(Actor*)
     {
     }
@@ -199,12 +200,12 @@ public:
         return 1;
     }
 
-    virtual void vf5DC()
+    virtual void onDrcTouch()
     {
     }
 
-    // Address: Deleted (Only in KuriboBase)
-    virtual void vf5E4()    // Sets info for DRC Touch (maybe) ActorCollisionCheck
+    // Address: Deleted
+    virtual void vf5E4()    // Somehow not deleted in Kuribo, sets info for DRC Touch (maybe) ActorCollisionCheck
     {
     }
 
@@ -212,7 +213,7 @@ public:
     {
     }
 
-    virtual void vf5F4()    // Changes state to Walk state in Kuribo
+    virtual void vf5F4()    // Changes state to Walk state in Kuribo & PataKuribo
     {
     }
 

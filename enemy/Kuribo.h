@@ -100,7 +100,7 @@ public:
     }
 
     // Address: 0x023D8170
-    void vf5DC() override;
+    void onDrcTouch() override;
     // Address: 0x023D82B0
     void vf5E4() override;
     // Address: 0x023D82DC
