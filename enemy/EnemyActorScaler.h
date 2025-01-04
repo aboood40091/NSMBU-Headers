@@ -21,6 +21,11 @@ public:
     {
     }
 
+    void initialize()
+    {
+        mScale.set(getBaseScale());
+    }
+
     // Address: 0x0232A940
     void set(f32 step = sDefaultStep, u32 duration = 24);
 
