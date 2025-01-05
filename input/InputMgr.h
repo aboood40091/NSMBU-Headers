@@ -22,10 +22,45 @@ public:
         return mRandom;
     }
 
+    u8 getBgmBeatTrg() const
+    {
+        return mBgmBeatTrg;
+    }
+
+    bool isBgmBeatTrg(u8 trg) const
+    {
+        return trg == mBgmBeatTrg;
+    }
+
+    u8 getBgmAccentSign() const
+    {
+        return mBgmAccentSign;
+    }
+
+    bool isBgmAccentSign(u8 mask) const
+    {
+        return mBgmAccentSign & mask;
+    }
+
+    u8 getBgmAccentSignCredit() const
+    {
+        return mBgmAccentSignCredit;
+    }
+
+    u16 getBgmTempo() const
+    {
+        return mBgmTempo;
+    }
+
 protected:
     u32             _10[(0x52C - 0x10) / sizeof(u32)];
     sead::Random    mRandom;
-    u32             _53c[(0x57C - 0x53C) / sizeof(u32)];
+    u8              _53c;
+    u16             mBgmTempo;
+    u8              mBgmBeatTrg;
+    u8              mBgmAccentSign;
+    u8              mBgmAccentSignCredit;
+    u32             _544[(0x57C - 0x544) / sizeof(u32)];
 };
 static_assert(sizeof(InputMgr) == 0x57C);
 
