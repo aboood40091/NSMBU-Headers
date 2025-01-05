@@ -72,7 +72,7 @@ public:
     // Address: 0x023D806C
     void vf53C(const ActorCollisionCheck&) override;
 
-    bool vf544() override
+    bool disallowDrcTouchOnGround() override
     {
         return *mStateMgr.getStateID() == StateID_KuriboState10;
     }
@@ -91,7 +91,7 @@ public:
     // initializeState_Touch    Address: 0x023D88C4
     // executeState_Touch       Address: 0x023D8910
     // finalizeState_Touch      Address: 0x023DAD98
-    DECLARE_STATE_VIRTUAL_ID_OVERRIDE(Kuribo, Touch)    // ?
+    DECLARE_STATE_VIRTUAL_ID_OVERRIDE(Kuribo, Touch)
 
     bool isWakidashi() const override
     {

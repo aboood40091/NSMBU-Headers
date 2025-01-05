@@ -116,7 +116,7 @@ public:
     {
     }
 
-    virtual void vf514()
+    virtual void walkEffect()
     {
     }
 
@@ -145,7 +145,7 @@ public:
     {
     }
 
-    virtual bool vf544()
+    virtual bool disallowDrcTouchOnGround() // I think
     {
         return false;
     }
@@ -174,7 +174,7 @@ public:
     // initializeState_Touch    Address: 0x023DCF90
     // executeState_Touch       Address: 0x023DCFE8
     // finalizeState_Touch      Address: 0x023DD288
-    DECLARE_STATE_VIRTUAL_ID_BASE(KuriboBase, Touch)    // ?
+    DECLARE_STATE_VIRTUAL_ID_BASE(KuriboBase, Touch)    // I believe this is the state for bouncing back when touched using DRC
     // StateID_TrplnJump            Address: 0x10204880
     // initializeState_TrplnJump    Address: 0x023DD294
     // executeState_TrplnJump       Address: 0x023DD2D8
@@ -195,9 +195,9 @@ public:
         return 0;
     }
 
-    virtual u32 vf5D4()
+    virtual bool isBgmSync() const
     {
-        return 1;
+        return true;
     }
 
     virtual void onDrcTouch()
@@ -224,13 +224,13 @@ protected:
     CalcRatioSRT                mCalcRatio;
     MiddleKuribo*               mpParentMiddleKuribo;
     ActorCollisionCheck         mCollisionCheckDrcTouch;    // Maybe?
-    f32                         _19f8;
+    f32                         mWalkAnmRate;               // Stored, but never read
     f32                         mZOffset;
     f32                         _1a00;
     u32                         _1a04;                      // Some kind of angle (only used by Kakibo?)
     u8                          _1a08;
     u8                          _1a09;
-    u8                          _1a0a;
+    bool                        mAllowDrcTouchInAir;
     u8                          _1a0b;
     u8                          _1a0c;
     bool                        mIsKakibo;
