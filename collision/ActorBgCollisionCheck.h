@@ -140,7 +140,7 @@ public:
             sead::MemUtil::fillZero(_0, sizeof(_0));
         }
 
-        u8 _0[8];
+        u32 _0[2];
     };
     static_assert(sizeof(SensorFlag) == 8);
 
@@ -189,6 +189,16 @@ public:
     void setSensor(const Sensor* sensor, u8 direction);
     // Address: 0x0218CE74
     const Sensor* getSensor(u8 direction) const;
+
+    SensorFlag& getSensorFlag(u8 direction)
+    {
+        return mSensorFlag[direction];
+    }
+
+    const SensorFlag& getSensorFlag(u8 direction) const
+    {
+        return mSensorFlag[direction];
+    }
 
     const FollowArg& getFollowArg() const { return mFollowArg; }
     const Output& getOutput() const { return mOutput; }
