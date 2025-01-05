@@ -29,6 +29,12 @@ public:
         cFumiType_SpinFumi
     };
 
+    enum FumiSeType
+    {
+        cFumiSeType_Normal = 0,
+        cFumiSeType_Step
+    };
+
 public:
     // Address: 0x02328494
     Enemy(const ActorCreateParam& param);
@@ -171,31 +177,35 @@ public:
 
     // Address: 0x0232A1BC
     virtual void spinfumiSE(Actor*);
+    // Address: 0x02329B20
+    void spinfumiEffect(Actor*);    // No longer virtual...
 
     // Address: 0x0232A240
-    virtual void mamefumiSE(Actor*);
+    virtual void mamefumiSE();
     // Address: 0x0232A24C
     virtual void mamefumiEffect(Actor*);
 
     // Address: 0x0232A250
     virtual void yoshifumiSE(Actor*);
+    // void yoshifumiEffect(Actor*);    // Deleted from NSMBU
+
     // Address: 0x0232A2D4
-    virtual void yoshifumiEffect(Actor*); // or spinfumiEffect, unclear which one
+    virtual void hipatkEffect(const sead::Vector3f& effect_pos);
 
     // Address: 0x0232A2E4
     virtual void vf34C(); // Adds 2.0f to y speed
 
     // Address: 0x0232A2FC
-    virtual bool areaXYCheck(); // Checks if enemy is inside the camera view
+    virtual bool checkDispIn(); // Checks if enemy is inside the camera view
 
     // Address: 0x0232A364
-    virtual void vf35C(Actor*);
+    virtual void vf35C(Actor*); // ChibiBubbleData-related
     // Address: 0x0232A418
-    virtual void vf364(Actor*);
+    virtual void vf364(Actor*); // ^^^
     // Address: 0x0232A4CC
-    virtual void vf36C(Actor*);
+    virtual void vf36C(Actor*); // ^^^
     // Address: 0x0232A864
-    virtual void vf374();
+    virtual void vf374(Actor*); // ^^^
 
     // ------------------------------------ EnemyDeath.cpp ------------------------------------ //
 
@@ -306,7 +316,7 @@ public:
     void startSound(const char* name);
 
     // Address: 0x02329B88
-    FumiType fumiCheck(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other, s32);
+    FumiType fumiCheck(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other, FumiSeType se_type);
 
     // Address: 0x02329168
     void bound(f32, f32, f32);
@@ -319,10 +329,28 @@ public:
         mIceMgr.removeIce();
     }
 
+    void fumistepSE(Actor*)
+    {
+        startSound("SE_EMY_CMN_STEP");
+    }
+
+    void yoshifumistepSE(Actor*)
+    {
+        startSound("SE_EMY_YOSHI_STEP");
+    }
+
+    void spinFumiJumpSet(Actor* p_actor)
+    {
+        fumiJumpSet(p_actor);
+    }
+
+    // Address: 0x02329B6C
+    void spinFumiScoreSet(Actor*);
+
 protected:
     EnemyDeathInfo  mDeathInfo;
     u16             _17e4[4];
-    u32             _17e8;
+    sead::BitFlag32 _17e8;
     IceMgr          mIceMgr;
     u32             mChibiBubbleData[0x20 / sizeof(u32)];   // TODO: ChibiBubbleData
 
@@ -336,9 +364,9 @@ protected:
     u32             _1870;
     u8              mDieFallDirection;
     u8              _1875;
-    u32             _1878;
+    sead::BitFlag32 _1878;
     u8              _187c;
     u8              _187d;
-    u8              _187e;
+    s8              _187e;
 };
 static_assert(sizeof(Enemy) == 0x1880);
