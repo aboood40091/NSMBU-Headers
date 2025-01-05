@@ -16,4 +16,7 @@ public:
 
     // Address: 0x029B3D8C
     bool isSndPlaying(const char* label);
+
+    // Address: 0x029B5434
+    bool startSound(nw::snd::SoundHandle* p_handle, const char* label, nw::snd::OutputLine line_flag = nw::snd::OUTPUT_LINE_MAIN);
 };
