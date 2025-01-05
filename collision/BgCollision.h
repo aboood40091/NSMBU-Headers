@@ -150,7 +150,7 @@ public:
     virtual u32 vf2C(u32*);
     virtual void vf34() = 0;
     virtual void execute() = 0;
-    virtual bool checkAreaBasic(BgCollisionCheckResultArea* p_res, const BasicBgCollisionCheck& bc, const sead::Vector2f& p0, const sead::Vector2f& p1, u8 unk_mask) = 0;
+    virtual bool checkAreaBasic(BgCollisionCheckResultArea* p_res, const BasicBgCollisionCheck& bc, const sead::Vector2f& p0, const sead::Vector2f& p1, u8 hit_dir_mask) = 0;
     virtual bool checkAreaActor(ActorBgCollisionCheckResult*, sead::Vector2f*, sead::Vector2f*, u8 direction, ActorBgCollisionCheck*) = 0;
     virtual bool vf54(u8*, sead::Vector2f*) = 0;
     virtual bool vf5C(u32*) = 0;

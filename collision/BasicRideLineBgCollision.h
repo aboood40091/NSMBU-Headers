@@ -24,7 +24,7 @@ public:
     // Address: 0x021A2E0C
     void execute() override;
     // Address: 0x021A2E64
-    bool checkAreaBasic(BgCollisionCheckResultArea* p_res, const BasicBgCollisionCheck& bc, const sead::Vector2f& p0, const sead::Vector2f& p1, u8 unk_mask) override;
+    bool checkAreaBasic(BgCollisionCheckResultArea* p_res, const BasicBgCollisionCheck& bc, const sead::Vector2f& p0, const sead::Vector2f& p1, u8 hit_dir_mask) override;
     // Address: 0x021A4994
     bool checkAreaActor(ActorBgCollisionCheckResult*, sead::Vector2f*, sead::Vector2f*, u8 direction, ActorBgCollisionCheck*) override;
     bool vf54(u8*, sead::Vector2f*) override { return false; }

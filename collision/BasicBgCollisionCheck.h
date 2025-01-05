@@ -36,11 +36,11 @@ public:
     void initialize(const BgCollisionCheckParam& param);
 
     // Address: 0x021A0D40
-    bool checkAreaUnit(BgCollisionCheckResultArea* p_res, const sead::Vector2f& p0, const sead::Vector2f& p1, u8 unk_mask) const;
+    bool checkAreaUnit(BgCollisionCheckResultArea* p_res, const sead::Vector2f& p0, const sead::Vector2f& p1, u8 hit_dir_mask) const;
     // Address: 0x021A1184
-    bool checkAreaActor(BgCollisionCheckResultArea* p_res, const sead::Vector2f& p0, const sead::Vector2f& p1, u8 unk_mask) const;
+    bool checkAreaActor(BgCollisionCheckResultArea* p_res, const sead::Vector2f& p0, const sead::Vector2f& p1, u8 hit_dir_mask) const;
     // Address: 0x021A13F0
-    bool checkArea(BgCollisionCheckResultArea* p_res, const sead::Vector2f& p0, const sead::Vector2f& p1, u8 unk_mask) const;
+    bool checkArea(BgCollisionCheckResultArea* p_res, const sead::Vector2f& p0, const sead::Vector2f& p1, u8 hit_dir_mask) const;
 
     // Address: 0x021A1610
     bool checkPointUnit(BgCollisionCheckResultPoint* p_res, const sead::Vector2f& p) const;
