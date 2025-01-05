@@ -66,6 +66,7 @@ public:
         {
             cFlag_OnGround          = 1 <<  0,
             cFlag_OnSlope           = 1 <<  1,
+            cFlag_OnTrampoline      = 1 <<  3,
             cFlag_OnRide            = 1 <<  4,
             cFlag_HeadCollision     = 1 << 10,
             cFlag_Unk16             = 1 << 16,
@@ -118,6 +119,11 @@ public:
         bool checkWallEx(u8 direction) const
         {
             return ((mFlag & (1 << (18 + direction))) || (mFlag & (1 << (22 + direction)))) && !(mFlag & (1 << (28 + direction)));
+        }
+
+        bool isOnTrampoline() const
+        {
+            return mFlag & cFlag_OnTrampoline;
         }
 
     private:
