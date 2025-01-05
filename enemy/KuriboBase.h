@@ -86,11 +86,11 @@ public:
     // executeState_DieFall     Address: 0x023DD6D0
     // finalizeState_DieFall    Address: 0x023DD704
     DECLARE_STATE_VIRTUAL_ID_OVERRIDE(KuriboBase, DieFall)
-    // StateID_DieGoal          Address: 0x102048A4
-    // initializeState_DieGoal  Address: 0x023DD444
-    // executeState_DieGoal     Address: 0x023DD620
-    // finalizeState_DieGoal    Address: 0x023DD63C
-    DECLARE_STATE_VIRTUAL_ID_OVERRIDE(KuriboBase, DieGoal)
+    // StateID_DieOther         Address: 0x102048A4
+    // initializeState_DieOther Address: 0x023DD444
+    // executeState_DieOther    Address: 0x023DD620
+    // finalizeState_DieOther   Address: 0x023DD63C
+    DECLARE_STATE_VIRTUAL_ID_OVERRIDE(KuriboBase, DieOther)
 
 public:
     virtual void initialize()
@@ -216,6 +216,13 @@ public:
     virtual void vf5F4()    // Changes state to Walk state in Kuribo & PataKuribo
     {
     }
+
+protected:
+    // Address: 0x023DC4AC
+    void calcModel_(BlendModel* p_model);
+
+    // Address: 0x023DD708
+    static BlendModel* createModel_(ModelResource* p_mdl_res, const sead::SafeString& name, bool not_set_walk_anm);
 
 protected:
     ModelResource*              mpModelResource;

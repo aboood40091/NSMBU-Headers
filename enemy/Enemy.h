@@ -42,7 +42,7 @@ public:
     // Address: 0x02328914
     void blockHitInit() override;
     // Address: 0x0232DC88
-    void vf14C(Actor*) override;
+    void vf14C(Actor*) override;    // Kills Enemy with StateID_DieUnk1
     // Address: 0x0232E1A4
     bool vf154(const sead::Vector2f&) override;
     // Address: 0x02330404
@@ -209,31 +209,31 @@ public:
     // executeState_DieFall     Address: 0x0232E640
     // finalizeState_DieFall    Address: 0x0232EED4
     DECLARE_STATE_VIRTUAL_ID_BASE(Enemy, DieFall)
-    // StateID_DieSmoke         Address: 0x10200FF8
-    // initializeState_DieSmoke Address: 0x0232E72C
-    // executeState_DieSmoke    Address: 0x0232E79C
-    // finalizeState_DieSmoke   Address: 0x0232EED8
-    DECLARE_STATE_VIRTUAL_ID_BASE(Enemy, DieSmoke)
-    // StateID_DieYoshiFumi         Address: 0x1020101C
-    // initializeState_DieYoshiFumi Address: 0x0232E7A8
-    // executeState_DieYoshiFumi    Address: 0x0232E7B8
-    // finalizeState_DieYoshiFumi   Address: 0x0232EEDC
+    // StateID_DieYoshiFumi         Address: 0x10200FF8
+    // initializeState_DieYoshiFumi Address: 0x0232E72C
+    // executeState_DieYoshiFumi    Address: 0x0232E79C
+    // finalizeState_DieYoshiFumi   Address: 0x0232EED8
     DECLARE_STATE_VIRTUAL_ID_BASE(Enemy, DieYoshiFumi)
+    // StateID_DieUnk1          Address: 0x1020101C
+    // initializeState_DieUnk1  Address: 0x0232E7A8
+    // executeState_DieUnk1     Address: 0x0232E7B8
+    // finalizeState_DieUnk1    Address: 0x0232EEDC
+    DECLARE_STATE_VIRTUAL_ID_BASE(Enemy, DieUnk1)
     // StateID_DieIceVanish         Address: 0x10201040
     // initializeState_DieIceVanish Address: 0x0232E7C4
     // executeState_DieIceVanish    Address: 0x0232E7C8
     // finalizeState_DieIceVanish   Address: 0x0232EEE0
     DECLARE_STATE_VIRTUAL_ID_BASE(Enemy, DieIceVanish)
-    // StateID_DieGoal          Address: 0x10201064
-    // initializeState_DieGoal  Address: 0x0232E7D4
-    // executeState_DieGoal     Address: 0x0232EEE4
-    // finalizeState_DieGoal    Address: 0x0232EEE8
-    DECLARE_STATE_VIRTUAL_ID_BASE(Enemy, DieGoal)
-    // StateID_DieOther         Address: 0x10201088
-    // initializeState_DieOther Address: 0x0232E7E0
-    // executeState_DieOther    Address: 0x0232EEEC
-    // finalizeState_DieOther   Address: 0x0232EEF0
+    // StateID_DieOther         Address: 0x10201064
+    // initializeState_DieOther Address: 0x0232E7D4
+    // executeState_DieOther    Address: 0x0232EEE4
+    // finalizeState_DieOther   Address: 0x0232EEE8
     DECLARE_STATE_VIRTUAL_ID_BASE(Enemy, DieOther)
+    // StateID_DieUnk2          Address: 0x10201088
+    // initializeState_DieUnk2  Address: 0x0232E7E0
+    // executeState_DieUnk2     Address: 0x0232EEEC
+    // finalizeState_DieUnk2    Address: 0x0232EEF0
+    DECLARE_STATE_VIRTUAL_ID_BASE(Enemy, DieUnk2)
 
     // ------------------------------------ EnemyState.cpp ------------------------------------ //
 
