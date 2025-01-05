@@ -174,6 +174,53 @@ public:
     // Address: 0x0219B054
     void set(Actor* p_owner, const Info& info, const sead::BitFlag8& collision_mask, u8 layer, ActorCollisionHitCallback* p_actor_hit_callback = nullptr);
 
+    void setCenterOffsetX(f32 center_offset_x)
+    {
+        mInfo.center_offset_x = center_offset_x;
+    }
+
+    void setCenterOffsetY(f32 center_offset_y)
+    {
+        mInfo.center_offset_y = center_offset_y;
+    }
+
+    void setCenterOffset(f32 center_offset_x, f32 center_offset_y)
+    {
+        mInfo.center_offset_x = center_offset_x;
+        mInfo.center_offset_y = center_offset_y;
+    }
+
+    void setCenterOffset(const sead::Vector2f& center_offset)
+    {
+        setCenterOffset(center_offset.x, center_offset.y);
+    }
+
+    void setHalfSizeX(f32 half_size_x)
+    {
+        mInfo.half_size_x = half_size_x;
+    }
+
+    void setHalfSizeY(f32 half_size_y)
+    {
+        mInfo.half_size_y = half_size_y;
+    }
+
+    void setHalfSize(f32 half_size_x, f32 half_size_y)
+    {
+        mInfo.half_size_x = half_size_x;
+        mInfo.half_size_y = half_size_y;
+    }
+
+    void setHalfSize(const sead::Vector2f& half_size)
+    {
+        setHalfSize(half_size.x, half_size.y);
+    }
+
+    void setActorHitCallback(ActorCollisionHitCallback* p_actor_hit_callback)
+    {
+        mpActorHitCallback = p_actor_hit_callback;
+    }
+
     // Address: 0x0219B434
     f32 getTopPos() const;
     // Address: 0x0219B450
