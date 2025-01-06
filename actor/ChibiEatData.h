@@ -4,6 +4,8 @@
 
 #include <math/seadVector.h>
 
+class Actor;
+
 class ChibiEatData  // vtbl Address: 0x1000145C
 {
 public:
