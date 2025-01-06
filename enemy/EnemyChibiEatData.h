@@ -15,7 +15,7 @@ public:
     // Address: 0x0232AFB0
     void* vf14(void*) override;
     // Address: 0x0232B01C
-    void vf2C() override;
+    void setEatSpitOut(Actor* p_chibi_yoshi) override;
 
 protected:
     // Address: 0x0232AE14
