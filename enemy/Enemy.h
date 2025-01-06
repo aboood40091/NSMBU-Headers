@@ -277,11 +277,11 @@ public:
     // executeState_ChibiEatOut     Address: 0x023310F4
     // finalizeState_ChibiEatOut    Address: 0x023310F8
     DECLARE_STATE_VIRTUAL_ID_BASE(Enemy, ChibiEatOut)
-    // StateID_HitSpin          Address: 0x102011F4
-    // initializeState_HitSpin  Address: 0x023310FC
-    // executeState_HitSpin     Address: 0x02331100
-    // finalizeState_HitSpin    Address: 0x02331104
-    DECLARE_STATE_VIRTUAL_ID_BASE(Enemy, HitSpin)
+    // StateID_EnemyUnk1            Address: 0x102011F4
+    // initializeState_EnemyUnk1    Address: 0x023310FC
+    // executeState_EnemyUnk1       Address: 0x02331100
+    // finalizeState_EnemyUnk1      Address: 0x02331104
+    DECLARE_STATE_VIRTUAL_ID_BASE(Enemy, EnemyUnk1)
     // StateID_Ice          Address: 0x10201218
     // initializeState_Ice  Address: 0x02330720
     // executeState_Ice     Address: 0x023307A0
