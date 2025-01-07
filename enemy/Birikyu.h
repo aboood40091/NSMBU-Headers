@@ -1,6 +1,6 @@
 #pragma once
 
-#include <actor/ChibiEatData.h>
+#include <actor/ChibiYoshiEatData.h>
 #include <actor/EatData.h>
 #include <actor/Profile.h>
 #include <collision/ActorCollisionHitCallback.h>
@@ -33,7 +33,7 @@ public:
         , _18fc(0)
         , _1900(0.0f)
         , mEatData(mActorUniqueID)
-        , mChibiEatData(mActorUniqueID)
+        , mChibiYoshiEatData(mActorUniqueID)
         , mScaler(this)
         , mTouchTimer(0)
         , mIsTouchDone(false)
@@ -114,7 +114,7 @@ protected:
     u32                 _18fc;
     f32                 _1900;
     EatData             mEatData;
-    ChibiEatData        mChibiEatData;
+    ChibiYoshiEatData   mChibiYoshiEatData;
     Light               mLight;
     u8                  _1994; // bool?
     ActorCollisionCheck mCollisionCheck2;

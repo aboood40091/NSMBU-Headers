@@ -5,7 +5,7 @@
 #include <effect/EffectDisposable.h>
 #include <enemy/CarryEnemy.h>
 #include <enemy/EnemyActorScaler.h>
-#include <enemy/EnemyChibiEatData.h>
+#include <enemy/EnemyChibiYoshiEatData.h>
 #include <enemy/EnemyEatData.h>
 #include <graphics/Light.h>
 #include <map_obj/MaskDraw.h>
@@ -218,35 +218,35 @@ public:
     void explode();
 
 protected:
-    BlendModel*         mpBlendModel;
-    ModelResource*      mpModelResource;
-    s32                 mCurrentSklAnimIndex;
-    sead::BitFlag16     mBomHeiFlag;
-    EnemyEatData        mEatData;
-    EnemyChibiEatData   mChibiEatData;
-    u32                 mBehaviorType;
-    u32                 mCannonDirection;
-    u32                 _1918;  // nybble11 & 4
-    s32                 mSpawnTimer;
-    s32                 mFuseTimer;
-    s32                 mDeleteTimer;
-    u32                 _1928;
-    bool                mIsEffectCreated;
-    u8                  _192d;
-    sead::Vector3f      _1930;
-    u32                 mCoinsLeftToSpawn;  // Initialized to 3
-    f32                 mLightAttenuation;
-    CircleLightMask     mLightMask;
-    Light               mLight;
-    EffectDisposable    mEffect;
-    EnemyActorScaler    mScaler;
-    BomheiCB            mCollisionHitCallback;
-    f32                 _1a44;
-    ActorState*         mpKoopaJr;
-    ActorCollisionCheck mCollisionCheck2;
-    u8                  _1b74;
-    u8                  _1b75;
-    u32                 mKoopaJrBombId;
-    u32                 _1b7c[4 / sizeof(u32)];
+    BlendModel*             mpBlendModel;
+    ModelResource*          mpModelResource;
+    s32                     mCurrentSklAnimIndex;
+    sead::BitFlag16         mBomHeiFlag;
+    EnemyEatData            mEatData;
+    EnemyChibiYoshiEatData  mChibiYoshiEatData;
+    u32                     mBehaviorType;
+    u32                     mCannonDirection;
+    u32                     _1918;  // nybble11 & 4
+    s32                     mSpawnTimer;
+    s32                     mFuseTimer;
+    s32                     mDeleteTimer;
+    u32                     _1928;
+    bool                    mIsEffectCreated;
+    u8                      _192d;
+    sead::Vector3f          _1930;
+    u32                     mCoinsLeftToSpawn;  // Initialized to 3
+    f32                     mLightAttenuation;
+    CircleLightMask         mLightMask;
+    Light                   mLight;
+    EffectDisposable        mEffect;
+    EnemyActorScaler        mScaler;
+    BomheiCB                mCollisionHitCallback;
+    f32                     _1a44;
+    ActorState*             mpKoopaJr;
+    ActorCollisionCheck     mCollisionCheck2;
+    u8                      _1b74;
+    u8                      _1b75;
+    u32                     mKoopaJrBombId;
+    u32                     _1b7c[4 / sizeof(u32)];
 };
 static_assert(sizeof(Bomhei) == 0x1B80);

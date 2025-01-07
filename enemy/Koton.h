@@ -6,7 +6,7 @@
 #include <effect/EffectDisposable.h>
 #include <enemy/Enemy.h>
 #include <enemy/EnemyActorScaler.h>
-#include <enemy/EnemyChibiEatData.h>
+#include <enemy/EnemyChibiYoshiEatData.h>
 
 class KotonCB : public ActorCollisionHitCallback    // vtbl Address: 0x10090654
 {
@@ -30,7 +30,7 @@ public:
     Koton(const ActorCreateParam& param)
         : Enemy(param)
         , mEatData(mActorUniqueID)
-        , mChibiEatData(mActorUniqueID)
+        , mChibiYoshiEatData(mActorUniqueID)
         , _1908(0)
         , mScaler(this)
     {
@@ -78,31 +78,31 @@ protected:
     virtual void setCc_();
 
 protected:
-    BasicModel*         mpBasicModel;
-    u32                 mJumpTimer;
-    u32                 _1888;
-    bool                mJumpLeft;
-    u8                  _188d;
-    f32                 _1890;
-    f32                 _1894;
-    EatData             mEatData;
-    EnemyChibiEatData   mChibiEatData;
-    u32                 _18e0;
-    sead::Vector3f      _18e4;
-    f32                 _18f0;
-    u8                  _18f4;
-    f32                 _18f8;
-    sead::Vector3f      _18fc;
-    u8                  _1908;
-    f32                 _190c;
-    u32                 _1910;
-    u32                 _1914;
-    f32                 _1918;
-    Effect              mEffect1;
-    EffectDisposable    mEffect2;
-    u32                 _19c4;
-    ActorCollisionCheck mCollisionCheck2;
-    KotonCB             mCollisionHitCallback;
-    EnemyActorScaler    mScaler;
+    BasicModel*             mpBasicModel;
+    u32                     mJumpTimer;
+    u32                     _1888;
+    bool                    mJumpLeft;
+    u8                      _188d;
+    f32                     _1890;
+    f32                     _1894;
+    EatData                 mEatData;
+    EnemyChibiYoshiEatData  mChibiYoshiEatData;
+    u32                     _18e0;
+    sead::Vector3f          _18e4;
+    f32                     _18f0;
+    u8                      _18f4;
+    f32                     _18f8;
+    sead::Vector3f          _18fc;
+    u8                      _1908;
+    f32                     _190c;
+    u32                     _1910;
+    u32                     _1914;
+    f32                     _1918;
+    Effect                  mEffect1;
+    EffectDisposable        mEffect2;
+    u32                     _19c4;
+    ActorCollisionCheck     mCollisionCheck2;
+    KotonCB                 mCollisionHitCallback;
+    EnemyActorScaler        mScaler;
 };
 static_assert(sizeof(Koton) == 0x1B18);

@@ -6,7 +6,7 @@
 
 class Actor;
 
-class ChibiEatData  // vtbl Address: 0x1000145C
+class ChibiYoshiEatData // vtbl Address: 0x1000145C
 {
 public:
     enum EatType
@@ -25,7 +25,7 @@ public:
     static_assert(sizeof(ScoreType) == 4);
 
     // Address: 0x0200CF1C
-    ChibiEatData(ActorUniqueID owner_id);
+    ChibiYoshiEatData(ActorUniqueID owner_id);
 
     // Address: 0x0200D308
     virtual u32 vf0C();
@@ -90,4 +90,4 @@ protected:
     EatType         mEatType;
     ScoreType       mScoreType;
 };
-static_assert(sizeof(ChibiEatData) == 0x24);
+static_assert(sizeof(ChibiYoshiEatData) == 0x24);

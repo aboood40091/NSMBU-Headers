@@ -3,7 +3,7 @@
 #include <collision/ActorCollisionHitCallback.h>
 #include <enemy/Enemy.h>
 #include <enemy/EnemyActorScaler.h>
-#include <enemy/EnemyChibiEatData.h>
+#include <enemy/EnemyChibiYoshiEatData.h>
 #include <enemy/EnemyEatData.h>
 #include <enemy/MiddleKuribo.h>
 #include <graphics/CalcRatioSRT.h>
@@ -246,7 +246,7 @@ protected:
     u8                          _1a10;
     f32                         _1a14;
     EnemyEatData                mEatData;
-    EnemyChibiEatData           mChibiEatData;
+    EnemyChibiYoshiEatData      mChibiYoshiEatData;
     EnemyActorScaler            mScaler;
     KuriboBaseCB                mCollisionHitCallback;
 };

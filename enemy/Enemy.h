@@ -199,7 +199,7 @@ public:
     virtual bool checkDispIn(); // Checks if enemy is inside the camera view
 
     // Address: 0x0232A364
-    virtual void vf35C(Actor*); // ChibiBubbleData-related
+    virtual void vf35C(Actor*); // ChibiYoshiAwaData-related
     // Address: 0x0232A418
     virtual void vf364(Actor*); // ^^^
     // Address: 0x0232A4CC
@@ -352,7 +352,7 @@ protected:
     u16             _17e4[4];
     sead::BitFlag32 _17e8;
     IceMgr          mIceMgr;
-    u32             mChibiBubbleData[0x20 / sizeof(u32)];   // TODO: ChibiBubbleData
+    u32             mChibiYoshiAwaData[0x20 / sizeof(u32)]; // TODO: EnemyChibiYoshiAwaData
 
     // This part is a struct
     Enemy*          _1860;

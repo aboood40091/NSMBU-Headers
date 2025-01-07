@@ -8,7 +8,7 @@
 #include <math/seadVector.h>
 
 class ActorBgCollisionCheck;
-class ChibiEatData;
+class ChibiYoshiEatData;
 class EatData;
 class PropelParts;
 
@@ -268,10 +268,10 @@ protected:
     sead::Vector3f          _24c;
     sead::Vector3f          _258;
     EatData*                mpEatData;
-    ChibiEatData*           mpChibiEatData;
+    ChibiYoshiEatData*      mpChibiYoshiEatData;
     PropelParts*            mpPropelParts;
     u8*                     _270;                       // Inited to ActorCreateParam::_28
     f32                     mJumpAddSpeed;
-    void*                   mpChibiBubbleData;
+    void*                   mpChibiYoshiAwaData;
 };
 static_assert(sizeof(Actor) == 0x27C);
