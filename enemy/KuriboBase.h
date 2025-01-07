@@ -105,7 +105,7 @@ public:
     {
     }
 
-    virtual void setTurnByEnemyHit()
+    virtual void setTurnByEnemyHit(Actor* actor_self, Actor* actor_other)
     {
     }
 

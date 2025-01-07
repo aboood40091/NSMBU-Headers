@@ -66,7 +66,7 @@ public:
     // Address: 0x023D6F64
     void drawModel() override;
     // Address: 0x023D6FDC
-    void setTurnByEnemyHit() override;
+    void setTurnByEnemyHit(Actor* actor_self, Actor* actor_other) override;
     // Address: 0x023D7310
     void setWalkSpeed() override;
     // Address: 0x023D806C

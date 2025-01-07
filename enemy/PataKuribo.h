@@ -32,7 +32,7 @@ public:
     // Address: 0x0240B0F8
     void drawModel() override;
     // Address: 0x0240A33C
-    void setTurnByEnemyHit() override;
+    void setTurnByEnemyHit(Actor* actor_self, Actor* actor_other) override;
     // Address: 0x0240A798
     void setTurnByPlayerHit(Actor*) override;
     // Address: 0x0240AD50
