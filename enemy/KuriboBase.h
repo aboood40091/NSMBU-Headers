@@ -29,6 +29,10 @@ class KuriboBase : public Enemy // vtbl Address: 0x100916DC
     SEAD_RTTI_OVERRIDE(KuriboBase, Enemy)
 
 public:
+    // Address: 0x023DBE54
+    static void normal_collcheck(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
+
+public:
     // Address: 0x023DAF04
     KuriboBase(const ActorCreateParam& param);
 
