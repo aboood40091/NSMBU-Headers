@@ -87,7 +87,7 @@ protected:
     // Address: 0x0202C5D0
     bool hitCallback_Spin(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other) override;
 
-    bool hitCallback_WireNet(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other) override // I think
+    bool hitCallback_WireNet(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other) override
     {
         return false;
     }

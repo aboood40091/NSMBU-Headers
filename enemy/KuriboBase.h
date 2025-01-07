@@ -65,7 +65,7 @@ public:
     // Address: 0x023DBE44
     void calcMdl() override;
     // Address: 0x023DC1E8
-    bool vf1EC(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other) override;
+    bool hitYoshiEat(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other) override;
     // Address: 0x023DBF0C
     void vsEnemyHitCheck_Normal(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other) override;
     // Address: 0x023DBFB0
@@ -73,7 +73,7 @@ public:
     // Address: 0x023DC0C4
     void vsYoshiHitCheck_Normal(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other) override;
     // Address: 0x023DC3B4
-    void vsChibiYoshiHitCheck_Normal(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other) override; // I think
+    void vsChibiYoshiHitCheck_Normal(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other) override;
     // Address: 0x023DC2B4
     bool hitCallback_YoshiHipAttk(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other) override;
     // Address: 0x023DC3C4

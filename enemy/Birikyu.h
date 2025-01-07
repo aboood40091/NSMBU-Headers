@@ -64,7 +64,7 @@ public:
     void vsYoshiHitCheck_Normal(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other) override;
 
     // Address: 0x022D0100
-    bool hitCallback_WireNet(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other) override; // I think
+    bool hitCallback_WireNet(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other) override;
     // Address: 0x022D00F0
     bool hitCallback_HipAttk(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other) override;
     // Address: 0x022CEBDC

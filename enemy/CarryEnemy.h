@@ -36,7 +36,7 @@ protected:
     bool hitCallback_Ice(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other) override;
 
     // Address: 0x022EC59C
-    bool vf2B4(bool*, ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other) override;
+    bool hitCallback_AttackUnk27(bool* p_no_respawn, ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other) override;
 
     // Address: 0x022EBD7C
     virtual void reactFumiProc(Actor*);

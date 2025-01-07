@@ -74,7 +74,7 @@ public:
     // Address: 0x022DB510
     bool hitCallback_YoshiBullet(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other) override;
     // Address: 0x022DB954
-    bool hitCallback_ChibiYoshiGlow(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other) override; // I think
+    bool hitCallback_ChibiYoshiLight(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other) override;
 
     // StateID_DieFumi          Address: 0x101FF488
     // initializeState_DieFumi  Address: 0x022DCE14
@@ -227,12 +227,12 @@ public:
     {
     }
 
-    virtual void vf654()    // Deletes weapon
+    virtual void vf654()    // "Drop weapon on kock down" Maybe? (Deletes weapon)
     {
     }
 
     // Address: 0x022DD768
-    virtual bool vf65C();
+    virtual bool vf65C();   // "Can be knocked down?" Maybe?
 
     virtual void entryHIO()
     {

@@ -85,9 +85,9 @@ public:
     // Address: 0x02329250
     virtual bool playerDamageCheck(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
     // Address: 0x02329520
-    virtual bool vf1E4(bool*, ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
+    virtual bool enemyPreDamageCheck(bool* p_no_respawn, ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
     // Address: 0x02329578
-    virtual bool vf1EC(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
+    virtual bool hitYoshiEat(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
     // Address: 0x0232957C
     virtual bool yoshiDamageCheck(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
     // Address: 0x023296E8
@@ -102,7 +102,7 @@ public:
     // Address: 0x02329A04
     virtual void vsYoshiHitCheck_Normal(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
     // Address: 0x02329A08
-    virtual void vsChibiYoshiHitCheck_Normal(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other); // I think
+    virtual void vsChibiYoshiHitCheck_Normal(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
 
     // Address: 0x0232CE84
     virtual bool hitCallback_Star(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
@@ -111,7 +111,7 @@ public:
     // Address: 0x0232D014
     virtual bool hitCallback_Spin(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
     // Address: 0x0232D0E4
-    virtual bool hitCallback_WireNet(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other); // I think
+    virtual bool hitCallback_WireNet(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
     // Address: 0x0232D240
     virtual bool hitCallback_HipAttk(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
     // Address: 0x0232D3B4
@@ -121,7 +121,7 @@ public:
     // Address: 0x0232D49C
     virtual bool hitCallback_Cannon(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
     // Address: 0x0232D56C
-    virtual bool vf26C(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other); // Player slip 2
+    virtual bool hitCallback_AttackUnk25(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other); // Player slip 2
     // Address: 0x0232D57C
     virtual bool hitCallback_Shell(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
     // Address: 0x0232D70C
@@ -135,12 +135,12 @@ public:
     // Address: 0x0232DA04
     virtual bool hitCallback_ChibiYoshiBubble(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other); // I think
     // Address: 0x0232DA0C
-    virtual bool hitCallback_ChibiYoshiGlow(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other); // I think
+    virtual bool hitCallback_ChibiYoshiLight(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
     // Address: 0x0232DA14
     virtual bool hitCallback_ChibiYoshiStar(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
 
     // Address: 0x0232DA24
-    virtual bool vf2B4(bool*, ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
+    virtual bool hitCallback_AttackUnk27(bool* p_no_respawn, ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
 
     // Address: 0x0232DAF0
     virtual void setDeathInfo_Quake(s32);
