@@ -14,6 +14,17 @@ public:
 
     s32 getJumpFallType();
 
+    // StateID_Balloon          Address: 0x1022B18C
+    // initializeState_Balloon  Address: 0x029265C0
+    // executeState_Balloon     Address: 0x02926AA0
+    // finalizeState_Balloon    Address: 0x02926EF4
+    DECLARE_STATE_ID(PlayerObject, Balloon)
+
+    bool isBalloon() const
+    {
+        return *mStateMgr.getStateID() == StateID_Balloon;
+    }
+
 protected:
     u32 _2750[(0x34CC - 0x2750) / sizeof(u32)];
     f32 mJumpTimerF;
