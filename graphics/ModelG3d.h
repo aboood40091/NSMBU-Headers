@@ -405,6 +405,9 @@ public:
     Shape& getShape(s32 index) { return mShape[index]; }
     const Shape& getShape(s32 index) const { return mShape[index]; }
 
+    sead::BitFlag32& getRenderFlag() { return mRenderFlag; }
+    const sead::BitFlag32& getRenderFlag() const { return mRenderFlag; }
+
     // Address: 0x024F0FE0
     void activateMaterial(const agl::g3d::ModelShaderAssign& shader_assign, const nw::g3d::MaterialObj* p_material, const LightMap& light_map) const;
 
