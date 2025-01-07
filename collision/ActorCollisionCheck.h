@@ -25,41 +25,41 @@ public:
 
     enum Type
     {
-        cType_Generic   = 0,
+        cType_Generic       = 0,
         cType_Player,
         cType_Yoshi,
         cType_Enemy,
-        cType_Unk4,
-        cType_Unk5,
-        cType_Unk6,
-        cType_Unk7,
-        cType_Unk8,
-        cType_Unk9,
+        cType_Balloon,
+        cType_Collect,      // CollectionCoin or Item
+        cType_Fire,         // Projectiles, such as Fire Ball and Ice Ball
+        cType_Cannon,
+        cType_GoalPole,
+        cType_ChibiYoshi,
         cType_Unk10,
-        cType_Unk11,    // DRC Touch?
-        cType_Boss,
+        cType_DrcTouch,
+        cType_Unk12,
         // ...
     };
     static_assert(sizeof(Type) == 4);
 
     enum TypeMask
     {
-        cTypeMask_Generic   = 1 << cType_Generic,
-        cTypeMask_Player    = 1 << cType_Player,
-        cTypeMask_Yoshi     = 1 << cType_Yoshi,
-        cTypeMask_Enemy     = 1 << cType_Enemy,
-        cTypeMask_Unk4      = 1 << cType_Unk4,
-        cTypeMask_Unk5      = 1 << cType_Unk5,
-        cTypeMask_Unk6      = 1 << cType_Unk6,
-        cTypeMask_Unk7      = 1 << cType_Unk7,
-        cTypeMask_Unk8      = 1 << cType_Unk8,
-        cTypeMask_Unk9      = 1 << cType_Unk9,
-        cTypeMask_Unk10     = 1 << cType_Unk10,
-        cTypeMask_Unk11     = 1 << cType_Unk11,
-        cTypeMask_Boss      = 1 << cType_Boss,
+        cTypeMask_Generic       = 1 << cType_Generic,
+        cTypeMask_Player        = 1 << cType_Player,
+        cTypeMask_Yoshi         = 1 << cType_Yoshi,
+        cTypeMask_Enemy         = 1 << cType_Enemy,
+        cTypeMask_Balloon       = 1 << cType_Balloon,
+        cTypeMask_Collect       = 1 << cType_Collect,
+        cTypeMask_Fire          = 1 << cType_Fire,
+        cTypeMask_Cannon        = 1 << cType_Cannon,
+        cTypeMask_GoalPole      = 1 << cType_GoalPole,
+        cTypeMask_ChibiYoshi    = 1 << cType_ChibiYoshi,
+        cTypeMask_Unk10         = 1 << cType_Unk10,
+        cTypeMask_DrcTouch      = 1 << cType_DrcTouch,
+        cTypeMask_Unk12         = 1 << cType_Unk12,
 
-        cTypeMask_None      = 0,
-        cTypeMask_All       = 0xFFFFFFFF
+        cTypeMask_None          = 0,
+        cTypeMask_All           = 0xFFFFFFFF
     };
     static_assert(sizeof(TypeMask) == 4);
 
@@ -87,10 +87,12 @@ public:
         cAttack_YoshiBullet,
         cAttack_YoshiFire,
         cAttack_YoshiIce,
-        cAttack_Unk22,
-        cAttack_Unk23,
+        cAttack_Intermittent,
+        cAttack_ChibiYoshiAwa,
 
-        cAttack_ChibiYoshiGlow  = 26,
+        cAttack_Unk25           = 25,
+        cAttack_ChibiYoshiLight,
+        cAttack_Unk27,
         // ... ?
     };
     static_assert(sizeof(Attack) == 4);
@@ -119,10 +121,12 @@ public:
         cAttackMask_YoshiBullet     = 1 << cAttack_YoshiBullet,
         cAttackMask_YoshiFire       = 1 << cAttack_YoshiFire,
         cAttackMask_YoshiIce        = 1 << cAttack_YoshiIce,
-        cAttackMask_Unk22           = 1 << cAttack_Unk22,
-        cAttackMask_Unk23           = 1 << cAttack_Unk23,
+        cAttackMask_Intermittent    = 1 << cAttack_Intermittent,
+        cAttackMask_ChibiYoshiAwa   = 1 << cAttack_ChibiYoshiAwa,
 
-        cAttackMask_ChibiYoshiGlow  = 1 << cAttack_ChibiYoshiGlow,
+        cAttackMask_Unk25           = 1 << cAttack_Unk25,
+        cAttackMask_ChibiYoshiLight = 1 << cAttack_ChibiYoshiLight,
+        cAttackMask_Unk27           = 1 << cAttack_Unk27,
 
         cAttackMask_None            = 0,
         cAttackMask_All             = 0xFFFFFFFF
