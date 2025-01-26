@@ -46,6 +46,11 @@ public:
     // Address: 0x021A2378
     void set(Actor* p_owner, const InitArg& arg, s32 point_num, sead::Heap* heap = nullptr);
 
+    sead::Buffer<sead::Vector2f>& getPoints()
+    {
+        return mPoint;
+    }
+
     const sead::Buffer<sead::Vector2f>& getPoints() const
     {
         return mPoint;
@@ -66,6 +71,5 @@ protected:
     sead::Buffer<BasicRideLine>     mRideLine;
     sead::Buffer<BasicRideLine>     mRideLinePrev;
     f32                             _170;
-    u8                              _174[0x178 - 0x174];
 };
 static_assert(sizeof(BasicRideLineBgCollision) == 0x178);
