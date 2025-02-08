@@ -2,7 +2,8 @@
 
 #include <enemy/Enemy.h>
 
-class BunDemoKamek : public Enemy {//vtbl Address: 0x1000d274
+class BunDemoKamek : public Enemy  // vtbl Address: 0x1000D274                                                             
+{         
     SEAD_RTTI_OVERRIDE(BunDemoKamek, Enemy);
 
 public:
