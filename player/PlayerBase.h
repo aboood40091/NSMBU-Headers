@@ -11,6 +11,21 @@ class PlayerBase : public Actor // vtbl Address: 0x10166E84
     SEAD_RTTI_OVERRIDE(PlayerBase, Actor)
 
 public:
+
+    enum PowerUpState
+    {
+        cPowerUpState_Small = 0,
+        cPowerUpState_Big,
+        cPowerUpState_Fire,
+        cPowerUpState_Mini,
+        cPowerUpState_Propeller,
+        cPowerUpState_Penguin,
+        cPowerUpState_Ice,
+        cPowerUpState_Acorn,
+        cPowerUpState_PAcorn,
+        cPowerUpState_Num
+    };
+
     enum DamageType
     {
         cDamageType_Hit = 0, 
@@ -35,6 +50,14 @@ public:
         cDamageType_SteppedOn,
         cDamageType_Num
     };
+
+    enum TallType
+    {
+        cTallType_Mini = 0,
+        cTallType_Small,
+        cTallType_Big,
+        cTallType_Num
+    }
 
 public:
     const PlayerKey& getPlayerKey() const
