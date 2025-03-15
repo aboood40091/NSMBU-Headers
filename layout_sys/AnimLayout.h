@@ -173,7 +173,9 @@ protected:
 };
 static_assert(sizeof(Multi2D) == 0xE88);
 
+class AnimText;
 class ArcResAccMulti;
+class FlexibleTextBox;
 class UtilCursorButtonMgr;
 
 class AnimLayoutBase : public Multi2D   // vtbl Address: 0x100E2A2C
@@ -188,7 +190,7 @@ public:
     void readResource(const sead::SafeString& res_name);
 
     // Address: 0x02673050
-    void build(const sead::SafeString& lyt_filename, UtilCursorButtonMgr* p_cursor_btn_mgr = nullptr, void* = nullptr, void* = nullptr);
+    void build(const sead::SafeString& lyt_filename, UtilCursorButtonMgr* p_cursor_btn_mgr = nullptr, sead::OffsetList<FlexibleTextBox>* p_flexible_text_box_list = nullptr, sead::OffsetList<AnimText>* p_anim_text_list = nullptr);
 
 protected:
     ArcResAccMulti* mpResAcc;
