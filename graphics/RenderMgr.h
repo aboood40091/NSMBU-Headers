@@ -27,7 +27,7 @@ public:
         RenderObjLayerBase*     p_layer;
         sead::Matrix34f         view_mtx;
         sead::Matrix44f         proj_mtx;
-        const sead::Matrix44f*  _74;
+        const sead::Matrix44f*  p_depth_shadow_mtx;
         const CullViewFrustum*  p_cull;
         void*                   _7c; // pointer to struct of two f32 and one sead::Color4f for fog color
     };
@@ -63,7 +63,7 @@ public:
     void clear();
 
     // Address: 0x024FBF6C
-    void calcView(s32 view_index, const sead::Camera& camera, const sead::Projection& projection, const sead::Matrix44f* param_4, const CullViewFrustum* p_cull, void* param_6);
+    void calcView(s32 view_index, const sead::Camera& camera, const sead::Projection& projection, const sead::Matrix44f* p_depth_shadow_mtx, const CullViewFrustum* p_cull, void* param_6);
     // Address: 0x024FC090
     void calcGPU(s32 view_index);
     // Address: 0x024FC158

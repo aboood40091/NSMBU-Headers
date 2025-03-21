@@ -30,7 +30,7 @@ public:
         cMemberIndex_FogColor,
         cMemberIndex_FogStart,
         cMemberIndex_FogStartEndInv,
-        cMemberIndex_Unk_8,
+        cMemberIndex_DepthShadow,
         cMemberIndex_FogDir,
         cMemberIndex_ProjectorViewProj,
         cMemberNum
@@ -51,7 +51,7 @@ public:
 
     // Address: 0x024EE8A0
     void setUniformData(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx,
-                        const sead::Matrix44f*, const agl::env::EnvObjSet*, void*);
+                        const sead::Matrix44f* p_depth_shadow_mtx, const agl::env::EnvObjSet* p_env_obj_set, void* p_reflection_fog);
 
     s32 getViewNum() const { return mViewNum; }
     const agl::UniformBlock& getUniformBlock(s32 view_index) const { return mUniformBlock[view_index]; }

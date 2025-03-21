@@ -77,7 +77,7 @@ protected:
     void render_(const agl::lyr::RenderInfo& render_info) const;
 
 protected:
-    sead::Matrix44f _42c;
+    sead::Matrix44f mDepthShadowMtx;
     bool            _46c;
     f32             mPolygonOffsetFactor;
     f32             mPolygonOffsetUnits;
