@@ -4,7 +4,7 @@
 
 #include <heap/seadDisposer.h>
 
-class CourseSelectMap   // vtbl Address: 0x10047B48
+class CourseSelectMgr   // vtbl Address: 0x10047B48
 {
     // createInstance()                             Address: 0x021F8A40
     // deleteInstance()                             Address: Deleted
@@ -12,13 +12,13 @@ class CourseSelectMap   // vtbl Address: 0x10047B48
     // SingletonDisposer_::~SingletonDisposer_()    Address: 0x021FCB3C
     // SingletonDisposer_::sStaticDisposer          Address: 0x101CBE18
     // SingletonDisposer_::vtbl                     Address: 0x10047B38
-    SEAD_SINGLETON_DISPOSER(CourseSelectMap)
+    SEAD_SINGLETON_DISPOSER(CourseSelectMgr)
 
 public:
     // Address: 0x021F8590
-    CourseSelectMap();
+    CourseSelectMgr();
     // Address: 0x021F8AC4
-    virtual ~CourseSelectMap();
+    virtual ~CourseSelectMgr();
 
     ChangePlayerNum& getChangePlayerNum()
     {
@@ -30,4 +30,4 @@ protected:
     ChangePlayerNum mChangePlayerNum;
     u32             _3842c[(0x47820 - 0x3842C) / sizeof(u32)];
 };
-static_assert(sizeof(CourseSelectMap) == 0x47824);
+static_assert(sizeof(CourseSelectMgr) == 0x47824);
