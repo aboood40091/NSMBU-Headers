@@ -20,6 +20,8 @@ public:
         cId_CafeRemote_3,
         cId_CafeRemote_4,
         cId_CafeDRC_Multiplayer,
+
+        cId_Max
     };
 
 public:
