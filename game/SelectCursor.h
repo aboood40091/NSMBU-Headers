@@ -20,6 +20,15 @@ public:
     // Address: 0x024C63E0
     void create();
 
+    // Address: 0x024C6500
+    void execute();
+
+    // Address: 0x024C65A0
+    void draw(const agl::lyr::RenderInfo& render_info) const;
+
+    // Address: 0x024C6680
+    void drawDRC(const agl::lyr::RenderInfo& render_info) const;
+
 private:
     sead::SafeArray<
         u32[0xECC / sizeof(u32)],   // SelectCursorLayout
