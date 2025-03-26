@@ -31,7 +31,7 @@ struct BgCollisionCheckResultArea
     }
 
     BgCollisionCheckResultArea(f32 x, f32 y)
-        : _4(x, y)
+        : hit_pos(x, y)
     {
     }
 };
