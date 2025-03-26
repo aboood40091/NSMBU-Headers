@@ -32,8 +32,8 @@ struct DistantViewData
         s16 y;
         s16 z;
     }       offset;         // Unused
-    char    name[16 + 1];
-    u8      parallax_mode;  // Unused
+    char    name[16];
+    u16     parallax_mode;  // Unused
     u8      _pad[2];
 };
 static_assert(sizeof(DistantViewData) == 0x1C);
