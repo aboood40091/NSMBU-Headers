@@ -30,9 +30,9 @@ public:
         cMemberIndex_FogColor,
         cMemberIndex_FogStart,
         cMemberIndex_FogStartEndInv,
-        cMemberIndex_DepthShadow,
+        cMemberIndex_ShadowMtx,
         cMemberIndex_FogDir,
-        cMemberIndex_ProjectorViewProj,
+        cMemberIndex_TexProjMtx,
         cMemberNum
     };
     static_assert(cMemberNum == 11);
