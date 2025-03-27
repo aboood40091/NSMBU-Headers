@@ -24,6 +24,11 @@ public:
     // Address: 0x029945B8
     bool isFadein() const;
 
+    const sead::TaskClassID& getNextScene() const
+    {
+        return mNextScene;
+    }
+
 protected:
     sead::DelegateEvent<sead::TaskBase*>::Slot  mCreateCallback;
     sead::TaskClassID                           mOldScene;
