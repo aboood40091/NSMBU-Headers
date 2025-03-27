@@ -42,6 +42,17 @@ public:
         return mIsVisible;
     }
 
+    // StateID_CloseRequest         Address: 0x1020D434
+    // initializeState_CloseRequest Address: 0x02555998
+    // executeState_CloseRequest    Address: 0x02555A28
+    // finalizeState_CloseRequest   Address: 0x02556C04
+    DECLARE_STATE_ID(ChangePlayerNum, CloseRequest)
+
+    bool isCloseRequest() const
+    {
+        return *mStateMgr.getStateID() == StateID_CloseRequest;
+    }
+
 protected:
     FStateMgr<ChangePlayerNum>  mStateMgr;
     AnimLayout<1>               mLayout;
