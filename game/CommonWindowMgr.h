@@ -1,6 +1,5 @@
 #pragma once
 
-#include <input/SysControllerWrapper.h>
 #include <layout/CommonWindow.h>
 
 #include <container/seadSafeArray.h>
