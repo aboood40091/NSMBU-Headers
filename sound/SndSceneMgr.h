@@ -42,6 +42,8 @@ public:
 public:
     SndSceneMgr();
 
+    void audioFadeout(u32 = 0);
+
     void enterHBM();
     void exitHBM();
 
