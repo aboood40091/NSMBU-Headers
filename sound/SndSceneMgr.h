@@ -44,6 +44,14 @@ public:
 
     void audioFadeout(u32 = 0);
 
+    bool isBgmVolumeAdjustedForMenu() const
+    {
+        return mIsBgmVolumeAdjustedForMenu;
+    }
+
+    void adjustBgmVolumeForMenu();
+    void resetBgmVolumeForMenu();
+
     void enterHBM();
     void exitHBM();
 
@@ -52,4 +60,11 @@ public:
     void startBossClearFanfare(BossClearType type);
 
     SEAD_SINGLETON_DISPOSER(SndSceneMgr)
+
+protected:
+    u32     _10[(0x40 - 0x10) / sizeof(u32)];
+    u8      _40;
+    bool    mIsBgmVolumeAdjustedForMenu;
+    u32     _44[(0x58 - 0x44) / sizeof(u32)];
 };
+static_assert(sizeof(SndSceneMgr) == 0x58);
