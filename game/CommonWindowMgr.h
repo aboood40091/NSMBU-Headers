@@ -44,10 +44,91 @@ public:
     // Address: 0x024BC5C4
     void drawDRC_System(const agl::lyr::RenderInfo& render_info) const; // Only draws if mCommonWindow.mIsSystemDRC == true
 
+    void open(
+        CommonWindow::Type type,
+        SysController::Id controller_id = SysController::cId_CafeDRC_SinglePlayer,
+        CommonWindow::Type msg_text_type = CommonWindow::cDefaultMsgTextType
+    )
+    {
+        mCommonWindow.mRequestOpen = true;
+        mCommonWindow.mType = type;
+        mCommonWindow.mMsgTextType = msg_text_type;
+        mCommonWindow.mIsSystemDRC = false;
+        mCommonWindow.cursorResetDecideTrig();
+
+        mIsActive = true;
+        mCurrentControllerId = controller_id;
+    }
+
+    void setHideBackButton(bool hide)
+    {
+        mCommonWindow.mHideBackButton = hide;
+    }
+
+    void setSystemDRC(bool enable)
+    {
+        mCommonWindow.mIsSystemDRC = enable;
+    }
+
+    void close()
+    {
+        mCommonWindow.mRequestClose = true;
+    }
+
+    bool isOpen() const
+    {
+        return mCommonWindow.mRequestOpen;
+    }
+
+    bool isVisible() const
+    {
+        return mCommonWindow.mIsVisible;
+    }
+
+    bool isTransitionAnime() const
+    {
+        return mCommonWindow.mIsTransitionAnime;
+    }
+
+    bool isFadeOut() const
+    {
+        return mCommonWindow.mIsFadeOut;
+    }
+
     // Address: 0x024BC5E4
     PadTrigStatus processPadTrig_TwoButtons(bool enable_back_button);   // i.e., Window has two UI buttons
     // Address: 0x024BC7D4
     PadTrigStatus processPadTrig_OneButton();                           // i.e., Window has one UI button
+
+    bool cursorIsOnLeftButton() const
+    {
+        return mCommonWindow.cursorIsOnLeftButton();
+    }
+
+    bool cursorIsOnRightButton() const
+    {
+        return mCommonWindow.cursorIsOnRightButton();
+    }
+
+    void cursorTriggerDecide()
+    {
+        mCommonWindow.cursorTriggerDecide();
+    }
+
+    bool cursorIsNoPadInput() const
+    {
+        return mCommonWindow.cursorIsNoPadInput();
+    }
+
+    void setFreezePostDecide(bool freeze)
+    {
+        mCommonWindow.mFreezePostDecide = freeze;
+    }
+
+    bool isDoneOutQuickSaveAnime() const
+    {
+        return mCommonWindow.mIsDoneOutQuickSaveAnime;
+    }
 
 private:
     CommonWindow                mCommonWindow;
