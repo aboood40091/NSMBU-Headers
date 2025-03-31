@@ -40,7 +40,7 @@ public:
         mIsVisible = true;
     }
 
-    bool isOpen() const
+    bool isVisible() const
     {
         return mIsVisible;
     }

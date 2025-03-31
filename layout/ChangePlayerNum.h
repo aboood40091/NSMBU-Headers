@@ -37,7 +37,7 @@ public:
         mIsOpen = true;
     }
 
-    bool isOpen() const
+    bool isVisible() const
     {
         return mIsVisible;
     }
