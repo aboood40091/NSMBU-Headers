@@ -150,7 +150,7 @@ protected:
     bool                                    mSetSeDecideForPlayStyleBtn;
     bool                                    mIsSystemDRC;
     bool                                    mFreezePostDecide;              // Never set to true in the original game
-    u8                                      mIsDecidedTwoButtons;           // Has the decide button already been triggered if the window has two buttons?
+    bool                                    mIsDecidedTwoButtons;           // Has the decide button already been triggered if the window has two buttons?
     bool                                    mIsURCC;
 
     friend class CommonWindowMgr;
