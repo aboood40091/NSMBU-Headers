@@ -56,6 +56,17 @@ public:
     // Address: 0x025331A0
     void forceClose();
 
+    // StateID_In           Address: 0x1020B588
+    // initializeState_In   Address: 0x02533228
+    // executeState_In      Address: 0x025332D4
+    // finalizeState_In     Address: 0x02533A34
+    DECLARE_STATE_ID(AttentionScreen, In)
+
+    bool isFadein() const
+    {
+        return *mStateMgr.getStateID() == StateID_In;
+    }
+
 protected:
     FStateMgr<AttentionScreen>              mStateMgr;
     AnimLayout<2>                           mLayout;
