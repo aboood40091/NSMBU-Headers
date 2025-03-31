@@ -10,6 +10,14 @@ class SaveMgr
     SEAD_SINGLETON_DISPOSER(SaveMgr)
 
 public:
+    enum Status
+    {
+        cStatus_Ready = 0,
+        cStatus_Reading,
+        cStatus_Writing
+    };
+    static_assert(sizeof(Status) == 4);
+
     enum ReadError
     {
         cReadError_OK                       = 0,
@@ -17,6 +25,7 @@ public:
         cReadError_FileUnavailable          = -1,
         cReadError_FileInvalid              = -2
     };
+    static_assert(sizeof(ReadError) == 4);
 
     enum WriteError
     {
@@ -24,6 +33,7 @@ public:
         cWriteError_FileDeviceUnavailable   = -1,
         cWriteError_FileWriteFailed         = -2
     };
+    static_assert(sizeof(WriteError) == 4);
 
 public:
     SaveMgr();
@@ -31,14 +41,14 @@ public:
 
     bool isSaving() const
     {
-        return _14 == 2 || _30 != -1;
+        return mStatus == cStatus_Writing || _30 != -1;
     }
 
     const FFLStoreData& getStoreData(s32 index) const;
 
 protected:
     sead::DelegateThread*   mpDelegateThread;
-    s32                     _14;                    // enum ?
+    Status                  mStatus;
     ReadError               mReadError;
     WriteError              mWriteError;
     s32                     _20;                    // enum ?
