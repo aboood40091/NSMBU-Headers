@@ -41,9 +41,9 @@ public:
     void draw(const agl::lyr::RenderInfo& render_info) const;
 
     // Address: 0x024BC5A4
-    void drawDRC1(const agl::lyr::RenderInfo& render_info) const;
+    void drawDRC(const agl::lyr::RenderInfo& render_info) const;        // Only draws if mCommonWindow.mIsSystemDRC == false
     // Address: 0x024BC5C4
-    void drawDRC2(const agl::lyr::RenderInfo& render_info) const;
+    void drawDRC_System(const agl::lyr::RenderInfo& render_info) const; // Only draws if mCommonWindow.mIsSystemDRC == true
 
     // Address: 0x024BC5E4
     PadTrigStatus processPadTrig_TwoButtons(bool enable_back_button);   // i.e., Window has two UI buttons
@@ -57,6 +57,6 @@ private:
         SysController::cId_Max
     >                           mControllers;
     SysController::Id           mCurrentControllerId;
-    bool                        mIsVisible;
+    bool                        mIsActive;
 };
 static_assert(sizeof(CommonWindowMgr) == 0x22B8);
