@@ -3,6 +3,24 @@
 #include <heap/seadDisposer.h>
 #include <thread/seadDelegateThread.h>
 
+struct SaveData
+{
+    struct
+    {
+        u32 magic;
+        u8  version_major;
+        u8  version_minor;
+        u8  version_patch;
+        u8  last_file;
+        u8  rdash_state;    // 1 -> The game has notified you about the NSLU DLC.
+        u8  set_up;         // AB/XY & AX/BY setup
+        u8  padding[2];
+        u32 crc32;
+    }   header;
+    u32 _10[(0xB134 - 0x10) / sizeof(u32)];
+};
+static_assert(sizeof(SaveData) == 0xB134);
+
 struct FFLStoreData;
 
 class SaveMgr
@@ -54,13 +72,23 @@ public:
     void startSaveGame(u8 file);
     void startQuickSaveGame(u8 file);
 
+    void startSaveGame()
+    {
+        startSaveGame(mpSavedata->header.last_file);
+    }
+
+    void startQuickSaveGame()
+    {
+        startQuickSaveGame(mpSavedata->header.last_file);
+    }
+
 protected:
     sead::DelegateThread*   mpDelegateThread;
     Status                  mStatus;
     ReadError               mReadError;
     WriteError              mWriteError;
     s32                     _20;                    // enum ?
-    void*                   mpSavedata;             // rp_savedata
+    const SaveData*         mpSavedata;             // rp_savedata
     void*                   mpPersonalSavedata;     // rp_personal_savedata
     bool                    mButtonLayoutChanged;
     u8                      _2d;
