@@ -44,7 +44,15 @@ public:
         return mStatus == cStatus_Writing || _30 != -1;
     }
 
+    bool isSavingDone() const
+    {
+        return mStatus != cStatus_Writing;
+    }
+
     const FFLStoreData& getStoreData(s32 index) const;
+
+    void startSaveGame(u8 file);
+    void startQuickSaveGame(u8 file);
 
 protected:
     sead::DelegateThread*   mpDelegateThread;
