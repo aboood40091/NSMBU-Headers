@@ -5,7 +5,7 @@
 #include <container/seadTList.h>
 #include <heap/seadDisposer.h>
 
-class EffectDisposableBase : public sead::IDisposer, public Effect  // vtbl Address: 0x10058734
+class EffectObjBase : public sead::IDisposer, public Effect  // vtbl Address: 0x10058734
 {
     // NSMBW: Part of mEf::levelEffect_c
 
@@ -15,16 +15,16 @@ public:
 
 public:
     // Address: 0x022AB868
-    EffectDisposableBase();
+    EffectObjBase();
 
-    virtual ~EffectDisposableBase()
+    virtual ~EffectObjBase()
     {
         cleanup();
     }
 
     // getRuntimeTypeInfoStatic()::typeInfo initialization guard variable   Address: Deleted
     // getRuntimeTypeInfoStatic()::typeInfo                                 Address: Deleted
-    SEAD_RTTI_BASE(EffectDisposableBase)
+    SEAD_RTTI_BASE(EffectObjBase)
 
 public:
     EffectID getEffectID() const
@@ -43,8 +43,8 @@ public:
     }
 
 protected:
-    sead::TListNode<EffectDisposableBase*>  mNode;
-    EffectID                                mEffectID;
-    bool                                    mIsActive;
+    sead::TListNode<EffectObjBase*> mNode;
+    EffectID                        mEffectID;
+    bool                            mIsActive;
 };
-static_assert(sizeof(EffectDisposableBase) == 0x68);
+static_assert(sizeof(EffectObjBase) == 0x68);

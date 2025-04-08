@@ -1,24 +1,24 @@
 #pragma once
 
-#include <effect/EffectDisposableBase.h>
+#include <effect/EffectObjBase.h>
 
-class EffectDisposable : public EffectDisposableBase
+class EffectObj : public EffectObjBase
 {
     // NSMBW: Other part of mEf::levelEffect_c & dEf::dLevelEffect_c
 
 public:
-    EffectDisposable()
-        : EffectDisposableBase()
+    EffectObj()
+        : EffectObjBase()
     {
     }
 
-    virtual ~EffectDisposable()
+    virtual ~EffectObj()
     {
     }
 
     // getRuntimeTypeInfoStatic()::typeInfo initialization guard variable   Address: Deleted
     // getRuntimeTypeInfoStatic()::typeInfo                                 Address: Deleted
-    SEAD_RTTI_OVERRIDE(EffectDisposable, EffectDisposableBase)
+    SEAD_RTTI_OVERRIDE(EffectObj, EffectObjBase)
 
 public:
     // Address: 0x022AB52C
@@ -44,4 +44,4 @@ public:
         return follow(*p_mtx, mtx_has_scale);
     }
 };
-static_assert(sizeof(EffectDisposable) == sizeof(EffectDisposableBase));
+static_assert(sizeof(EffectObj) == sizeof(EffectObjBase));

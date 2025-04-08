@@ -3,7 +3,7 @@
 #include <actor/EatData.h>
 #include <collision/ActorBgCollisionEnemyCheck.h>
 #include <collision/ActorCollisionHitCallback.h>
-#include <effect/EffectDisposable.h>
+#include <effect/EffectObj.h>
 #include <enemy/Enemy.h>
 #include <enemy/EnemyActorScaler.h>
 
@@ -269,7 +269,7 @@ protected:
     u8                          mMoveDir;
     ActorUniqueID               mWeaponID;              // I think?
     bool                        _19b8;
-    EffectDisposable            mEffect;
+    EffectObj                   mEffect;
     EatData                     mEatData;
     u32                         _1a48;
     ActorBgCollisionEnemyCheck  mBgCheckEnemy;

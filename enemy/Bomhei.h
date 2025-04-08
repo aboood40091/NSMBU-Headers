@@ -2,7 +2,7 @@
 
 #include <actor/Profile.h>
 #include <collision/ActorCollisionHitCallback.h>
-#include <effect/EffectDisposable.h>
+#include <effect/EffectObj.h>
 #include <enemy/CarryEnemy.h>
 #include <enemy/EnemyActorScaler.h>
 #include <enemy/EnemyChibiYoshiEatData.h>
@@ -238,7 +238,7 @@ protected:
     f32                     mLightAttenuation;
     CircleLightMask         mLightMask;
     Light                   mLight;
-    EffectDisposable        mEffect;
+    EffectObj               mEffect;
     EnemyActorScaler        mScaler;
     BomheiCB                mCollisionHitCallback;
     f32                     _1a44;

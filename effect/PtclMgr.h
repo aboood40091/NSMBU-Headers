@@ -31,8 +31,8 @@ class RenderInfo;
 
 typedef s32 EffectID;
 
-class   EffectDisposable;
-class   EffectDisposableBase;
+class   EffectObj;
+class   EffectObjBase;
 class   PtclEmitterColorMgr;
 class   PtclParallelExecuter;
 struct  PtclParam;
@@ -141,7 +141,7 @@ protected:
     PtclParallelExecuter*                               mpParallelExecuter;
     PtclEmitterColorMgr*                                mpEmitterColorMgr;
     PtclParamMgr*                                       mpParamMgr;
-    sead::TList<EffectDisposableBase*>                  mEffects;
+    sead::TList<EffectObjBase*>                         mEffects;
     sead::FixedPtrArray<nw::eft::EmitterInstance, 256>  mpEmitter1;
     sead::FixedPtrArray<nw::eft::EmitterInstance, 256>  mpEmitter2;
     s32                                                 mPlayerNo;
@@ -149,6 +149,6 @@ protected:
     bool                                                mIsDrawDisable;
     bool                                                mIsUseParallel;
 
-    friend class EffectDisposable;
+    friend class EffectObj;
 };
 static_assert(sizeof(PtclMgr) == 0x84C);

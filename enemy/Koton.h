@@ -3,7 +3,7 @@
 #include <actor/EatData.h>
 #include <actor/Profile.h>
 #include <collision/ActorCollisionHitCallback.h>
-#include <effect/EffectDisposable.h>
+#include <effect/EffectObj.h>
 #include <enemy/Enemy.h>
 #include <enemy/EnemyActorScaler.h>
 #include <enemy/EnemyChibiYoshiEatData.h>
@@ -99,7 +99,7 @@ protected:
     u32                     _1914;
     f32                     _1918;
     Effect                  mEffect1;
-    EffectDisposable        mEffect2;
+    EffectObj               mEffect2;
     u32                     _19c4;
     ActorCollisionCheck     mCollisionCheck2;
     KotonCB                 mCollisionHitCallback;

@@ -5,7 +5,7 @@
 
 #include <math/seadMatrix.h>
 
-class EffectDisposable;
+class EffectObj;
 class FollowEffect;
 
 class EffectCreateUtil
@@ -24,9 +24,9 @@ public:
     static bool createPlayerEffect(s32 player_no, EffectID id, const sead::Matrixf& mtx, bool mtx_has_scale);
 
     // Address: 0x022AB1BC
-    static bool createPlayerEffect(s32 player_no, EffectDisposable* p_effect, EffectID id, const sead::Vector3f* p_trans = nullptr, const Angle3* p_angle = nullptr, const sead::Vector3f* p_scale = nullptr);
+    static bool createPlayerEffect(s32 player_no, EffectObj* p_effect, EffectID id, const sead::Vector3f* p_trans = nullptr, const Angle3* p_angle = nullptr, const sead::Vector3f* p_scale = nullptr);
     // Address: 0x022AB224
-    static bool createPlayerEffect(s32 player_no, EffectDisposable* p_effect, EffectID id, const sead::Matrixf& mtx, bool mtx_has_scale);
+    static bool createPlayerEffect(s32 player_no, EffectObj* p_effect, EffectID id, const sead::Matrixf& mtx, bool mtx_has_scale);
 
     // Address: 0x022AB288
     static bool createPlayerEffect(s32 player_no, FollowEffect* p_effect, EffectID id, const sead::Vector3f* p_trans = nullptr, const Angle3* p_angle = nullptr, const sead::Vector3f* p_scale = nullptr);
