@@ -150,6 +150,12 @@ public:
         f32 p1;
         f32 p2;
         f32 center_offset;
+
+        Sensor invert() const
+        {
+            Sensor inv = { p1, p2, -center_offset };
+            return inv;
+        }
     };
     static_assert(sizeof(Sensor) == 0xC);
 
