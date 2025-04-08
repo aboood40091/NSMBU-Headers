@@ -4,7 +4,7 @@
 #include <actor/Profile.h>
 #include <collision/ActorBoxBgCollision.h>
 
-class BasicModel;
+class AnimModel;
 
 class KillerHoudai : public ActorState  // vtbl Address: 0x1008C448
 {
@@ -40,9 +40,9 @@ protected:
     bool tryShoot_() const;
 
 protected:
-    BasicModel*                         mpBasicModelA;
-    BasicModel*                         mpBasicModelB;
-    sead::SafeArray<BasicModel*, 16>    mpBasicModelC;
+    AnimModel*                          mpAnimModelA;
+    AnimModel*                          mpAnimModelB;
+    sead::SafeArray<AnimModel*, 16>     mpAnimModelC;
     ActorBoxBgCollision                 mBoxBgCollision;
     u32                                 _1aa0[0x50 / sizeof(u32)];
     sead::Vector3f                      _1af0;

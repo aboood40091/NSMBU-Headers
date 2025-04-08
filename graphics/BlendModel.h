@@ -1,9 +1,9 @@
 #pragma once
 
-#include <graphics/BasicModel.h>
+#include <graphics/AnimModel.h>
 #include <graphics/CalcRatio.h>
 
-class BlendModel : public BasicModel
+class BlendModel : public AnimModel
 {
     // Actual name of this class is unknown.
 
@@ -119,9 +119,9 @@ inline BlendModel* BlendModel::create(
     const sead::PtrArray<ModelResource>* p_anim_mdl_res_array
 )
 {
-    BlendModel* p_bmdl = new (heap) BlendModel(p_model, skl_anim_num, tex_anim_num, shu_anim_num, vis_anim_num, sha_anim_num);
-    p_bmdl->init(p_mdl_res, p_anim_mdl_res_array, heap);
-    return p_bmdl;
+    BlendModel* p_blend_model = new (heap) BlendModel(p_model, skl_anim_num, tex_anim_num, shu_anim_num, vis_anim_num, sha_anim_num);
+    p_blend_model->init(p_mdl_res, p_anim_mdl_res_array, heap);
+    return p_blend_model;
 }
 
 inline BlendModel* BlendModel::create(

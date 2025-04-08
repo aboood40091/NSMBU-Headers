@@ -18,7 +18,7 @@ public:
 };
 static_assert(sizeof(KotonCB) == sizeof(ActorCollisionHitCallback));
 
-class BasicModel;
+class AnimModel;
 
 class Koton : public Enemy  // vtbl Address: 0x100906AC
 {
@@ -78,7 +78,7 @@ protected:
     virtual void setCc_();
 
 protected:
-    BasicModel*             mpBasicModel;
+    AnimModel*              mpAnimModel;
     u32                     mJumpTimer;
     u32                     _1888;
     bool                    mJumpLeft;

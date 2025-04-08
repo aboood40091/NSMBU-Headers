@@ -15,10 +15,10 @@ class SkeletalAnimation;
 class TexturePatternAnimation;
 class VisibilityAnimation;
 
-class BasicModel
+class AnimModel
 {
 public:
-    static BasicModel* create(
+    static AnimModel* create(
         ModelResource* p_mdl_res,
         ModelG3d* p_model,
         s32 skl_anim_num, s32 tex_anim_num, s32 shu_anim_num, s32 vis_anim_num, s32 sha_anim_num,
@@ -26,7 +26,7 @@ public:
         const sead::PtrArray<ModelResource>* p_anim_mdl_res_array = nullptr
     );
 
-    static BasicModel* create(
+    static AnimModel* create(
         ModelResource* p_mdl_res,
         const sead::SafeString& name,
         s32 skl_anim_num, s32 tex_anim_num, s32 shu_anim_num, s32 vis_anim_num, s32 sha_anim_num,
@@ -34,7 +34,7 @@ public:
         sead::Heap* heap = nullptr
     );
 
-    static BasicModel* create(
+    static AnimModel* create(
         ModelResource* p_mdl_res,
         const sead::SafeString& name,
         s32 view_num,
@@ -43,7 +43,7 @@ public:
         sead::Heap* heap = nullptr
     );
 
-    static BasicModel* create(
+    static AnimModel* create(
         const sead::SafeString& resource_key,
         const sead::SafeString& name,
         s32 skl_anim_num, s32 tex_anim_num, s32 shu_anim_num, s32 vis_anim_num, s32 sha_anim_num,
@@ -51,7 +51,7 @@ public:
         sead::Heap* heap = nullptr
     );
 
-    static BasicModel* create(
+    static AnimModel* create(
         const sead::SafeString& resource_key,
         const sead::SafeString& name,
         s32 view_num,
@@ -62,7 +62,7 @@ public:
 
 public:
     // Address: 0x024D4798
-    BasicModel(ModelG3d* p_model, u32 skl_anim_num, u32 tex_anim_num, u32 shu_anim_num, u32 vis_anim_num, u32 sha_anim_num);
+    AnimModel(ModelG3d* p_model, u32 skl_anim_num, u32 tex_anim_num, u32 shu_anim_num, u32 vis_anim_num, u32 sha_anim_num);
 
     ModelG3d* getModel() const { return mpModel; }
     ModelResource* getModelResource() const { return mpModelResource; }
@@ -91,9 +91,9 @@ private:
     sead::Buffer<VisibilityAnimation*>      mpVisAnim;
     sead::Buffer<ShapeAnimation*>           mpShaAnim;
 };
-static_assert(sizeof(BasicModel) == 0x30);
+static_assert(sizeof(AnimModel) == 0x30);
 
-inline BasicModel* BasicModel::create(
+inline AnimModel* AnimModel::create(
     ModelResource* p_mdl_res,
     ModelG3d* p_model,
     s32 skl_anim_num, s32 tex_anim_num, s32 shu_anim_num, s32 vis_anim_num, s32 sha_anim_num,
@@ -101,12 +101,12 @@ inline BasicModel* BasicModel::create(
     const sead::PtrArray<ModelResource>* p_anim_mdl_res_array
 )
 {
-    BasicModel* p_bmdl = new (heap) BasicModel(p_model, skl_anim_num, tex_anim_num, shu_anim_num, vis_anim_num, sha_anim_num);
-    p_bmdl->init(p_mdl_res, p_anim_mdl_res_array, heap);
-    return p_bmdl;
+    AnimModel* p_anim_model = new (heap) AnimModel(p_model, skl_anim_num, tex_anim_num, shu_anim_num, vis_anim_num, sha_anim_num);
+    p_anim_model->init(p_mdl_res, p_anim_mdl_res_array, heap);
+    return p_anim_model;
 }
 
-inline BasicModel* BasicModel::create(
+inline AnimModel* AnimModel::create(
     ModelResource* p_mdl_res,
     const sead::SafeString& name,
     s32 skl_anim_num, s32 tex_anim_num, s32 shu_anim_num, s32 vis_anim_num, s32 sha_anim_num,
@@ -118,7 +118,7 @@ inline BasicModel* BasicModel::create(
     return create(p_mdl_res, p_model, skl_anim_num, tex_anim_num, shu_anim_num, vis_anim_num, sha_anim_num, heap);
 }
 
-inline BasicModel* BasicModel::create(
+inline AnimModel* AnimModel::create(
     ModelResource* p_mdl_res,
     const sead::SafeString& name,
     s32 view_num,
@@ -131,7 +131,7 @@ inline BasicModel* BasicModel::create(
     return create(p_mdl_res, p_model, skl_anim_num, tex_anim_num, shu_anim_num, vis_anim_num, sha_anim_num, heap);
 }
 
-inline BasicModel* BasicModel::create(
+inline AnimModel* AnimModel::create(
     const sead::SafeString& resource_key,
     const sead::SafeString& name,
     s32 skl_anim_num, s32 tex_anim_num, s32 shu_anim_num, s32 vis_anim_num, s32 sha_anim_num,
@@ -143,7 +143,7 @@ inline BasicModel* BasicModel::create(
     return create(p_mdl_res, name, skl_anim_num, tex_anim_num, shu_anim_num, vis_anim_num, sha_anim_num, bounding_mode, heap);
 }
 
-inline BasicModel* BasicModel::create(
+inline AnimModel* AnimModel::create(
     const sead::SafeString& resource_key,
     const sead::SafeString& name,
     s32 view_num,

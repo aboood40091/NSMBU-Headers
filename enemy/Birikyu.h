@@ -19,7 +19,7 @@ public:
 };
 static_assert(sizeof(BirikyuCB) == sizeof(ActorCollisionHitCallback));
 
-class BasicModel;
+class AnimModel;
 
 class Birikyu : public Enemy    // vtbl Address: 0x1005CDF4
 {
@@ -107,7 +107,7 @@ public:
     DECLARE_STATE_ID(Birikyu, Touch)
 
 protected:
-    BasicModel*         mpBasicModel;
+    AnimModel*          mpAnimModel;
     sead::Vector3f      mEffectPos;
     EffectDisposable    mEffect;
     s32                 mAttackTimer;

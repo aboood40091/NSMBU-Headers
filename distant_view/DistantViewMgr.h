@@ -13,7 +13,7 @@
 #include <math/seadVector.h>
 #include <postfx/aglDepthOfField.h>
 
-class BasicModel;
+class AnimModel;
 
 //class DistantViewCreditActorMgr;
 class DistantViewEffectMgr;
@@ -98,7 +98,7 @@ private:
     sead::LookAtCamera          mCamera;
     sead::PerspectiveProjection mProjection;
     CullViewFrustum             mCull;
-    BasicModel*                 mpBasicModel;
+    AnimModel*                  mpAnimModel;
     DVEnvTagMgr                 mEnvTagMgr;
     DVCameraParam*              mpCameraParam;
     DistantViewEffectMgr*       mpEffectMgr;

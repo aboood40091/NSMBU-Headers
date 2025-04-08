@@ -15,7 +15,7 @@ public:
 };
 static_assert(sizeof(MechaKoopaCB) == sizeof(ActorCollisionHitCallback));
 
-class BasicModel;
+class AnimModel;
 class ModelResource;
 
 class MechaKoopa : public CarryEnemy    // vtbl Address: 0x10094064
@@ -126,7 +126,7 @@ public:
 
 protected:
     ModelResource*      mpModelResource;
-    BasicModel*         mpBasicModel;
+    AnimModel*          mpAnimModel;
     u32                 mNextTurnTimer;
     u32                 mDownTimer;
     u32                 mCurrentAnim;

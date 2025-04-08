@@ -9,7 +9,7 @@
 #include <math/seadBoundBox.h>
 
 class   Angle;
-class   BasicModel;
+class   AnimModel;
 class   Model;
 class   ModelFFL;
 enum    UnitID;
@@ -73,7 +73,7 @@ public:
     // Address: 0x024FAB58
     void drawModel(Model* p_model);
     // Address: 0x024FAC98
-    void drawModel(const BasicModel* p_model);
+    void drawModel(const AnimModel* p_model);
     // Address: 0x024FACA0
     void drawModel(ModelFFL* p_model);
 
