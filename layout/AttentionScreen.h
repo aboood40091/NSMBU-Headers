@@ -3,6 +3,8 @@
 #include <layout_sys/AnimLayout.h>
 #include <state/FStateMgr.h>
 
+#include <layer/aglRenderInfo.h>
+
 class AttentionScreen   // vtbl Address: 0x100C52A0
 {
 public:
