@@ -1,7 +1,6 @@
 #pragma once
 
 #include <enemy/Enemy.h>
-#include <graphics/CalcRatioSRT.h>
 
 class AnimModel;
 
