@@ -24,6 +24,7 @@ protected:
     s32 execute_() override;
 
 public:
+/*
     // Address: 0x02758804
     virtual void FUN_02758804();
     // Address: 02758814
@@ -49,7 +50,8 @@ public:
     // Address: 0x02759638
     virtual void FUN_02759638();
     // Address: 0x0275969C
-    virtual void FUN_0275969C();
+    virtual void FUN_0275969C();*/
+    
     // Address: 0x02758470
     void updateModel();
     // Address: 0x027586D0
