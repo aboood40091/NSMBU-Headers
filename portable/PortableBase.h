@@ -3,6 +3,8 @@
 #include <actor/ActorState.h>
 #include <os_types.h>
 #include <state/FStateVirtualID.h>
+#include <player/PlayerObject.h>
+#include <player/PlayerBase.h>
 
 class PortableBase : public ActorState // vtbl Address: 0x10106424
 {
@@ -40,15 +42,21 @@ public:
     // Address: 0x027224AC
     virtual void damageFromUnder();
     // Address: 0x02721CDC
-    void FUN_02721CDC();
+    // void FUN_02721CDC(); // Function has no name yet
     // Address: 0x02721DF4
-    void FUN_02721DF4(const PortableBase_InitStruct& initStruct);
+    // void FUN_02721DF4(const PortableBase_InitStruct& initStruct); // Function has no name yet
     // Address: 0x02721E38
-    void FUN_02721E38(const PortableBase_InitStruct& struct, s32 param_3);
+    // void FUN_02721E38(const PortableBase_InitStruct& struct, s32 param_3); // Function has no name yet
+    // Address: 0x027221E8
+    PlayerObject* getLiftingPlayer(u32 param_1);
+    // Address: 0x02721C94
+    PlayerBase* getLiftingPlayer2(u32 param_1);
+    // Address: 0x02722230
+    void CalculatePos(u32 param_1, sead::Vector3f* pos);
     // Address: 0x02722338
-    virtual void FUN_02722338(u32 param_1, u32 param_2);
-    //Address: 0x02722394
-    virtual void FUN_02722394(u32 param_1);
+    // virtual void FUN_02722338(u32 param_1, u32 param_2); // Function has no name yet
+    // Address: 0x02722394
+    // virtual void FUN_02722394(u32 param_1); // Function has no name yet
     // Address: 0x02722AD0
     virtual bool isSpinLiftUpEnable();
     // Address: 0x0272218C
