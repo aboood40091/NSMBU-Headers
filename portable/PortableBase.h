@@ -11,7 +11,7 @@ class PortableBase : public ActorState // vtbl Address: 0x10106424
 {
     // getRuntimeTypeInfoStatic()::typeInfo initialization guard variable   Address: 0x02AFA5E8
     // getRuntimeTypeInfoStatic()::typeInfo                                 Address: 0x02AFA5F0
-    SEAD_RTTI_OVERRIDE(DoorBase, Enemy);
+    SEAD_RTTI_OVERRIDE(PortableBase, ActorState);
 
 public:
 
