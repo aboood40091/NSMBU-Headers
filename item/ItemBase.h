@@ -4,10 +4,13 @@
 #include <player/PlayerEnum.h>
 #include <state/FStateStateMgr.h>
 #include <state/FStateVirtualID.h>
+#include <enemy/EnemyEatData.h>
+#include <enemy/EnemyActorScaler.h>
 
 class Yoshi;
 class AnimModel;
 class TexturePatternAnimation;
+class ActorCollisionCheck;
 
 class ItemBase : public ActorMultiState //vtabl Address: 0x100A0A1C 
 {
@@ -119,8 +122,32 @@ protected:
     sead::Vector2f                      _17C8;
     sead::Vector3f                      mPosition2;
     sead::Vector3f                      mEffPosition;
-    u32                                 _17fff[(24 / sizeof(u32))]; // Placeholder for 24 bytes 
+    u32                                 _17E8[(24 / sizeof(u32))]; // _17E8-_17FF
     AnimModel*                          mAnimModel;
     TexturePatternAnimation*            mTexturePatternAnimation;
+    u8[4]                               PowerUpType;
+    u32                                 _180C; 
+    u32                                 mAnimIDX;
+    u32                                 _1814;
+    u32                                 mUnkPlayerID;
+    u32[2]                              _181C; // _181C-_1820
+    u8[3]                               _1824; // _1824-_1826
+    bool                                mOnCreateCalled;
+    bool                                mCollidedWithLog;
+    u8[3]                               _1829; // _1829-_182B
+    u32                                 _182C;
+    s32                                  mCollidingPlayerID;
+    u32[9]                              _1834; // _1834-_1854
+    u16                                 _1858;
+    s8                                  mYoshiEatenPlayerId;
+    u8                                  _185B;
+    u16                                 _185C;
+    u8                                  _185E;
+    bool                                mCollidedWithGiantWiggler;
+    u8[4]                               _1861; // _1860-_1863
+    EnemyEatData                        mEatData;
+    u8[4]                               _1888; // _1888-_188B
+    EnemyActorScaler                    mScaler;
+    ActorCollisionCheck*                mACollider2;
 };
 static_assert(sizeof(ItemBase) == 0x1A90);
