@@ -11,6 +11,7 @@ class Yoshi;
 class AnimModel;
 class TexturePatternAnimation;
 class ActorCollisionCheck;
+class EffectDisposable;
 
 class ItemBase : public ActorMultiState //vtabl Address: 0x100A0A1C 
 {
@@ -122,7 +123,7 @@ protected:
     sead::Vector2f                      _17C8;
     sead::Vector3f                      mPosition2;
     sead::Vector3f                      mEffPosition;
-    u32                                 _17E8[(24 / sizeof(u32))]; // _17E8-_17FF
+    u32                                 _17E8[(24 / sizeof(u32))]; // 0x17E8-0x17FF
     AnimModel*                          mAnimModel;
     TexturePatternAnimation*            mTexturePatternAnimation;
     u8[4]                               PowerUpType;
@@ -130,24 +131,40 @@ protected:
     u32                                 mAnimIDX;
     u32                                 _1814;
     u32                                 mUnkPlayerID;
-    u32[2]                              _181C; // _181C-_1820
-    u8[3]                               _1824; // _1824-_1826
+    u32[2]                              _181C; // 0x181C-0x1820
+    u8[3]                               _1824; // 0x1824-0x1826
     bool                                mOnCreateCalled;
     bool                                mCollidedWithLog;
-    u8[3]                               _1829; // _1829-_182B
+    u8[3]                               _1829; // 0x1829-0x182B
     u32                                 _182C;
     s32                                  mCollidingPlayerID;
-    u32[9]                              _1834; // _1834-_1854
+    u32[9]                              _1834; // 0x1834-0x1854
     u16                                 _1858;
     s8                                  mYoshiEatenPlayerId;
     u8                                  _185B;
     u16                                 _185C;
     u8                                  _185E;
     bool                                mCollidedWithGiantWiggler;
-    u8[4]                               _1861; // _1860-_1863
+    u8[4]                               _1861; // 0x1860-0x1863
     EnemyEatData                        mEatData;
-    u8[4]                               _1888; // _1888-_188B
+    u8[4]                               _1888; // 0x1888-0x188B
     EnemyActorScaler                    mScaler;
     ActorCollisionCheck*                mACollider2;
+    u8[4]                               _19D4; // 0x19D4-0x19D7
+    f32[2]                              _19D8;
+    u32                                 _19E8;
+    f32[3]                              _19E4; //0x19E4-0x19EC
+    u32                                 _19F0;
+    u8[4]                               _19F4; //0x19F4-0x19F7
+    u32[4]                              _19F8; //0x19F8-0x1A00
+    EffectDisposable                    mEffect; // Ig
+    u32                                 _1A6C;
+    u8[4]                               _1A70; // 0x1A70-0x1A73
+    u32                                 mSetTo0IfNoParent;
+    u8[2]                               _1A7C; // 0x1A7C-0x1A7D
+    bool                                mParentIsFlyingQBlockSpawner;
+    u8                                  _1A7F;
+    sead::Vector3f                      _1A80;
+    u32                                 mFuncPointer; // Placeholder cause I dont know the Datatype
 };
 static_assert(sizeof(ItemBase) == 0x1A90);
