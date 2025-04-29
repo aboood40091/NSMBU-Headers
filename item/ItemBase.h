@@ -18,6 +18,10 @@ class ItemBase : public ActorMultiState //vtabl Address: 0x100A0A1C
     SEAD_RTTI_OVERRIDE(ItemBase, ActorMultiState);
 
 public:
+    // Address:0x02517448
+    ItemBase(const ActorCreateParam& param);
+    // Address:0x0251DCAC
+    virtual ~Itembase(){}
     // Address: 0x02518C70
     void CollisionCallback(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other)override;
 public:
