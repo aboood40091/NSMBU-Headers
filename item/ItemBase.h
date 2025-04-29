@@ -4,14 +4,14 @@
 #include <player/PlayerEnum.h>
 #include <state/FStateStateMgr.h>
 #include <state/FStateVirtualID.h>
-#include <enemy/EnemyEatData.h>
-#include <enemy/EnemyActorScaler.h>
 
-class Yoshi;
-class AnimModel;
-class TexturePatternAnimation;
 class ActorCollisionCheck;
+class AnimModel;
 class EffectDisposable;
+class EnemyActorScaler;
+class EnemyEatData;
+class TexturePatternAnimation;
+class Yoshi;
 
 class ItemBase : public ActorMultiState //vtabl Address: 0x100A0A1C 
 {
