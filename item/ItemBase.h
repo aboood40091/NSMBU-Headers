@@ -5,9 +5,24 @@
 #include <state/FStateStateMgr.h>
 #include <state/FStateVirtualID.h>
 
+
+class ItemBaseCB : public ActorCollisionHitCallback // vtbl Address: 0x100c0cb4
+{
+public:
+    // Address: 0x0251715C
+    bool ccCallback1(ActorCollisionCheck*, const sead::Vector2f&) override;
+    // Address: 0x0251DA90
+    void ccCallback2(ActorCollisionCheck* cc_self, const sead::Vector2f& pos)override;
+    // Address: 0x0251DA98
+    bool bcCallback1(BgCollision*, const sead::Vector2f&)override;
+    // Address:0x0251DAA0
+    void bcCallback2(BgCollision*, const sead::Vector2f&)override;
+};
+static_assert(sizeof(ItemBaseCB) == sizeof(ActorCollisionHitCallback));
+
 class ActorCollisionCheck;
 class AnimModel;
-class EffectDisposable;
+class EffectObj;
 class EnemyActorScaler;
 class EnemyEatData;
 class TexturePatternAnimation;
@@ -18,15 +33,10 @@ class ItemBase : public ActorMultiState //vtabl Address: 0x100A0A1C
     SEAD_RTTI_OVERRIDE(ItemBase, ActorMultiState);
 
 public:
-    // Address:0x02517448
-    ItemBase(const ActorCreateParam& param);
-    // Address:0x0251DCAC
-    virtual ~Itembase(){}
-    // Address: 0x02518C70
-    void CollisionCallback(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other)override;
-public:
     // Address: 0x02517448
     ItemBase(const ActorCreateParam& param);
+        // Address:0x0251DCAC
+    virtual ~Itembase(){}
 private:
     // Address: 0x025176EC
     s32 draw_()override;
@@ -161,7 +171,7 @@ protected:
     u32                                 _19F0;
     u8[4]                               _19F4; //0x19F4-0x19F7
     u32[4]                              _19F8; //0x19F8-0x1A00
-    EffectDisposable                    mEffect; // Ig
+    EffectObj                           mEffect; 
     u32                                 _1A6C;
     u8[4]                               _1A70; // 0x1A70-0x1A73
     u32                                 mSetTo0IfNoParent;
@@ -169,6 +179,6 @@ protected:
     bool                                mParentIsFlyingQBlockSpawner;
     u8                                  _1A7F;
     sead::Vector3f                      _1A80;
-    u32                                 mFuncPointer; // Placeholder cause I dont know the Datatype
+    ItemBaseCB*                         mItemBaseCB;
 };
 static_assert(sizeof(ItemBase) == 0x1A90);
