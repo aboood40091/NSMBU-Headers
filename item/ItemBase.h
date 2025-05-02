@@ -61,6 +61,8 @@ public:
     Yoshi* getEatenbyYoshi()const;
     // Address: 0x025183BC
     f64 getZPosToUse();
+    // Address:0x02518F94
+    void handleExpiration();
     // Address: 0x0251784C
     virtual void initActiveColliders();
     // Address: 0x0251A964
@@ -75,6 +77,8 @@ public:
     bool onItemCollectedTwice(u32, u32);
     // Address: 0x02518290
     void posMove();
+    // Address: 
+    void resetGiantWigglerAndLogCollision();
     // Address: 0x02517908
     virtual void setAboveSensor();
     // Address: 0x02517A40
@@ -86,7 +90,7 @@ public:
     // Address: 0x025178C0
     virtual void setBelowSensor();
     // Address: 0x025196E8
-    bool setPowerupState(void*, PlayerMode , u32);
+    bool checkPowerupState(void*, PlayerMode , u32);
     // Address: 0x025183F8
     void setRegularMovementState();
     // Address: 0x02517D5C
