@@ -25,6 +25,7 @@ class AnimModel;
 class EffectObj;
 class EnemyActorScaler;
 class EnemyEatData;
+class StateID;
 class TexturePatternAnimation;
 class Yoshi;
 
@@ -55,7 +56,7 @@ public:
     // Address: 0x0251AD6C
     void deleteIfhasParent();
     // Address: 0x0251DA88
-    virtual void doStateChange();
+    virtual void doStateChange(StateID* state_id);
     // Address: 0x0251A990
     Yoshi* getEatenbyYoshi()const;
     // Address: 0x025183BC
