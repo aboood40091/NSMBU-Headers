@@ -8,6 +8,7 @@
 #include <map/WaterType.h>
 #include <system/LineNodeMgr.h>
 #include <utility/Angle.h>
+#include <utility/Bitfield.h>
 #include <utility/Direction.h>
 
 #include <container/seadPtrArray.h>
@@ -59,37 +60,30 @@ class ActorBgCollisionCheck // vtbl Address: 0x10041364
     SEAD_RTTI_BASE(ActorBgCollisionCheck)
 
 public:
-    class Output
+    class Output : public Bitfield<32>
     {
     public:
-        enum Flag
+        enum Bit
         {
-            cFlag_OnGround          = 1 <<  0,
-            cFlag_OnSlope           = 1 <<  1,
-            cFlag_OnTrampoline      = 1 <<  3,
-            cFlag_OnRide            = 1 <<  4,
-            cFlag_HeadCollision     = 1 << 10,
-            cFlag_Unk16             = 1 << 16,
-            cFlag_WallRCollision    = 1 << 18,
-            cFlag_WallLCollision    = 1 << 19,
-            cFlag_Unk22             = 1 << 22,  // Right Wall related
-            cFlag_Unk23             = 1 << 23,  // Left Wall related
-            cFlag_Unk28             = 1 << 28,  // Right Wall related
-            cFlag_Unk29             = 1 << 29   // Left Wall related
+            cBit_OnGround       =  0,
+            cBit_OnSlope        =  1,
+            cBit_OnTrampoline   =  3,
+            cBit_OnRide         =  4,
+            cBit_HeadCollision  = 10,
+            cBit_Unk16          = 16,
+            cBit_WallRCollision = 18,
+            cBit_WallLCollision = 19,
+            cBit_Unk22          = 22,   // Right Wall related
+            cBit_Unk23          = 23,   // Left Wall related
+            cBit_Unk28          = 28,   // Right Wall related
+            cBit_Unk29          = 29    // Left Wall related
         };
 
     public:
-        Output()
-        {
-            sead::MemUtil::fillZero(&mFlag, sizeof(mFlag));
-        }
-
-        u32 get() const { return mFlag; }
-
-        bool checkFoot()        const { return mFlag & cFlag_OnGround; }
-        bool checkHead()        const { return mFlag & cFlag_HeadCollision; }
-        bool checkRightWall()   const { return mFlag & cFlag_WallRCollision; }
-        bool checkLeftWall()    const { return mFlag & cFlag_WallLCollision; }
+        bool checkFoot()        const { return isOnBit(cBit_OnGround); }
+        bool checkHead()        const { return isOnBit(cBit_HeadCollision); }
+        bool checkRightWall()   const { return isOnBit(cBit_WallRCollision); }
+        bool checkLeftWall()    const { return isOnBit(cBit_WallLCollision); }
 
         bool checkWall(u8 direction) const
         {
@@ -103,44 +97,33 @@ public:
 
         bool checkHeadEx() const
         {
-            return checkHead() && !(mFlag & cFlag_Unk16);
+            return checkHead() && isOffBit(cBit_Unk16);
         }
 
         bool checkRightWallEx() const
         {
-            return (checkRightWall() || (mFlag & cFlag_Unk22)) && !(mFlag & cFlag_Unk28);
+            return (checkRightWall() || isOnBit(cBit_Unk22)) && isOffBit(cBit_Unk28);
         }
 
         bool checkLeftWallEx() const
         {
-            return (checkLeftWall() || (mFlag & cFlag_Unk23)) && !(mFlag & cFlag_Unk29);
+            return (checkLeftWall() || isOnBit(cBit_Unk23)) && isOffBit(cBit_Unk29);
         }
 
         bool checkWallEx(u8 direction) const
         {
-            return ((mFlag & (1 << (18 + direction))) || (mFlag & (1 << (22 + direction)))) && !(mFlag & (1 << (28 + direction)));
+            return (isOnBit(cBit_WallRCollision + direction) || isOnBit(cBit_Unk22 + direction)) && isOffBit(cBit_Unk28 + direction);
         }
 
         bool isOnTrampoline() const
         {
-            return mFlag & cFlag_OnTrampoline;
+            return isOnBit(cBit_OnTrampoline);
         }
-
-    private:
-        u32 mFlag;
-
-        friend class ActorBgCollisionCheck;
     };
     static_assert(sizeof(Output) == 4);
 
-    struct SensorFlag
+    class SensorFlag : public Bitfield<64>
     {
-        SensorFlag()
-        {
-            sead::MemUtil::fillZero(_0, sizeof(_0));
-        }
-
-        u32 _0[2];
     };
     static_assert(sizeof(SensorFlag) == 8);
 
