@@ -1,6 +1,7 @@
 #pragma once
 
 #include <player/PlayerBase.h>
+#include <player/PlayerModelMgr.h>
 
 class PlayerObject : public PlayerBase
 {
@@ -42,7 +43,8 @@ public:
     void vineWalk();
 
 protected:
-    u32             _2750[(0x2784 - 0x2750) / sizeof(u32)];
+    PlayerModelMgr  mModelMgr;
+    u32             _2760[(0x2784 - 0x2760) / sizeof(u32)];
     ActorUniqueID   mCarryActorID;
     u32             _2788[(0x2AC8 - 0x2788) / sizeof(u32)];
     u32             _2ac8;
