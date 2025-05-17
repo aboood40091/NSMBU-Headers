@@ -28,10 +28,26 @@ public:
         return *mStateMgr.getStateID() == StateID_Balloon;
     }
 
+    // ------------------------------------ PlayerObjectMain.cpp ------------------------------------ //
+
+    bool setRideOffPlayerJump(f32 speed_y, f32 speed_f);
+
+    // ------------------------------------ PlayerObjectVine.cpp ------------------------------------ //
+
+    void VineActionNet();
+
+    bool checkVineEnd();
+    void calcVineSpeed();
+    bool setVineToKaniHangAction();
+    void vineWalk();
+
 protected:
     u32             _2750[(0x2784 - 0x2750) / sizeof(u32)];
     ActorUniqueID   mCarryActorID;
-    u32             _2788[(0x34CC - 0x2788) / sizeof(u32)];
+    u32             _2788[(0x2AC8 - 0x2788) / sizeof(u32)];
+    u32             _2ac8;
+    u32             _2acc;
+    u32             _2ad0[(0x34CC - 0x2AD0) / sizeof(u32)];
     f32             mJumpTimerF;
     s32             mJumpAnmID;
     s32             _34d4;  // Some random timer

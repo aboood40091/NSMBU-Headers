@@ -5,20 +5,17 @@
 class PlayerKey
 {
 public:
-    bool isDownPressed() const;
-    bool isUpPressed() const;
+    bool buttonUp() const;
+    bool buttonDown() const;
+    bool buttonLeft() const;
+    bool buttonRight() const;
 
-    bool isRightHeld() const;
-    bool isLeftHeld() const;
-    bool isDownHeld() const;
-    bool isUpHeld() const;
+    bool triggerUp() const;
+    bool triggerDown() const;
 
-    bool isOnlyDownHeld() const;
+    bool triggerAttack() const;
 
-    bool isOnlyUpHeld() const
-    {
-        return isUpHeld() && !isRightHeld() && !isLeftHeld() && !isDownHeld();
-    }
+    bool buttonHipAttack() const;
 
 private:
     u8  _0[0x94];
