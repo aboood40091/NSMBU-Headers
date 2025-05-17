@@ -18,6 +18,6 @@ struct FollowArg
     sead::Vector3f* p_position_prev;
     u8*             p_layer;
     sead::BitFlag8* p_collision_mask;
-    u8*             p_player_no;
+    s8*             p_player_no;
 };
 static_assert(sizeof(FollowArg) == 0x14);

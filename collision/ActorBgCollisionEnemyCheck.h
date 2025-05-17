@@ -25,7 +25,7 @@ public:
         return mpOwner;
     }
 
-    u8* vf4C(f32) const override
+    s8* vf4C(f32) const override
     {
         return mFollowArg.p_player_no;
     }

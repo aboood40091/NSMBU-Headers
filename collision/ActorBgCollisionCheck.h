@@ -173,7 +173,7 @@ public:
     virtual void vf34();
     virtual Actor* vf3C(f32) const = 0;
     virtual Actor* vf44(const BgCollision&, s32) const = 0;
-    virtual u8* vf4C(f32) const = 0;
+    virtual s8* vf4C(f32) const = 0;
     // Address: 0x0219070C
     virtual void vf54();
     // Address: 0x02190C14
