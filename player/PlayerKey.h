@@ -13,6 +13,7 @@ public:
     bool triggerUp() const;
     bool triggerDown() const;
 
+    bool triggerShakeJump() const;
     bool triggerAttack() const;
 
     bool buttonHipAttack() const;
