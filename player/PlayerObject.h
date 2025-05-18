@@ -33,6 +33,10 @@ public:
 
     bool setRideOffPlayerJump(f32 speed_y, f32 speed_f);
 
+    // ------------------------------------ PlayerObjectPropel.cpp ------------------------------------ //
+
+    void setPropelFallSpin();
+
     // ------------------------------------ PlayerObjectVine.cpp ------------------------------------ //
 
     void VineActionNet();
