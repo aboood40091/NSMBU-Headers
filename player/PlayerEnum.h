@@ -15,13 +15,31 @@ enum PlayerMode
     cPlayerMode_PSquirrel,
     cPlayerMode_Num
 };
+static_assert(cPlayerMode_Num == 9);
+static_assert(sizeof(PlayerMode) == 4);
 
-enum PlayerModelMode
+enum PlayerModeModel
 {
-    cPlayerModelMode_Normal = 0,
-    cPlayerModelMode_Small,
-    cPlayerModelMode_Propeller,
-    cPlayerModelMode_Penguin,
-    cPlayerModelMode_Squirrel,
-    cPlayerModelMode_Num
+    cPlayerModeModel_Normal = 0,
+    cPlayerModeModel_Small,
+    cPlayerModeModel_Propeller,
+    cPlayerModeModel_Penguin,
+    cPlayerModeModel_Squirrel,
+    cPlayerModeModel_Num
 };
+static_assert(cPlayerModeModel_Num == 5);
+static_assert(sizeof(PlayerModeModel) == 4);
+
+enum PlayerCharacter
+{
+    cPlayerCharacter_Mario = 0,
+    cPlayerCharacter_Luigi,
+    cPlayerCharacter_YellowToad,
+    cPlayerCharacter_BlueToad,
+    cPlayerCharacter_Nabbit,
+    cPlayerCharacter_Mii,
+    cPlayerCharacter_Unused,    // No idea why this exists
+    cPlayerCharacter_Num
+};
+static_assert(cPlayerCharacter_Num == 7);
+static_assert(sizeof(PlayerCharacter) == 4);
