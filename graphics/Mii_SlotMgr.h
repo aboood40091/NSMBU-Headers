@@ -6,9 +6,9 @@ struct FFLStoreData;
 
 namespace Mii {
 
-class DataSource;
+class SlotID;
 
-class SlotMgr : public sead::IDisposer
+class SlotMgr : public sead::IDisposer  // vtbl Address: 0x100BBE24
 {
 public:
     // Address: 0x024ECA98
@@ -25,7 +25,8 @@ public:
     void destroy();
 
 public:
-    static bool getStoreData(FFLStoreData* p_store_data, const DataSource& source);
+    // Address: 0x024ECF98
+    static bool getStoreData(FFLStoreData* p_store_data, const SlotID& slot_id);
 
 private:
     u32 mSlotNum;
