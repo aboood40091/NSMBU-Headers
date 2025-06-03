@@ -17,13 +17,13 @@ class ModelFFL : public RenderObj, sead::IDisposer    // vtbl Address: 0x100BCCF
     SEAD_RTTI_OVERRIDE(ModelFFL, RenderObj)
 
 public:
-    enum Lightmap02pType
+    enum EnvType
     {
-        cLightmap02pType_LightMapMgr = 0,
-        cLightmap02pType_0,
-        cLightmap02pType_1
+        cEnvType_Normal = 0,
+        cEnvType_Star,
+        cEnvType_P          // i.e., P-squirrel
     };
-    static_assert(sizeof(Lightmap02pType) == 4);
+    static_assert(sizeof(EnvType) == 4);
 
     enum LightMapType
     {
@@ -126,19 +126,19 @@ public:
         updateMtxSRT();
     }
 
-    agl::TextureData* getLightmap02p_0() const
+    agl::TextureData* getEnvTexture_Star() const
     {
-        return mLightmap02p_0;
+        return mEnvTexture_Star;
     }
 
-    agl::TextureData* getLightmap02p_1() const
+    agl::TextureData* getEnvTexture_P() const
     {
-        return mLightmap02p_1;
+        return mEnvTexture_P;
     }
 
-    Lightmap02pType getLightmap02pType() const
+    EnvType getEnvType() const
     {
-        return mLightmap02pType;
+        return mEnvType;
     }
 
     LightMapType getLightMapType() const
@@ -193,9 +193,9 @@ private:
     sead::Matrix34f         mMtxSRT;
     sead::Color4f           mExLightRegColor;
     sead::Color4f           mExDarkRegColor;
-    agl::TextureData*       mLightmap02p_0;
-    agl::TextureData*       mLightmap02p_1;
-    Lightmap02pType         mLightmap02pType;
+    agl::TextureData*       mEnvTexture_Star;
+    agl::TextureData*       mEnvTexture_P;
+    EnvType                 mEnvType;
     LightMapType            mLightMapType;
     bool                    mDrawOpaWithXlu;
     InitializeStep          mInitializeStep;

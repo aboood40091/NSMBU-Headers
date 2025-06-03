@@ -166,8 +166,8 @@ private:
     FFLShaderCallback                   mCallback;
     GX2Sampler                          mSampler;
     ModelFFL*                           mpModel;
-    agl::TextureSampler                 mLightmap02p_0;
-    agl::TextureSampler                 mLightmap02p_1;
+    agl::TextureSampler                 mEnvSampler_Star;
+    agl::TextureSampler                 mEnvSampler_P;
     LightParam                          mLightParam;
     Material                            mMaterial[FFL_MODULATE_TYPE_SHAPE_MAX];
     RimParam                            mRimParam;
