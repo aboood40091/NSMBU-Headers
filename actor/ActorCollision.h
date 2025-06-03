@@ -108,6 +108,8 @@ public:
 
     // Address: 0x020039AC
     void calcSpeedY();
+    // Address: 0x020039F0
+    void calcFallSpeed();
     // Address: 0x02003AE4
     void posMove();
 

@@ -213,9 +213,25 @@ public:
         return mIsNoRespawn;
     }
 
+    // Address: 0x020013E8
+    void calcSpeedX();
+    // Address: 0x02001430
+    void calcSpeedY(f32 accel_y, f32 speed_max_y);
+    void calcSpeedY() { calcSpeedY(mAccelY, mSpeedMax.y); }
+
+    void calcSpeedF() { sead::Mathf::chase(&mSpeedF, mSpeedFMax, mAccelF); }
+    // Address: 0x0200144C
+    void calcFallSpeed(f32 accel_y, f32 fall_speed_max);
+    void calcFallSpeed() { calcFallSpeed(mAccelY, mFallSpeedMax); }
+
     void posMove(sead::Vector3f& delta)
     {
         mPos += delta;
+    }
+
+    void posMove()
+    {
+        posMove(mSpeed);
     }
 
 protected:
