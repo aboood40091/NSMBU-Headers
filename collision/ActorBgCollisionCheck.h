@@ -153,7 +153,7 @@ public:
     // Address: 0x0218E060
     virtual void reset();
     // Address: 0x0218E180
-    virtual void vf34();
+    virtual void atFrameStart();
     virtual Actor* vf3C(f32) const = 0;
     virtual Actor* vf44(const BgCollision&, s32) const = 0;
     virtual s8* vf4C(f32) const = 0;

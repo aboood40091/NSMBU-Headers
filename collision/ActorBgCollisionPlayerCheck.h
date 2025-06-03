@@ -29,7 +29,7 @@ public:
     // Address: 0x02193718
     void reset() override;
     // Address: 0x0219371C
-    void vf34() override;
+    void atFrameStart() override;
     // Address: 0x0219587C
     Actor* vf3C(f32) const override;
     // Address: 0x021958E8
