@@ -60,6 +60,13 @@ class ActorBgCollisionCheck // vtbl Address: 0x10041364
     SEAD_RTTI_BASE(ActorBgCollisionCheck)
 
 public:
+    enum SakaType
+    {
+        cSakaType_Num = 5
+    };
+    static_assert(sizeof(SakaType) == 4);
+
+public:
     class Output : public Bitfield<32>
     {
     public:
