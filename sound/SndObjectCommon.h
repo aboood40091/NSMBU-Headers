@@ -19,14 +19,14 @@ inline nw::snd::OutputLine& operator|=(nw::snd::OutputLine& lhs, const nw::snd::
     return lhs;
 }
 
-class NMSndObject : public NMSndObjectBase
+class NMSndObject : public NMSndObjectBase  // vtbl Address: 0x1017DD7C
 {
 public:
     static const u32 cPlayableSoundNum = 4;
     static const u32 cHandleNum = cPlayableSoundNum + cExtraHandleNum;
 
 public:
-    class SoundHandlePrm : public sead::IDisposer
+    class SoundHandlePrm : public sead::IDisposer   // vtbl Address: 0x1017DB14
     {
     public:
         SoundHandlePrm()
