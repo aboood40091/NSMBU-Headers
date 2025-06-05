@@ -25,8 +25,8 @@ public:
 
     enum Type
     {
-        cType_Generic       = 0,
-        cType_Player,
+        cType_PlayerReact   = 0,
+        cType_PlayerAttack,
         cType_Yoshi,
         cType_Enemy,
         cType_Balloon,
@@ -44,8 +44,8 @@ public:
 
     enum TypeMask
     {
-        cTypeMask_Generic       = 1 << cType_Generic,
-        cTypeMask_Player        = 1 << cType_Player,
+        cTypeMask_PlayerReact   = 1 << cType_PlayerReact,
+        cTypeMask_PlayerAttack  = 1 << cType_PlayerAttack,
         cTypeMask_Yoshi         = 1 << cType_Yoshi,
         cTypeMask_Enemy         = 1 << cType_Enemy,
         cTypeMask_Balloon       = 1 << cType_Balloon,
