@@ -155,3 +155,12 @@ enum PlayerVoiceID
     cPlayerVoiceID_Num
 };
 static_assert(cPlayerVoiceID_Num == 80);
+
+enum PlayerTallType
+{
+    cTallType_Mini = 0,
+    cTallType_Small,
+    cTallType_Normal,
+    cTallType_Num
+};
+static_assert(cTallType_Num == 3);

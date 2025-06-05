@@ -52,3 +52,17 @@ protected:
         (&CLASS::initializeState_##NAME,    \
          &CLASS::executeState_##NAME,       \
          &CLASS::finalizeState_##NAME);
+
+// The following is only ever used by PlayerBase & PlayerObject demo states
+
+#define DECLARE_STATE_ID_VIRTUAL_FUNC_BASE(CLASS, NAME)     \
+    static FStateID<CLASS> StateID_##NAME;                  \
+    virtual void initializeState_##NAME();                  \
+    virtual void executeState_##NAME();                     \
+    virtual void finalizeState_##NAME();
+
+#define DECLARE_STATE_ID_VIRTUAL_FUNC_OVERRIDE(CLASS, NAME) \
+    static FStateID<CLASS> StateID_##NAME;                  \
+    void initializeState_##NAME() override;                 \
+    void executeState_##NAME() override;                    \
+    void finalizeState_##NAME() override;
