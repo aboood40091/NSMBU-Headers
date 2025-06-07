@@ -10,7 +10,7 @@ class BossCB : public ActorCollisionHitCallback // vtbl Address: 0x10005E2C
 {
 public:
     // Address: 0x0202b8c0
-    bool ccCallback1(ActorCollisionCheck*, const sead::Vector2f&) override;
+    bool ccIsTouchEnable(ActorCollisionCheck* p_cc, const sead::Vector2f& pos) override;
 };
 static_assert(sizeof(BossCB) == sizeof(ActorCollisionHitCallback));
 

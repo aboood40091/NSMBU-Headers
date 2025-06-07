@@ -12,9 +12,9 @@ class KotonCB : public ActorCollisionHitCallback    // vtbl Address: 0x10090654
 {
 public:
     // Address: 0x023D5334
-    bool ccCallback1(ActorCollisionCheck*, const sead::Vector2f&) override;
+    bool ccIsTouchEnable(ActorCollisionCheck* p_cc, const sead::Vector2f& pos) override;
     // Address: 0x023D53C0
-    void ccCallback2(ActorCollisionCheck*, const sead::Vector2f&) override;
+    void ccOnTouch(ActorCollisionCheck* p_cc, const sead::Vector2f& pos) override;
 };
 static_assert(sizeof(KotonCB) == sizeof(ActorCollisionHitCallback));
 

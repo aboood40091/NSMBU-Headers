@@ -12,9 +12,9 @@ class KuriboBaseCB : public ActorCollisionHitCallback   // vtbl Address: 0x10091
 {
 public:
     // Address: 0x023DDBF8
-    bool ccCallback1(ActorCollisionCheck*, const sead::Vector2f&) override;
+    bool ccIsTouchEnable(ActorCollisionCheck* p_cc, const sead::Vector2f& pos) override;
     // Address: 0x023DDC90
-    void ccCallback2(ActorCollisionCheck*, const sead::Vector2f&) override;
+    void ccOnTouch(ActorCollisionCheck* p_cc, const sead::Vector2f& pos) override;
 };
 static_assert(sizeof(KuriboBaseCB) == sizeof(ActorCollisionHitCallback));
 

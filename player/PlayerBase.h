@@ -19,10 +19,10 @@ class PlayerBaseCB : public ActorCollisionHitCallback   // vtbl Address: 0x10169
 {
 public:
     // Address: 0x029117C0
-    bool ccCallback1(ActorCollisionCheck*, const sead::Vector2f&) override;
-    void ccCallback2(ActorCollisionCheck*, const sead::Vector2f&) override { }
+    bool ccIsTouchEnable(ActorCollisionCheck* p_cc, const sead::Vector2f& pos) override;
+    void ccOnTouch(ActorCollisionCheck* p_cc, const sead::Vector2f& pos) override { }
 
-    bool bcCallback1(BgCollision*, const sead::Vector2f&) override { return false; }
+    bool bcIsTouchEnable(BgCollision* p_bg_collision, const sead::Vector2f& pos) override { return false; }
 };
 static_assert(sizeof(PlayerBaseCB) == sizeof(ActorCollisionHitCallback));
 

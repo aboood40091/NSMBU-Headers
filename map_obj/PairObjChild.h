@@ -5,8 +5,8 @@
 class PairObjChildBaseCB : public ActorCollisionHitCallback
 {
 public:
-    bool bcCallback1(BgCollision*, const sead::Vector2f&) override;
-    void bcCallback2(BgCollision*, const sead::Vector2f&) override;
+    bool bcIsTouchEnable(BgCollision* p_bg_collision, const sead::Vector2f& pos) override;
+    void bcOnTouch(BgCollision* p_bg_collision, const sead::Vector2f& pos) override;
 };
 static_assert(sizeof(PairObjChildBaseCB) == sizeof(ActorCollisionHitCallback));
 

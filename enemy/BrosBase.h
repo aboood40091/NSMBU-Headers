@@ -13,9 +13,9 @@ class BrosBaseCB : public ActorCollisionHitCallback // vtbl Address: 0x1005F6E8
 {
 public:
     // Address: 0x022DD974
-    bool ccCallback1(ActorCollisionCheck*, const sead::Vector2f&) override;
+    bool ccIsTouchEnable(ActorCollisionCheck* p_cc, const sead::Vector2f& pos) override;
     // Address: 0x022DDAEC
-    void ccCallback2(ActorCollisionCheck*, const sead::Vector2f&) override;
+    void ccOnTouch(ActorCollisionCheck* p_cc, const sead::Vector2f& pos) override;
 };
 static_assert(sizeof(BrosBaseCB) == sizeof(ActorCollisionHitCallback));
 
