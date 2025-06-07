@@ -73,7 +73,7 @@ public:
     // Address: 0x02003760
     virtual void vf14C(Actor*);         // nullsub
 
-    virtual bool vf154(const sead::Vector2f&)
+    virtual bool setTouchDrcDamage(const sead::Vector2f& pos)
     {
         return false;
     }

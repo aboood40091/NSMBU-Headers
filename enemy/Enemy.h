@@ -50,7 +50,7 @@ public:
     // Address: 0x0232DC88
     void vf14C(Actor*) override;    // Kills Enemy with StateID_DieUnk1
     // Address: 0x0232E1A4
-    bool vf154(const sead::Vector2f&) override;
+    bool setTouchDrcDamage(const sead::Vector2f& pos) override;
     // Address: 0x02330404
     void changeState(const StateID& state_id) override;
 
