@@ -349,7 +349,10 @@ public:
 
 protected:
     EnemyDeathInfo  mDeathInfo;
-    u16             _17e4[4];
+    sead::SafeArray<
+        u16,
+        4
+    >               _17e4;
     sead::BitFlag32 _17e8;
     IceMgr          mIceMgr;
     u32             mChibiYoshiAwaData[0x20 / sizeof(u32)]; // TODO: EnemyChibiYoshiAwaData
