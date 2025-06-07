@@ -3,13 +3,13 @@
 #include <actor/ChibiYoshiEatData.h>
 #include <actor/EatData.h>
 #include <actor/Profile.h>
-#include <collision/ActorCollisionHitCallback.h>
+#include <collision/ActorCollisionTouchDrcCallback.h>
 #include <effect/EffectObj.h>
 #include <enemy/Enemy.h>
 #include <enemy/EnemyActorScaler.h>
 #include <graphics/Light.h>
 
-class BirikyuCB : public ActorCollisionHitCallback  // vtbl Address: 0x1005CD9C
+class BirikyuTouchDrcCB : public ActorCollisionTouchDrcCallback // vtbl Address: 0x1005CD9C
 {
 public:
     // Address: 0x022CF75C
@@ -17,7 +17,7 @@ public:
     // Address: 0x022CF7E8
     void ccOnTouch(ActorCollisionCheck* p_cc, const sead::Vector2f& pos) override;
 };
-static_assert(sizeof(BirikyuCB) == sizeof(ActorCollisionHitCallback));
+static_assert(sizeof(BirikyuTouchDrcCB) == sizeof(ActorCollisionTouchDrcCallback));
 
 class AnimModel;
 
@@ -118,7 +118,7 @@ protected:
     Light               mLight;
     u8                  _1994; // bool?
     ActorCollisionCheck mCollisionCheck2;
-    BirikyuCB           mCollisionHitCallback;
+    BirikyuTouchDrcCB   mTouchDrcCallback;
     EnemyActorScaler    mScaler;
     s32                 mTouchTimer;
     bool                mIsTouchDone;

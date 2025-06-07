@@ -4,7 +4,7 @@
 #include <actor/AttentionLookat.h>
 #include <audio/GameAudio.h>
 #include <collision/ActorBgCollisionPlayerCheck.h>
-#include <collision/ActorCollisionHitCallback.h>
+#include <collision/ActorCollisionTouchDrcCallback.h>
 #include <effect/EffectObj.h>
 #include <game/Quake.h>
 #include <player/PlayerEnum.h>
@@ -15,7 +15,7 @@
 
 #include <container/seadRingBuffer.h>
 
-class PlayerBaseCB : public ActorCollisionHitCallback   // vtbl Address: 0x101693FC
+class PlayerBaseTouchDrcCB : public ActorCollisionTouchDrcCallback  // vtbl Address: 0x101693FC
 {
 public:
     // Address: 0x029117C0
@@ -24,7 +24,7 @@ public:
 
     bool bcIsTouchEnable(BgCollision* p_bg_collision, const sead::Vector2f& pos) override { return false; }
 };
-static_assert(sizeof(PlayerBaseCB) == sizeof(ActorCollisionHitCallback));
+static_assert(sizeof(PlayerBaseTouchDrcCB) == sizeof(ActorCollisionTouchDrcCallback));
 
 class   ActorBoxBgCollision;
 struct  PlayerBgPointHIO;
@@ -1138,7 +1138,7 @@ protected:
     ActorCollisionCheck             mCollisionCheck3_React;
     ActorCollisionCheck             mCollisionCheck4_Attack;
     ActorCollisionCheck             mCollisionCheck5_Attack;
-    PlayerBaseCB                    mCollisionHitCallback;
+    PlayerBaseTouchDrcCB            mTouchDrcCallback;
     s32                             _205c;
     s32                             _2060;
     s32                             _2064;

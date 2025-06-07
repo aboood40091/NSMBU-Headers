@@ -1,6 +1,6 @@
 #pragma once
 
-#include <collision/ActorCollisionHitCallback.h>
+#include <collision/ActorCollisionTouchDrcCallback.h>
 #include <enemy/Enemy.h>
 #include <enemy/EnemyActorScaler.h>
 #include <enemy/EnemyChibiYoshiEatData.h>
@@ -8,7 +8,7 @@
 #include <enemy/MiddleKuribo.h>
 #include <graphics/CalcRatioSRT.h>
 
-class KuriboBaseCB : public ActorCollisionHitCallback   // vtbl Address: 0x10091CD4
+class KuriboBaseTouchDrcCB : public ActorCollisionTouchDrcCallback  // vtbl Address: 0x10091CD4
 {
 public:
     // Address: 0x023DDBF8
@@ -16,7 +16,7 @@ public:
     // Address: 0x023DDC90
     void ccOnTouch(ActorCollisionCheck* p_cc, const sead::Vector2f& pos) override;
 };
-static_assert(sizeof(KuriboBaseCB) == sizeof(ActorCollisionHitCallback));
+static_assert(sizeof(KuriboBaseTouchDrcCB) == sizeof(ActorCollisionTouchDrcCallback));
 
 class BlendModel;
 class ModelResource;
@@ -252,6 +252,6 @@ protected:
     EnemyEatData                mEatData;
     EnemyChibiYoshiEatData      mChibiYoshiEatData;
     EnemyActorScaler            mScaler;
-    KuriboBaseCB                mCollisionHitCallback;
+    KuriboBaseTouchDrcCB        mTouchDrcCallback;
 };
 static_assert(sizeof(KuriboBase) == 0x1A88);

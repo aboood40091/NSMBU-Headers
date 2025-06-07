@@ -9,7 +9,7 @@
 #include <prim/seadBitFlag.h>
 
 class Actor;
-class ActorCollisionHitCallback;
+class ActorCollisionTouchDrcCallback;
 
 class ActorCollisionCheck : public sead::IDisposer  // vtbl Address: 0x10041C18
 {
@@ -172,11 +172,11 @@ public:
     virtual ~ActorCollisionCheck();
 
     // Address: 0x0219AF1C
-    void set(Actor* p_owner, const Info& info, ActorCollisionHitCallback* p_actor_hit_callback = nullptr);
+    void set(Actor* p_owner, const Info& info, ActorCollisionTouchDrcCallback* p_touch_drc_callback = nullptr);
     // Address: 0x0219B010
-    void set(Actor* p_owner, const Info& info, const sead::BitFlag8& collision_mask, ActorCollisionHitCallback* p_actor_hit_callback = nullptr);
+    void set(Actor* p_owner, const Info& info, const sead::BitFlag8& collision_mask, ActorCollisionTouchDrcCallback* p_touch_drc_callback = nullptr);
     // Address: 0x0219B054
-    void set(Actor* p_owner, const Info& info, const sead::BitFlag8& collision_mask, u8 layer, ActorCollisionHitCallback* p_actor_hit_callback = nullptr);
+    void set(Actor* p_owner, const Info& info, const sead::BitFlag8& collision_mask, u8 layer, ActorCollisionTouchDrcCallback* p_touch_drc_callback = nullptr);
 
     void setCenterOffsetX(f32 center_offset_x)
     {
@@ -220,9 +220,9 @@ public:
         setHalfSize(half_size.x, half_size.y);
     }
 
-    void setActorHitCallback(ActorCollisionHitCallback* p_actor_hit_callback)
+    void setTouchDrcCallback(ActorCollisionTouchDrcCallback* p_touch_drc_callback)
     {
-        mpActorHitCallback = p_actor_hit_callback;
+        mpTouchDrcCallback = p_touch_drc_callback;
     }
 
     // Address: 0x0219B434
@@ -253,9 +253,9 @@ public:
         return mCollisionMask.getDirect() != 0;
     }
 
-    ActorCollisionHitCallback* getActorHitCallback() const
+    ActorCollisionTouchDrcCallback* getTouchDrcCallback() const
     {
-        return mpActorHitCallback;
+        return mpTouchDrcCallback;
     }
 
     const Info& getInfo() const
@@ -300,27 +300,27 @@ public:
 private:
     typedef LineNodeMgr<ActorCollisionCheck> List;
 
-    List::Node                  mExecuteNode;
-    List::Node                  mCreateNode;
-    List::Node                  _28;
-    List::Node                  _34;
-    Actor*                      mpOwner;
-    Actor*                      mpFriend;   // Collisions with this are ignored
-    u32                         _48;
-    sead::Vector2f              _4C;
-    sead::Vector2f              _54;
-    TypeMask                    mHit;               // Owner types of others we've collided with
-    AttackMask                  mAttacksPerformed;  // Attacks performed on non-passive others
-    AttackMask                  mAttacksReceived;   // Attacks received from non-passive others
-    u32                         _68;
-    sead::BitFlag8              mCollisionMask;
-    u8                          mLayer;
-    u8                          mFlag;
-    ActorCollisionHitCallback*  mpActorHitCallback;
-    Info                        mInfo;
-    sead::SafeArray<f32, 4>     mDaikei;
-    sead::UnsafeArray<f32, 15>  _b0;
-    sead::UnsafeArray<f32, 15>  _ec;
+    List::Node                      mExecuteNode;
+    List::Node                      mCreateNode;
+    List::Node                      _28;
+    List::Node                      _34;
+    Actor*                          mpOwner;
+    Actor*                          mpFriend;   // Collisions with this are ignored
+    u32                             _48;
+    sead::Vector2f                  _4C;
+    sead::Vector2f                  _54;
+    TypeMask                        mHit;               // Owner types of others we've collided with
+    AttackMask                      mAttacksPerformed;  // Attacks performed on non-passive others
+    AttackMask                      mAttacksReceived;   // Attacks received from non-passive others
+    u32                             _68;
+    sead::BitFlag8                  mCollisionMask;
+    u8                              mLayer;
+    u8                              mFlag;
+    ActorCollisionTouchDrcCallback* mpTouchDrcCallback;
+    Info                            mInfo;
+    sead::SafeArray<f32, 4>         mDaikei;
+    sead::UnsafeArray<f32, 15>      _b0;
+    sead::UnsafeArray<f32, 15>      _ec;
 };
 static_assert(sizeof(ActorCollisionCheck) == 0x128);
 

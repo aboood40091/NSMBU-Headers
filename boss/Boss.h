@@ -2,17 +2,17 @@
 
 #include <actor/AttentionMgr.h>
 #include <collision/ActorCollisionCheckMgr.h>
-#include <collision/ActorCollisionHitCallback.h>
+#include <collision/ActorCollisionTouchDrcCallback.h>
 #include <enemy/Enemy.h>
 #include <enemy/EnemyActorScaler.h>
 
-class BossCB : public ActorCollisionHitCallback // vtbl Address: 0x10005E2C
+class BossTouchDrcCB : public ActorCollisionTouchDrcCallback    // vtbl Address: 0x10005E2C
 {
 public:
     // Address: 0x0202b8c0
     bool ccIsTouchEnable(ActorCollisionCheck* p_cc, const sead::Vector2f& pos) override;
 };
-static_assert(sizeof(BossCB) == sizeof(ActorCollisionHitCallback));
+static_assert(sizeof(BossTouchDrcCB) == sizeof(ActorCollisionTouchDrcCallback));
 
 class Boss : public Enemy   // vtbl Address: 0x1000562C
 {
@@ -569,7 +569,7 @@ protected:
     AttentionLookat             mAttentionLookat;
     EnemyActorScaler            mScaler;
     ActorCollisionCheck         mCollisionCheckDrcTouch;    // Maybe?
-    BossCB                      mCollisionHitCallback;
+    BossTouchDrcCB              mTouchDrcCallback;
     sead::Vector3f              mIcePos;
     sead::Vector3f              mIceScale;
     sead::Vector3f              mPos_PreIce;

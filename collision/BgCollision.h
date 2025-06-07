@@ -15,7 +15,7 @@ class   ActorBgCollisionCheck;
 class   ActorBgCollisionCheckResult;
 class   BasicBgCollisionCheck;
 struct  BgCollisionCheckResultArea;
-class   ActorCollisionHitCallback;
+class   ActorCollisionTouchDrcCallback;
 
 class BgCollision : public sead::IDisposer  // vtbl Address: 0x10042528
 {
@@ -268,53 +268,53 @@ public:
         mCheckRevWall = check_rev_wall;
     }
 
-    void setActorHitCallback(ActorCollisionHitCallback* p_actor_hit_callback)
+    void setTouchDrcCallback(ActorCollisionTouchDrcCallback* p_touch_drc_callback)
     {
-        mpActorHitCallback = p_actor_hit_callback;
+        mpTouchDrcCallback = p_touch_drc_callback;
     }
 
 protected:
     typedef LineNodeMgr<BgCollision> List;
 
-    List::Node                  mActiveListNode;
-    List::Node                  mSolidListNode;
-    List::Node                  mNonSolidListNode;
-    List::Node                  _34;
-    List::Node                  mCoinListNode;
-    List::Node                  mPoleListNode;
-    List::Node                  _58;
-    List::Node                  _64;
-    sead::BoundBox2f            mAffectedArea;  // Current Area & Prev Area
-    sead::Vector2f              _80;
-    sead::BitFlag32             mCallbackFlag;  // I assume
-    sead::BitFlag32             mCheckRevFlag;  // ^^^
-    Actor*                      mpOwner;
-    Actor*                      mpIgnoreActor;  // Force BasicBgCollisionCheck owned by this actor to ignore this BgCollision
-    FollowArg                   mFollowArg;
-    sead::Vector2f              mPosOffset;
-    sead::Vector2f              mPosOffsetPrev;
-    sead::Vector2f              mRotPivotOffset;
-    sead::Vector2f              mRotPivotOffsetPrev;
-    sead::Vector2f              mTypeOffset;
-    sead::Vector2f              mTypeOffsetPrev;
-    bool                        mIsInactive;    // If true, forces BasicBgCollisionCheck to ignore this BgCollision
-    u32                         _e0;
-    sead::Matrix22f             mRotMtx;
-    Angle                       mAngle;
-    Angle                       mAnglePrev;
-    BcList                      mBcListDown;
-    BcList                      mBcListUp;
-    BcList                      mBcListRight;
-    BcList                      mBcListLeft;
-    Type                        mType;
-    BgCheckUnitInfo             mBgCheckData;
-    Callback                    mCallbackFoot;
-    Callback                    mCallbackHead;
-    CallbackWall                mCallbackWall;
-    CheckRev                    mCheckRevFoot;
-    CheckRev                    mCheckRevHead;
-    CheckRevWall                mCheckRevWall;
-    ActorCollisionHitCallback*  mpActorHitCallback;
-    u32                         _154;
+    List::Node                      mActiveListNode;
+    List::Node                      mSolidListNode;
+    List::Node                      mNonSolidListNode;
+    List::Node                      _34;
+    List::Node                      mCoinListNode;
+    List::Node                      mPoleListNode;
+    List::Node                      _58;
+    List::Node                      _64;
+    sead::BoundBox2f                mAffectedArea;  // Current Area & Prev Area
+    sead::Vector2f                  _80;
+    sead::BitFlag32                 mCallbackFlag;  // I assume
+    sead::BitFlag32                 mCheckRevFlag;  // ^^^
+    Actor*                          mpOwner;
+    Actor*                          mpIgnoreActor;  // Force BasicBgCollisionCheck owned by this actor to ignore this BgCollision
+    FollowArg                       mFollowArg;
+    sead::Vector2f                  mPosOffset;
+    sead::Vector2f                  mPosOffsetPrev;
+    sead::Vector2f                  mRotPivotOffset;
+    sead::Vector2f                  mRotPivotOffsetPrev;
+    sead::Vector2f                  mTypeOffset;
+    sead::Vector2f                  mTypeOffsetPrev;
+    bool                            mIsInactive;    // If true, forces BasicBgCollisionCheck to ignore this BgCollision
+    u32                             _e0;
+    sead::Matrix22f                 mRotMtx;
+    Angle                           mAngle;
+    Angle                           mAnglePrev;
+    BcList                          mBcListDown;
+    BcList                          mBcListUp;
+    BcList                          mBcListRight;
+    BcList                          mBcListLeft;
+    Type                            mType;
+    BgCheckUnitInfo                 mBgCheckData;
+    Callback                        mCallbackFoot;
+    Callback                        mCallbackHead;
+    CallbackWall                    mCallbackWall;
+    CheckRev                        mCheckRevFoot;
+    CheckRev                        mCheckRevHead;
+    CheckRevWall                    mCheckRevWall;
+    ActorCollisionTouchDrcCallback* mpTouchDrcCallback;
+    u32                             _154;
 };
 static_assert(sizeof(BgCollision) == 0x158);

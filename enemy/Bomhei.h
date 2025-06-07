@@ -1,7 +1,7 @@
 #pragma once
 
 #include <actor/Profile.h>
-#include <collision/ActorCollisionHitCallback.h>
+#include <collision/ActorCollisionTouchDrcCallback.h>
 #include <effect/EffectObj.h>
 #include <enemy/CarryEnemy.h>
 #include <enemy/EnemyActorScaler.h>
@@ -10,10 +10,10 @@
 #include <graphics/Light.h>
 #include <map_obj/MaskDraw.h>
 
-class BomheiCB : public ActorCollisionHitCallback   // vtbl Address: 0x1005D73C
+class BomheiTouchDrcCB : public ActorCollisionTouchDrcCallback  // vtbl Address: 0x1005D73C
 {
 public:
-    BomheiCB()
+    BomheiTouchDrcCB()
         : _4(0)
     {
     }
@@ -26,7 +26,7 @@ public:
 protected:
     u32 _4;
 };
-static_assert(sizeof(BomheiCB) == 8);
+static_assert(sizeof(BomheiTouchDrcCB) == 8);
 
 class BlendModel;
 class ModelResource;
@@ -240,7 +240,7 @@ protected:
     Light                   mLight;
     EffectObj               mEffect;
     EnemyActorScaler        mScaler;
-    BomheiCB                mCollisionHitCallback;
+    BomheiTouchDrcCB        mTouchDrcCallback;
     f32                     _1a44;
     ActorState*             mpKoopaJr;
     ActorCollisionCheck     mCollisionCheck2;

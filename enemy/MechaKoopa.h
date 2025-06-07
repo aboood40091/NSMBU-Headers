@@ -1,11 +1,11 @@
 #pragma once
 
 #include <actor/Profile.h>
-#include <collision/ActorCollisionHitCallback.h>
+#include <collision/ActorCollisionTouchDrcCallback.h>
 #include <enemy/CarryEnemy.h>
 #include <enemy/EnemyActorScaler.h>
 
-class MechaKoopaCB : public ActorCollisionHitCallback   // vtbl Address: 0x100945D4
+class MechaKoopaTouchDrcCB : public ActorCollisionTouchDrcCallback  // vtbl Address: 0x100945D4
 {
 public:
     // Address: 0x023E8F9C
@@ -13,7 +13,7 @@ public:
     // Address: 0x023E8FA4
     void ccOnTouch(ActorCollisionCheck* p_cc, const sead::Vector2f& pos) override;
 };
-static_assert(sizeof(MechaKoopaCB) == sizeof(ActorCollisionHitCallback));
+static_assert(sizeof(MechaKoopaTouchDrcCB) == sizeof(ActorCollisionTouchDrcCallback));
 
 class AnimModel;
 class ModelResource;
@@ -125,15 +125,15 @@ public:
     DECLARE_STATE_ID(MechaKoopa, Recover)
 
 protected:
-    ModelResource*      mpModelResource;
-    AnimModel*          mpAnimModel;
-    u32                 mNextTurnTimer;
-    u32                 mDownTimer;
-    u32                 mCurrentAnim;
-    u8                  _18cc;
-    u8                  _18cd;
-    MechaKoopaCB        mCollisionHitCallback;
-    EnemyActorScaler    mScaler;
-    f32                 _18f4;
+    ModelResource*          mpModelResource;
+    AnimModel*              mpAnimModel;
+    u32                     mNextTurnTimer;
+    u32                     mDownTimer;
+    u32                     mCurrentAnim;
+    u8                      _18cc;
+    u8                      _18cd;
+    MechaKoopaTouchDrcCB    mTouchDrcCallback;
+    EnemyActorScaler        mScaler;
+    f32                     _18f4;
 };
 static_assert(sizeof(MechaKoopa) == 0x18F8);
