@@ -32,7 +32,7 @@ public:
         cType_Balloon,
         cType_Collect,      // CollectionCoin or Item
         cType_Bullet,       // Projectiles, such as Fire Ball and Ice Ball
-        cType_Cannon,
+        cType_CannonBullet, // Cannonballs, as well as Bullet Bills
         cType_GoalPole,
         cType_ChibiYoshi,
         cType_Unk10,
@@ -51,7 +51,7 @@ public:
         cTypeMask_Balloon       = 1 << cType_Balloon,
         cTypeMask_Collect       = 1 << cType_Collect,
         cTypeMask_Bullet        = 1 << cType_Bullet,
-        cTypeMask_Cannon        = 1 << cType_Cannon,
+        cTypeMask_CannonBullet  = 1 << cType_CannonBullet,
         cTypeMask_GoalPole      = 1 << cType_GoalPole,
         cTypeMask_ChibiYoshi    = 1 << cType_ChibiYoshi,
         cTypeMask_Unk10         = 1 << cType_Unk10,
