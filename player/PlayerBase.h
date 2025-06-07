@@ -928,7 +928,7 @@ public:
 
     virtual bool isNoDamage() = 0;
     virtual bool isNoDamagePlayer() = 0;  // Only used by Yoshi, called at 0x0295FAF8
-    virtual bool setBulletDamage(ActorCollisionCheck* cc_bullet) = 0;
+    virtual bool setNormalDamage(ActorCollisionCheck* p_cc) = 0;
     virtual bool setDamage(Actor* p_actor, DamageType type) = 0;
     virtual bool setForcedDamage(Actor* p_actor, DamageType type) = 0;
     virtual bool setFlyDamage(DamageType type, s32 dir, bool, bool, f32 speed_F, f32 speed_y) = 0;
@@ -1086,7 +1086,7 @@ protected:
     sead::Vector3f                  mNextFrameSpeed;
     s8                              mPlayerZOrder;
     s8                              mTreadCnt;
-    u8                              mSlipComboCnt;
+    s8                              mComboCnt;
     PlayerCharacter                 mCharacter;
     PlayerMode                      mMode;
     ActorBgCollisionPlayerCheck     mBgCheckPlayer;
