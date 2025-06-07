@@ -58,7 +58,7 @@ private:
     LineNodeMgr<BgCollision>    mNonSolidList;
     LineNodeMgr<BgCollision>    mCoinList;
     LineNodeMgr<BgCollision>    mPoleList;
-    LineNodeMgr<BgCollision>    _4c;
-    LineNodeMgr<BgCollision>    _58;
+    LineNodeMgr<BgCollision>    mTouchDrcCheckNoDamageList;
+    LineNodeMgr<BgCollision>    mTouchDrcHoldList;
 };
 static_assert(sizeof(ActorBgCollisionMgr) == 0x64);

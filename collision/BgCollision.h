@@ -282,8 +282,8 @@ protected:
     List::Node                      _34;
     List::Node                      mCoinListNode;
     List::Node                      mPoleListNode;
-    List::Node                      _58;
-    List::Node                      _64;
+    List::Node                      mTouchDrcCheckNoDamageListNode;
+    List::Node                      mTouchDrcHoldListNode;
     sead::BoundBox2f                mAffectedArea;  // Current Area & Prev Area
     sead::Vector2f                  _80;
     sead::BitFlag32                 mCallbackFlag;  // I assume

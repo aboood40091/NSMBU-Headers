@@ -302,8 +302,8 @@ private:
 
     List::Node                      mExecuteNode;
     List::Node                      mCreateNode;
-    List::Node                      _28;
-    List::Node                      _34;
+    List::Node                      mTouchDrcHoldNode;
+    List::Node                      mTouchDrcCheckNode;
     Actor*                          mpOwner;
     Actor*                          mpFriend;   // Collisions with this are ignored
     u32                             _48;

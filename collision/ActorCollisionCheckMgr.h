@@ -41,29 +41,29 @@ public:
     // Address: 0x0219DDC4
     void removeFromCreateList(const ActorCollisionCheck& collision_check);
 
-    const LineNodeMgr<ActorCollisionCheck>& getList3() const
+    const LineNodeMgr<ActorCollisionCheck>& getTouchDrcHoldList() const
     {
-        return _28;
+        return mTouchDrcHoldList;
     }
 
     // Address: 0x0219E098
-    bool isInList3(const ActorCollisionCheck& collision_check) const;
+    bool isInTouchDrcHoldList(const ActorCollisionCheck& collision_check) const;
     // Address: 0x0219E0D4
-    void addToList3(const ActorCollisionCheck& collision_check);
+    void addToTouchDrcHoldList(const ActorCollisionCheck& collision_check);
     // Address: 0x0219E130
-    void removeFromList3(const ActorCollisionCheck& collision_check);
+    void removeFromTouchDrcHoldList(const ActorCollisionCheck& collision_check);
 
-    const LineNodeMgr<ActorCollisionCheck>& getList4() const
+    const LineNodeMgr<ActorCollisionCheck>& getTouchDrcCheckList() const
     {
-        return _34;
+        return mTouchDrcCheckList;
     }
 
     // Address: 0x0219DC20
-    bool isInList4(const ActorCollisionCheck& collision_check) const;
+    bool isInTouchDrcCheckList(const ActorCollisionCheck& collision_check) const;
     // Address: 0x0219DCAC
-    void addToList4(const ActorCollisionCheck& collision_check);
+    void addToTouchDrcCheckList(const ActorCollisionCheck& collision_check);
     // Address: 0x0219DEC0
-    void removeFromList4(const ActorCollisionCheck& collision_check);
+    void removeFromTouchDrcCheckList(const ActorCollisionCheck& collision_check);
 
     void entry(const ActorCollisionCheck& collision_check)
     {
@@ -75,7 +75,7 @@ public:
     {
         removeFromActiveList(collision_check);
         removeFromCreateList(collision_check);
-        removeFromList3(collision_check);
+        removeFromTouchDrcHoldList(collision_check);
     }
 
     // Address: 0x0219E228
@@ -88,7 +88,7 @@ private:
 private:
     LineNodeMgr<ActorCollisionCheck>    mActiveList;
     LineNodeMgr<ActorCollisionCheck>    mCreateList;
-    LineNodeMgr<ActorCollisionCheck>    _28;
-    LineNodeMgr<ActorCollisionCheck>    _34;
+    LineNodeMgr<ActorCollisionCheck>    mTouchDrcHoldList;
+    LineNodeMgr<ActorCollisionCheck>    mTouchDrcCheckList;
 };
 static_assert(sizeof(ActorCollisionCheckMgr) == 0x40);
