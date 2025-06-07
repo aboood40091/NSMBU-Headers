@@ -80,7 +80,7 @@ public:
 
         cAttack_SpinFall        = 13,
         cAttack_Explosion,
-        cAttack_YoshiEat,
+        cAttack_YoshiTongue,
         cAttack_YoshiMouth,
         cAttack_Cannon,
         cAttack_SpinLiftUp,
@@ -114,7 +114,7 @@ public:
 
         cAttackMask_SpinFall        = 1 << cAttack_SpinFall,
         cAttackMask_Explosion       = 1 << cAttack_Explosion,
-        cAttackMask_YoshiEat        = 1 << cAttack_YoshiEat,
+        cAttackMask_YoshiTongue     = 1 << cAttack_YoshiTongue,
         cAttackMask_YoshiMouth      = 1 << cAttack_YoshiMouth,
         cAttackMask_Cannon          = 1 << cAttack_Cannon,
         cAttackMask_SpinLiftUp      = 1 << cAttack_SpinLiftUp,
