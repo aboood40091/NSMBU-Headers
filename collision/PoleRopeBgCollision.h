@@ -36,7 +36,7 @@ public:
     void vf6C() override;
     void onBgCheckDataChange(const BgCheckUnitInfo& bc_data) override { }
     // Address: 0x021AF204
-    bool vf7C(sead::Vector2f*, f32) override;
+    bool checkPointInsideOrWithinDistance(const sead::Vector2f& p, f32 distance) const override;
 
     // Address: 0x021AD964
     void setCommon(const FollowArg& follow_arg, const PoleRopeInitArg& init_arg);

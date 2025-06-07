@@ -158,7 +158,7 @@ public:
     virtual void vf64();
     virtual void vf6C() = 0;
     virtual void onBgCheckDataChange(const BgCheckUnitInfo& bc_data) = 0;
-    virtual bool vf7C(sead::Vector2f*, f32) = 0;
+    virtual bool checkPointInsideOrWithinDistance(const sead::Vector2f& p, f32 distance) const = 0;
 
     const sead::BoundBox2f getAffectedArea() const
     {

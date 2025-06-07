@@ -35,7 +35,7 @@ public:
     void vf6C() override;
     void onBgCheckDataChange(const BgCheckUnitInfo& bc_data) override { }
     // Address: 0x021A0100
-    bool vf7C(sead::Vector2f*, f32) override;
+    bool checkPointInsideOrWithinDistance(const sead::Vector2f& p, f32 distance) const override;
 
     // Address: 0x0219EC88
     void setCommon(const FollowArg& follow_arg, const EllipseInitArg& init_arg);
