@@ -302,9 +302,9 @@ public:
     static void iceballInvalid(ActorCollisionCheck* cc_other);
 
     // Address: 0x0232CBA4
-    void setDeathInfo_Fall(u8 direction, s8 player_no, s8 score_lyt_type);
+    void setDeathInfo_Fall(u8 direction, s8 player_no = -1, s8 kill_combo_cnt = -1);
     // Address: 0x0232CB08
-    void setDeathInfo_Fall(const sead::Vector2f* speeds, u8 direction, s8 player_no, s8 score_lyt_type);
+    void setDeathInfo_Fall(const sead::Vector2f* speeds, u8 direction, s8 player_no = -1, s8 kill_combo_cnt = -1);
     // Address: 0x0232DA34
     void setDeathInfo_Fumi(Actor*, sead::Vector2f speed, const StateID& state_id);
     // Address: 0x0232CC98
