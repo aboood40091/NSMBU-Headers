@@ -1084,7 +1084,7 @@ protected:
     f32                             _4e4;
     bool                            _4e8;
     sead::Vector3f                  mNextFrameSpeed;
-    s8                              mPlayerZOrder;
+    s8                              mPriority;
     s8                              mTreadCnt;
     s8                              mComboCnt;
     PlayerCharacter                 mCharacter;
