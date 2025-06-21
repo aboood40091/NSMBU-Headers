@@ -51,15 +51,15 @@ public:
     // Address: Deleted
     virtual u8 vf114();
 
-    virtual void vf11C()
+    virtual void beginFunsui()
     {
     }
 
-    virtual void vf124(f32)
+    virtual void endFunsui(f32 speed_y)
     {
     }
 
-    virtual bool vf12C()
+    virtual bool isFunsui() const
     {
         return false;
     }
@@ -78,12 +78,12 @@ public:
         return false;
     }
 
-    virtual void move(const sead::Vector2f& dst)
+    virtual void setFunsuiPos(sead::Vector2f dst)
     {
         getPos2D() = dst;
     }
 
-    virtual void setSpeedY(f32 speed)
+    virtual void setFunsuiSpeedY(f32 speed)
     {
         mSpeed.y = speed;
     }

@@ -19,24 +19,24 @@ protected:
     s32 doDelete_() override;
 
 public:
-    void vf11C() override
+    void beginFunsui() override
     {
         mpBlendModel->getCurSklAnim()->getFrameCtrl().setRate(3.0f);
-        _1ab4 = mSpeed.x;
+        mPreFunsuiSpeedX = mSpeed.x;
         mSpeed.set(0.0f, 0.0f, 0.0f);
-        _1ab0 = true;
+        mIsFunsui = true;
     }
 
-    void vf124(f32) override
+    void endFunsui(f32 speed_y) override
     {
         mpBlendModel->getCurSklAnim()->getFrameCtrl().setRate(2.0f);
-        mSpeed.x = _1ab4;
-        _1ab0 = false;
+        mSpeed.x = mPreFunsuiSpeedX;
+        mIsFunsui = false;
     }
 
-    bool vf12C() override
+    bool isFunsui() const override
     {
-        return _1ab0;
+        return mIsFunsui;
     }
 
     // Address: 0x023D7D18
@@ -181,8 +181,8 @@ protected:
     sead::Vector3f                  _1a9c;
     u32                             _1aa8;
     u32                             _1aac;
-    bool                            _1ab0;
-    f32                             _1ab4;
+    bool                            mIsFunsui;
+    f32                             mPreFunsuiSpeedX;
     f32                             mGroundPosY;    // When Kuribo is set to spawn on ground
     u32                             _1abc;
     ActorUniqueID                   mBalloonID;
