@@ -68,7 +68,11 @@ public:
     }
 
     // Address: Deleted
-    virtual void vf134();
+    virtual void vf134(f32 speed)
+    {
+        mSpeed.y = speed;
+    }
+
     // Address: 0x02004008
     virtual u32 vf13C();                // returns 0
     // Address: 0x0200375C
