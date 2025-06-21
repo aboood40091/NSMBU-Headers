@@ -43,13 +43,16 @@ public:
         return &mBgCheckObj;
     }
 
-    virtual void vf10C(u8 unk)
+    virtual void setWaterFunsui(bool enable)
     {
-        _179A = unk;
+        mIsWaterFunsui = enable;
     }
 
     // Address: Deleted
-    virtual u8 vf114();
+    virtual bool isWaterFunsui() const
+    {
+        return mIsWaterFunsui;
+    }
 
     virtual void beginFunsui()
     {
@@ -154,7 +157,7 @@ protected:
     u8                          _1797;
     u8                          _1798;
     u8                          _1799;
-    u8                          _179A;
+    bool                        mIsWaterFunsui;
     bool                        mIsOnGround;
     u32                         _179C;
 };
