@@ -38,6 +38,11 @@ public:
         return mPosition;
     }
 
+    ActorUniqueID getParentActorID() const
+    {
+        return mParentActorID;
+    }
+
     Angle getAngle() const
     {
         return mAngle;
@@ -50,7 +55,7 @@ private:
     sead::Vector3f          _24;
     u32                     _30;
     u32                     _34;
-    u32                     _38;
+    ActorUniqueID           mParentActorID;
     u32                     _3c;
     u32                     _40;
     u32                     _44;
