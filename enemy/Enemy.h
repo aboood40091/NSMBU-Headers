@@ -302,9 +302,9 @@ public:
     static void iceballInvalid(ActorCollisionCheck* cc_other);
 
     // Address: 0x0232CBA4
-    void setDeathInfo_Fall(u8 direction, s8 player_no = -1, s8 kill_combo_cnt = -1);
+    void setDeathInfo_Fall(u8 direction, s8 player_no = -1, s8 combo_score = -1);
     // Address: 0x0232CB08
-    void setDeathInfo_Fall(const sead::Vector2f* speeds, u8 direction, s8 player_no = -1, s8 kill_combo_cnt = -1);
+    void setDeathInfo_Fall(const sead::Vector2f* speeds, u8 direction, s8 player_no = -1, s8 combo_score = -1);
     // Address: 0x0232DA34
     void setDeathInfo_Fumi(Actor*, sead::Vector2f speed, const StateID& state_id);
     // Address: 0x0232CC98
@@ -357,7 +357,7 @@ protected:
     IceMgr          mIceMgr;
     u32             mChibiYoshiAwaData[0x20 / sizeof(u32)]; // TODO: EnemyChibiYoshiAwaData
 
-    // This part is a struct
+    // TODO: EnemyFumiProc
     Enemy*          _1860;
     void*           _1864;
     u8              _1868;
@@ -366,8 +366,8 @@ protected:
     u16             _186e;
     u32             _1870;
     u8              mDieFallDirection;
-    u8              _1875;
-    sead::BitFlag32 _1878;
+    u8              mPreIceDirection;                       // Maybe?
+    u32             mCombo;                                 // TODO: Combo
     u8              _187c;
     u8              _187d;
     s8              _187e;
