@@ -58,7 +58,7 @@ public:
     // Address: 0x022DD3C0
     void returnState_Ice() override;
     // Address: 0x022DB0C0
-    void calcMdl() override;
+    void calcMdl_Ice() override;
     // Address: 0x022DB0C4
     void vsPlayerHitCheck_Normal(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other) override;
     // Address: 0x022DB210

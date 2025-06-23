@@ -67,7 +67,7 @@ protected:
     // Address: 0x0202CF64
     void returnState_Ice() override;
 
-    void calcMdl() override
+    void calcMdl_Ice() override
     {
         calcModel();
     }

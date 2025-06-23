@@ -73,9 +73,8 @@ public:
     virtual void returnAnm_Ice();
     // Address: 0x02330568
     virtual void returnState_Ice();
-
     // Address: 0x0232A858
-    virtual void calcMdl();
+    virtual void calcMdl_Ice();
 
     // Address: 0x0232A85C
     virtual bool vf1CC(); // Maybe related to the below?

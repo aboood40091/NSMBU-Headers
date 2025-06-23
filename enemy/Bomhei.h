@@ -79,7 +79,7 @@ public:
     // Address: 0x022D2F28
     void returnState_Ice() override;
 
-    void calcMdl() override
+    void calcMdl_Ice() override
     {
         calcMdl_();
     }
