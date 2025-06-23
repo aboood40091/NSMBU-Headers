@@ -486,8 +486,7 @@ public:
     virtual bool vf154();
 
     virtual PlayerBgPointHIO* getBgPointData() = 0;
-
-    virtual f32 vf164() = 0;
+    virtual f32 getStandHeadBgPointY() = 0;
 
     virtual void checkBgCrossSub() = 0;
     virtual void postBgCross() = 0;
@@ -730,7 +729,7 @@ public:
     virtual void vf58C(ActorBgCollisionCheck::Sensor&) = 0;
 
     // Address: 0x02900088
-    virtual void setDokanUDAnm(bool);
+    virtual void setDokanWaitAnm(bool);
 
     virtual void initDemoOutDokan() = 0;
     virtual bool setDokanOutAngle() = 0;
@@ -1128,7 +1127,7 @@ protected:
     >                               mBgPressIDBuffer;
     ActorUniqueID                   mLineSpinLiftID;
     u32                             _1b9c;
-    s32                             _1ba0;
+    s32                             mNoHitObjBgTimer;
     f32                             _1ba4;
     f32                             _1ba8;
     f32                             _1bac;
