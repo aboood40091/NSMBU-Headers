@@ -4,12 +4,14 @@
 
 #include <container/seadSafeArray.h>
 
+struct IceEfScale;
+
 struct IceInfo
 {
-    u32             ice_param_0;
-    sead::Vector3f  position;
-    sead::Vector3f  scale;
-    u32             _1c;        // Angle? (Seems to be unused)
+    u32                 ice_param_0;
+    sead::Vector3f      position;
+    sead::Vector3f      scale;
+    const IceEfScale*   p_ef_scale;     // Was actually applied in NSMBW, but no longer does anything in NSMBU
 };
 
 class Enemy;
