@@ -6,12 +6,34 @@
 
 struct IceEfScale;
 
+enum IceType
+{
+    cIceType_Square = 0,
+    cIceType_Tate,
+    cIceType_Yoko,
+    cIceType_BigSquare,
+    cIceType_BigTate,
+    cIceType_BigYoko,
+    cIceType_Num
+};
+static_assert(cIceType_Num == 6);
+
 struct IceInfo
 {
     u32                 ice_param_0;
     sead::Vector3f      position;
     sead::Vector3f      scale;
     const IceEfScale*   p_ef_scale;     // Was actually applied in NSMBW, but no longer does anything in NSMBU
+
+    static u32 makeParam(IceType type, bool unk_1 = false, u32 unk_2 = 0, bool unk_3 = false)
+    {
+        return (
+            ((u32)type & 7) |
+            ((u32)unk_1 << 12) |
+            ((unk_2 & 0xF) << 24) |
+            ((u32)unk_3 << 28)
+        );
+    }
 };
 
 class Enemy;
