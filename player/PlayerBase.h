@@ -413,6 +413,12 @@ public:
     {
     };
 
+    enum AnmBlend
+    {
+        cAnmBlend_Disable = 0,
+        cAnmBlend_Enable
+    };
+
     enum StarSet
     {
         cStarSet_Num = 3
@@ -834,9 +840,9 @@ public:
 
     virtual bool checkWalkNextAction() = 0;
 
-    virtual void vf784(s32) = 0;
-    virtual void vf78C(s32) = 0;
-    virtual void vf794(s32) = 0;
+    virtual void setWaitActionAnm(AnmBlend blend) = 0;
+    virtual void setWalkActionAnm(AnmBlend blend) = 0;
+    virtual void walkActionInit_Wait(AnmBlend blend) = 0;
 
     virtual bool isWaitFrameCountMax()
     {
@@ -895,7 +901,7 @@ public:
         return false;
     }
 
-    virtual bool isLiftUpMamePlayer()
+    virtual bool isLiftUpExceptMame()
     {
         return false;
     }
