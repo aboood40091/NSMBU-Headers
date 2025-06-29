@@ -17,7 +17,7 @@ public:
         return mpOwner;
     }
 
-    Actor* vf44(const BgCollision&, s32) const override
+    Actor* getOwnerAtHit(const BgCollision& bg_collision, u8 direction) const override
     {
         return mpOwner;
     }

@@ -33,7 +33,7 @@ public:
     // Address: 0x0219587C
     Actor* vf3C(f32) const override;
     // Address: 0x021958E8
-    Actor* vf44(const BgCollision&, s32) const override;
+    Actor* getOwnerAtHit(const BgCollision& bg_collision, u8 direction) const override;
     // Address: 0x02195830
     s8* vf4C(f32) const override;
 
