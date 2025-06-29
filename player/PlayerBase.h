@@ -50,17 +50,17 @@ public:
         cDamageType_SmallKnock,
         cDamageType_SmallKnock2,
         cDamageType_SmallKnock3,
-        cDamageType_Hit4,
-        cDamageType_Lava,
-        cDamageType_Ice,
-        cDamageType_Ice2,
+        cDamageType_Fire,           // Damages player first if he isn't small or mini, otherwise same as Fire2
+        cDamageType_Fire2,          // Immediately kills the player regardless of the powerup
+        cDamageType_Ice,            // Freezes player if he isn't small or mini, otherwise just kills him
+        cDamageType_Ice2,           // Always freezes the player regardless of the powerup, never kills him
         cDamageType_Spark,
         cDamageType_Poison,
-        cDamageType_Kill,
-        cDamageType_Kill2,
-        cDamageType_RunInPlace,
-        cDamageType_RunInPlace2,
-        cDamageType_SteppedOn,
+        cDamageType_Kill,           // Instant kill, no damage first
+        cDamageType_DeathCloud,
+        cDamageType_Eaten,          // Instant kill
+        cDamageType_Eaten2,         // Damages player first(?) if he isn't small or mini, otherwise same as Eaten
+        cDamageType_SteppedOn,      // i.e., by another player
         cDamageType_Num
     };
 
