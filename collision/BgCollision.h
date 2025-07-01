@@ -273,6 +273,35 @@ public:
         mpTouchDrcCallback = p_touch_drc_callback;
     }
 
+public:
+    // Use this as default for mCheckRevFoot
+    static bool CheckRevUpperSpeed(Actor* p_actor_self, Actor* p_actor_other)
+    {
+        return p_actor_self->getSpeedVec().y > 0.0f;
+    }
+
+    // Use this as default for mCheckRevHead
+    static bool CheckRevUnderSpeed(Actor* p_actor_self, Actor* p_actor_other)
+    {
+        return p_actor_self->getSpeedVec().y < 0.0f;
+    }
+
+    // Use this as default for mCheckRevWall
+    static bool CheckRevSideSpeed(Actor* p_actor_self, Actor* p_actor_other, u8 direction)
+    {
+        if (direction == DIRECTION_RIGHT)
+        {
+            if (p_actor_self->getSpeedVec().x > 0.0f)
+                return true;
+        }
+        else
+        {
+            if (p_actor_self->getSpeedVec().x < 0.0f)
+                return true;
+        }
+        return false;
+    }
+
 protected:
     typedef LineNodeMgr<BgCollision> List;
 
