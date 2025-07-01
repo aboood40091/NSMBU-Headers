@@ -44,6 +44,6 @@ protected:
     UnitTriangleBgCollision mTriangleBgCollision;
     UnitQuadBgCollision     mQuadBgCollision;
     BgCollision*            mpBgCollision;
-    u32                     _70C[4 / sizeof(u32)];
+  //u32                     _70C[4 / sizeof(u32)];  // Alignment???
 };
 static_assert(sizeof(UnitBgCollisionHolder) == 0x710);
