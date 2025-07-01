@@ -185,6 +185,11 @@ public:
         return mPosOffset;
     }
 
+    const sead::Vector2f& getPosOffset2() const
+    {
+        return mPosOffset2;
+    }
+
     f32 getPosX() const
     {
         return mFollowArg.p_position->x + mPosOffset.x;
@@ -314,7 +319,6 @@ protected:
     List::Node                      mTouchDrcCheckNoDamageListNode;
     List::Node                      mTouchDrcHoldListNode;
     sead::BoundBox2f                mAffectedArea;  // Current Area & Prev Area
-    sead::Vector2f                  _80;
     sead::BitFlag32                 mCallbackFlag;  // I assume
     sead::BitFlag32                 mCheckRevFlag;  // ^^^
     Actor*                          mpOwner;
