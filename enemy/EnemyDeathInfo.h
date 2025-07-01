@@ -75,6 +75,11 @@ public:
         mKillArg.kill_player_no = kill_player_no;
     }
 
+    bool isNoRespawn() const
+    {
+        return mIsNoRespawn;
+    }
+
     // Address: 0x0232EFA0
     void setNoRespawn(const EnemyDeathInfo& info);
 
