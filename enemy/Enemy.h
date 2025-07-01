@@ -351,7 +351,7 @@ protected:
     sead::SafeArray<
         u16,
         4
-    >               _17e4;
+    >               mNoPlayerHitTimer;                      // TODO: This is actually a class ("EnemyCounter"?)
     sead::BitFlag32 _17ec;                                  // Bit 24: Collide with player even if above screen
     IceMgr          mIceMgr;
     u32             mChibiYoshiAwaData[0x20 / sizeof(u32)]; // TODO: EnemyChibiYoshiAwaData
