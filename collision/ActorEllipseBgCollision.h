@@ -53,6 +53,11 @@ public:
         return getPosY() + mCenterOffset.y;
     }
 
+    sead::Vector2f getCenterPos() const
+    {
+        return getPos() + mCenterOffset;
+    }
+
     const sead::Vector2f& getHalfSize() const
     {
         return mHalfSize;

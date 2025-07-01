@@ -58,6 +58,11 @@ public:
         return getPosY() + mCenterOffset.y;
     }
 
+    sead::Vector2f getCenterPos() const
+    {
+        return getPos() + mCenterOffset;
+    }
+
     f32 getRadius() const
     {
         return mRadius;
