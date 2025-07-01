@@ -289,6 +289,9 @@ public:
 
     // ---------------------------------------------------------------------------------------- //
 
+    // Address: 0x02328C24
+    static bool ceilCheck(f32 pos_y, ActorCollisionCheck* p_cc);
+
     // Address: 0x02328C50
     static void normal_collcheck(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
 
