@@ -30,7 +30,7 @@ public:
     // Address: 0x021ABFD8
     bool checkAreaActor(ActorBgCollisionCheckResult*, sead::Vector2f*, sead::Vector2f*, u8 direction, ActorBgCollisionCheck*) override;
     // Address: 0x021AC158
-    bool vf54(u8*, sead::Vector2f*) override;
+    bool checkPointInside(bool* p_on_edge, const sead::Vector2f& p) const override;
     // Address: Deleted
     bool vf5C(u32*) override;
     // Address: 0x021ACB50

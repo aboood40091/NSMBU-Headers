@@ -2,6 +2,8 @@
 
 #include <collision/LoopRideLineBgCollision.h>
 
+// Only used for convex shapes!!!
+
 class SimpleShapeBgCollision : public LoopRideLineBgCollision
 {
     // getRuntimeTypeInfoStatic()::typeInfo initialization guard variable   Address: 0x101E9D34
@@ -20,6 +22,6 @@ public:
     }
 
     // Address: 0x021B096C
-    bool vf54(u8*, sead::Vector2f*) override;
+    bool checkPointInside(bool* p_on_edge, const sead::Vector2f& p) const override;
 };
 static_assert(sizeof(SimpleShapeBgCollision) == sizeof(LoopRideLineBgCollision));

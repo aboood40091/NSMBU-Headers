@@ -152,7 +152,7 @@ public:
     virtual void execute() = 0;
     virtual bool checkAreaBasic(BgCollisionCheckResultArea* p_res, const BasicBgCollisionCheck& bc, const sead::Vector2f& p0, const sead::Vector2f& p1, u8 hit_dir_mask) = 0;
     virtual bool checkAreaActor(ActorBgCollisionCheckResult*, sead::Vector2f*, sead::Vector2f*, u8 direction, ActorBgCollisionCheck*) = 0;
-    virtual bool vf54(u8*, sead::Vector2f*) = 0;
+    virtual bool checkPointInside(bool* p_on_edge, const sead::Vector2f& p) const = 0;
     virtual bool vf5C(u32*) = 0;
     // Address: 0x021A680C
     virtual void vf64();
