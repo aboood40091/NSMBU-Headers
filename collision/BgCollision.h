@@ -200,6 +200,18 @@ public:
         return mFollowArg.p_position->y + mPosOffset.y;
     }
 
+    sead::Vector2f getPos() const
+    {
+        // Not inline in NSMB2
+        return *reinterpret_cast<sead::Vector2f*>(mFollowArg.p_position) + mPosOffset;
+    }
+
+    sead::Vector2f getPosPrev() const
+    {
+        // Not inline in NSMB2
+        return *reinterpret_cast<sead::Vector2f*>(mFollowArg.p_position_prev) + mPosOffsetPrev;
+    }
+
     Angle getAngle() const
     {
         return mAngle;
