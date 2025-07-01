@@ -248,6 +248,11 @@ public:
         return mFlag & 2;
     }
 
+    void setInactive()
+    {
+        mFlag |= 2;
+    }
+
     bool isCollidable() const
     {
         return mCollisionMask.getDirect() != 0;
