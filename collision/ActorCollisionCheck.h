@@ -238,6 +238,11 @@ public:
     // Address: 0x0219B4B8
     f32 getCenterPosX() const;
 
+    sead::Vector2f getCenterPos() const
+    {
+        return sead::Vector2f(getCenterPosX(), getCenterPosY());
+    }
+
     Actor* getOwner() const
     {
         return mpOwner;
