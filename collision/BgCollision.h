@@ -319,6 +319,7 @@ protected:
     List::Node                      mTouchDrcCheckNoDamageListNode;
     List::Node                      mTouchDrcHoldListNode;
     sead::BoundBox2f                mAffectedArea;  // Current Area & Prev Area
+    sead::Vector2f                  mPosOffset2;    // Additional position offset not even used by all collision types...
     sead::BitFlag32                 mCallbackFlag;  // I assume
     sead::BitFlag32                 mCheckRevFlag;  // ^^^
     Actor*                          mpOwner;
