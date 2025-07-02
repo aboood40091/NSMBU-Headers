@@ -161,7 +161,7 @@ public:
     virtual void reset();
     // Address: 0x0218E180
     virtual void atFrameStart();
-    virtual Actor* vf3C(f32) const = 0;
+    virtual Actor* getOwnerAtRevCheck(f32 bg_collision_pos_y) const = 0;
     virtual Actor* getOwnerAtHit(const BgCollision& bg_collision, u8 direction) const = 0;  // direction: Which sensor was hit
     virtual s8* vf4C(f32) const = 0;
     // Address: 0x0219070C

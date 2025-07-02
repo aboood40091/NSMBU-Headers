@@ -31,7 +31,7 @@ public:
     // Address: 0x0219371C
     void atFrameStart() override;
     // Address: 0x0219587C
-    Actor* vf3C(f32) const override;
+    Actor* getOwnerAtRevCheck(f32 bg_collision_pos_y) const override;
     // Address: 0x021958E8
     Actor* getOwnerAtHit(const BgCollision& bg_collision, u8 direction) const override;
     // Address: 0x02195830

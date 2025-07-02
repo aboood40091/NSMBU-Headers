@@ -15,7 +15,7 @@ public:
     // Address: 0x02191D48
     void process() override;
 
-    Actor* vf3C(f32) const override
+    Actor* getOwnerAtRevCheck(f32 bg_collision_pos_y) const override
     {
         return mpOwner;
     }

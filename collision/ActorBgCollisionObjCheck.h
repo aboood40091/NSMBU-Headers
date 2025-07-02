@@ -12,7 +12,7 @@ public:
     // Address: 0x021933C0
     ActorBgCollisionObjCheck();
 
-    Actor* vf3C(f32) const override
+    Actor* getOwnerAtRevCheck(f32 bg_collision_pos_y) const override
     {
         return mpOwner;
     }
