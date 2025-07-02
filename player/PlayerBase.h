@@ -424,6 +424,21 @@ public:
         cStarSet_Num = 3
     };
 
+    enum BounceType
+    {
+        cBounceType_Normal = 0,
+        cBounceType_1,
+        cBounceType_2
+    };
+
+    enum JumpSe
+    {
+        cJumpSe_None = 0,
+        cJumpSe_Normal,
+        cJumpSe_High
+    };
+    static_assert(sizeof(JumpSe) == 4);
+
     // Address: 0x10166E60
     static const f32 cDirSpeed[DIRECTION_NUM_X];
     // Address: 0x10166E68
@@ -744,8 +759,9 @@ public:
     // Address: Deleted
     virtual void vf5B4();
 
-    virtual bool vf5BC(f32, f32, u32, u32, u32) = 0;
-    virtual bool vf5C4(f32, f32, u32, u32, u32) = 0;
+    // Bounce player
+    virtual bool bouncePlayer1(f32 speed_y, f32 speed_F, bool, BounceType bounce_type, JumpSe jump_se_type) = 0;   // Does lots of checks that can cancel the bounce, calls bouncePlayer2 otherwise
+    virtual bool bouncePlayer2(f32 speed_y, f32 speed_F, bool, BounceType bounce_type, JumpSe jump_se_type) = 0;
 
     // StateID_None         Address: 0x1022A484
     // initializeState_None Address: 0x02908AE4
@@ -928,7 +944,7 @@ public:
 
     virtual f32 getJumpSpeed() = 0;
     virtual f32 vf89C() = 0;
-    virtual void setJumpSound(s32 jump_type) = 0;
+    virtual void setJumpSound(JumpSe jump_se_type) = 0;
     virtual void vf8AC(bool) = 0;
 
     virtual bool isNoDamage() = 0;
