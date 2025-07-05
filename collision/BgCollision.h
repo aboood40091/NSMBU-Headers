@@ -1,16 +1,13 @@
 #pragma once
 
+#include <actor/Actor.h>
 #include <collision/BgCheckUnitInfo.h>
 #include <collision/FollowArg.h>
 #include <system/LineNodeMgr.h>
 #include <utility/Angle.h>
 
-#include <heap/seadDisposer.h>
-#include <math/seadBoundBox.h>
 #include <math/seadMatrix.h>
-#include <prim/seadRuntimeTypeInfo.h>
 
-class   Actor;
 class   ActorBgCollisionCheck;
 class   ActorBgCollisionCheckResult;
 class   BasicBgCollisionCheck;
