@@ -27,10 +27,12 @@ struct ActorCreateInfo
         s32 half_size_x;    // (X) Half the size of the spawn range bounding box
         s32 half_size_y;    // (Y) ^^^
     }   spawn_range;
-    u16 _18;
-    u16 _1a;
-    u16 _1c;
-    u16 _1e;
+    struct {
+        u16 up;     // Or down, not sure which
+        u16 down;   // Or up, ^^^
+        u16 left;
+        u16 right;
+    } cull_range;
     u16 flag;               // See enum Flag
 
     // Address: 0x100018F4
