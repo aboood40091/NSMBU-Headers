@@ -5,8 +5,6 @@
 #include <utility/Angle3.h>
 #include <utility/Direction.h>
 
-#include <math/seadVector.h>
-
 class ActorBgCollisionCheck;
 class ChibiYoshiEatData;
 class EatData;
@@ -115,9 +113,14 @@ public:
         return mCollisionCheck;
     }
 
-    u8 isVisible() const
+    bool isExecEnable() const
     {
-        return mIsVisible;
+        return mIsExecEnable;
+    }
+
+    bool isDrawEnable() const
+    {
+        return mIsDrawEnable;
     }
 
     // Address: 0x02000970
@@ -251,7 +254,7 @@ protected:
     sead::Vector3f          mScale;
     Angle3                  mAngle;
     Angle3                  mAnglePrev;
-    sead::Vector2f          mPosDelta;
+    sead::Vector2f          mPosDelta;                  // At start of every frame
     ActorCollisionCheck     mCollisionCheck;
     struct
     {
@@ -259,35 +262,35 @@ protected:
         sead::Vector2f  size;
     }                       mVisibleArea;               // Inited to ActorCreateInfo::spawn_range
     sead::Vector2f          mSize;
-    f32                     _rectQ_0;                   // Inited to 256.0 + ActorCreateInfo::_18
-    f32                     _rectQ_1;                   // Inited to 256.0 + ActorCreateInfo::_1A
-    f32                     _destroyBoundDistanceLeft;  // Inited to  80.0 + ActorCreateInfo::_1C
-    f32                     _destroyBoundDistanceRight; // Inited to  80.0 + ActorCreateInfo::_1E
+    f32                     mCullLimitUp;               // (Or down, not sure which.) Inited to 256.0 + ActorCreateInfo::cull_range.up
+    f32                     mCullLimitDown;             // (Or up, ^^^)               Inited to 256.0 + ActorCreateInfo::cull_range.down
+    f32                     mCullLimitLeft;             //                            Inited to  80.0 + ActorCreateInfo::cull_range.left
+    f32                     mCullLimitRight;            //                            Inited to  80.0 + ActorCreateInfo::cull_range.right
     u8                      mAreaNo;
     u8                      mActorType;                 // ActorType
-    u8                      mIsActive2;
-    u8                      mIsVisible;
+    bool                    mIsExecEnable;
+    bool                    mIsDrawEnable;
     bool                    mIsNoRespawn;
     u8                      _211;
-    u8                      _212;
+    u8                      mCarryFlag;                 // & 2 = isCarry
     u8                      mSwitchFlag[2];
     u16                     mCreateFlag;                // Inited to ActorCreateInfo::flag
     u32                     mBumpDamageTimer;
     u32                     _21c;
-    u32                     _220;
-    u32                     _224;
-    u32                     _228;
-    u32                     mKillStreak;
+    u8                      _220;
+    u32                     mCarryDirection;
+    u32                     mThrowPlayerNo;
+    u32                     mComboCnt;
     u32                     mProfFlag;                  // Inited to Profile::mFlag
     sead::Vector3f          mCenterOffset;
-    sead::Vector3f          mPosPrev;
+    sead::Vector3f          mPosPrev;                   // At frame start
     sead::Vector3f          _24c;
-    sead::Vector3f          _258;
+    sead::Vector3f          mPosPrev2;                  // At frame end
     EatData*                mpEatData;
     ChibiYoshiEatData*      mpChibiYoshiEatData;
     PropelParts*            mpPropelParts;
     u8*                     _270;                       // Inited to ActorCreateParam::_28
-    f32                     mJumpAddSpeed;
+    f32                     mThrowSpeed;
     void*                   mpChibiYoshiAwaData;
 };
 static_assert(sizeof(Actor) == 0x27C);
