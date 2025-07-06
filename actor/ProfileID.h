@@ -164,9 +164,9 @@ extern const s32 c04B;                                      //  75
 // Address: 0x10003E84
 extern const s32 c04C;                                      //  76
 // Address: 0x10003E88
-extern const s32 c04D;                                      //  77
+extern const s32 cKinokoLift;                               //  77
 // Address: 0x10003E8C
-extern const s32 c04E;                                      //  78
+extern const s32 cKinokoLiftColor;                          //  78
 // Address: 0x10003E90
 extern const s32 c04F;                                      //  79
 // Address: 0x10003E94
