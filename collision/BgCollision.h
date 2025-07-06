@@ -239,6 +239,11 @@ public:
         return mBcListLeft;
     }
 
+    // Address: 0x021A59F4
+    void reset();
+    // Address: 0x021A5598
+    void clearBcList();
+
     // Address: 0x021A5A70
     void setType(Type type);    // Sets all parameters of BgCheckUnitInfo
 
