@@ -114,9 +114,9 @@ extern const s32 c032;                                      //  50
 // Address: 0x10003E20
 extern const s32 c033;                                      //  51
 // Address: 0x10003E24
-extern const s32 c034;                                      //  52
+extern const s32 cElasticKinokoParent;                      //  52
 // Address: 0x10003E28
-extern const s32 c035;                                      //  53
+extern const s32 cFloorGyration;                            //  53
 // Address: 0x10003E2C
 extern const s32 c036;                                      //  54
 // Address: 0x10003E30
@@ -130,7 +130,7 @@ extern const s32 c03A;                                      //  58
 // Address: 0x10003E40
 extern const s32 c03B;                                      //  59
 // Address: 0x10003E44
-extern const s32 c03C;                                      //  60
+extern const s32 cPairObjChild;                             //  60
 // Address: 0x10003E48
 extern const s32 c03D;                                      //  61
 // Address: 0x10003E4C
@@ -398,7 +398,7 @@ extern const s32 c0C0;                                      // 192
 // Address: 0x10004058
 extern const s32 c0C1;                                      // 193
 // Address: 0x1000405C
-extern const s32 c0C2;                                      // 194
+extern const s32 cSnakeBlock;                               // 194
 // Address: 0x10004060
 extern const s32 c0C3;                                      // 195
 // Address: 0x10004064
@@ -458,7 +458,7 @@ extern const s32 c0DE;                                      // 222
 // Address: 0x100040D0
 extern const s32 c0DF;                                      // 223
 // Address: 0x100040D4
-extern const s32 c0E0;                                      // 224
+extern const s32 cBurner;                                   // 224
 // Address: 0x100040D8
 extern const s32 c0E1;                                      // 225
 // Address: 0x100040DC
@@ -486,7 +486,7 @@ extern const s32 c0EC;                                      // 236
 // Address: 0x10004108
 extern const s32 c0ED;                                      // 237
 // Address: 0x1000410C
-extern const s32 c0EE;                                      // 238
+extern const s32 cTarzanIvy;                                // 238
 // Address: 0x10004110
 extern const s32 c0EF;                                      // 239
 // Address: 0x10004114
@@ -584,7 +584,7 @@ extern const s32 c11D;                                      // 285
 // Address: 0x100041CC
 extern const s32 c11E;                                      // 286
 // Address: 0x100041D0
-extern const s32 c11F;                                      // 287
+extern const s32 cBlock;                                    // 287
 // Address: 0x100041D4
 extern const s32 c120;                                      // 288
 // Address: 0x100041D8
@@ -760,9 +760,9 @@ extern const s32 cFinalKoopaJrClown;                        // 373
 // Address: 0x1000432C
 extern const s32 cFinalKoopa;                               // 374
 // Address: 0x10004330
-extern const s32 c177;                                      // 375
+extern const s32 cFireBar;                                  // 375
 // Address: 0x10004334
-extern const s32 c178;                                      // 376
+extern const s32 cFireBarSync;                              // 376
 // Address: 0x10004338
 extern const s32 c179;                                      // 377
 // Address: 0x1000433C
