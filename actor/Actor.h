@@ -276,7 +276,7 @@ protected:
     u8                      mSwitchFlag[2];
     u16                     mCreateFlag;                // Inited to ActorCreateInfo::flag
     u32                     mBumpDamageTimer;
-    u32                     _21c;
+    u32                     mBumpDirection;
     u8                      _220;
     u32                     mCarryDirection;
     u32                     mThrowPlayerNo;
