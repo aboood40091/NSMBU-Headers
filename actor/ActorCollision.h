@@ -119,6 +119,8 @@ public:
     void calcFallSpeed();
     // Address: 0x02003AE4
     void posMove();
+    // Address: 0x02003C10
+    void calcAdditionalSpeedF();
 
     // Address: 0x020037F4
     BgCheckFlag bgCheck();
