@@ -220,6 +220,11 @@ public:
         setHalfSize(half_size.x, half_size.y);
     }
 
+    void setIndex(u32 index)
+    {
+        mIndex = index;
+    }
+
     void setTouchDrcCallback(ActorCollisionTouchDrcCallback* p_touch_drc_callback)
     {
         mpTouchDrcCallback = p_touch_drc_callback;
@@ -322,7 +327,7 @@ private:
     TypeMask                        mHit;               // Owner types of others we've collided with
     AttackMask                      mAttacksPerformed;  // Attacks performed on non-passive others
     AttackMask                      mAttacksReceived;   // Attacks received from non-passive others
-    u32                             _68;
+    u32                             mIndex;
     sead::BitFlag8                  mCollisionMask;
     u8                              mLayer;
     u8                              mFlag;
