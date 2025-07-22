@@ -15,6 +15,11 @@ class Enemy : public ActorMultiState    // vtbl Address: 0x1007209C
     SEAD_RTTI_OVERRIDE(Enemy, ActorMultiState)
 
 public:
+    // Address: 0x10072070
+    static const f32 cDefaultAccelY;
+    // Address: 0x10072078
+    static const f32 cDefaultYSpeedMax;
+
     // Address: 0x10200DD8
     static const Angle cBaseAngleY[DIRECTION_NUM_X];
     // Address: 0x10072094
