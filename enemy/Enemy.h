@@ -331,6 +331,9 @@ public:
     // Address: 0x0232CAEC
     bool isNoRespawn() const;
 
+    // Address: 0x023288BC
+    void hitdamageEffect(const sead::Vector3f& effect_pos);
+
     void killIce()
     {
         mIceMgr.removeIce();
