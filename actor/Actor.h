@@ -136,6 +136,9 @@ public:
     // Address: 0x020007A0
     bool screenOutCheck(u16);
 
+    // Address: 0x02000774
+    void deleteActor(bool no_respawn);
+
     u32 getDirection() const
     {
         return mDirection;
