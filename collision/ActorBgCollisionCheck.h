@@ -207,6 +207,9 @@ public:
     // Address: 0x0219047C
     static WaterType checkWater(const sead::Vector3f& pos, u8 layer);
 
+    // Address: 0x021905c8
+    static u32 checkWaterDepth(f32 x, f32 y, u8 layer);
+
 protected:
     typedef LineNodeMgr<ActorBgCollisionCheck> List;
 
