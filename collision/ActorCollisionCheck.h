@@ -38,9 +38,12 @@ public:
         cType_Unk10,
         cType_DrcTouch,
         cType_Unk12,
-        // ...
+        cType_Unk13,
+        cType_Unk14,
+        cType_Num,
     };
     static_assert(sizeof(Type) == 4);
+    static_assert(cType_Num == 15);
 
     enum TypeMask
     {
@@ -57,6 +60,8 @@ public:
         cTypeMask_Unk10         = 1 << cType_Unk10,
         cTypeMask_DrcTouch      = 1 << cType_DrcTouch,
         cTypeMask_Unk12         = 1 << cType_Unk12,
+        cTypeMask_Unk13         = 1 << cType_Unk13,
+        cTypeMask_Unk14         = 1 << cType_Unk14,
 
         cTypeMask_None          = 0,
         cTypeMask_All           = 0xFFFFFFFF
@@ -283,6 +288,16 @@ public:
         return mDaikei[index];
     }
 
+    f32 getIntersectionX(Type type) const
+    {
+        return mIntersectionX[type];
+    }
+
+    f32 getIntersectionY(Type type) const
+    {
+        return mIntersectionY[type];
+    }
+
     sead::BoundBox2f getBoundBox() const
     {
         return sead::BoundBox2f(
@@ -334,8 +349,8 @@ private:
     ActorCollisionTouchDrcCallback* mpTouchDrcCallback;
     Info                            mInfo;
     sead::SafeArray<f32, 4>         mDaikei;
-    sead::UnsafeArray<f32, 15>      _b0;
-    sead::UnsafeArray<f32, 15>      _ec;
+    sead::SafeArray<f32, cType_Num> mIntersectionX;
+    sead::SafeArray<f32, cType_Num> mIntersectionY;
 };
 static_assert(sizeof(ActorCollisionCheck) == 0x128);
 
