@@ -2,6 +2,7 @@
 
 #include <actor/ActorState.h>
 #include <audio/GameAudio.h>
+#include <enemy/Combo.h>
 #include <enemy/EnemyDeathInfo.h>
 #include <enemy/IceMgr.h>
 #include <state/FStateVirtualID.h>
@@ -309,9 +310,9 @@ public:
     static void iceballInvalid(ActorCollisionCheck* cc_other);
 
     // Address: 0x0232CBA4
-    void setDeathInfo_Fall(u8 direction, s8 player_no = -1, s8 combo_score = -1);
+    void setDeathInfo_Fall(u8 direction, s8 player_no = -1, ScoreMgr::ScoreType score_type = ScoreMgr::cScoreType_Invalid);
     // Address: 0x0232CB08
-    void setDeathInfo_Fall(const sead::Vector2f* speeds, u8 direction, s8 player_no = -1, s8 combo_score = -1);
+    void setDeathInfo_Fall(const sead::Vector2f* speeds, u8 direction, s8 player_no = -1, ScoreMgr::ScoreType score_type = ScoreMgr::cScoreType_Invalid);
     // Address: 0x0232DA34
     void setDeathInfo_Fumi(Actor*, sead::Vector2f speed, const StateID& state_id);
     // Address: 0x0232CC98
@@ -380,7 +381,7 @@ protected:
     u32             _1870;
     u8              mDieFallDirection;
     u8              mPreIceDirection;                       // Maybe?
-    u32             mCombo;                                 // TODO: Combo
+    Combo           mCombo;
     u8              _187c;
     u8              _187d;
     s8              _187e;

@@ -14,8 +14,8 @@ public:
         {
         }
 
-        KillArg(s8 kill_combo_score_, u8 kill_direction_, s8 kill_player_no_)
-            : kill_combo_score(kill_combo_score_)
+        KillArg(s8 kill_score_type_, u8 kill_direction_, s8 kill_player_no_)
+            : kill_score_type(kill_score_type_)
             , kill_direction(kill_direction_)
             , kill_player_no(kill_player_no_)
         {
@@ -25,7 +25,7 @@ public:
         {
             struct
             {
-                s8  kill_combo_score;
+                s8  kill_score_type;
                 u8  kill_direction;
                 s8  kill_player_no;
             };
@@ -68,9 +68,9 @@ public:
     {
     }
 
-    void setKillArg(s8 kill_combo_score, u8 kill_direction, s8 kill_player_no)
+    void setKillArg(s8 kill_score_type, u8 kill_direction, s8 kill_player_no)
     {
-        mKillArg.kill_combo_score = kill_combo_score;
+        mKillArg.kill_score_type = kill_score_type;
         mKillArg.kill_direction = kill_direction;
         mKillArg.kill_player_no = kill_player_no;
     }
