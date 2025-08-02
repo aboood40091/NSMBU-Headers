@@ -10,6 +10,8 @@ class ChibiYoshiEatData;
 class EatData;
 class PropelParts;
 
+typedef s32 EffectID;
+
 class Actor : public ActorBase  // vtbl Address: 0x10000268
 {
     // getRuntimeTypeInfoStatic()::typeInfo initialization guard variable   Address: 0x101E9CBC
@@ -138,6 +140,9 @@ public:
 
     // Address: 0x02000774
     void deleteActor(bool no_respawn);
+
+    // Address: 0x02001304
+    void splashEffect(const sead::Vector3f& pos, EffectID effect_id, u8 wave_scale, const char* sound_label);
 
     u32 getDirection() const
     {
