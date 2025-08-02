@@ -74,9 +74,9 @@ public:
     }
 
     // Address: 0x02004008
-    virtual u32 vf13C();                // returns 0
+    virtual bool vf13C();               // returns false, Determines whether vf144 should be called
     // Address: 0x0200375C
-    virtual void vf144(bool);           // nullsub
+    virtual void vf144(s32);            // nullsub, parameter is based on the flag bit in Quake (either 0 or 1, can even be 2 in NSMB2 but that was removed here)
     // Address: 0x02003760
     virtual void setSmokeDamage(Actor*);
 
