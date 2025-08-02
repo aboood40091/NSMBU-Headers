@@ -225,6 +225,11 @@ public:
         setHalfSize(half_size.x, half_size.y);
     }
 
+    void setAttackMask(AttackMask attack_mask)
+    {
+        mInfo.attack_mask = attack_mask;
+    }
+
     void setIndex(u32 index)
     {
         mIndex = index;
