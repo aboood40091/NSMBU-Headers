@@ -51,7 +51,8 @@ private:
 };
 static_assert(sizeof(ActorBgCollisionCheckResult) == 0x38);
 
-class Actor;
+class   Actor;
+struct  BgCollisionCheckHitResult;
 
 class ActorBgCollisionCheck // vtbl Address: 0x10041364
 {
@@ -199,6 +200,11 @@ public:
     const FollowArg& getFollowArg() const { return mFollowArg; }
     const Output& getOutput() const { return mOutput; }
 
+    // Address: 0x0218F0C0
+    static WaterType checkWater(f32* p_surface_pos_y, const sead::Vector3f& pos, u8 layer);
+    // Address: 0x0218F72C
+    static WaterType checkWater(f32* p_surface_pos_y, BgCollisionCheckHitResult* p_hit_result, const sead::Vector3f& pos, u8 layer);
+    // Address: 0x0219047C
     static WaterType checkWater(const sead::Vector3f& pos, u8 layer);
 
 protected:
