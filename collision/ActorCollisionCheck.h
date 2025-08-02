@@ -258,6 +258,16 @@ public:
         return mpOwner;
     }
 
+    const sead::Vector2f& getDrcTouchPos() const
+    {
+        return mDrcTouchPos;
+    }
+
+    const sead::Vector2f& getHitPos() const
+    {
+        return mHitPos;
+    }
+
     s32 getIndex() const
     {
         return mIndex;
@@ -342,8 +352,8 @@ private:
     Actor*                          mpOwner;
     Actor*                          mpFriend;   // Collisions with this are ignored
     u32                             _48;
-    sead::Vector2f                  _4C;
-    sead::Vector2f                  _54;
+    sead::Vector2f                  mDrcTouchPos;
+    sead::Vector2f                  mHitPos;
     TypeMask                        mHit;               // Owner types of others we've collided with
     AttackMask                      mAttacksPerformed;  // Attacks performed on non-passive others
     AttackMask                      mAttacksReceived;   // Attacks received from non-passive others
