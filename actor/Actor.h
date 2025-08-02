@@ -227,6 +227,14 @@ public:
         return mIsNoRespawn;
     }
 
+    u32 getComboCnt() const
+    {
+        return mComboCnt;
+    }
+
+    // Address: 0x0200042C
+    void incComboCnt();
+
     // Address: 0x020013E8
     void calcSpeedX();
     // Address: 0x02001430
