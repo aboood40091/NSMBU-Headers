@@ -258,6 +258,11 @@ public:
         return mpOwner;
     }
 
+    s32 getIndex() const
+    {
+        return mIndex;
+    }
+
     bool isInactive() const
     {
         return mFlag & 2;
