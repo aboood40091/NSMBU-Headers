@@ -228,11 +228,11 @@ public:
     // executeState_DieYoshiFumi    Address: 0x0232E79C
     // finalizeState_DieYoshiFumi   Address: 0x0232EED8
     DECLARE_STATE_VIRTUAL_ID_BASE(Enemy, DieYoshiFumi)
-    // StateID_DieUnk1          Address: 0x1020101C
-    // initializeState_DieUnk1  Address: 0x0232E7A8
-    // executeState_DieUnk1     Address: 0x0232E7B8
-    // finalizeState_DieUnk1    Address: 0x0232EEDC
-    DECLARE_STATE_VIRTUAL_ID_BASE(Enemy, DieUnk1)
+    // StateID_DieSmoke         Address: 0x1020101C
+    // initializeState_DieSmoke Address: 0x0232E7A8
+    // executeState_DieSmoke    Address: 0x0232E7B8
+    // finalizeState_DieSmoke   Address: 0x0232EEDC
+    DECLARE_STATE_VIRTUAL_ID_BASE(Enemy, DieSmoke)
     // StateID_DieIceVanish         Address: 0x10201040
     // initializeState_DieIceVanish Address: 0x0232E7C4
     // executeState_DieIceVanish    Address: 0x0232E7C8
