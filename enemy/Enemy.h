@@ -326,6 +326,9 @@ public:
     // Address: 0x02329B88
     FumiType fumiCheck(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other, FumiSeType se_type);
 
+    // Address: 0x02329130
+    s32 calcComboPlFumiCnt(Actor* p_player);
+
     // Address: 0x02329168
     void bound(f32, f32, f32);
 
