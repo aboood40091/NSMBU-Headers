@@ -334,6 +334,9 @@ public:
     // Address: 0x023288BC
     void hitdamageEffect(const sead::Vector3f& effect_pos);
 
+    // Address: 0x0232E144
+    Angle applyWaterRollDec(Angle ang);
+
     void killIce()
     {
         mIceMgr.removeIce();
