@@ -49,6 +49,11 @@ public:
         setFrame(frame);
     }
 
+    bool isRepeat() const
+    {
+        return mFlag.isOn(cFlag_Repeat);
+    }
+
     bool isStop() const
     {
         return mFlag.isOn(cFlag_IsStop);
