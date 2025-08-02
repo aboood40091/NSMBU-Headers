@@ -53,7 +53,7 @@ public:
     // Address: 0x02328914
     void blockHitInit() override;
     // Address: 0x0232DC88
-    void vf14C(Actor*) override;    // Kills Enemy with StateID_DieUnk1
+    void setSmokeDamage(Actor*) override;
     // Address: 0x0232E1A4
     bool setTouchDrcDamage(const sead::Vector2f& pos) override;
     // Address: 0x02330404

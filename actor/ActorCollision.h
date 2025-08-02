@@ -78,7 +78,7 @@ public:
     // Address: 0x0200375C
     virtual void vf144(bool);           // nullsub
     // Address: 0x02003760
-    virtual void vf14C(Actor*);         // nullsub
+    virtual void setSmokeDamage(Actor*);
 
     virtual bool setTouchDrcDamage(const sead::Vector2f& pos)
     {
@@ -95,12 +95,12 @@ public:
         mSpeed.y = speed;
     }
 
-    virtual u32 vf16C()
+    virtual bool smokeDamageEnable_Yogan(f32 surface_pos_y)
     {
-        return 1;
+        return true;
     }
 
-    virtual bool vf174(f32)
+    virtual bool smokeDamageEnable_Poison(f32 surface_pos_y)
     {
         return false;
     }

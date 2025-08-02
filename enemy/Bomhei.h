@@ -69,7 +69,7 @@ public:
     void blockHitInit() override;
 
     // Address: 0x022D3C3C
-    bool vf174(f32) override;
+    bool smokeDamageEnable_Poison(f32 surface_pos_y) override;
 
     // Address: 0x022D42A8
     bool vf18C() override;
