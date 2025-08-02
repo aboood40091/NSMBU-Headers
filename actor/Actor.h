@@ -144,6 +144,9 @@ public:
     // Address: 0x02001304
     void splashEffect(const sead::Vector3f& pos, EffectID effect_id, u8 wave_scale, const char* sound_label);
 
+    // Address: 0x02000454
+    void slideComboSE(s32 combo_cnt, bool combo_type_2);
+
     u32 getDirection() const
     {
         return mDirection;
