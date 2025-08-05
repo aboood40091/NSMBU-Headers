@@ -7,7 +7,7 @@
 #include <heap/seadDisposer.h>
 #include <layer/aglDrawMethod.h>
 
-class ModelG3d;
+class Model;
 
 class CoinOrigin : public sead::IDisposer
 {
@@ -55,8 +55,8 @@ private:
 
 private:
     Angle                   mCoinAngle;
-    ModelG3d*               mpModelCoin;
-    ModelG3d*               mpModelBlueCoin;
+    Model*                  mpModelCoin;
+    Model*                  mpModelBlueCoin;
     sead::OrthoProjection   mProjection;
     sead::OrthoCamera       mCamera;
     agl::lyr::DrawMethod    mDrawMethod;
