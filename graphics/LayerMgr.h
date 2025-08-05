@@ -1,5 +1,6 @@
 #pragma once
 
+#include <container/seadOffsetList.h>
 #include <framework/seadTaskMgr.h>
 #include <gfx/seadCamera.h>
 #include <gfx/seadProjection.h>
