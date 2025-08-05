@@ -1070,6 +1070,11 @@ public:
         return mOldBgCross.isOnBit(bit);
     }
 
+    PlayerMode getPlayerMode() const
+    {
+        return mMode;
+    }
+
     // Address: 0x028F37A8
     bool isTotten() const;
 
