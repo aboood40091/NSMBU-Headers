@@ -18,6 +18,9 @@ public:
     // Address: 0x02029ACC
     static void setClapSE();
 
+    // Address: 0x0202B144
+    static nw::snd::OutputLine getRemotePlayer(s32 player_no);
+
 public:
     class AudioObjctEmy : public SndObjctEmy
     {
