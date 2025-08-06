@@ -22,6 +22,41 @@ public:
     static nw::snd::OutputLine getRemotePlayer(s32 player_no);
 
 public:
+    class SoundID
+    {
+    public:
+        SoundID(const char* label)
+            : mLabel(label)
+        {
+        }
+
+        operator const char*() const
+        {
+            return mLabel;
+        }
+
+        template <typename T>
+        void startSound(T& obj, const sead::Vector3f& pos, nw::snd::OutputLine line_flag = nw::snd::OUTPUT_LINE_MAIN) const
+        {
+            obj.startSound(mLabel, pos, line_flag);
+        }
+
+        void startSoundEmy(const sead::Vector3f& pos, nw::snd::OutputLine line_flag = nw::snd::OUTPUT_LINE_MAIN) const
+        {
+            startSound(*getAudioObjEmy(), pos, line_flag);
+        }
+
+        void startSoundMap(const sead::Vector3f& pos, nw::snd::OutputLine line_flag = nw::snd::OUTPUT_LINE_MAIN) const
+        {
+            startSound(*getAudioObjMap(), pos, line_flag);
+        }
+
+    private:
+        const char* mLabel;
+    };
+    static_assert(sizeof(SoundID) == 4);
+
+public:
     class AudioObjctEmy : public SndObjctEmy
     {
     public:
