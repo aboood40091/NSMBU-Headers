@@ -29,24 +29,6 @@ public:
     };
 
 public:
-    // Address: 0x02000AC8
-    Actor(const ActorCreateParam& param);
-    // Address: 0x02000F18
-    virtual ~Actor();
-
-protected:
-    // Address: 0x02000FB8
-    void postCreate_(MainState state) override;
-
-    // Address: 0x02000FE8
-    s32 preExecute_() override;
-    // Address: 0x020010BC
-    void postExecute_(MainState state) override;
-
-    // Address: 0x020011A0
-    s32 preDraw_() override;
-
-public:
     virtual void setPlayerNo(s8 id)
     {
         mPlayerNo = id;
@@ -88,6 +70,40 @@ public:
     {
     }
 
+    // Address: 0x02000394
+    bool checkCarried(s32* p_player_no);
+
+    u32 getComboCnt() const
+    {
+        return mComboCnt;
+    }
+
+    // Address: 0x02000418
+    void clrComboCnt();
+    // Address: 0x0200042C
+    void incComboCnt();
+
+    // Address: 0x02000454
+    void slideComboSE(s32 combo_cnt, bool combo_type_2);
+
+    // Address: 0x02000AC8
+    Actor(const ActorCreateParam& param);
+    // Address: 0x02000F18
+    virtual ~Actor();
+
+protected:
+    // Address: 0x02000FB8
+    void postCreate_(MainState state) override;
+
+    // Address: 0x02000FE8
+    s32 preExecute_() override;
+    // Address: 0x020010BC
+    void postExecute_(MainState state) override;
+
+    // Address: 0x020011A0
+    s32 preDraw_() override;
+
+public:
     // Address: 0x02002AD8
     virtual void allEnemyDeathEffSet(); // Spawn burst effect at instances where all enemies die (such as touching goal pole or defeating boss), called if profile flag bit 4, 5 or 7 is set
     // Address: 0x02002ADC
@@ -143,9 +159,6 @@ public:
 
     // Address: 0x02001304
     void splashEffect(const sead::Vector3f& pos, EffectID effect_id, u8 wave_scale, const char* sound_label);
-
-    // Address: 0x02000454
-    void slideComboSE(s32 combo_cnt, bool combo_type_2);
 
     u32 getDirection() const
     {
@@ -226,14 +239,6 @@ public:
     {
         return mIsNoRespawn;
     }
-
-    u32 getComboCnt() const
-    {
-        return mComboCnt;
-    }
-
-    // Address: 0x0200042C
-    void incComboCnt();
 
     // Address: 0x020013E8
     void calcSpeedX();
