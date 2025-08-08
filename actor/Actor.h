@@ -86,6 +86,13 @@ public:
     // Address: 0x02000454
     void slideComboSE(s32 combo_cnt, bool combo_type_2);
 
+    // Address: 0x020005A4
+    s32 searchNearPlayer(sead::Vector2f& out); // Returns -1 if no player found
+    // Address: 0x020005EC
+    u32 directionToPlayerH(const sead::Vector3f& position);
+    // Address: 0x020006B4
+    u32 directionToPlayerV(const sead::Vector3f& position);
+
     // Address: 0x02000AC8
     Actor(const ActorCreateParam& param);
     // Address: 0x02000F18
@@ -143,12 +150,6 @@ public:
 
     // Address: 0x02000970
     f32 getEffectZPos() const;
-    // Address: 0x020005A4
-    s32 searchNearPlayer(sead::Vector2f& out); // Returns -1 if no player found
-    // Address: 0x020005EC
-    u8 directionToPlayerH(const sead::Vector3f& position);
-    // Address: 0x020006B4
-    u8 directionToPlayerV(const sead::Vector3f& position);
     // Address: 0x020007A0
     bool screenOutCheck(u16);
 
