@@ -149,7 +149,7 @@ public:
     u8 directionToPlayerH(const sead::Vector3f& position);
     // Address: 0x020006B4
     u8 directionToPlayerV(const sead::Vector3f& position);
-    // Address: 0x0200C7E4
+    // Address: 0x0200C800
     u8 directionToActorH(const Actor& other);
     // Address: 0x020007A0
     bool screenOutCheck(u16);
