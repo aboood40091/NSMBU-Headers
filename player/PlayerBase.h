@@ -172,7 +172,7 @@ public:
 
     enum JumpAction
     {
-        cJumpAction_Start = 0,
+        cJumpAction_TakeOff = 0,
         cJumpAction_Air
     };
     static_assert(sizeof(JumpAction) == 4);
@@ -352,7 +352,7 @@ public:
         cTarzanRopeAction_Wait,
         cTarzanRopeAction_Up,
         cTarzanRopeAction_Down,
-        cTarzanRopeAction_4,
+        cTarzanRopeAction_HasigoMove,
         cTarzanRopeAction_5,
         cTarzanRopeAction_6
     };
