@@ -49,6 +49,11 @@ public:
     // Address: 0x021A1988
     bool checkPoint(BgCollisionCheckResultPoint* p_res, const sead::Vector2f& p) const;
 
+    void setLayer(u8 layer)
+    {
+        mLayer = layer;
+    }
+
 private:
     u8                      _0;
     bool                    mIgnoreQuicksand;
