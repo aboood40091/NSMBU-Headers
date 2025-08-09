@@ -265,6 +265,10 @@ public:
         posMove(mSpeed);
     }
 
+private:
+    // Address: 0x02000720
+    u32 calcTottenToSrcDir_(const sead::BoundBox2f& src_range) const;
+
 protected:
     u32                     mDirection;
     s8                      mPlayerNo;
