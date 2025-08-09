@@ -196,9 +196,9 @@ public:
     // Address: 0x0291F8F8
     virtual void setStarAnm();
     // Address: 0x0291FB58
-    virtual void cancelStarAnm_NowModeModel();
+    virtual void removeStarAnm_NowModeModel();
     // Address: 0x0291FB64
-    virtual void cancelStarAnm_OldModeModel();
+    virtual void removeStarAnm_OldModeModel();
 
     virtual f32 getTevColor0Alpha(s32 idx_material) = 0;
     virtual void setTevColor0Alpha(s32 idx_material, f32 value) = 0;

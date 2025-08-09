@@ -43,9 +43,9 @@ public:
     // Address: 0x02971CCC
     void setStarAnm() override;
     // Address: 0x02971D84
-    void cancelStarAnm_NowModeModel() override;
+    void removeStarAnm_NowModeModel() override;
     // Address: 0x02971D88
-    void cancelStarAnm_OldModeModel() override;
+    void removeStarAnm_OldModeModel() override;
 
     // Address: 0x02971F3C
     void calcImpl() override;

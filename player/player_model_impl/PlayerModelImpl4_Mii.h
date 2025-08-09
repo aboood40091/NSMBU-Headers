@@ -80,9 +80,9 @@ public:
     // Address: 0x02974B68
     void setStarAnm() override;
     // Address: 0x02974CD0
-    void cancelStarAnm_NowModeModel() override;
+    void removeStarAnm_NowModeModel() override;
     // Address: 0x02974CDC
-    void cancelStarAnm_OldModeModel() override;
+    void removeStarAnm_OldModeModel() override;
 
     // Address: 0x02974D18
     f32 vf144() override;
