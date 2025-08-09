@@ -28,8 +28,8 @@ struct ActorCreateInfo
         s32 half_size_y;    // (Y) ^^^
     }   spawn_range;
     struct {
-        u16 up;     // Or down, not sure which
-        u16 down;   // Or up, ^^^
+        u16 up;
+        u16 down;
         u16 left;
         u16 right;
     } cull_range;

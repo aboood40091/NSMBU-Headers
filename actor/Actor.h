@@ -1,6 +1,7 @@
 #pragma once
 
 #include <actor/ActorBase.h>
+#include <actor/ActorCullRange.h>
 #include <collision/ActorCollisionCheck.h>
 #include <utility/Angle3.h>
 #include <utility/Direction.h>
@@ -286,10 +287,10 @@ protected:
         sead::Vector2f  size;
     }                       mVisibleArea;               // Inited to ActorCreateInfo::spawn_range
     sead::Vector2f          mSize;
-    f32                     mCullLimitUp;               // (Or down, not sure which.) Inited to 256.0 + ActorCreateInfo::cull_range.up
-    f32                     mCullLimitDown;             // (Or up, ^^^)               Inited to 256.0 + ActorCreateInfo::cull_range.down
-    f32                     mCullLimitLeft;             //                            Inited to  80.0 + ActorCreateInfo::cull_range.left
-    f32                     mCullLimitRight;            //                            Inited to  80.0 + ActorCreateInfo::cull_range.right
+    ActorCullRange          mCullLimit;                 // Inited to { 256.0 + ActorCreateInfo::cull_range.up,
+                                                        //             256.0 + ActorCreateInfo::cull_range.down,
+                                                        //              80.0 + ActorCreateInfo::cull_range.left,
+                                                        //              80.0 + ActorCreateInfo::cull_range.right }
     u8                      mAreaNo;
     u8                      mActorType;                 // ActorType
     bool                    mIsExecEnable;
