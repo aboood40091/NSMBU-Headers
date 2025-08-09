@@ -200,6 +200,11 @@ public:
     const FollowArg& getFollowArg() const { return mFollowArg; }
     const Output& getOutput() const { return mOutput; }
 
+    bool checkRide()
+    {
+        return getOutput().isOnBit(2);
+    }
+
     // Address: 0x0218F0C0
     static WaterType checkWater(f32* p_surface_pos_y, const sead::Vector3f& pos, u8 layer);
     // Address: 0x0218F72C
