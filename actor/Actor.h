@@ -95,6 +95,27 @@ public:
     // Address: 0x020006B4
     u32 directionToPlayerV(const sead::Vector3f& position);
 
+    // Address: 0x020007A0
+    bool screenOutCheck(u16 flag);
+
+    // Address: 0x02002AD8
+    virtual void allEnemyDeathEffSet(); // Spawn burst effect at instances where all enemies die (such as touching goal pole or defeating boss), called if profile flag bit 4, 5 or 7 is set
+    // Address: 0x02002ADC
+    virtual void waterSplashEffect(const sead::Vector3f&);
+    // Address: 0x02002AE0
+    virtual void yoganSplashEffect(const sead::Vector3f&);
+    // Address: 0x02000960
+    virtual void yoganWaveSplashEffect(const sead::Vector3f&);
+    // Address: 0x02002AE4
+    virtual void poisonSplashEffect(const sead::Vector3f&);
+
+    // Address: 0x02000970
+    f32 getEffectZPos() const;
+
+    // Address: 0x02000774
+    void deleteActor(bool no_respawn);
+
+protected:
     // Address: 0x02000AC8
     Actor(const ActorCreateParam& param);
     // Address: 0x02000F18
@@ -113,16 +134,6 @@ protected:
     s32 preDraw_() override;
 
 public:
-    // Address: 0x02002AD8
-    virtual void allEnemyDeathEffSet(); // Spawn burst effect at instances where all enemies die (such as touching goal pole or defeating boss), called if profile flag bit 4, 5 or 7 is set
-    // Address: 0x02002ADC
-    virtual void waterSplashEffect(const sead::Vector3f&);
-    // Address: 0x02002AE0
-    virtual void yoganSplashEffect(const sead::Vector3f&);
-    // Address: 0x02000960
-    virtual void yoganWaveSplashEffect(const sead::Vector3f&);
-    // Address: 0x02002AE4
-    virtual void poisonSplashEffect(const sead::Vector3f&);
     // Address: 0x02001254
     virtual bool drawCullCheck();
 
@@ -149,14 +160,6 @@ public:
     {
         return mIsDrawEnable;
     }
-
-    // Address: 0x02000970
-    f32 getEffectZPos() const;
-    // Address: 0x020007A0
-    bool screenOutCheck(u16);
-
-    // Address: 0x02000774
-    void deleteActor(bool no_respawn);
 
     // Address: 0x02001304
     void splashEffect(const sead::Vector3f& pos, EffectID effect_id, u8 wave_scale, const char* sound_label);
