@@ -3,6 +3,7 @@
 #include <actor/ActorState.h>
 #include <audio/GameAudio.h>
 #include <enemy/Combo.h>
+#include <enemy/EnemyChibiYoshiAwaData.h>
 #include <enemy/EnemyDeathInfo.h>
 #include <enemy/IceMgr.h>
 #include <state/FStateVirtualID.h>
@@ -204,7 +205,7 @@ public:
     virtual bool checkDispIn(); // Checks if enemy is inside the camera view
 
     // Address: 0x0232A364
-    virtual void vf35C(Actor*); // ChibiYoshiAwaData-related
+    virtual void vf35C(Actor*); // Callback for ChibiYoshiAwaData
     // Address: 0x0232A418
     virtual void vf364(Actor*); // ^^^
     // Address: 0x0232A4CC
@@ -365,28 +366,28 @@ public:
     void spinFumiScoreSet(Actor*);
 
 protected:
-    EnemyDeathInfo  mDeathInfo;
+    EnemyDeathInfo          mDeathInfo;
     sead::SafeArray<
         u16,
         4
-    >               mNoPlayerHitTimer;                      // TODO: This is actually a class ("EnemyCounter"?)
-    sead::BitFlag32 _17ec;                                  // Bit 24: Collide with player even if above screen
-    IceMgr          mIceMgr;
-    u32             mChibiYoshiAwaData[0x20 / sizeof(u32)]; // TODO: EnemyChibiYoshiAwaData
+    >                       mNoPlayerHitTimer;              // TODO: This is actually a class ("EnemyCounter"?)
+    sead::BitFlag32         _17ec;                          // Bit 24: Collide with player even if above screen
+    IceMgr                  mIceMgr;
+    EnemyChibiYoshiAwaData  mChibiYoshiAwaData;
 
     // TODO: EnemyFumiProc
-    Enemy*          _1860;
-    void*           _1864;
-    u8              _1868;
+    Enemy*                  _1860;
+    void*                   _1864;
+    u8                      _1868;
 
-    u16             _186c;
-    u16             _186e;
-    u32             _1870;
-    u8              mDieFallDirection;
-    u8              mPreIceDirection;                       // Maybe?
-    Combo           mCombo;
-    u8              _187c;
-    u8              _187d;
-    s8              _187e;
+    u16                     _186c;
+    u16                     _186e;
+    u32                     _1870;
+    u8                      mDieFallDirection;
+    u8                      mPreIceDirection;               // Maybe?
+    Combo                   mCombo;
+    u8                      _187c;
+    u8                      _187d;
+    s8                      _187e;
 };
 static_assert(sizeof(Enemy) == 0x1880);
