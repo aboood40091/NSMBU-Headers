@@ -6,6 +6,7 @@
 #include <utility/Direction.h>
 
 class ActorBgCollisionCheck;
+class ChibiYoshiAwaData;
 class ChibiYoshiEatData;
 class EatData;
 class PropelParts;
@@ -314,6 +315,6 @@ protected:
     PropelParts*            mpPropelParts;
     u8*                     _270;                       // Inited to ActorCreateParam::_28
     f32                     mThrowSpeed;
-    void*                   mpChibiYoshiAwaData;
+    ChibiYoshiAwaData*      mpChibiYoshiAwaData;
 };
 static_assert(sizeof(Actor) == 0x27C);
