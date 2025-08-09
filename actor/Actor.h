@@ -101,16 +101,19 @@ public:
     // Address: 0x02002AD8
     virtual void allEnemyDeathEffSet(); // Spawn burst effect at instances where all enemies die (such as touching goal pole or defeating boss), called if profile flag bit 4, 5 or 7 is set
     // Address: 0x02002ADC
-    virtual void waterSplashEffect(const sead::Vector3f&);
+    virtual void waterSplashEffect(const sead::Vector3f& pos);
     // Address: 0x02002AE0
-    virtual void yoganSplashEffect(const sead::Vector3f&);
+    virtual void yoganSplashEffect(const sead::Vector3f& pos);
     // Address: 0x02000960
-    virtual void yoganWaveSplashEffect(const sead::Vector3f&);
+    virtual void yoganWaveSplashEffect(const sead::Vector3f& pos);
     // Address: 0x02002AE4
-    virtual void poisonSplashEffect(const sead::Vector3f&);
+    virtual void poisonSplashEffect(const sead::Vector3f& pos);
 
     // Address: 0x02000970
     f32 getEffectZPos() const;
+
+    // Address: 0x02000A70
+    bool checkEat() const;
 
     // Address: 0x02000774
     void deleteActor(bool no_respawn);
