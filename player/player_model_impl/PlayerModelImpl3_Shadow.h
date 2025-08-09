@@ -79,7 +79,7 @@ public:
     // Address: 0x029720E4
     void setAnm(s32 anm_id, f32 rate, f32 blend_duration = 0.0f, f32 frame = 0.0f) override;
     // Address: 0x029724C4
-    void setAnmImpl(const ModelResource* p_anm_res, const sead::SafeString& anm_name, FrameCtrl::PlayMode mode, f32 rate, f32 frame, f32 blend_duration) override;
+    void setFootAnmImpl(const ModelResource* p_anm_res, const sead::SafeString& anm_name, FrameCtrl::PlayMode mode, f32 rate, f32 frame, f32 blend_duration) override;
     // Address: 0x029725A0
     void setBodyAnmImpl(const ModelResource* p_anm_res, const sead::SafeString& anm_name, FrameCtrl::PlayMode mode, f32 rate, f32 frame, f32 blend_duration) override;
 
