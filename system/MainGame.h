@@ -29,9 +29,17 @@ public:
         return !mIsSinglePlayerDRC;
     }
 
+    bool isStory() const
+    {
+        return mIsStory;
+    }
+
 protected:
     u32     _10;
     bool    mIsSinglePlayerDRC;
-    u32     _18[(0x21E18 - 0x18) / sizeof(u32)];
+    u32     _18[(0x21DDC - 0x18) / sizeof(u32)];
+    u8      _21ddc[30];
+    bool    mIsStory;
+    u32     _21dfc[(0x21E18 - 0x21DFC) / sizeof(u32)];
 };
 static_assert(sizeof(MainGame) == 0x21E18);
