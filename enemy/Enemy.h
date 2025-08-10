@@ -27,6 +27,8 @@ public:
     // Address: 0x10072094
     static const s8 cDirSign[DIRECTION_NUM_X];  // Actual name unknown
 
+    static const s32 cNoHitPlayerTimerDefault = 5;
+
 public:
     enum FumiType
     {
@@ -370,7 +372,7 @@ protected:
     sead::SafeArray<
         u16,
         4
-    >                       mNoPlayerHitTimer;              // TODO: This is actually a class ("EnemyCounter"?)
+    >                       mNoHitPlayerTimer;              // TODO: This is actually a class ("EnemyCounter"?)
     sead::BitFlag32         _17ec;                          // Bit 24: Collide with player even if above screen
     IceMgr                  mIceMgr;
     EnemyChibiYoshiAwaData  mChibiYoshiAwaData;
