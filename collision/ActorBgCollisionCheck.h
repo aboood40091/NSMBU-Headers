@@ -3,7 +3,7 @@
 #include <actor/ActorUniqueID.h>
 #include <collision/ActorBgHitCheckCallback.h>
 #include <collision/BasicBgCollisionCheck.h>
-#include <collision/BgCheckUnitInfo.h>
+#include <collision/BgUnitCode.h>
 #include <collision/FollowArg.h>
 #include <map/WaterType.h>
 #include <system/LineNodeMgr.h>
@@ -45,7 +45,7 @@ private:
     ActorUniqueID   mActorUniqueID;
     BgCollision*    mpOwner;
   //u32             _24[4 / sizeof(u32)];   // Alignment???
-    BgCheckUnitInfo mBgCheckData;
+    BgUnitCode      mBgCheckData;
     f32             _30;
     u32             _34;
 };

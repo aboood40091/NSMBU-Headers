@@ -1,6 +1,6 @@
 #pragma once
 
-#include <collision/BgCheckUnitInfo.h>
+#include <collision/BgUnitCode.h>
 #include <utility/Angle.h>
 
 #include <math/seadVector.h>
@@ -9,7 +9,7 @@ class BgCollision;
 
 struct BgCollisionCheckResultPoint
 {
-    BgCheckUnitInfo bg_check_data;
+    BgUnitCode      bg_check_data;
     BgCollision*    p_bg_collision;
   //u32             _c[4 / sizeof(u32)];    // Alignment???
 };
@@ -22,7 +22,7 @@ struct BgCollisionCheckResultArea
     Angle           _c;
     Angle           _10;
   //u32             _14[4 / sizeof(u32)];   // Alignment???
-    BgCheckUnitInfo bg_check_data;
+    BgUnitCode      bg_check_data;
     BgCollision*    p_bg_collision;
   //u32             _24[4 / sizeof(u32)];   // More alignment???
 

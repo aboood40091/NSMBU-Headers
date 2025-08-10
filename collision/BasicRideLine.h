@@ -1,6 +1,6 @@
 #pragma once
 
-#include <collision/BgCheckUnitInfo.h>
+#include <collision/BgUnitCode.h>
 #include <collision/Ride2Point.h>
 
 class BasicRideLine
@@ -19,18 +19,18 @@ public:
         return mRide2Point;
     }
 
-    void setBgCheckData(const BgCheckUnitInfo& bc_data)
+    void setBgCheckData(const BgUnitCode& bc_data)
     {
         mBgCheckData = bc_data;
     }
 
 private:
-    u8              _0;
-    u8              _1;
-    u8              _2;
-    u8              _3;
-    Ride2Point      mRide2Point;
-    u32             _14;
-    BgCheckUnitInfo mBgCheckData;
+    u8          _0;
+    u8          _1;
+    u8          _2;
+    u8          _3;
+    Ride2Point  mRide2Point;
+    u32         _14;
+    BgUnitCode  mBgCheckData;
 };
 static_assert(sizeof(BasicRideLine) == 0x20);

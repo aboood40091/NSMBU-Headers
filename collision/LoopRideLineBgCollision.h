@@ -38,7 +38,7 @@ public:
     // Address: 0x021ACBB4
     void vf6C() override;
     // Address: 0x021ACE40
-    void onBgCheckDataChange(const BgCheckUnitInfo& bc_data) override;
+    void onBgCheckDataChange(const BgUnitCode& bc_data) override;
     // Address: 0x021ACE8C
     bool checkPointInsideOrWithinDistance(const sead::Vector2f& p, f32 distance) const override;
 

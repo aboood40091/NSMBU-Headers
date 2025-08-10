@@ -1,7 +1,7 @@
 #pragma once
 
 #include <actor/Actor.h>
-#include <collision/BgCheckUnitInfo.h>
+#include <collision/BgUnitCode.h>
 #include <collision/FollowArg.h>
 #include <system/LineNodeMgr.h>
 #include <utility/Angle.h>
@@ -154,7 +154,7 @@ public:
     // Address: 0x021A680C
     virtual void vf64();
     virtual void vf6C() = 0;
-    virtual void onBgCheckDataChange(const BgCheckUnitInfo& bc_data) = 0;
+    virtual void onBgCheckDataChange(const BgUnitCode& bc_data) = 0;
     virtual bool checkPointInsideOrWithinDistance(const sead::Vector2f& p, f32 distance) const = 0;
 
     const sead::BoundBox2f getAffectedArea() const
@@ -245,18 +245,18 @@ public:
     void clearBcList();
 
     // Address: 0x021A5A70
-    void setType(Type type);    // Sets all parameters of BgCheckUnitInfo
+    void setType(Type type);    // Sets all parameters of BgUnitCode
 
     // Address: 0x021A5A04
-    void setBgCheckData(const BgCheckUnitInfo& bc_data);
-    const BgCheckUnitInfo& getBgCheckData() const { return mBgCheckData; }
+    void setBgCheckData(const BgUnitCode& bc_data);
+    const BgUnitCode& getBgCheckData() const { return mBgCheckData; }
 
     // Address: 0x021A5A90
-    void setSolidType(BgCheckUnitInfo::SolidType solid_type);
+    void setHitType(BgUnitCode::HitType hit_type);
     // Address: 0x021A5AD0
-    void setSurfaceType(BgCheckUnitInfo::SurfaceType surface_type);
+    void setAttr(BgUnitCode::Attr attr);
     // Address: 0x021A5B14
-    void setSlideType(BgCheckUnitInfo::SlideType slide_type);
+    void setSlipAttr(BgUnitCode::SlipAttr slip_attr);
 
     void setCallbackFlag(u32 flag)
     {
@@ -355,7 +355,7 @@ protected:
     BcList                          mBcListRight;
     BcList                          mBcListLeft;
     Type                            mType;
-    BgCheckUnitInfo                 mBgCheckData;
+    BgUnitCode                      mBgCheckData;
     Callback                        mCallbackFoot;
     Callback                        mCallbackHead;
     CallbackWall                    mCallbackWall;

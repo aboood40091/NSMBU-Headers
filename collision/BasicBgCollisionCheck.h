@@ -7,12 +7,12 @@
 #include <prim/seadBitFlag.h>
 
 class   Actor;
-struct  BgCheckUnitInfo;
 class   BgCollision;
 struct  BgCollisionCheckParam;
 struct  BgCollisionCheckResultArea;
 struct  BgCollisionCheckResultPoint;
 class   BgHitCheckCallback;
+struct  BgUnitCode;
 
 class BasicBgCollisionCheck
 {
@@ -21,7 +21,7 @@ protected:
     const LineNodeMgr<BgCollision>& getActorBgCollisionList_() const;
 
     // Address: 0x021A09D8
-    bool isMatching_(const BgCheckUnitInfo& bc_data) const;
+    bool isMatching_(const BgUnitCode& bc_data) const;
 
     // Address: 0x021A0A44
     bool isConsider_(const BgCollision& bg_collision) const;
