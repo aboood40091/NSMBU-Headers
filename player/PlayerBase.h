@@ -109,26 +109,26 @@ public:
 
     static const s32 cOldBgCrossFootNum = 10;
 
-    enum SurfaceType
+    enum BgAttr
     {
-        cSurfaceType_Rock = 0,
-        cSurfaceType_Snow,
-        cSurfaceType_Sand,
-        cSurfaceType_Ice,
-        cSurfaceType_Dirt,
-        cSurfaceType_Water,
-        cSurfaceType_Cloud,
-        cSurfaceType_SandFunsui,    // i.e., sand pillar
-        cSurfaceType_Manta,         // Used for beanstalk
-        cSurfaceType_Beach,
-        cSurfaceType_Carpet,
-        cSurfaceType_Leaf,
-        cSurfaceType_Wood,
-        cSurfaceType_WaterPillar,
-        cSurfaceType_Num
+        cBgAttr_Rock = 0,
+        cBgAttr_Snow,
+        cBgAttr_Sand,
+        cBgAttr_Ice,
+        cBgAttr_Dirt,
+        cBgAttr_Water,
+        cBgAttr_Cloud,
+        cBgAttr_SandFunsui, // i.e., sand pillar
+        cBgAttr_Manta,      // Used for beanstalk
+        cBgAttr_Beach,
+        cBgAttr_Carpet,
+        cBgAttr_Leaf,
+        cBgAttr_Wood,
+        cBgAttr_WaterPillar,
+        cBgAttr_Num
     };
-    static_assert(cSurfaceType_Num == 14);
-    static_assert(sizeof(SurfaceType) == 4);
+    static_assert(cBgAttr_Num == 14);
+    static_assert(sizeof(BgAttr) == 4);
 
     enum DokanDir
     {
@@ -1133,7 +1133,7 @@ protected:
     Angle                           _1b20;
     Angle                           _1b24;
     sead::Vector3f                  _1b28;
-    SurfaceType                     mSurfaceType;
+    BgAttr                          mBgAttr;
     Angle                           _1b38;
     f32                             mWaterTopPosY;          // Maybe?
     f32                             mWaterTopPosY2;         // ^^^
@@ -1260,7 +1260,7 @@ protected:
     EffectObj                       _2500;
     Effect                          mTurnBrakeEffect;
     Effect                          mTurnBrakeSmokeEffect;
-    SurfaceType                     mTurnBrakeSurfaceType;
+    BgAttr                          mTurnBrakeBgAttr;
     bool                            mIsTurnBrakeEffectEnable;
     bool                            mIsTurnBrakeSmokeEffectEnable;
     u32                             _25f0;
