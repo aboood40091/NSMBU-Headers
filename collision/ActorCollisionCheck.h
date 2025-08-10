@@ -14,65 +14,67 @@ class ActorCollisionTouchDrcCallback;
 class ActorCollisionCheck : public sead::IDisposer  // vtbl Address: 0x10041C18
 {
 public:
-    enum Shape
+    enum ShapeType
     {
-        cShape_Box      = 0,
-        cShape_Circle,
-        cShape_DaikeiUD,    // Vertical Trapezoid
-        cShape_DaikeiLR     // Horizontal Trapezoid
+        cShapeType_Box      = 0,
+        cShapeType_Circle,
+        cShapeType_DaikeiUD,    // Vertical Trapezoid
+        cShapeType_DaikeiLR     // Horizontal Trapezoid
     };
-    static_assert(sizeof(Shape) == 4);
+    static_assert(sizeof(ShapeType) == 4);
 
-    enum Type
+    enum Kind
     {
-        cType_PlayerReact   = 0,
-        cType_PlayerAttack,
-        cType_Yoshi,
-        cType_Enemy,
-        cType_Balloon,
-        cType_Collect,      // CollectionCoin or Item
-        cType_Bullet,       // Projectiles, such as Fire Ball and Ice Ball
-        cType_CannonBullet, // Cannonballs, as well as Bullet Bills
-        cType_GoalPole,
-        cType_ChibiYoshi,
-        cType_Unk10,
-        cType_DrcTouch,
-        cType_Unk12,
-        cType_Unk13,
-        cType_Unk14,
-        cType_Num,
+        cKind_PlayerBody    = 0,
+        cKind_PlayerAttack,
+        cKind_Yoshi,
+        cKind_Enemy,
+        cKind_Balloon,
+        cKind_Item,         // CollectionCoin or Item
+        cKind_Tama,         // Projectiles, such as Fire Ball and Ice Ball
+        cKind_Killer,       // Cannonballs, as well as Bullet Bills
+        cKind_GoalPole,
+        cKind_ChibiYoshi,
+        cKind_Unk10,
+        cKind_DrcTouch,
+        cKind_Unk12,
+        cKind_Unk13,
+        cKind_Unk14,
+        cKind_Num
     };
-    static_assert(sizeof(Type) == 4);
-    static_assert(cType_Num == 15);
+    static_assert(sizeof(Kind) == 4);
+    static_assert(cKind_Num == 15);
 
-    enum TypeMask
+    enum TargetKind
     {
-        cTypeMask_PlayerReact   = 1 << cType_PlayerReact,
-        cTypeMask_PlayerAttack  = 1 << cType_PlayerAttack,
-        cTypeMask_Yoshi         = 1 << cType_Yoshi,
-        cTypeMask_Enemy         = 1 << cType_Enemy,
-        cTypeMask_Balloon       = 1 << cType_Balloon,
-        cTypeMask_Collect       = 1 << cType_Collect,
-        cTypeMask_Bullet        = 1 << cType_Bullet,
-        cTypeMask_CannonBullet  = 1 << cType_CannonBullet,
-        cTypeMask_GoalPole      = 1 << cType_GoalPole,
-        cTypeMask_ChibiYoshi    = 1 << cType_ChibiYoshi,
-        cTypeMask_Unk10         = 1 << cType_Unk10,
-        cTypeMask_DrcTouch      = 1 << cType_DrcTouch,
-        cTypeMask_Unk12         = 1 << cType_Unk12,
-        cTypeMask_Unk13         = 1 << cType_Unk13,
-        cTypeMask_Unk14         = 1 << cType_Unk14,
+        cTargetKind_PlayerBody      = 1 << cKind_PlayerBody,
+        cTargetKind_PlayerAttack    = 1 << cKind_PlayerAttack,
+        cTargetKind_Yoshi           = 1 << cKind_Yoshi,
+        cTargetKind_Enemy           = 1 << cKind_Enemy,
+        cTargetKind_Balloon         = 1 << cKind_Balloon,
+        cTargetKind_Item            = 1 << cKind_Item,
+        cTargetKind_Tama            = 1 << cKind_Tama,
+        cTargetKind_Killer          = 1 << cKind_Killer,
+        cTargetKind_GoalPole        = 1 << cKind_GoalPole,
+        cTargetKind_ChibiYoshi      = 1 << cKind_ChibiYoshi,
+        cTargetKind_Unk10           = 1 << cKind_Unk10,
+        cTargetKind_DrcTouch        = 1 << cKind_DrcTouch,
+        cTargetKind_Unk12           = 1 << cKind_Unk12,
+        cTargetKind_Unk13           = 1 << cKind_Unk13,
+        cTargetKind_Unk14           = 1 << cKind_Unk14,
 
-        cTypeMask_None          = 0,
-        cTypeMask_All           = 0xFFFFFFFF
+        cTargetKind_Player          = cTargetKind_PlayerBody | cTargetKind_PlayerAttack | cTargetKind_Yoshi,
+
+        cTargetKind_None            = 0,
+        cTargetKind_All             = 0xFFFFFFFF
     };
-    static_assert(sizeof(TypeMask) == 4);
+    static_assert(sizeof(TargetKind) == 4);
 
     enum Attack
     {
-        cAttack_Generic         = 0,
-        cAttack_Fire,
-        cAttack_Ice,
+        cAttack_Generic            = 0,
+        cAttack_FireBall,
+        cAttack_IceBall,
         cAttack_Star,
         cAttack_IceBreak,
         cAttack_Slip,
@@ -85,7 +87,7 @@ public:
 
         cAttack_SpinFall        = 13,
         cAttack_Explosion,
-        cAttack_YoshiTongue,
+        cAttack_YoshiEat,
         cAttack_YoshiMouth,
         cAttack_Cannon,
         cAttack_SpinLiftUp,
@@ -102,73 +104,79 @@ public:
     };
     static_assert(sizeof(Attack) == 4);
 
-    enum AttackMask
+    enum DamageFrom
     {
-        cAttackMask_Generic         = 1 << cAttack_Generic,
-        cAttackMask_Fire            = 1 << cAttack_Fire,
-        cAttackMask_Ice             = 1 << cAttack_Ice,
-        cAttackMask_Star            = 1 << cAttack_Star,
-        cAttackMask_IceBreak        = 1 << cAttack_IceBreak,
-        cAttackMask_Slip            = 1 << cAttack_Slip,
-        cAttackMask_KoopaFire       = 1 << cAttack_KoopaFire,
-        cAttackMask_HipAttack       = 1 << cAttack_HipAttack,
-        cAttackMask_NetPunch        = 1 << cAttack_NetPunch,
-        cAttackMask_Shell           = 1 << cAttack_Shell,
-        cAttackMask_PenguinSlip     = 1 << cAttack_PenguinSlip,
-        cAttackMask_Spin            = 1 << cAttack_Spin,
+        cDamageFrom_Generic         = 1 << cAttack_Generic,
+        cDamageFrom_FireBall        = 1 << cAttack_FireBall,
+        cDamageFrom_IceBall         = 1 << cAttack_IceBall,
+        cDamageFrom_Star            = 1 << cAttack_Star,
+        cDamageFrom_IceBreak        = 1 << cAttack_IceBreak,
+        cDamageFrom_Slip            = 1 << cAttack_Slip,
+        cDamageFrom_KoopaFire       = 1 << cAttack_KoopaFire,
+        cDamageFrom_HipAttack       = 1 << cAttack_HipAttack,
+        cDamageFrom_NetPunch        = 1 << cAttack_NetPunch,
+        cDamageFrom_Shell           = 1 << cAttack_Shell,
+        cDamageFrom_PenguinSlip     = 1 << cAttack_PenguinSlip,
+        cDamageFrom_Spin            = 1 << cAttack_Spin,
 
-        cAttackMask_SpinFall        = 1 << cAttack_SpinFall,
-        cAttackMask_Explosion       = 1 << cAttack_Explosion,
-        cAttackMask_YoshiTongue     = 1 << cAttack_YoshiTongue,
-        cAttackMask_YoshiMouth      = 1 << cAttack_YoshiMouth,
-        cAttackMask_Cannon          = 1 << cAttack_Cannon,
-        cAttackMask_SpinLiftUp      = 1 << cAttack_SpinLiftUp,
-        cAttackMask_YoshiBullet     = 1 << cAttack_YoshiBullet,
-        cAttackMask_YoshiFire       = 1 << cAttack_YoshiFire,
-        cAttackMask_YoshiIce        = 1 << cAttack_YoshiIce,
-        cAttackMask_Intermittent    = 1 << cAttack_Intermittent,
-        cAttackMask_ChibiYoshiAwa   = 1 << cAttack_ChibiYoshiAwa,
+        cDamageFrom_SpinFall        = 1 << cAttack_SpinFall,
+        cDamageFrom_Explosion       = 1 << cAttack_Explosion,
+        cDamageFrom_YoshiEat        = 1 << cAttack_YoshiEat,
+        cDamageFrom_YoshiMouth      = 1 << cAttack_YoshiMouth,
+        cDamageFrom_Cannon          = 1 << cAttack_Cannon,
+        cDamageFrom_SpinLiftUp      = 1 << cAttack_SpinLiftUp,
+        cDamageFrom_YoshiBullet     = 1 << cAttack_YoshiBullet,
+        cDamageFrom_YoshiFire       = 1 << cAttack_YoshiFire,
+        cDamageFrom_YoshiIce        = 1 << cAttack_YoshiIce,
+        cDamageFrom_Intermittent    = 1 << cAttack_Intermittent,
+        cDamageFrom_ChibiYoshiAwa   = 1 << cAttack_ChibiYoshiAwa,
 
-        cAttackMask_Unk25           = 1 << cAttack_Unk25,
-        cAttackMask_ChibiYoshiLight = 1 << cAttack_ChibiYoshiLight,
-        cAttackMask_Unk27           = 1 << cAttack_Unk27,
+        cDamageFrom_Unk25           = 1 << cAttack_Unk25,
+        cDamageFrom_ChibiYoshiLight = 1 << cAttack_ChibiYoshiLight,
+        cDamageFrom_Unk27           = 1 << cAttack_Unk27,
 
-        cAttackMask_None            = 0,
-        cAttackMask_All             = 0xFFFFFFFF
+        cDamageFrom_None            = 0,
+        cDamageFrom_All             = 0xFFFFFFFF
     };
-    static_assert(sizeof(AttackMask) == 4);
+    static_assert(sizeof(DamageFrom) == 4);
 
-    typedef void (*HitCallback)(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
-
-    struct Info
+    enum Status
     {
-        enum Flag
-        {
-            cFlag_Unk0      = 1 << 0,
-            cFlag_Passive   = 1 << 2,   // If set, this instance does not trigger other instances
-            cFlag_Unk9      = 1 << 9,
-            cFlag_Unk12     = 1 << 12,
+        cStatus_Unk0    = 1 << 0,
+        cStatus_Passive = 1 << 2,   // If set, this instance does not trigger other instances
+        cStatus_Unk9    = 1 << 9,
+        cStatus_Unk12   = 1 << 12,
 
-            cFlag_None      = 0
-        };
-        static_assert(sizeof(Flag) == 4);
+        cStatus_None    = 0
+    };
+    static_assert(sizeof(Status) == 4);
 
+    typedef void (*CallBack)(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
+
+    struct CollisionData
+    {
         f32         center_offset_x;
         f32         center_offset_y;
         f32         half_size_x;
         f32         half_size_y;
-        Shape       shape;
-        Type        type;               // Type of the owner of this instance
+        ShapeType   shape_type;
+        Kind        kind;               // Type of the owner of this instance
         Attack      attack;             // Type of attack this instance performs
-        TypeMask    type_mask;          // Mask of owner types to interact with
-        AttackMask  attack_mask;        // Mask of attack types to receive
-        Flag        flag;               // Sets allowed interactions, such as being pick-able
-        HitCallback callback;
+        TargetKind  vs_kind;            // Mask of owner types to interact with
+        DamageFrom  vs_damage;          // Mask of attack types to receive
+        Status      status;             // Sets allowed interactions, such as being pick-able
+        CallBack    callback;
 
         // Address: 0x10041BC0
-        static const Info cDefault;
+        static const CollisionData cDefault;
     };
-    static_assert(sizeof(Info) == 0x2C);
+    static_assert(sizeof(CollisionData) == 0x2C);
+
+    enum Info
+    {
+        cInfo_NoHit = 2
+    };
+    static_assert(sizeof(Info) == 4);
 
 public:
     // Address: 0x0219A960
@@ -177,26 +185,26 @@ public:
     virtual ~ActorCollisionCheck();
 
     // Address: 0x0219AF1C
-    void set(Actor* p_owner, const Info& info, ActorCollisionTouchDrcCallback* p_touch_drc_callback = nullptr);
+    void set(Actor* p_owner, const CollisionData& collision_data, ActorCollisionTouchDrcCallback* p_touch_drc_callback = nullptr);
     // Address: 0x0219B010
-    void set(Actor* p_owner, const Info& info, const sead::BitFlag8& collision_mask, ActorCollisionTouchDrcCallback* p_touch_drc_callback = nullptr);
+    void set(Actor* p_owner, const CollisionData& collision_data, const sead::BitFlag8& collision_mask, ActorCollisionTouchDrcCallback* p_touch_drc_callback = nullptr);
     // Address: 0x0219B054
-    void set(Actor* p_owner, const Info& info, const sead::BitFlag8& collision_mask, u8 layer, ActorCollisionTouchDrcCallback* p_touch_drc_callback = nullptr);
+    void set(Actor* p_owner, const CollisionData& collision_data, const sead::BitFlag8& collision_mask, u8 layer, ActorCollisionTouchDrcCallback* p_touch_drc_callback = nullptr);
 
     void setCenterOffsetX(f32 center_offset_x)
     {
-        mInfo.center_offset_x = center_offset_x;
+        mCollisionData.center_offset_x = center_offset_x;
     }
 
     void setCenterOffsetY(f32 center_offset_y)
     {
-        mInfo.center_offset_y = center_offset_y;
+        mCollisionData.center_offset_y = center_offset_y;
     }
 
     void setCenterOffset(f32 center_offset_x, f32 center_offset_y)
     {
-        mInfo.center_offset_x = center_offset_x;
-        mInfo.center_offset_y = center_offset_y;
+        mCollisionData.center_offset_x = center_offset_x;
+        mCollisionData.center_offset_y = center_offset_y;
     }
 
     void setCenterOffset(const sead::Vector2f& center_offset)
@@ -206,18 +214,18 @@ public:
 
     void setHalfSizeX(f32 half_size_x)
     {
-        mInfo.half_size_x = half_size_x;
+        mCollisionData.half_size_x = half_size_x;
     }
 
     void setHalfSizeY(f32 half_size_y)
     {
-        mInfo.half_size_y = half_size_y;
+        mCollisionData.half_size_y = half_size_y;
     }
 
     void setHalfSize(f32 half_size_x, f32 half_size_y)
     {
-        mInfo.half_size_x = half_size_x;
-        mInfo.half_size_y = half_size_y;
+        mCollisionData.half_size_x = half_size_x;
+        mCollisionData.half_size_y = half_size_y;
     }
 
     void setHalfSize(const sead::Vector2f& half_size)
@@ -225,9 +233,9 @@ public:
         setHalfSize(half_size.x, half_size.y);
     }
 
-    void setAttackMask(AttackMask attack_mask)
+    void setDamageFrom(DamageFrom vs_damage)
     {
-        mInfo.attack_mask = attack_mask;
+        mCollisionData.vs_damage = vs_damage;
     }
 
     void setIndex(u32 index)
@@ -280,12 +288,12 @@ public:
 
     bool isInactive() const
     {
-        return mFlag & 2;
+        return mInfo & cInfo_NoHit;
     }
 
     void setInactive()
     {
-        mFlag |= 2;
+        mInfo |= cInfo_NoHit;
     }
 
     bool isCollidable() const
@@ -298,9 +306,9 @@ public:
         return mpTouchDrcCallback;
     }
 
-    const Info& getInfo() const
+    const CollisionData& getCollisionData() const
     {
-        return mInfo;
+        return mCollisionData;
     }
 
     f32 getDaikei(s32 index) const
@@ -308,14 +316,14 @@ public:
         return mDaikei[index];
     }
 
-    f32 getIntersectionX(Type type) const
+    f32 getIntersectionX(Kind kind) const
     {
-        return mIntersectionX[type];
+        return mIntersectionX[kind];
     }
 
-    f32 getIntersectionY(Type type) const
+    f32 getIntersectionY(Kind kind) const
     {
-        return mIntersectionY[type];
+        return mIntersectionY[kind];
     }
 
     sead::BoundBox2f getBoundBox() const
@@ -359,59 +367,59 @@ private:
     u32                             _48;
     sead::Vector2f                  mDrcTouchPos;
     sead::Vector2f                  mHitPos;
-    TypeMask                        mHit;               // Owner types of others we've collided with
-    AttackMask                      mAttacksPerformed;  // Attacks performed on non-passive others
-    AttackMask                      mAttacksReceived;   // Attacks received from non-passive others
+    TargetKind                      mHit;               // Owner types of others we've collided with
+    DamageFrom                      mAttacksPerformed;  // Attacks performed on non-passive others
+    DamageFrom                      mAttacksReceived;   // Attacks received from non-passive others
     u32                             mIndex;
     sead::BitFlag8                  mCollisionMask;
     u8                              mLayer;
-    u8                              mFlag;
+    u8                              mInfo;
     ActorCollisionTouchDrcCallback* mpTouchDrcCallback;
-    Info                            mInfo;
+    CollisionData                   mCollisionData;
     sead::SafeArray<f32, 4>         mDaikei;
-    sead::SafeArray<f32, cType_Num> mIntersectionX;
-    sead::SafeArray<f32, cType_Num> mIntersectionY;
+    sead::SafeArray<f32, cKind_Num> mIntersectionX;
+    sead::SafeArray<f32, cKind_Num> mIntersectionY;
 };
 static_assert(sizeof(ActorCollisionCheck) == 0x128);
 
-inline ActorCollisionCheck::TypeMask operator|(const ActorCollisionCheck::TypeMask& lhs, const ActorCollisionCheck::TypeMask& rhs)
+inline ActorCollisionCheck::TargetKind operator|(const ActorCollisionCheck::TargetKind& lhs, const ActorCollisionCheck::TargetKind& rhs)
 {
-    return (ActorCollisionCheck::TypeMask)((u32)lhs | (u32)rhs);
+    return (ActorCollisionCheck::TargetKind)((u32)lhs | (u32)rhs);
 }
 
-inline ActorCollisionCheck::TypeMask& operator|=(ActorCollisionCheck::TypeMask& lhs, const ActorCollisionCheck::TypeMask& rhs)
-{
-    lhs = lhs | rhs;
-    return lhs;
-}
-
-inline ActorCollisionCheck::TypeMask operator~(const ActorCollisionCheck::TypeMask& val)
-{
-    return (ActorCollisionCheck::TypeMask)(~(u32)val);
-}
-
-inline ActorCollisionCheck::AttackMask operator|(const ActorCollisionCheck::AttackMask& lhs, const ActorCollisionCheck::AttackMask& rhs)
-{
-    return (ActorCollisionCheck::AttackMask)((u32)lhs | (u32)rhs);
-}
-
-inline ActorCollisionCheck::AttackMask& operator|=(ActorCollisionCheck::AttackMask& lhs, const ActorCollisionCheck::AttackMask& rhs)
+inline ActorCollisionCheck::TargetKind& operator|=(ActorCollisionCheck::TargetKind& lhs, const ActorCollisionCheck::TargetKind& rhs)
 {
     lhs = lhs | rhs;
     return lhs;
 }
 
-inline ActorCollisionCheck::AttackMask operator~(const ActorCollisionCheck::AttackMask& val)
+inline ActorCollisionCheck::TargetKind operator~(const ActorCollisionCheck::TargetKind& val)
 {
-    return (ActorCollisionCheck::AttackMask)(~(u32)val);
+    return (ActorCollisionCheck::TargetKind)(~(u32)val);
 }
 
-inline ActorCollisionCheck::Info::Flag operator|(const ActorCollisionCheck::Info::Flag& lhs, const ActorCollisionCheck::Info::Flag& rhs)
+inline ActorCollisionCheck::DamageFrom operator|(const ActorCollisionCheck::DamageFrom& lhs, const ActorCollisionCheck::DamageFrom& rhs)
 {
-    return (ActorCollisionCheck::Info::Flag)((u32)lhs | (u32)rhs);
+    return (ActorCollisionCheck::DamageFrom)((u32)lhs | (u32)rhs);
 }
 
-inline ActorCollisionCheck::Info::Flag& operator|=(ActorCollisionCheck::Info::Flag& lhs, const ActorCollisionCheck::Info::Flag& rhs)
+inline ActorCollisionCheck::DamageFrom& operator|=(ActorCollisionCheck::DamageFrom& lhs, const ActorCollisionCheck::DamageFrom& rhs)
+{
+    lhs = lhs | rhs;
+    return lhs;
+}
+
+inline ActorCollisionCheck::DamageFrom operator~(const ActorCollisionCheck::DamageFrom& val)
+{
+    return (ActorCollisionCheck::DamageFrom)(~(u32)val);
+}
+
+inline ActorCollisionCheck::Status operator|(const ActorCollisionCheck::Status& lhs, const ActorCollisionCheck::Status& rhs)
+{
+    return (ActorCollisionCheck::Status)((u32)lhs | (u32)rhs);
+}
+
+inline ActorCollisionCheck::Status& operator|=(ActorCollisionCheck::Status& lhs, const ActorCollisionCheck::Status& rhs)
 {
     lhs = lhs | rhs;
     return lhs;

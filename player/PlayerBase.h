@@ -515,7 +515,7 @@ public:
     virtual void clearJumpActionInfo() = 0;
 
     // Address: 0x028F9858
-    virtual void initCollision(const ActorCollisionCheck::Info& cc_data_react, const ActorCollisionCheck::Info& cc_data_attack);
+    virtual void initCollision(const ActorCollisionCheck::CollisionData& cc_data_react, const ActorCollisionCheck::CollisionData& cc_data_attack);
     // Address: 0x028F98FC
     virtual void releaseCcData();
     // Address: 0x028F9A78
