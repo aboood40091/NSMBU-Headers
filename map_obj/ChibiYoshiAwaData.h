@@ -31,6 +31,16 @@ public:
     // Address: 0x0272D738
     virtual void vf24(Actor*);
 
+    AwaType getAwaType() const
+    {
+        return mAwaType;
+    }
+
+    void setAwaType(AwaType type)
+    {
+        mAwaType = type;
+    }
+
     u32 getState() const
     {
         return mState;
