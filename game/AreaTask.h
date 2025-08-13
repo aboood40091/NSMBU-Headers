@@ -35,6 +35,9 @@ public:
     // Address: 0x024B8B98
     void debugDraw(const agl::lyr::RenderInfo& render_info);
 
+    // Address: 0x024B8034
+    f32 getLoopPosX(f32 x);
+
 private:
     u8                  _c9;
     bool                mIsPrepareDone;
