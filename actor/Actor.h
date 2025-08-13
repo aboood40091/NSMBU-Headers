@@ -317,7 +317,7 @@ protected:
     u32                     mProfFlag;                  // Inited to Profile::mFlag
     sead::Vector3f          mCenterOffset;
     sead::Vector3f          mPosPrev;                   // At frame start
-    sead::Vector3f          _24c;
+    sead::Vector3f          mPosPrevPostExec;
     sead::Vector3f          mPosPrev2;                  // At frame end
     EatData*                mpEatData;
     ChibiYoshiEatData*      mpChibiYoshiEatData;
