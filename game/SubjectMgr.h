@@ -28,4 +28,7 @@ public:
     void onAcComboCntClr();
     // Address: 0x024CF74C
     void onComboCntInc(s32 cnt, ComboType type);
+
+    // Address: 0x024CFB00
+    void onAcBlockHit();
 };
