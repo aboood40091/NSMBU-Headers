@@ -8,6 +8,13 @@
 #include <math/seadVector.h>
 #include <prim/seadBitFlag.h>
 
+enum CcLineKind
+{
+    cCcLineKind_0 = 1 << 0,
+    cCcLineKind_1 = 1 << 1,
+    cCcLineKind_2 = 1 << 2
+};
+
 class Actor;
 class ActorCollisionTouchDrcCallback;
 
