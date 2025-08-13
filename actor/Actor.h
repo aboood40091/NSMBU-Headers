@@ -275,7 +275,7 @@ private:
 protected:
     u32                     mDirection;
     s8                      mPlayerNo;
-    u8                      mControllerLytPlayerNo;
+    s8                      mControllerLytPlayerNo;
     u8                      mLayer;                     // Inited to ActorCreateParam::layer
     sead::BitFlag8          mCollisionMask;
     f32                     mSpeedF;                    // Horizontal speed
@@ -291,11 +291,8 @@ protected:
     Angle3                  mAnglePrev;
     sead::Vector2f          mPosDelta;                  // At start of every frame
     ActorCollisionCheck     mCollisionCheck;
-    struct
-    {
-        sead::Vector2f  offset;
-        sead::Vector2f  size;
-    }                       mVisibleArea;               // Inited to ActorCreateInfo::spawn_range
+    sead::Vector2f          mVisibleAreaOffset;         // Inited to ActorCreateInfo::spawn_range.offset
+    sead::Vector2f          mVisibleAreaSize;           // Inited to ActorCreateInfo::spawn_range.half_size * 2
     sead::Vector2f          mSize;
     ActorCullRange          mCullLimit;                 // Inited to { 256.0 + ActorCreateInfo::cull_range.up,
                                                         //             256.0 + ActorCreateInfo::cull_range.down,
@@ -308,14 +305,15 @@ protected:
     bool                    mIsNoRespawn;
     u8                      _211;
     u8                      mCarryFlag;                 // & 2 = isCarry
-    u8                      mSwitchFlag[2];
+    u8                      mSwitchFlag0;
+    u8                      mSwitchFlag1;
     u16                     mCreateFlag;                // Inited to ActorCreateInfo::flag
     u32                     mBumpDamageTimer;
     u32                     mBumpDirection;
     u8                      _220;
     u32                     mCarryDirection;
     u32                     mThrowPlayerNo;
-    u32                     mComboCnt;
+    s32                     mComboCnt;
     u32                     mProfFlag;                  // Inited to Profile::mFlag
     sead::Vector3f          mCenterOffset;
     sead::Vector3f          mPosPrev;                   // At frame start
