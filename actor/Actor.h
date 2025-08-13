@@ -325,5 +325,10 @@ protected:
     u8*                     _270;                       // Inited to ActorCreateParam::_28
     f32                     mThrowSpeed;
     ChibiYoshiAwaData*      mpChibiYoshiAwaData;
+
+    // Address: 0x10000B64
+    static const f32 cCullXLimit;
+    // Address: 0x10000B68
+    static const f32 cCullYLimit;
 };
 static_assert(sizeof(Actor) == 0x27C);
