@@ -247,6 +247,9 @@ protected:
     // Address: 0x02001304
     void splashEffect_(const sead::Vector3f& pos, EffectID effect_id, u8 wave_scale, const char* sound_label);
 
+    // Address: 0x020013D4
+    void setAreaNo_();
+
     // Address: 0x020013E8
     void calcSpeedX_();
     // Address: 0x02001430
