@@ -75,7 +75,7 @@ public:
     // Address: 0x02000394
     bool checkCarried(s32* p_player_no);
 
-    u32 getComboCnt() const
+    s32 getComboCnt() const
     {
         return mComboCnt;
     }
