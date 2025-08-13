@@ -53,9 +53,10 @@ protected:
     // Address: 0x02328644
     s32 preExecute_() override;
 
-public:
     // Address: 0x02328914
-    void blockHitInit() override;
+    void blockHitInit_() override;
+
+public:
     // Address: 0x0232DC88
     void setSmokeDamage(Actor*) override;
     // Address: 0x0232E1A4

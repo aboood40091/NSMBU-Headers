@@ -468,14 +468,14 @@ protected:
     // Address: 0x028F36BC
     s32 preDraw_() override;
 
+    // Address: 0x028F372C
+    void blockHitInit_() override;
+
 public:
     ActorBgCollisionCheck* getBgCheck() override
     {
         return &mBgCheckPlayer;
     }
-
-    // Address: 0x028F372C
-    void blockHitInit() override;
 
     virtual void executeMain() = 0;
     virtual void executeLastPlayer() = 0;

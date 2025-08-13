@@ -118,32 +118,7 @@ public:
     // Address: 0x02000774
     void deleteActor(bool no_respawn);
 
-protected:
-    // Address: 0x02000AC8
-    Actor(const ActorCreateParam& param);
-    // Address: 0x02000F18
-    virtual ~Actor();
-
-protected:
-    // Address: 0x02000FB8
-    void postCreate_(MainState state) override;
-
-    // Address: 0x02000FE8
-    s32 preExecute_() override;
-    // Address: 0x020010BC
-    void postExecute_(MainState state) override;
-
-    // Address: 0x020011A0
-    s32 preDraw_() override;
-
 public:
-    // Address: 0x02001254
-    virtual bool drawCullCheck();
-
-    virtual void blockHitInit()
-    {
-    }
-
     ActorCollisionCheck& getCollisionCheck()
     {
         return mCollisionCheck;
@@ -163,9 +138,6 @@ public:
     {
         return mIsDrawEnable;
     }
-
-    // Address: 0x02001304
-    void splashEffect(const sead::Vector3f& pos, EffectID effect_id, u8 wave_scale, const char* sound_label);
 
     u32 getDirection() const
     {
@@ -247,25 +219,53 @@ public:
         return mIsNoRespawn;
     }
 
+protected:
+    // Address: 0x02000AC8
+    Actor(const ActorCreateParam& param);
+    // Address: 0x02000F18
+    virtual ~Actor();
+
+protected:
+    // Address: 0x02000FB8
+    void postCreate_(MainState state) override;
+
+    // Address: 0x02000FE8
+    s32 preExecute_() override;
+    // Address: 0x020010BC
+    void postExecute_(MainState state) override;
+
+    // Address: 0x020011A0
+    s32 preDraw_() override;
+
+    // Address: 0x02001254
+    virtual bool drawCullCheck_();
+
+    virtual void blockHitInit_()
+    {
+    }
+
+    // Address: 0x02001304
+    void splashEffect_(const sead::Vector3f& pos, EffectID effect_id, u8 wave_scale, const char* sound_label);
+
     // Address: 0x020013E8
-    void calcSpeedX();
+    void calcSpeedX_();
     // Address: 0x02001430
-    void calcSpeedY(f32 accel_y, f32 speed_max_y);
-    void calcSpeedY() { calcSpeedY(mAccelY, mSpeedMax.y); }
+    void calcSpeedY_(f32 accel_y, f32 speed_max_y);
+    void calcSpeedY_() { calcSpeedY_(mAccelY, mSpeedMax.y); }
 
-    void calcSpeedF() { sead::Mathf::chase(&mSpeedF, mSpeedFMax, mAccelF); }
+    void calcSpeedF_() { sead::Mathf::chase(&mSpeedF, mSpeedFMax, mAccelF); }
     // Address: 0x0200144C
-    void calcFallSpeed(f32 accel_y, f32 fall_speed_max);
-    void calcFallSpeed() { calcFallSpeed(mAccelY, mFallSpeedMax); }
+    void calcFallSpeed_(f32 accel_y, f32 fall_speed_max);
+    void calcFallSpeed_() { calcFallSpeed_(mAccelY, mFallSpeedMax); }
 
-    void posMove(sead::Vector3f& delta)
+    void posMove_(sead::Vector3f& delta)
     {
         mPos += delta;
     }
 
-    void posMove()
+    void posMove_()
     {
-        posMove(mSpeed);
+        posMove_(mSpeed);
     }
 
 private:

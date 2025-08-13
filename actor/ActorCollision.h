@@ -113,15 +113,17 @@ public:
         );
     }
 
+protected:
     // Address: 0x020039AC
-    void calcSpeedY();
+    void calcSpeedY_();
     // Address: 0x020039F0
-    void calcFallSpeed();
+    void calcFallSpeed_();
     // Address: 0x02003AE4
-    void posMove();
+    void posMove_();
     // Address: 0x02003C10
-    void calcAdditionalSpeedF();
+    void calcAdditionalSpeedF_();
 
+public:
     // Address: 0x020037F4
     BgCheckFlag bgCheck();
     // Address: 0x02003764

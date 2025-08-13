@@ -40,6 +40,9 @@ protected:
     // Address: 0x023E9768
     s32 draw_() override;
 
+    // Address: 0x023EA184
+    void blockHitInit_() override;
+
 public:
     // Address: 0x023EB8C8
     bool isSpinLiftUpEnable() override;
@@ -49,8 +52,6 @@ public:
     void yoganSplashEffect(const sead::Vector3f&) override;
     // Address: 0x023EA38C
     void poisonSplashEffect(const sead::Vector3f&) override;
-    // Address: 0x023EA184
-    void blockHitInit() override;
 
     // Address: 0x023EA3A0
     bool vf18C() override;

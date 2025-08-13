@@ -46,6 +46,14 @@ protected:
     // Address: 0x023DE5F4
     s32 doDelete_() override;
 
+    void blockHitInit_() override
+    {
+        if (_1a0b)
+            return;
+
+        Enemy::blockHitInit_();
+    }
+
 public:
     // Address: 0x023DDA28
     void removeCollisionCheck() override;
@@ -55,14 +63,6 @@ public:
     void allEnemyDeathEffSet() override;
     // Address: 0x023DCAC4
     void yoganSplashEffect(const sead::Vector3f&) override;
-
-    void blockHitInit() override
-    {
-        if (_1a0b)
-            return;
-
-        Enemy::blockHitInit();
-    }
 
     // Address: 0x023DDAB4
     bool setDamage(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other) override;
