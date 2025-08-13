@@ -22,4 +22,6 @@ public:
     {
         return getHitType(u16(x), u16(-y), layer);
     }
+
+    void setWaterInWave(const sead::Vector2f& pos, u8 wave_scale);
 };
