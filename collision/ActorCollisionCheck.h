@@ -250,6 +250,11 @@ public:
         mIndex = index;
     }
 
+    void setLayer(u8 layer)
+    {
+        mLayer = layer;
+    }
+
     void setTouchDrcCallback(ActorCollisionTouchDrcCallback* p_touch_drc_callback)
     {
         mpTouchDrcCallback = p_touch_drc_callback;
@@ -291,6 +296,11 @@ public:
     s32 getIndex() const
     {
         return mIndex;
+    }
+
+    u8 getLayer() const
+    {
+        return mLayer;
     }
 
     bool isInactive() const
