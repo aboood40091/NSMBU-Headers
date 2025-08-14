@@ -13,6 +13,8 @@ public:
     bool isStar() const override;
     // ...
 
+    bool isDrawingCarryFukidashi(); // TODO: virtual (0xAF4)
+
     ActorUniqueID getCarryActorID() const
     {
         return mCarryActorID;
