@@ -31,6 +31,10 @@ public:
         return *mStateMgr.getStateID() == StateID_Balloon;
     }
 
+    // ------------------------------------ PlayerObjectCc.cpp ------------------------------------ //
+
+    void getSpinLiftUpCcSizeInfo(sead::Vector2f* p_center_offset, sead::Vector2f* p_half_size);
+
     // ------------------------------------ PlayerObjectMain.cpp ------------------------------------ //
 
     bool setRideOffPlayerJump(f32 speed_y, f32 speed_f);
