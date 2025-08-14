@@ -271,7 +271,14 @@ protected:
         posMove_(mSpeed);
     }
 
+    // Address: 0x02001A28
+    void carryFukidashiCheck_(s32 action);
+    // Address: 0x02001490
+    void carryFukidashiCheck_(s32 action, const sead::Vector2f& range);
+
 private:
+    inline Actor* searchCarryFukidashiPlayer_(s32 action);
+
     // Address: 0x02000720
     u32 calcTottenToSrcDir_(const sead::BoundBox2f& src_range) const;
 
