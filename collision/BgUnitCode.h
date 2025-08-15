@@ -2,10 +2,9 @@
 
 #include <basis/seadTypes.h>
 
-struct BgUnitCode
+class BgUnitCode
 {
-    u64 mData;  // HitType == 1: Ignore active camera
-
+public:
     enum Type
     {
         // ---------- Common ---------- //
@@ -55,6 +54,18 @@ struct BgUnitCode
         cType_Unira                 = 39
     };
 
+    enum TypeInfo
+    {
+        cTypeInfo_None,
+        cTypeInfo_VineStop,
+        cTypeInfo_Num
+    };
+
+    enum TypeOpt
+    {
+        cTypeOpt_None
+    };
+
     enum HitType
     {
         cHitType_None           = 0,    // Collision is not solid
@@ -63,28 +74,6 @@ struct BgUnitCode
         cHitType_HalfCeiling    = 3,    // Collision is solid on the inner surface              (line)
         cHitType_HalfBoth       = 4     // Collision is solid on the outer and inner surfaces   (line, TODO: verify that this is valid)
     };
-
-    Type getType() const
-    {
-        return Type(mData & 0xFFFF);
-    }
-
-    u8 getTypeInfo() const
-    {
-        return (mData >> 16) & 0xFF;
-    }
-
-    u8 getTypeOption() const
-    {
-        return (mData >> 24) & 0xFF;
-    }
-
-    HitType getHitType() const
-    {
-        return HitType((mData >> 32) & 0xF);
-    }
-
-    // -------------------------------------
 
     enum SlipAttr
     {
@@ -110,24 +99,108 @@ struct BgUnitCode
         cManta      = 12    // Now used for Beanstalk Leaf
     };
 
-    SlipAttr getSlipAttr() const
+    static const u64 cPanelTypeMask         = 0x000000000000FFFF;
+    static const u64 cPanelTypeInfoMask     = 0x0000000000FF0000;
+    static const u64 cPanelTypeOptionMask   = 0x00000000FF000000;
+    static const u64 cPanelHitTypeMask      = 0x0000000F00000000;
+    static const u64 cPanelSlipAttrMask     = 0x000000F000000000;
+    static const u64 cPanelAttrMask         = 0x0000FF0000000000;
+
+    enum Shift
     {
-        return SlipAttr((mData >> 36) & 0xF);
+        cShift_Type = 0,
+        cShift_TypeInfo = 16,
+        cShift_TypeOption = 24,
+        cShift_HitType = 32,
+        cShift_SlipAttr = 36,
+        cShift_Attr = 40
+    };
+
+    static u64 makeBgUnitCode(
+        HitType hit_type,
+        Attr attr,
+        SlipAttr slip_attr,
+        Type type,
+        TypeInfo type_info,
+        TypeOpt type_option)
+    {
+        u64 data = 0;
+        setHitType(data, hit_type);
+        setAttr(data, attr);
+        setSlipAttr(data, slip_attr);
+        setType(data, type);
+        setTypeInfo(data, type_info);
+        setTypeOption(data, type_option);
+        return data;
     }
 
-    Attr getAttr() const
+    static Type getType(u64 data)
     {
-        return Attr((mData >> 40) & 0xFF);
+        return Type((data & cPanelTypeMask) >> cShift_Type);
+    }
+
+    static void setType(u64& data, Type type)
+    {
+        data &= ~cPanelTypeMask;
+        data |= (u64(type) << cShift_Type) & cPanelTypeMask;
+    }
+
+    static TypeInfo getTypeInfo(u64 data)
+    {
+        return TypeInfo((data & cPanelTypeInfoMask) >> cShift_TypeInfo);
+    }
+
+    static void setTypeInfo(u64& data, TypeInfo type_info)
+    {
+        data &= ~cPanelTypeInfoMask;
+        data |= (u64(type_info) << cShift_TypeInfo) & cPanelTypeInfoMask;
+    }
+
+    static TypeOpt getTypeOption(u64 data)
+    {
+        return TypeOpt((data & cPanelTypeOptionMask) >> cShift_TypeOption);
+    }
+
+    static void setTypeOption(u64& data, TypeOpt type_option)
+    {
+        data &= ~cPanelTypeOptionMask;
+        data |= (u64(type_option) << cShift_TypeOption) & cPanelTypeOptionMask;
+    }
+
+    static HitType getHitType(u64 data)
+    {
+        return HitType((data & cPanelHitTypeMask) >> cShift_HitType);
+    }
+
+    static void setHitType(u64& data, HitType hit_type)
+    {
+        data &= ~cPanelHitTypeMask;
+        data |= (u64(hit_type) << cShift_HitType) & cPanelHitTypeMask;
+    }
+
+    static SlipAttr getSlipAttr(u64 data)
+    {
+        return SlipAttr((data & cPanelSlipAttrMask) >> cShift_SlipAttr);
+    }
+
+    static void setSlipAttr(u64& data, SlipAttr slip_attr)
+    {
+        data &= ~cPanelSlipAttrMask;
+        data |= (u64(slip_attr) << cShift_SlipAttr) & cPanelSlipAttrMask;
+    }
+
+    static Attr getAttr(u64 data)
+    {
+        return Attr((data & cPanelAttrMask) >> cShift_Attr);
+    }
+
+    static void setAttr(u64& data, Attr attr)
+    {
+        data &= ~cPanelAttrMask;
+        data |= (u64(attr) << cShift_Attr) & cPanelAttrMask;
     }
 
     // -------------------------------------
-
-    enum TypeInfo
-    {
-        cTypeInfo_None,
-        cTypeInfo_VineStop,
-        cTypeInfo_Num
-    };
 
     enum TypeInfo_WakuCoin
     {
@@ -306,11 +379,6 @@ struct BgUnitCode
         cTypeInfo_SenLift_Num
     };
 
-    enum TypeOpt
-    {
-        cTypeOpt_None
-    };
-
     enum TypeOpt_DokanColor
     {
         cTypeOpt_DokanColor_Green,
@@ -320,4 +388,3 @@ struct BgUnitCode
         cTypeOpt_DokanColor_Num
     };
 };
-static_assert(sizeof(BgUnitCode) == 8);

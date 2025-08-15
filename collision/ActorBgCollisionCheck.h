@@ -45,7 +45,7 @@ private:
     ActorUniqueID   mActorUniqueID;
     BgCollision*    mpOwner;
   //u32             _24[4 / sizeof(u32)];   // Alignment???
-    BgUnitCode      mBgCheckData;
+    u64             mBgCheckData;           // See BgUnitCode
     f32             _30;
     u32             _34;
 };

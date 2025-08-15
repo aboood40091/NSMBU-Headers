@@ -15,7 +15,7 @@ public:
     static u16* getUnit(u16 x, u16 y, u32 file, u8 layer, s32* p_block_idx = nullptr);
     static u16* getUnitCurrentCdFile(u16 x, u16 y, u8 layer, s32* p_block_idx = nullptr);
 
-    BgUnitCode getBgCheckData(u16 x, u16 y, u8 layer, bool with_p_sw = true);
+    u64 getBgCheckData(u16 x, u16 y, u8 layer, bool with_p_sw = true);  // See BgUnitCode
 
     BgUnitCode::HitType getHitType(u16 x, u16 y, u8 layer);
     BgUnitCode::HitType getHitType(f32 x, f32 y, u8 layer)

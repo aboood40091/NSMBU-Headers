@@ -19,7 +19,7 @@ public:
         return mRide2Point;
     }
 
-    void setBgCheckData(const BgUnitCode& bc_data)
+    void setBgCheckData(const u64& bc_data)
     {
         mBgCheckData = bc_data;
     }
@@ -31,6 +31,6 @@ private:
     u8          _3;
     Ride2Point  mRide2Point;
     u32         _14;
-    BgUnitCode  mBgCheckData;
+    u64         mBgCheckData;   // See BgUnitCode
 };
 static_assert(sizeof(BasicRideLine) == 0x20);

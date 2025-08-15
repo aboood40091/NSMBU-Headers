@@ -9,7 +9,7 @@ class BgCollision;
 
 struct BgCollisionCheckResultPoint
 {
-    BgUnitCode      bg_check_data;
+    u64             bg_check_data;          // See BgUnitCode
     BgCollision*    p_bg_collision;
   //u32             _c[4 / sizeof(u32)];    // Alignment???
 };
@@ -22,7 +22,7 @@ struct BgCollisionCheckResultArea
     Angle           _c;
     Angle           _10;
   //u32             _14[4 / sizeof(u32)];   // Alignment???
-    BgUnitCode      bg_check_data;
+    u64             bg_check_data;          // See BgUnitCode
     BgCollision*    p_bg_collision;
   //u32             _24[4 / sizeof(u32)];   // More alignment???
 

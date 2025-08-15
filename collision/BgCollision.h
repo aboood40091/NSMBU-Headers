@@ -154,7 +154,7 @@ public:
     // Address: 0x021A680C
     virtual void vf64();
     virtual void vf6C() = 0;
-    virtual void onBgCheckDataChange(const BgUnitCode& bc_data) = 0;
+    virtual void onBgCheckDataChange(const u64& bc_data) = 0;
     virtual bool checkPointInsideOrWithinDistance(const sead::Vector2f& p, f32 distance) const = 0;
 
     const sead::BoundBox2f getAffectedArea() const
@@ -245,11 +245,11 @@ public:
     void clearBcList();
 
     // Address: 0x021A5A70
-    void setType(Type type);    // Sets all parameters of BgUnitCode
+    void setType(Type type);    // Sets all parameters of mBgCheckData (see BgUnitCode)
 
     // Address: 0x021A5A04
-    void setBgCheckData(const BgUnitCode& bc_data);
-    const BgUnitCode& getBgCheckData() const { return mBgCheckData; }
+    void setBgCheckData(const u64& bc_data);
+    const u64& getBgCheckData() const { return mBgCheckData; }
 
     // Address: 0x021A5A90
     void setHitType(BgUnitCode::HitType hit_type);
@@ -355,7 +355,7 @@ protected:
     BcList                          mBcListRight;
     BcList                          mBcListLeft;
     Type                            mType;
-    BgUnitCode                      mBgCheckData;
+    u64                             mBgCheckData;   // See BgUnitCode
     Callback                        mCallbackFoot;
     Callback                        mCallbackHead;
     CallbackWall                    mCallbackWall;
