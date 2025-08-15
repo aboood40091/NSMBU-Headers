@@ -209,6 +209,11 @@ public:
         return *reinterpret_cast<sead::Vector2f*>(mFollowArg.p_position_prev) + mPosOffsetPrev;
     }
 
+    bool isInactive() const
+    {
+        return mIsInactive;
+    }
+
     Angle getAngle() const
     {
         return mAngle;
