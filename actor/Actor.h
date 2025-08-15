@@ -275,6 +275,8 @@ protected:
     void carryFukidashiCheck_(s32 action);
     // Address: 0x02001490
     void carryFukidashiCheck_(s32 action, const sead::Vector2f& range);
+    // Address: 0x02001A64
+    void carryFukidashiCancel_(s32 action, s32 player_no);
 
 private:
     inline Actor* searchCarryFukidashiPlayer_(s32 action);
