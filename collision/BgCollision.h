@@ -167,6 +167,11 @@ public:
         return mpOwner;
     }
 
+    Actor* getIgnoreActor() const
+    {
+        return mpIgnoreActor;
+    }
+
     const FollowArg& getFollowArg() const
     {
         return mFollowArg;
