@@ -16,7 +16,7 @@ public:
     // Address: 0x024B2D7C
     void show(s32 player_no, s32 action);
     // Address: 0x024B2FC8
-    void hide(s32 player_no, s32 action, u32 = 0);
+    void hideTemp(s32 player_no, s32 action, u32 = 0);
     // Address: 0x024B32FC
     bool isVisible(s32 player_no);
 };
