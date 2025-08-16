@@ -281,6 +281,8 @@ protected:
 
     // Address: 0x02001DC4
     bool isEnablePressLR_(const ActorBgCollisionCheck& bc);
+    // Address: 0x0200222C
+    bool isEnablePressUD_(const ActorBgCollisionCheck& bc);
 
 private:
     inline Actor* searchCarryFukidashiPlayer_(s32 action);
@@ -290,6 +292,10 @@ private:
 
     // Address: 0x02001C08
     bool checkPressLR_(const ActorBgCollisionCheck& bc, u32 direction);
+    // Address: 0x02002098
+    bool checkPressU_(const ActorBgCollisionCheck& bc);
+    // Address: 0x02001F04
+    bool checkPressD_(const ActorBgCollisionCheck& bc);
 
     // Address: 0x02001B2C
     bool canPressIfApproaching_(const BgCollision* p_bgcol_approaching_side, const BgCollision* p_bgcol_fixed_side);
