@@ -83,8 +83,11 @@ public:
             cBit_WallLCollision = 19,
             cBit_Unk22          = 22,   // Right Wall related
             cBit_Unk23          = 23,   // Left Wall related
+            cBit_Unk24          = 24,
             cBit_Unk28          = 28,   // Right Wall related
-            cBit_Unk29          = 29    // Left Wall related
+            cBit_Unk29          = 29,   // Left Wall related
+            cBit_Unk30          = 30,
+            cBit_Unk31          = 31
         };
 
     public:
