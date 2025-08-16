@@ -198,6 +198,16 @@ public:
         return mPosOffset2;
     }
 
+    sead::Vector2f& getTypeOffset()
+    {
+        return mTypeOffset;
+    }
+
+    const sead::Vector2f& getTypeOffset() const
+    {
+        return mTypeOffset;
+    }
+
     f32 getPosX() const
     {
         return mFollowArg.p_position->x + mPosOffset.x;
@@ -228,6 +238,36 @@ public:
     {
         // Not inline in NSMB2
         return *reinterpret_cast<sead::Vector2f*>(mFollowArg.p_position_prev) + mPosOffsetPrev;
+    }
+
+    f32 getTypePosX() const
+    {
+        return getPosX() + mTypeOffset.x;
+    }
+
+    f32 getTypePosY() const
+    {
+        return getPosY() + mTypeOffset.y;
+    }
+
+    sead::Vector2f getTypePos() const
+    {
+        return getPos() + mTypeOffset;
+    }
+
+    f32 getTypePosPrevX() const
+    {
+        return getPosPrevX() + mTypeOffsetPrev.x;
+    }
+
+    f32 getTypePosPrevY() const
+    {
+        return getPosPrevY() + mTypeOffsetPrev.y;
+    }
+
+    sead::Vector2f getTypePosPrev() const
+    {
+        return getPosPrev() + mTypeOffsetPrev;
     }
 
     bool isInactive() const
