@@ -213,6 +213,13 @@ public:
         return mHitDirectionFlag & hit_dir_flag;
     }
 
+    // Address: 0x0218AC38
+    BgCollision* getHitBgCollisionFoot() const;
+    // Address: 0x0218ACA8
+    BgCollision* getHitBgCollisionHead() const;
+    // Address: 0x0218AD6C
+    BgCollision* getHitBgCollisionWall(u32 direction) const;
+
     // Address: 0x0218F0C0
     static WaterType checkWater(f32* p_surface_pos_y, const sead::Vector3f& pos, u8 layer);
     // Address: 0x0218F72C
