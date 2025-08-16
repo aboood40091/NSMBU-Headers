@@ -340,6 +340,11 @@ public:
         mCallbackFlag.makeAllZero();
     }
 
+    bool isCallbackFlag(s32 bit) const
+    {
+        return mCallbackFlag.isOnBit(bit);
+    }
+
     void setCallback(Callback callback_foot, Callback callback_head, CallbackWall callback_wall)
     {
         mCallbackFoot = callback_foot;
