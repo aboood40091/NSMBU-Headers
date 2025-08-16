@@ -214,6 +214,16 @@ public:
         return *reinterpret_cast<sead::Vector2f*>(mFollowArg.p_position) + mPosOffset;
     }
 
+    f32 getPosPrevX() const
+    {
+        return mFollowArg.p_position_prev->x + mPosOffsetPrev.x;
+    }
+
+    f32 getPosPrevY() const
+    {
+        return mFollowArg.p_position_prev->y + mPosOffsetPrev.y;
+    }
+
     sead::Vector2f getPosPrev() const
     {
         // Not inline in NSMB2
