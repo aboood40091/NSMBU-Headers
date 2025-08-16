@@ -3,8 +3,10 @@
 #include <sound/AudAudioMgr.h>
 
 #include <heap/seadDisposer.h>
+#include <math/seadVector.h>
 
 #include <nw/snd/snd_SoundArchive.h>
+#include <nw/snd/snd_SoundHandle.h>
 
 class SndAudioMgr : public AudAudioMgr
 {
