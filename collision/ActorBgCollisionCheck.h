@@ -77,8 +77,12 @@ public:
             cBit_OnSlope        =  1,
             cBit_OnTrampoline   =  3,
             cBit_OnRide         =  4,
+            cBit_Unk5           =  5,
+            cBit_Unk9           =  9,
             cBit_HeadCollision  = 10,
+            cBit_Unk14          = 14,
             cBit_Unk16          = 16,
+            cBit_Unk17          = 17,
             cBit_WallRCollision = 18,
             cBit_WallLCollision = 19,
             cBit_Unk22          = 22,   // Right Wall related
