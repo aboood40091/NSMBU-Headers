@@ -167,6 +167,12 @@ public:
         return mpOwner;
     }
 
+    template <typename T>
+    T* getOwner() const
+    {
+        return sead::DynamicCast<T>(mpOwner);
+    }
+
     Actor* getIgnoreActor() const
     {
         return mpIgnoreActor;
