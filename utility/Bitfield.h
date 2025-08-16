@@ -28,24 +28,77 @@ public:
         sead::MemUtil::fillZero(mBitArray, BitNum / 8);
     }
 
-    bool isOnBit(u32 bit) const
+    u32 getMask(u32 index, u32 mask) const
     {
-        return mBitArray[bit / 32] >> (bit % 32) & 1;
+        return mBitArray[index] & mask;
     }
 
-    bool isOffBit(u32 bit) const
+    bool isOn(u32 index, u32 mask) const
     {
-        return !isOnBit(bit);
+        return getMask(index, mask) != 0;
+    }
+
+    bool isOnAll(u32 index, u32 mask) const
+    {
+        return getMask(index, mask) == mask;
+    }
+
+    void set(u32 index, u32 mask)
+    {
+        mBitArray[index] |= mask;
+    }
+
+    void reset(u32 index, u32 mask)
+    {
+        mBitArray[index] &= ~mask;
+    }
+
+    void toggle(u32 index, u32 mask)
+    {
+        mBitArray[index] ^= mask;
+    }
+
+    void change(u32 index, u32 mask, bool b)
+    {
+        if (b)
+            set(index, mask);
+        else
+            reset(index, mask);
+    }
+
+    static u32 bitToIndex(u32 bit)
+    {
+        return bit / 32;
+    }
+
+    static u32 makeMask(u32 bit)
+    {
+        return 1u << bit;
+    }
+
+    bool isOnBit(u32 bit) const
+    {
+        return isOn(bitToIndex(bit), makeMask(bit));
     }
 
     void setBit(u32 bit)
     {
-        mBitArray[bit / 32] |= 1 << (bit % 32);
+        set(bitToIndex(bit), makeMask(bit));
     }
 
     void resetBit(u32 bit)
     {
-        mBitArray[bit / 32] &= ~(1 << (bit % 32));
+        reset(bitToIndex(bit), makeMask(bit));
+    }
+
+    void changeBit(u32 bit, bool b)
+    {
+        change(bitToIndex(bit), makeMask(bit), b);
+    }
+
+    void toggleBit(u32 bit)
+    {
+        toggle(bitToIndex(bit), makeMask(bit));
     }
 
 private:
