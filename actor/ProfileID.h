@@ -710,7 +710,7 @@ extern const s32 c15C;                                      // 348
 // Address: 0x100042C8
 extern const s32 c15D;                                      // 349
 // Address: 0x100042CC
-extern const s32 c15E;                                      // 350
+extern const s32 cIcicleBig;                                // 350
 // Address: 0x100042D0
 extern const s32 cLemmyBall;                                // 351
 // Address: 0x100042D4
