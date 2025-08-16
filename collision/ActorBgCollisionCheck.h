@@ -237,6 +237,11 @@ public:
     // Address: 0x0218AD6C
     BgCollision* getHitBgCollisionWall(u32 direction) const;
 
+    const u64& getBgCheckData(u32 direction) const
+    {
+        return mBgCheckData[direction];
+    }
+
     // Address: 0x0218F0C0
     static WaterType checkWater(f32* p_surface_pos_y, const sead::Vector3f& pos, u8 layer);
     // Address: 0x0218F72C
@@ -302,8 +307,8 @@ protected:
         >,
         4
     >                                       _f58;
-    sead::UnsafeArray<u8, 32>               _1498;
-    sead::UnsafeArray<u8, 32>               _14b8;
+    sead::SafeArray<u64, 4>                 mBgCheckData;       // See BgUnitCode
+    sead::SafeArray<u64, 4>                 mBgCheckDataPrev;   // ^^^
     u32                                     _14d8;
 };
 static_assert(sizeof(ActorBgCollisionCheck) == 0x14E0);
