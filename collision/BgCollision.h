@@ -312,6 +312,7 @@ public:
 
     // Address: 0x021A5A70
     void setType(Type type);    // Sets all parameters of mBgCheckData (see BgUnitCode)
+    Type getType() const { return mType; }
 
     // Address: 0x021A5A04
     void setBgCheckData(const u64& bc_data);
