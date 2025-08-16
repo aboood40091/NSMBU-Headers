@@ -208,6 +208,11 @@ public:
         return getOutput().isOnBit(2);
     }
 
+    bool isHit(u8 hit_dir_flag) const
+    {
+        return mHitDirectionFlag & hit_dir_flag;
+    }
+
     // Address: 0x0218F0C0
     static WaterType checkWater(f32* p_surface_pos_y, const sead::Vector3f& pos, u8 layer);
     // Address: 0x0218F72C
@@ -229,7 +234,7 @@ protected:
     List::Node                              _878;
     List::Node                              _884;
     Actor*                                  mpOwner;
-    Actor*                                  mpIgnoreActor;  // Force mBgCheck to ignore BgCollision owned by this actor
+    Actor*                                  mpIgnoreActor;      // Force mBgCheck to ignore BgCollision owned by this actor
     FollowArg                               mFollowArg;
     Output                                  mOutput;
     Output                                  _8b0;
@@ -241,7 +246,7 @@ protected:
     sead::Vector2f                          _904;
     f32                                     _90c;
     u32                                     _910;
-    u8                                      _914;
+    u8                                      mHitDirectionFlag;  // lower 4 bits: normal, upper 4 bits: boost block
     bool                                    mIsInitialized;
     bool                                    _916;
     bool                                    _917;
