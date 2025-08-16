@@ -105,22 +105,22 @@ public:
 
         bool checkHeadEx() const
         {
-            return checkHead() && isOffBit(cBit_Unk16);
+            return checkHead() && !isOnBit(cBit_Unk16);
         }
 
         bool checkRightWallEx() const
         {
-            return (checkRightWall() || isOnBit(cBit_Unk22)) && isOffBit(cBit_Unk28);
+            return (checkRightWall() || isOnBit(cBit_Unk22)) && !isOnBit(cBit_Unk28);
         }
 
         bool checkLeftWallEx() const
         {
-            return (checkLeftWall() || isOnBit(cBit_Unk23)) && isOffBit(cBit_Unk29);
+            return (checkLeftWall() || isOnBit(cBit_Unk23)) && !isOnBit(cBit_Unk29);
         }
 
         bool checkWallEx(u8 direction) const
         {
-            return (isOnBit(cBit_WallRCollision + direction) || isOnBit(cBit_Unk22 + direction)) && isOffBit(cBit_Unk28 + direction);
+            return (isOnBit(cBit_WallRCollision + direction) || isOnBit(cBit_Unk22 + direction)) && !isOnBit(cBit_Unk28 + direction);
         }
 
         bool isOnTrampoline() const
