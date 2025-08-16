@@ -7,6 +7,7 @@
 #include <utility/Direction.h>
 
 class ActorBgCollisionCheck;
+class BgCollision;
 class ChibiYoshiAwaData;
 class ChibiYoshiEatData;
 class EatData;
@@ -278,8 +279,20 @@ protected:
     // Address: 0x02001A64
     void carryFukidashiCancel_(s32 action, s32 player_no);
 
+    // Address: 0x02001DC4
+    bool isEnablePressLR_(const ActorBgCollisionCheck& bc);
+
 private:
     inline Actor* searchCarryFukidashiPlayer_(s32 action);
+
+    // Address: 0x02001AF4
+    bool canPress_(const BgCollision* p_bg_collision);
+
+    // Address: 0x02001C08
+    bool checkPressLR_(const ActorBgCollisionCheck& bc, u32 direction);
+
+    // Address: 0x02001B2C
+    bool canPressIfApproaching_(const BgCollision* p_bgcol_approaching_side, const BgCollision* p_bgcol_fixed_side);
 
     // Address: 0x02000720
     u32 calcTottenToSrcDir_(const sead::BoundBox2f& src_range) const;
