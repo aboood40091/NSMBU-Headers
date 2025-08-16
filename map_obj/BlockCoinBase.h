@@ -35,6 +35,14 @@ public:
         cContent_Empty = 21
     };
 
+    enum MoveType
+    {
+        cMoveType_None = 0,
+        cMoveType_Up,
+        cMoveType_Down
+    };
+    static_assert(sizeof(MoveType) == 4);
+
 public:
     BlockCoinBase(const ActorCreateParam& param);
     virtual ~BlockCoinBase() { }
@@ -145,6 +153,11 @@ public:
         return mSpawnDirection;
     }
 
+    MoveType getMoveType() const
+    {
+        return mMoveType;
+    }
+
 protected:
     void executeCommon_();
 
@@ -194,7 +207,7 @@ protected:
     u8                              _1acd;
     u8                              _1ace;
     bool                            mNoAddScoreOnDestroy;
-    f32                             _1ad0;
+    MoveType                        mMoveType;
     f32                             _1ad4;
     f32                             _1ad8;
     u32                             _1adc;
