@@ -67,6 +67,19 @@ public:
     };
     static_assert(sizeof(SakaType) == 4);
 
+    enum HitDirBit
+    {
+        cHitDirBit_Right = 0,
+        cHitDirBit_Left,
+        cHitDirBit_Up,
+        cHitDirBit_Down,
+
+        cHitDirBit_BoostBlock_Right,
+        cHitDirBit_BoostBlock_Left,
+        cHitDirBit_BoostBlock_Up,
+        cHitDirBit_BoostBlock_Down
+    };
+
 public:
     class Output : public Bitfield<32>
     {
