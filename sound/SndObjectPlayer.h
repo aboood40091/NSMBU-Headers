@@ -39,6 +39,7 @@ public:
     // Address: 0x029BFA9C
     void stopPlyJumpSound();
 
+    // Address: 0x029BFB18
     static PlayerCharacterVoice getMiiCharacterVoice(const Mii::SlotID& slot_id);
 
 protected:
