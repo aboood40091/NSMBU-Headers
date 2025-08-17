@@ -2,6 +2,7 @@
 
 #include <game/FieldPlayerData.h>
 
+#include <container/seadSafeArray.h>
 #include <heap/seadDisposer.h>
 
 class FieldGameData
