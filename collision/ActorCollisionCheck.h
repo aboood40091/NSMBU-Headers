@@ -283,6 +283,12 @@ public:
         return mpOwner;
     }
 
+    template <typename T>
+    T* getOwner() const
+    {
+        return sead::DynamicCast<T>(mpOwner);
+    }
+
     const sead::Vector2f& getDrcTouchPos() const
     {
         return mDrcTouchPos;
