@@ -202,6 +202,12 @@ public:
         return mpOwner;
     }
 
+    template <typename T>
+    T* getOwner() const
+    {
+        return sead::DynamicCast<T>(mpOwner);
+    }
+
     // Address: 0x0218AEFC
     void setSensor(const Sensor* sensor, u8 direction);
     // Address: 0x0218CE74
