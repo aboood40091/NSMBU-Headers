@@ -12,7 +12,7 @@ class KotonTouchDrcCB : public ActorCollisionTouchDrcCallback   // vtbl Address:
 {
 public:
     // Address: 0x023D5334
-    bool ccIsTouchEnable(ActorCollisionCheck* p_cc, const sead::Vector2f& pos) override;
+    bool ccSetTouchNormal(ActorCollisionCheck* p_cc, const sead::Vector2f& pos) override;
     // Address: 0x023D53C0
     void ccOnTouch(ActorCollisionCheck* p_cc, const sead::Vector2f& pos) override;
 };

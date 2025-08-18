@@ -9,7 +9,7 @@ class MechaKoopaTouchDrcCB : public ActorCollisionTouchDrcCallback  // vtbl Addr
 {
 public:
     // Address: 0x023E8F9C
-    bool ccIsTouchEnable(ActorCollisionCheck* p_cc, const sead::Vector2f& pos) override;
+    bool ccSetTouchNormal(ActorCollisionCheck* p_cc, const sead::Vector2f& pos) override;
     // Address: 0x023E8FA4
     void ccOnTouch(ActorCollisionCheck* p_cc, const sead::Vector2f& pos) override;
 };

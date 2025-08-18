@@ -9,7 +9,7 @@
 class ChangeBlockCoinBaseTouchDrcCB : public ActorCollisionTouchDrcCallback
 {
 public:
-    bool bcIsTouchEnable(BgCollision* p_bg_collision, const sead::Vector2f& pos) override;
+    bool bcSetTouchNormal(BgCollision* p_bg_collision, const sead::Vector2f& pos) override;
 };
 static_assert(sizeof(ChangeBlockCoinBaseTouchDrcCB) == 4);
 

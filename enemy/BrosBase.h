@@ -13,7 +13,7 @@ class BrosBaseTouchDrcCB : public ActorCollisionTouchDrcCallback    // vtbl Addr
 {
 public:
     // Address: 0x022DD974
-    bool ccIsTouchEnable(ActorCollisionCheck* p_cc, const sead::Vector2f& pos) override;
+    bool ccSetTouchNormal(ActorCollisionCheck* p_cc, const sead::Vector2f& pos) override;
     // Address: 0x022DDAEC
     void ccOnTouch(ActorCollisionCheck* p_cc, const sead::Vector2f& pos) override;
 };

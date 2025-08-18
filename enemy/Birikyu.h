@@ -13,7 +13,7 @@ class BirikyuTouchDrcCB : public ActorCollisionTouchDrcCallback // vtbl Address:
 {
 public:
     // Address: 0x022CF75C
-    bool ccIsTouchEnable(ActorCollisionCheck* p_cc, const sead::Vector2f& pos) override;
+    bool ccSetTouchNormal(ActorCollisionCheck* p_cc, const sead::Vector2f& pos) override;
     // Address: 0x022CF7E8
     void ccOnTouch(ActorCollisionCheck* p_cc, const sead::Vector2f& pos) override;
 };
