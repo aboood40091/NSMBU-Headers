@@ -484,7 +484,7 @@ extern const s32 c0EB;                                      // 235
 // Address: 0x10004104
 extern const s32 c0EC;                                      // 236
 // Address: 0x10004108
-extern const s32 c0ED;                                      // 237
+extern const s32 cPlyIce;                                   // 237
 // Address: 0x1000410C
 extern const s32 cTarzanIvy;                                // 238
 // Address: 0x10004110
@@ -734,7 +734,7 @@ extern const s32 c168;                                      // 360
 // Address: 0x100042F8
 extern const s32 c169;                                      // 361
 // Address: 0x100042FC
-extern const s32 c16A;                                      // 362
+extern const s32 cPentaroIce;                               // 362
 // Address: 0x10004300
 extern const s32 c16B;                                      // 363
 // Address: 0x10004304
