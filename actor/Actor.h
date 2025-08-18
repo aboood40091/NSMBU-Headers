@@ -284,6 +284,16 @@ protected:
     // Address: 0x0200222C
     bool isEnablePressUD_(const ActorBgCollisionCheck& bc);
 
+    // Address: 0x02002594
+    bool setPressBreakLR_(const ActorBgCollisionCheck& bc);
+    // Address: 0x02002664
+    bool setPressBreakUD_(const ActorBgCollisionCheck& bc);
+
+    // Address: 0x02002390
+    bool setPressBreakIce_(const BgCollision* p_bg_collision);
+    // Address: 0x020024E0
+    bool setPressBreakBlockDRC_(const BgCollision* p_bg_collision);
+
 private:
     inline Actor* searchCarryFukidashiPlayer_(s32 action);
 
