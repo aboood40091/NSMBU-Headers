@@ -59,6 +59,9 @@ protected:
     // Address: 0x022D2F48
     void blockHitInit_() override;
 
+    // Address: 0x022D3C3C
+    bool smokeDamageEnable_Poison_(f32 surface_pos_y) override;
+
 public:
     // Address: 0x022D3F08
     void allEnemyDeathEffSet() override;
@@ -68,9 +71,6 @@ public:
     void yoganSplashEffect(const sead::Vector3f&) override;
     // Address: 0x022D3F88
     void poisonSplashEffect(const sead::Vector3f&) override;
-
-    // Address: 0x022D3C3C
-    bool smokeDamageEnable_Poison(f32 surface_pos_y) override;
 
     // Address: 0x022D42A8
     bool vf18C() override;

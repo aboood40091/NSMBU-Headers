@@ -10,7 +10,7 @@ class ActorCollision : public Actor // vtbl Address: 0x1000084C
     // getRuntimeTypeInfoStatic()::typeInfo                                 Address: 0x101E9CD8
     SEAD_RTTI_OVERRIDE(ActorCollision, Actor)
 
-public:
+protected:
     enum BgCheckFlag
     {
         cBgCheckFlag_Foot = 1 << 0,
@@ -21,11 +21,16 @@ public:
     };
 
 public:
+    ActorBgCollisionCheck* getBgCheck() override
+    {
+        return &mBgCheckObj;
+    }
+
+protected:
     // Address: 0x02002FB8
     ActorCollision(const ActorCreateParam& param);
     virtual ~ActorCollision() { }
 
-protected:
     // Address: 0x0200354C
     void postCreate_(MainState state) override;
 
@@ -37,32 +42,26 @@ protected:
     // Address: 0x02003724
     s32 doDelete_() override;
 
-public:
-    ActorBgCollisionCheck* getBgCheck() override
-    {
-        return &mBgCheckObj;
-    }
-
-    virtual void setWaterFunsui(bool enable)
+    virtual void setWaterFunsui_(bool enable)
     {
         mIsWaterFunsui = enable;
     }
 
     // Address: Deleted
-    virtual bool isWaterFunsui() const
+    virtual bool isWaterFunsui_() const
     {
         return mIsWaterFunsui;
     }
 
-    virtual void beginFunsui()
+    virtual void beginFunsui_()
     {
     }
 
-    virtual void endFunsui(f32 speed_y)
+    virtual void endFunsui_(f32 speed_y)
     {
     }
 
-    virtual bool isFunsui() const
+    virtual bool isFunsui_() const
     {
         return false;
     }
@@ -78,34 +77,34 @@ public:
     // Address: 0x0200375C
     virtual void vf144(s32);            // nullsub, parameter is based on the flag bit in Quake (either 0 or 1, can even be 2 in NSMB2 but that was removed here)
     // Address: 0x02003760
-    virtual void setSmokeDamage(Actor*);
+    virtual void setSmokeDamage_(Actor*);
 
-    virtual bool setTouchDrcDamage(const sead::Vector2f& pos)
+    virtual bool setTouchDrcDamage_(const sead::Vector2f& pos)
     {
         return false;
     }
 
-    virtual void setFunsuiPos(sead::Vector2f dst)
+    virtual void setFunsuiPos_(sead::Vector2f dst)
     {
         getPos2D() = dst;
     }
 
-    virtual void setFunsuiSpeedY(f32 speed)
+    virtual void setFunsuiSpeedY_(f32 speed)
     {
         mSpeed.y = speed;
     }
 
-    virtual bool smokeDamageEnable_Yogan(f32 surface_pos_y)
+    virtual bool smokeDamageEnable_Yogan_(f32 surface_pos_y)
     {
         return true;
     }
 
-    virtual bool smokeDamageEnable_Poison(f32 surface_pos_y)
+    virtual bool smokeDamageEnable_Poison_(f32 surface_pos_y)
     {
         return false;
     }
 
-    virtual void getBox(sead::BoundBox2f& box)
+    virtual void getBox_(sead::BoundBox2f& box)
     {
         box.set(
             mPos.x - 16.0f, mPos.y,
@@ -113,7 +112,13 @@ public:
         );
     }
 
-protected:
+    // Address: 0x020037F4
+    BgCheckFlag bgCheck_();
+    // Address: 0x02003764
+    bool bgCheckFoot_() const;   // Must process mBgCheckObj before calling this, or just use bgCheck_()
+    // Address: 0x02003770
+    bool bgCheckWall_() const;   // ^^^
+
     // Address: 0x020039AC
     void calcSpeedY_();
     // Address: 0x020039F0
@@ -123,15 +128,7 @@ protected:
     // Address: 0x02003C10
     void calcAdditionalSpeedF_();
 
-public:
-    // Address: 0x020037F4
-    BgCheckFlag bgCheck();
-    // Address: 0x02003764
-    bool bgCheckFoot() const;   // Must process mBgCheckObj before calling this, or just use bgCheck()
-    // Address: 0x02003770
-    bool bgCheckWall() const;   // ^^^
-
-    bool checkForSuitableGround(const sead::Vector2f& offset)
+    bool checkForSuitableGround_(const sead::Vector2f& offset) const
     {
         BgCollisionCheckParam param = { 0 };
         param.layer = mLayer;
@@ -142,16 +139,16 @@ public:
         const sead::Vector2f& a = getPos2D();
         sead::Vector2f b(a + offset);
 
-        return tile_check.checkArea(nullptr, a, b, 8);
+        return tile_check.checkArea(nullptr, a, b, 1 << DIRECTION_DOWN);
     }
 
 protected:
-    u32                         _27C;
+    u32                         _27c;
     ActorBgCollisionObjCheck    mBgCheckObj;
     f32                         mAdditionalSpeedF;
     f32                         mAdditionalAccelF;
     sead::Vector3f*             _1768;
-    u8                          _176C;
+    u8                          _176c;
     u32                         _1770;
     f32                         _1774;
     sead::Vector2f              _1778;
@@ -167,6 +164,6 @@ protected:
     u8                          _1799;
     bool                        mIsWaterFunsui;
     bool                        mIsOnGround;
-    u32                         _179C;
+    u32                         _179c;
 };
 static_assert(sizeof(ActorCollision) == 0x17A0);

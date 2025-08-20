@@ -56,11 +56,12 @@ protected:
     // Address: 0x02328914
     void blockHitInit_() override;
 
-public:
     // Address: 0x0232DC88
-    void setSmokeDamage(Actor*) override;
+    void setSmokeDamage_(Actor*) override;
     // Address: 0x0232E1A4
-    bool setTouchDrcDamage(const sead::Vector2f& pos) override;
+    bool setTouchDrcDamage_(const sead::Vector2f& pos) override;
+
+public:
     // Address: 0x02330404
     void changeState(const StateID& state_id) override;
 
