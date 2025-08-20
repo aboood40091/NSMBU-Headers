@@ -289,6 +289,9 @@ protected:
     // Address: 0x02002664
     bool setPressBreakUD_(const ActorBgCollisionCheck& bc);
 
+    // Address: 0x0200272C
+    bool setPressIceHeadBreak_(const ActorBgCollisionCheck& bc);
+
     // Address: 0x02002390
     bool setPressBreakIce_(const BgCollision* p_bg_collision);
     // Address: 0x020024E0
