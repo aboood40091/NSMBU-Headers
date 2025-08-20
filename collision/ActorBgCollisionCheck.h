@@ -213,6 +213,31 @@ public:
     // Address: 0x0218CE74
     const Sensor* getSensor(u8 direction) const;
 
+    bool isSensor1Set(u8 direction) const
+    {
+        return mIsSensor1Set[direction];
+    }
+
+    bool isSensor1Null(u8 direction) const
+    {
+        return mIsSensor1Null[direction];
+    }
+
+    bool isSensor2Set(u8 direction) const
+    {
+        return mIsSensor2Set[direction];
+    }
+
+    const sead::UnsafeArray<Sensor, 4>& getSensorArray1() const
+    {
+        return mSensor1;
+    }
+
+    const sead::UnsafeArray<Sensor, 4>& getSensorArray2() const
+    {
+        return mSensor2;
+    }
+
     SensorFlag& getSensorFlag(u8 direction)
     {
         return mSensorFlag[direction];
