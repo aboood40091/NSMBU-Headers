@@ -126,7 +126,7 @@ protected:
     // Address: 0x02003AE4
     void posMove_();
     // Address: 0x02003C10
-    void calcAdditionalSpeedF_();
+    void calcJumpSpeedF_();
 
     bool checkForSuitableGround_(const sead::Vector2f& offset) const
     {
@@ -145,11 +145,11 @@ protected:
 protected:
     u32                         _27c;
     ActorBgCollisionObjCheck    mBgCheckObj;
-    f32                         mAdditionalSpeedF;
-    f32                         mAdditionalAccelF;
     sead::Vector3f*             _1768;
     u8                          _176c;
     u32                         _1770;
+    f32                         mJumpSpeedF;
+    f32                         mJumpAccelF;
     f32                         _1774;
     sead::Vector2f              _1778;
     sead::Vector2f              _1780;
