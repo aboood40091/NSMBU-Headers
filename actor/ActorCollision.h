@@ -20,6 +20,13 @@ protected:
         cBgCheckFlag_None = 0
     };
 
+    enum WaterCalcType
+    {
+        cWaterCalcType_Normal = 0,
+        cWaterCalcType_EnablePreCheck,
+        cWaterCalcType_ForceOut
+    };
+
 public:
     ActorBgCollisionCheck* getBgCheck() override
     {
@@ -143,27 +150,27 @@ protected:
     }
 
 protected:
-    u32                         _27c;
+  //u32                         _27c[4 / sizeof(u32)];   // Alignment???
     ActorBgCollisionObjCheck    mBgCheckObj;
-    sead::Vector3f*             _1768;
-    u8                          _176c;
-    u32                         _1770;
     f32                         mJumpSpeedF;
     f32                         mJumpAccelF;
+    sead::Vector3f*             mpWaterCheckPos;
+    bool                        mUseWaterTypeOverride;
+    WaterType                   mWaterTypeOverride;
     f32                         _1774;
     sead::Vector2f              _1778;
     sead::Vector2f              _1780;
-    f32                         mLiquidSpeedMaxY_MaxClamp;
-    f32                         mLiquidSpeedMaxY_MinClamp;
-    f32                         mLiquidAccelY;
-    u8                          _1794;
+    f32                         mWaterSpeedMaxY;    // Maximum ascension speed
+    f32                         mWaterFallSpeedMax;
+    f32                         mWaterGravity;
+    bool                        mCheckWaterNeeded;
     bool                        mIsInQuicksand;
-    bool                        mIsInLiquid;
-    u8                          _1797;
-    u8                          _1798;
-    u8                          _1799;
+    bool                        mIsSubmerged;
+    bool                        mNoWaterCalc;
+    u8                          mWaterCalcType;
+    u8                          mNoLavaSplashTimer;
     bool                        mIsWaterFunsui;
     bool                        mIsOnGround;
-    u32                         _179c;
+    u32                         mJumpFrame;
 };
 static_assert(sizeof(ActorCollision) == 0x17A0);
