@@ -135,6 +135,9 @@ protected:
     // Address: 0x02003C10
     void calcJumpSpeedF_();
 
+    // Address: 0x02003120
+    void enterWater_();
+
     bool checkForSuitableGround_(const sead::Vector2f& offset) const
     {
         BgCollisionCheckParam param = { 0 };
@@ -148,6 +151,15 @@ protected:
 
         return tile_check.checkArea(nullptr, a, b, 1 << DIRECTION_DOWN);
     }
+
+private:
+    // Address: 0x0200339C
+    void calcWater_();
+
+    // Address: 0x02003148
+    WaterType checkEnterWater_(f32* p_surface_pos_y, const sead::Vector3f& check_pos);
+    // Address: 0x020030F4
+    void clampWaterSpeedY_();
 
 protected:
   //u32                         _27c[4 / sizeof(u32)];   // Alignment???
