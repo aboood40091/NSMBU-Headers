@@ -51,7 +51,7 @@ public:
 
 protected:
     // Address: 0x02328644
-    s32 preExecute_() override;
+    bool preExecute_() override;
 
     // Address: 0x02328914
     void blockHitInit_() override;

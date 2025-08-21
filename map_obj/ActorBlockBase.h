@@ -38,8 +38,8 @@ public:
     }
 
 protected:
-    s32 execute_() override;
-    s32 draw_() override;
+    bool execute_() override;
+    bool draw_() override;
 
 public:
     void onDownMove_DiffStart() override;

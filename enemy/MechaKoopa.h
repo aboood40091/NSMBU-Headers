@@ -34,11 +34,11 @@ public:
 
 protected:
     // Address: 0x023E92E0
-    s32 create_() override;
+    Result create_() override;
     // Address: 0x023E95CC
-    s32 execute_() override;
+    bool execute_() override;
     // Address: 0x023E9768
-    s32 draw_() override;
+    bool draw_() override;
 
     // Address: 0x023EA184
     void blockHitInit_() override;

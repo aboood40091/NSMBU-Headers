@@ -458,15 +458,15 @@ public:
 
 protected:
     // Address: 0x028F2E78
-    s32 create_() override;
+    Result create_() override;
     // Address: 0x028F2F0C
-    s32 preExecute_() override;
+    bool preExecute_() override;
     // Address: 0x028F3078
-    s32 execute_() override;
+    bool execute_() override;
     // Address: 0x028F3534
     void postExecute_(MainState state) override;
     // Address: 0x028F36BC
-    s32 preDraw_() override;
+    bool preDraw_() override;
 
     // Address: 0x028F372C
     void blockHitInit_() override;

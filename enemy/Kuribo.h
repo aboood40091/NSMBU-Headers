@@ -16,7 +16,7 @@ public:
 
 protected:
     // Address: 0x023D6F74
-    s32 doDelete_() override;
+    Result doDelete_() override;
 
     void beginFunsui_() override
     {

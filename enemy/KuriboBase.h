@@ -38,13 +38,13 @@ public:
 
 protected:
     // Address: 0x023DB070
-    s32 create_() override;
+    Result create_() override;
     // Address: 0x023DBC70
-    s32 execute_() override;
+    bool execute_() override;
     // Address: 0x023DBE14
-    s32 draw_() override;
+    bool draw_() override;
     // Address: 0x023DE5F4
-    s32 doDelete_() override;
+    Result doDelete_() override;
 
     void blockHitInit_() override
     {

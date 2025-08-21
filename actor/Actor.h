@@ -231,12 +231,12 @@ protected:
     void postCreate_(MainState state) override;
 
     // Address: 0x02000FE8
-    s32 preExecute_() override;
+    bool preExecute_() override;
     // Address: 0x020010BC
     void postExecute_(MainState state) override;
 
     // Address: 0x020011A0
-    s32 preDraw_() override;
+    bool preDraw_() override;
 
     // Address: 0x02001254
     virtual bool drawCullCheck_();

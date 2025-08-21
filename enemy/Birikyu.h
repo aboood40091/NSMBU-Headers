@@ -46,13 +46,13 @@ public:
 
 protected:
     // Address: 0x022CE4B0
-    s32 create_() override;
+    Result create_() override;
     // Address: 0x022CE7C8
-    s32 execute_() override;
+    bool execute_() override;
     // Address: 0x022CE9B4
-    s32 draw_() override;
+    bool draw_() override;
     // Address: 0x022D00E8
-    s32 doDelete_() override;
+    Result doDelete_() override;
 
 public:
     // Address: 0x022CF414

@@ -42,12 +42,12 @@ protected:
     void postCreate_(MainState state) override;
 
     // Address: 0x020035FC
-    s32 preExecute_() override;
+    bool preExecute_() override;
     // Address: 0x020036D8
     void postExecute_(MainState state) override;
 
     // Address: 0x02003724
-    s32 doDelete_() override;
+    Result doDelete_() override;
 
     virtual void setWaterFunsui_(bool enable)
     {
