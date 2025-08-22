@@ -329,21 +329,21 @@ protected:
     BasicBgCollisionCheck                   mBgCheck;
     ActorBgHitCheckCallback                 mBgHitCheckCallback;
     sead::FixedPtrArray<BgCollision, 512>   _54;
-    List::Node                              _860;
-    List::Node                              _86c;
-    List::Node                              _878;
-    List::Node                              _884;
+    List::Node                              mListNodeFoot;
+    List::Node                              mListNodeHead;
+    List::Node                              mListNodeWallR;
+    List::Node                              mListNodeWallL;
     Actor*                                  mpOwner;
     Actor*                                  mpIgnoreActor;          // Force mBgCheck to ignore BgCollision owned by this actor
     FollowArg                               mFollowArg;
     Output                                  mOutput;
-    Output                                  _8b0;
+    Output                                  mOutputPrev;
     sead::BoundBox2f                        _8b4;
     sead::BoundBox2f                        _8c4;
     sead::BoundBox2f                        _8d4;
     sead::BoundBox2f                        _8e4;
     sead::BoundBox2f                        _8f4;
-    sead::Vector2f                          _904;
+    sead::Vector2f                          mBgSpeed;
     f32                                     _90c;
     u32                                     _910;
     u8                                      mHitDirectionFlag;      // lower 4 bits: normal, upper 4 bits: boost block
