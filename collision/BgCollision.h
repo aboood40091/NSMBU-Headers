@@ -1,6 +1,7 @@
 #pragma once
 
 #include <actor/Actor.h>
+#include <collision/BgCollisionCat.h>
 #include <collision/BgUnitCode.h>
 #include <collision/FollowArg.h>
 #include <system/LineNodeMgr.h>
@@ -418,7 +419,7 @@ protected:
     sead::Vector2f                  mTypeOffset;
     sead::Vector2f                  mTypeOffsetPrev;
     bool                            mIsInactive;    // If true, forces BasicBgCollisionCheck to ignore this BgCollision
-    u32                             _e0;
+    BgCollisionCat                  mCategory;
     sead::Matrix22f                 mRotMtx;
     Angle                           mAngle;
     Angle                           mAnglePrev;

@@ -3,6 +3,7 @@
 #include <actor/ActorUniqueID.h>
 #include <collision/ActorBgHitCheckCallback.h>
 #include <collision/BasicBgCollisionCheck.h>
+#include <collision/BgCollisionCat.h>
 #include <collision/BgUnitCode.h>
 #include <collision/FollowArg.h>
 #include <map/WaterType.h>
@@ -171,6 +172,21 @@ public:
     static_assert(sizeof(Sensor) == 0xC);
 
 public:
+    typedef sead::UnsafeArray<Sensor, cDirType_Num > SensorArray;
+    typedef sead::UnsafeArray<bool,   cDirType_Num > SensorBoolArray;
+    typedef sead::UnsafeArray<Sensor, cDirType_NumX> WallSensorArray;
+    typedef sead::UnsafeArray<bool,   cDirType_NumX> WallSensorBoolArray;
+
+    typedef sead::UnsafeArray<SensorFlag, cDirType_Num> SensorFlagArray;
+
+    typedef sead::UnsafeArray<BgCollisionCat, cDirType_Num> SensorBgCollisionCatArray;
+
+    typedef sead::UnsafeArray<ActorBgCollisionCheckResult, cBgCollisionCat_Num> BgCheckResultArray;
+    typedef sead::UnsafeArray<BgCheckResultArray, cDirType_Num> SensorBgCheckResultArray;
+
+    typedef sead::SafeArray<u64, cDirType_Num> SensorHitBgCheckDataArray; // See BgUnitCode
+
+public:
     // Address: 0x0218A6EC
     ActorBgCollisionCheck();
     // Address: 0x0218ADFC
@@ -228,12 +244,12 @@ public:
         return mIsSensor2Set[direction];
     }
 
-    const sead::UnsafeArray<Sensor, 4>& getSensorArray1() const
+    const SensorArray& getSensorArray1() const
     {
         return mSensor1;
     }
 
-    const sead::UnsafeArray<Sensor, 4>& getSensorArray2() const
+    const SensorArray& getSensorArray2() const
     {
         return mSensor2;
     }
@@ -294,7 +310,7 @@ protected:
     List::Node                              _878;
     List::Node                              _884;
     Actor*                                  mpOwner;
-    Actor*                                  mpIgnoreActor;      // Force mBgCheck to ignore BgCollision owned by this actor
+    Actor*                                  mpIgnoreActor;          // Force mBgCheck to ignore BgCollision owned by this actor
     FollowArg                               mFollowArg;
     Output                                  mOutput;
     Output                                  _8b0;
@@ -306,40 +322,28 @@ protected:
     sead::Vector2f                          _904;
     f32                                     _90c;
     u32                                     _910;
-    u8                                      mHitDirectionFlag;  // lower 4 bits: normal, upper 4 bits: boost block
+    u8                                      mHitDirectionFlag;      // lower 4 bits: normal, upper 4 bits: boost block
     bool                                    mIsInitialized;
     bool                                    _916;
     bool                                    _917;
     bool                                    _918;
-    sead::UnsafeArray<bool, 4>              mIsSensor1Set;
-    sead::UnsafeArray<bool, 4>              mIsSensor1Null;
-    sead::UnsafeArray<bool, 4>              mIsSensor2Set;
-    sead::UnsafeArray<Sensor, 4>            mSensor1;
-    sead::UnsafeArray<Sensor, 4>            mSensor2;
-    sead::UnsafeArray<Sensor, 4>            mSensor3;
-    sead::UnsafeArray<Sensor, 2>            mSensor4;
-    sead::UnsafeArray<bool, 2>              mIsSensor4Set;
-    sead::UnsafeArray<u8, 2>                _9d2;
-    sead::UnsafeArray<SensorFlag, 4>        mSensorFlag;
-    sead::UnsafeArray<u32, 4>               _9f4;
-    sead::UnsafeArray<u32, 4>               _a04;
-    u32                                     _a14[4 / sizeof(u32)];
-    sead::UnsafeArray<
-        sead::UnsafeArray<
-            ActorBgCollisionCheckResult,
-            6
-        >,
-        4
-    >                                       _a18;
-    sead::UnsafeArray<
-        sead::UnsafeArray<
-            ActorBgCollisionCheckResult,
-            6
-        >,
-        4
-    >                                       _f58;
-    sead::SafeArray<u64, 4>                 mBgCheckData;       // See BgUnitCode
-    sead::SafeArray<u64, 4>                 mBgCheckDataPrev;   // ^^^
+    SensorBoolArray                         mIsSensor1Set;
+    SensorBoolArray                         mIsSensor1Null;
+    SensorBoolArray                         mIsSensor2Set;
+    SensorArray                             mSensor1;
+    SensorArray                             mSensor2;
+    SensorArray                             mSensor3;
+    WallSensorArray                         mSensor4;
+    WallSensorBoolArray                     mIsSensor4Set;
+    WallSensorBoolArray                     mIsSensor4SetPrev;
+    SensorFlagArray                         mSensorFlag;
+    SensorBgCollisionCatArray               mBgCheckResultIdx;
+    SensorBgCollisionCatArray               mBgCheckResultIdxPrev;
+  //u32                                     _a14[4 / sizeof(u32)];  // Alignment???
+    SensorBgCheckResultArray                mBgCheckResult;
+    SensorBgCheckResultArray                mBgCheckResultPrev;
+    SensorHitBgCheckDataArray               mBgCheckData;
+    SensorHitBgCheckDataArray               mBgCheckDataPrev;
     u32                                     _14d8;
 };
 static_assert(sizeof(ActorBgCollisionCheck) == 0x14E0);
