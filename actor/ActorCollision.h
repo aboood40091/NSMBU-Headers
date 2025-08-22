@@ -161,6 +161,9 @@ private:
     // Address: 0x020030F4
     void clampWaterSpeedY_();
 
+    // Address: 0x02003590
+    void calcBgSpeed_();
+
 protected:
   //u32                         _27c[4 / sizeof(u32)];  // Alignment???
     ActorBgCollisionObjCheck    mBgCheckObj;
@@ -170,9 +173,9 @@ protected:
     bool                        mUseWaterTypeOverride;
     WaterType                   mWaterTypeOverride;
     f32                         _1774;
-    sead::Vector2f              _1778;
-    sead::Vector2f              _1780;
-    f32                         mWaterSpeedMaxY;    // Maximum ascension speed
+    sead::Vector2f              mBgSpeed;
+    sead::Vector2f              mBgSpeedPrev;
+    f32                         mWaterSpeedMaxY;        // Maximum ascension speed
     f32                         mWaterFallSpeedMax;
     f32                         mWaterGravity;
     bool                        mCheckWaterNeeded;
