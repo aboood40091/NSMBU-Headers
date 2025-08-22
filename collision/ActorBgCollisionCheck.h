@@ -296,6 +296,11 @@ public:
         return getOutput().checkRide();
     }
 
+    const sead::Vector2f& getBgSpeed() const
+    {
+        return mBgSpeed;
+    }
+
     bool isHit(u8 hit_dir_flag) const
     {
         return mHitDirectionFlag & hit_dir_flag;
