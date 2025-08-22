@@ -27,6 +27,18 @@ protected:
         cWaterCalcType_ForceOut
     };
 
+protected:
+    friend BgCheckFlag operator|(const BgCheckFlag& lhs, const BgCheckFlag& rhs)
+    {
+        return (BgCheckFlag)((u32)lhs | (u32)rhs);
+    }
+
+    friend BgCheckFlag& operator|=(BgCheckFlag& lhs, const BgCheckFlag& rhs)
+    {
+        lhs = lhs | rhs;
+        return lhs;
+    }
+
 public:
     ActorBgCollisionCheck* getBgCheck() override
     {
@@ -84,7 +96,7 @@ protected:
     // Address: 0x0200375C
     virtual void vf144(s32);            // nullsub, parameter is based on the flag bit in Quake (either 0 or 1, can even be 2 in NSMB2 but that was removed here)
     // Address: 0x02003760
-    virtual void setSmokeDamage_(Actor*);
+    virtual void setSmokeDamage_(Actor* p_actor);
 
     virtual bool setTouchDrcDamage_(const sead::Vector2f& pos)
     {
