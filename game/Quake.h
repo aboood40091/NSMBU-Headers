@@ -33,10 +33,13 @@ public:
     // Address: 0x024C4BD8
     void startShock(s8 player_no, ShockType type, s32 shock_flag, s32 unk_flag, bool motor_related);
 
+    u32 getFlag() const { return mFlag; }
     const sead::Vector2f& getOffset() const { return mOffset; }
 
 private:
-    u32             _10[(0x4C - 0x10) / sizeof(u32)];
+    u32             _10[(0x38 - 0x10) / sizeof(u32)];
+    u32             mFlag;
+    u32             _3c[(0x4C - 0x3C) / sizeof(u32)];
     sead::Vector2f  mOffset;
     u32             _54;
 };
