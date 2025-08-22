@@ -10,6 +10,6 @@ public:
 
     void breakReq(const Actor& actor)
     {
-        breakReq(mPos.x < actor.getPos().x ? DIRECTION_LEFT : DIRECTION_RIGHT, actor.getPlayerNo());
+        breakReq(mPos.x < actor.getPos().x ? cDirType_Left : cDirType_Right, actor.getPlayerNo());
     }
 };

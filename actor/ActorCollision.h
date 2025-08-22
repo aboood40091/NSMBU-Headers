@@ -149,7 +149,7 @@ protected:
         const sead::Vector2f& a = getPos2D();
         sead::Vector2f b(a + offset);
 
-        return tile_check.checkArea(nullptr, a, b, 1 << DIRECTION_DOWN);
+        return tile_check.checkArea(nullptr, a, b, 1 << cDirType_Down);
     }
 
 private:
@@ -162,7 +162,7 @@ private:
     void clampWaterSpeedY_();
 
 protected:
-  //u32                         _27c[4 / sizeof(u32)];   // Alignment???
+  //u32                         _27c[4 / sizeof(u32)];  // Alignment???
     ActorBgCollisionObjCheck    mBgCheckObj;
     f32                         mJumpSpeedF;
     f32                         mJumpAccelF;

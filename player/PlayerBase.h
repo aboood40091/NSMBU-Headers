@@ -440,7 +440,7 @@ public:
     static_assert(sizeof(JumpSe) == 4);
 
     // Address: 0x10166E60
-    static const f32 cDirSpeed[DIRECTION_NUM_X];
+    static const f32 cDirSpeed[cDirType_NumX];
     // Address: 0x10166E68
     static const f32 cJumpSpeed;                    // 3.628f
     // Address: 0x10166E74

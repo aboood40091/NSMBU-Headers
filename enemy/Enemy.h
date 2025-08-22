@@ -23,9 +23,9 @@ public:
     static const f32 cDefaultYSpeedMax;
 
     // Address: 0x10200DD8
-    static const Angle cBaseAngleY[DIRECTION_NUM_X];
+    static const Angle cBaseAngleY[cDirType_NumX];
     // Address: 0x10072094
-    static const s8 cDirSign[DIRECTION_NUM_X];  // Actual name unknown
+    static const s8 cDirSign[cDirType_NumX];    // Actual name unknown
 
     static const s32 cNoHitPlayerTimerDefault = 5;
 

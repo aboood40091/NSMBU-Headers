@@ -380,7 +380,7 @@ public:
     // Use this as default for mCheckRevWall
     static bool CheckRevSideSpeed(Actor* p_actor_self, Actor* p_actor_other, u8 direction)
     {
-        if (direction == DIRECTION_RIGHT)
+        if (direction == cDirType_Right)
         {
             if (p_actor_self->getSpeedVec().x > 0.0f)
                 return true;

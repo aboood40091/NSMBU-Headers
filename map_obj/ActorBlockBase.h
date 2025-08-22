@@ -31,7 +31,7 @@ public:
     {
         mPlayerNo2 = player_no_2;
         mHitPlayerNo = hit_player_no;
-        mSpawnDirection = DIRECTION_UP;
+        mSpawnDirection = cDirType_Up;
 
         preSpawnItem();
         spawnItemUp();

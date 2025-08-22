@@ -117,8 +117,8 @@ public:
         {
             switch (direction)
             {
-            case DIRECTION_RIGHT:   return checkRightWall();
-            case DIRECTION_LEFT:    return checkLeftWall();
+            case cDirType_Right:   return checkRightWall();
+            case cDirType_Left:    return checkLeftWall();
             default:                return false;
             }
         }
