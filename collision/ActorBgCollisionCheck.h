@@ -89,13 +89,17 @@ public:
         {
             cBit_OnGround       =  0,
             cBit_OnSlope        =  1,
+            cBit_OnRide         =  2,   // If ActorBgCollisionCheckResult._3 is set and is standing
             cBit_OnTrampoline   =  3,
-            cBit_OnRide         =  4,
+            cBit_OnHalf         =  4,   // If standing on surface with BgUnitCode::cHitType_Half
             cBit_Unk5           =  5,
+            cBit_OnHorzPipe     =  7,
+            cBit_OnQuicksand    =  8,   // If standing on quicksand
             cBit_Unk9           =  9,
             cBit_HeadCollision  = 10,
+            cBit_Unk13          = 13,   // If ActorBgCollisionCheckResult._3 is set and is hitting head
             cBit_Unk14          = 14,
-            cBit_Unk16          = 16,
+            cBit_InQuicksand    = 16,   // If fully submerged in quicksand (more specifically, head is hitting quicksand)
             cBit_Unk17          = 17,
             cBit_WallRCollision = 18,
             cBit_WallLCollision = 19,
@@ -124,9 +128,29 @@ public:
             }
         }
 
+        bool checkRide() const
+        {
+            return isOnBit(cBit_OnRide);
+        }
+
+        bool isOnQuicksand() const
+        {
+            return isOnBit(cBit_OnQuicksand);
+        }
+
+        bool isInQuicksand() const
+        {
+            return isOnBit(cBit_InQuicksand);
+        }
+
+        bool isQuicksand() const
+        {
+            return isOnQuicksand() || isInQuicksand();
+        }
+
         bool checkHeadEx() const
         {
-            return checkHead() && !isOnBit(cBit_Unk16);
+            return checkHead() && !isInQuicksand();
         }
 
         bool checkRightWallEx() const
@@ -267,9 +291,9 @@ public:
     const FollowArg& getFollowArg() const { return mFollowArg; }
     const Output& getOutput() const { return mOutput; }
 
-    bool checkRide()
+    bool checkRide() const
     {
-        return getOutput().isOnBit(2);
+        return getOutput().checkRide();
     }
 
     bool isHit(u8 hit_dir_flag) const
