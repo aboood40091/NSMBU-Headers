@@ -326,6 +326,9 @@ public:
     // Address: 0x021A5B14
     void setSlipAttr(BgUnitCode::SlipAttr slip_attr);
 
+    // Address: 0x021A5EB4
+    void update();
+
     void setCallbackFlag(u32 flag)
     {
         mCallbackFlag.setDirect(flag);
