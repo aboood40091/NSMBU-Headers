@@ -187,6 +187,9 @@ private:
     // Address: 0x02003A34
     f32 chaseZero_(f32 value, f32 step) const;
 
+    // Address: 0x02003BDC
+    bool isJump_() const;
+
 protected:
   //u32                         _27c[4 / sizeof(u32)];  // Alignment???
     ActorBgCollisionObjCheck    mBgCheckObj;
