@@ -141,6 +141,9 @@ protected:
     // Address: 0x02003878
     void clampMoveDistance_(BgCollision& bg_collision);
 
+    // Address: 0x020038D8
+    bool isHitBgCollision_(const BgCollision& bg_collision) const;
+
     // Address: 0x020039AC
     void calcSpeedY_();
     // Address: 0x020039F0
