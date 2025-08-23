@@ -318,6 +318,9 @@ public:
         return mBgCheckData[direction];
     }
 
+    // Address: 0x0218B214
+    Angle getSakaAngle();
+
     // Address: 0x0218F0C0
     static WaterType checkWater(f32* p_surface_pos_y, const sead::Vector3f& pos, u8 layer);
     // Address: 0x0218F72C
