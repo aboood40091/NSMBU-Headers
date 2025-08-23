@@ -150,6 +150,8 @@ protected:
     void calcFallSpeed_();
     // Address: 0x02003AE4
     void posMove_();
+    // Address: 0x02003A70
+    void posMoveCalcJump_();
     // Address: 0x02003C10
     void calcJumpSpeedF_();
 
@@ -181,6 +183,9 @@ private:
 
     // Address: 0x02003590
     void calcBgSpeed_();
+
+    // Address: 0x02003A34
+    f32 chaseZero_(f32 value, f32 step) const;
 
 protected:
   //u32                         _27c[4 / sizeof(u32)];  // Alignment???
