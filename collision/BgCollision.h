@@ -286,24 +286,24 @@ public:
         mAngle = angle;
     }
 
-    const BcList& getBcListDown() const
+    const BcList& getBcListFoot() const
     {
-        return mBcListDown;
+        return mBcListFoot;
     }
 
-    const BcList& getBcListUp() const
+    const BcList& getBcListHead() const
     {
-        return mBcListUp;
+        return mBcListHead;
     }
 
-    const BcList& getBcListRight() const
+    const BcList& getBcListWallR() const
     {
-        return mBcListRight;
+        return mBcListWallR;
     }
 
-    const BcList& getBcListLeft() const
+    const BcList& getBcListWallL() const
     {
-        return mBcListLeft;
+        return mBcListWallL;
     }
 
     // Address: 0x021A59F4
@@ -423,10 +423,10 @@ protected:
     sead::Matrix22f                 mRotMtx;
     Angle                           mAngle;
     Angle                           mAnglePrev;
-    BcList                          mBcListDown;
-    BcList                          mBcListUp;
-    BcList                          mBcListRight;
-    BcList                          mBcListLeft;
+    BcList                          mBcListFoot;    // List of ActorBgCollisionCheck with foot sensor hitting this BgCollision
+    BcList                          mBcListHead;    // List of ActorBgCollisionCheck with head sensor hitting this BgCollision
+    BcList                          mBcListWallR;   // List of ActorBgCollisionCheck with right wall sensor hitting this BgCollision
+    BcList                          mBcListWallL;   // List of ActorBgCollisionCheck with left wall sensor hitting this BgCollision
     Type                            mType;
     u64                             mBgCheckData;   // See BgUnitCode
     Callback                        mCallbackFoot;
