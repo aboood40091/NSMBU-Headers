@@ -159,8 +159,21 @@ protected:
     // Address: 0x02003C10
     void calcJumpSpeedF_();
 
+    // Address: 0x02003C58
+    WaterType checkWater_(f32* p_surface_pos_y);
     // Address: 0x02003120
     void enterWater_();
+
+    // Address: 0x02003C9C
+    bool isEnablePress_();
+
+    // Address: 0x02003E58
+    void checkSnapToGround_(f32 y_check_distance, const ActorBgCollisionCheck::Sensor& foot_sensor);
+    // Address: 0x02003EA0
+    void snapToGround_(f32 y_check_distance, const ActorBgCollisionCheck::Sensor& foot_sensor, bool extended, bool force);
+
+    // Address: 0x02003EA4
+    void registerInGamescene_();
 
     bool checkForSuitableGround_(const sead::Vector2f& offset) const
     {
@@ -193,6 +206,9 @@ private:
 
     // Address: 0x02003BDC
     bool isJump_() const;
+
+    // Address: 0x02003D14
+    void snapToGroundImpl_(f32 y_check_distance, const ActorBgCollisionCheck::Sensor& foot_sensor, bool extended, bool force);
 
 protected:
   //u32                         _27c[4 / sizeof(u32)];  // Alignment???
