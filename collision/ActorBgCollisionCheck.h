@@ -172,6 +172,11 @@ public:
         {
             return isOnBit(cBit_OnTrampoline);
         }
+
+        void setFoot()
+        {
+            setBit(cBit_OnGround);
+        }
     };
     static_assert(sizeof(Output) == 4);
 
@@ -289,6 +294,8 @@ public:
     }
 
     const FollowArg& getFollowArg() const { return mFollowArg; }
+
+    Output& getOutput() { return mOutput; }
     const Output& getOutput() const { return mOutput; }
 
     bool checkRide() const
