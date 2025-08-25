@@ -321,6 +321,19 @@ public:
     // Address: 0x0218B214
     Angle getSakaAngle();
 
+    BasicBgCollisionCheck& getBgCheck()
+    {
+        return mBgCheck;
+    }
+
+    const BasicBgCollisionCheck& getBgCheck() const
+    {
+        return mBgCheck;
+    }
+
+    // Address: 0x0218B90C
+    void initBgCheck();
+
     // Address: 0x0218F0C0
     static WaterType checkWater(f32* p_surface_pos_y, const sead::Vector3f& pos, u8 layer);
     // Address: 0x0218F72C
