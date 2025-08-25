@@ -39,16 +39,9 @@ protected:
         return lhs;
     }
 
-public:
-    ActorBgCollisionCheck* getBgCheck() override
-    {
-        return &mBgCheckObj;
-    }
-
 protected:
     // Address: 0x02002FB8
     ActorCollision(const ActorCreateParam& param);
-    virtual ~ActorCollision() { }
 
     // Address: 0x0200354C
     void postCreate_(MainState state) override;
@@ -98,6 +91,13 @@ protected:
     // Address: 0x02003760
     virtual void setSmokeDamage_(Actor* p_actor);
 
+public:
+    ActorBgCollisionCheck* getBgCheck() override
+    {
+        return &mBgCheckObj;
+    }
+
+protected:
     virtual bool setTouchDrcDamage_(const sead::Vector2f& pos)
     {
         return false;
@@ -129,6 +129,10 @@ protected:
             mPos.x - 16.0f, mPos.y,
             mPos.x + 16.0f, mPos.y + 32.0f
         );
+    }
+
+    virtual ~ActorCollision()
+    {
     }
 
     // Address: 0x020037F4
