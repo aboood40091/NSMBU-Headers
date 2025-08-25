@@ -5,6 +5,8 @@
 #include <framework/seadCalculateTask.h>
 #include <framework/seadTaskMgr.h>
 
+class GamesceneBase;
+
 class CourseTask : public sead::CalculateTask   // vtbl Address: 0x100B734C
 {
     // setInstance_()                               Address: 0x024BCA80
@@ -19,6 +21,11 @@ public:
     // Address: 0x024BC950
     virtual ~CourseTask();
 
+    GamesceneBase* getGamescene()
+    {
+        return mpGamescene;
+    }
+
     const FieldGameData& getGameData() const
     {
         return mGameData;
@@ -26,7 +33,8 @@ public:
 
 private:
     bool            mCourseRestart;
-    u32             _cc[(0x124 - 0xCC) / sizeof(u32)];
+    GamesceneBase*  mpGamescene;
+    u32             _d0[(0x124 - 0xD0) / sizeof(u32)];
     FieldGameData   mGameData;
     u32             _308[(0x5A4 - 0x308) / sizeof(u32)];
 };
