@@ -55,9 +55,31 @@ public:
 
     enum Status
     {
-        cStatus_113 = 113,
+        cStatus_1   =   1,  // NSMBW: Bit 0x01
+        cStatus_2,          // NSMBW: Bit 0x7D
 
-        cStatus_133 = 133,
+        cStatus_10  =  10,  // Force-disable jump (accelY = 0)
+
+        cStatus_71  =  71,  // NSMBW: Bit 0x2D
+
+        cStatus_113 = 113,  // NSMBW: Bit 0x4A
+
+        cStatus_117 = 117,
+        cStatus_118,
+
+        cStatus_133 = 133,  // NSMBW: Bit 0x5E
+        cStatus_134,        // NSMBW: Bit 0x61
+
+        cStatus_138 = 138,
+
+        cStatus_141 = 141,
+
+        cStatus_171 = 171,
+
+        cStatus_255 = 255,  // NSMBW: Bit 0x82
+        cStatus_256,        // NSMBW: Bit 0x83
+
+        cStatus_270 = 270,  // NSMBW: Bit 0x84
 
         cStatus_LastBit = 286,  // Not sure if bit 287 is used
         cStatus_BitNum,
