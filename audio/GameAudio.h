@@ -112,6 +112,20 @@ public:
             convertAudioObjctPos(&screen_pos, pos);
             SndObjctEmy::holdSound(label, screen_pos, line_flag);
         }
+
+        void calc(const sead::Vector2f& pos)
+        {
+            sead::Vector2f screen_pos;
+            convertAudioObjctPos(&screen_pos, pos);
+            SndObjctEmy::calc(screen_pos);
+        }
+
+        void calc(const sead::Vector3f& pos)
+        {
+            sead::Vector2f screen_pos;
+            convertAudioObjctPos(&screen_pos, pos);
+            SndObjctEmy::calc(screen_pos);
+        }
     };
     static_assert(sizeof(AudioObjctEmy) == sizeof(SndObjctEmy));
 
@@ -301,6 +315,20 @@ public:
             sead::Vector2f screen_pos;
             convertAudioObjctPos(&screen_pos, pos);
             SndObjctPly::holdSound(label, screen_pos, line_flag);
+        }
+
+        void calc(const sead::Vector2f& pos)
+        {
+            sead::Vector2f screen_pos;
+            convertAudioObjctPos(&screen_pos, pos);
+            SndObjctPly::calc(screen_pos);
+        }
+
+        void calc(const sead::Vector3f& pos)
+        {
+            sead::Vector2f screen_pos;
+            convertAudioObjctPos(&screen_pos, pos);
+            SndObjctPly::calc(screen_pos);
         }
     };
     static_assert(sizeof(AudioObjctPly) == sizeof(SndObjctPly));
