@@ -1090,7 +1090,7 @@ protected:
     s32                             _290;                   // Interpolation source for the below; 1 = ankle joints center pos, everything else = player pos
     s32                             _294;                   // Time value for the below
     sead::Vector3f                  _298;                   // Some position that gets linearly interpolated towards from either player pos or ankle joints center pos
-    s32                             _2A4;
+    s32                             _2a4;
     PlayerKey                       mPlayerKey;
     GameAudio::AudioObjctPly        mAudioObj;
     AttentionLookat                 mAttentionLookat;
@@ -1180,10 +1180,10 @@ protected:
     f32                             _2098;
     s32                             _209c;
     s32                             _20a0;
-    u32                             _20a4[2];               // TODO: Figure out if this is a SafeArray
-    f32                             _20ac[2];               // ^^^
+    sead::SafeArray<u32, 2>         _20a4;
+    sead::SafeArray<f32, 2>         _20ac;
     FStateMgr<PlayerBase>           mDemoStateMgr;
-    u32                             mChangeDemoStateParam;
+    s32                             mChangeDemoStateParam;
     sead::BitFlag32                 mDemoTypeFlag;
     s32                             mDemoMode;              // TODO: Union
     s32                             mDemoAction;            // ^^^
@@ -1199,7 +1199,7 @@ protected:
     bool                            mIsLastPlayer;          // Maybe?
     f32                             _2120;
     f32                             _2124;
-    u32                             _2128;
+    s32                             _2128;
     s32                             _212c;
     f32                             mGoalBasePosY;
     s32                             _2134;
@@ -1223,8 +1223,8 @@ protected:
     bool                            _2198;
     FStateMgr<PlayerBase>           mStateMgr;
     JumpInf*                        mpChangeStateJmpInf;
-    u32                             mChangeStateParam;
-    ActionType                      mAction;
+    s32                             mChangeStateParam;
+    s32                             mAction;                // See ActionType
     s32                             mActionTimer;
     u32                             mStunMode;
     ActorUniqueID                   mRideActorID;
