@@ -1,11 +1,11 @@
 #pragma once
 
 #include <actor/Profile.h>
-#include <collision/ActorCollisionTouchDrcCallback.h>
+#include <collision/ActorCollisionDrcTouchCallback.h>
 #include <enemy/CarryEnemy.h>
 #include <enemy/EnemyActorScaler.h>
 
-class MechaKoopaTouchDrcCB : public ActorCollisionTouchDrcCallback  // vtbl Address: 0x100945D4
+class MechaKoopaDrcTouchCB : public ActorCollisionDrcTouchCallback  // vtbl Address: 0x100945D4
 {
 public:
     // Address: 0x023E8F9C
@@ -13,7 +13,7 @@ public:
     // Address: 0x023E8FA4
     void ccOnTouch(ActorCollisionCheck* p_cc, const sead::Vector2f& pos) override;
 };
-static_assert(sizeof(MechaKoopaTouchDrcCB) == sizeof(ActorCollisionTouchDrcCallback));
+static_assert(sizeof(MechaKoopaDrcTouchCB) == sizeof(ActorCollisionDrcTouchCallback));
 
 class AnimModel;
 class ModelResource;
@@ -133,7 +133,7 @@ protected:
     u32                     mCurrentAnim;
     u8                      _18cc;
     u8                      _18cd;
-    MechaKoopaTouchDrcCB    mTouchDrcCallback;
+    MechaKoopaDrcTouchCB    mDrcTouchCallback;
     EnemyActorScaler        mScaler;
     f32                     _18f4;
 };

@@ -6,7 +6,7 @@ class Actor;
 class ActorCollisionCheck;
 class BgCollision;
 
-class ActorCollisionTouchDrcCallback
+class ActorCollisionDrcTouchCallback
 {
 public:
     // Address: 0x0219E7E8
@@ -25,4 +25,4 @@ public:
     virtual void bcOnHold(BgCollision* p_bg_collision, const sead::Vector2f& pos) { }
     virtual void bcOnRelease(BgCollision* p_bg_collision) { }
 };
-static_assert(sizeof(ActorCollisionTouchDrcCallback) == 4);
+static_assert(sizeof(ActorCollisionDrcTouchCallback) == 4);

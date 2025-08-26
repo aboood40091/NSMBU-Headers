@@ -13,7 +13,7 @@ class   ActorBgCollisionCheck;
 class   ActorBgCollisionCheckResult;
 class   BasicBgCollisionCheck;
 struct  BgCollisionCheckResultArea;
-class   ActorCollisionTouchDrcCallback;
+class   ActorCollisionDrcTouchCallback;
 
 class BgCollision : public sead::IDisposer  // vtbl Address: 0x10042528
 {
@@ -363,9 +363,9 @@ public:
         mCheckRevWall = check_rev_wall;
     }
 
-    void setTouchDrcCallback(ActorCollisionTouchDrcCallback* p_touch_drc_callback)
+    void setDrcTouchCallback(ActorCollisionDrcTouchCallback* p_drc_touch_callback)
     {
-        mpTouchDrcCallback = p_touch_drc_callback;
+        mpDrcTouchCallback = p_drc_touch_callback;
     }
 
 public:
@@ -438,7 +438,7 @@ protected:
     CheckRev                        mCheckRevFoot;
     CheckRev                        mCheckRevHead;
     CheckRevWall                    mCheckRevWall;
-    ActorCollisionTouchDrcCallback* mpTouchDrcCallback;
+    ActorCollisionDrcTouchCallback* mpDrcTouchCallback;
     u32                             _154;
 };
 static_assert(sizeof(BgCollision) == 0x158);

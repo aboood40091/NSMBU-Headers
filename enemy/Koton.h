@@ -2,13 +2,13 @@
 
 #include <actor/EatData.h>
 #include <actor/Profile.h>
-#include <collision/ActorCollisionTouchDrcCallback.h>
+#include <collision/ActorCollisionDrcTouchCallback.h>
 #include <effect/EffectObj.h>
 #include <enemy/Enemy.h>
 #include <enemy/EnemyActorScaler.h>
 #include <enemy/EnemyChibiYoshiEatData.h>
 
-class KotonTouchDrcCB : public ActorCollisionTouchDrcCallback   // vtbl Address: 0x10090654
+class KotonDrcTouchCB : public ActorCollisionDrcTouchCallback   // vtbl Address: 0x10090654
 {
 public:
     // Address: 0x023D5334
@@ -16,7 +16,7 @@ public:
     // Address: 0x023D53C0
     void ccOnTouch(ActorCollisionCheck* p_cc, const sead::Vector2f& pos) override;
 };
-static_assert(sizeof(KotonTouchDrcCB) == sizeof(ActorCollisionTouchDrcCallback));
+static_assert(sizeof(KotonDrcTouchCB) == sizeof(ActorCollisionDrcTouchCallback));
 
 class AnimModel;
 
@@ -102,7 +102,7 @@ protected:
     EffectObj               mEffect2;
     u32                     _19c4;
     ActorCollisionCheck     mCollisionCheck2;
-    KotonTouchDrcCB         mTouchDrcCallback;
+    KotonDrcTouchCB         mDrcTouchCallback;
     EnemyActorScaler        mScaler;
 };
 static_assert(sizeof(Koton) == 0x1B18);

@@ -1,17 +1,17 @@
 #pragma once
 
-#include <collision/ActorCollisionTouchDrcCallback.h>
+#include <collision/ActorCollisionDrcTouchCallback.h>
 #include <map/UnitID.h>
 #include <map_obj/BlockCoinBase.h>
 #include <map_obj/ObjBgCollisionCullCheck.h>
 #include <map_obj/ParentMovementMgr.h>
 
-class ChangeBlockCoinBaseTouchDrcCB : public ActorCollisionTouchDrcCallback
+class ChangeBlockCoinDrcTouchCB : public ActorCollisionDrcTouchCallback
 {
 public:
     bool bcSetTouchNormal(BgCollision* p_bg_collision, const sead::Vector2f& pos) override;
 };
-static_assert(sizeof(ChangeBlockCoinBaseTouchDrcCB) == 4);
+static_assert(sizeof(ChangeBlockCoinDrcTouchCB) == 4);
 
 class ChangeBlockCoinBase : public BlockCoinBase
 {
@@ -62,7 +62,7 @@ protected:
     ParentMovementType              mParentMovementType;
     u32                             mParentMovementID;
     u8                              _1c7c[0x1CA0 - 0x1C7C];
-    ChangeBlockCoinBaseTouchDrcCB   mTouchDrcCallback;
+    ChangeBlockCoinDrcTouchCB       mDrcTouchCallback;
     u8                              _1ca4[4];
 };
 static_assert(sizeof(ChangeBlockCoinBase) == 0x1CA8);

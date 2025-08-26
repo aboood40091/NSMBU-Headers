@@ -2,14 +2,14 @@
 
 #include <actor/EatData.h>
 #include <collision/ActorBgCollisionEnemyCheck.h>
-#include <collision/ActorCollisionTouchDrcCallback.h>
+#include <collision/ActorCollisionDrcTouchCallback.h>
 #include <effect/EffectObj.h>
 #include <enemy/Enemy.h>
 #include <enemy/EnemyActorScaler.h>
 
 #include <math/seadMatrix.h>
 
-class BrosBaseTouchDrcCB : public ActorCollisionTouchDrcCallback    // vtbl Address: 0x1005F6E8
+class BrosDrcTouchCB : public ActorCollisionDrcTouchCallback    // vtbl Address: 0x1005F6E8
 {
 public:
     // Address: 0x022DD974
@@ -17,7 +17,7 @@ public:
     // Address: 0x022DDAEC
     void ccOnTouch(ActorCollisionCheck* p_cc, const sead::Vector2f& pos) override;
 };
-static_assert(sizeof(BrosBaseTouchDrcCB) == sizeof(ActorCollisionTouchDrcCallback));
+static_assert(sizeof(BrosDrcTouchCB) == sizeof(ActorCollisionDrcTouchCallback));
 
 class BlendModel;
 
@@ -278,7 +278,7 @@ protected:
     u8                          _2f38;
     bool                        _2f39;
     ActorCollisionCheck         mCollisionCheck2;       // For DRC touch???
-    BrosBaseTouchDrcCB          mTouchDrcCallback;
+    BrosDrcTouchCB              mDrcTouchCallback;
     EnemyActorScaler            mScaler;
     u8                          _3088;
     u8                          _3089;

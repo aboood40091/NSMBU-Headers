@@ -4,9 +4,9 @@
 #include <actor/AttentionLookat.h>
 #include <audio/GameAudio.h>
 #include <collision/ActorBgCollisionPlayerCheck.h>
-#include <collision/ActorCollisionTouchDrcCallback.h>
 #include <effect/EffectObj.h>
 #include <game/Quake.h>
+#include <player/PlayerDrcTouchCB.h>
 #include <player/PlayerEnum.h>
 #include <player/PlayerKey.h>
 #include <player/util/HipdropExEffect.h>
@@ -14,17 +14,6 @@
 #include <state/FStateVirtualID.h>
 
 #include <container/seadRingBuffer.h>
-
-class PlayerBaseTouchDrcCB : public ActorCollisionTouchDrcCallback  // vtbl Address: 0x101693FC
-{
-public:
-    // Address: 0x029117C0
-    bool ccSetTouchNormal(ActorCollisionCheck* p_cc, const sead::Vector2f& pos) override;
-    void ccOnTouch(ActorCollisionCheck* p_cc, const sead::Vector2f& pos) override { }
-
-    bool bcSetTouchNormal(BgCollision* p_bg_collision, const sead::Vector2f& pos) override { return false; }
-};
-static_assert(sizeof(PlayerBaseTouchDrcCB) == sizeof(ActorCollisionTouchDrcCallback));
 
 class   ActorBoxBgCollision;
 struct  PlayerBgPointHIO;
@@ -1164,7 +1153,7 @@ protected:
     ActorCollisionCheck             mCollisionCheck3_React;
     ActorCollisionCheck             mCollisionCheck4_Attack;
     ActorCollisionCheck             mCollisionCheck5_Attack;
-    PlayerBaseTouchDrcCB            mTouchDrcCallback;
+    PlayerDrcTouchCB                mDrcTouchCallback;
     s32                             _205c;
     s32                             _2060;
     s32                             _2064;

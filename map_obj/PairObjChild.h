@@ -1,14 +1,14 @@
 #pragma once
 
-#include <collision/ActorCollisionTouchDrcCallback.h>
+#include <collision/ActorCollisionDrcTouchCallback.h>
 
-class PairObjChildBaseTouchDrcCB : public ActorCollisionTouchDrcCallback
+class PairObjChildDrcTouchCB : public ActorCollisionDrcTouchCallback
 {
 public:
     bool bcSetTouchNormal(BgCollision* p_bg_collision, const sead::Vector2f& pos) override;
     void bcOnTouch(BgCollision* p_bg_collision, const sead::Vector2f& pos) override;
 };
-static_assert(sizeof(PairObjChildBaseTouchDrcCB) == sizeof(ActorCollisionTouchDrcCallback));
+static_assert(sizeof(PairObjChildDrcTouchCB) == sizeof(ActorCollisionDrcTouchCallback));
 
 class PairObjChild
 {
