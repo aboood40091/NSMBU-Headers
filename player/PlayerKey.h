@@ -5,6 +5,8 @@
 class PlayerKey
 {
 public:
+    PlayerKey();
+
     bool buttonUp() const;
     bool buttonDown() const;
     bool buttonLeft() const;
