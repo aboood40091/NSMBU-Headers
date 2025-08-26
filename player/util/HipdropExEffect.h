@@ -18,6 +18,9 @@ public:
 
 public:
     HipdropExEffect();
+
+    void createModel();
+
     // TODO
 
 //protected:
