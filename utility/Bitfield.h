@@ -73,7 +73,7 @@ public:
 
     static u32 makeMask(u32 bit)
     {
-        return 1u << bit;
+        return 1u << (bit % 32);
     }
 
     bool isOnBit(u32 bit) const
