@@ -398,6 +398,13 @@ public:
     };
     static_assert(sizeof(ActionType) == 4);
 
+    enum FunsuiType
+    {
+        cFunsuiType_Sand = 0,
+        cFunsuiType_Water
+    };
+    static_assert(sizeof(FunsuiType) == 4);
+
     enum DemoType
     {
     };
@@ -1226,7 +1233,7 @@ protected:
     s32                             _21e0;
     s32                             _21e4;
     s32                             _21e8;
-    u32                             _21ec;
+    FunsuiType                      mFunsuiType;
     sead::Vector2f                  mFunsuiPos;
     f32                             mJumpDaiSpeedFReserve;
     sead::Vector3f                  mRidePlayerPosDelta;
