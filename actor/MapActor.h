@@ -1,10 +1,23 @@
 #pragma once
 
-#include <container/seadSafeArray.h>
+#include <basis/seadTypes.h>
 
 class MapActor
 {
 public:
+    class Profile
+    {
+    public:
+        Profile(s32 id)
+            : mID(id)
+        {
+        }
+
+    protected:
+        s32 mID;
+    };
+
+public:
     // Address 0x101ECD8C
-    static const sead::UnsafeArray<s32, 724>    cProfileID;
+    static const Profile    cProfileID[];
 };
