@@ -1077,8 +1077,19 @@ public:
     // Address: 0x028F4D48
     bool setJump(u8, u32);
 
+    // Address: 0x028FAF1C
+    void changeDemoState(const StateID& state_id, s32 param);
+
+    // Address: 0x0290345C
+    void changeChallengeState(const StateID& state_id);
+
     // Address: 0x029065F0
     Angle getMukiAngle(u32 dir);
+
+    // Address: 0x02906B04
+    void changeState(const StateID& state_id, s32 param);
+    // Address: 0x02906B0C
+    void changeState(const StateID& state_id, const JumpInf& jmp_inf);
 
     // Address: 0x0290B9A4
     void startSound(const char* label, u32 = 0);
