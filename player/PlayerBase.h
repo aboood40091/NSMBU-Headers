@@ -518,8 +518,8 @@ public:
 
     virtual PlayerTallType getTallType(PlayerMode mode) = 0;
 
-    virtual void vf144(sead::Vector3f&) = 0;
-    virtual void vf14C(sead::Vector3f*, f32*) = 0;
+    virtual void getMaskPos(sead::Vector3f& pos) = 0;
+    virtual void getMaskCaveCheckPos(sead::Vector3f* p_pos, f32* p_y_offset) = 0;
 
     // Address: 0x028F3854
     virtual bool vf154();
@@ -1126,9 +1126,9 @@ protected:
     s32                             mExecuteFreezeTimer;
     PlayerModelBaseMgr*             mpModelBaseMgr;
     sead::Vector3f                  _284;
-    s32                             _290;                   // Interpolation source for the below; 1 = ankle joints center pos, everything else = player pos
-    s32                             _294;                   // Time value for the below
-    sead::Vector3f                  _298;                   // Some position that gets linearly interpolated towards from either player pos or ankle joints center pos
+    s32                             mMaskPosInterpSrcType;  // Interpolation source; 1 = ankle joints center pos, everything else = player pos
+    s32                             mMaskPosInterpTimer;
+    sead::Vector3f                  mMaskPos;
     s32                             _2a4;
     PlayerKey                       mPlayerKey;
     GameAudio::AudioObjctPly        mAudioObj;
