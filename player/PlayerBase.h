@@ -81,6 +81,8 @@ public:
         cStatus_117 = 117,
         cStatus_118,
 
+        cStatus_123 = 123,  // Make visible next frame
+
         cStatus_128 = 128,  // NSMBW: Bit 0x59
 
         cStatus_130 = 130,  // NSMBW: Bit 0x5C
@@ -104,6 +106,7 @@ public:
         cStatus_171 = 171,
 
         cStatus_174 = 174,  // NSMBW: Bit 0xAC
+        cStatus_Invisible,  // NSMBW: Bit 0xBB
 
         cStatus_178 = 178,  // NSMBW: Bit 0xBE
 
