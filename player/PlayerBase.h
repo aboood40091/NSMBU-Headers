@@ -67,6 +67,8 @@ public:
         cStatus_46  =  46,
         cStatus_47,         // NSMBW: Bit 0x1A
 
+        cStatus_60  =  60,  // Disable block-hit bounce
+
         cStatus_63  =  63,
 
         cStatus_71  =  71,  // NSMBW: Bit 0x2D
