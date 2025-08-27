@@ -1143,6 +1143,9 @@ public:
     // Address: 0x028F77B4
     void bgCheck(bool side_view_check);
 
+    // Address: 0x028FA108
+    void clearCcPlayerRev();
+
     // Address: 0x028FAF1C
     void changeDemoState(const StateID& state_id, s32 param);
 
