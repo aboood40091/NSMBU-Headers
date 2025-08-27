@@ -1093,6 +1093,9 @@ public:
         return mMode;
     }
 
+    // Address: 0x028F31A0
+    void clearFollowMameKuribo();
+
     // Address: 0x028F37A8
     bool isTotten() const;
 
