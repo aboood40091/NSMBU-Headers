@@ -1096,6 +1096,9 @@ public:
     // Address: 0x028F31A0
     void clearFollowMameKuribo();
 
+    // Address: 0x028F31C0
+    void calcMaskPos();
+
     // Address: 0x028F37A8
     bool isTotten() const;
 
