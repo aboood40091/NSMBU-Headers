@@ -28,6 +28,8 @@ public:
 
     s32 getNumInGame();
 
+    s32 getCoinNumMin();
+
 private:
     u32                                 _10;
     u32                                 _14;
