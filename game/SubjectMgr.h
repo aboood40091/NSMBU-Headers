@@ -24,6 +24,8 @@ public:
     };
 
 public:
+    // Address: 0x024CED80
+    void onPlFumiCntClr();
     // Address: 0x024CEEE0
     void onAcComboCntClr();
     // Address: 0x024CF74C
