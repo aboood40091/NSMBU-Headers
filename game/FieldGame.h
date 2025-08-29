@@ -17,6 +17,16 @@ public:
         return mPlayerData[index];
     }
 
+    s32 getPlayerCoinNum(s32 index) const
+    {
+        return mPlayerData[index].coin_cnt;
+    }
+
+    void setPlayerCoinNum(s32 index, s32 num)
+    {
+        mPlayerData[index].coin_cnt = num;
+    }
+
     const FieldGameMode& getGameMode() const
     {
         return mGameMode;
