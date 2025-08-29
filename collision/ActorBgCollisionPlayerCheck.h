@@ -47,6 +47,11 @@ public:
         return mpVineBgCollision;
     }
 
+    using ActorBgCollisionCheck::checkWall;
+
+    // Address: 0x02195160
+    bool checkWall(const sead::Vector3f& pos, f32 speed_x, f32* p_hit_pos_x, bool use_callback = false);
+
 private:
     List::Node      _14e0;
     s8              mPlayerNo;
