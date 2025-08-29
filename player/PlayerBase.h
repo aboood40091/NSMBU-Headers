@@ -28,6 +28,10 @@ class PlayerBase : public Actor // vtbl Address: 0x10166E84
     SEAD_RTTI_OVERRIDE(PlayerBase, Actor)
 
 public:
+    // Address: 0x10166BC4
+    static const f32 cFireShootFrame;
+
+public:
     enum DamageType
     {
         cDamageType_Hit = 0, 
