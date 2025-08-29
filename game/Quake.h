@@ -16,6 +16,7 @@ class Quake
 public:
     enum ShockType
     {
+        cShockType_4 = 4,
         cShockType_Pow = 12,
         cShockType_Max = 26
     };
@@ -29,6 +30,9 @@ public:
 public:
     // Address: 0x024C46CC
     Quake();
+
+    // Address: 0x024C4AEC
+    void shockMotor(s8 player_no, ShockType type, s32 unk_flag, bool motor_related);
 
     // Address: 0x024C4BD8
     void startShock(s8 player_no, ShockType type, s32 shock_flag, s32 unk_flag, bool motor_related);
