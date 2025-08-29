@@ -268,6 +268,12 @@ protected:
         mPos += delta;
     }
 
+    void posMove_(sead::Vector2f& delta_xy, f32 delta_z)
+    {
+        getPos2D() += delta_xy;
+        mPos.z += delta_z;
+    }
+
     void posMove_()
     {
         posMove_(mSpeed);
