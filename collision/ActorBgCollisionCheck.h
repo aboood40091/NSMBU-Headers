@@ -232,13 +232,16 @@ public:
     virtual s8* vf4C(f32) const = 0;
     // Address: 0x0219070C
     virtual void vf54();
-    // Address: 0x02190C14
-    virtual void checkFoot();
-    // Address: 0x02191054
-    virtual void checkHead();
-    // Address: 0x02191494
-    virtual void checkWall(u8 direction);
 
+protected:
+    // Address: 0x02190C14
+    virtual void checkFoot_();
+    // Address: 0x02191054
+    virtual void checkHead_();
+    // Address: 0x02191494
+    virtual void checkWall_(u8 direction);
+
+public:
     // Address: 0x0218AF6C
     void set(Actor* p_owner, const Sensor* p_foot, const Sensor* p_head, const Sensor* p_wall);
 
