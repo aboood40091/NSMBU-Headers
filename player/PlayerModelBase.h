@@ -108,6 +108,8 @@ public:
 
     enum AnmFlag
     {
+        cAnmFlag_0              = 1 << 0,
+        // ...
         cAnmFlag_IsSlopeBodyAnm = 1 << 12,
 
         cAnmFlag_None           = 0
@@ -309,6 +311,21 @@ public:
     bool isCourseSelectScene();
 
     virtual f32 getBaseScale() = 0;
+
+    sead::Vector3f* getHeadTopPosP()
+    {
+        return &mHeadTopPos;
+    }
+
+    sead::Vector3f* getHatPosP()
+    {
+        return &mHatPos;
+    }
+
+    const AnmFlag& getAnmFlag(AnmFlagType type) const
+    {
+        return mAnmFlag[type];
+    }
 
 protected:
     ModelResource*          mpModelRes;
