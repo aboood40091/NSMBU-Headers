@@ -228,7 +228,21 @@ public:
     };
     static_assert(sizeof(DokanType) == 4);
 
-    struct JumpInf;
+    enum JumpSe
+    {
+        cJumpSe_None = 0,
+        cJumpSe_Normal,
+        cJumpSe_High
+    };
+    static_assert(sizeof(JumpSe) == 4);
+
+    struct JumpInf
+    {
+        f32     speed_y;
+        JumpSe  jump_se_type;
+        u8      _8;
+    };
+    static_assert(sizeof(JumpInf) == 0xC);
 
     enum WalkAction
     {
@@ -516,14 +530,6 @@ public:
         cBounceType_1,
         cBounceType_2
     };
-
-    enum JumpSe
-    {
-        cJumpSe_None = 0,
-        cJumpSe_Normal,
-        cJumpSe_High
-    };
-    static_assert(sizeof(JumpSe) == 4);
 
     // Address: 0x10166E60
     static const f32 cDirSpeed[cDirType_NumX];
