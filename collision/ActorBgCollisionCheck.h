@@ -330,6 +330,12 @@ public:
 
     // Address: 0x0218B214
     Angle getSakaAngle();
+    // Address: 0x0218B254
+    Angle getHeadSakaAngle();
+    // Address: 0x0218E260
+    Angle getSakaMoveAngle(u8 dir);
+    // Address: 0x0218E28C
+    Angle getHeadSakaMoveAngle(u8 dir);
 
     BasicBgCollisionCheck& getBgCheck()
     {
