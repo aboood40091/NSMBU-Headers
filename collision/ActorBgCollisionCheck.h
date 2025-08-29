@@ -301,9 +301,29 @@ public:
     Output& getOutput() { return mOutput; }
     const Output& getOutput() const { return mOutput; }
 
+    bool checkFoot() const
+    {
+        return getOutput().checkFoot();
+    }
+
+    bool checkHead() const
+    {
+        return getOutput().checkHeadEx();
+    }
+
+    bool checkWall(u8 direction) const
+    {
+        return getOutput().checkWallEx(direction);
+    }
+
     bool checkRide() const
     {
         return getOutput().checkRide();
+    }
+
+    bool isQuicksand() const
+    {
+        return getOutput().isQuicksand();
     }
 
     const sead::Vector2f& getBgSpeed() const
