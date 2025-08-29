@@ -36,6 +36,11 @@ public:
         return &mGameData;
     }
 
+    FieldGameMode::Mode getGameMode() const
+    {
+        return mGameData.getGameMode().getMode();
+    }
+
 private:
     bool            mCourseRestart;
     GamesceneBase*  mpGamescene;
