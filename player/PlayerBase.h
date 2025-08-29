@@ -18,6 +18,7 @@
 class   ActorBoxBgCollision;
 struct  PlayerBgPointHIO;
 struct  PlayerGravityHIO;
+class   PlayerModelBase;
 class   PlayerModelBaseMgr;
 struct  PlayerSpeedHIO;
 
@@ -569,6 +570,24 @@ public:
         return &mBgCheckPlayer;
     }
 
+    // Address: 0x028F376C
+    void setDrawTypeInDistantView();
+    // Address: 0x028F3778
+    void resetDrawType();
+
+    // Address: 0x028F3784
+    bool isKinopio() const;
+    // Address: 0x028F37A8
+    bool isTotten() const;
+
+    // Address: 0x028F37BC
+    bool isMameAction();
+
+    // Address: 0x028F3820
+    sead::Vector3f* getHeadTopPosP();
+    // Address: 0x028F3844
+    sead::Vector3f* getHatPosP();
+
     virtual void executeMain() = 0;
     virtual void executeLastPlayer() = 0;
     virtual void executeLastAll() = 0;
@@ -598,11 +617,43 @@ public:
     // Address: 0x028F3854
     virtual bool vf154();
 
+    // Address: 0x028F389C
+    void setMaskPosInterpType(s32 src_type);
+
+    // Address: 0x028F31C0
+    void calcMaskPos();
+
+    // Address: 0x028F38AC
+    void dokanAdjustMaskPos(sead::Vector3f& mask_pos);
+
+    // Address: 0x028F77B4
+    void bgCheck(bool side_view_check);
+
     virtual PlayerBgPointHIO* getBgPointData() = 0;
     virtual f32 getStandHeadBgPointY() = 0;
 
     virtual void checkBgCrossSub() = 0;
     virtual void postBgCross() = 0;
+
+    // Address: 0x028F3948
+    bool checkRideActor(PlayerBase* p_player_other);
+    // Address: 0x028F3978
+    void setRideNat(f32 value);
+    // Address: 0x028F398C
+    void updateRideNat();
+
+    // Address: 0x028F39E4
+    void onFollowMameKuribo();
+    // Address: 0x028F31A0
+    void clearFollowMameKuribo();
+    // Address: 0x028F3A00
+    s32 getFollowMameKuribo();
+    // Address: 0x028F3A08
+    s32 getFollowMameKuriboSpeedType();
+    // Address: 0x028F3A44
+    f32 getFollowMameKuriboSpeedScaleX();
+    // Address: 0x028F3A94
+    f32 getFollowMameKuriboSpeedScaleY();
 
     virtual void clearJumpActionInfo() = 0;
 
@@ -612,6 +663,11 @@ public:
     virtual void releaseCcData();
     // Address: 0x028F9A78
     virtual void clearCcData();
+
+    // Address: 0x028FA108
+    void clearCcPlayerRev();
+    // Address: 0x028FA130
+    bool calcCcPlayerRev(f32*);
 
     virtual bool vf19C() = 0;
 
@@ -666,6 +722,9 @@ public:
     virtual void initialBoxingKoopaJr(s32 next_goto_type);
     // Address: 0x028FDD68
     virtual void initialTitle(s32 next_goto_type);
+
+    // Address: 0x028FAF1C
+    void changeDemoState(const StateID& state_id, s32 param);
 
     // StateID_DemoCreate           Address: 0x1022A008
     // initializeState_DemoCreate   Address: 0x028FD8B4
@@ -855,6 +914,11 @@ public:
     virtual bool bouncePlayer1(f32 speed_y, f32 speed_F, bool, BounceType bounce_type, JumpSe jump_se_type) = 0;   // Does lots of checks that can cancel the bounce, calls bouncePlayer2 otherwise
     virtual bool bouncePlayer2(f32 speed_y, f32 speed_F, bool, BounceType bounce_type, JumpSe jump_se_type) = 0;
 
+    // Address: 0x02906B04
+    void changeState(const StateID& state_id, s32 param);
+    // Address: 0x02906B0C
+    void changeState(const StateID& state_id, const JumpInf& jmp_inf);
+
     // StateID_None         Address: 0x1022A484
     // initializeState_None Address: 0x02908AE4
     // executeState_None    Address: 0x02908AE8
@@ -986,6 +1050,17 @@ public:
     // Address: 0x02901A68
     virtual void DemoAnm_Unk10();
 
+    // Address: 0x028F3B44
+    void coinJumpOnStampCB(s32 coin_num);
+    // Address: 0x028F3C34
+    void coinFunsuiOnDamageCB(s32 type, Actor* p_eat_die_actor);
+
+private:
+    inline void reduceCoinNum_(s32 coin_num);
+    // Address: 0x028F3AE4
+    s32 adjustCoinReductionNumCB_(s32 coin_num);
+
+public:
     // Address: 0x028F3ED0
     virtual void calcTimerProc();
 
@@ -1019,6 +1094,14 @@ public:
     virtual void setZPositionDirect(f32 z) = 0;
     virtual void offZPosSetNone() = 0;
 
+    // Address: 0x028F3814
+    PlayerModelBase* getModel();
+    // Address: 0x028F3FFC
+    const PlayerModelBase* getModel() const;
+
+    // Address: 0x028F4008
+    void getAnkleCenterPos(sead::Vector3f* p_pos);
+
     virtual bool isFaceRot()
     {
         return false;
@@ -1034,6 +1117,29 @@ public:
 
     virtual void setFallAction() = 0;
 
+    // Address: 0x028F40D8
+    f32 getThrowSpeed();
+    // Address: 0x028F40F0
+    f32 getThrowLoopPosX(f32 x);
+
+    // Address: 0x028F4898
+    void calcPlayerSpeedXY();
+    // Address: 0x028F45E4
+    void posMoveAnglePlayer(const sead::Vector3f& speed);
+    // Address: 0x028F4178
+    void posMoveAnglePenguin(const sead::Vector3f& speed);
+    // Address: 0x028F4CD8
+    void initAdditionalAirSpeedF(f32 start_val, f32 len_frames);
+    // Address: 0x028F4148
+    void calcAdditionalAirSpeedF();
+
+    // Address: 0x028F4D48
+    bool setJump(u8, JumpSe jump_se_type);
+    // Address: 0x028F4E50
+    bool setDelayHelpJump();
+    // Address: 0x028F4EE8
+    bool checkJumpTrigger();
+
     virtual f32 getJumpSpeed() = 0;
     virtual f32 vf89C() = 0;
     virtual void setJumpSound(JumpSe jump_se_type) = 0;
@@ -1047,6 +1153,17 @@ public:
     virtual bool setFlyDamage(DamageType type, s32 dir, bool, bool, f32 speed_F, f32 speed_y) = 0;
     virtual bool setDamage2(Actor* p_actor, DamageType type) = 0;
     virtual bool setPressBgDamage(DamageType type, bool) = 0;
+
+    // Address: 0x028F4F48
+    void clearTreadCount();
+    s8 getTreadCount() const { return mTreadCnt; }
+    // Address: 0x028F4F84
+    s8 calcTreadCount(s32 max);
+
+    void clearComboCount() { mComboCnt = 0; }
+    s8 getComboCount() const { return mComboCnt; }
+    // Address: 0x028F4FA8
+    s8 calcComboCount(s32 max);
 
     virtual void clearStarCount() = 0;
     virtual s8 getStarCount() const = 0;
@@ -1079,6 +1196,12 @@ public:
 
     // Address: 0x02904284
     virtual void setTurnSmokeEffect(bool with_brake);
+
+    // Address: 0x029049F8
+    void setSandEffect();
+
+    // Address: 0x0290345C
+    void changeChallengeState(const StateID& state_id);
 
     // StateID_ChallengeState1          Address: 0x1022A3B8
     // initializeState_ChallengeState1  Address: 0x02903F30
@@ -1167,37 +1290,23 @@ public:
         return mMode;
     }
 
-    // Address: 0x028F31A0
-    void clearFollowMameKuribo();
+    // Address: 0x028F8760
+    bool checkOldBgCrossFoot(s32 frame_cnt);
 
-    // Address: 0x028F31C0
-    void calcMaskPos();
+    // Address: 0x028F8900
+    void calcNoHitObjBgTimer();
 
-    // Address: 0x028F37A8
-    bool isTotten() const;
+    // Address: 0x028F9560
+    bool checkStandUpRoof();
 
-    // Address: 0x028F4D48
-    bool setJump(u8, u32);
+    // Address: 0x028FA290
+    void updateNoHitPlayer();
 
-    // Address: 0x028F77B4
-    void bgCheck(bool side_view_check);
-
-    // Address: 0x028FA108
-    void clearCcPlayerRev();
-
-    // Address: 0x028FAF1C
-    void changeDemoState(const StateID& state_id, s32 param);
-
-    // Address: 0x0290345C
-    void changeChallengeState(const StateID& state_id);
+    // Address: 0x029050C8
+    s32 getPowerChangeType(bool);
 
     // Address: 0x029065F0
     Angle getMukiAngle(u32 dir);
-
-    // Address: 0x02906B04
-    void changeState(const StateID& state_id, s32 param);
-    // Address: 0x02906B0C
-    void changeState(const StateID& state_id, const JumpInf& jmp_inf);
 
     // Address: 0x0290B9A4
     void startSound(const char* label, u32 = 0);
