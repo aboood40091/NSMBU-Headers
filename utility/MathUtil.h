@@ -7,6 +7,9 @@ class MathUtil
 public:
     template <typename T>
     static T calcTimer(T* p_value);
+
+    // Address: 0x029E11FC
+    static f32 addCalc(f32*, f32, f32, f32, f32);
 };
 
 template <typename T>
