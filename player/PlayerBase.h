@@ -59,73 +59,92 @@ public:
 
     enum Status
     {
-        cStatus_1   =   1,  // NSMBW: Bit 0x01
-        cStatus_2,          // NSMBW: Bit 0x7D
+        cStatus_1                   =   1,  // NSMBW: Bit 0x01
+        cStatus_2,                          // NSMBW: Bit 0x7D
 
-        cStatus_7   =   7,  // NSMBW: Bit 0xB9
+        cStatus_7                   =   7,  // NSMBW: Bit 0xB9
 
-        cStatus_9   =   9,
+        cStatus_9                   =   9,
 
-        cStatus_10  =  10,  // Force-disable jump (accelY = 0)
+        cStatus_10                  =  10,  // Force-disable jump (accelY = 0)
+        cStatus_11,
 
-        cStatus_46  =  46,
-        cStatus_47,         // NSMBW: Bit 0x1A
+        cStatus_36                  =  36,  // NSMBW: Bit 0x13
 
-        cStatus_60  =  60,  // Disable block-hit bounce
+        cStatus_46                  =  46,
+        cStatus_47,                         // NSMBW: Bit 0x1A
 
-        cStatus_63  =  63,
+        cStatus_60                  =  60,  // Disable block-hit bounce
 
-        cStatus_71  =  71,  // NSMBW: Bit 0x2D
+        cStatus_63                  =  63,
 
-        cStatus_93  =  93,
+        cStatus_71                  =  71,  // NSMBW: Bit 0x2D
 
-        cStatus_105 = 105,
+        cStatus_93                  =  93,
+
+        cStatus_97                  =  97,
+        cStatus_98,                         // NSMBW: Bit 0x3B
+
+        cStatus_105                 = 105,
         cStatus_106,
 
-        cStatus_113 = 113,  // NSMBW: Bit 0x4A
+        cStatus_113                 = 113,  // NSMBW: Bit 0x4A
 
-        cStatus_117 = 117,
+        cStatus_117                 = 117,
         cStatus_118,
 
-        cStatus_123 = 123,  // Make visible next frame
+        cStatus_122                 = 122,  // NSMBW: Bit 0x53
+        cStatus_123,                        // Make visible next frame
 
-        cStatus_128 = 128,  // NSMBW: Bit 0x59
+        cStatus_127                 = 127,  // NSMBW: Bit 0x58 (Ride Nat target reached)
+        cStatus_RideNat,                    // NSMBW: Bit 0x59
 
-        cStatus_130 = 130,  // NSMBW: Bit 0x5C
+        cStatus_130                 = 130,  // NSMBW: Bit 0x5C
+        cStatus_131,                        // NSMBW: Bit 0x5D
 
-        cStatus_133 = 133,  // NSMBW: Bit 0x5E
-        cStatus_134,        // NSMBW: Bit 0x61
+        cStatus_133                 = 133,  // NSMBW: Bit 0x5E
+        cStatus_134,                        // NSMBW: Bit 0x61
 
-        cStatus_136 = 136,  // NSMBW: Bit 0x62
+        cStatus_136                 = 136,  // NSMBW: Bit 0x62
         cStatus_137,
 
-        cStatus_138 = 138,
+        cStatus_138                 = 138,
 
-        cStatus_141 = 141,
+        cStatus_141                 = 141,
 
-        cStatus_148 = 148,  // NSMBW: Bit 0x89
+        cStatus_146                 = 146,  // NSMBW: Bit 0x87
+        cStatus_147,                        // NSMBW: Bit 0x88
+        cStatus_148,                        // NSMBW: Bit 0x89
 
-        cStatus_151 = 151,  // NSMBW: Bit 0x8B
-        cStatus_152,        // NSMBW: Bit 0x8C
-        cStatus_153,        // NSMBW: Bit 0x8D
+        cStatus_151                 = 151,  // NSMBW: Bit 0x8B
+        cStatus_152,                        // NSMBW: Bit 0x8C
+        cStatus_153,                        // NSMBW: Bit 0x8D
 
-        cStatus_171 = 171,
+        cStatus_171                 = 171,
 
-        cStatus_174 = 174,  // NSMBW: Bit 0xAC
-        cStatus_Invisible,  // NSMBW: Bit 0xBB
+        cStatus_FollowMameKuribo    = 174,  // NSMBW: Bit 0xAC
+        cStatus_Invisible,                  // NSMBW: Bit 0xBB
+        cStatus_HideTemporarily,            // NSMBW: Bit 0xBC
 
-        cStatus_178 = 178,  // NSMBW: Bit 0xBE
+        cStatus_178                 = 178,  // NSMBW: Bit 0xBE
 
-        cStatus_250 = 250,
+        cStatus_209                 = 209,  // NSMBW: Bit 0x64
+        cStatus_210,
 
-        cStatus_255 = 255,  // NSMBW: Bit 0x82
-        cStatus_256,        // NSMBW: Bit 0x83
+        cStatus_244                 = 244,  // NSMBW: Bit 0x5F
 
-        cStatus_270 = 270,  // NSMBW: Bit 0x84
+        cStatus_250                 = 250,
 
-        cStatus_282 = 282,
+        cStatus_255                 = 255,  // NSMBW: Bit 0x82
+        cStatus_256,                        // NSMBW: Bit 0x83
 
-        cStatus_LastBit = 286,  // Not sure if bit 287 is used
+        cStatus_270                 = 270,  // NSMBW: Bit 0x84
+
+        cStatus_280                 = 280,  // NSMBW: Bit 0xCA
+
+        cStatus_282                 = 282,
+
+        cStatus_LastBit             = 286,  // Not sure if bit 287 is used
         cStatus_BitNum,
         cStatus_MaxBitNum = (cStatus_BitNum + 31) / 32 * 32
     };
