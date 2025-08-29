@@ -26,9 +26,14 @@ public:
         return mpGamescene;
     }
 
-    const FieldGameData& getGameData() const
+    FieldGameData* getGameData()
     {
-        return mGameData;
+        return &mGameData;
+    }
+
+    const FieldGameData* getGameData() const
+    {
+        return &mGameData;
     }
 
 private:
