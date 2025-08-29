@@ -22,6 +22,7 @@ public:
     sead::BoundBox2f& getBound() { return mBound; }
     const sead::BoundBox2f& getBound() const { return mBound; }
 
+    u32 getLoopType() const { return mLoopType; }
     // Address: 0x024B5B20
     void setLoopType();
 
