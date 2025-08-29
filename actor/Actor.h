@@ -257,7 +257,8 @@ protected:
     void calcSpeedY_(f32 accel_y, f32 speed_max_y);
     void calcSpeedY_() { calcSpeedY_(mAccelY, mSpeedMax.y); }
 
-    void calcSpeedF_() { sead::Mathf::chase(&mSpeedF, mSpeedFMax, mAccelF); }
+    void calcSpeedF_(f32 accelF, f32 speedF_max) { sead::Mathf::chase(&mSpeedF, speedF_max, accelF); }
+    void calcSpeedF_() { calcSpeedF_(mAccelF, mSpeedFMax); }
     // Address: 0x0200144C
     void calcFallSpeed_(f32 accel_y, f32 fall_speed_max);
     void calcFallSpeed_() { calcFallSpeed_(mAccelY, mFallSpeedMax); }
