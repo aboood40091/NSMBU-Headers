@@ -1270,9 +1270,9 @@ protected:
     ActorUniqueID                   mLineSpinLiftID;
     u32                             _1b9c;
     s32                             mNoHitObjBgTimer;
-    f32                             _1ba4;
-    f32                             _1ba8;
-    f32                             _1bac;
+    f32                             mAdditionalAirSpeedFStart;
+    f32                             mAdditionalAirSpeedF;
+    f32                             mAdditionalAirSpeedFDecelStep;
     f32                             _1bb0;
     s32                             _1bb4;
     ActorCollisionCheck             mCollisionCheck2_React; // First collision check is also for react
