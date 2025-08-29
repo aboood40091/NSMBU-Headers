@@ -151,12 +151,13 @@ public:
 
     enum BgCross
     {
-        cBgCross_IsFoot = 0,
+        cBgCross_IsFoot = 0,            // NSMBW Bit: 0x00
+        cBgCross_IsHead,                // NSMBW Bit: 0x01
 
         cBgCross_IsWallPressL = 3,
         cBgCross_IsWallPressR,
-        cBgCross_IsWallTouchL,
-        cBgCross_IsWallTouchR,
+        cBgCross_IsWallTouchL,          // NSMBW Bit: 0x05
+        cBgCross_IsWallTouchR,          // NSMBW Bit: 0x06
 
         cBgCross_WallWalkEnableL = 11,
         cBgCross_WallWalkEnableR,
@@ -174,9 +175,13 @@ public:
 
         cBgCross_IsSaka = 48,
 
+        cBgCross_55 = 55,
+
         cBgCross_IsPole = 58,
 
-        cBgCross_LastBit = 76,  // Explicitly checked in function 0x029586DC
+        cBgCross_HitBgActorYuka = 73,
+
+        cBgCross_LastBit = 76,          // Explicitly checked in function 0x029586DC
         cBgCross_BitNum,
         cBgCross_MaxBitNum = (cBgCross_BitNum + 31) / 32 * 32
     };
