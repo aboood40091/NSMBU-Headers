@@ -1214,7 +1214,7 @@ protected:
     GameAudio::AudioObjctPly        mAudioObj;
     AttentionLookat                 mAttentionLookat;
     Bitfield<cStatus_MaxBitNum>     mStatus;
-    f32                             mCenterOffsetY;
+    f32                             mCenterOffsetY;         // Or height?
     u32                             _4b8;
     sead::Vector3f                  mFrameEndPosDelta;
     sead::Vector3f                  _4c8;
@@ -1358,7 +1358,7 @@ protected:
     sead::Vector3f                  mRidePlayerPosDelta;
     sead::Vector3f                  _2208;
     u32                             mHipdropEffectStep;     // Maybe?
-    f32                             mRideNat;
+    f32                             mRideNatPosY;
     s32                             mFrameEndFollowMameKuribo;
     s32                             mFollowMameKuribo;
     s32                             mPenguinSlideCooldown;  // Maybe?
