@@ -289,6 +289,21 @@ public:
         return mpModelBase->getBaseScale();
     }
 
+    sead::Vector3f* getHeadTopPosP()
+    {
+        return mpModelBase->getHeadTopPosP();
+    }
+
+    sead::Vector3f* getHatPosP()
+    {
+        return mpModelBase->getHatPosP();
+    }
+
+    const PlayerModelBase::AnmFlag& getAnmFlag(PlayerModelBase::AnmFlagType type) const
+    {
+        return mpModelBase->getAnmFlag(type);
+    }
+
     // Address: 0x02922D8C
     void setDrawType(DrawType type);
 
