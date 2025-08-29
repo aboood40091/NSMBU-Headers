@@ -536,12 +536,18 @@ public:
     static const f32 cDirSpeed[cDirType_NumX];
     // Address: 0x10166E68
     static const f32 cJumpSpeed;                    // 3.628f
+    // Address: 0x10166E6C
+    static const f32 cUnkZero;                      // 0.0f
+    // Address: 0x10166E70
+    static const f32 cWaterNumaJumpSpeed;           // 0.75f
     // Address: 0x10166E74
     static const f32 cMaxFallSpeed;                 // -4.0f
     // Address: 0x10166E78
     static const f32 cMaxFallSpeed_Foot;            // -2.0f
     // Address: 0x10166E7C
     static const f32 cTurnPowerUpRate;              // 3.0f
+    // Address: 0x10166E80
+    static const f32 cWaterCancelCrouchAnmSpeed;    // 0.1f
 
 public:
     // Address: 0x028F23C0
