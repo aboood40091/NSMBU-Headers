@@ -299,7 +299,7 @@ public:
         return mpModelBase->getHatPosP();
     }
 
-    const PlayerModelBase::AnmFlag& getAnmFlag(PlayerModelBase::AnmFlagType type) const
+    u32 getAnmFlag(PlayerModelBase::AnmFlagType type) const
     {
         return mpModelBase->getAnmFlag(type);
     }

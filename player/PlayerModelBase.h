@@ -106,15 +106,17 @@ public:
         cFlag_None                      = 0
     };
 
-    enum AnmFlag
+    enum AnmFlagBit
     {
-        cAnmFlag_0              = 1 << 0,
+        cAnmFlagBit_0               =  0,
         // ...
-        cAnmFlag_IsSlopeBodyAnm = 1 << 12,
-
-        cAnmFlag_None           = 0
+        cAnmFlagBit_7               =  7,
+        cAnmFlagBit_8               =  8,
+        cAnmFlagBit_9               =  9,
+        // ...
+        cAnmFlagBit_IsSlopeBodyAnm  = 12,
     };
-    static_assert(sizeof(AnmFlag) == 4);
+    static_assert(sizeof(AnmFlagBit) == 4);
 
     enum AnmFlagType
     {
@@ -322,7 +324,7 @@ public:
         return &mHatPos;
     }
 
-    const AnmFlag& getAnmFlag(AnmFlagType type) const
+    u32 getAnmFlag(AnmFlagType type) const
     {
         return mAnmFlag[type];
     }
@@ -348,7 +350,7 @@ protected:
     f32                     mStoopOffsetTarget;
     f32                     mStoopOffsetBlendFramesRemaining;
     sead::SafeArray<
-        AnmFlag,
+        u32,
         cAnmFlagType_Num
     >                       mAnmFlag;
     sead::BitFlag32         mFlag;
