@@ -1249,6 +1249,15 @@ public:
     virtual void vfA3C() = 0;
     virtual void vfA44() = 0;
 
+    // Address: 0x028F5E90
+    void calcHeadAttentionAngle();
+
+private:
+    // Address: 0x028F5554
+    PlayerBase* searchPlayerAttention_(const sead::Vector2f& src_pos);
+    // Address: 0x028F566C
+    bool calcHeadAttentionAngle_(const sead::Vector2f& target_pos, sead::BitFlag32 flag, Angle max_angle_y);
+
 public:
     const PlayerKey& getPlayerKey() const
     {
