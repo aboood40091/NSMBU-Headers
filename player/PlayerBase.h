@@ -641,15 +641,6 @@ public:
     // Address: 0x028F38AC
     void dokanAdjustMaskPos(sead::Vector3f& mask_pos);
 
-    // Address: 0x028F77B4
-    void bgCheck(bool side_view_check);
-
-    virtual PlayerBgPointHIO* getBgPointData() = 0;
-    virtual f32 getStandHeadBgPointY() = 0;
-
-    virtual void checkBgCrossSub() = 0;
-    virtual void postBgCross() = 0;
-
     // Address: 0x028F3948
     bool checkRideActor(PlayerBase* p_player_other);
     // Address: 0x028F3978
@@ -669,6 +660,15 @@ public:
     f32 getFollowMameKuriboSpeedScaleX();
     // Address: 0x028F3A94
     f32 getFollowMameKuriboSpeedScaleY();
+
+    // Address: 0x028F77B4
+    void bgCheck(bool side_view_check);
+
+    virtual PlayerBgPointHIO* getBgPointData() = 0;
+    virtual f32 getStandHeadBgPointY() = 0;
+
+    virtual void checkBgCrossSub() = 0;
+    virtual void postBgCross() = 0;
 
     virtual void clearJumpActionInfo() = 0;
 
