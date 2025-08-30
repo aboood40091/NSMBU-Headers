@@ -5,7 +5,7 @@
 
 struct FieldPlayerData
 {
-    bool            is_active;
+    bool            is_entry;
     s32             life_cnt;
     PlayerMode      player_mode;
     PlayerCharacter character;
