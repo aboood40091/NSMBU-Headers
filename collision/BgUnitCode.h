@@ -92,11 +92,11 @@ public:
         cGrass      = 5,
         cCloud      = 6,
         cBeachSand  = 7,    // Unused
-        cCarpet     = 8,    // Unused
+        cManta      = 8,    // Unused
         cPalmTree   = 9,
         cWood       = 10,
         cWater      = 11,
-        cManta      = 12    // Now used for Beanstalk Leaf
+        cCarpet     = 12    // Now used for Beanstalk Leaf
     };
 
     static const u64 cPanelTypeMask         = 0x000000000000FFFF;
