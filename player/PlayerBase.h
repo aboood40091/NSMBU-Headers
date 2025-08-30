@@ -200,7 +200,7 @@ public:
         cBgAttr_Sand,
         cBgAttr_Ice,
         cBgAttr_Dirt,
-        cBgAttr_Water,
+        cBgAttr_Water1,
         cBgAttr_Cloud,
         cBgAttr_SandFunsui, // i.e., sand pillar
         cBgAttr_Manta,      // Used for beanstalk
@@ -208,7 +208,7 @@ public:
         cBgAttr_Carpet,
         cBgAttr_Leaf,
         cBgAttr_Wood,
-        cBgAttr_WaterPillar,
+        cBgAttr_Water2,     // Water pillar?
         cBgAttr_Num
     };
     static_assert(cBgAttr_Num == 14);
@@ -660,6 +660,9 @@ public:
     f32 getFollowMameKuriboSpeedScaleX();
     // Address: 0x028F3A94
     f32 getFollowMameKuriboSpeedScaleY();
+
+    // Address: 0x028F6274
+    BgAttr getFootBgAttr(BgUnitCode::Attr attr);
 
     // Address: 0x028F77B4
     void bgCheck(bool side_view_check);
