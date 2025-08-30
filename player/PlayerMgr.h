@@ -26,6 +26,8 @@ public:
         return mPlayerFlag & (1 << player_no);
     }
 
+    bool isAcceptQuake(s32 player_no);
+
     s32 getNumInGame();
 
     s32 getCoinNumMin();
