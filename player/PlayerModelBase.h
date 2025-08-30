@@ -329,6 +329,33 @@ public:
         return mAnmFlag[type];
     }
 
+    void changeFaceAngleOverrideFlag(FaceAngleOverrideFlag flag, bool enable)
+    {
+        mFaceAngleOverrideFlag.change(flag, enable);
+    }
+
+    const Angle3& getFaceAngleOverride() const
+    {
+        return mFaceAngleOverride;
+    }
+
+    void setFaceAngleOverride(const Angle3& angle)
+    {
+        mFaceAngleOverride = angle;
+    }
+
+    void resetFaceAngleOverride()
+    {
+        mFaceAngleOverride.x() = 0;
+        mFaceAngleOverride.y() = 0;
+        mFaceAngleOverride.z() = 0;
+    }
+
+    void resetFaceAngleOverrideFlag()
+    {
+        mFaceAngleOverrideFlag.makeAllZero();
+    }
+
 protected:
     ModelResource*          mpModelRes;
     ModelResource*          mpAnmRes;
