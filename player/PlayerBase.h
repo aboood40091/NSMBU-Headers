@@ -62,6 +62,7 @@ public:
     {
         cStatus_1                   =   1,  // NSMBW: Bit 0x01
         cStatus_2,                          // NSMBW: Bit 0x7D
+        cStatus_3,                          // NSMBW: Bit 0x02
 
         cStatus_7                   =   7,  // NSMBW: Bit 0xB9
 
@@ -120,6 +121,9 @@ public:
         cStatus_151                 = 151,  // NSMBW: Bit 0x8B
         cStatus_152,                        // NSMBW: Bit 0x8C
         cStatus_153,                        // NSMBW: Bit 0x8D
+
+        cStatus_155                 = 155,
+        cStatus_156,                        // NSMBW: Bit 0x95
 
         cStatus_171                 = 171,
 
