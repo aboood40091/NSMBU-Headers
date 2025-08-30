@@ -1,7 +1,7 @@
 #pragma once
 
 #include <graphics/FrameCtrl.h>
-#include <utility/Angle.h>
+#include <utility/Angle3.h>
 
 #include <container/seadSafeArray.h>
 #include <heap/seadDisposer.h>
@@ -354,9 +354,7 @@ protected:
     sead::BitFlag32         mFlag;
     s32                     mJumpIndex;
     s32                     mJumpIndexPrev;         // Maybe?
-    Angle                   mFaceAngleXOverride;    // Always set to 0 and never actually used
-    Angle                   mFaceAngleYOverride;
-    Angle                   mFaceAngleZOverride;
+    Angle3                  mFaceAngleOverride;     // X is always set to 0 and never actually used
     sead::BitFlag32         mFaceAngleOverrideFlag;
     bool                    mCarryStateChanged;
 };
