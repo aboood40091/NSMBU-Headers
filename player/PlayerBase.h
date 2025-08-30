@@ -598,6 +598,11 @@ public:
     // Address: 0x028F3844
     sead::Vector3f* getHatPosP();
 
+    const sead::Vector3f& getLookatPos() const
+    {
+        return *const_cast<PlayerBase*>(this)->getHatPosP();
+    }
+
     virtual void executeMain() = 0;
     virtual void executeLastPlayer() = 0;
     virtual void executeLastAll() = 0;
