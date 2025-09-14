@@ -390,6 +390,11 @@ public:
         return mBgCheckData[direction];
     }
 
+    const u64& getBgCheckDataPrev(u32 direction) const
+    {
+        return mBgCheckDataPrev[direction];
+    }
+
     // Address: 0x0218B214
     Angle getSakaAngle();
     // Address: 0x0218B254
