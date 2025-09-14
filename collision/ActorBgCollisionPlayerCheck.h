@@ -61,6 +61,9 @@ public:
     // Address: 0x02195658
     bool checkQuicksand(const sead::Vector3f& pos, f32* p_hit_pos_y = nullptr);
 
+    // Address: 0x0219574C
+    bool checkKani(s32* type, f32* p_hit_pos_y, const sead::Vector3f& pos, f32 check_distance);
+
 private:
     List::Node      _14e0;
     s8              mPlayerNo;
