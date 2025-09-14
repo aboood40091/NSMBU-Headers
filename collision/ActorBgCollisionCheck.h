@@ -396,13 +396,13 @@ public:
     }
 
     // Address: 0x0218B214
-    Angle getSakaAngle();
+    Angle getSakaBaseAngle();
     // Address: 0x0218B254
-    Angle getHeadSakaAngle();
+    Angle getHeadSakaBaseAngle();
     // Address: 0x0218E260
-    Angle getSakaMoveAngle(u8 dir);
+    Angle getSakaAngle(s32 dir);
     // Address: 0x0218E28C
-    Angle getHeadSakaMoveAngle(u8 dir);
+    Angle getHeadSakaAngle(s32 dir);
 
     BasicBgCollisionCheck& getBgCheck()
     {
