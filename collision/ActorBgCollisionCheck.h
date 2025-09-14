@@ -194,6 +194,36 @@ public:
 
     class SensorFlag : public Bitfield<64>
     {
+    public:
+        enum Bit
+        {
+            cBit_0  =  0,
+
+            cBit_3  =  3,
+            cBit_4,
+            cBit_5,
+            cBit_6,
+
+            cBit_8  =  8,
+            cBit_9,
+            cBit_10,
+
+            cBit_13 = 13,
+
+            cBit_18 = 18,
+
+            cBit_21 = 21,
+            cBit_22,
+            cBit_23,
+
+            cBit_26 = 26,
+
+            cBit_38 = 38,
+
+            cBit_50 = 50,
+
+            cBit_52 = 52
+        };
     };
     static_assert(sizeof(SensorFlag) == 8);
 
