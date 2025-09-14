@@ -55,6 +55,9 @@ public:
     // Address: 0x02195160
     bool checkWall(const sead::Vector3f& pos, f32 speed_x, f32* p_hit_pos_x = nullptr, bool use_callback = false);
 
+    // Address: 0x021952D4
+    bool checkRoof(const sead::Vector3f& pos, f32 check_distance, f32* p_hit_pos_y = nullptr, bool no_invis_block = false);
+
 private:
     List::Node      _14e0;
     s8              mPlayerNo;
