@@ -15,8 +15,15 @@
 
 #include <container/seadRingBuffer.h>
 
+struct PlayerBgPointHIO
+{
+    ActorBgCollisionCheck::Sensor   sensor_foot;
+    ActorBgCollisionCheck::Sensor   sensor_head;
+    ActorBgCollisionCheck::Sensor   sensor_wall;
+};
+static_assert(sizeof(PlayerBgPointHIO) == 0x24);
+
 class   ActorBoxBgCollision;
-struct  PlayerBgPointHIO;
 struct  PlayerGravityHIO;
 class   PlayerModelBase;
 class   PlayerModelBaseMgr;
