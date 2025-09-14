@@ -255,7 +255,7 @@ public:
     typedef sead::UnsafeArray<ActorBgCollisionCheckResult, cBgCollisionCat_Num> BgCheckResultArray;
     typedef sead::UnsafeArray<BgCheckResultArray, cDirType_Num> SensorBgCheckResultArray;
 
-    typedef sead::SafeArray<u64, cDirType_Num> SensorHitBgCheckDataArray; // See BgUnitCode
+    typedef sead::UnsafeArray<u64, cDirType_Num> SensorHitBgCheckDataArray; // See BgUnitCode
 
 public:
     // Address: 0x0218A6EC
