@@ -399,6 +399,10 @@ public:
     Angle getSakaBaseAngle();
     // Address: 0x0218B254
     Angle getHeadSakaBaseAngle();
+
+    // Address: 0x0218BCA8
+    SakaType getSakaType(Angle saka_base_angle);
+
     // Address: 0x0218E260
     Angle getSakaAngle(s32 dir);
     // Address: 0x0218E28C
