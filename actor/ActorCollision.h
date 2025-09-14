@@ -138,7 +138,7 @@ protected:
     // Address: 0x020037F4
     BgCheckFlag bgCheck_();
     // Address: 0x02003764
-    bool bgCheckFoot_() const;   // Must process mBgCheckObj before calling this, or just use bgCheck_()
+    bool bgCheckFoot_() const;   // Must call checkBg() of mBgCheckObj before calling this, or just use bgCheck_()
     // Address: 0x02003770
     bool bgCheckWall_() const;   // ^^^
 

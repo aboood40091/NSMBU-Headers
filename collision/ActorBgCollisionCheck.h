@@ -264,9 +264,9 @@ public:
     virtual ~ActorBgCollisionCheck();
 
     // Address: 0x0218D954
-    virtual void process();
+    virtual void checkBg();
     // Address: 0x0218E060
-    virtual void reset();
+    virtual void clearBg();
     // Address: 0x0218E180
     virtual void atFrameStart();
     virtual Actor* getOwnerAtRevCheck(f32 bg_collision_pos_y) const = 0;

@@ -25,9 +25,9 @@ public:
     virtual ~ActorBgCollisionPlayerCheck();
 
     // Address: 0x02193714
-    void process() override;
+    void checkBg() override;
     // Address: 0x02193718
-    void reset() override;
+    void clearBg() override;
     // Address: 0x0219371C
     void atFrameStart() override;
     // Address: 0x0219587C
