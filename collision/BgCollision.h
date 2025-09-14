@@ -329,24 +329,24 @@ public:
     // Address: 0x021A5EB4
     void update();
 
-    void setCallbackFlag(u32 flag)
+    void setFlag(u32 flag)
     {
-        mCallbackFlag.setDirect(flag);
+        mFlag.setDirect(flag);
     }
 
-    void resetCallbackFlag(u32 mask)
+    void resetFlag(u32 mask)
     {
-        mCallbackFlag.reset(mask);
+        mFlag.reset(mask);
     }
 
-    void clearCallbackFlag()
+    void clearFlag()
     {
-        mCallbackFlag.makeAllZero();
+        mFlag.makeAllZero();
     }
 
-    bool isCallbackFlag(s32 bit) const
+    bool isFlag(s32 bit) const
     {
-        return mCallbackFlag.isOnBit(bit);
+        return mFlag.isOnBit(bit);
     }
 
     void setCallback(Callback callback_foot, Callback callback_head, CallbackWall callback_wall)
@@ -410,7 +410,7 @@ protected:
     List::Node                      mTouchDrcHoldListNode;
     sead::BoundBox2f                mAffectedArea;  // Current Area & Prev Area
     sead::Vector2f                  mPosOffset2;    // Additional position offset set when area loop is on, not even used by all collision types...
-    sead::BitFlag32                 mCallbackFlag;  // I assume
+    sead::BitFlag32                 mFlag;
     sead::BitFlag32                 mCheckRevFlag;  // ^^^
     Actor*                          mpOwner;
     Actor*                          mpIgnoreActor;  // Force BasicBgCollisionCheck owned by this actor to ignore this BgCollision
