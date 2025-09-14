@@ -77,9 +77,14 @@ public:
 
     enum SlipAttr
     {
-        cSlipAttr_Normal    = 0,    // Player can slide while colliding when crouching
-        cSlipAttr_Slip      = 1,    // Player instantly enters sliding state when colliding
-        cSlipAttr_NoSlip    = 2     // Player cannot slide while colliding
+        cSlipAttr_Normal        = 0,    // Player can slide while colliding when crouching
+        cSlipAttr_Slip          = 1,    // Player instantly enters sliding state when colliding
+        cSlipAttr_NoSlip        = 2,    // Player cannot slide while colliding
+        cSlipAttr_IceLowSlip,
+        cSlipAttr_Unk4,
+        cSlipAttr_SlideSlope,
+        cSlipAttr_Unk6,
+        cSlipAttr_Num
     };
 
     enum Attr
