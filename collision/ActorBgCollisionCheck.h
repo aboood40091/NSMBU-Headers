@@ -64,9 +64,15 @@ class ActorBgCollisionCheck // vtbl Address: 0x10041364
 public:
     enum SakaType
     {
-        cSakaType_Num = 5
+        cSakaType_None      = 0,    // Saka angle (abs): [0��, 7.0175��)
+        cSakaType_Gentle,           // Saka angle (abs): [7.0175��, 20.3165��)
+        cSakaType_Moderate,         // Saka angle (abs): [20.3165��, 35.7990��)
+        cSakaType_Steep,            // Saka angle (abs): [35.7990��, 54.2010��)
+        cSakaType_VerySteep,        // Saka angle (abs): >= 54.2010��
+        cSakaType_Num
     };
     static_assert(sizeof(SakaType) == 4);
+    static_assert(cSakaType_Num == 5);
 
     enum HitDirBit
     {
