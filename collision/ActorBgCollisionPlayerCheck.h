@@ -47,6 +47,9 @@ public:
         return mpVineBgCollision;
     }
 
+    // Address: 0x021950D0
+    bool checkGround(const sead::Vector3f& pos, f32 check_distance, BgCollisionCheckResultArea* p_res = nullptr);
+
     using ActorBgCollisionCheck::checkWall;
 
     // Address: 0x02195160
