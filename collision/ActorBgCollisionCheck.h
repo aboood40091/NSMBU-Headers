@@ -408,6 +408,9 @@ public:
     // Address: 0x0218E28C
     Angle getHeadSakaAngle(s32 dir);
 
+    // Address: 0x0218E2B8
+    Angle getWallAngle(s32 dir);
+
     BasicBgCollisionCheck& getBgCheck()
     {
         return mBgCheck;
