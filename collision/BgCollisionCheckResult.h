@@ -19,7 +19,7 @@ struct BgCollisionCheckResultArea
 {
     u8              hit_direction_flag;
     sead::Vector2f  hit_pos;
-    Angle           _c;
+    Angle           hit_angle;
     Angle           _10;
   //u32             _14[4 / sizeof(u32)];   // Alignment???
     u64             bg_check_data;          // See BgUnitCode
