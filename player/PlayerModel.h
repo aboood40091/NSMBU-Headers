@@ -160,6 +160,11 @@ public:
         return false;
     }
 
+    PlayerModeModel getModeModel()
+    {
+        return mNowModeModel;
+    }
+
     // Address: 0x0291BEEC
     virtual void setModeModel(PlayerModeModel mode_mdl);
 
