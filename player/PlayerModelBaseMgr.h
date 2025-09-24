@@ -297,6 +297,16 @@ public:
         mpModelBase->setTexAnmType(type);
     }
 
+    ModelResource* getModelResFile() const
+    {
+        return mpModelBase->getModelResFile();
+    }
+
+    ModelResource* getAnmResFile() const
+    {
+        return mpModelBase->getAnmResFile();
+    }
+
 protected:
     PlayerModelBase*    mpModelBase;
     DrawType            mDrawType;
