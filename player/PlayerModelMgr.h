@@ -96,6 +96,16 @@ public:
         mpModel->setPropelScale(scale);
     }
 
+    AnimModel* getBodyModel(PlayerModeModel mode_mdl)
+    {
+        return mpModel->getBodyModel(mode_mdl);
+    }
+
+    AnimModel* getHeadModel(PlayerModeModel mode_mdl)
+    {
+        return mpModel->getHeadModel(mode_mdl);
+    }
+
 private:
     PlayerModel*    mpModel;
 };
