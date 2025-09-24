@@ -310,6 +310,16 @@ public:
 
     virtual f32 getBaseScale() = 0;
 
+    ModelResource* getModelResFile() const
+    {
+        return mpModelRes;
+    }
+
+    ModelResource* getAnmResFile() const
+    {
+        return mpAnmRes;
+    }
+
 protected:
     ModelResource*          mpModelRes;
     ModelResource*          mpAnmRes;
