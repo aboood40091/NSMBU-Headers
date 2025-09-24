@@ -229,6 +229,16 @@ public:
         mPropelScale = scale;
     }
 
+    AnimModel* getBodyModel(PlayerModeModel mode_mdl)
+    {
+        return mModelArray[mode_mdl];
+    }
+
+    AnimModel* getHeadModel(PlayerModeModel mode_mdl)
+    {
+        return mModelArray[mode_mdl];
+    }
+
 protected:
     sead::SafeArray<AnimModel*, cPlayerModeModel_Num>   mModelArray;
     sead::SafeArray<AnimModel*, cPlayerModeModel_Num>   mHeadModelArray;
