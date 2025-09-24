@@ -81,6 +81,11 @@ public:
         return mpModel->isMiiCapVisible();
     }
 
+    PlayerModeModel getModeModel()
+    {
+        return mpModel->getModeModel();
+    }
+
     void setPropelRollAngle(const Angle& angle)
     {
         mpModel->setPropelRollAngle(angle);
