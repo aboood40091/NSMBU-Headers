@@ -396,7 +396,7 @@ public:
     }
 
     // Address: 0x0218B214
-    Angle getSakaBaseAngle();
+    Angle getSakaBaseAngle();       // Angle of the slope surface tangent (only values between -90 deg and 90 deg make sense)
     // Address: 0x0218B254
     Angle getHeadSakaBaseAngle();
 
@@ -404,7 +404,7 @@ public:
     SakaType getSakaType(Angle saka_base_angle);
 
     // Address: 0x0218E260
-    Angle getSakaAngle(s32 dir);
+    Angle getSakaAngle(s32 dir);    // Slope tangent angle signed in the move direction: + => moving uphill, - => moving downhill
     // Address: 0x0218E28C
     Angle getHeadSakaAngle(s32 dir);
 
