@@ -81,7 +81,7 @@ public:
         cSlipAttr_Slip          = 1,    // Player instantly enters sliding state when colliding
         cSlipAttr_NoSlip        = 2,    // Player cannot slide while colliding
         cSlipAttr_IceLowSlip,
-        cSlipAttr_Unk4,
+        cSlipAttr_SakaLowPow,
         cSlipAttr_SlideSlope,
         cSlipAttr_Unk6,
         cSlipAttr_Num
