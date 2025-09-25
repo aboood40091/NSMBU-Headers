@@ -374,7 +374,7 @@ protected:
     ChibiYoshiEatData*      mpChibiYoshiEatData;
     PropelParts*            mpPropelParts;
     u8*                     _270;                       // Inited to ActorCreateParam::_28
-    f32                     mThrowSpeed;
+    f32                     mAddSpeedF;
     ChibiYoshiAwaData*      mpChibiYoshiAwaData;
 
     // Address: 0x10000B64
