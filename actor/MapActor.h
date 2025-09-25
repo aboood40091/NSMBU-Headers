@@ -13,6 +13,11 @@ public:
         {
         }
 
+        operator s32() const
+        {
+            return mID;
+        }
+
     protected:
         s32 mID;
     };
