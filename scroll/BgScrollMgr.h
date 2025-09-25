@@ -76,6 +76,9 @@ public:
     // Address: 0x029A6D40
     f32 getBgCenterYPos() const;
 
+    // Address: 0x029A6DC4
+    bool isScrollMeterEnable() const;
+
     // Address: 0x029A6E24
     DirType getAreaScrollDirSub() const;
 
