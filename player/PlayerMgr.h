@@ -28,6 +28,11 @@ public:
         return mPlayerFlag.isOnBit(player_no);
     }
 
+    s32 getNum()
+    {
+        return mPlayerFlag.countOnBit();
+    }
+
     bool isAcceptQuake(s32 player_no);
 
     s32 getNumInGame();
