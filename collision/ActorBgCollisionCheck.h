@@ -344,6 +344,16 @@ public:
         return mSensorFlag[direction];
     }
 
+    Actor* getIgnoreActor() const
+    {
+        return mpIgnoreActor;
+    }
+
+    void setIgnoreActor(Actor* p_actor)
+    {
+        mpIgnoreActor = p_actor;
+    }
+
     const FollowArg& getFollowArg() const { return mFollowArg; }
 
     Output& getOutput() { return mOutput; }
