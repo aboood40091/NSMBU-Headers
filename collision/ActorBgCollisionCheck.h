@@ -384,6 +384,11 @@ public:
         return getOutput().isQuicksand();
     }
 
+    bool isOnTrampoline() const
+    {
+        return getOutput().isOnTrampoline();
+    }
+
     const sead::Vector2f& getBgSpeed() const
     {
         return mBgSpeed;
