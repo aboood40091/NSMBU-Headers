@@ -1,5 +1,7 @@
 #pragma once
 
+#include <utility/Direction.h>
+
 #include <heap/seadDisposer.h>
 #include <math/seadBoundBox.h>
 
@@ -68,7 +70,14 @@ public:
     ScrollEffectMgr& getScrollEffectMgr() { return mScrollEffectMgr; }
     const ScrollEffectMgr& getScrollEffectMgr() const { return mScrollEffectMgr; }
 
+    // Address: 0x029A6400
+    DirType getAreaScrollDir() const;
+
+    // Address: 0x029A6D40
     f32 getBgCenterYPos() const;
+
+    // Address: 0x029A6E24
+    DirType getAreaScrollDirSub() const;
 
 private:
     f32                 mZoom;
