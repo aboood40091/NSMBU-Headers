@@ -100,10 +100,10 @@ private:
     f32                 mScreenBottom;      // ^^^
     sead::BoundBox2f    mScreenBg;          // Same as mScreen, but Y is inverted
     sead::BoundBox2f    mScreenBgPrev;
-    void*               mBoundMgr;
-    void*               mScrollLimitMgr;
+    void*               mScrollInfo;
+    void*               mMaxStopMgr;
     void*               mZoomAreaMgr;
-    void*               mBoundVelMgr;
+    void*               mKyokaiVelMgr;
     TrackingMgr*        mTrackingMgr;
     void*               _bc;
     void*               _c0;
