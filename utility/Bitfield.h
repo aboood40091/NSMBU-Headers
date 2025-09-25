@@ -23,9 +23,9 @@ public:
         sead::MemUtil::fillZero(mBitArray, BitNum / 8);
     }
 
-    static s32 bitToIndex(u32 bit)
+    static s32 bitToIndex(s32 bit)
     {
-        return bit / 32;
+        return bit >> 5;
     }
 
     static u32 makeMask(u32 bit)
