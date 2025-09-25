@@ -294,9 +294,9 @@ public:
         return mpModelBase->getHeadTopPosP();
     }
 
-    sead::Vector3f* getHatPosP()
+    sead::Vector3f* getHeadPosP()
     {
-        return mpModelBase->getHatPosP();
+        return mpModelBase->getHeadPosP();
     }
 
     u32 getAnmFlag(PlayerModelBase::AnmFlagType type) const

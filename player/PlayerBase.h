@@ -671,11 +671,11 @@ public:
     // Address: 0x028F3820
     sead::Vector3f* getHeadTopPosP();
     // Address: 0x028F3844
-    sead::Vector3f* getHatPosP();
+    sead::Vector3f* getHeadPosP();
 
     const sead::Vector3f& getLookatPos() const
     {
-        return *const_cast<PlayerBase*>(this)->getHatPosP();
+        return *const_cast<PlayerBase*>(this)->getHeadPosP();
     }
 
     virtual void executeMain() = 0;

@@ -319,9 +319,9 @@ public:
         return &mHeadTopPos;
     }
 
-    sead::Vector3f* getHatPosP()
+    sead::Vector3f* getHeadPosP()
     {
-        return &mHatPos;
+        return &mHeadPos;
     }
 
     u32 getAnmFlag(AnmFlagType type) const
@@ -367,7 +367,7 @@ protected:
     sead::Matrixf           mMtxSrt;
     sead::Matrixf           mMtxSr;
     sead::Vector3f          mHeadTopPos;
-    sead::Vector3f          mHatPos;
+    sead::Vector3f          mHeadPos;
     Type                    mType;
     SceneType               mSceneType;
     TexAnmType              mTexAnmType;
