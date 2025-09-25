@@ -74,6 +74,12 @@ public:
     static_assert(sizeof(SakaType) == 4);
     static_assert(cSakaType_Num == 5);
 
+    enum SakaDir
+    {
+        cSakaDir_Right = 0,
+        cSakaDir_Left
+    };
+
     enum HitDirBit
     {
         cHitDirBit_Right = 0,
@@ -402,6 +408,9 @@ public:
 
     // Address: 0x0218BCA8
     SakaType getSakaType(Angle saka_base_angle);
+
+    // Address: 0x0218E234
+    SakaDir getSakaDir();           // Returns the downhill direction along the slope surface, left if the slope descends leftwards, right if the slope descends rightwards.
 
     // Address: 0x0218E260
     Angle getSakaAngle(s32 dir);    // Slope tangent angle signed in the move direction: + => moving uphill, - => moving downhill
