@@ -2,17 +2,17 @@
 
 #include <actor/AttentionMgr.h>
 #include <collision/ActorCollisionCheckMgr.h>
-#include <collision/ActorCollisionTouchDrcCallback.h>
+#include <collision/ActorCollisionDrcTouchCallback.h>
 #include <enemy/Enemy.h>
 #include <enemy/EnemyActorScaler.h>
 
-class BossTouchDrcCB : public ActorCollisionTouchDrcCallback    // vtbl Address: 0x10005E2C
+class BossDrcTouchCB : public ActorCollisionDrcTouchCallback    // vtbl Address: 0x10005E2C
 {
 public:
     // Address: 0x0202b8c0
-    bool ccIsTouchEnable(ActorCollisionCheck* p_cc, const sead::Vector2f& pos) override;
+    bool ccSetTouchNormal(ActorCollisionCheck* p_cc, const sead::Vector2f& pos) override;
 };
-static_assert(sizeof(BossTouchDrcCB) == sizeof(ActorCollisionTouchDrcCallback));
+static_assert(sizeof(BossDrcTouchCB) == sizeof(ActorCollisionDrcTouchCallback));
 
 class Boss : public Enemy   // vtbl Address: 0x1000562C
 {
@@ -26,17 +26,17 @@ public:
 
 protected:
     // Address: 0x0202BB68
-    s32 create_() override;
+    Result create_() override;
     // Address: 0x0202BD0C
-    s32 preExecute_() override;
+    bool preExecute_() override;
     // Address: 0x0202BDDC
     void postExecute_(MainState state) override;
 
-    s32 doDelete_() override
+    Result doDelete_() override
     {
         AttentionMgr::instance()->release(mAttentionLookat);
         ActorCollisionCheckMgr::instance()->release(mCollisionCheckDrcTouch);
-        return 1;
+        return cResult_Success;
     }
 
     void removeCollisionCheck() override
@@ -52,9 +52,9 @@ protected:
     }
 
     // Address: 0x0202CE40
-    bool setTouchDrcDamage(const sead::Vector2f& pos) override;
+    bool setTouchDrcDamage_(const sead::Vector2f& pos) override;
 
-    void getBox(sead::BoundBox2f& box) override
+    void getBox_(sead::BoundBox2f& box) override
     {
         box.set(
             mPos.x - 48.0f, mPos.y,
@@ -569,7 +569,7 @@ protected:
     AttentionLookat             mAttentionLookat;
     EnemyActorScaler            mScaler;
     ActorCollisionCheck         mCollisionCheckDrcTouch;    // Maybe?
-    BossTouchDrcCB              mTouchDrcCallback;
+    BossDrcTouchCB              mDrcTouchCallback;
     sead::Vector3f              mIcePos;
     sead::Vector3f              mIceScale;
     sead::Vector3f              mPos_PreIce;

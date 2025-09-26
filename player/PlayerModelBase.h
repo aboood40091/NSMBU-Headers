@@ -1,7 +1,7 @@
 #pragma once
 
 #include <graphics/FrameCtrl.h>
-#include <utility/Angle.h>
+#include <utility/Angle3.h>
 
 #include <container/seadSafeArray.h>
 #include <heap/seadDisposer.h>
@@ -106,13 +106,17 @@ public:
         cFlag_None                      = 0
     };
 
-    enum AnmFlag
+    enum AnmFlagBit
     {
-        cAnmFlag_IsSlopeBodyAnm = 1 << 12,
-
-        cAnmFlag_None           = 0
+        cAnmFlagBit_0               =  0,
+        // ...
+        cAnmFlagBit_7               =  7,
+        cAnmFlagBit_8               =  8,
+        cAnmFlagBit_9               =  9,
+        // ...
+        cAnmFlagBit_IsSlopeBodyAnm  = 12,
     };
-    static_assert(sizeof(AnmFlag) == 4);
+    static_assert(sizeof(AnmFlagBit) == 4);
 
     enum AnmFlagType
     {
@@ -320,6 +324,48 @@ public:
         return mpAnmRes;
     }
 
+    sead::Vector3f* getHeadTopPosP()
+    {
+        return &mHeadTopPos;
+    }
+
+    sead::Vector3f* getHeadPosP()
+    {
+        return &mHeadPos;
+    }
+
+    u32 getAnmFlag(AnmFlagType type) const
+    {
+        return mAnmFlag[type];
+    }
+
+    void changeFaceAngleOverrideFlag(FaceAngleOverrideFlag flag, bool enable)
+    {
+        mFaceAngleOverrideFlag.change(flag, enable);
+    }
+
+    const Angle3& getFaceAngleOverride() const
+    {
+        return mFaceAngleOverride;
+    }
+
+    void setFaceAngleOverride(const Angle3& angle)
+    {
+        mFaceAngleOverride = angle;
+    }
+
+    void resetFaceAngleOverride()
+    {
+        mFaceAngleOverride.x() = 0;
+        mFaceAngleOverride.y() = 0;
+        mFaceAngleOverride.z() = 0;
+    }
+
+    void resetFaceAngleOverrideFlag()
+    {
+        mFaceAngleOverrideFlag.makeAllZero();
+    }
+
 protected:
     ModelResource*          mpModelRes;
     ModelResource*          mpAnmRes;
@@ -331,7 +377,7 @@ protected:
     sead::Matrixf           mMtxSrt;
     sead::Matrixf           mMtxSr;
     sead::Vector3f          mHeadTopPos;
-    sead::Vector3f          mHatPos;
+    sead::Vector3f          mHeadPos;
     Type                    mType;
     SceneType               mSceneType;
     TexAnmType              mTexAnmType;
@@ -341,15 +387,13 @@ protected:
     f32                     mStoopOffsetTarget;
     f32                     mStoopOffsetBlendFramesRemaining;
     sead::SafeArray<
-        AnmFlag,
+        u32,
         cAnmFlagType_Num
     >                       mAnmFlag;
     sead::BitFlag32         mFlag;
     s32                     mJumpIndex;
     s32                     mJumpIndexPrev;         // Maybe?
-    Angle                   mFaceAngleXOverride;    // Always set to 0 and never actually used
-    Angle                   mFaceAngleYOverride;
-    Angle                   mFaceAngleZOverride;
+    Angle3                  mFaceAngleOverride;     // X is always set to 0 and never actually used
     sead::BitFlag32         mFaceAngleOverrideFlag;
     bool                    mCarryStateChanged;
 };

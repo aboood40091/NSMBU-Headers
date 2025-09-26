@@ -18,10 +18,17 @@ class ActorBase // vtbl Address: 0x100006C0
 public:
     enum MainState
     {
-        cState_Cancelled = 0,
-        cState_Error,
+        cState_None = 0,
+        cState_Failed,
         cState_Success,
-        cState_Waiting
+        cState_Wait
+    };
+
+    enum Result
+    {
+        cResult_Wait = 0,
+        cResult_Success,
+        cResult_Failed
     };
 
 public:
@@ -72,32 +79,32 @@ protected:
 
 protected:
     // Address: 0x02002F7C
-    virtual s32 preCreate_();                   // 0: Cancel,  1: Success
+    virtual bool preCreate_();
     // Address: 0x02002F84
-    virtual s32 create_();                      // 0: Waiting, 1: Success, 2: Error
+    virtual Result create_();
     // Address: 0x02002F00
     virtual void postCreate_(MainState state);
 
     // Address: 0x02002F04
-    virtual s32 preExecute_();                  // 0: Cancel,  1: Success
+    virtual bool preExecute_();
     // Address: 0x02002F8C
-    virtual s32 execute_();                     // 0: Error,   1: Success
+    virtual bool execute_();
     // Address: 0x02002F34
     virtual void postExecute_(MainState state);
     // Address: 0x02002F94
     virtual void finalUpdate_();
 
     // Address: 0x02002F98
-    virtual s32 preDraw_();                     // 0: Cancel,  1: Success
+    virtual bool preDraw_();
     // Address: 0x02002FA0
-    virtual s32 draw_();                        // 0: Error,   1: Success
+    virtual bool draw_();
     // Address: 0x02002F38
     virtual void postDraw_(MainState state);
 
     // Address: 0x02002FA8
-    virtual s32 preDelete_();                   // 0: Cancel,  1: Success
+    virtual bool preDelete_();
     // Address: 0x02002FB0
-    virtual s32 doDelete_();                    // 0: Waiting, 1: Success, 2: Error
+    virtual Result doDelete_();
     // Address: 0x02002F3C
     virtual void postDelete_(MainState state);
 

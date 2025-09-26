@@ -31,15 +31,15 @@ public:
     {
         mPlayerNo2 = player_no_2;
         mHitPlayerNo = hit_player_no;
-        mSpawnDirection = DIRECTION_UP;
+        mSpawnDirection = cDirType_Up;
 
         preSpawnItem();
         spawnItemUp();
     }
 
 protected:
-    s32 execute_() override;
-    s32 draw_() override;
+    bool execute_() override;
+    bool draw_() override;
 
 public:
     void onDownMove_DiffStart() override;

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <game/FieldGameMode.h>
 #include <game/FieldPlayerData.h>
 
 #include <container/seadSafeArray.h>
@@ -16,13 +17,30 @@ public:
         return mPlayerData[index];
     }
 
+    s32 getPlayerCoinNum(s32 index) const
+    {
+        return mPlayerData[index].coin_cnt;
+    }
+
+    void setPlayerCoinNum(s32 index, s32 num)
+    {
+        mPlayerData[index].coin_cnt = num;
+    }
+
+    const FieldGameMode& getGameMode() const
+    {
+        return mGameMode;
+    }
+
 private:
     u32                 mCheckPoint[0x14 / sizeof(u32)];    // TODO: CheckPoint
     sead::SafeArray<
         FieldPlayerData,
         4
     >                   mPlayerData;
-    u32                 _134[(0x1E4 - 0x134) / sizeof(u32)];
+    u32                 _134[(0x15C - 0x134) / sizeof(u32)];
+    FieldGameMode       mGameMode;
+    u32                 _160[(0x1E4 - 0x160) / sizeof(u32)];
 };
 static_assert(sizeof(FieldGameData) == 0x1E4);
 

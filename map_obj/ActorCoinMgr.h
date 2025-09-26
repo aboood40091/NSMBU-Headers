@@ -3,6 +3,8 @@
 #include <heap/seadDisposer.h>
 #include <math/seadVector.h>
 
+class Actor;
+
 class ActorCoinMgr
 {
     // createInstance()                             Address: 0x026CA474
@@ -36,4 +38,8 @@ public:
     void spawnItemCoin(const sead::Vector3f& pos, s32 dir, s32 player_no) const;
     // Address: 0x026CB06C
     void spawnCoinJump(const CoinJumpArg& arg, u32 flag = 3) const;
+    // Address: 0x026CBA7C
+    void spawnCoinJump(const CoinJumpArg& arg, bool alter_dir, s32 player_no) const;
+    // Address: 0x026CBD10
+    void spawnCoinSpringFunsui(const sead::Vector3f& pos, s32 player_no, s32 coin_count, s32 angle_type, Actor* p_eat_die_actor);
 };

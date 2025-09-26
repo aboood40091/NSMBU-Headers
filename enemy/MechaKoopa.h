@@ -1,19 +1,19 @@
 #pragma once
 
 #include <actor/Profile.h>
-#include <collision/ActorCollisionTouchDrcCallback.h>
+#include <collision/ActorCollisionDrcTouchCallback.h>
 #include <enemy/CarryEnemy.h>
 #include <enemy/EnemyActorScaler.h>
 
-class MechaKoopaTouchDrcCB : public ActorCollisionTouchDrcCallback  // vtbl Address: 0x100945D4
+class MechaKoopaDrcTouchCB : public ActorCollisionDrcTouchCallback  // vtbl Address: 0x100945D4
 {
 public:
     // Address: 0x023E8F9C
-    bool ccIsTouchEnable(ActorCollisionCheck* p_cc, const sead::Vector2f& pos) override;
+    bool ccSetTouchNormal(ActorCollisionCheck* p_cc, const sead::Vector2f& pos) override;
     // Address: 0x023E8FA4
     void ccOnTouch(ActorCollisionCheck* p_cc, const sead::Vector2f& pos) override;
 };
-static_assert(sizeof(MechaKoopaTouchDrcCB) == sizeof(ActorCollisionTouchDrcCallback));
+static_assert(sizeof(MechaKoopaDrcTouchCB) == sizeof(ActorCollisionDrcTouchCallback));
 
 class AnimModel;
 class ModelResource;
@@ -34,11 +34,11 @@ public:
 
 protected:
     // Address: 0x023E92E0
-    s32 create_() override;
+    Result create_() override;
     // Address: 0x023E95CC
-    s32 execute_() override;
+    bool execute_() override;
     // Address: 0x023E9768
-    s32 draw_() override;
+    bool draw_() override;
 
     // Address: 0x023EA184
     void blockHitInit_() override;
@@ -133,7 +133,7 @@ protected:
     u32                     mCurrentAnim;
     u8                      _18cc;
     u8                      _18cd;
-    MechaKoopaTouchDrcCB    mTouchDrcCallback;
+    MechaKoopaDrcTouchCB    mDrcTouchCallback;
     EnemyActorScaler        mScaler;
     f32                     _18f4;
 };

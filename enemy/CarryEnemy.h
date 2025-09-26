@@ -15,9 +15,9 @@ public:
 
 protected:
     // Address: 0x022EB18C
-    s32 preExecute_() override;
+    bool preExecute_() override;
     // Address: 0x022EB218
-    s32 doDelete_() override;
+    Result doDelete_() override;
 
     bool isSpinLiftUpEnable() override
     {

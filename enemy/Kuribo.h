@@ -16,10 +16,9 @@ public:
 
 protected:
     // Address: 0x023D6F74
-    s32 doDelete_() override;
+    Result doDelete_() override;
 
-public:
-    void beginFunsui() override
+    void beginFunsui_() override
     {
         mpBlendModel->getCurSklAnim()->getFrameCtrl().setRate(3.0f);
         mPreFunsuiSpeedX = mSpeed.x;
@@ -27,18 +26,19 @@ public:
         mIsFunsui = true;
     }
 
-    void endFunsui(f32 speed_y) override
+    void endFunsui_(f32 speed_y) override
     {
         mpBlendModel->getCurSklAnim()->getFrameCtrl().setRate(2.0f);
         mSpeed.x = mPreFunsuiSpeedX;
         mIsFunsui = false;
     }
 
-    bool isFunsui() const override
+    bool isFunsui_() const override
     {
         return mIsFunsui;
     }
 
+public:
     // Address: 0x023D7D18
     bool createIceActor() override;
 

@@ -168,7 +168,7 @@ extern const s32 cKinokoLift;                               //  77
 // Address: 0x10003E8C
 extern const s32 cKinokoLiftColor;                          //  78
 // Address: 0x10003E90
-extern const s32 c04F;                                      //  79
+extern const s32 cLiftZenStar;                              //  79
 // Address: 0x10003E94
 extern const s32 c050;                                      //  80
 // Address: 0x10003E98
@@ -190,7 +190,7 @@ extern const s32 c058;                                      //  88
 // Address: 0x10003EB8
 extern const s32 c059;                                      //  89
 // Address: 0x10003EBC
-extern const s32 c05A;                                      //  90
+extern const s32 cBgActorYukaMario;                         //  90
 // Address: 0x10003EC0
 extern const s32 c05B;                                      //  91
 // Address: 0x10003EC4
@@ -252,19 +252,19 @@ extern const s32 c077;                                      // 119
 // Address: 0x10003F34
 extern const s32 c078;                                      // 120
 // Address: 0x10003F38
-extern const s32 c079;                                      // 121
+extern const s32 cIntermittent;                             // 121
 // Address: 0x10003F3C
-extern const s32 c07A;                                      // 122
+extern const s32 cIntermittentPermanent;                    // 122
 // Address: 0x10003F40
-extern const s32 c07B;                                      // 123
+extern const s32 cWaterIntermittent;                        // 123
 // Address: 0x10003F44
-extern const s32 c07C;                                      // 124
+extern const s32 cWaterIntermittentPermanent;               // 124
 // Address: 0x10003F48
-extern const s32 c07D;                                      // 125
+extern const s32 cWaterIntermittentPermanentRD3_3;          // 125
 // Address: 0x10003F4C
 extern const s32 c07E;                                      // 126
 // Address: 0x10003F50
-extern const s32 c07F;                                      // 127
+extern const s32 cWaterIntermittentBossChild;               // 127
 // Address: 0x10003F54
 extern const s32 cYoganIntermittent;                        // 128
 // Address: 0x10003F58
@@ -378,11 +378,11 @@ extern const s32 c0B6;                                      // 182
 // Address: 0x10004030
 extern const s32 c0B7;                                      // 183
 // Address: 0x10004034
-extern const s32 c0B8;                                      // 184
+extern const s32 cLineSpinLift;                             // 184
 // Address: 0x10004038
-extern const s32 c0B9;                                      // 185
+extern const s32 cLineSpinLiftParentRDash;                  // 185
 // Address: 0x1000403C
-extern const s32 c0BA;                                      // 186
+extern const s32 cLineSpinLiftChildRDash;                   // 186
 // Address: 0x10004040
 extern const s32 c0BB;                                      // 187
 // Address: 0x10004044
@@ -484,7 +484,7 @@ extern const s32 c0EB;                                      // 235
 // Address: 0x10004104
 extern const s32 c0EC;                                      // 236
 // Address: 0x10004108
-extern const s32 c0ED;                                      // 237
+extern const s32 cPlyIce;                                   // 237
 // Address: 0x1000410C
 extern const s32 cTarzanIvy;                                // 238
 // Address: 0x10004110
@@ -628,7 +628,7 @@ extern const s32 c133;                                      // 307
 // Address: 0x10004224
 extern const s32 c134;                                      // 308
 // Address: 0x10004228
-extern const s32 c135;                                      // 309
+extern const s32 cActorBlockMakeDRC;                        // 309
 // Address: 0x1000422C
 extern const s32 c136;                                      // 310
 // Address: 0x10004230
@@ -734,7 +734,7 @@ extern const s32 c168;                                      // 360
 // Address: 0x100042F8
 extern const s32 c169;                                      // 361
 // Address: 0x100042FC
-extern const s32 c16A;                                      // 362
+extern const s32 cPentaroIce;                               // 362
 // Address: 0x10004300
 extern const s32 c16B;                                      // 363
 // Address: 0x10004304

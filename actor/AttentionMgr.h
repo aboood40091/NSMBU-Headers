@@ -30,7 +30,7 @@ public:
     void release(const AttentionLookat& lookat);
 
     // Address: 0x0200CD2C
-    const AttentionLookat* search(const ActorBase& actor_self, sead::Vector3f pos_self);
+    const AttentionLookat* search(const ActorBase& actor_self, const sead::Vector2f& pos_self);
 
 protected:
     sead::OffsetList<AttentionLookat>   mLookatList;

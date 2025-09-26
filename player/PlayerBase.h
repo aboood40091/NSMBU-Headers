@@ -4,9 +4,9 @@
 #include <actor/AttentionLookat.h>
 #include <audio/GameAudio.h>
 #include <collision/ActorBgCollisionPlayerCheck.h>
-#include <collision/ActorCollisionTouchDrcCallback.h>
 #include <effect/EffectObj.h>
 #include <game/Quake.h>
+#include <player/PlayerDrcTouchCB.h>
 #include <player/PlayerEnum.h>
 #include <player/PlayerKey.h>
 #include <player/util/HipdropExEffect.h>
@@ -15,20 +15,17 @@
 
 #include <container/seadRingBuffer.h>
 
-class PlayerBaseTouchDrcCB : public ActorCollisionTouchDrcCallback  // vtbl Address: 0x101693FC
+struct PlayerBgPointHIO
 {
-public:
-    // Address: 0x029117C0
-    bool ccIsTouchEnable(ActorCollisionCheck* p_cc, const sead::Vector2f& pos) override;
-    void ccOnTouch(ActorCollisionCheck* p_cc, const sead::Vector2f& pos) override { }
-
-    bool bcIsTouchEnable(BgCollision* p_bg_collision, const sead::Vector2f& pos) override { return false; }
+    ActorBgCollisionCheck::Sensor   sensor_foot;
+    ActorBgCollisionCheck::Sensor   sensor_head;
+    ActorBgCollisionCheck::Sensor   sensor_wall;
 };
-static_assert(sizeof(PlayerBaseTouchDrcCB) == sizeof(ActorCollisionTouchDrcCallback));
+static_assert(sizeof(PlayerBgPointHIO) == 0x24);
 
 class   ActorBoxBgCollision;
-struct  PlayerBgPointHIO;
 struct  PlayerGravityHIO;
+class   PlayerModelBase;
 class   PlayerModelBaseMgr;
 struct  PlayerSpeedHIO;
 
@@ -37,6 +34,10 @@ class PlayerBase : public Actor // vtbl Address: 0x10166E84
     // getRuntimeTypeInfoStatic()::typeInfo initialization guard variable   Address: 0x101E9CCC
     // getRuntimeTypeInfoStatic()::typeInfo                                 Address: 0x101E9CD0
     SEAD_RTTI_OVERRIDE(PlayerBase, Actor)
+
+public:
+    // Address: 0x10166BC4
+    static const f32 cFireShootFrame;
 
 public:
     enum DamageType
@@ -66,43 +67,201 @@ public:
 
     enum Status
     {
-        cStatus_113 = 113,
+        cStatus_1                   =   1,  // NSMBW: Bit 0x01
+        cStatus_2,                          // NSMBW: Bit 0x7D
+        cStatus_3,                          // NSMBW: Bit 0x02
 
-        cStatus_133 = 133,
+        cStatus_7                   =   7,  // NSMBW: Bit 0xB9
 
-        cStatus_LastBit = 286,  // Not sure if bit 287 is used
+        cStatus_9                   =   9,
+
+        cStatus_10                  =  10,  // Force-disable jump (accelY = 0)
+        cStatus_11,
+
+        cStatus_36                  =  36,  // NSMBW: Bit 0x13
+
+        cStatus_40                  =  40,  // NSMBW: Bit 0x15
+        cStatus_41,                         // NSMBW: Bit 0x16
+
+        cStatus_46                  =  46,
+        cStatus_47,
+        cStatus_48,                         // NSMBW: Bit 0x1C
+
+        cStatus_52                  =  52,  // NSMBW: Bit 0x1F
+
+        cStatus_56                  =  56,  // NSMBW: Bit 0xC4
+
+        cStatus_60                  =  60,  // Disable block-hit bounce
+
+        cStatus_63                  =  63,
+
+        cStatus_71                  =  71,  // NSMBW: Bit 0x2D
+
+        cStatus_73                  =  73,  // NSMBW: Bit 0x30
+
+        cStatus_93                  =  93,
+
+        cStatus_97                  =  97,
+        cStatus_98,                         // NSMBW: Bit 0x3B
+        cStatus_99,                         // NSMBW: Bit 0x3C
+
+        cStatus_105                 = 105,
+        cStatus_106,
+
+        cStatus_113                 = 113,  // NSMBW: Bit 0x4A
+
+        cStatus_117                 = 117,
+        cStatus_118,
+        cStatus_119,                        // NSMBW: Bit 0x4E
+
+        cStatus_122                 = 122,  // NSMBW: Bit 0x53
+        cStatus_123,                        // Make visible next frame
+
+        cStatus_RideNatDone         = 127,  // NSMBW: Bit 0x58 (Ride Nat target reached)
+        cStatus_RideNat,                    // NSMBW: Bit 0x59
+
+        cStatus_130                 = 130,  // NSMBW: Bit 0x5C
+        cStatus_131,                        // NSMBW: Bit 0x5D
+
+        cStatus_133                 = 133,  // NSMBW: Bit 0x5E
+        cStatus_134,                        // NSMBW: Bit 0x61
+
+        cStatus_136                 = 136,  // NSMBW: Bit 0x62
+        cStatus_137,
+
+        cStatus_138                 = 138,
+
+        cStatus_141                 = 141,
+
+        cStatus_145                 = 145,  // NSMBW: Bit 0x86
+        cStatus_146,                        // NSMBW: Bit 0x87
+        cStatus_147,                        // NSMBW: Bit 0x88
+        cStatus_148,                        // NSMBW: Bit 0x89
+
+        cStatus_151                 = 151,  // NSMBW: Bit 0x8B
+        cStatus_152,                        // NSMBW: Bit 0x8C
+        cStatus_153,                        // NSMBW: Bit 0x8D
+
+        cStatus_155                 = 155,
+        cStatus_156,                        // NSMBW: Bit 0x95
+
+        cStatus_171                 = 171,
+
+        cStatus_FollowMameKuribo    = 174,  // NSMBW: Bit 0xAC
+        cStatus_Invisible,                  // NSMBW: Bit 0xBB
+        cStatus_HideTemporarily,            // NSMBW: Bit 0xBC
+
+        cStatus_178                 = 178,  // NSMBW: Bit 0xBE
+        cStatus_179,                        // NSMBW: Bit 0xBF
+
+        cStatus_193                 = 193,
+
+        cStatus_209                 = 209,  // NSMBW: Bit 0x64
+        cStatus_210,
+
+        cStatus_227                 = 227,  // NSMBW: Bit 0x6F
+
+        cStatus_238                 = 238,  // NSMBW: Bit 0x72
+
+        cStatus_244                 = 244,  // NSMBW: Bit 0x5F
+
+        cStatus_247                 = 247,  // NSMBW: Bit 0x7E
+        cStatus_248,                        // NSMBW: Bit 0x7F
+        cStatus_CheckBg,                    // NSMBW: Bit 0x80
+        cStatus_250,
+        cStatus_251,
+        cStatus_252,                        // NSMBW: Bit 0x81
+        cStatus_253,                        // NSMBW: Bit 0xB8
+
+        cStatus_255                 = 255,  // NSMBW: Bit 0x82
+        cStatus_256,                        // NSMBW: Bit 0x83
+
+        cStatus_258                 = 258,
+
+        cStatus_270                 = 270,  // NSMBW: Bit 0x84
+
+        cStatus_280                 = 280,  // NSMBW: Bit 0xCA
+
+        cStatus_282                 = 282,
+
+        cStatus_LastBit             = 286,  // Not sure if bit 287 is used
         cStatus_BitNum,
         cStatus_MaxBitNum = (cStatus_BitNum + 31) / 32 * 32
     };
 
     enum BgCross
     {
-        cBgCross_IsFoot = 0,
-
-        cBgCross_IsWallPressL = 3,
-        cBgCross_IsWallPressR,
-        cBgCross_IsWallTouchL,
-        cBgCross_IsWallTouchR,
-
-        cBgCross_WallWalkEnableL = 11,
+        cBgCross_IsFoot = 0,                        // NSMBW Bit: 0x00
+        cBgCross_IsHead,                            // NSMBW Bit: 0x01
+        cBgCross_IsWall,                            // NSMBW Bit: 0x02
+        cBgCross_IsWallPressL,                      // NSMBW Bit: 0x03
+        cBgCross_IsWallPressR,                      // NSMBW Bit: 0x04
+        cBgCross_IsWallTouchL,                      // NSMBW Bit: 0x05
+        cBgCross_IsWallTouchR,                      // NSMBW Bit: 0x06
+        cBgCross_CarryRelatedL,                     // NSMBW Bit: 0x07
+        cBgCross_CarryRelatedR,                     // NSMBW Bit: 0x08
+        cBgCross_CarryObjBgCarriedL,                // NSMBW Bit: 0x09
+        cBgCross_CarryObjBgCarriedR,                // NSMBW Bit: 0x0A
+        cBgCross_WallWalkEnableL,
         cBgCross_WallWalkEnableR,
-        cBgCross_IsWatterPillarL,       // Maybe?
-        cBgCross_IsWatterPillarR,       // ^^^
+        cBgCross_IsWaterPillarL,                    // Maybe?
+        cBgCross_IsWaterPillarR,                    // ^^^
+        cBgCross_15,                                // NSMBW Bit: 0x0B (MAYBE)
+        cBgCross_16,                                // NSMBW Bit: 0x0C
+        cBgCross_17,                                // NSMBW Bit: 0x0D
+        cBgCross_IsUnderwater,                      // NSMBW Bit: 0x0E
+        cBgCross_IsWater,                           // NSMBW Bit: 0x0F (All liquids)
+        cBgCross_IsCompletelyUnderwater,            // NSMBW Bit: 0x10
 
-        cBgCross_IsWater = 18,
+        cBgCross_RDash_IsNonWaterLiquid = 22,       // i.e. Lava, Lava Wave, Poison & Quicksand
+        cBgCross_IsAirWater,                        // NSMBW Bit: 0x12
+        cBgCross_DispSideLimitL,
+        cBgCross_DispSideLimitR,
+        cBgCross_IsSnow,                            // NSMBW Bit: 0x16
+        cBgCross_IsIce,                             // NSMBW Bit: 0x17
+        cBgCross_IsIceLowSlip,                      // NSMBW Bit: 0x18
+        cBgCross_SlipAttr6,
+        cBgCross_OnSakaUnderRoof,                   // NSMBW Bit: 0x19
+        cBgCross_IsWaterAttr,
+        cBgCross_32,
+        cBgCross_IsSand,                            // NSMBW Bit: 0x1A
+        cBgCross_IsSinkSand,
+        cBgCross_IsSlightlyInsideSinkSand,          // NSMBW Bit: 0x1B
+        cBgCross_IsPartiallySubmergedInSinkSand,    // NSMBW Bit: 0x1C
+        cBgCross_IsCompletelySubmergedInSinkSand,   // NSMBW Bit: 0x1D
+        cBgCross_IsBeltConveyorL,                   // NSMBW Bit: 0x1E
+        cBgCross_IsBeltConveyorR,                   // NSMBW Bit: 0x1F
+        cBgCross_IsChikuwa,
+        cBgCross_IsChikuwaActor,
+        cBgCross_OnHalf,                            // NSMBW Bit: 0x20
+        cBgCross_OnRide,                            // NSMBW Bit: 0x21
+        cBgCross_IsHold,                            // NSMBW Bit: 0x22 (i.e., Head is touching a horizontal rope)
+        cBgCross_Slip,                              // NSMBW Bit: 0x23 (MAYBE)
+        cBgCross_IsOnHDokan,
+        cBgCross_47,                                // NSMBW Bit: 0x26
+        cBgCross_IsSaka,                            // NSMBW: daPlBase_c::isSaka()
 
-        cBgCross_IsSinkSand = 34,
-        cBgCross_IsSlightlyInsideSinkSand,
-        cBgCross_IsPartiallySubmergedInSinkSand,
-        cBgCross_IsCompletelySubmergedInSinkSand,
+        cBgCross_IsLineSpinLift = 50,
+        cBgCross_IsBlockDRC,
+        cBgCross_IsLiftZenStar,
+        cBgCross_IsFloorGyration,
+        cBgCross_IsFunsui,
+        cBgCross_IsKani,                            // NSMBW Bit: 0x28
+        cBgCross_IsKani2,                           // NSMBW Bit: 0x29
+        cBgCross_IsKani3,                           // NSMBW Bit: 0x2A (Never actually set at runtime)
+        cBgCross_IsPole,
 
-        cBgCross_IsOnHorizontalPipe = 46,
+        cBgCross_66 = 66,                           // NSMBW Bit: 0x35
+        cBgCross_67,                                // NSMBW Bit: 0x36
+        cBgCross_68,                                // NSMBW Bit: 0x37 (MAYBE)
+        cBgCross_69,                                // NSMBW Bit: 0x38 (MAYBE)
 
-        cBgCross_IsSaka = 48,
+        cBgCross_HitBgActorYuka = 73,               // NSMBW Bit: 0x3B (MAYBE)
+        cBgCross_74,                                // NSMBW Bit: 0x3D
+        cBgCross_75,                                // NSMBW Bit: 0x3E
+        cBgCross_76,                                // NSMBW Bit: 0x3F
 
-        cBgCross_IsPole = 58,
-
-        cBgCross_LastBit = 76,  // Explicitly checked in function 0x029586DC
+        cBgCross_LastBit = cBgCross_76,             // Explicitly checked in function 0x029586DC
         cBgCross_BitNum,
         cBgCross_MaxBitNum = (cBgCross_BitNum + 31) / 32 * 32
     };
@@ -116,7 +275,7 @@ public:
         cBgAttr_Sand,
         cBgAttr_Ice,
         cBgAttr_Dirt,
-        cBgAttr_Water,
+        cBgAttr_Water1,
         cBgAttr_Cloud,
         cBgAttr_SandFunsui, // i.e., sand pillar
         cBgAttr_Manta,      // Used for beanstalk
@@ -124,7 +283,7 @@ public:
         cBgAttr_Carpet,
         cBgAttr_Leaf,
         cBgAttr_Wood,
-        cBgAttr_WaterPillar,
+        cBgAttr_Water2,     // Water pillar?
         cBgAttr_Num
     };
     static_assert(cBgAttr_Num == 14);
@@ -149,7 +308,21 @@ public:
     };
     static_assert(sizeof(DokanType) == 4);
 
-    struct JumpInf;
+    enum JumpSe
+    {
+        cJumpSe_None = 0,
+        cJumpSe_Normal,
+        cJumpSe_High
+    };
+    static_assert(sizeof(JumpSe) == 4);
+
+    struct JumpInf
+    {
+        f32     speed_y;
+        JumpSe  jump_se_type;
+        u8      _8;
+    };
+    static_assert(sizeof(JumpInf) == 0xC);
 
     enum WalkAction
     {
@@ -409,6 +582,13 @@ public:
     };
     static_assert(sizeof(ActionType) == 4);
 
+    enum FunsuiType
+    {
+        cFunsuiType_Sand = 0,
+        cFunsuiType_Water
+    };
+    static_assert(sizeof(FunsuiType) == 4);
+
     enum DemoType
     {
     };
@@ -431,24 +611,22 @@ public:
         cBounceType_2
     };
 
-    enum JumpSe
-    {
-        cJumpSe_None = 0,
-        cJumpSe_Normal,
-        cJumpSe_High
-    };
-    static_assert(sizeof(JumpSe) == 4);
-
     // Address: 0x10166E60
-    static const f32 cDirSpeed[DIRECTION_NUM_X];
+    static const f32 cDirSpeed[cDirType_NumX];
     // Address: 0x10166E68
     static const f32 cJumpSpeed;                    // 3.628f
+    // Address: 0x10166E6C
+    static const f32 cUnkZero;                      // 0.0f
+    // Address: 0x10166E70
+    static const f32 cWaterNumaJumpSpeed;           // 0.75f
     // Address: 0x10166E74
     static const f32 cMaxFallSpeed;                 // -4.0f
     // Address: 0x10166E78
     static const f32 cMaxFallSpeed_Foot;            // -2.0f
     // Address: 0x10166E7C
     static const f32 cTurnPowerUpRate;              // 3.0f
+    // Address: 0x10166E80
+    static const f32 cWaterCancelCrouchAnmSpeed;    // 0.1f
 
 public:
     // Address: 0x028F23C0
@@ -458,15 +636,15 @@ public:
 
 protected:
     // Address: 0x028F2E78
-    s32 create_() override;
+    Result create_() override;
     // Address: 0x028F2F0C
-    s32 preExecute_() override;
+    bool preExecute_() override;
     // Address: 0x028F3078
-    s32 execute_() override;
+    bool execute_() override;
     // Address: 0x028F3534
     void postExecute_(MainState state) override;
     // Address: 0x028F36BC
-    s32 preDraw_() override;
+    bool preDraw_() override;
 
     // Address: 0x028F372C
     void blockHitInit_() override;
@@ -475,6 +653,29 @@ public:
     ActorBgCollisionCheck* getBgCheck() override
     {
         return &mBgCheckPlayer;
+    }
+
+    // Address: 0x028F376C
+    void setDrawTypeInDistantView();
+    // Address: 0x028F3778
+    void resetDrawType();
+
+    // Address: 0x028F3784
+    bool isKinopio() const;
+    // Address: 0x028F37A8
+    bool isTotten() const;
+
+    // Address: 0x028F37BC
+    bool isMameAction();
+
+    // Address: 0x028F3820
+    sead::Vector3f* getHeadTopPosP();
+    // Address: 0x028F3844
+    sead::Vector3f* getHeadPosP();
+
+    const sead::Vector3f& getLookatPos() const
+    {
+        return *const_cast<PlayerBase*>(this)->getHeadPosP();
     }
 
     virtual void executeMain() = 0;
@@ -500,15 +701,123 @@ public:
 
     virtual PlayerTallType getTallType(PlayerMode mode) = 0;
 
-    virtual void vf144(sead::Vector3f&) = 0;
-    virtual void vf14C(sead::Vector3f*, f32*) = 0;
+    virtual void getMaskPos(sead::Vector3f& pos) = 0;
+    virtual void getMaskCaveCheckPos(sead::Vector3f* p_pos, f32* p_y_offset) = 0;
 
     // Address: 0x028F3854
     virtual bool vf154();
 
+    // Address: 0x028F389C
+    void setMaskPosInterpType(s32 src_type);
+
+    // Address: 0x028F31C0
+    void calcMaskPos();
+
+    // Address: 0x028F38AC
+    void dokanAdjustMaskPos(sead::Vector3f& mask_pos);
+
+    // Address: 0x028F3948
+    bool checkRideActor(PlayerBase* p_player_other);
+    // Address: 0x028F3978
+    void setRideNat(f32 value);
+    // Address: 0x028F398C
+    void updateRideNat();
+
+    // Address: 0x028F39E4
+    void onFollowMameKuribo();
+    // Address: 0x028F31A0
+    void clearFollowMameKuribo();
+    // Address: 0x028F3A00
+    s32 getFollowMameKuribo();
+    // Address: 0x028F3A08
+    s32 getFollowMameKuriboSpeedType();
+    // Address: 0x028F3A44
+    f32 getFollowMameKuriboSpeedScaleX();
+    // Address: 0x028F3A94
+    f32 getFollowMameKuriboSpeedScaleY();
+
+    // Address: 0x028F6274
+    BgAttr getFootBgAttr(BgUnitCode::Attr attr);
+
+protected:
+    // Address: 0x028F684C
+    void postBgCrossImpl_();
+    // Address: 0x028F6298
+    bool checkLedge_();
+    // Address: 0x028F658C
+    bool vsPlayerCarryPush_();
+
+    // Address: 0x028F6B04
+    void setBcSensorFlagsImpl_();
+
+public:
+    // Address: 0x028F77B4
+    void bgCheck(bool side_view_check);
+
+    // Address: 0x028F6CD4
+    void clearBgCheckInfo();
+    // Address: 0x028F6CAC
+    void resetBgSpeed();
+
+    // Address: 0x028F6EEC
+    void checkSideViewLemit();
+    // Address: 0x028F6D20
+    void revSideLimitCommon(f32 x);
+    // Address: 0x028F6E64
+    void calcSideLimitMultL(f32 x);
+    // Address: 0x028F6EA8
+    void calcSideLimitMultR(f32 x);
+
+private:
+    inline bool checkDispSideLemit_();
+
+public:
+    // Address: 0x028F716C
+    Angle getSakaAngleBySpeed(f32 speed_F);
+
+    // Address: 0x028F71C0
+    bool checkOnHDokan(const u64& bc_data); // See BgUnitCode
+
+    // Address: 0x028F7204
+    bool checkSinkSand();
+
+    // Address: 0x028F730C
+    bool checkBgWall(u8 dir);
+
+    // Address: 0x028F73F4
+    f32 getWaterCheckPosY();
+    // Address: 0x028F73B4
+    f32 getWaterOffsetY();
+
+    // Address: 0x028F7428
+    void checkWater();
+    // Address: 0x028F76A0
+    void checkDamageBg();
+
     virtual PlayerBgPointHIO* getBgPointData() = 0;
+
+    ActorBgCollisionCheck::Sensor* getHeadBgPointData()
+    {
+        return &getBgPointData()->sensor_head;
+    }
+
+    ActorBgCollisionCheck::Sensor* getWallBgPointData()
+    {
+        return &getBgPointData()->sensor_wall;
+    }
+
+    ActorBgCollisionCheck::Sensor* getFootBgPointData()
+    {
+        return &getBgPointData()->sensor_foot;
+    }
+
     virtual f32 getStandHeadBgPointY() = 0;
 
+private:
+    inline void checkBgCross_();
+    inline void checkCarryObjBgCarried_(const ActorBgCollisionCheck::Output& output, u8 dir);
+
+public:
     virtual void checkBgCrossSub() = 0;
     virtual void postBgCross() = 0;
 
@@ -520,6 +829,13 @@ public:
     virtual void releaseCcData();
     // Address: 0x028F9A78
     virtual void clearCcData();
+
+    // Address: 0x028FA0DC
+    void setCcPlayerRevParam(f32);
+    // Address: 0x028FA108
+    void clearCcPlayerRev();
+    // Address: 0x028FA130
+    bool calcCcPlayerRev(f32*);
 
     virtual bool vf19C() = 0;
 
@@ -574,6 +890,9 @@ public:
     virtual void initialBoxingKoopaJr(s32 next_goto_type);
     // Address: 0x028FDD68
     virtual void initialTitle(s32 next_goto_type);
+
+    // Address: 0x028FAF1C
+    void changeDemoState(const StateID& state_id, s32 param);
 
     // StateID_DemoCreate           Address: 0x1022A008
     // initializeState_DemoCreate   Address: 0x028FD8B4
@@ -713,6 +1032,8 @@ public:
     virtual bool isDemoMode() const;
     // Address: 0x028FB738
     virtual bool isDemoType(DemoType type);
+    // Address: 0x028FB754
+    bool isDemoAll();
 
     virtual bool isChange() = 0;
 
@@ -743,6 +1064,9 @@ public:
     virtual bool isEnableDokanInStatus() = 0;
     virtual bool isEnableMameDokanIn() = 0;     // I think...?
 
+    // Address: 0x028FFA48
+    bool checkDokanInKeyTrig(DokanDir dir);
+
     // Address: 0x028FFFD4
     virtual bool setDokanIn(DokanDir dir);
 
@@ -762,6 +1086,11 @@ public:
     // Bounce player
     virtual bool bouncePlayer1(f32 speed_y, f32 speed_F, bool, BounceType bounce_type, JumpSe jump_se_type) = 0;   // Does lots of checks that can cancel the bounce, calls bouncePlayer2 otherwise
     virtual bool bouncePlayer2(f32 speed_y, f32 speed_F, bool, BounceType bounce_type, JumpSe jump_se_type) = 0;
+
+    // Address: 0x02906B04
+    void changeState(const StateID& state_id, s32 param);
+    // Address: 0x02906B0C
+    void changeState(const StateID& state_id, const JumpInf& jmp_inf);
 
     // StateID_None         Address: 0x1022A484
     // initializeState_None Address: 0x02908AE4
@@ -865,6 +1194,18 @@ public:
         return false;
     }
 
+    bool isSaka()
+    {
+        return isNowBgCross(cBgCross_IsSaka);
+    }
+
+private:
+    bool isSaka_()
+    {
+        return mBgCheckPlayer.getSakaType(mBgCheckPlayer.getSakaBaseAngle());
+    }
+
+public:
     virtual void setSlipAction() = 0;
     virtual bool vf7AC() = 0;
 
@@ -894,6 +1235,17 @@ public:
     // Address: 0x02901A68
     virtual void DemoAnm_Unk10();
 
+    // Address: 0x028F3B44
+    void coinJumpOnStampCB(s32 coin_num);
+    // Address: 0x028F3C34
+    void coinFunsuiOnDamageCB(s32 type, Actor* p_eat_die_actor);
+
+private:
+    inline void reduceCoinNum_(s32 coin_num);
+    // Address: 0x028F3AE4
+    s32 adjustCoinReductionNumCB_(s32 coin_num);
+
+public:
     // Address: 0x028F3ED0
     virtual void calcTimerProc();
 
@@ -927,6 +1279,14 @@ public:
     virtual void setZPositionDirect(f32 z) = 0;
     virtual void offZPosSetNone() = 0;
 
+    // Address: 0x028F3814
+    PlayerModelBase* getModel();
+    // Address: 0x028F3FFC
+    const PlayerModelBase* getModel() const;
+
+    // Address: 0x028F4008
+    void getAnkleCenterPos(sead::Vector3f* p_pos);
+
     virtual bool isFaceRot()
     {
         return false;
@@ -942,6 +1302,29 @@ public:
 
     virtual void setFallAction() = 0;
 
+    // Address: 0x028F40D8
+    f32 getThrowSpeed();
+    // Address: 0x028F40F0
+    f32 getThrowLoopPosX(f32 x);
+
+    // Address: 0x028F4898
+    void calcPlayerSpeedXY();
+    // Address: 0x028F45E4
+    void posMoveAnglePlayer(const sead::Vector3f& speed);
+    // Address: 0x028F4178
+    void posMoveAnglePenguin(const sead::Vector3f& speed);
+    // Address: 0x028F4CD8
+    void initAdditionalAirSpeedF(f32 start_val, f32 len_frames);
+    // Address: 0x028F4148
+    void calcAdditionalAirSpeedF();
+
+    // Address: 0x028F4D48
+    bool setJump(u8, JumpSe jump_se_type);
+    // Address: 0x028F4E50
+    bool setDelayHelpJump();
+    // Address: 0x028F4EE8
+    bool checkJumpTrigger();
+
     virtual f32 getJumpSpeed() = 0;
     virtual f32 vf89C() = 0;
     virtual void setJumpSound(JumpSe jump_se_type) = 0;
@@ -955,6 +1338,17 @@ public:
     virtual bool setFlyDamage(DamageType type, s32 dir, bool, bool, f32 speed_F, f32 speed_y) = 0;
     virtual bool setDamage2(Actor* p_actor, DamageType type) = 0;
     virtual bool setPressBgDamage(DamageType type, bool) = 0;
+
+    // Address: 0x028F4F48
+    void clearTreadCount();
+    s8 getTreadCount() const { return mTreadCnt; }
+    // Address: 0x028F4F84
+    s8 calcTreadCount(s32 max);
+
+    void clearComboCount() { mComboCnt = 0; }
+    s8 getComboCount() const { return mComboCnt; }
+    // Address: 0x028F4FA8
+    s8 calcComboCount(s32 max);
 
     virtual void clearStarCount() = 0;
     virtual s8 getStarCount() const = 0;
@@ -988,6 +1382,12 @@ public:
     // Address: 0x02904284
     virtual void setTurnSmokeEffect(bool with_brake);
 
+    // Address: 0x029049F8
+    void setSandEffect();
+
+    // Address: 0x0290345C
+    void changeChallengeState(const StateID& state_id);
+
     // StateID_ChallengeState1          Address: 0x1022A3B8
     // initializeState_ChallengeState1  Address: 0x02903F30
     // executeState_ChallengeState1     Address: 0x02903504
@@ -1018,6 +1418,15 @@ public:
     virtual void vfA34() = 0;
     virtual void vfA3C() = 0;
     virtual void vfA44() = 0;
+
+    // Address: 0x028F5E90
+    void calcHeadAttentionAngle();
+
+private:
+    // Address: 0x028F5554
+    PlayerBase* searchPlayerAttention_(const sead::Vector2f& src_pos);
+    // Address: 0x028F566C
+    bool calcHeadAttentionAngle_(const sead::Vector2f& target_pos, sead::BitFlag32 flag, Angle max_angle_y);
 
 public:
     const PlayerKey& getPlayerKey() const
@@ -1075,11 +1484,20 @@ public:
         return mMode;
     }
 
-    // Address: 0x028F37A8
-    bool isTotten() const;
+    // Address: 0x028F8760
+    bool checkOldBgCrossFoot(s32 frame_cnt);
 
-    // Address: 0x028F4D48
-    bool setJump(u8, u32);
+    // Address: 0x028F8900
+    void calcNoHitObjBgTimer();
+
+    // Address: 0x028F9560
+    bool checkStandUpRoof();
+
+    // Address: 0x028FA290
+    void updateNoHitPlayer();
+
+    // Address: 0x029050C8
+    s32 getPowerChangeType(bool);
 
     // Address: 0x029065F0
     Angle getMukiAngle(u32 dir);
@@ -1087,26 +1505,29 @@ public:
     // Address: 0x0290B9A4
     void startSound(const char* label, u32 = 0);
 
+    // Address: 0x0290BC6C
+    void setHitBlockSE();
+
 protected:
     s32                             mExecuteFreezeTimer;
     PlayerModelBaseMgr*             mpModelBaseMgr;
     sead::Vector3f                  _284;
-    s32                             _290;                   // Interpolation source for the below; 1 = ankle joints center pos, everything else = player pos
-    s32                             _294;                   // Time value for the below
-    sead::Vector3f                  _298;                   // Some position that gets linearly interpolated towards from either player pos or ankle joints center pos
-    s32                             _2A4;
+    s32                             mMaskPosInterpSrcType;  // Interpolation source; 1 = ankle joints center pos, everything else = player pos
+    s32                             mMaskPosInterpTimer;
+    sead::Vector3f                  mMaskPos;
+    s32                             _2a4;
     PlayerKey                       mPlayerKey;
     GameAudio::AudioObjctPly        mAudioObj;
     AttentionLookat                 mAttentionLookat;
     Bitfield<cStatus_MaxBitNum>     mStatus;
-    f32                             mCenterOffsetY;
+    f32                             mCenterOffsetY;         // Or height?
     u32                             _4b8;
     sead::Vector3f                  mFrameEndPosDelta;
     sead::Vector3f                  _4c8;
     PlayerSpeedHIO*                 mpSpeedData_Normal;
     PlayerSpeedHIO*                 mpSpeedData_Star;
     PlayerGravityHIO*               mpGravityData;
-    s32                             _4e0;
+    s32                             mNoGravityTimer;
     f32                             _4e4;
     bool                            _4e8;
     sead::Vector3f                  mNextFrameSpeed;
@@ -1126,28 +1547,28 @@ protected:
         cOldBgCrossFootNum
     >                               mOldBgCrossFoot;        // Array of cBgCross_IsFoot of the past 10 frames
     f32                             _1b0c;
-    f32                             _1b10;
+    f32                             mKaniPosY;
     ActorBgCollisionCheck::SakaType mSakaType;
-    Angle                           mSakaAngle;
-    Angle                           _1b1c;
-    Angle                           _1b20;
-    Angle                           _1b24;
+    Angle                           mSpeedSakaAngle;
+    Angle                           mSpeedSakaAnglePrev;
+    Angle                           mSakaBaseAngle;
+    Angle                           mSakaBaseAnglePrev;
     sead::Vector3f                  _1b28;
     BgAttr                          mBgAttr;
-    Angle                           _1b38;
-    f32                             mWaterTopPosY;          // Maybe?
-    f32                             mWaterTopPosY2;         // ^^^
+    Angle                           mWallAngle;
+    f32                             mWaterSurfacePosY;
+    f32                             mWaterSurfacePosYPrev;
     WaterType                       mWaterType;
     s32                             mWaterDepthType;        // TODO: enum
     sead::Vector3f                  mAirWaterHitPos;        // "AirWater" = Floating Water Bubble
     Angle                           mAirWaterHitAngle;
     f32                             mSinkSandSurfacePosY;
-    sead::Vector2f                  _1b60;
-    sead::Vector2f                  _1b68;
-    f32                             _1b70;
-    f32                             _1b74;
-    u8                              _1b78;
-    u32                             _1b7c;
+    sead::Vector2f                  mBgSpeed;
+    sead::Vector2f                  mBgSpeedPrev;
+    f32                             mSandSinkRate;
+    f32                             mDispSideLimitPad;
+    bool                            mIsBgDamageEnable;
+    BgUnitCode::TypeInfo_Damage     mDamageBgTypeInfo;
     sead::FixedRingBuffer<
         ActorUniqueID,
         2
@@ -1155,16 +1576,16 @@ protected:
     ActorUniqueID                   mLineSpinLiftID;
     u32                             _1b9c;
     s32                             mNoHitObjBgTimer;
-    f32                             _1ba4;
-    f32                             _1ba8;
-    f32                             _1bac;
+    f32                             mAdditionalAirSpeedFStart;
+    f32                             mAdditionalAirSpeedF;
+    f32                             mAdditionalAirSpeedFDecelStep;
     f32                             _1bb0;
     s32                             _1bb4;
     ActorCollisionCheck             mCollisionCheck2_React; // First collision check is also for react
     ActorCollisionCheck             mCollisionCheck3_React;
     ActorCollisionCheck             mCollisionCheck4_Attack;
     ActorCollisionCheck             mCollisionCheck5_Attack;
-    PlayerBaseTouchDrcCB            mTouchDrcCallback;
+    PlayerDrcTouchCB                mDrcTouchCallback;
     s32                             _205c;
     s32                             _2060;
     s32                             _2064;
@@ -1184,10 +1605,16 @@ protected:
     f32                             _2098;
     s32                             _209c;
     s32                             _20a0;
-    u32                             _20a4[2];               // TODO: Figure out if this is a SafeArray
-    f32                             _20ac[2];               // ^^^
+    sead::SafeArray<
+        u32,
+        cDirType_NumX
+    >                               _20a4;
+    sead::SafeArray<
+        f32,
+        cDirType_NumX
+    >                               _20ac;
     FStateMgr<PlayerBase>           mDemoStateMgr;
-    u32                             mChangeDemoStateParam;
+    s32                             mChangeDemoStateParam;
     sead::BitFlag32                 mDemoTypeFlag;
     s32                             mDemoMode;              // TODO: Union
     s32                             mDemoAction;            // ^^^
@@ -1203,7 +1630,7 @@ protected:
     bool                            mIsLastPlayer;          // Maybe?
     f32                             _2120;
     f32                             _2124;
-    u32                             _2128;
+    s32                             _2128;
     s32                             _212c;
     f32                             mGoalBasePosY;
     s32                             _2134;
@@ -1227,8 +1654,8 @@ protected:
     bool                            _2198;
     FStateMgr<PlayerBase>           mStateMgr;
     JumpInf*                        mpChangeStateJmpInf;
-    u32                             mChangeStateParam;
-    ActionType                      mAction;
+    s32                             mChangeStateParam;
+    s32                             mAction;                // See ActionType
     s32                             mActionTimer;
     u32                             mStunMode;
     ActorUniqueID                   mRideActorID;
@@ -1237,13 +1664,13 @@ protected:
     s32                             _21e0;
     s32                             _21e4;
     s32                             _21e8;
-    u32                             _21ec;
+    FunsuiType                      mFunsuiType;
     sead::Vector2f                  mFunsuiPos;
     f32                             mJumpDaiSpeedFReserve;
     sead::Vector3f                  mRidePlayerPosDelta;
     sead::Vector3f                  _2208;
     u32                             mHipdropEffectStep;     // Maybe?
-    f32                             mRideNat;
+    f32                             mRideNatPosY;
     s32                             mFrameEndFollowMameKuribo;
     s32                             mFollowMameKuribo;
     s32                             mPenguinSlideCooldown;  // Maybe?

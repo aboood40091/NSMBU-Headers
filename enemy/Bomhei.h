@@ -1,7 +1,7 @@
 #pragma once
 
 #include <actor/Profile.h>
-#include <collision/ActorCollisionTouchDrcCallback.h>
+#include <collision/ActorCollisionDrcTouchCallback.h>
 #include <effect/EffectObj.h>
 #include <enemy/CarryEnemy.h>
 #include <enemy/EnemyActorScaler.h>
@@ -10,23 +10,23 @@
 #include <graphics/Light.h>
 #include <map_obj/MaskDraw.h>
 
-class BomheiTouchDrcCB : public ActorCollisionTouchDrcCallback  // vtbl Address: 0x1005D73C
+class BomheiDrcTouchCB : public ActorCollisionDrcTouchCallback  // vtbl Address: 0x1005D73C
 {
 public:
-    BomheiTouchDrcCB()
+    BomheiDrcTouchCB()
         : _4(0)
     {
     }
 
     // Address: 0x022D053C
-    bool ccIsTouchEnable(ActorCollisionCheck* p_cc, const sead::Vector2f& pos) override;
+    bool ccSetTouchNormal(ActorCollisionCheck* p_cc, const sead::Vector2f& pos) override;
     // Address: 0x022D0584
     void ccOnTouch(ActorCollisionCheck* p_cc, const sead::Vector2f& pos) override;
 
 protected:
     u32 _4;
 };
-static_assert(sizeof(BomheiTouchDrcCB) == 8);
+static_assert(sizeof(BomheiDrcTouchCB) == 8);
 
 class BlendModel;
 class ModelResource;
@@ -48,16 +48,19 @@ public:
 
 protected:
     // Address: 0x022D159C
-    s32 create_() override;
+    Result create_() override;
     // Address: 0x022D19B8
-    s32 execute_() override;
+    bool execute_() override;
     // Address: 0x022D1BD0
-    s32 draw_() override;
+    bool draw_() override;
     // Address: 0x022D1C38
-    s32 doDelete_() override;
+    Result doDelete_() override;
 
     // Address: 0x022D2F48
     void blockHitInit_() override;
+
+    // Address: 0x022D3C3C
+    bool smokeDamageEnable_Poison_(f32 surface_pos_y) override;
 
 public:
     // Address: 0x022D3F08
@@ -68,9 +71,6 @@ public:
     void yoganSplashEffect(const sead::Vector3f&) override;
     // Address: 0x022D3F88
     void poisonSplashEffect(const sead::Vector3f&) override;
-
-    // Address: 0x022D3C3C
-    bool smokeDamageEnable_Poison(f32 surface_pos_y) override;
 
     // Address: 0x022D42A8
     bool vf18C() override;
@@ -241,7 +241,7 @@ protected:
     Light                   mLight;
     EffectObj               mEffect;
     EnemyActorScaler        mScaler;
-    BomheiTouchDrcCB        mTouchDrcCallback;
+    BomheiDrcTouchCB        mDrcTouchCallback;
     f32                     _1a44;
     ActorState*             mpKoopaJr;
     ActorCollisionCheck     mCollisionCheck2;

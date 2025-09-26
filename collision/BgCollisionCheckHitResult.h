@@ -1,13 +1,11 @@
 #pragma once
 
-#include <utility/Angle.h>
-
 #include <math/seadVector.h>
 
 struct BgCollisionCheckHitResult
 {
-    u8              hit_direction_flag;
+    bool            is_hit;
     sead::Vector2f  hit_pos;
-    Angle           hit_angle;
+    s32             hit_angle;
 };
 static_assert(sizeof(BgCollisionCheckHitResult) == 0x10);

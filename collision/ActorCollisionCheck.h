@@ -16,7 +16,7 @@ enum CcLineKind
 };
 
 class Actor;
-class ActorCollisionTouchDrcCallback;
+class ActorCollisionDrcTouchCallback;
 
 class ActorCollisionCheck : public sead::IDisposer  // vtbl Address: 0x10041C18
 {
@@ -192,11 +192,11 @@ public:
     virtual ~ActorCollisionCheck();
 
     // Address: 0x0219AF1C
-    void set(Actor* p_owner, const CollisionData& collision_data, ActorCollisionTouchDrcCallback* p_touch_drc_callback = nullptr);
+    void set(Actor* p_owner, const CollisionData& collision_data, ActorCollisionDrcTouchCallback* p_drc_touch_callback = nullptr);
     // Address: 0x0219B010
-    void set(Actor* p_owner, const CollisionData& collision_data, const sead::BitFlag8& collision_mask, ActorCollisionTouchDrcCallback* p_touch_drc_callback = nullptr);
+    void set(Actor* p_owner, const CollisionData& collision_data, const sead::BitFlag8& collision_mask, ActorCollisionDrcTouchCallback* p_drc_touch_callback = nullptr);
     // Address: 0x0219B054
-    void set(Actor* p_owner, const CollisionData& collision_data, const sead::BitFlag8& collision_mask, u8 layer, ActorCollisionTouchDrcCallback* p_touch_drc_callback = nullptr);
+    void set(Actor* p_owner, const CollisionData& collision_data, const sead::BitFlag8& collision_mask, u8 layer, ActorCollisionDrcTouchCallback* p_drc_touch_callback = nullptr);
 
     void setCenterOffsetX(f32 center_offset_x)
     {
@@ -255,9 +255,9 @@ public:
         mLayer = layer;
     }
 
-    void setTouchDrcCallback(ActorCollisionTouchDrcCallback* p_touch_drc_callback)
+    void setDrcTouchCallback(ActorCollisionDrcTouchCallback* p_drc_touch_callback)
     {
-        mpTouchDrcCallback = p_touch_drc_callback;
+        mpDrcTouchCallback = p_drc_touch_callback;
     }
 
     // Address: 0x0219B434
@@ -324,9 +324,9 @@ public:
         return mCollisionMask.getDirect() != 0;
     }
 
-    ActorCollisionTouchDrcCallback* getTouchDrcCallback() const
+    ActorCollisionDrcTouchCallback* getDrcTouchCallback() const
     {
-        return mpTouchDrcCallback;
+        return mpDrcTouchCallback;
     }
 
     const CollisionData& getCollisionData() const
@@ -397,7 +397,7 @@ private:
     sead::BitFlag8                  mCollisionMask;
     u8                              mLayer;
     u8                              mInfo;
-    ActorCollisionTouchDrcCallback* mpTouchDrcCallback;
+    ActorCollisionDrcTouchCallback* mpDrcTouchCallback;
     CollisionData                   mCollisionData;
     sead::SafeArray<f32, 4>         mDaikei;
     sead::SafeArray<f32, cKind_Num> mIntersectionX;

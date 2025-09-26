@@ -17,11 +17,11 @@ public:
 
 protected:
     // Address: 0x0202E4DC
-    s32 create_() override;
+    Result create_() override;
     // Address: 0x0202E578
-    s32 execute_() override;
+    bool execute_() override;
     // Address: 0x0202E5A0
-    s32 doDelete_() override;
+    Result doDelete_() override;
 
 public:
     // StateID_Ready            Address: 0x101F0AA0

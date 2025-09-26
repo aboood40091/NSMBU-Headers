@@ -1,6 +1,7 @@
 #pragma once
 
 #include <actor/Actor.h>
+#include <collision/BgCollisionCat.h>
 #include <collision/BgUnitCode.h>
 #include <collision/FollowArg.h>
 #include <system/LineNodeMgr.h>
@@ -12,7 +13,7 @@ class   ActorBgCollisionCheck;
 class   ActorBgCollisionCheckResult;
 class   BasicBgCollisionCheck;
 struct  BgCollisionCheckResultArea;
-class   ActorCollisionTouchDrcCallback;
+class   ActorCollisionDrcTouchCallback;
 
 class BgCollision : public sead::IDisposer  // vtbl Address: 0x10042528
 {
@@ -285,24 +286,24 @@ public:
         mAngle = angle;
     }
 
-    const BcList& getBcListDown() const
+    const BcList& getBcListFoot() const
     {
-        return mBcListDown;
+        return mBcListFoot;
     }
 
-    const BcList& getBcListUp() const
+    const BcList& getBcListHead() const
     {
-        return mBcListUp;
+        return mBcListHead;
     }
 
-    const BcList& getBcListRight() const
+    const BcList& getBcListWallR() const
     {
-        return mBcListRight;
+        return mBcListWallR;
     }
 
-    const BcList& getBcListLeft() const
+    const BcList& getBcListWallL() const
     {
-        return mBcListLeft;
+        return mBcListWallL;
     }
 
     // Address: 0x021A59F4
@@ -325,24 +326,27 @@ public:
     // Address: 0x021A5B14
     void setSlipAttr(BgUnitCode::SlipAttr slip_attr);
 
-    void setCallbackFlag(u32 flag)
+    // Address: 0x021A5EB4
+    void update();
+
+    void setFlag(u32 flag)
     {
-        mCallbackFlag.setDirect(flag);
+        mFlag.setDirect(flag);
     }
 
-    void resetCallbackFlag(u32 mask)
+    void resetFlag(u32 mask)
     {
-        mCallbackFlag.reset(mask);
+        mFlag.reset(mask);
     }
 
-    void clearCallbackFlag()
+    void clearFlag()
     {
-        mCallbackFlag.makeAllZero();
+        mFlag.makeAllZero();
     }
 
-    bool isCallbackFlag(s32 bit) const
+    bool isFlag(s32 bit) const
     {
-        return mCallbackFlag.isOnBit(bit);
+        return mFlag.isOnBit(bit);
     }
 
     void setCallback(Callback callback_foot, Callback callback_head, CallbackWall callback_wall)
@@ -359,9 +363,9 @@ public:
         mCheckRevWall = check_rev_wall;
     }
 
-    void setTouchDrcCallback(ActorCollisionTouchDrcCallback* p_touch_drc_callback)
+    void setDrcTouchCallback(ActorCollisionDrcTouchCallback* p_drc_touch_callback)
     {
-        mpTouchDrcCallback = p_touch_drc_callback;
+        mpDrcTouchCallback = p_drc_touch_callback;
     }
 
 public:
@@ -380,7 +384,7 @@ public:
     // Use this as default for mCheckRevWall
     static bool CheckRevSideSpeed(Actor* p_actor_self, Actor* p_actor_other, u8 direction)
     {
-        if (direction == DIRECTION_RIGHT)
+        if (direction == cDirType_Right)
         {
             if (p_actor_self->getSpeedVec().x > 0.0f)
                 return true;
@@ -406,7 +410,7 @@ protected:
     List::Node                      mTouchDrcHoldListNode;
     sead::BoundBox2f                mAffectedArea;  // Current Area & Prev Area
     sead::Vector2f                  mPosOffset2;    // Additional position offset set when area loop is on, not even used by all collision types...
-    sead::BitFlag32                 mCallbackFlag;  // I assume
+    sead::BitFlag32                 mFlag;
     sead::BitFlag32                 mCheckRevFlag;  // ^^^
     Actor*                          mpOwner;
     Actor*                          mpIgnoreActor;  // Force BasicBgCollisionCheck owned by this actor to ignore this BgCollision
@@ -418,14 +422,14 @@ protected:
     sead::Vector2f                  mTypeOffset;
     sead::Vector2f                  mTypeOffsetPrev;
     bool                            mIsInactive;    // If true, forces BasicBgCollisionCheck to ignore this BgCollision
-    u32                             _e0;
+    BgCollisionCat                  mCategory;
     sead::Matrix22f                 mRotMtx;
     Angle                           mAngle;
     Angle                           mAnglePrev;
-    BcList                          mBcListDown;
-    BcList                          mBcListUp;
-    BcList                          mBcListRight;
-    BcList                          mBcListLeft;
+    BcList                          mBcListFoot;    // List of ActorBgCollisionCheck with foot sensor hitting this BgCollision
+    BcList                          mBcListHead;    // List of ActorBgCollisionCheck with head sensor hitting this BgCollision
+    BcList                          mBcListWallR;   // List of ActorBgCollisionCheck with right wall sensor hitting this BgCollision
+    BcList                          mBcListWallL;   // List of ActorBgCollisionCheck with left wall sensor hitting this BgCollision
     Type                            mType;
     u64                             mBgCheckData;   // See BgUnitCode
     Callback                        mCallbackFoot;
@@ -434,7 +438,7 @@ protected:
     CheckRev                        mCheckRevFoot;
     CheckRev                        mCheckRevHead;
     CheckRevWall                    mCheckRevWall;
-    ActorCollisionTouchDrcCallback* mpTouchDrcCallback;
+    ActorCollisionDrcTouchCallback* mpDrcTouchCallback;
     u32                             _154;
 };
 static_assert(sizeof(BgCollision) == 0x158);

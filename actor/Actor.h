@@ -231,12 +231,12 @@ protected:
     void postCreate_(MainState state) override;
 
     // Address: 0x02000FE8
-    s32 preExecute_() override;
+    bool preExecute_() override;
     // Address: 0x020010BC
     void postExecute_(MainState state) override;
 
     // Address: 0x020011A0
-    s32 preDraw_() override;
+    bool preDraw_() override;
 
     // Address: 0x02001254
     virtual bool drawCullCheck_();
@@ -257,7 +257,8 @@ protected:
     void calcSpeedY_(f32 accel_y, f32 speed_max_y);
     void calcSpeedY_() { calcSpeedY_(mAccelY, mSpeedMax.y); }
 
-    void calcSpeedF_() { sead::Mathf::chase(&mSpeedF, mSpeedFMax, mAccelF); }
+    void calcSpeedF_(f32 accelF, f32 speedF_max) { sead::Mathf::chase(&mSpeedF, speedF_max, accelF); }
+    void calcSpeedF_() { calcSpeedF_(mAccelF, mSpeedFMax); }
     // Address: 0x0200144C
     void calcFallSpeed_(f32 accel_y, f32 fall_speed_max);
     void calcFallSpeed_() { calcFallSpeed_(mAccelY, mFallSpeedMax); }
@@ -265,6 +266,12 @@ protected:
     void posMove_(sead::Vector3f& delta)
     {
         mPos += delta;
+    }
+
+    void posMove_(sead::Vector2f& delta_xy, f32 delta_z)
+    {
+        getPos2D() += delta_xy;
+        mPos.z += delta_z;
     }
 
     void posMove_()
@@ -283,6 +290,19 @@ protected:
     bool isEnablePressLR_(const ActorBgCollisionCheck& bc);
     // Address: 0x0200222C
     bool isEnablePressUD_(const ActorBgCollisionCheck& bc);
+
+    // Address: 0x02002594
+    bool setPressBreakLR_(const ActorBgCollisionCheck& bc);
+    // Address: 0x02002664
+    bool setPressBreakUD_(const ActorBgCollisionCheck& bc);
+
+    // Address: 0x0200272C
+    bool setPressIceHeadBreak_(const ActorBgCollisionCheck& bc);
+
+    // Address: 0x02002390
+    bool setPressBreakIce_(const BgCollision* p_bg_collision);
+    // Address: 0x020024E0
+    bool setPressBreakBlockDRC_(const BgCollision* p_bg_collision);
 
 private:
     inline Actor* searchCarryFukidashiPlayer_(s32 action);
@@ -354,7 +374,7 @@ protected:
     ChibiYoshiEatData*      mpChibiYoshiEatData;
     PropelParts*            mpPropelParts;
     u8*                     _270;                       // Inited to ActorCreateParam::_28
-    f32                     mThrowSpeed;
+    f32                     mAddSpeedF;
     ChibiYoshiAwaData*      mpChibiYoshiAwaData;
 
     // Address: 0x10000B64

@@ -10,11 +10,7 @@ struct PlayerObjectResHIO
     sead::SafeString    anm_res_key;
     sead::SafeString    body_mdl_name[cPlayerModeModel_Num];
     sead::SafeString    head_mdl_name[cPlayerModeModel_Num];
-    f32                 _60;
-    f32                 _64;
-    f32                 _68;    // Always same value as _60
-    f32                 _6c;    // ^^^
-    f32                 _70;    // ^^^
+    f32                 head_top_offs[cPlayerModeModel_Num];
 };
 static_assert(sizeof(PlayerObjectResHIO) == 0x74);
 

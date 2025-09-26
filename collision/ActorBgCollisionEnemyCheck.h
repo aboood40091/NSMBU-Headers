@@ -13,7 +13,7 @@ public:
     ActorBgCollisionEnemyCheck();
 
     // Address: 0x02191D48
-    void process() override;
+    void checkBg() override;
 
     Actor* getOwnerAtRevCheck(f32 bg_collision_pos_y) const override
     {

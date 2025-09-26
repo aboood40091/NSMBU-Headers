@@ -70,11 +70,11 @@ protected:
     virtual void createMdl_();
 
     // Address: 0x028907C8
-    s32 create_() override;
+    Result create_() override;
     // Address: 0x02890A74
-    s32 execute_() override;
+    bool execute_() override;
     // Address: 0x02890C50
-    s32 draw_() override;
+    bool draw_() override;
 
 protected:
     u32                                 _27c[(0x2C4 - 0x27C) / sizeof(u32)];

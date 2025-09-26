@@ -2,7 +2,7 @@
 
 #include <collision/ActorBgCollisionCheck.h>
 
-class ActorBgCollisionPlayerCheck : public ActorBgCollisionCheck    // vtbl Address: 0x
+class ActorBgCollisionPlayerCheck : public ActorBgCollisionCheck    // vtbl Address: 0x100417C0
 {
     // getRuntimeTypeInfoStatic()::typeInfo initialization guard variable   Address: Deleted
     // getRuntimeTypeInfoStatic()::typeInfo                                 Address: Deleted
@@ -25,9 +25,9 @@ public:
     virtual ~ActorBgCollisionPlayerCheck();
 
     // Address: 0x02193714
-    void process() override;
+    void checkBg() override;
     // Address: 0x02193718
-    void reset() override;
+    void clearBg() override;
     // Address: 0x0219371C
     void atFrameStart() override;
     // Address: 0x0219587C
@@ -46,6 +46,23 @@ public:
     {
         return mpVineBgCollision;
     }
+
+    // Address: 0x021950D0
+    bool checkGround(const sead::Vector3f& pos, f32 check_distance, BgCollisionCheckResultArea* p_res = nullptr);
+
+    using ActorBgCollisionCheck::checkWall;
+
+    // Address: 0x02195160
+    bool checkWall(const sead::Vector3f& pos, f32 speed_x, f32* p_hit_pos_x = nullptr, bool use_callback = false);
+
+    // Address: 0x021952D4
+    bool checkRoof(const sead::Vector3f& pos, f32 check_distance, f32* p_hit_pos_y = nullptr, bool no_invis_block = false);
+
+    // Address: 0x02195658
+    bool checkQuicksand(const sead::Vector3f& pos, f32* p_hit_pos_y = nullptr);
+
+    // Address: 0x0219574C
+    bool checkKani(s32* type, f32* p_hit_pos_y, const sead::Vector3f& pos, f32 check_distance);
 
 private:
     List::Node      _14e0;

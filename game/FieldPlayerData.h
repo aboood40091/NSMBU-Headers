@@ -5,7 +5,7 @@
 
 struct FieldPlayerData
 {
-    bool            is_active;
+    bool            is_entry;
     s32             life_cnt;
     PlayerMode      player_mode;
     PlayerCharacter character;
@@ -17,6 +17,8 @@ struct FieldPlayerData
     bool            has_star;
     u8              _1f;
     Bitfield<64>    fukidashi_flag; // I believe only 48 bits are used
-    u32             _28[(0x48 - 0x28) / sizeof(u32)];
+    u32             _28[(0x34 - 0x28) / sizeof(u32)];
+    s32             coin_cnt;
+    u32             _38[(0x48 - 0x38) / sizeof(u32)];
 };
 static_assert(sizeof(FieldPlayerData) == 0x48);

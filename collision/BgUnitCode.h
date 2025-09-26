@@ -77,9 +77,14 @@ public:
 
     enum SlipAttr
     {
-        cSlipAttr_Normal    = 0,    // Player can slide while colliding when crouching
-        cSlipAttr_Slip      = 1,    // Player instantly enters sliding state when colliding
-        cSlipAttr_NoSlip    = 2     // Player cannot slide while colliding
+        cSlipAttr_Normal        = 0,    // Player can slide while colliding when crouching
+        cSlipAttr_Slip          = 1,    // Player instantly enters sliding state when colliding
+        cSlipAttr_NoSlip        = 2,    // Player cannot slide while colliding
+        cSlipAttr_IceLowSlip,
+        cSlipAttr_SakaLowPow,
+        cSlipAttr_SlideSlope,
+        cSlipAttr_Unk6,
+        cSlipAttr_Num
     };
 
     enum Attr
@@ -92,11 +97,11 @@ public:
         cGrass      = 5,
         cCloud      = 6,
         cBeachSand  = 7,    // Unused
-        cCarpet     = 8,    // Unused
+        cManta      = 8,    // Unused
         cPalmTree   = 9,
         cWood       = 10,
         cWater      = 11,
-        cManta      = 12    // Now used for Beanstalk Leaf
+        cCarpet     = 12    // Now used for Beanstalk Leaf
     };
 
     static const u64 cPanelTypeMask         = 0x000000000000FFFF;
@@ -314,31 +319,31 @@ public:
 
     enum TypeInfo_Dokan
     {
-        cTypeInfo_Dokan_0,
-        cTypeInfo_Dokan_1,
-        cTypeInfo_Dokan_2,
-        cTypeInfo_Dokan_3,
-        cTypeInfo_Dokan_4,
-        cTypeInfo_Dokan_5,
-        cTypeInfo_Dokan_6,
-        cTypeInfo_Dokan_7,
-        cTypeInfo_Dokan_Mame0,
-        cTypeInfo_Dokan_Mame1,
-        cTypeInfo_Dokan_Mame2,
-        cTypeInfo_Dokan_Mame3,
-        cTypeInfo_Dokan_Pipe0,
-        cTypeInfo_Dokan_Pipe1,
-        cTypeInfo_Dokan_Pipe2,
-        cTypeInfo_Dokan_Pipe3,
-        cTypeInfo_Dokan_Pipe4,
-        cTypeInfo_Dokan_Pipe5,
-        cTypeInfo_Dokan_Pipe6,
-        cTypeInfo_Dokan_Pipe7,
+        cTypeInfo_Dokan_0,          // Vert. Top Entrance Left
+        cTypeInfo_Dokan_1,          // Vert. Top Entrance Right
+        cTypeInfo_Dokan_2,          // Vert. Bottom Entrance Left
+        cTypeInfo_Dokan_3,          // Vert. Bottom Entrance Right
+        cTypeInfo_Dokan_4,          // Horiz. Left Entrance Top
+        cTypeInfo_Dokan_5,          // Horiz. Left Entrance Bottom
+        cTypeInfo_Dokan_6,          // Horiz. Right Entrance Top
+        cTypeInfo_Dokan_7,          // Horiz. Right Entrance Bottom
+        cTypeInfo_Dokan_Mame0,      // Vert. Mini Pipe Top
+        cTypeInfo_Dokan_Mame1,      // Vert. Mini Pipe Bottom
+        cTypeInfo_Dokan_Mame2,      // Horiz. Mini Pipe Left
+        cTypeInfo_Dokan_Mame3,      // Horiz. Mini Pipe Right
+        cTypeInfo_Dokan_Pipe0,      // Vert. Center Left
+        cTypeInfo_Dokan_Pipe1,      // Vert. Center Right
+        cTypeInfo_Dokan_Pipe2,      // Vert. Intersection Left
+        cTypeInfo_Dokan_Pipe3,      // Vert. Intersection Right
+        cTypeInfo_Dokan_Pipe4,      // Horiz. Center Top
+        cTypeInfo_Dokan_Pipe5,      // Horiz. Center Bottom
+        cTypeInfo_Dokan_Pipe6,      // Horiz. Intersection Top
+        cTypeInfo_Dokan_Pipe7,      // Horiz. Intersection Bottom
         cTypeInfo_Dokan_Pipe8,
         cTypeInfo_Dokan_Pipe9,
         cTypeInfo_Dokan_PipeB,
-        cTypeInfo_Dokan_MamePipe0,
-        cTypeInfo_Dokan_MamePipe1,
+        cTypeInfo_Dokan_MamePipe0,  // Vert. Mini Pipe Center
+        cTypeInfo_Dokan_MamePipe1,  // Horiz. Mini Pipe Center
         cTypeInfo_Dokan_Break0,
         cTypeInfo_Dokan_Break1,
         cTypeInfo_Dokan_Break2,
@@ -349,9 +354,9 @@ public:
         cTypeInfo_Dokan_Break7,
         cTypeInfo_Dokan_MameBreak0,
         cTypeInfo_Dokan_MameBreak1,
-        cTypeInfo_Dokan_Tunagi,
-        cTypeInfo_Dokan_MamePipe2,
-        cTypeInfo_Dokan_MamePipe3,
+        cTypeInfo_Dokan_Tunagi,     // Pipe Joint
+        cTypeInfo_Dokan_MamePipe2,  // Vert. Mini Pipe Intersection
+        cTypeInfo_Dokan_MamePipe3,  // Horiz. Mini Pipe Intersection
         cTypeInfo_Dokan_Num
     };
 

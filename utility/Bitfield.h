@@ -13,12 +13,7 @@ public:
         reset();
     }
 
-    Bitfield<BitNum>& operator=(const Bitfield<BitNum>& rhs)
-    {
-        set(rhs)
-    }
-
-    void set(const Bitfield<BitNum>& rhs)
+    void copy(const Bitfield<BitNum>& rhs)
     {
         sead::MemUtil::copy(mBitArray, rhs.mBitArray, BitNum / 8);
     }
@@ -28,77 +23,42 @@ public:
         sead::MemUtil::fillZero(mBitArray, BitNum / 8);
     }
 
-    u32 getMask(u32 index, u32 mask) const
+    static s32 bitToIndex(s32 bit)
     {
-        return mBitArray[index] & mask;
-    }
-
-    bool isOn(u32 index, u32 mask) const
-    {
-        return getMask(index, mask) != 0;
-    }
-
-    bool isOnAll(u32 index, u32 mask) const
-    {
-        return getMask(index, mask) == mask;
-    }
-
-    void set(u32 index, u32 mask)
-    {
-        mBitArray[index] |= mask;
-    }
-
-    void reset(u32 index, u32 mask)
-    {
-        mBitArray[index] &= ~mask;
-    }
-
-    void toggle(u32 index, u32 mask)
-    {
-        mBitArray[index] ^= mask;
-    }
-
-    void change(u32 index, u32 mask, bool b)
-    {
-        if (b)
-            set(index, mask);
-        else
-            reset(index, mask);
-    }
-
-    static u32 bitToIndex(u32 bit)
-    {
-        return bit / 32;
+        return bit >> 5;
     }
 
     static u32 makeMask(u32 bit)
     {
-        return 1u << bit;
+        return 1 << (bit % 32);
     }
 
     bool isOnBit(u32 bit) const
     {
-        return isOn(bitToIndex(bit), makeMask(bit));
+        return (mBitArray[bitToIndex(bit)] & makeMask(bit)) != 0;
     }
 
     void setBit(u32 bit)
     {
-        set(bitToIndex(bit), makeMask(bit));
+        mBitArray[bitToIndex(bit)] |= makeMask(bit);
     }
 
     void resetBit(u32 bit)
     {
-        reset(bitToIndex(bit), makeMask(bit));
+        mBitArray[bitToIndex(bit)] &= ~makeMask(bit);
     }
 
     void changeBit(u32 bit, bool b)
     {
-        change(bitToIndex(bit), makeMask(bit), b);
+        if (b)
+            setBit(bit);
+        else
+            resetBit(bit)
     }
 
     void toggleBit(u32 bit)
     {
-        toggle(bitToIndex(bit), makeMask(bit));
+        mBitArray[bitToIndex(bit)] ^= makeMask(bit);
     }
 
 private:

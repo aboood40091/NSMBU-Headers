@@ -289,6 +289,46 @@ public:
         return mpModelBase->getBaseScale();
     }
 
+    sead::Vector3f* getHeadTopPosP()
+    {
+        return mpModelBase->getHeadTopPosP();
+    }
+
+    sead::Vector3f* getHeadPosP()
+    {
+        return mpModelBase->getHeadPosP();
+    }
+
+    u32 getAnmFlag(PlayerModelBase::AnmFlagType type) const
+    {
+        return mpModelBase->getAnmFlag(type);
+    }
+
+    void changeFaceAngleOverrideFlag(PlayerModelBase::FaceAngleOverrideFlag flag, bool enable)
+    {
+        mpModelBase->changeFaceAngleOverrideFlag(flag, enable);
+    }
+
+    const Angle3& getFaceAngleOverride() const
+    {
+        return mpModelBase->getFaceAngleOverride();
+    }
+
+    void setFaceAngleOverride(const Angle3& angle)
+    {
+        mpModelBase->setFaceAngleOverride(angle);
+    }
+
+    void resetFaceAngleOverride()
+    {
+        mpModelBase->resetFaceAngleOverride();
+    }
+
+    void resetFaceAngleOverrideFlag()
+    {
+        mpModelBase->resetFaceAngleOverrideFlag();
+    }
+
     // Address: 0x02922D8C
     void setDrawType(DrawType type);
 

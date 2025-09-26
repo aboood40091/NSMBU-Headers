@@ -3,21 +3,21 @@
 #include <actor/ChibiYoshiEatData.h>
 #include <actor/EatData.h>
 #include <actor/Profile.h>
-#include <collision/ActorCollisionTouchDrcCallback.h>
+#include <collision/ActorCollisionDrcTouchCallback.h>
 #include <effect/EffectObj.h>
 #include <enemy/Enemy.h>
 #include <enemy/EnemyActorScaler.h>
 #include <graphics/Light.h>
 
-class BirikyuTouchDrcCB : public ActorCollisionTouchDrcCallback // vtbl Address: 0x1005CD9C
+class BirikyuDrcTouchCB : public ActorCollisionDrcTouchCallback // vtbl Address: 0x1005CD9C
 {
 public:
     // Address: 0x022CF75C
-    bool ccIsTouchEnable(ActorCollisionCheck* p_cc, const sead::Vector2f& pos) override;
+    bool ccSetTouchNormal(ActorCollisionCheck* p_cc, const sead::Vector2f& pos) override;
     // Address: 0x022CF7E8
     void ccOnTouch(ActorCollisionCheck* p_cc, const sead::Vector2f& pos) override;
 };
-static_assert(sizeof(BirikyuTouchDrcCB) == sizeof(ActorCollisionTouchDrcCallback));
+static_assert(sizeof(BirikyuDrcTouchCB) == sizeof(ActorCollisionDrcTouchCallback));
 
 class AnimModel;
 
@@ -46,13 +46,13 @@ public:
 
 protected:
     // Address: 0x022CE4B0
-    s32 create_() override;
+    Result create_() override;
     // Address: 0x022CE7C8
-    s32 execute_() override;
+    bool execute_() override;
     // Address: 0x022CE9B4
-    s32 draw_() override;
+    bool draw_() override;
     // Address: 0x022D00E8
-    s32 doDelete_() override;
+    Result doDelete_() override;
 
 public:
     // Address: 0x022CF414
@@ -118,7 +118,7 @@ protected:
     Light               mLight;
     u8                  _1994; // bool?
     ActorCollisionCheck mCollisionCheck2;
-    BirikyuTouchDrcCB   mTouchDrcCallback;
+    BirikyuDrcTouchCB   mDrcTouchCallback;
     EnemyActorScaler    mScaler;
     s32                 mTouchTimer;
     bool                mIsTouchDone;

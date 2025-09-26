@@ -17,15 +17,17 @@ class Enemy : public ActorMultiState    // vtbl Address: 0x1007209C
     SEAD_RTTI_OVERRIDE(Enemy, ActorMultiState)
 
 public:
+    // Address: 0x1007206C
+    static const f32 cFumiJumpSpeed;
     // Address: 0x10072070
     static const f32 cDefaultAccelY;
     // Address: 0x10072078
     static const f32 cDefaultYSpeedMax;
 
     // Address: 0x10200DD8
-    static const Angle cBaseAngleY[DIRECTION_NUM_X];
+    static const Angle cBaseAngleY[cDirType_NumX];
     // Address: 0x10072094
-    static const s8 cDirSign[DIRECTION_NUM_X];  // Actual name unknown
+    static const s8 cDirSign[cDirType_NumX];    // Actual name unknown
 
     static const s32 cNoHitPlayerTimerDefault = 5;
 
@@ -51,16 +53,17 @@ public:
 
 protected:
     // Address: 0x02328644
-    s32 preExecute_() override;
+    bool preExecute_() override;
 
     // Address: 0x02328914
     void blockHitInit_() override;
 
-public:
     // Address: 0x0232DC88
-    void setSmokeDamage(Actor*) override;
+    void setSmokeDamage_(Actor*) override;
     // Address: 0x0232E1A4
-    bool setTouchDrcDamage(const sead::Vector2f& pos) override;
+    bool setTouchDrcDamage_(const sead::Vector2f& pos) override;
+
+public:
     // Address: 0x02330404
     void changeState(const StateID& state_id) override;
 

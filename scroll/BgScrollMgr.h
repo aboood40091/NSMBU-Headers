@@ -1,5 +1,7 @@
 #pragma once
 
+#include <utility/Direction.h>
+
 #include <heap/seadDisposer.h>
 #include <math/seadBoundBox.h>
 
@@ -52,6 +54,7 @@ public:
 
     f32 getZoom() const { return mZoom; }
 
+    const sead::BoundBox2f& getScrollBound() const { return mScroll; }
     const sead::BoundBox2f& getScreenRect() const { return mScreen; }
     const sead::BoundBox2f& getScreenRectDefault() const { return mScreenDefault; }
 
@@ -67,7 +70,17 @@ public:
     ScrollEffectMgr& getScrollEffectMgr() { return mScrollEffectMgr; }
     const ScrollEffectMgr& getScrollEffectMgr() const { return mScrollEffectMgr; }
 
+    // Address: 0x029A6400
+    DirType getAreaScrollDir() const;
+
+    // Address: 0x029A6D40
     f32 getBgCenterYPos() const;
+
+    // Address: 0x029A6DC4
+    bool isScrollMeterEnable() const;
+
+    // Address: 0x029A6E24
+    DirType getAreaScrollDirSub() const;
 
 private:
     f32                 mZoom;
@@ -87,10 +100,10 @@ private:
     f32                 mScreenBottom;      // ^^^
     sead::BoundBox2f    mScreenBg;          // Same as mScreen, but Y is inverted
     sead::BoundBox2f    mScreenBgPrev;
-    void*               mBoundMgr;
-    void*               mScrollLimitMgr;
+    void*               mScrollInfo;
+    void*               mMaxStopMgr;
     void*               mZoomAreaMgr;
-    void*               mBoundVelMgr;
+    void*               mKyokaiVelMgr;
     TrackingMgr*        mTrackingMgr;
     void*               _bc;
     void*               _c0;

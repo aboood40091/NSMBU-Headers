@@ -5,6 +5,13 @@
 class PlayerKey
 {
 public:
+    PlayerKey();
+
+    void update();
+    void updateEnd();
+
+    bool triggerJump() const;
+
     bool buttonUp() const;
     bool buttonDown() const;
     bool buttonLeft() const;

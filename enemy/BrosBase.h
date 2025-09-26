@@ -2,22 +2,22 @@
 
 #include <actor/EatData.h>
 #include <collision/ActorBgCollisionEnemyCheck.h>
-#include <collision/ActorCollisionTouchDrcCallback.h>
+#include <collision/ActorCollisionDrcTouchCallback.h>
 #include <effect/EffectObj.h>
 #include <enemy/Enemy.h>
 #include <enemy/EnemyActorScaler.h>
 
 #include <math/seadMatrix.h>
 
-class BrosBaseTouchDrcCB : public ActorCollisionTouchDrcCallback    // vtbl Address: 0x1005F6E8
+class BrosDrcTouchCB : public ActorCollisionDrcTouchCallback    // vtbl Address: 0x1005F6E8
 {
 public:
     // Address: 0x022DD974
-    bool ccIsTouchEnable(ActorCollisionCheck* p_cc, const sead::Vector2f& pos) override;
+    bool ccSetTouchNormal(ActorCollisionCheck* p_cc, const sead::Vector2f& pos) override;
     // Address: 0x022DDAEC
     void ccOnTouch(ActorCollisionCheck* p_cc, const sead::Vector2f& pos) override;
 };
-static_assert(sizeof(BrosBaseTouchDrcCB) == sizeof(ActorCollisionTouchDrcCallback));
+static_assert(sizeof(BrosDrcTouchCB) == sizeof(ActorCollisionDrcTouchCallback));
 
 class BlendModel;
 
@@ -37,13 +37,13 @@ public:
 
 protected:
     // Address: 0x022DA758
-    s32 create_() override;
+    Result create_() override;
     // Address: 0x022DAFE8
-    s32 execute_() override;
+    bool execute_() override;
     // Address: 0x022DB08C
-    s32 draw_() override;
+    bool draw_() override;
     // Address: 0x022DE848
-    s32 doDelete_() override;
+    Result doDelete_() override;
 
 public:
     // Address: 0x022DD66C
@@ -278,7 +278,7 @@ protected:
     u8                          _2f38;
     bool                        _2f39;
     ActorCollisionCheck         mCollisionCheck2;       // For DRC touch???
-    BrosBaseTouchDrcCB          mTouchDrcCallback;
+    BrosDrcTouchCB              mDrcTouchCallback;
     EnemyActorScaler            mScaler;
     u8                          _3088;
     u8                          _3089;

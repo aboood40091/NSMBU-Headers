@@ -17,6 +17,10 @@ public:
     static_assert(cModelType_Num == 2);
 
 public:
+    HipdropExEffect();
+
+    void createModel();
+
     // TODO
 
 //protected:

@@ -2,12 +2,17 @@
 
 #include <basis/seadTypes.h>
 
-#define DIRECTION_RIGHT 0
-#define DIRECTION_LEFT  1
-#define DIRECTION_UP    2
-#define DIRECTION_DOWN  3
+enum DirType
+{
+    cDirType_Right = 0,
+    cDirType_Left,
+    cDirType_Up,
+    cDirType_Down,
+    cDirType_Num,
 
-#define DIRECTION_NUM_X 2
+    cDirType_NumX = 2
+};
+static_assert(sizeof(DirType) == 4);
 
 inline u32 InvDirX(u32 dir)
 {
@@ -18,10 +23,10 @@ inline u32 InvDirection(u32 dir)
 {
     switch (dir)
     {
-    case DIRECTION_RIGHT: dir = DIRECTION_LEFT;  break;
-    case DIRECTION_LEFT:  dir = DIRECTION_RIGHT; break;
-    case DIRECTION_UP:    dir = DIRECTION_DOWN;  break;
-    case DIRECTION_DOWN:  dir = DIRECTION_UP;    break;
+    case cDirType_Right: dir = cDirType_Left;  break;
+    case cDirType_Left:  dir = cDirType_Right; break;
+    case cDirType_Up:    dir = cDirType_Down;  break;
+    case cDirType_Down:  dir = cDirType_Up;    break;
     }
     return dir;
 }
