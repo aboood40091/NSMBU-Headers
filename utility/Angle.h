@@ -90,9 +90,9 @@ public:
 
 public:
     // Address: 0x029E0EA8
-    bool chaseAngle(const Angle& target, f32 ratio, const Angle& max);
+    bool addCalcAngle(const Angle& target, f32 ratio, const Angle& max);
     // Address: 0x029E0EE8
-    bool chaseAngle(const Angle& target, f32 ratio, const Angle& max, const Angle& min);
+    bool addCalcAngle(const Angle& target, f32 ratio, const Angle& max, const Angle& min);
     // Address: 0x029E116C
     bool chaseDecrease(const Angle& target, f32 ratio, const Angle& max, const Angle& min);
     // Address: 0x029E117C
@@ -102,7 +102,7 @@ public:
 
 protected:
     // Address: 0x029E0E34
-    bool chaseAngle_(s32 target, s32 distance, f32 ratio, s32 max, s32 min);
+    bool addCalcAngle_(s32 target, s32 distance, f32 ratio, s32 max, s32 min);
     // Address: 0x029E0F8C
     bool chaseDecrease_(s32 target, f32 ratio, s32 max, s32 min);
     // Address: 0x029E0DE8

@@ -53,7 +53,8 @@ public:
     {
         cResType_Boot = 0,
         cResType_Course,
-        cResType_CourseSelect
+        cResType_CourseSelect,
+        cResType_Num
     };
 
     enum Flag

@@ -332,6 +332,21 @@ public:
     // Address: 0x02922D8C
     void setDrawType(DrawType type);
 
+    void setTexAnmType(PlayerModelBase::TexAnmType type)
+    {
+        mpModelBase->setTexAnmType(type);
+    }
+
+    ModelResource* getModelResFile() const
+    {
+        return mpModelBase->getModelResFile();
+    }
+
+    ModelResource* getAnmResFile() const
+    {
+        return mpModelBase->getAnmResFile();
+    }
+
 protected:
     PlayerModelBase*    mpModelBase;
     DrawType            mDrawType;

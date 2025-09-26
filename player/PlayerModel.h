@@ -156,6 +156,11 @@ public:
         return false;
     }
 
+    PlayerModeModel getModeModel()
+    {
+        return mNowModeModel;
+    }
+
     // Address: 0x0291BEEC
     virtual void setModeModel(PlayerModeModel mode_mdl);
 
@@ -223,6 +228,16 @@ public:
     void setPropelScale(f32 scale)
     {
         mPropelScale = scale;
+    }
+
+    AnimModel* getBodyModel(PlayerModeModel mode_mdl)
+    {
+        return mModelArray[mode_mdl];
+    }
+
+    AnimModel* getHeadModel(PlayerModeModel mode_mdl)
+    {
+        return mModelArray[mode_mdl];
     }
 
 protected:
