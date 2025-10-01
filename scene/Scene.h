@@ -29,6 +29,11 @@ public:
         return mNextScene;
     }
 
+    sead::TaskMgr* getTaskMgr()
+    {
+        return mpTaskMgr;
+    }
+
 protected:
     sead::DelegateEvent<sead::TaskBase*>::Slot  mCreateCallback;
     sead::TaskClassID                           mOldScene;
