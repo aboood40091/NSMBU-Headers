@@ -2,6 +2,26 @@
 
 #include <heap/seadDisposer.h>
 
+enum CourseExitType
+{
+    cCourseExitType_ChallengeRetry = 0,
+    cCourseExitType_Exit,                   // e.g., from Pause menu
+    cCourseExitType_Beaten,
+    cCourseExitType_Dead,
+    cCourseExitType_OtehonReplay,
+    cCourseExitType_InsideCourse
+};
+static_assert(sizeof(CourseExitType) == 4);
+
+enum CourseBeatenType
+{
+    cCourseBeatenType_Normal = 0,
+    cCourseBeatenType_Secret,
+    cCourseBeatenType_TreasureChest,
+    cCourseBeatenType_TreasureChestFail     // Maybe for when Nabbit steals the treasure chest for idling too long on the ambush??
+};
+static_assert(sizeof(CourseBeatenType) == 4);
+
 class MainGame
 {
     // createInstance()                             Address: 0x029CDCAC
@@ -34,12 +54,36 @@ public:
         return mIsStory;
     }
 
+    CourseExitType getCourseExitType() const
+    {
+        return mCourseExitType;
+    }
+
+    void setCourseExitType(CourseExitType type)
+    {
+        mCourseExitType = type;
+    }
+
+    CourseBeatenType getCourseBeatenType() const
+    {
+        return mCourseBeatenType;
+    }
+
+    void setCourseBeatenType(CourseBeatenType type)
+    {
+        mCourseBeatenType = type;
+    }
+
 protected:
-    u32     _10;
-    bool    mIsSinglePlayerDRC;
-    u32     _18[(0x21DDC - 0x18) / sizeof(u32)];
-    u8      _21ddc[30];
-    bool    mIsStory;
-    u32     _21dfc[(0x21E18 - 0x21DFC) / sizeof(u32)];
+    u32                 _10;
+    bool                mIsSinglePlayerDRC;
+    u32                 _18;
+    u8                  _1c;
+    CourseExitType      mCourseExitType;
+    CourseBeatenType    mCourseBeatenType;
+    u32                 _28[(0x21DDC - 0x28) / sizeof(u32)];
+    u8                  _21ddc[30];
+    bool                mIsStory;
+    u32                 _21dfc[(0x21E18 - 0x21DFC) / sizeof(u32)];
 };
 static_assert(sizeof(MainGame) == 0x21E18);
