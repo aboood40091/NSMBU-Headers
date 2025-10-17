@@ -786,7 +786,7 @@ extern const s32 c182;                                      // 386
 // Address: 0x10004360
 extern const s32 c183;                                      // 387
 // Address: 0x10004364
-extern const s32 c184;                                      // 388
+extern const s32 cLightBlock;                               // 388
 // Address: 0x10004368
 extern const s32 c185;                                      // 389
 // Address: 0x1000436C
