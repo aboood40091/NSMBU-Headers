@@ -1,6 +1,7 @@
 #pragma once
 
 #include <actor/ActorState.h>
+#include <state/FStateVirtualID.h>
 
 class PlayerObject;
 
@@ -18,6 +19,15 @@ public:
     {
         return mFlag & (1 << 2);
     }
+
+    virtual void vf184();
+
+    DECLARE_STATE_VIRTUAL_ID_BASE(CarryObjBase, Wait)
+    DECLARE_STATE_VIRTUAL_ID_BASE(CarryObjBase, Carry)
+    DECLARE_STATE_VIRTUAL_ID_BASE(CarryObjBase, Throw)
+    DECLARE_STATE_VIRTUAL_ID_BASE(CarryObjBase, Down)
+
+    // ...
 
 protected:
     u32 _17c8[(0x17E0 - 0x17C8) / sizeof(u32)];
