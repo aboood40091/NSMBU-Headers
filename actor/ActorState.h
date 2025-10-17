@@ -20,6 +20,11 @@ public:
         mStateMgr.changeState(state_id);
     }
 
+    const StateID* getStateID() const
+    {
+        return mStateMgr.getStateID();
+    }
+
 protected:
     FStateMgr<ActorState>   mStateMgr;
   //u32                     _17c4[4 / sizeof(u32)]; // Alignment???
@@ -40,6 +45,11 @@ public:
     virtual void changeState(const StateID& state_id)
     {
         mStateMgr.changeState(state_id);
+    }
+
+    const StateID* getStateID() const
+    {
+        return mStateMgr.getStateID();
     }
 
 protected:
