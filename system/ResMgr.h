@@ -74,7 +74,10 @@ public:
     void* getFileFromArchiveRes(const sead::SafeString& key, const sead::SafeString& filename, u32* length = nullptr) const;
     void* getFileFromArchiveRes(sead::ArchiveRes* archive, const sead::SafeString& filename, u32* length = nullptr) const;
 
+    bool unload(const sead::SafeString& key);
+
 public:
+    void add(const sead::SafeString& key, sead::ArchiveRes* archive, sead::Heap* heap);
     void remove(const sead::SafeString& key);
 
 private:
