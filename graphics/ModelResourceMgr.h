@@ -52,6 +52,11 @@ public:
     // Address: 0x024F638C
     s32 loadDemoResFile(const sead::SafeString& archive_name, ModelResource** out_mdl_res, s32 mdl_res_max_num, const sead::SafeString& base_key, sead::Heap* heap = nullptr);
 
+    // Address: Deleted
+    bool unload(const sead::SafeString& key);
+
+    // Address: Deleted
+    void add(const sead::SafeString& key, ModelResource* p_mdl_res, sead::Heap* heap = nullptr);
     // Address: 0x024F72D0
     void remove(const sead::SafeString& key);
 
