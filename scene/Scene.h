@@ -69,7 +69,7 @@ public:
     Scene();
 
     // Address: 0x02994164
-    bool createScene(sead::TaskBase* p_src_task, const sead::TaskClassID& next_scene, u32 wipe_info, u32 snd_param_unused = 0);
+    bool createScene(sead::TaskBase* p_src_task, const sead::TaskClassID& next_scene, u32 wipe_info = WipeInfo::make(0, 0), u32 snd_param_unused = 0);
 
     // Address: 0x029941D0
     bool setCourse_Story(sead::TaskBase* p_src_task, s32 world_no, s32 course_no);
