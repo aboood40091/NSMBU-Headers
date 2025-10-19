@@ -39,7 +39,7 @@ public:
     public:
         LayerSetter(s32 layer_id, GatherType type)
         {
-            Renderer::instance()->setLayer(sead::DynamicCast<RenderObjLayerBase>(agl::lyr::Renderer::instance()->getLayer(layer_id)), type);
+            Renderer::instance()->setLayer(agl::lyr::Renderer::instance()->getLayer<RenderObjLayerBase>(layer_id), type);
         }
 
         LayerSetter(RenderObjLayerBase* p_layer, GatherType type)
