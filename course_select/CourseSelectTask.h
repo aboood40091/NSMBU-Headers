@@ -23,3 +23,7 @@ public:
     u8      _dca[0xDD0 - 0xDCA];
 };
 static_assert(sizeof(CourseSelectTask) == 0xDD0);
+
+// Address: 0x0202B86C
+extern template
+sead::TaskBase* sead::TTaskFactory<CourseSelectTask>(const sead::TaskConstructArg& arg);
