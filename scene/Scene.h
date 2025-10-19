@@ -87,6 +87,16 @@ public:
         return mpTaskMgr;
     }
 
+    u32& getWipeInfo()
+    {
+        return mWipeInfo;
+    }
+
+    const u32& getWipeInfo() const
+    {
+        return mWipeInfo;
+    }
+
     sead::Vector3f& getFadeCenter()
     {
         return mFadeCenter;
