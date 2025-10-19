@@ -49,6 +49,16 @@ public:
         return !mIsSinglePlayerDRC;
     }
 
+    bool isNewGame() const
+    {
+        return mIsNewGame;
+    }
+
+    void setNewGame(bool new_game)
+    {
+        mIsNewGame = new_game;
+    }
+
     bool isStory() const
     {
         return mIsStory;
@@ -78,7 +88,7 @@ protected:
     u32                 _10;
     bool                mIsSinglePlayerDRC;
     u32                 _18;
-    u8                  _1c;
+    bool                mIsNewGame;
     CourseExitType      mCourseExitType;
     CourseBeatenType    mCourseBeatenType;
     u32                 _28[(0x21DDC - 0x28) / sizeof(u32)];
