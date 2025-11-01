@@ -757,7 +757,6 @@ public:
     // Address: 0x028F6CD4
     void clearBgCheckInfo();
     // Address: 0x028F6CAC
-    void resetBgSpeed();
 
     // Address: 0x028F6EEC
     void checkSideViewLemit();
@@ -774,6 +773,7 @@ private:
 public:
     // Address: 0x028F716C
     Angle getSakaAngleBySpeed(f32 speed_F);
+    void clearBgSpeed();
 
     // Address: 0x028F71C0
     bool checkOnHDokan(const u64& bc_data); // See BgUnitCode
@@ -852,10 +852,10 @@ public:
     // Address: 0x028F93F8
     virtual void vf1C4();
 
-    virtual void setFallDownDemo() = 0;
+    virtual void setFallDownDemoImpl() = 0;
 
     virtual bool setBalloonInDispOut(s32) = 0;
-    virtual bool vf1DC() = 0;
+    virtual bool setBalloonDispOut() = 0;
 
     // Address: 0x028FD318
     virtual void setCreate(const sead::Vector3f& pos, s32 next_goto_type, s32 dir);
@@ -1314,9 +1314,9 @@ public:
     // Address: 0x028F4178
     void posMoveAnglePenguin(const sead::Vector3f& speed);
     // Address: 0x028F4CD8
-    void initAdditionalAirSpeedF(f32 start_val, f32 len_frames);
+    void initAddAirSpeedF(f32 start_val, f32 len_frames);
     // Address: 0x028F4148
-    void calcAdditionalAirSpeedF();
+    void calcAddAirSpeedF();
 
     // Address: 0x028F4D48
     bool setJump(u8, JumpSe jump_se_type);
@@ -1551,8 +1551,8 @@ protected:
     ActorBgCollisionCheck::SakaType mSakaType;
     Angle                           mSpeedSakaAngle;
     Angle                           mSpeedSakaAnglePrev;
-    Angle                           mSakaBaseAngle;
-    Angle                           mSakaBaseAnglePrev;
+    Angle                           mBaseSakaAngle;
+    Angle                           mBaseSakaAnglePrev;
     sead::Vector3f                  _1b28;
     BgAttr                          mBgAttr;
     Angle                           mWallAngle;
@@ -1576,10 +1576,10 @@ protected:
     ActorUniqueID                   mLineSpinLiftID;
     u32                             _1b9c;
     s32                             mNoHitObjBgTimer;
-    f32                             mAdditionalAirSpeedFStart;
-    f32                             mAdditionalAirSpeedF;
-    f32                             mAdditionalAirSpeedFDecelStep;
-    f32                             _1bb0;
+    f32                             mAddAirSpeedFStart;
+    f32                             mAddAirSpeedF;
+    f32                             mAddAirSpeedFDecelStep;
+    f32                             mAddBgSpeedF;
     s32                             _1bb4;
     ActorCollisionCheck             mCollisionCheck2_React; // First collision check is also for react
     ActorCollisionCheck             mCollisionCheck3_React;
