@@ -21,6 +21,13 @@ class ActorCollisionDrcTouchCallback;
 class ActorCollisionCheck : public sead::IDisposer  // vtbl Address: 0x10041C18
 {
 public:
+    struct Vec2 // POD variant
+    {
+        f32 x;
+        f32 y;
+    };
+    static_assert(sizeof(Vec2) == 8);
+
     enum ShapeType
     {
         cShapeType_Box      = 0,
@@ -149,12 +156,13 @@ public:
 
     enum Status
     {
-        cStatus_Unk0    = 1 << 0,
-        cStatus_Passive = 1 << 2,   // If set, this instance does not trigger other instances
-        cStatus_Unk9    = 1 << 9,
-        cStatus_Unk12   = 1 << 12,
+        cStatus_Unk0        = 1 <<  0,
+        cStatus_Passive     = 1 <<  2,  // If set, this instance does not trigger other instances
+        cStatus_SlideKill   = 1 <<  8,
+        cStatus_Unk9        = 1 <<  9,
+        cStatus_Unk12       = 1 << 12,
 
-        cStatus_None    = 0
+        cStatus_None        = 0
     };
     static_assert(sizeof(Status) == 4);
 
@@ -162,17 +170,15 @@ public:
 
     struct CollisionData
     {
-        f32         center_offset_x;
-        f32         center_offset_y;
-        f32         half_size_x;
-        f32         half_size_y;
+        Vec2        center_offset;
+        Vec2        half_size;
         ShapeType   shape_type;
         Kind        kind;               // Type of the owner of this instance
         Attack      attack;             // Type of attack this instance performs
         TargetKind  vs_kind;            // Mask of owner types to interact with
         DamageFrom  vs_damage;          // Mask of attack types to receive
         Status      status;             // Sets allowed interactions, such as being pick-able
-        CallBack    callback;
+        CallBack    call_back;
 
         // Address: 0x10041BC0
         static const CollisionData cDefault;
@@ -184,6 +190,88 @@ public:
         cInfo_NoHit = 2
     };
     static_assert(sizeof(Info) == 4);
+
+public:
+    friend TargetKind operator|(const TargetKind& lhs, const TargetKind& rhs)
+    {
+        return (TargetKind)((u32)lhs | (u32)rhs);
+    }
+
+    friend TargetKind& operator|=(TargetKind& lhs, const TargetKind& rhs)
+    {
+        lhs = lhs | rhs;
+        return lhs;
+    }
+
+    friend TargetKind operator&(const TargetKind& lhs, const TargetKind& rhs)
+    {
+        return (TargetKind)((u32)lhs & (u32)rhs);
+    }
+
+    friend TargetKind& operator&=(TargetKind& lhs, const TargetKind& rhs)
+    {
+        lhs = lhs & rhs;
+        return lhs;
+    }
+
+    friend TargetKind operator~(const TargetKind& val)
+    {
+        return (TargetKind)(~(u32)val);
+    }
+
+    friend DamageFrom operator|(const DamageFrom& lhs, const DamageFrom& rhs)
+    {
+        return (DamageFrom)((u32)lhs | (u32)rhs);
+    }
+
+    friend DamageFrom& operator|=(DamageFrom& lhs, const DamageFrom& rhs)
+    {
+        lhs = lhs | rhs;
+        return lhs;
+    }
+
+    friend DamageFrom operator&(const DamageFrom& lhs, const DamageFrom& rhs)
+    {
+        return (DamageFrom)((u32)lhs & (u32)rhs);
+    }
+
+    friend DamageFrom& operator&=(DamageFrom& lhs, const DamageFrom& rhs)
+    {
+        lhs = lhs & rhs;
+        return lhs;
+    }
+
+    friend DamageFrom operator~(const DamageFrom& val)
+    {
+        return (DamageFrom)(~(u32)val);
+    }
+
+    friend Status operator|(const Status& lhs, const Status& rhs)
+    {
+        return (Status)((u32)lhs | (u32)rhs);
+    }
+
+    friend Status& operator|=(Status& lhs, const Status& rhs)
+    {
+        lhs = lhs | rhs;
+        return lhs;
+    }
+
+    friend Status operator&(const Status& lhs, const Status& rhs)
+    {
+        return (Status)((u32)lhs & (u32)rhs);
+    }
+
+    friend Status& operator&=(Status& lhs, const Status& rhs)
+    {
+        lhs = lhs & rhs;
+        return lhs;
+    }
+
+    friend Status operator~(const Status& val)
+    {
+        return (Status)(~(u32)val);
+    }
 
 public:
     // Address: 0x0219A960
@@ -198,20 +286,55 @@ public:
     // Address: 0x0219B054
     void set(Actor* p_owner, const CollisionData& collision_data, const sead::BitFlag8& collision_mask, u8 layer, ActorCollisionDrcTouchCallback* p_drc_touch_callback = nullptr);
 
+    ShapeType getShapeType() const
+    {
+        return mCollisionData.shape_type;
+    }
+
+    void setShapeType(ShapeType type)
+    {
+        mCollisionData.shape_type = type;
+    }
+
+    bool isShapeType(ShapeType type) const
+    {
+        return mCollisionData.shape_type == type;
+    }
+
+    f32 getCenterOffsetX() const
+    {
+        return mCollisionData.center_offset.x;
+    }
+
     void setCenterOffsetX(f32 center_offset_x)
     {
-        mCollisionData.center_offset_x = center_offset_x;
+        mCollisionData.center_offset.x = center_offset_x;
+    }
+
+    f32 getCenterOffsetY() const
+    {
+        return mCollisionData.center_offset.y;
     }
 
     void setCenterOffsetY(f32 center_offset_y)
     {
-        mCollisionData.center_offset_y = center_offset_y;
+        mCollisionData.center_offset.y = center_offset_y;
+    }
+
+    const Vec2& getCenterOffset() const
+    {
+        return mCollisionData.center_offset;
+    }
+
+    void setCenterOffset(const Vec2& center_offset)
+    {
+        mCollisionData.center_offset = center_offset;
     }
 
     void setCenterOffset(f32 center_offset_x, f32 center_offset_y)
     {
-        mCollisionData.center_offset_x = center_offset_x;
-        mCollisionData.center_offset_y = center_offset_y;
+        mCollisionData.center_offset.x = center_offset_x;
+        mCollisionData.center_offset.y = center_offset_y;
     }
 
     void setCenterOffset(const sead::Vector2f& center_offset)
@@ -219,20 +342,40 @@ public:
         setCenterOffset(center_offset.x, center_offset.y);
     }
 
+    f32 getHalfSizeX() const
+    {
+        return mCollisionData.half_size.x;
+    }
+
     void setHalfSizeX(f32 half_size_x)
     {
-        mCollisionData.half_size_x = half_size_x;
+        mCollisionData.half_size.x = half_size_x;
+    }
+
+    f32 getHalfSizeY() const
+    {
+        return mCollisionData.half_size.y;
     }
 
     void setHalfSizeY(f32 half_size_y)
     {
-        mCollisionData.half_size_y = half_size_y;
+        mCollisionData.half_size.y = half_size_y;
+    }
+
+    const Vec2& getHalfSize() const
+    {
+        return mCollisionData.half_size;
+    }
+
+    void setHalfSize(const Vec2& half_size)
+    {
+        mCollisionData.half_size = half_size;
     }
 
     void setHalfSize(f32 half_size_x, f32 half_size_y)
     {
-        mCollisionData.half_size_x = half_size_x;
-        mCollisionData.half_size_y = half_size_y;
+        mCollisionData.half_size.x = half_size_x;
+        mCollisionData.half_size.y = half_size_y;
     }
 
     void setHalfSize(const sead::Vector2f& half_size)
@@ -240,9 +383,102 @@ public:
         setHalfSize(half_size.x, half_size.y);
     }
 
-    void setDamageFrom(DamageFrom vs_damage)
+    void setSizeOffset(const sead::Vector2f& half_size, const sead::Vector2f& center_offset)
+    {
+        setHalfSize(half_size);
+        setCenterOffset(center_offset);
+    }
+
+    Kind getKind() const
+    {
+        return mCollisionData.kind;
+    }
+
+    // Address: 0x0219B0A8
+    void setKind(Kind kind);
+
+    bool isKind(Kind kind) const
+    {
+        return mCollisionData.kind == kind;
+    }
+
+    // Address: Deleted
+    void setVsKind(TargetKind vs_kind);
+    // Address: 0x0219B164
+    void onVsKind2(TargetKind vs_kind);
+    // Address: 0x0219B250
+    void onVsKind(TargetKind vs_kind);
+    // Address: 0x0219B338
+    void offVsKind(TargetKind vs_kind);
+
+    bool hasVsKind(TargetKind vs_kind) const
+    {
+        return mCollisionData.vs_kind & vs_kind;
+    }
+
+    Attack getAttack() const
+    {
+        return mCollisionData.attack;
+    }
+
+    void setAttack(Attack attack)
+    {
+        mCollisionData.attack = attack;
+    }
+
+    bool isAttack(Attack attack) const
+    {
+        return mCollisionData.attack == attack;
+    }
+
+    DamageFrom getDamage() const
+    {
+        return mCollisionData.vs_damage;
+    }
+
+    void setDamage(DamageFrom vs_damage)
     {
         mCollisionData.vs_damage = vs_damage;
+    }
+
+    void onDamage(DamageFrom vs_damage)
+    {
+        mCollisionData.vs_damage |= vs_damage;
+    }
+
+    void offDamage(DamageFrom vs_damage)
+    {
+        mCollisionData.vs_damage &= ~vs_damage;
+    }
+
+    bool hasDamage(DamageFrom vs_damage) const
+    {
+        return mCollisionData.vs_damage & vs_damage;
+    }
+
+    Status getStatus() const
+    {
+        return mCollisionData.status;
+    }
+
+    void setStatus(Status status)
+    {
+        mCollisionData.status = status;
+    }
+
+    void onStatus(Status status)
+    {
+        mCollisionData.status |= status;
+    }
+
+    void offStatus(Status status)
+    {
+        mCollisionData.status &= ~status;
+    }
+
+    bool hasStatus(Status status)
+    {
+        return mCollisionData.status & status;
     }
 
     void setIndex(u32 index)
@@ -278,6 +514,22 @@ public:
         return sead::Vector2f(getCenterPosX(), getCenterPosY());
     }
 
+    sead::Vector2f getMinPos() const
+    {
+        return sead::Vector2f(
+            getLeftPos(),
+            getUnderPos()
+        );
+    }
+
+    sead::Vector2f getMaxPos() const
+    {
+        return sead::Vector2f(
+            getRightPos(),
+            getTopPos()
+        );
+    }
+
     Actor* getOwner() const
     {
         return mpOwner;
@@ -309,12 +561,27 @@ public:
         return mLayer;
     }
 
-    bool isInactive() const
+    void setCallBack(CallBack call_back)
+    {
+        mCollisionData.call_back = call_back;
+    }
+
+    CallBack getCallBack() const
+    {
+        return mCollisionData.call_back;
+    }
+
+    bool isDisableCallback() const
     {
         return mInfo & cInfo_NoHit;
     }
 
-    void setInactive()
+    void enableCallback()
+    {
+        mInfo &= ~cInfo_NoHit;
+    }
+
+    void disableCallback()
     {
         mInfo |= cInfo_NoHit;
     }
@@ -339,27 +606,21 @@ public:
         return mDaikei[index];
     }
 
-    f32 getIntersectionX(Kind kind) const
+    f32 getRevisionX(Kind kind) const
     {
-        return mIntersectionX[kind];
+        return mMoveX[kind];
     }
 
-    f32 getIntersectionY(Kind kind) const
+    f32 getRevisionY(Kind kind) const
     {
-        return mIntersectionY[kind];
+        return mMoveY[kind];
     }
 
     sead::BoundBox2f getBoundBox() const
     {
         return sead::BoundBox2f(
-            sead::Vector2f(
-                getLeftPos(),
-                getUnderPos()
-            ),
-            sead::Vector2f(
-                getRightPos(),
-                getTopPos()
-            )
+            getMinPos(),
+            getMaxPos()
         );
     }
 
@@ -400,50 +661,7 @@ private:
     ActorCollisionDrcTouchCallback* mpDrcTouchCallback;
     CollisionData                   mCollisionData;
     sead::SafeArray<f32, 4>         mDaikei;
-    sead::SafeArray<f32, cKind_Num> mIntersectionX;
-    sead::SafeArray<f32, cKind_Num> mIntersectionY;
+    sead::SafeArray<f32, cKind_Num> mMoveX;
+    sead::SafeArray<f32, cKind_Num> mMoveY;
 };
 static_assert(sizeof(ActorCollisionCheck) == 0x128);
-
-inline ActorCollisionCheck::TargetKind operator|(const ActorCollisionCheck::TargetKind& lhs, const ActorCollisionCheck::TargetKind& rhs)
-{
-    return (ActorCollisionCheck::TargetKind)((u32)lhs | (u32)rhs);
-}
-
-inline ActorCollisionCheck::TargetKind& operator|=(ActorCollisionCheck::TargetKind& lhs, const ActorCollisionCheck::TargetKind& rhs)
-{
-    lhs = lhs | rhs;
-    return lhs;
-}
-
-inline ActorCollisionCheck::TargetKind operator~(const ActorCollisionCheck::TargetKind& val)
-{
-    return (ActorCollisionCheck::TargetKind)(~(u32)val);
-}
-
-inline ActorCollisionCheck::DamageFrom operator|(const ActorCollisionCheck::DamageFrom& lhs, const ActorCollisionCheck::DamageFrom& rhs)
-{
-    return (ActorCollisionCheck::DamageFrom)((u32)lhs | (u32)rhs);
-}
-
-inline ActorCollisionCheck::DamageFrom& operator|=(ActorCollisionCheck::DamageFrom& lhs, const ActorCollisionCheck::DamageFrom& rhs)
-{
-    lhs = lhs | rhs;
-    return lhs;
-}
-
-inline ActorCollisionCheck::DamageFrom operator~(const ActorCollisionCheck::DamageFrom& val)
-{
-    return (ActorCollisionCheck::DamageFrom)(~(u32)val);
-}
-
-inline ActorCollisionCheck::Status operator|(const ActorCollisionCheck::Status& lhs, const ActorCollisionCheck::Status& rhs)
-{
-    return (ActorCollisionCheck::Status)((u32)lhs | (u32)rhs);
-}
-
-inline ActorCollisionCheck::Status& operator|=(ActorCollisionCheck::Status& lhs, const ActorCollisionCheck::Status& rhs)
-{
-    lhs = lhs | rhs;
-    return lhs;
-}
