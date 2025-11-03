@@ -20,7 +20,6 @@ public:
     // Address: 0x1007206C
     static const f32 cFumiJumpSpeed;
     // Address: 0x10072070
-    static const f32 cDefaultAccelY;
     static const f32 cDefaultGravity;
     // Address: 0x10072078
     static const f32 cDefaultMaxFallSpeed;
