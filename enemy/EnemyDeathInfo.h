@@ -53,7 +53,7 @@ public:
         , mAccelY(sDefaultAccelY)
         , mpStateID(spDefaultStateID)
         , mKillArg(sDefaultKillArg)
-        , mIsNoRespawn(false)
+        , mIsDead(false)
     {
     }
 
@@ -75,13 +75,13 @@ public:
         mKillArg.kill_player_no = kill_player_no;
     }
 
-    bool isNoRespawn() const
+    bool isDead() const
     {
-        return mIsNoRespawn;
+        return mIsDead;
     }
 
     // Address: 0x0232EFA0
-    void setNoRespawn(const EnemyDeathInfo& info);
+    void kill(const EnemyDeathInfo& info);
 
 private:
     sead::Vector2f  mSpeed;
@@ -89,6 +89,6 @@ private:
     f32             mAccelY;
     const StateID*  mpStateID;
     KillArg         mKillArg;
-    bool            mIsNoRespawn;
+    bool            mIsDead;
 };
 static_assert(sizeof(EnemyDeathInfo) == 0x1C);

@@ -97,7 +97,7 @@ public:
     // Address: 0x02329250
     virtual bool playerDamageCheck(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
     // Address: 0x02329520
-    virtual bool enemyPreDamageCheck(bool* p_no_respawn, ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
+    virtual bool enemyPreDamageCheck(bool* p_dead, ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
     // Address: 0x02329578
     virtual bool hitYoshiEat(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
     // Address: 0x0232957C
@@ -152,7 +152,7 @@ public:
     virtual bool hitCallback_ChibiYoshiStar(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
 
     // Address: 0x0232DA24
-    virtual bool hitCallback_AttackUnk27(bool* p_no_respawn, ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
+    virtual bool hitCallback_AttackUnk27(bool* p_dead, ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
 
     // Address: 0x0232DAF0
     virtual void setDeathInfo_Quake(s32);
@@ -340,7 +340,7 @@ public:
     void bound(f32, f32, f32);
 
     // Address: 0x0232CAEC
-    bool isNoRespawn() const;
+    bool isDead() const;
 
     // Address: 0x023288BC
     void hitdamageEffect(const sead::Vector3f& effect_pos);

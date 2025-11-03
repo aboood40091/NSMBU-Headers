@@ -117,7 +117,7 @@ public:
     bool checkEat() const;
 
     // Address: 0x02000774
-    void deleteActor(bool no_respawn);
+    void deleteActor(bool manual_deleted);
 
 public:
     ActorCollisionCheck& getCollisionCheck()
@@ -215,9 +215,19 @@ public:
         return ActorType(mActorType);
     }
 
-    bool isNoRespawn() const
+    bool getManualDeletedFlag() const
     {
-        return mIsNoRespawn;
+        return mManualDeletedFlag;
+    }
+
+    CarryFlag getCarryFlag() const
+    {
+        return CarryFlag(mCarryFlag);
+    }
+
+    u32 getProfFlag() const
+    {
+        return mProfFlag;
     }
 
 protected:
@@ -353,7 +363,7 @@ protected:
     u8                      mActorType;                 // ActorType
     bool                    mIsExecEnable;
     bool                    mIsDrawEnable;
-    bool                    mIsNoRespawn;
+    bool                    mManualDeletedFlag;
     u8                      _211;
     u8                      mCarryFlag;                 // & 2 = isCarry
     u8                      mSwitchFlag0;
