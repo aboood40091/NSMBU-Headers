@@ -31,6 +31,16 @@ public:
         cActorType_ChibiYoshi
     };
 
+    enum CarryFlag
+    {
+        cCarryFlag_Release      = 1 << 0,
+        cCarryFlag_Throw        = 1 << 1, // Otherwise if unset, put on ground
+        cCarryFlag_ThrowHard    = 1 << 2,
+
+        cCarryFlag_None         = 0,
+        cCarryFlag_All          = cCarryFlag_Release | cCarryFlag_Throw | cCarryFlag_ThrowHard
+    };
+
 public:
     virtual void setPlayerNo(s8 id)
     {
@@ -61,7 +71,7 @@ public:
         return true;
     }
 
-    virtual void setSpinLiftUpActor(Actor*)
+    virtual void setSpinLiftUpActor(Actor* p_player)
     {
     }
 
@@ -365,7 +375,7 @@ protected:
     bool                    mIsDrawEnable;
     bool                    mManualDeletedFlag;
     u8                      _211;
-    u8                      mCarryFlag;                 // & 2 = isCarry
+    u8                      mCarryFlag;                 // CarryFlag
     u8                      mSwitchFlag0;
     u8                      mSwitchFlag1;
     u16                     mCreateFlag;                // Inited to ActorCreateInfo::flag
