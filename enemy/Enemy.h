@@ -321,9 +321,9 @@ public:
     static void iceballInvalid(ActorCollisionCheck* cc_other);
 
     // Address: 0x0232CBA4
-    void setDeathInfo_Fall(u8 direction, s8 player_no = -1, ScoreMgr::ScoreType score_type = ScoreMgr::cScoreType_Invalid);
+    void setDeathInfo_Fall(u32 direction, s32 player_no = -1, ScoreMgr::ScoreType score_type = ScoreMgr::cScoreType_Invalid);
     // Address: 0x0232CB08
-    void setDeathInfo_Fall(const sead::Vector2f* speeds, u8 direction, s8 player_no = -1, ScoreMgr::ScoreType score_type = ScoreMgr::cScoreType_Invalid);
+    void setDeathInfo_Fall(const sead::Vector2f* speeds, u32 direction, s32 player_no = -1, ScoreMgr::ScoreType score_type = ScoreMgr::cScoreType_Invalid);
     // Address: 0x0232DA34
     void setDeathInfo_Fumi(Actor*, sead::Vector2f speed, const StateID& state_id);
     // Address: 0x0232CC98
