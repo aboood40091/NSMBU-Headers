@@ -40,14 +40,14 @@ public:
         return mIsActive;
     }
 
-    void requestDelete()
+    void deleteRequest()
     {
-        mRequestDelete = true;
+        mDeleteRequestFlag = true;
     }
 
-    bool isDeleted() const
+    bool isRequestedDelete() const
     {
-        return mRequestDelete;
+        return mDeleteRequestFlag;
     }
 
     ActorUniqueID getActorUniqueID() const
@@ -121,7 +121,7 @@ protected:
     bool            mCreateImmediately;
     bool            _d;
     bool            mIsActive;
-    bool            mRequestDelete;
+    bool            mDeleteRequestFlag;
     u32             mParam0;
     u32             mParam1;
     ActorParamEx1   mParamEx;
