@@ -21,13 +21,14 @@ public:
     static const f32 cFumiJumpSpeed;
     // Address: 0x10072070
     static const f32 cDefaultAccelY;
+    static const f32 cDefaultGravity;
     // Address: 0x10072078
-    static const f32 cDefaultYSpeedMax;
+    static const f32 cDefaultMaxFallSpeed;
 
     // Address: 0x10200DD8
     static const Angle cBaseAngleY[cDirType_NumX];
     // Address: 0x10072094
-    static const s8 cDirSign[cDirType_NumX];    // Actual name unknown
+    static const s8 cEnMuki[cDirType_NumX];
 
     static const s32 cNoHitPlayerTimerDefault = 5;
 
