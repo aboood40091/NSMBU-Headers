@@ -93,7 +93,10 @@ public:
 
         cStatus_60                  =  60,  // Disable block-hit bounce
 
-        cStatus_63                  =  63,
+        cStatus_62                  =  62,
+        cStatus_63,
+
+        cStatus_69                  =  69,  // NSMBW: Bit 0x2B
 
         cStatus_71                  =  71,  // NSMBW: Bit 0x2D
 
@@ -120,7 +123,8 @@ public:
         cStatus_RideNatDone         = 127,  // NSMBW: Bit 0x58 (Ride Nat target reached)
         cStatus_RideNat,                    // NSMBW: Bit 0x59
 
-        cStatus_130                 = 130,  // NSMBW: Bit 0x5C
+        cStatus_129                 = 129,  // NSMBW: Bit 0x5A
+        cStatus_130,                        // NSMBW: Bit 0x5C
         cStatus_131,                        // NSMBW: Bit 0x5D
 
         cStatus_133                 = 133,  // NSMBW: Bit 0x5E
@@ -591,6 +595,7 @@ public:
 
     enum DemoType
     {
+        cDemoType_3 = 3
     };
 
     enum AnmBlend
