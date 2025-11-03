@@ -424,6 +424,11 @@ public:
     // Address: 0x0218BCA8
     SakaType getSakaType(Angle saka_base_angle);
 
+    bool isSaka()
+    {
+        return getSakaType(getSakaBaseAngle());
+    }
+
     // Address: 0x0218E234
     SakaDir getSakaDir();           // Returns the downhill direction along the slope surface, left if the slope descends leftwards, right if the slope descends rightwards.
 
