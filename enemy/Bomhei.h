@@ -127,11 +127,11 @@ public:
     // Address: 0x022D1C94
     void playerHitCheck_Awake(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other) override;
     // Address: 0x022D30E0
-    void playerHitCheck_Unknown(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other) override;
+    void playerHitCheck_Sleep_Base(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other) override;
     // Address: 0x022D4450
-    void setDropChangeState(Actor*) override;
+    void setPutOnChangeState(Actor* p_player) override;
     // Address: 0x022D4468
-    void setThrowChangeState(Actor*) override;
+    void setThrowChangeState(Actor* p_player, bool hard) override;
 
     // StateID_Carry            Address: 0x101FF21C
     // initializeState_Carry    Address: 0x022D512C
