@@ -60,6 +60,7 @@ public:
     enum Flag
     {
         cFlag_DrawCullCheck = 1 << 1,
+        cFlag_Unk7 = 1 << 7,
         cFlag_NoLoopPosX = 1 << 10,
 
         cFlag_None = 0
