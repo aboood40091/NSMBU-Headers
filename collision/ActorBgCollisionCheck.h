@@ -334,6 +334,26 @@ public:
         return mSensor2;
     }
 
+    Sensor* getSensor1(u8 direction)
+    {
+        return &(mSensor1[direction]);
+    }
+
+    const Sensor* getSensor1(u8 direction) const
+    {
+        return &(mSensor1[direction]);
+    }
+
+    Sensor* getSensor2(u8 direction)
+    {
+        return &(mSensor2[direction]);
+    }
+
+    const Sensor* getSensor2(u8 direction) const
+    {
+        return &(mSensor2[direction]);
+    }
+
     SensorFlag& getSensorFlag(u8 direction)
     {
         return mSensorFlag[direction];
