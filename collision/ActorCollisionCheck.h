@@ -642,26 +642,26 @@ public:
 private:
     typedef LineNodeMgr<ActorCollisionCheck> List;
 
-    List::Node                      mExecuteNode;
-    List::Node                      mCreateNode;
-    List::Node                      mTouchDrcHoldNode;
-    List::Node                      mTouchDrcCheckNode;
-    Actor*                          mpOwner;
-    Actor*                          mpFriend;   // Collisions with this are ignored
-    u32                             _48;
-    sead::Vector2f                  mDrcTouchPos;
-    sead::Vector2f                  mHitPos;
-    TargetKind                      mHit;               // Owner types of others we've collided with
-    DamageFrom                      mAttacksPerformed;  // Attacks performed on non-passive others
-    DamageFrom                      mAttacksReceived;   // Attacks received from non-passive others
-    u32                             mIndex;
-    sead::BitFlag8                  mCollisionMask;
-    u8                              mLayer;
-    u8                              mInfo;
-    ActorCollisionDrcTouchCallback* mpDrcTouchCallback;
-    CollisionData                   mCollisionData;
-    sead::SafeArray<f32, 4>         mDaikei;
-    sead::SafeArray<f32, cKind_Num> mMoveX;
-    sead::SafeArray<f32, cKind_Num> mMoveY;
+    List::Node                          mExecuteNode;
+    List::Node                          mCreateNode;
+    List::Node                          mTouchDrcHoldNode;
+    List::Node                          mTouchDrcCheckNode;
+    Actor*                              mpOwner;
+    Actor*                              mpFriend;           // Collisions with this are ignored
+    u32                                 _48;
+    sead::Vector2f                      mDrcTouchPos;
+    sead::Vector2f                      mHitPos;
+    TargetKind                          mHit;               // Owner types of others we've collided with
+    DamageFrom                          mAttacksPerformed;  // Attacks performed on non-passive others
+    DamageFrom                          mAttacksReceived;   // Attacks received from non-passive others
+    u32                                 mIndex;
+    sead::BitFlag8                      mCollisionMask;
+    u8                                  mLayer;
+    u8                                  mInfo;
+    ActorCollisionDrcTouchCallback*     mpDrcTouchCallback;
+    CollisionData                       mCollisionData;
+    sead::UnsafeArray<f32, 4>           mDaikei;
+    sead::UnsafeArray<f32, cKind_Num>   mMoveX;
+    sead::UnsafeArray<f32, cKind_Num>   mMoveY;
 };
 static_assert(sizeof(ActorCollisionCheck) == 0x128);
