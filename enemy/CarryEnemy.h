@@ -18,7 +18,6 @@ public:
 public:
     // Address: 0x022EB09C
     CarryEnemy(const ActorCreateParam& param);
-    virtual ~CarryEnemy() { }
 
 protected:
     // Address: 0x022EB18C
@@ -145,6 +144,9 @@ private:
 
     // Address: 0x022EBED8
     bool sleepSpinFumiProcCheck_(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
+
+    inline void reviseCarryBgPosX_(ActorBgCollisionCheck& bc, const sead::Vector3f& player_pos);
+    inline void reviseCarryBgPosY_(ActorBgCollisionCheck& bc);
 
 protected:
     sead::Vector3f              mCarryBaseOffset;
