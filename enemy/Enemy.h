@@ -47,7 +47,8 @@ public:
     enum FumiSeType
     {
         cFumiSeType_Normal = 0,
-        cFumiSeType_Step
+        cFumiSeType_Step,
+        cFumiSeType_NoEffect
     };
 
 public:
