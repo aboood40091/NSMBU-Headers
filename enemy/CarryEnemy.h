@@ -114,7 +114,7 @@ public:
     // Address: 0x022EC6B8
     void calcCarryPos(sead::Vector3f* p_pos, PlayerObject* p_player_obj);
     // Address: 0x022ECA60
-    void calcCarryCcPos(ActorCollisionCheck* p_cc, PlayerObject* p_player_obj);
+    void adjustCarryCc(ActorCollisionCheck* p_cc, PlayerObject* p_player_obj);
 
     // StateID_Carry            Address: 0x101FF7EC
     // initializeState_Carry    Address: 0x022ECD00
