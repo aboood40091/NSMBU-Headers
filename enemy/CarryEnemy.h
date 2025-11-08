@@ -157,7 +157,7 @@ protected:
     u32                         _18a4;                      // ^^^
     s8                          mCarryPlayerNo;
     ActorUniqueID               mCarryPlayerID;
-    bool                        mIsCarryEnemy;
+    bool                        mForceSetShellDamageEffect;
     bool                        mIsLiftUp;
 };
 static_assert(sizeof(CarryEnemy) == 0x18B8);
