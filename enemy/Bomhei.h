@@ -143,11 +143,11 @@ public:
     // executeState_Sleep       Address: 0x022D5F1C
     // finalizeState_Sleep      Address: 0x022D6068
     DECLARE_STATE_VIRTUAL_ID_OVERRIDE(Bomhei, Sleep)
-    // StateID_Kick         Address: 0x101FF240
-    // initializeState_Kick Address: 0x022D5BF0
-    // executeState_Kick    Address: 0x022D5CC0
-    // finalizeState_Kick   Address: 0x022D5E58
-    DECLARE_STATE_VIRTUAL_ID_OVERRIDE(Bomhei, Kick)
+    // StateID_Slide            Address: 0x101FF240
+    // initializeState_Slide    Address: 0x022D5BF0
+    // executeState_Slide       Address: 0x022D5CC0
+    // finalizeState_Slide      Address: 0x022D5E58
+    DECLARE_STATE_VIRTUAL_ID_OVERRIDE(Bomhei, Slide)
 
     // Address: 0x022D3F9C
     virtual s32 vf574(u32, f32*);
@@ -197,11 +197,11 @@ public:
     // executeState_ThrowKoopaJr_Double     Address: 0x022D58DC
     // finalizeState_ThrowKoopaJr_Double    Address: 0x022D5BB0
     DECLARE_STATE_ID(Bomhei, ThrowKoopaJr_Double)
-    // StateID_Slide            Address: 0x101FF1A8
-    // initializeState_Slide    Address: 0x022D60FC
-    // executeState_Slide       Address: 0x022D622C
-    // finalizeState_Slide      Address: 0x022D6404
-    DECLARE_STATE_ID(Bomhei, Slide)
+    // StateID_Kick         Address: 0x101FF1A8
+    // initializeState_Kick Address: 0x022D60FC
+    // executeState_Kick    Address: 0x022D622C
+    // finalizeState_Kick   Address: 0x022D6404
+    DECLARE_STATE_ID(Bomhei, Kick)
     // StateID_AfterIce         Address: 0x101FF1C8
     // initializeState_AfterIce Address: 0x022D6410
     // executeState_AfterIce    Address: 0x022D6448

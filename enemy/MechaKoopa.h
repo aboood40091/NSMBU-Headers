@@ -114,11 +114,11 @@ public:
     // executeState_Turn    Address: 0x023EA6E4
     // finalizeState_Turn   Address: 0x023EBAFC
     DECLARE_STATE_ID(MechaKoopa, Turn)
-    // StateID_Slide            Address: 0x10204CD4
-    // initializeState_Slide    Address: 0x023EA9DC
-    // executeState_Slide       Address: 0x023EAC0C
-    // finalizeState_Slide      Address: 0x023EAD6C
-    DECLARE_STATE_ID(MechaKoopa, Slide)
+    // StateID_Kick         Address: 0x10204CD4
+    // initializeState_Kick Address: 0x023EA9DC
+    // executeState_Kick    Address: 0x023EAC0C
+    // finalizeState_Kick   Address: 0x023EAD6C
+    DECLARE_STATE_ID(MechaKoopa, Kick)
     // StateID_Recover          Address: 0x10204CF4
     // initializeState_Recover  Address: 0x023EADC4
     // executeState_Recover     Address: 0x023EAE54
