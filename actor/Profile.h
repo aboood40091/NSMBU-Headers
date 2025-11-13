@@ -59,16 +59,49 @@ public:
 
     enum Flag
     {
-        cFlag_DrawCullCheck = 1 << 1,
-        cFlag_Unk7 = 1 << 7,
-        cFlag_NoLoopPosX = 1 << 10,
+        cFlag_DrawCullCheck = 1 <<  1,
+        cFlag_Unk3          = 1 <<  3,
+        cFlag_Unk4          = 1 <<  4,
+        cFlag_Unk7          = 1 <<  7,
+        cFlag_Unk8          = 1 <<  8,
+        cFlag_NoLoopPosX    = 1 << 10,
+        cFlag_Unk12         = 1 << 12,
 
-        cFlag_None = 0
+        cFlag_None          = 0
     };
+    static_assert(sizeof(Flag) == 4);
+
+public:
+    friend Flag operator|(const Flag& lhs, const Flag& rhs)
+    {
+        return (Flag)((u32)lhs | (u32)rhs);
+    }
+
+    friend Flag& operator|=(Flag& lhs, const Flag& rhs)
+    {
+        lhs = lhs | rhs;
+        return lhs;
+    }
+
+    friend Flag operator&(const Flag& lhs, const Flag& rhs)
+    {
+        return (Flag)((u32)lhs & (u32)rhs);
+    }
+
+    friend Flag& operator&=(Flag& lhs, const Flag& rhs)
+    {
+        lhs = lhs & rhs;
+        return lhs;
+    }
+
+    friend Flag operator~(const Flag& val)
+    {
+        return (Flag)(~(u32)val);
+    }
 
 public:
     // Address: 0x02019554
-    Profile(ActorFactory factory, s32 id, const sead::SafeString& name, const ActorCreateInfo* p_create_info, u32 flag);
+    Profile(ActorFactory factory, s32 id, const sead::SafeString& name, const ActorCreateInfo* p_create_info = nullptr, Flag flag = cFlag_None);
 
     ActorFactory getActorFactory() const
     {
@@ -91,7 +124,7 @@ public:
         return mIsResLoaded;
     }
 
-    u32 getFlag() const
+    Flag getFlag() const
     {
         return mFlag;
     }
@@ -120,7 +153,7 @@ protected:
     s32                     mID;
     const ActorCreateInfo*  mpActorCreateInfo;
     bool                    mIsResLoaded;
-    u32                     mFlag;
+    Flag                    mFlag;
 
     // Address: 0x101ED8DC
     static sead::SafeArray<Profile*, cProfileID_Max>    sProfile;
