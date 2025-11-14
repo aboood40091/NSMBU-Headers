@@ -4,7 +4,7 @@
 #include <collision/ActorCollisionCheckMgr.h>
 #include <collision/ActorCollisionDrcTouchCallback.h>
 #include <enemy/Enemy.h>
-#include <enemy/EnemyActorScaler.h>
+#include <enemy/EnemyBoyoMgr.h>
 
 class BossDrcTouchCB : public ActorCollisionDrcTouchCallback    // vtbl Address: 0x10005E2C
 {
@@ -567,7 +567,7 @@ protected:
     GameAudio::AudioObjctEmy    mAudioObj;
     s16                         mAudioObjSeqVar;
     AttentionLookat             mAttentionLookat;
-    EnemyActorScaler            mScaler;
+    EnemyBoyoMgr                mBoyoMgr;
     ActorCollisionCheck         mCollisionCheckDrcTouch;    // Maybe?
     BossDrcTouchCB              mDrcTouchCallback;
     sead::Vector3f              mIcePos;

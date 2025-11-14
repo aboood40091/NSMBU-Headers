@@ -3,7 +3,7 @@
 #include <actor/Profile.h>
 #include <collision/ActorCollisionDrcTouchCallback.h>
 #include <enemy/CarryEnemy.h>
-#include <enemy/EnemyActorScaler.h>
+#include <enemy/EnemyBoyoMgr.h>
 
 class MechaKoopaDrcTouchCB : public ActorCollisionDrcTouchCallback  // vtbl Address: 0x100945D4
 {
@@ -134,7 +134,7 @@ protected:
     u8                      _18cc;
     u8                      _18cd;
     MechaKoopaDrcTouchCB    mDrcTouchCallback;
-    EnemyActorScaler        mScaler;
+    EnemyBoyoMgr            mBoyoMgr;
     f32                     _18f4;
 };
 static_assert(sizeof(MechaKoopa) == 0x18F8);

@@ -5,7 +5,7 @@
 #include <collision/ActorCollisionDrcTouchCallback.h>
 #include <effect/EffectObj.h>
 #include <enemy/Enemy.h>
-#include <enemy/EnemyActorScaler.h>
+#include <enemy/EnemyBoyoMgr.h>
 
 #include <math/seadMatrix.h>
 
@@ -279,7 +279,7 @@ protected:
     bool                        _2f39;
     ActorCollisionCheck         mCollisionCheck2;       // For DRC touch???
     BrosDrcTouchCB              mDrcTouchCallback;
-    EnemyActorScaler            mScaler;
+    EnemyBoyoMgr                mBoyoMgr;
     u8                          _3088;
     u8                          _3089;
 };

@@ -2,7 +2,7 @@
 
 #include <collision/ActorCollisionDrcTouchCallback.h>
 #include <enemy/Enemy.h>
-#include <enemy/EnemyActorScaler.h>
+#include <enemy/EnemyBoyoMgr.h>
 #include <enemy/EnemyChibiYoshiEatData.h>
 #include <enemy/EnemyEatData.h>
 #include <enemy/MiddleKuribo.h>
@@ -251,7 +251,7 @@ protected:
     f32                         _1a14;
     EnemyEatData                mEatData;
     EnemyChibiYoshiEatData      mChibiYoshiEatData;
-    EnemyActorScaler            mScaler;
+    EnemyBoyoMgr                mBoyoMgr;
     KuriboDrcTouchCB            mDrcTouchCallback;
 };
 static_assert(sizeof(KuriboBase) == 0x1A88);

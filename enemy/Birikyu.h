@@ -6,7 +6,7 @@
 #include <collision/ActorCollisionDrcTouchCallback.h>
 #include <effect/EffectObj.h>
 #include <enemy/Enemy.h>
-#include <enemy/EnemyActorScaler.h>
+#include <enemy/EnemyBoyoMgr.h>
 #include <graphics/Light.h>
 
 class BirikyuDrcTouchCB : public ActorCollisionDrcTouchCallback // vtbl Address: 0x1005CD9C
@@ -34,7 +34,7 @@ public:
         , _1900(0.0f)
         , mEatData(mActorUniqueID)
         , mChibiYoshiEatData(mActorUniqueID)
-        , mScaler(this)
+        , mBoyoMgr(this)
         , mTouchTimer(0)
         , mIsTouchDone(false)
     {
@@ -119,7 +119,7 @@ protected:
     u8                  _1994; // bool?
     ActorCollisionCheck mCollisionCheck2;
     BirikyuDrcTouchCB   mDrcTouchCallback;
-    EnemyActorScaler    mScaler;
+    EnemyBoyoMgr        mBoyoMgr;
     s32                 mTouchTimer;
     bool                mIsTouchDone;
     u8                  _1ae9[0x1AF0 - 0x1AE9];

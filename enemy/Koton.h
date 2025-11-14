@@ -5,7 +5,7 @@
 #include <collision/ActorCollisionDrcTouchCallback.h>
 #include <effect/EffectObj.h>
 #include <enemy/Enemy.h>
-#include <enemy/EnemyActorScaler.h>
+#include <enemy/EnemyBoyoMgr.h>
 #include <enemy/EnemyChibiYoshiEatData.h>
 
 class KotonDrcTouchCB : public ActorCollisionDrcTouchCallback   // vtbl Address: 0x10090654
@@ -32,7 +32,7 @@ public:
         , mEatData(mActorUniqueID)
         , mChibiYoshiEatData(mActorUniqueID)
         , _1908(0)
-        , mScaler(this)
+        , mBoyoMgr(this)
     {
         _188d = 0;
     }
@@ -103,6 +103,6 @@ protected:
     u32                     _19c4;
     ActorCollisionCheck     mCollisionCheck2;
     KotonDrcTouchCB         mDrcTouchCallback;
-    EnemyActorScaler        mScaler;
+    EnemyBoyoMgr            mBoyoMgr;
 };
 static_assert(sizeof(Koton) == 0x1B18);

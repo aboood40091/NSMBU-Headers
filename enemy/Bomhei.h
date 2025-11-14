@@ -4,7 +4,7 @@
 #include <collision/ActorCollisionDrcTouchCallback.h>
 #include <effect/EffectObj.h>
 #include <enemy/CarryEnemy.h>
-#include <enemy/EnemyActorScaler.h>
+#include <enemy/EnemyBoyoMgr.h>
 #include <enemy/EnemyChibiYoshiEatData.h>
 #include <enemy/EnemyEatData.h>
 #include <graphics/Light.h>
@@ -240,7 +240,7 @@ protected:
     CircleLightMask         mLightMask;
     Light                   mLight;
     EffectObj               mEffect;
-    EnemyActorScaler        mScaler;
+    EnemyBoyoMgr            mBoyoMgr;
     BomheiDrcTouchCB        mDrcTouchCallback;
     f32                     _1a44;
     ActorState*             mpKoopaJr;
