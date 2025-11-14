@@ -192,11 +192,11 @@ public:
     // executeState_ThrowKoopaJr_Single     Address: 0x022D53FC
     // finalizeState_ThrowKoopaJr_Single    Address: 0x022D5764
     DECLARE_STATE_ID(Bomhei, ThrowKoopaJr_Single)
-    // StateID_ThrowKoopaJr_Double          Address: 0x101FF188
-    // initializeState_ThrowKoopaJr_Double  Address: 0x022D57A4
-    // executeState_ThrowKoopaJr_Double     Address: 0x022D58DC
-    // finalizeState_ThrowKoopaJr_Double    Address: 0x022D5BB0
-    DECLARE_STATE_ID(Bomhei, ThrowKoopaJr_Double)
+    // StateID_ThrowKoopaJr_Multi           Address: 0x101FF188
+    // initializeState_ThrowKoopaJr_Multi   Address: 0x022D57A4
+    // executeState_ThrowKoopaJr_Multi      Address: 0x022D58DC
+    // finalizeState_ThrowKoopaJr_Multi     Address: 0x022D5BB0
+    DECLARE_STATE_ID(Bomhei, ThrowKoopaJr_Multi)
     // StateID_Kick         Address: 0x101FF1A8
     // initializeState_Kick Address: 0x022D60FC
     // executeState_Kick    Address: 0x022D622C
@@ -207,11 +207,11 @@ public:
     // executeState_AfterIce    Address: 0x022D6448
     // finalizeState_AfterIce   Address: 0x022D7BE8
     DECLARE_STATE_ID(Bomhei, AfterIce)
-    // StateID_Frozen           Address: 0x101FF1E8
-    // initializeState_Frozen   Address: 0x022D65CC
-    // executeState_Frozen      Address: 0x022D7BEC
-    // finalizeState_Frozen     Address: 0x022D6634
-    DECLARE_STATE_ID(Bomhei, Frozen)
+    // StateID_KameckIce            Address: 0x101FF1E8
+    // initializeState_KameckIce    Address: 0x022D65CC
+    // executeState_KameckIce       Address: 0x022D7BEC
+    // finalizeState_KameckIce      Address: 0x022D6634
+    DECLARE_STATE_ID(Bomhei, KameckIce)
 
     // Address: 0x022D0680
     void activateFuse();
