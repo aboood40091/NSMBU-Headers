@@ -51,6 +51,13 @@ public:
         cFumiSeType_NoEffect
     };
 
+    enum EnFlag
+    {
+        cEnFlag_Shell               = 1 <<  0,
+        cEnFlag_Carry               = 1 <<  1,
+        cEnFlag_NoCeilCheckPlayer   = 1 << 24
+    };
+
 public:
     // Address: 0x02328494
     Enemy(const ActorCreateParam& param);
@@ -382,7 +389,7 @@ protected:
         u16,
         4
     >                       mNoHitPlayerTimer;              // TODO: This is actually a class ("EnemyCounter"?)
-    sead::BitFlag32         _17ec;                          // Bit 24: Collide with player even if above screen
+    sead::BitFlag32         mEnFlag;                        // See EnFlag
     IceMgr                  mIceMgr;
     EnemyChibiYoshiAwaData  mChibiYoshiAwaData;
 
