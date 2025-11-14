@@ -165,7 +165,7 @@ protected:
     void enterWater_();
 
     // Address: 0x02003C9C
-    bool isEnablePress_();
+    bool hasamareBgCheck_();
 
     // Address: 0x02003E58
     void checkSnapToGround_(f32 y_check_distance, const ActorBgCollisionCheck::Sensor& foot_sensor);
