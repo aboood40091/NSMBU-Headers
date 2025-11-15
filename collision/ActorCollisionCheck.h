@@ -156,13 +156,21 @@ public:
 
     enum Status
     {
-        cStatus_Unk0        = 1 <<  0,
-        cStatus_Passive     = 1 <<  2,  // If set, this instance does not trigger other instances
-        cStatus_SlideKill   = 1 <<  8,
-        cStatus_Unk9        = 1 <<  9,
-        cStatus_Unk12       = 1 << 12,
+        cStatus_NoRevision          = 1 <<  0,
+        cStatus_NoSameActor         = 1 <<  1,  //  i.e., do not call this instance's callback, and the callback can be null
+        cStatus_NoPassInfo          = 1 <<  2,  // If set, this instance does not trigger other instances
+        cStatus_NoSameActorGroup    = 1 <<  3,
+        cStatus_NoCheckLimit        = 1 <<  4,
+        //
+        //
+        cStatus_FireKill            = 1 <<  7,
+        cStatus_SlideKill           = 1 <<  8,
+        cStatus_BurnerKill          = 1 <<  9,
+        cStatus_ForceGetRevision    = 1 << 10,
+        cStatus_NoRevisionEnemy     = 1 << 11,
+        cStatus_MoveKill            = 1 << 12,  // Used by objects like thrown enemies, thwomp, grrrol, pendulum, woochan, big icicle, boom boom, final koopa fire, fliprus snowball, crasher, etc...
 
-        cStatus_None        = 0
+        cStatus_None                = 0
     };
     static_assert(sizeof(Status) == 4);
 
