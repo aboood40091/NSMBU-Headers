@@ -410,6 +410,11 @@ public:
         return mCollisionData.kind == kind;
     }
 
+    TargetKind getVsKind() const
+    {
+        return mCollisionData.vs_kind;
+    }
+
     // Address: Deleted
     void setVsKind(TargetKind vs_kind);
     // Address: 0x0219B164
