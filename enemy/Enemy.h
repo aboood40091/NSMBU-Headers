@@ -99,7 +99,7 @@ public:
     // Address: 0x02330568
     virtual void returnState_Ice();
     // Address: 0x0232A858
-    virtual void calcMdl_Ice();
+    virtual void calcMdl_Base();
 
     // Address: 0x0232A85C
     virtual bool vf1CC(); // Maybe related to the below?
@@ -352,7 +352,7 @@ public:
     void bound(f32, f32, f32);
 
     // Address: 0x023291DC
-    void calcMdl();
+    void calcMdl_Normal();
 
     // Address: 0x0232CAEC
     bool isDead() const;

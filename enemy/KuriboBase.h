@@ -67,7 +67,7 @@ public:
     // Address: 0x023DDAB4
     bool setDamage(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other) override;
     // Address: 0x023DBE44
-    void calcMdl_Ice() override;
+    void calcMdl_Base() override;
     // Address: 0x023DC1E8
     bool hitYoshiEat(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other) override;
     // Address: 0x023DBF0C

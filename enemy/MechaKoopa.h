@@ -60,7 +60,7 @@ public:
     // Address: 0x023EA104
     void setIceAnm() override;
     // Address: 0x023EBAF4
-    void calcMdl_Ice() override;
+    void calcMdl_Base() override;
     // Address: 0x023E9E90
     bool etcDamageCheck(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other) override;
     // Address: 0x023E99FC
