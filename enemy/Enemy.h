@@ -351,6 +351,9 @@ public:
     // Address: 0x02329168
     void bound(f32, f32, f32);
 
+    // Address: 0x023291DC
+    void calcMdl();
+
     // Address: 0x0232CAEC
     bool isDead() const;
 
