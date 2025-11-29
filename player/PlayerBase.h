@@ -762,22 +762,6 @@ public:
     // Address: 0x028F6CD4
     void clearBgCheckInfo();
     // Address: 0x028F6CAC
-
-    // Address: 0x028F6EEC
-    void checkSideViewLemit();
-    // Address: 0x028F6D20
-    void revSideLimitCommon(f32 x);
-    // Address: 0x028F6E64
-    void calcSideLimitMultL(f32 x);
-    // Address: 0x028F6EA8
-    void calcSideLimitMultR(f32 x);
-
-private:
-    inline bool checkDispSideLemit_();
-
-public:
-    // Address: 0x028F716C
-    Angle getSakaAngleBySpeed(f32 speed_F);
     void clearBgSpeed();
 
     // Address: 0x028F71C0
@@ -796,8 +780,6 @@ public:
 
     // Address: 0x028F7428
     void checkWater();
-    // Address: 0x028F76A0
-    void checkDamageBg();
 
     virtual PlayerBgPointHIO* getBgPointData() = 0;
 
@@ -818,6 +800,11 @@ public:
 
     virtual f32 getStandHeadBgPointY() = 0;
 
+    bool isSaka()
+    {
+        return isNowBgCross(cBgCross_IsSaka);
+    }
+
 private:
     inline void checkBgCross_();
     inline void checkCarryObjBgCarried_(const ActorBgCollisionCheck::Output& output, u8 dir);
@@ -826,8 +813,33 @@ public:
     virtual void checkBgCrossSub() = 0;
     virtual void postBgCross() = 0;
 
+    // Address: 0x028F8760
+    bool checkOldBgCrossFoot(s32 frame_cnt);
+
     virtual void clearJumpActionInfo() = 0;
 
+    // Address: 0x028F716C
+    Angle getSakaAngleBySpeed(f32 speed_F);
+
+    // Address: 0x028F76A0
+    void checkDamageBg();
+
+    // Address: 0x028F8900
+    void calcNoHitObjBgTimer();
+
+    // Address: 0x028F6EEC
+    void checkSideViewLemit();
+    // Address: 0x028F6D20
+    void revSideLimitCommon(f32 x);
+    // Address: 0x028F6E64
+    void calcSideLimitMultL(f32 x);
+    // Address: 0x028F6EA8
+    void calcSideLimitMultR(f32 x);
+
+private:
+    inline bool checkDispSideLemit_();
+
+public:
     // Address: 0x028F9858
     virtual void initCollision(const ActorCollisionCheck::CollisionData& cc_data_react, const ActorCollisionCheck::CollisionData& cc_data_attack);
     // Address: 0x028F98FC
@@ -1199,18 +1211,6 @@ public:
         return false;
     }
 
-    bool isSaka()
-    {
-        return isNowBgCross(cBgCross_IsSaka);
-    }
-
-private:
-    bool isSaka_()
-    {
-        return mBgCheckPlayer.getSakaType(mBgCheckPlayer.getSakaBaseAngle());
-    }
-
-public:
     virtual void setSlipAction() = 0;
     virtual bool vf7AC() = 0;
 
@@ -1488,12 +1488,6 @@ public:
     {
         return mMode;
     }
-
-    // Address: 0x028F8760
-    bool checkOldBgCrossFoot(s32 frame_cnt);
-
-    // Address: 0x028F8900
-    void calcNoHitObjBgTimer();
 
     // Address: 0x028F9560
     bool checkStandUpRoof();
