@@ -33,6 +33,16 @@ public:
         return mPlayerFlag.countOnBit();
     }
 
+    void addNum(s32 player_no)
+    {
+        mPlayerFlag.setBit(player_no);
+    }
+
+    void decNum(s32 player_no)
+    {
+        mPlayerFlag.resetBit(player_no);
+    }
+
     bool isAcceptQuake(s32 player_no);
 
     s32 getNumInGame();
