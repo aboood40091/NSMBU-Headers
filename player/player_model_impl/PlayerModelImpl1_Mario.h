@@ -55,7 +55,7 @@ public:
     bool setPersonalAnm(ModelResource** pp_anm_res, sead::BufferedSafeString* p_anm_name, s32 anm_id, bool body) override;
 
     // Address: 0x0296E140
-    f32 vf13C() override;
+    f32 getAimMotionShareScale() override;
     // Address: 0x0296E1D8
     f32 vf144() override;
 

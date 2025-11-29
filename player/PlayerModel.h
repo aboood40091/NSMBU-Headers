@@ -188,7 +188,7 @@ public:
     // Address: 0x0291F180
     void setAnmBind() override;
 
-    virtual f32 vf13C() = 0;
+    virtual f32 getAimMotionShareScale() = 0;
     virtual f32 vf144() = 0;
 
     // Address: 0x0291F6B8

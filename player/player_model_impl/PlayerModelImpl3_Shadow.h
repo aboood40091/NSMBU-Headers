@@ -66,7 +66,7 @@ public:
     // Address: 0x02971FEC
     bool setPersonalRideAnm(ModelResource** pp_anm_res, sead::BufferedSafeString* p_anm_name, s32 anm_id) override;
 
-    f32 vf13C() override
+    f32 getAimMotionShareScale() override
     {
         return 1.0f;
     }
