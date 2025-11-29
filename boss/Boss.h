@@ -238,30 +238,30 @@ public:
 
     // ---------------------------------------------------------------------------------------- //
 
-    virtual void vf604()
+    virtual void tenmetsuReady()
     {
     }
 
-    virtual void vf60C()
+    virtual void tenmetsuProc()
     {
     }
 
-    virtual void vf614()
+    virtual void tenmetsuFin()
     {
     }
 
-    virtual s32 vf61C()
+    virtual s32 getTenmetsuTime_Fire()
     {
         return 24;
     }
 
     // Address: Deleted
-    virtual s32 vf624()
+    virtual s32 getTenmetsuTime_Shell()
     {
         return 24;
     }
 
-    virtual s32 vf62C()
+    virtual s32 getTenmetsuTime_Press()
     {
         return 24;
     }
