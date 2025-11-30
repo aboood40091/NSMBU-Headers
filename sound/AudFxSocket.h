@@ -2,7 +2,8 @@
 
 #include <basis/seadTypes.h>
 
-#include <nw/snd.h>
+#include <nw/snd/snd_FxDelay.h>
+#include <nw/snd/snd_FxReverbHi.h>
 
 class AudFxSocket
 {
