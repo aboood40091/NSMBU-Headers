@@ -2,8 +2,6 @@
 
 #include <collision/BasicRideLineBgCollision.h>
 
-#include <container/seadSafeArray.h>
-
 class ActorLineBgCollision : public BasicRideLineBgCollision
 {
     // getRuntimeTypeInfoStatic()::typeInfo initialization guard variable   Address: 0x101EA0FC
@@ -16,7 +14,7 @@ private:
 
 public:
     ActorLineBgCollision()
-        : BasicRideLineBgCollision(1, mPointArray.getBufferPtr(), mRideLineArray.getBufferPtr(), mRideLinePrevArray.getBufferPtr())
+        : BasicRideLineBgCollision(1, mPointArray, mRideLineArray, mRideLinePrevArray)
     {
         for (int i = 0; i < 2; i++)
         {
@@ -50,8 +48,8 @@ public:
     }
 
 protected:
-    sead::UnsafeArray<sead::Vector2f,   2>  mPointArray;
-    sead::UnsafeArray<BasicRideLine,    1>  mRideLineArray;
-    sead::UnsafeArray<BasicRideLine,    1>  mRideLinePrevArray;
+    sead::Vector2f  mPointArray[2];
+    BasicRideLine   mRideLineArray[1];
+    BasicRideLine   mRideLinePrevArray[1];
 };
 static_assert(sizeof(ActorLineBgCollision) == 0x1C8);

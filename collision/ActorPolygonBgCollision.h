@@ -2,8 +2,6 @@
 
 #include <collision/LoopRideLineBgCollision.h>
 
-#include <container/seadSafeArray.h>
-
 template <s32 N>
 class ActorPolygonBgCollision : public LoopRideLineBgCollision
 {
@@ -17,7 +15,7 @@ private:
 
 public:
     ActorPolygonBgCollision()
-        : LoopRideLineBgCollision(N, mPointArray.getBufferPtr(), mRideLineArray.getBufferPtr(), mRideLinePrevArray.getBufferPtr())
+        : LoopRideLineBgCollision(N, mPointArray, mRideLineArray, mRideLinePrevArray)
     {
         for (int i = 0; i < N; i++)
         {
@@ -38,7 +36,7 @@ public:
     }
 
 protected:
-    sead::UnsafeArray<sead::Vector2f,   N>  mPointArray;
-    sead::UnsafeArray<BasicRideLine,    N>  mRideLineArray;
-    sead::UnsafeArray<BasicRideLine,    N>  mRideLinePrevArray;
+    sead::Vector2f  mPointArray[N];
+    BasicRideLine   mRideLineArray[N];
+    BasicRideLine   mRideLinePrevArray[N];
 };
