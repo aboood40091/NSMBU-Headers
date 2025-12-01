@@ -1,6 +1,7 @@
 #pragma once
 
 #include <container/seadSafeArray.h>
+#include <math/seadMatrix.h>
 
 class AnimModel;
 
