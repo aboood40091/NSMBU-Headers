@@ -2,6 +2,7 @@
 
 #include <map_obj/KinokoDrawKasa.h>
 #include <map_obj/NodeTransform.h>
+#include <utility/Angle.h>
 
 #include <prim/seadSafeString.h>
 
@@ -15,6 +16,8 @@ struct KinokoLiftResHIO
     f32                 _24;
 };
 static_assert(sizeof(KinokoLiftResHIO) == 0x28);
+
+class ModelResource;
 
 class KinokoLiftDraw
 {
