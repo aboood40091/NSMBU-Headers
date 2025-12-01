@@ -53,7 +53,7 @@ public:
         if (b)
             setBit(bit);
         else
-            resetBit(bit)
+            resetBit(bit);
     }
 
     void toggleBit(u32 bit)
