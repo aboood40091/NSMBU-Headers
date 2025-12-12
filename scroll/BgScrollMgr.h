@@ -27,21 +27,90 @@ public:
 };
 static_assert(sizeof(ScrollEffectMgr) == 0x54);
 
-class Zoom
+enum ZoomType
+{
+    cZoomType_Normal = 0,
+    cZoomType_TrackY,
+    cZoomType_ExpandY,
+    cZoomType_Static,
+    cZoomType_Static_TrackY,
+    cZoomType_5,
+    cZoomType_TrackX,
+    cZoomType_ExpandX
+};
+static_assert(sizeof(ZoomType) == 4);
+
+class ZoomHioData
 {
 public:
-    f32 getMultiplier(bool) const;
+    // Address: 0x029B0EBC
+    f32 getZoomTargetMin_Common(bool) const;
+    // Address: 0x029B0FF8
+    f32 getZoomTargetMid_Common(bool) const;
+    // Address: 0x029B113C
+    f32 getZoomTargetMax_Common(bool) const;
+
+    // Address: 0x029B1288
+    f32 getZoomSpreadLine(bool) const;
+    // Address: 0x029B13D8
+    f32 getZoomSpreadLine2(bool) const;
+    // Address: 0x029B1528
+    f32 getZoomShrinkLine2(bool) const;
+    // Address: 0x029B1678
+    f32 getZoomShrinkLine(bool) const;
+
+private:
+    ZoomType    mZoomType;
+    u8          mZoomID;
+};
+static_assert(sizeof(ZoomHioData) == 8);
+
+class ZoomHio
+{
+public:
+    // Address: 0x029B00D4
+    ZoomHioData* getZoomHioData() const;
 };
 
-class TrackingMgr
+class TrackingMgr : public ZoomHio
 {
 public:
-    Zoom* getActiveZoom() const;
-    f32 zoomMultiplerClampMax(f32 multiplier) const;
+    // Address: 0x029AEB28
+    f32 adjustZoomTarget(f32 zoom) const;
 
-    f32 getCurrentZoomMultiplier(bool param_1 = false) const
+    f32 getZoomTargetMin(bool param_1 = false) const
     {
-        return zoomMultiplerClampMax(getActiveZoom()->getMultiplier(param_1));
+        return adjustZoomTarget(getZoomHioData()->getZoomTargetMin_Common(param_1));
+    }
+
+    f32 getZoomTargetMid(bool param_1 = false) const
+    {
+        return adjustZoomTarget(getZoomHioData()->getZoomTargetMid_Common(param_1));
+    }
+
+    f32 getZoomTargetMax(bool param_1 = false) const
+    {
+        return adjustZoomTarget(getZoomHioData()->getZoomTargetMax_Common(param_1));
+    }
+
+    f32 getZoomSpreadLine(bool param_1 = false) const
+    {
+        return getZoomHioData()->getZoomSpreadLine(param_1);
+    }
+
+    f32 getZoomSpreadLine2(bool param_1 = false) const
+    {
+        return getZoomHioData()->getZoomSpreadLine2(param_1);
+    }
+
+    f32 getZoomShrinkLine2(bool param_1 = false) const
+    {
+        return getZoomHioData()->getZoomShrinkLine2(param_1);
+    }
+
+    f32 getZoomShrinkLine(bool param_1 = false) const
+    {
+        return getZoomHioData()->getZoomShrinkLine(param_1);
     }
 };
 
@@ -78,6 +147,9 @@ public:
 
     // Address: 0x029A6DC4
     bool isScrollMeterEnable() const;
+
+    // Address: 0x029A6DE0
+    ZoomType getZoomType() const;
 
     // Address: 0x029A6E24
     DirType getAreaScrollDirSub() const;
