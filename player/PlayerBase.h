@@ -71,12 +71,15 @@ public:
         cStatus_2,                          // NSMBW: Bit 0x7D
         cStatus_3,                          // NSMBW: Bit 0x02
 
-        cStatus_7                   =   7,  // NSMBW: Bit 0xB9
+        cStatus_DispOut             =   7,  // NSMBW: Bit 0xB9
+        cStatus_DispOutDanger,              // NSMBW: Bit 0xBA
 
         cStatus_9                   =   9,
 
         cStatus_10                  =  10,  // Force-disable jump (accelY = 0)
         cStatus_11,
+
+        cStatus_14                  =  14,  // NSMBW: Bit 0x04
 
         cStatus_36                  =  36,  // NSMBW: Bit 0x13
 
@@ -165,6 +168,8 @@ public:
 
         cStatus_227                 = 227,  // NSMBW: Bit 0x6F
 
+        cStatus_NoSlipSaka          = 236,
+
         cStatus_238                 = 238,  // NSMBW: Bit 0x72
 
         cStatus_244                 = 244,  // NSMBW: Bit 0x5F
@@ -176,11 +181,15 @@ public:
         cStatus_251,
         cStatus_252,                        // NSMBW: Bit 0x81
         cStatus_253,                        // NSMBW: Bit 0xB8
-
-        cStatus_255                 = 255,  // NSMBW: Bit 0x82
+        cStatus_254,
+        cStatus_255,                        // NSMBW: Bit 0x82
         cStatus_256,                        // NSMBW: Bit 0x83
 
         cStatus_258                 = 258,
+
+        cStatus_DispOutPosYAdj      = 260,
+
+        cStatus_RDash_DispPinch     = 262,
 
         cStatus_270                 = 270,  // NSMBW: Bit 0x84
 
@@ -759,6 +768,8 @@ public:
     // Address: 0x028F77B4
     void bgCheck(bool side_view_check);
 
+    // Address: 0x028F86AC
+    void clearBgAndSakaAngle();
     // Address: 0x028F6CD4
     void clearBgCheckInfo();
     // Address: 0x028F6CAC
@@ -805,6 +816,9 @@ public:
         return isNowBgCross(cBgCross_IsSaka);
     }
 
+    // Address: 0x028F86EC
+    bool isSlipSaka();
+
 private:
     inline void checkBgCross_();
     inline void checkCarryObjBgCarried_(const ActorBgCollisionCheck::Output& output, u8 dir);
@@ -813,16 +827,28 @@ public:
     virtual void checkBgCrossSub() = 0;
     virtual void postBgCross() = 0;
 
+    // Address: 0x028F872C
+    bool checkBGCrossWall(s32 dir);
+
     // Address: 0x028F8760
     bool checkOldBgCrossFoot(s32 frame_cnt);
 
     virtual void clearJumpActionInfo() = 0;
 
+    // Address: 0x028F87B8
+    void setJumpSandSinkRate();
+
+    // Address: 0x028F87C8
+    Angle getSakaAngle(s32 dir);
     // Address: 0x028F716C
     Angle getSakaAngleBySpeed(f32 speed_F);
+    // Address: 0x028F8804
+    bool getSakaUpDown(s32 dir);    // true => moving "up"hill, false => moving "down"hill
 
     // Address: 0x028F76A0
     void checkDamageBg();
+    // Address: 0x028F8850
+    bool setBgDamage();
 
     // Address: 0x028F8900
     void calcNoHitObjBgTimer();
@@ -840,6 +866,20 @@ private:
     inline bool checkDispSideLemit_();
 
 public:
+    // Address: 0x028F8944
+    void setLandSakaJumpSpeedF();
+
+    // Address: 0x028F8A1C
+    bool isRideMove();
+
+    // Address: 0x028F8A4C
+    void setNoHitObjBg(Actor* p_no_hit_obj, s32 time);
+
+    // Address: 0x028F8A58
+    void setJumpAddSpeedF(f32 f);
+    // Address: 0x028F8ABC
+    void setAddLiftSpeedF();
+
     // Address: 0x028F9858
     virtual void initCollision(const ActorCollisionCheck::CollisionData& cc_data_react, const ActorCollisionCheck::CollisionData& cc_data_attack);
     // Address: 0x028F98FC
@@ -866,14 +906,57 @@ public:
     // Address: 0x028FA990
     virtual bool getHeadTopPos(sead::Vector3f& pos);
 
+    // Address: 0x028F8B18
+    void dispPinchRequestRDash();
+
+    // Address: 0x028F8B3C
+    void initDispSideLemit();
+
+    // Address: 0x028F92B0
+    void checkDispOver();
+    // Address: 0x028F9164
+    void checkDisplayOutDead();
+
     // Address: 0x028F93F8
-    virtual void vf1C4();
+    virtual void upperOverCheck();
+
+    // Address: 0x028F8BAC
+    bool isLenientOutCheck();
+
+    // Address: 0x028F8C50
+    void setFallDownDemo();
 
     virtual void setFallDownDemoImpl() = 0;
+
+    // Address: 0x028F8FA8
+    bool checkDispOutLR();
+    // Address: 0x028F9010
+    bool checkBalloonInDispOutLR();
 
     virtual bool setBalloonInDispOut(s32) = 0;
     virtual bool setBalloonDispOut() = 0;
 
+    // Address: 0x028F9560
+    bool checkStandUpRoof();
+
+    // Address: 0x028f9694
+    bool isBgPress(Actor* p_actor);
+    // Address: 0x028f9710
+    bool setPressBgDamageImpl(DamageType type);
+    // Address: 0x028F8F18
+    bool checkPressBg();
+
+private:
+    inline void underOverCheck_();
+
+    // Address: 0x028F8CD8
+    bool checkPressBgUD_();
+    // Address: 0x028F8D88
+    bool checkPressBgLR_();
+    // Address: 0x028F8C80
+    void setPressBgCollision_(const BgCollision* p_bg_collision);
+
+public:
     // Address: 0x028FD318
     virtual void setCreate(const sead::Vector3f& pos, s32 next_goto_type, s32 dir);
     // Address: 0x028FD394
@@ -1489,9 +1572,6 @@ public:
         return mMode;
     }
 
-    // Address: 0x028F9560
-    bool checkStandUpRoof();
-
     // Address: 0x028FA290
     void updateNoHitPlayer();
 
@@ -1500,6 +1580,9 @@ public:
 
     // Address: 0x029065F0
     Angle getMukiAngle(u32 dir);
+
+    // Address: 0x0290B89C
+    void forceSlipToStoop();
 
     // Address: 0x0290B9A4
     void startSound(const char* label, u32 = 0);
