@@ -287,6 +287,9 @@ public:
     // Address: 0x0219AB90
     virtual ~ActorCollisionCheck();
 
+    // Address: 0x0219AEC0
+    void clear();
+
     // Address: 0x0219AF1C
     void set(Actor* p_owner, const CollisionData& collision_data, ActorCollisionDrcTouchCallback* p_drc_touch_callback = nullptr);
     // Address: 0x0219B010
