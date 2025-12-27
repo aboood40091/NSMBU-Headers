@@ -287,6 +287,11 @@ public:
     // Address: 0x0219AB90
     virtual ~ActorCollisionCheck();
 
+public:
+    // Address: 0x0219AC24
+    static bool checkCollision(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
+
+public:
     // Address: 0x0219AEC0
     void clear();
 
