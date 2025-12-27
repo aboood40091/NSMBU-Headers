@@ -86,7 +86,8 @@ public:
 
     enum Attack
     {
-        cAttack_Generic            = 0,
+        cAttack_None            = 0,
+
         cAttack_FireBall,
         cAttack_IceBall,
         cAttack_Star,
@@ -120,7 +121,6 @@ public:
 
     enum DamageFrom
     {
-        cDamageFrom_Generic         = 1 << cAttack_Generic,
         cDamageFrom_FireBall        = 1 << cAttack_FireBall,
         cDamageFrom_IceBall         = 1 << cAttack_IceBall,
         cDamageFrom_Star            = 1 << cAttack_Star,
