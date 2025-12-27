@@ -415,10 +415,8 @@ public:
         return mCollisionData.vs_kind;
     }
 
-    // Address: Deleted
-    void setVsKind(TargetKind vs_kind);
     // Address: 0x0219B164
-    void onVsKind2(TargetKind vs_kind);
+    void setVsKind(TargetKind vs_kind);
     // Address: 0x0219B250
     void onVsKind(TargetKind vs_kind);
     // Address: 0x0219B338
