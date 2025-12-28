@@ -32,7 +32,7 @@ public:
     Quake();
 
     // Address: 0x024C4AEC
-    void shockMotor(s8 player_no, ShockType type, s32 unk_flag, bool motor_related);
+    void shockMotor(s8 player_no, ShockType type, s32 unk_flag = 0, bool motor_related = false);
 
     // Address: 0x024C4BD8
     void startShock(s8 player_no, ShockType type, s32 shock_flag, s32 unk_flag, bool motor_related);
