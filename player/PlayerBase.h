@@ -81,6 +81,10 @@ public:
 
         cStatus_14                  =  14,  // NSMBW: Bit 0x04
 
+        cStatus_17                  =  17,  // NSMBW: Bit 0x06
+
+        cStatus_25                  =  25,  // NSMBW: Bit 0x0A
+
         cStatus_36                  =  36,  // NSMBW: Bit 0x13
 
         cStatus_40                  =  40,  // NSMBW: Bit 0x15
@@ -104,6 +108,13 @@ public:
         cStatus_71                  =  71,  // NSMBW: Bit 0x2D
 
         cStatus_73                  =  73,  // NSMBW: Bit 0x30
+
+        cStatus_78                  =  78,  // NSMBW: Bit 0x35
+        cStatus_79,                         // NSMBW: Bit 0x36
+
+        cStatus_82                  =  82,
+
+        cStatus_84                  =  84,  // NSMBW: Bit 0x3A
 
         cStatus_93                  =  93,
 
@@ -145,7 +156,8 @@ public:
         cStatus_147,                        // NSMBW: Bit 0x88
         cStatus_148,                        // NSMBW: Bit 0x89
 
-        cStatus_151                 = 151,  // NSMBW: Bit 0x8B
+        cStatus_150                 = 150,  // NSMBW: Bit 0x2C
+        cStatus_151,                        // NSMBW: Bit 0x8B
         cStatus_152,                        // NSMBW: Bit 0x8C
         cStatus_153,                        // NSMBW: Bit 0x8D
 
@@ -190,6 +202,11 @@ public:
         cStatus_DispOutPosYAdj      = 260,
 
         cStatus_RDash_DispPinch     = 262,
+
+        cStatus_264                 = 264,  // NSMBW: Bit 0x78
+
+        cStatus_266                 = 266,  // NSMBW: Bit 0x7A
+        cStatus_267,
 
         cStatus_270                 = 270,  // NSMBW: Bit 0x84
 
@@ -625,6 +642,15 @@ public:
         cBounceType_2
     };
 
+    enum ReductionMode
+    {
+        cReductionMode_None = 0,
+        cReductionMode_JumpDai,
+        cReductionMode_2,
+        cReductionMode_Boyon
+    };
+    static_assert(sizeof(ReductionMode) == 4);
+
     // Address: 0x10166E60
     static const f32 cDirSpeed[cDirType_NumX];
     // Address: 0x10166E68
@@ -887,14 +913,57 @@ public:
     // Address: 0x028F9A78
     virtual void clearCcData();
 
+    // Address: 0x028F9AC8
+    bool entryCollision();
+
+    virtual bool vf19C() = 0;
+
+    // Address: 0x028F9CC8
+    void setCcAt(const ActorCollisionCheck::Vec2& center_offset, const ActorCollisionCheck::Vec2& half_size, const ActorCollisionCheck::Attack& attack);
+
+    // Address: 0x028F9D1C
+    void setCcAtBody(const ActorCollisionCheck::Attack& attack);
+    // Address: 0x028F9D2C
+    void setCcAtSlip();
+    // Address: 0x028F9D58
+    void setCcAtPenguinSlip();
+    // Address: 0x028F9D9C
+    void setCcAtHipAttack();
+    // Address: 0x028F9DD4
+    void setCcAtCannon();
+    // Address: 0x028F9E0C
+    void setCcAtStar();
+
+    // Address: 0x028F9E48
+    bool isActionRevisionY();
+    // Address: 0x028F9E6C
+    void setCcPlayerRevY(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other, f32 scale, ActorCollisionCheck::Kind kind);
     // Address: 0x028FA0DC
-    void setCcPlayerRevParam(f32);
+    void setCcPlayerRevParam(f32 param);
     // Address: 0x028FA108
     void clearCcPlayerRev();
     // Address: 0x028FA130
     bool calcCcPlayerRev(f32*);
 
-    virtual bool vf19C() = 0;
+    // Address: 0x028FA280
+    void setNoHitPlayer(const PlayerBase* p_player_other, s32 time);
+    // Address: 0x028FA290
+    void updateNoHitPlayer();
+    // Address: 0x028FA2B4
+    const PlayerBase* getNoHitPlayer();
+
+    // Address: 0x028FA350
+    bool isEnableStamp(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
+    // Address: 0x028FA3E0
+    bool isEnableStampPlayerJump(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
+
+    // Address: 0x028FA590
+    void setStampReduction(PlayerBase* p_player_other);
+    // Address: 0x028FA544
+    void setReductionScale();
+
+    // Address: 0x028FA62C
+    void setStampPlayerJump(bool allow_high_jump, f32 rev_y);
 
     // Address: 0x028FA8D8
     virtual void initStampReduction();
@@ -903,8 +972,16 @@ public:
     // Address: 0x028FA97C
     virtual void setReductionBoyon();
 
+    // Address: 0x028FA830
+    void setStomped();
+
     // Address: 0x028FA990
     virtual bool getHeadTopPos(sead::Vector3f& pos);
+
+    // Address: 0x028FAA20
+    void calcReductionScale();
+    // Address: 0x028FAB14
+    void getReductionModelScale(sead::Vector3f* p_scale);
 
     // Address: 0x028F8B18
     void dispPinchRequestRDash();
@@ -1572,11 +1649,11 @@ public:
         return mMode;
     }
 
-    // Address: 0x028FA290
-    void updateNoHitPlayer();
-
     // Address: 0x029050C8
     s32 getPowerChangeType(bool);
+
+    // Address: 0x029063AC
+    void setJumpAirDrift();
 
     // Address: 0x029065F0
     Angle getMukiAngle(u32 dir);
@@ -1586,6 +1663,8 @@ public:
 
     // Address: 0x0290B9A4
     void startSound(const char* label, u32 = 0);
+    // Address: 0x0290BBBC
+    void startVoiceSound(PlayerVoiceID voice_id, u32 = 0);
 
     // Address: 0x0290BC6C
     void setHitBlockSE();
@@ -1674,17 +1753,17 @@ protected:
     s32                             _2068;
     s32                             _206c;
     s32                             _2070;
-    f32                             _2074;
-    f32                             _2078;
-    f32                             _207c;
+    f32                             mCcPlayerRevSpeedFScale;
+    f32                             mCcPlayerRevSpeedFStart;
+    f32                             mCcPlayerRevSpeedF;
     f32                             _2080;
-    u8                              _2084;
-    u8                              _2085;
+    bool                            _2084;
+    bool                            _2085;
     s32                             mNoHitPlayerTimer;
     ActorUniqueID                   mNoHitPlayerID;
-    u32                             _2090;
-    u32                             _2094;
-    f32                             _2098;
+    ReductionMode                   mReductionMode;
+    u32                             mReductionStep;
+    f32                             mReductionScale;
     s32                             _209c;
     s32                             _20a0;
     sead::SafeArray<
