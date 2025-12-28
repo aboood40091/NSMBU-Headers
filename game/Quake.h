@@ -17,6 +17,7 @@ public:
     enum ShockType
     {
         cShockType_4 = 4,
+        cShockType_Stamp = 8,
         cShockType_Pow = 12,
         cShockType_Max = 26
     };
