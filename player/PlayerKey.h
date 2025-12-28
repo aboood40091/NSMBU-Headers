@@ -20,6 +20,8 @@ public:
     bool triggerUp() const;
     bool triggerDown() const;
 
+    bool buttonJump() const;
+
     bool triggerShakeJump() const;
     bool triggerAttack() const;
 
