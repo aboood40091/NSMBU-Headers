@@ -170,7 +170,7 @@ public:
 
         cStatus_NoSlipSaka          = 236,
 
-        cStatus_238                 = 238,  // NSMBW: Bit 0x72
+        cStatus_DemoControl                 = 238,  // NSMBW: Bit 0x72
 
         cStatus_244                 = 244,  // NSMBW: Bit 0x5F
 
@@ -1402,9 +1402,9 @@ public:
     // Address: 0x028F4178
     void posMoveAnglePenguin(const sead::Vector3f& speed);
     // Address: 0x028F4CD8
-    void initAddAirSpeedF(f32 start_val, f32 len_frames);
+    void initAirDriftSpeedF(f32 start_val, f32 len_frames);
     // Address: 0x028F4148
-    void calcAddAirSpeedF();
+    void calcAirDriftSpeedF();
 
     // Address: 0x028F4D48
     bool setJump(u8, JumpSe jump_se_type);
@@ -1658,9 +1658,9 @@ protected:
     ActorUniqueID                   mLineSpinLiftID;
     u32                             _1b9c;
     s32                             mNoHitObjBgTimer;
-    f32                             mAddAirSpeedFStart;
-    f32                             mAddAirSpeedF;
-    f32                             mAddAirSpeedFDecelStep;
+    f32                             mAirDriftSpeedFStart;
+    f32                             mAirDriftSpeedF;
+    f32                             mAirDriftSpeedFDecelStep;
     f32                             mAddBgSpeedF;
     s32                             _1bb4;
     ActorCollisionCheck             mCollisionCheck2_React; // First collision check is also for react
