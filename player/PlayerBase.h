@@ -1075,127 +1075,127 @@ public:
     // initializeState_DemoCreate   Address: 0x028FD8B4
     // executeState_DemoCreate      Address: 0x028FD8B8
     // finalizeState_DemoCreate     Address: 0x028FDD6C
-    DECLARE_STATE_ID_VIRTUAL_FUNC_BASE(PlayerBase, DemoCreate)
+    DECLARE_STATE_VIRTUAL_ID_BASE(PlayerBase, DemoCreate)
     // StateID_DemoNone         Address: 0x1022A02C
     // initializeState_DemoNone Address: 0x028FAC40
     // executeState_DemoNone    Address: 0x028FACDC
     // finalizeState_DemoNone   Address: 0x028FD244
-    DECLARE_STATE_ID_VIRTUAL_FUNC_BASE(PlayerBase, DemoNone)
+    DECLARE_STATE_VIRTUAL_ID_BASE(PlayerBase, DemoNone)
     // StateID_DemoState3           Address: 0x1022A050
     // initializeState_DemoState3   Address: 0x028FD248
     // executeState_DemoState3      Address: 0x028FD24C
     // finalizeState_DemoState3     Address: 0x028FD250
-    DECLARE_STATE_ID_VIRTUAL_FUNC_BASE(PlayerBase, DemoState3)
+    DECLARE_STATE_VIRTUAL_ID_BASE(PlayerBase, DemoState3)
     // StateID_DemoState4           Address: 0x1022A074
     // initializeState_DemoState4   Address: 0x028FAEB0
     // executeState_DemoState4      Address: 0x028FAFB4
     // finalizeState_DemoState4     Address: 0x028FB05C
-    DECLARE_STATE_ID_VIRTUAL_FUNC_BASE(PlayerBase, DemoState4)
+    DECLARE_STATE_VIRTUAL_ID_BASE(PlayerBase, DemoState4)
     // StateID_DemoGoal         Address: 0x1022A098
     // initializeState_DemoGoal Address: 0x02901D7C
     // executeState_DemoGoal    Address: 0x02902988
     // finalizeState_DemoGoal   Address: 0x02902AE0
-    DECLARE_STATE_ID_VIRTUAL_FUNC_BASE(PlayerBase, DemoGoal)
+    DECLARE_STATE_VIRTUAL_ID_BASE(PlayerBase, DemoGoal)
     // StateID_DemoStartWait            Address: 0x1022A0BC
     // initializeState_DemoStartWait    Address: 0x028FD938
     // executeState_DemoStartWait       Address: 0x028FD9E0
     // finalizeState_DemoStartWait      Address: 0x028FDD70
-    DECLARE_STATE_ID_VIRTUAL_FUNC_BASE(PlayerBase, DemoStartWait)
+    DECLARE_STATE_VIRTUAL_ID_BASE(PlayerBase, DemoStartWait)
     // StateID_DemoWait         Address: 0x1022A0E0
     // initializeState_DemoWait Address: 0x028FDAAC
     // executeState_DemoWait    Address: 0x028FDB30
     // finalizeState_DemoWait   Address: 0x028FDD18
-    DECLARE_STATE_ID_VIRTUAL_FUNC_BASE(PlayerBase, DemoWait)
+    DECLARE_STATE_VIRTUAL_ID_BASE(PlayerBase, DemoWait)
     // StateID_DemoOutDokanU            Address: 0x1022A104
     // initializeState_DemoOutDokanU    Address: 0x028FDFB4
     // executeState_DemoOutDokanU       Address: 0x028FE1E4
     // finalizeState_DemoOutDokanU      Address: 0x028FE21C
-    DECLARE_STATE_ID_VIRTUAL_FUNC_BASE(PlayerBase, DemoOutDokanU)
+    DECLARE_STATE_VIRTUAL_ID_BASE(PlayerBase, DemoOutDokanU)
     // StateID_DemoOutDokanD            Address: 0x1022A128
     // initializeState_DemoOutDokanD    Address: 0x028FE220
     // executeState_DemoOutDokanD       Address: 0x028FE228
     // finalizeState_DemoOutDokanD      Address: 0x028FE22C
-    DECLARE_STATE_ID_VIRTUAL_FUNC_BASE(PlayerBase, DemoOutDokanD)
+    DECLARE_STATE_VIRTUAL_ID_BASE(PlayerBase, DemoOutDokanD)
     // StateID_DemoOutDokanR            Address: 0x1022A14C
     // initializeState_DemoOutDokanR    Address: 0x028FE3B4
     // executeState_DemoOutDokanR       Address: 0x028FE67C
     // finalizeState_DemoOutDokanR      Address: 0x028FE680
-    DECLARE_STATE_ID_VIRTUAL_FUNC_BASE(PlayerBase, DemoOutDokanR)
+    DECLARE_STATE_VIRTUAL_ID_BASE(PlayerBase, DemoOutDokanR)
     // StateID_DemoOutDokanL            Address: 0x1022A170
     // initializeState_DemoOutDokanL    Address: 0x028FE684
     // executeState_DemoOutDokanL       Address: 0x028FE68C
     // finalizeState_DemoOutDokanL      Address: 0x028FE690
-    DECLARE_STATE_ID_VIRTUAL_FUNC_BASE(PlayerBase, DemoOutDokanL)
+    DECLARE_STATE_VIRTUAL_ID_BASE(PlayerBase, DemoOutDokanL)
     // StateID_DemoOutDokanRollUD           Address: 0x1022A194
     // initializeState_DemoOutDokanRollUD   Address: 0x028FE7E4
     // executeState_DemoOutDokanRollUD      Address: 0x028FE824
     // finalizeState_DemoOutDokanRollUD     Address: 0x028FEBD0
-    DECLARE_STATE_ID_VIRTUAL_FUNC_BASE(PlayerBase, DemoOutDokanRollUD)
+    DECLARE_STATE_VIRTUAL_ID_BASE(PlayerBase, DemoOutDokanRollUD)
     // StateID_DemoOutDokanRollLR           Address: 0x1022A1B8
     // initializeState_DemoOutDokanRollLR   Address: 0x028FEBD4
     // executeState_DemoOutDokanRollLR      Address: 0x028FEC34
     // finalizeState_DemoOutDokanRollLR     Address: 0x028FEDC4
-    DECLARE_STATE_ID_VIRTUAL_FUNC_BASE(PlayerBase, DemoOutDokanRollLR)
+    DECLARE_STATE_VIRTUAL_ID_BASE(PlayerBase, DemoOutDokanRollLR)
     // StateID_DemoInDokanU         Address: 0x1022A1DC
     // initializeState_DemoInDokanU Address: 0x028FEDC8
     // executeState_DemoInDokanU    Address: 0x028FF344
     // finalizeState_DemoInDokanU   Address: 0x028FF3A8
-    DECLARE_STATE_ID_VIRTUAL_FUNC_BASE(PlayerBase, DemoInDokanU)
+    DECLARE_STATE_VIRTUAL_ID_BASE(PlayerBase, DemoInDokanU)
     // StateID_DemoInDokanD         Address: 0x1022A200
     // initializeState_DemoInDokanD Address: 0x028FF3AC
     // executeState_DemoInDokanD    Address: 0x028FF4B8
     // finalizeState_DemoInDokanD   Address: 0x028FF4BC
-    DECLARE_STATE_ID_VIRTUAL_FUNC_BASE(PlayerBase, DemoInDokanD)
+    DECLARE_STATE_VIRTUAL_ID_BASE(PlayerBase, DemoInDokanD)
     // StateID_DemoInDokanR         Address: 0x1022A224
     // initializeState_DemoInDokanR Address: 0x028FF54C
     // executeState_DemoInDokanR    Address: 0x028FF554
     // finalizeState_DemoInDokanR   Address: 0x028FF558
-    DECLARE_STATE_ID_VIRTUAL_FUNC_BASE(PlayerBase, DemoInDokanR)
+    DECLARE_STATE_VIRTUAL_ID_BASE(PlayerBase, DemoInDokanR)
     // StateID_DemoInDokanL         Address: 0x1022A248
     // initializeState_DemoInDokanL Address: 0x028FF55C
     // executeState_DemoInDokanL    Address: 0x028FF564
     // finalizeState_DemoInDokanL   Address: 0x028FF568
-    DECLARE_STATE_ID_VIRTUAL_FUNC_BASE(PlayerBase, DemoInDokanL)
+    DECLARE_STATE_VIRTUAL_ID_BASE(PlayerBase, DemoInDokanL)
     // StateID_DemoOutDoor          Address: 0x1022A26C
     // initializeState_DemoOutDoor  Address: 0x028FD254
     // executeState_DemoOutDoor     Address: 0x028FD258
     // finalizeState_DemoOutDoor    Address: 0x028FD25C
-    DECLARE_STATE_ID_VIRTUAL_FUNC_BASE(PlayerBase, DemoOutDoor)
+    DECLARE_STATE_VIRTUAL_ID_BASE(PlayerBase, DemoOutDoor)
     // StateID_DemoInDoor           Address: 0x1022A290
     // initializeState_DemoInDoor   Address: 0x028FD260
     // executeState_DemoInDoor      Address: 0x028FD264
     // finalizeState_DemoInDoor     Address: 0x028FD268
-    DECLARE_STATE_ID_VIRTUAL_FUNC_BASE(PlayerBase, DemoInDoor)
+    DECLARE_STATE_VIRTUAL_ID_BASE(PlayerBase, DemoInDoor)
     // StateID_DemoNextGotoBlock            Address: 0x1022A2B4
     // initializeState_DemoNextGotoBlock    Address: 0x028FB068
     // executeState_DemoNextGotoBlock       Address: 0x028FB404
     // finalizeState_DemoNextGotoBlock      Address: 0x028FB51C
-    DECLARE_STATE_ID_VIRTUAL_FUNC_BASE(PlayerBase, DemoNextGotoBlock)
+    DECLARE_STATE_VIRTUAL_ID_BASE(PlayerBase, DemoNextGotoBlock)
     // StateID_DemoDown         Address: 0x1022A2D8
     // initializeState_DemoDown Address: 0x02901CF8
     // executeState_DemoDown    Address: 0x02901CFC
     // finalizeState_DemoDown   Address: 0x02901D00
-    DECLARE_STATE_ID_VIRTUAL_FUNC_BASE(PlayerBase, DemoDown)
+    DECLARE_STATE_VIRTUAL_ID_BASE(PlayerBase, DemoDown)
     // StateID_DemoControl          Address: 0x1022A2FC
     // initializeState_DemoControl  Address: 0x02900350
     // executeState_DemoControl     Address: 0x02900420
     // finalizeState_DemoControl    Address: 0x02900644
-    DECLARE_STATE_ID_VIRTUAL_FUNC_BASE(PlayerBase, DemoControl)
+    DECLARE_STATE_VIRTUAL_ID_BASE(PlayerBase, DemoControl)
     // StateID_DemoState23          Address: 0x1022A320
     // initializeState_DemoState23  Address: 0x029031E8
     // executeState_DemoState23     Address: 0x02903288
     // finalizeState_DemoState23    Address: 0x0290338C
-    DECLARE_STATE_ID_VIRTUAL_FUNC_BASE(PlayerBase, DemoState23)
+    DECLARE_STATE_VIRTUAL_ID_BASE(PlayerBase, DemoState23)
     // StateID_DemoState24          Address: 0x1022A344
     // initializeState_DemoState24  Address: 0x0290339C
     // executeState_DemoState24     Address: 0x029033BC
     // finalizeState_DemoState24    Address: 0x0290340C
-    DECLARE_STATE_ID_VIRTUAL_FUNC_BASE(PlayerBase, DemoState24)
+    DECLARE_STATE_VIRTUAL_ID_BASE(PlayerBase, DemoState24)
     // StateID_DemoState25          Address: 0x1022A368
     // initializeState_DemoState25  Address: 0x02903F24
     // executeState_DemoState25     Address: 0x02903F28
     // finalizeState_DemoState25    Address: 0x02903F2C
-    DECLARE_STATE_ID_VIRTUAL_FUNC_BASE(PlayerBase, DemoState25)
+    DECLARE_STATE_VIRTUAL_ID_BASE(PlayerBase, DemoState25)
 
     virtual void initializeDemoControl(bool carry_chibi_yoshi) = 0;
 
