@@ -36,6 +36,12 @@ public:
         // SEAD_ASSERT(i_create_index <= ActorUniqueId::cCreateIndexMax);
     }
 
+    void setCreateIndex(u32 i_create_index)
+    {
+        // SEAD_ASSERT(i_create_index <= ActorUniqueId::cCreateIndexMax);
+        mCreateIndex = i_create_index;
+    }
+
     // Address: 0x02008A94
     virtual bool operator()(const ActorBase& actor);
 
