@@ -22,7 +22,7 @@ public:
     ~ActorPtrCache();
 
     // Address: 0x0200A300
-    iterator find(ActorFindFunc* io_find_func, iterator it_start) const;
+    iterator find(ActorFindFunc* io_find_func, iterator it_begin) const;
     iterator find(ActorFindFunc* io_find_func) const
     {
         return find(io_find_func, getActorBegin());

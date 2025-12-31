@@ -80,7 +80,7 @@ public:
 
 public:
     // Address: 0x02009B6C
-    iterator find(s32 i_profile_id, iterator it_start) const;
+    iterator find(s32 i_profile_id, iterator it_begin) const;
     iterator find(s32 i_profile_id) const
     {
         return find(i_profile_id, getActorBegin());
@@ -89,9 +89,9 @@ public:
     // Address: 0x02009BA4
     u32 count(s32 i_profile_id) const;
 
-    iterator find(ActorFindFunc* io_find_func, iterator it_start) const
+    iterator find(ActorFindFunc* io_find_func, iterator it_begin) const
     {
-        return mActorPtrCache.find(io_find_func, it_start);
+        return mActorPtrCache.find(io_find_func, it_begin);
     }
 
     iterator find(ActorFindFunc* io_find_func) const
