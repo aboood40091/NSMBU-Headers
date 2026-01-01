@@ -52,15 +52,38 @@ public:
         return mBgmTempo;
     }
 
+    bool isPlayerControllerConnected(s32 player_no) const
+    {
+        return (mControllerConnectionInfo & (1 << player_no)) != 0;
+    }
+
+    bool isFadein() const
+    {
+        return (mControllerConnectionInfo & (1 << 7)) != 0;
+    }
+
+    bool isAreaSceneSwitch() const
+    {
+        return mIsAreaSceneSwitch;
+    }
+
+    bool isInputEnabled() const
+    {
+        return !isFadein() && !isAreaSceneSwitch();
+    }
+
 protected:
     u32             _10[(0x52C - 0x10) / sizeof(u32)];
     sead::Random    mRandom;
-    u8              _53c;
+    bool            mControllersRegistered;
     u16             mBgmTempo;
     u8              mBgmBeatTrg;
     u8              mBgmAccentSign;
     u8              mBgmAccentSignCredit;
-    u32             _544[(0x57C - 0x544) / sizeof(u32)];
+    u32             _544[(0x56C - 0x544) / sizeof(u32)];
+    u8              mControllerConnectionInfo;
+    bool            mIsAreaSceneSwitch;
+    u32             _570[(0x57C - 0x570) / sizeof(u32)];
 };
 static_assert(sizeof(InputMgr) == 0x57C);
 
