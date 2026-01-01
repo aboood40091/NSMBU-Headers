@@ -5,6 +5,15 @@
 class PlayerKey
 {
 public:
+    enum Status
+    {
+        cStatus_NoInput     =  1,   // NSMBW: Bit 0
+        cStatus_NoCross,            // NSMBW: Bit 1
+
+        cStatus_Demo        = 10    // NSMBW: Bit 7
+    };
+
+public:
     PlayerKey();
 
     void update();
@@ -26,6 +35,9 @@ public:
     bool triggerAttack() const;
 
     bool buttonHipAttack() const;
+
+    void onStatus(s32 bit);
+    void offStatus(s32 bit);
 
 private:
     u8  _0[0x94];
