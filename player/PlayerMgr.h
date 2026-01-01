@@ -52,9 +52,29 @@ public:
         mActPlayerInfo.resetBit(player_no);
     }
 
+    void onDemo(s32 player_no)
+    {
+        mDemoInfo.setBit(player_no);
+    }
+
+    void offDemo(s32 player_no)
+    {
+        mDemoInfo.resetBit(player_no);
+    }
+
     s32 getCannonJumpTimer() const
     {
         return mCannonJumpTimer;
+    }
+
+    void onNextGotoBlock(s32 player_no)
+    {
+        mPlayerNextGotoBlockInfo.setBit(player_no);
+    }
+
+    s32 getNumNextGotoBlock()
+    {
+        return mPlayerNextGotoBlockInfo.countOnBit();
     }
 
     bool isAcceptQuake(s32 player_no);
@@ -74,7 +94,7 @@ private:
     u32                                 _84;
     u8                                  _88;
     sead::BitFlag32                     mPauseDisable;      // Maybe?
-    sead::BitFlag32                     mPauseDisableInfo;  // Maybe?
+    sead::BitFlag32                     mDemoInfo;
     bool                                mDisableOrchestra;
     sead::BitFlag32                     mCreateBalloonFlag;
     bool                                mAllBalloon;
@@ -88,7 +108,7 @@ private:
     s32                                 mHpDpSpecialType;
     s32                                 mCoinMaxNum;
     sead::Vector3f                      mPlayerSetPos;
-    sead::BitFlag16                     _c8;
+    sead::BitFlag16                     mPlayerNextGotoBlockInfo;
     sead::BitFlag16                     _ca;
     RDashPhysicsType                    mRDashPhysics;
 };
