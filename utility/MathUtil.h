@@ -4,7 +4,7 @@
 
 class MathUtil
 {
-    // NSMBW: sLib
+    // NSMBW: sLib & dGameCom
 
 public:
     template <typename T>
@@ -14,6 +14,9 @@ public:
 
     // Address: 0x029E11FC
     static f32 addCalc(f32*, f32, f32, f32, f32);
+
+    // Address: 0x029E1718
+    static void getGlbPosToLyt(sead::Vector3f& pos);
 };
 
 template <typename T>
