@@ -1,5 +1,6 @@
 #pragma once
 
+#include <graphics/Mii_SlotID.h>
 #include <player/PlayerEnum.h>
 #include <utility/Bitfield.h>
 
@@ -11,7 +12,7 @@ struct FieldPlayerData
     PlayerCharacter character;
     PlayerCharacter character_color;
     s32             _14;
-    s32             mii_slot;
+    Mii::SlotID     mii_slot;
     bool            mii_cap_visible;
     bool            is_spawned;
     bool            has_star;
