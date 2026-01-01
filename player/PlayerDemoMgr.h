@@ -23,6 +23,9 @@ public:
     {
         mCourseOutPlayerNo = player_no;
     }
+
+    void clearDemoNo(s8 player_no);
+
 protected:
     u32                             _10[(0x158 - 0x10) / sizeof(u32)];
     sead::FixedRingBuffer<s32, 4>   mCourseOutList;
