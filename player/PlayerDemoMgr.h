@@ -10,6 +10,8 @@ class PlayerDemoMgr
 public:
     bool isPlayerGameStop();
 
+    void playOther();
+
     void setCourseOutList(s32 player_no);
 
     s32 getCourseOutList(s32 index) const
