@@ -71,10 +71,12 @@ public:
         cStatus_2,                          // NSMBW: Bit 0x7D
         cStatus_3,                          // NSMBW: Bit 0x02
 
+        cStatus_DemoMode            =   5,  // NSMBW: Boolean
+
         cStatus_DispOut             =   7,  // NSMBW: Bit 0xB9
         cStatus_DispOutDanger,              // NSMBW: Bit 0xBA
 
-        cStatus_9                   =   9,
+        cStatus_FaderPosSet         =   9,
 
         cStatus_10                  =  10,  // Force-disable jump (accelY = 0)
         cStatus_11,
@@ -86,6 +88,7 @@ public:
         cStatus_25                  =  25,  // NSMBW: Bit 0x0A
 
         cStatus_36                  =  36,  // NSMBW: Bit 0x13
+        cStatus_37,
 
         cStatus_40                  =  40,  // NSMBW: Bit 0x15
         cStatus_41,                         // NSMBW: Bit 0x16
@@ -97,6 +100,8 @@ public:
         cStatus_52                  =  52,  // NSMBW: Bit 0x1F
 
         cStatus_56                  =  56,  // NSMBW: Bit 0xC4
+
+        cStatus_58                  =  58,
 
         cStatus_60                  =  60,  // Disable block-hit bounce
 
@@ -124,6 +129,7 @@ public:
 
         cStatus_105                 = 105,
         cStatus_106,
+        cStatus_107,                        // NSMBW: Bit 0x45 (Is carried maybe?)
 
         cStatus_113                 = 113,  // NSMBW: Bit 0x4A
 
@@ -164,7 +170,7 @@ public:
         cStatus_155                 = 155,
         cStatus_156,                        // NSMBW: Bit 0x95
 
-        cStatus_171                 = 171,
+        cStatus_EnableDokanIn       = 171,
 
         cStatus_FollowMameKuribo    = 174,  // NSMBW: Bit 0xAC
         cStatus_Invisible,                  // NSMBW: Bit 0xBB
@@ -173,24 +179,30 @@ public:
         cStatus_178                 = 178,  // NSMBW: Bit 0xBE
         cStatus_179,                        // NSMBW: Bit 0xBF
 
+        cStatus_191                 = 191,
+
         cStatus_193                 = 193,
 
-        cStatus_209                 = 209,  // NSMBW: Bit 0x64
+        cStatus_208                 = 208,
+        cStatus_SceneChangeNext,            // NSMBW: Bit 0x64
         cStatus_210,
 
         cStatus_227                 = 227,  // NSMBW: Bit 0x6F
 
+        cStatus_235                 = 235,  // NSMBW: Bit 0x71
         cStatus_NoSlipSaka          = 236,
 
-        cStatus_DemoControl                 = 238,  // NSMBW: Bit 0x72
+        cStatus_DemoControl         = 238,  // NSMBW: Bit 0x72
 
-        cStatus_244                 = 244,  // NSMBW: Bit 0x5F
+        cStatus_242                 = 242,  // NSMBW: Bit 0x76
+        cStatus_243,
+        cStatus_244,                        // NSMBW: Bit 0x5F
 
         cStatus_247                 = 247,  // NSMBW: Bit 0x7E
         cStatus_248,                        // NSMBW: Bit 0x7F
         cStatus_CheckBg,                    // NSMBW: Bit 0x80
         cStatus_250,
-        cStatus_251,
+        cStatus_ShadowkunCatch,
         cStatus_252,                        // NSMBW: Bit 0x81
         cStatus_253,                        // NSMBW: Bit 0xB8
         cStatus_254,
@@ -202,10 +214,10 @@ public:
         cStatus_DispOutPosYAdj      = 260,
 
         cStatus_RDash_DispPinch     = 262,
-
-        cStatus_264                 = 264,  // NSMBW: Bit 0x78
-
-        cStatus_266                 = 266,  // NSMBW: Bit 0x7A
+        cStatus_263,                        // NSMBW: Bit 0x77
+        cStatus_264,                        // NSMBW: Bit 0x78
+        cStatus_265,                        // NSMBW: Bit 0x79
+        cStatus_266,                        // NSMBW: Bit 0x7A
         cStatus_267,
 
         cStatus_270                 = 270,  // NSMBW: Bit 0x84
@@ -621,7 +633,12 @@ public:
 
     enum DemoType
     {
-        cDemoType_3 = 3
+        cDemoType_1 = 1,
+
+        cDemoType_3 = 3,
+        cDemoType_4,
+        cDemoType_5,    // CourseOut?
+        cDemoType_ShadowkunCatch
     };
 
     enum AnmBlend
@@ -650,6 +667,14 @@ public:
         cReductionMode_Boyon
     };
     static_assert(sizeof(ReductionMode) == 4);
+
+    enum NextGotoBlockDelay
+    {
+        cNextGotoBlockDelay_None = 0,
+        cNextGotoBlockDelay_Normal,
+        cNextGotoBlockDelay_Short
+    };
+    static_assert(sizeof(NextGotoBlockDelay) == 4);
 
     // Address: 0x10166E60
     static const f32 cDirSpeed[cDirType_NumX];
@@ -1068,9 +1093,6 @@ public:
     // Address: 0x028FDD68
     virtual void initialTitle(s32 next_goto_type);
 
-    // Address: 0x028FAF1C
-    void changeDemoState(const StateID& state_id, s32 param);
-
     // StateID_DemoCreate           Address: 0x1022A008
     // initializeState_DemoCreate   Address: 0x028FD8B4
     // executeState_DemoCreate      Address: 0x028FD8B8
@@ -1086,11 +1108,11 @@ public:
     // executeState_DemoState3      Address: 0x028FD24C
     // finalizeState_DemoState3     Address: 0x028FD250
     DECLARE_STATE_VIRTUAL_ID_BASE(PlayerBase, DemoState3)
-    // StateID_DemoState4           Address: 0x1022A074
-    // initializeState_DemoState4   Address: 0x028FAEB0
-    // executeState_DemoState4      Address: 0x028FAFB4
-    // finalizeState_DemoState4     Address: 0x028FB05C
-    DECLARE_STATE_VIRTUAL_ID_BASE(PlayerBase, DemoState4)
+    // StateID_DemoStartCoinBattle          Address: 0x1022A074
+    // initializeState_DemoStartCoinBattle  Address: 0x028FAEB0
+    // executeState_DemoStartCoinBattle     Address: 0x028FAFB4
+    // finalizeState_DemoStartCoinBattle    Address: 0x028FB05C
+    DECLARE_STATE_VIRTUAL_ID_BASE(PlayerBase, DemoStartCoinBattle)
     // StateID_DemoGoal         Address: 0x1022A098
     // initializeState_DemoGoal Address: 0x02901D7C
     // executeState_DemoGoal    Address: 0x02902988
@@ -1197,7 +1219,12 @@ public:
     // finalizeState_DemoState25    Address: 0x02903F2C
     DECLARE_STATE_VIRTUAL_ID_BASE(PlayerBase, DemoState25)
 
-    virtual void initializeDemoControl(bool carry_chibi_yoshi) = 0;
+    // Address: 0x028FAF1C
+    void changeDemoState(const StateID& state_id, s32 param);
+    // Address: 0x028FB568
+    bool executeDemoState();
+
+    virtual void initializeDemoControl(bool carry_chibi_yoshi = true) = 0;
 
     // Address: 0x028FB6EC
     virtual void onDemoType(DemoType type);
@@ -1211,6 +1238,43 @@ public:
     virtual bool isDemoType(DemoType type);
     // Address: 0x028FB754
     bool isDemoAll();
+    // Address: 0x028FB764
+    bool isDemo();
+    // Address: 0x028FAEBC
+    void onDemo();
+    // Address: 0x028FABD4
+    void offDemo();
+
+    // Address: 0x028FB7E0
+    void setShadowkunCatchDemo();
+
+    // Address: 0x028FB828
+    bool isDisableDokanInDemo();
+    // Address: 0x028FB948
+    bool isDisableGoalDemo();
+
+protected:
+    // Address: 0x028FB888
+    bool isDemo3Any_();
+    // Address: 0x028FB118
+    bool isDemo5Any_();
+
+public:
+    // Address: 0x028FB1D8
+    void setFaderPos(const sead::Vector3f& pos);
+    // Address: 0x028FB338
+    void changeNextScene(s32);
+    // Address: 0x028FB9A8
+    bool isSceneChangeWaitDone();
+
+    // Address: 0x028FBA0C
+    bool isDispOutCheckOn();
+
+    // Address: 0x028FBAAC
+    void changeNormalAction();
+
+    // Address: 0x028FBB18
+    bool setNextGotoBlockDemo(s32 dst_next_goto_no, s32 wait_timer, NextGotoBlockDelay delay, bool unk_rdash = false);
 
     virtual bool isChange() = 0;
 
@@ -1263,6 +1327,9 @@ public:
     // Bounce player
     virtual bool bouncePlayer1(f32 speed_y, f32 speed_F, bool, BounceType bounce_type, JumpSe jump_se_type) = 0;   // Does lots of checks that can cancel the bounce, calls bouncePlayer2 otherwise
     virtual bool bouncePlayer2(f32 speed_y, f32 speed_F, bool, BounceType bounce_type, JumpSe jump_se_type) = 0;
+
+    // Address: 0x02900D34
+    void checkDemoControl();
 
     // Address: 0x02906B04
     void changeState(const StateID& state_id, s32 param);
@@ -1779,12 +1846,12 @@ protected:
     sead::BitFlag32                 mDemoTypeFlag;
     s32                             mDemoMode;              // TODO: Union
     s32                             mDemoAction;            // ^^^
-    u32                             _20e8;
-    u32                             _20ec;
+    s32                             mDemoWaitTimer;
+    s32                             _20ec;
     ActorUniqueID                   mPlayerJumpDaiID;
     s32                             mDstNextGotoID;
     s32                             mNextGotoType;          // i.e., "Create Action", TODO: enum
-    u32                             _20fc;
+    NextGotoBlockDelay              mNextGotoDelay;
     sead::Vector2f                  _2100;                  // Target for movement in a specific direction
     sead::Vector2f                  _2108;                  // Speed ^^^
     sead::Vector3f                  mFaderPos;
@@ -1806,8 +1873,8 @@ protected:
     DokanType                       mDokanType;
     f32                             _2178;
     f32                             _217c;
-    u32                             _2180;
-    u32                             _2184;
+    u32                             mDokanInTimerL;
+    u32                             mDokanInTimerR;
     ActorBoxBgCollision*            mpDokanBgCollision;
     bool                            mIsDokanSwim;           // Maybe?
     f32                             _2190;
