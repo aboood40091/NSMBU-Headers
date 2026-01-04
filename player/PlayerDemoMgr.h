@@ -19,6 +19,11 @@ public:
         return mCourseOutList[index];
     }
 
+    s32 getCourseOutPlayerNo() const
+    {
+        return mCourseOutPlayerNo;
+    }
+
     void setCourseOutPlayerNo(s32 player_no)
     {
         mCourseOutPlayerNo = player_no;
