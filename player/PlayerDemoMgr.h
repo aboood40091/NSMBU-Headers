@@ -8,6 +8,18 @@ class PlayerDemoMgr
     SEAD_SINGLETON_DISPOSER(PlayerDemoMgr)
 
 public:
+    enum Mode
+    {
+        cMode_None,
+        cMode_Wait,
+        cMode_Goal,
+        cMode_Num
+    };
+    static_assert(cMode_Num == 3);
+
+public:
+    void setDemoMode(Mode mode);
+
     bool isPlayerGameStop();
 
     void stopOther();
