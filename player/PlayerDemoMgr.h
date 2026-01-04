@@ -10,6 +10,7 @@ class PlayerDemoMgr
 public:
     bool isPlayerGameStop();
 
+    void stopOther();
     void playOther();
 
     void setCourseOutList(s32 player_no);
