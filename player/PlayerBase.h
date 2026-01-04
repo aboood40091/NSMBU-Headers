@@ -6,6 +6,7 @@
 #include <collision/ActorBgCollisionPlayerCheck.h>
 #include <effect/EffectObj.h>
 #include <game/Quake.h>
+#include <map/NextGotoType.h>
 #include <player/PlayerDrcTouchCB.h>
 #include <player/PlayerEnum.h>
 #include <player/PlayerKey.h>
@@ -75,10 +76,8 @@ public:
 
         cStatus_DispOut             =   7,  // NSMBW: Bit 0xB9
         cStatus_DispOutDanger,              // NSMBW: Bit 0xBA
-
-        cStatus_FaderPosSet         =   9,
-
-        cStatus_10                  =  10,  // Force-disable jump (accelY = 0)
+        cStatus_FaderPosSet,
+        cStatus_10,                         // Force-disable jump (accelY = 0)
         cStatus_11,
 
         cStatus_14                  =  14,  // NSMBW: Bit 0x04
@@ -142,8 +141,7 @@ public:
 
         cStatus_RideNatDone         = 127,  // NSMBW: Bit 0x58 (Ride Nat target reached)
         cStatus_RideNat,                    // NSMBW: Bit 0x59
-
-        cStatus_129                 = 129,  // NSMBW: Bit 0x5A
+        cStatus_129,                        // NSMBW: Bit 0x5A
         cStatus_130,                        // NSMBW: Bit 0x5C
         cStatus_131,                        // NSMBW: Bit 0x5D
 
@@ -152,8 +150,7 @@ public:
 
         cStatus_136                 = 136,  // NSMBW: Bit 0x62
         cStatus_137,
-
-        cStatus_138                 = 138,
+        cStatus_138,
 
         cStatus_141                 = 141,
 
@@ -1060,38 +1057,38 @@ private:
 
 public:
     // Address: 0x028FD318
-    virtual void setCreate(const sead::Vector3f& pos, s32 next_goto_type, s32 dir);
+    virtual void setCreate(const sead::Vector3f& pos, NextGotoType next_goto_type, s32 dir);
     // Address: 0x028FD394
     virtual void reset();
 
     // Address: 0x028FD684
-    virtual void initialNormal(s32 next_goto_type);
+    virtual void initialNormal(NextGotoType next_goto_type);
     // Address: 0x028FDD4C
-    virtual void initialDoor(s32 next_goto_type);
+    virtual void initialDoor(NextGotoType next_goto_type);
     // Address: 0x028FD6D0
-    virtual void initialDokan(s32 next_goto_type);
+    virtual void initialDokan(NextGotoType next_goto_type);
     // Address: 0x028FD7B4
-    virtual void initialFall(s32 next_goto_type);
+    virtual void initialFall(NextGotoType next_goto_type);
     // Address: 0x028FD800
-    virtual void initialHipAttack(s32 next_goto_type);
+    virtual void initialHipAttack(NextGotoType next_goto_type);
     // Address: 0x028FD84C
-    virtual void initialSlip(s32 next_goto_type);
+    virtual void initialSlip(NextGotoType next_goto_type);
     // Address: 0x028FDD50
-    virtual void initialJump(s32 next_goto_type);
+    virtual void initialJump(NextGotoType next_goto_type);
     // Address: 0x028FDD54
-    virtual void initialVine(s32 next_goto_type);
+    virtual void initialVine(NextGotoType next_goto_type);
     // Address: 0x028FDD58
-    virtual void initialShiroBoss(s32 next_goto_type);
+    virtual void initialShiroBoss(NextGotoType next_goto_type);
     // Address: 0x028FDD5C
-    virtual void initialFinalBoss(s32 next_goto_type);
+    virtual void initialFinalBoss(NextGotoType next_goto_type);
     // Address: 0x028FDD60
-    virtual void initialUnk10(s32 next_goto_type);
+    virtual void initialUnk10(NextGotoType next_goto_type);
     // Address: 0x028FD8A4
-    virtual void initialUnk27(s32 next_goto_type);
+    virtual void initialUnk27(NextGotoType next_goto_type);
     // Address: 0x028FDD64
-    virtual void initialBoxingKoopaJr(s32 next_goto_type);
+    virtual void initialBoxingKoopaJr(NextGotoType next_goto_type);
     // Address: 0x028FDD68
-    virtual void initialTitle(s32 next_goto_type);
+    virtual void initialTitle(NextGotoType next_goto_type);
 
     // StateID_DemoCreate           Address: 0x1022A008
     // initializeState_DemoCreate   Address: 0x028FD8B4
@@ -1850,7 +1847,7 @@ protected:
     s32                             _20ec;
     ActorUniqueID                   mPlayerJumpDaiID;
     s32                             mDstNextGotoID;
-    s32                             mNextGotoType;          // i.e., "Create Action", TODO: enum
+    NextGotoType                    mNextGotoType;          // i.e., "Create Action"
     NextGotoBlockDelay              mNextGotoDelay;
     sead::Vector2f                  _2100;                  // Target for movement in a specific direction
     sead::Vector2f                  _2108;                  // Speed ^^^
