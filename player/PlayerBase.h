@@ -1100,11 +1100,11 @@ public:
     // executeState_DemoNone    Address: 0x028FACDC
     // finalizeState_DemoNone   Address: 0x028FD244
     DECLARE_STATE_VIRTUAL_ID_BASE(PlayerBase, DemoNone)
-    // StateID_DemoState3           Address: 0x1022A050
-    // initializeState_DemoState3   Address: 0x028FD248
-    // executeState_DemoState3      Address: 0x028FD24C
-    // finalizeState_DemoState3     Address: 0x028FD250
-    DECLARE_STATE_VIRTUAL_ID_BASE(PlayerBase, DemoState3)
+    // StateID_DemoReset            Address: 0x1022A050
+    // initializeState_DemoReset    Address: 0x028FD248
+    // executeState_DemoReset       Address: 0x028FD24C
+    // finalizeState_DemoReset      Address: 0x028FD250
+    DECLARE_STATE_VIRTUAL_ID_BASE(PlayerBase, DemoReset)
     // StateID_DemoStartCoinBattle          Address: 0x1022A074
     // initializeState_DemoStartCoinBattle  Address: 0x028FAEB0
     // executeState_DemoStartCoinBattle     Address: 0x028FAFB4
