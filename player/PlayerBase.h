@@ -73,8 +73,8 @@ public:
         cStatus_3,                          // NSMBW: Bit 0x02
 
         cStatus_DemoMode            =   5,  // NSMBW: Boolean
-
-        cStatus_DispOut             =   7,  // NSMBW: Bit 0xB9
+        cStatus_6,                          // NSMBW: Bit 0xB5 (MAYBE)
+        cStatus_DispOut,                    // NSMBW: Bit 0xB9
         cStatus_DispOutDanger,              // NSMBW: Bit 0xBA
         cStatus_FaderPosSet,
         cStatus_10,                         // Force-disable jump (accelY = 0)
@@ -125,6 +125,8 @@ public:
         cStatus_97                  =  97,
         cStatus_98,                         // NSMBW: Bit 0x3B
         cStatus_99,                         // NSMBW: Bit 0x3C
+
+        cStatus_102                 = 102,  // NSMBW: Bit 0x3E
 
         cStatus_105                 = 105,
         cStatus_106,
@@ -1060,7 +1062,22 @@ public:
     virtual void setCreate(const sead::Vector3f& pos, NextGotoType next_goto_type, s32 dir);
     // Address: 0x028FD394
     virtual void reset();
+    // Address: 0x028FD424
+    void resetBg();
 
+    // Address: 0x028FD4C0
+    void setPosAndDir(const sead::Vector3f& pos, s32 dir);
+
+    // Address: 0x028FD588
+    void stopGameAtCreate();
+
+    // Address: 0x028FD5B0
+    void executeDemoCreate();
+
+private:
+    inline void setCreateAction_(NextGotoType next_goto_type);
+
+public:
     // Address: 0x028FD684
     virtual void initialNormal(NextGotoType next_goto_type);
     // Address: 0x028FDD4C
