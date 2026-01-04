@@ -1722,6 +1722,11 @@ public:
     // Address: 0x029065F0
     Angle getMukiAngle(u32 dir);
 
+    Angle getMukiAngle()
+    {
+        return getMukiAngle(mDirection);
+    }
+
     // Address: 0x0290B89C
     void forceSlipToStoop();
 
