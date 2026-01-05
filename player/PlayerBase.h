@@ -623,6 +623,38 @@ public:
     };
     static_assert(sizeof(ActionType) == 4);
 
+    enum DemoNextGotoBlockAction
+    {
+        cDemoNextGotoBlockAction_Walk = 0,
+        cDemoNextGotoBlockAction_SceneChange
+    };
+    static_assert(sizeof(HangAction) == 4);
+
+    enum DemoStartWaitAction
+    {
+        cDemoStartWaitAction_Wait = 0,
+        cDemoStartWaitAction_Move
+    };
+    static_assert(sizeof(DemoStartWaitAction) == 4);
+
+    enum DemoWaitAction
+    {
+        cDemoWaitAction_WaitTurn = 0,
+        cDemoWaitAction_Move,
+        cDemoWaitAction_WaitSingle
+
+    };
+    static_assert(sizeof(DemoWaitAction) == 4);
+
+    union DemoActionType
+    {
+        DemoNextGotoBlockAction next_goto_block;
+        DemoStartWaitAction     start_wait;
+        DemoWaitAction          wait;
+        // And more...
+    };
+    static_assert(sizeof(DemoActionType) == 4);
+
     enum FunsuiType
     {
         cFunsuiType_Sand = 0,
@@ -1069,7 +1101,7 @@ public:
     void setPosAndDir(const sead::Vector3f& pos, s32 dir);
 
     // Address: 0x028FD588
-    void stopGameAtCreate();
+    void stopCreateOther();
 
     // Address: 0x028FD5B0
     void executeDemoCreate();
@@ -1863,9 +1895,9 @@ protected:
     FStateMgr<PlayerBase>           mDemoStateMgr;
     s32                             mChangeDemoStateParam;
     sead::BitFlag32                 mDemoTypeFlag;
-    s32                             mDemoMode;              // TODO: Union
-    s32                             mDemoAction;            // ^^^
-    s32                             mDemoWaitTimer;
+    s32                             mDemoAction;            // See DemoActionType
+    s32                             mDemoSubAction;         // TODO: Union
+    s32                             mDemoActionTimer;
     s32                             _20ec;
     ActorUniqueID                   mPlayerJumpDaiID;
     s32                             mDstNextGotoID;
