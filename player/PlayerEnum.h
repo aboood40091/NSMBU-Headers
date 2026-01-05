@@ -37,12 +37,24 @@ enum PlayerCharacter
     cPlayerCharacter_Luigi,
     cPlayerCharacter_YellowToad,
     cPlayerCharacter_BlueToad,
-    cPlayerCharacter_Nabbit,
-    cPlayerCharacter_Mii,
-    cPlayerCharacter_Unused,    // No idea why this exists
-    cPlayerCharacter_Num
+    cPlayerCharacter_NumCore,
+
+    cPlayerCharacter_Nabbit = cPlayerCharacter_NumCore,
+    cPlayerCharacter_NumStory,
+
+    // Course scene-specific characters
+    cPlayerCharacter_Mii = cPlayerCharacter_NumStory,
+    cPlayerCharacter_NumGame,
+
+    // Course select scene-specific characters
+    cPlayerCharacter_CS_ChibiYoshi1 = cPlayerCharacter_NumStory,
+    cPlayerCharacter_CS_ChibiYoshi2,
+    cPlayerCharacter_NumCS
 };
-static_assert(cPlayerCharacter_Num == 7);
+static_assert(cPlayerCharacter_NumCore == 4);
+static_assert(cPlayerCharacter_NumStory == 5);
+static_assert(cPlayerCharacter_NumGame == 6);
+static_assert(cPlayerCharacter_NumCS == 7);
 static_assert(sizeof(PlayerCharacter) == 4);
 
 enum PlayerCharacterVoice
