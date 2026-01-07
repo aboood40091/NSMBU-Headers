@@ -38,6 +38,44 @@ struct DistantViewData
 };
 static_assert(sizeof(DistantViewData) == 0x1C);
 
+struct NextGoto
+{
+    // Is the official name. Called entrance by the modding community.
+
+    struct
+    {
+        u16 x;
+        u16 y;
+    }   offset;
+    struct
+    {
+        u16 x;
+        u16 y;
+    }   camera_offset;
+    u8  id;
+    struct
+    {
+        u8  file;
+        u8  next_goto;
+    }   destination;
+    u8  type;
+    u8  mp_spawn_flag;
+    u8  area;
+    u8  _unused0;
+    u8  mp_inner_gap;
+    u16 flag;
+    u8  chibi_yoshi_next_goto;
+    u8  coin_edit_priority;
+    struct
+    {
+        u8 info;
+        u8 point;
+    } rail;
+    u8  wipe_type;
+    u8  _pad[1];
+};
+static_assert(sizeof(NextGoto) == 0x18);
+
 struct MapActorData
 {
     // Speculated official name.
@@ -190,6 +228,7 @@ public:
     }
 
     const DistantViewData* getBg2Data(u16 id) const;
+    const NextGoto* getNextGoto(u8 id) const;
     const MapActorData* getMapActor(u16 type, const MapActorData* p_start = nullptr) const;
     const AreaData* getAreaData(u8 id, sead::BoundBox2f* p_box = nullptr) const;
     const Location* getLocation(sead::BoundBox2f* p_box, u8 id) const;
