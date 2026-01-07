@@ -26,6 +26,9 @@ public:
         return mpGamescene;
     }
 
+    // Address: 0x024C0D6C
+    bool getGamesceneUnkBool() const;
+
     FieldGameData* getGameData()
     {
         return &mGameData;
