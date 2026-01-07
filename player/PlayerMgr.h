@@ -81,6 +81,8 @@ public:
 
     s32 getNumInGame();
 
+    bool isEnableStopOutDokanOther(s32 player_no);
+
     s32 getCoinNumMin();
 
 private:
