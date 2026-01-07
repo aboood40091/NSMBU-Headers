@@ -190,6 +190,21 @@ public:
         return getPos2D() + reinterpret_cast<const sead::Vector2f&>(mCenterOffset.x);
     }
 
+    f32 getCenterX() const
+    {
+        return mPos.x + mCenterOffset.x;
+    }
+
+    f32 getCenterY() const
+    {
+        return mPos.y + mCenterOffset.y;
+    }
+
+    f32 getCenterZ() const
+    {
+        return mPos.z + mCenterOffset.z;
+    }
+
     sead::Vector3f& getSpeedVec()
     {
         return mSpeed;
