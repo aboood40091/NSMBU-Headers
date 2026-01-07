@@ -336,6 +336,9 @@ public:
     // Address: 0x021A5EB4
     void update();
 
+    // Address: 0x021A5F9C
+    sead::Vector2f addDokanMoveDiff(sead::Vector2f pos);
+
     void setFlag(u32 flag)
     {
         mFlag.setDirect(flag);
