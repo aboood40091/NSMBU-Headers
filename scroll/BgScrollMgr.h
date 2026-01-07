@@ -154,6 +154,9 @@ public:
     // Address: 0x029A6E24
     DirType getAreaScrollDirSub() const;
 
+    // Address: 0x029A6E40
+    void postDemoIn();
+
 private:
     f32                 mZoom;
     f32                 mZoomPrev;
