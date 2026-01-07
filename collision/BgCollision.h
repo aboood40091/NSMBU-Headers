@@ -306,6 +306,13 @@ public:
         return mBcListWallL;
     }
 
+    // Address: 0x021A5720
+    void entryBcFoot(ActorBgCollisionCheck* p_bc_check);
+    // Address: 0x021A5764
+    void releaseBcFoot(ActorBgCollisionCheck* p_bc_check);
+    // Address: 0x021A56E4
+    bool isEntryBcFoot(ActorBgCollisionCheck* p_bc_check) const;
+
     // Address: 0x021A59F4
     void reset();
     // Address: 0x021A5598
