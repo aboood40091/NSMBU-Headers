@@ -2,6 +2,7 @@
 
 #include <container/seadRingBuffer.h>
 #include <heap/seadDisposer.h>
+#include <prim/seadBitFlag.h>
 
 class PlayerDemoMgr
 {
@@ -63,6 +64,11 @@ public:
     void clearDemoNo(s32 player_no);
     s32 searchDemoNo(s32 player_no);
 
+    bool isUnderwaterKoopaJrDemo() const
+    {
+        return mFlag.isOnBit(0);
+    }
+
 protected:
     u32                             _10[(0x158 - 0x10) / sizeof(u32)];
     sead::FixedRingBuffer<s32, 4>   mCourseOutList;
@@ -70,6 +76,7 @@ protected:
     s32                             mCourseOutPlayerNo;
     u32                             _1bc;
     bool                            mIsEnableCheckDemoNo;
-    u32                             _1c4[(0x1F4 - 0x1C4) / sizeof(u32)];
+    sead::BitFlag32                 mFlag;
+    u32                             _1c8[(0x1F4 - 0x1C8) / sizeof(u32)];
 };
 static_assert(sizeof(PlayerDemoMgr) == 0x1F4);
