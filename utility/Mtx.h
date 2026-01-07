@@ -4,7 +4,7 @@
 
 #include <math/seadMatrix.h>
 
-class Mtx : public sead::Matrixf
+class Mtxf : public sead::Matrixf
 {
 public:
     // Address: 0x029E136C
@@ -35,6 +35,6 @@ public:
     // Address: 0x029E1650
     void copy(const sead::Matrixf& mtx);
     // Address: 0x029E16B4
-    void copy(const Mtx& mtx);
+    void copy(const Mtxf& mtx);
 };
-static_assert(sizeof(Mtx) == sizeof(sead::Matrixf));
+static_assert(sizeof(Mtxf) == sizeof(sead::Matrixf));
