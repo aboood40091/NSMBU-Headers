@@ -84,10 +84,13 @@ public:
 
         cStatus_17                  =  17,  // NSMBW: Bit 0x06
 
+        cStatus_19                  =  19,  // NSMBW: Bit 0x08
+
         cStatus_25                  =  25,  // NSMBW: Bit 0x0A
 
         cStatus_36                  =  36,  // NSMBW: Bit 0x13
         cStatus_37,
+        cStatus_38,
 
         cStatus_40                  =  40,  // NSMBW: Bit 0x15
         cStatus_41,                         // NSMBW: Bit 0x16
@@ -107,7 +110,8 @@ public:
         cStatus_62                  =  62,
         cStatus_63,
 
-        cStatus_69                  =  69,  // NSMBW: Bit 0x2B
+        cStatus_68                  =  68,  // NSMBW: Bit 0x2A
+        cStatus_69,                         // NSMBW: Bit 0x2B
 
         cStatus_71                  =  71,  // NSMBW: Bit 0x2D
 
@@ -177,6 +181,7 @@ public:
 
         cStatus_178                 = 178,  // NSMBW: Bit 0xBE
         cStatus_179,                        // NSMBW: Bit 0xBF
+        cStatus_180,                        // NSMBW: Bit 0xC1
 
         cStatus_191                 = 191,
 
@@ -332,11 +337,18 @@ public:
 
     enum DokanDir
     {
-        cDokanDir_Up = 0,   // i.e., Player should hold **up**    & the pipe is facing **down**
-        cDokanDir_Down,     // i.e., Player should hold **down**  & the pipe is facing **up**
-        cDokanDir_Left,     // i.e., Player should hold **left**  & the pipe is facing **right**
-        cDokanDir_Right,    // i.e., Player should hold **right** & the pipe is facing **left**
-        cDokanDir_Num
+        // Button to press to enter the pipe
+        cDokanDir_ButtonUp = 0,
+        cDokanDir_ButtonDown,
+        cDokanDir_ButtonLeft,
+        cDokanDir_ButtonRight,
+        cDokanDir_Num,
+
+        // Direction the pipe is facing
+        cDokanDir_FaceUp = cDokanDir_ButtonDown,
+        cDokanDir_FaceDown = cDokanDir_ButtonUp,
+        cDokanDir_FaceLeft = cDokanDir_ButtonRight,
+        cDokanDir_FaceRight = cDokanDir_ButtonLeft
     };
     static_assert(cDokanDir_Num == 4);
     static_assert(sizeof(DokanDir) == 4);
@@ -646,11 +658,31 @@ public:
     };
     static_assert(sizeof(DemoWaitAction) == 4);
 
+    enum DemoOutDokanAction
+    {
+        cDemoOutDokanAction_MoveSubAxis = 0,
+        cDemoOutDokanAction_MoveMainAxis,
+        cDemoOutDokanAction_End
+    };
+    static_assert(sizeof(DemoOutDokanAction) == 4);
+
+    enum DemoInDokanAction
+    {
+        cDemoInDokanAction_CheckTurn = 0,
+        cDemoInDokanAction_WaitNextTurn,
+        cDemoInDokanAction_Move,
+        cDemoInDokanAction_WaitNextTurn_UnderwaterKoopaJrDemo,
+        cDemoInDokanAction_End
+    };
+    static_assert(sizeof(DemoInDokanAction) == 4);
+
     union DemoActionType
     {
         DemoNextGotoBlockAction next_goto_block;
         DemoStartWaitAction     start_wait;
         DemoWaitAction          wait;
+        DemoOutDokanAction      out_dokan;
+        DemoInDokanAction       in_dokan;
         // And more...
     };
     static_assert(sizeof(DemoActionType) == 4);
@@ -706,6 +738,13 @@ public:
         cNextGotoBlockDelay_Short
     };
     static_assert(sizeof(NextGotoBlockDelay) == 4);
+
+    enum CheckBgDokanInUDRes
+    {
+        cCheckBgDokanInUDRes_Clear = 0,
+        cCheckBgDokanInUDRes_ClearMame,
+        cCheckBgDokanInUDRes_Blocked
+    };
 
     // Address: 0x10166E60
     static const f32 cDirSpeed[cDirType_NumX];
@@ -1348,24 +1387,109 @@ public:
     virtual bool setGoalPutOnCapAnm(s32 course_clear_type) = 0;
     virtual void finDemoKimePose() = 0;
 
-    virtual bool isEnableDokanInStatus() = 0;
-    virtual bool isEnableMameDokanIn() = 0;     // I think...?
+    // Address: 0x028FDDE0
+    void stopOutDokanOther();
+
+    // Address: 0x028FDFBC
+    bool demo_dokan_move_x(f32 step, f32 threshold);
+    // Address: 0x028FE054
+    bool demo_dokan_move_y(f32 step, f32 offset);
+
+    // Address: 0x028FE030
+    void setDokanSE();
+
+    // Address: 0x028FE3BC
+    f32 getWaterDokanCenterOffset(f32 pos_y);
+
+    // Address: 0x028FE750
+    void calcDokanMoveDiff(sead::Vector2f* p_diff = nullptr);
+
+    // Address: 0x028FEEA8
+    bool dokanMoveOut();
+
+    // Address: 0x028FF6A8
+    void setObjDokanIn(ActorBoxBgCollision* p_bg_collision, const sead::Vector3f& pos, s32 dst_next_goto_no, DokanDir dir);
+
+    // Address: 0x028FF744
+    CheckBgDokanInUDRes checkBgDokanInUD(sead::Vector3f* p_pos, DokanDir dir);
+
+    // Address: 0x028FF97C
+    void getDokanInLRWallBgPointData(ActorBgCollisionCheck::Sensor* p_sensor);
 
     // Address: 0x028FFA48
-    bool checkDokanInKeyTrig(DokanDir dir);
+    bool checkButtonDokanIn(DokanDir dir);
+
+    // Address: 0x028FFB4C
+    bool isEnableDokanInStatusBase();
+
+    virtual bool isEnableDokanInStatus() = 0;
+    virtual bool isEnableMameDokanIn() = 0;     // I think...?
 
     // Address: 0x028FFFD4
     virtual bool setDokanIn(DokanDir dir);
 
+    // Address: 0x028FFBEC
+    bool checkBgDokanIn(sead::Vector3f* p_pos, s32* p_dst_next_goto_no, DokanDir dir);
+    // Address: 0x028FFD8C
+    void setDokanInPos(sead::Vector3f pos, DokanDir dir);
+    // Address: 0x028FFEAC
+    bool setDemoOutDokanAction(s32 dst_next_goto_no, DokanDir dir);
+    // Address: 0x028FF56C
+    bool setDokanInNextGoto(s32 dst_next_goto_no);
+
     virtual f32 vf584() = 0;
-    virtual void vf58C(ActorBgCollisionCheck::Sensor&) = 0;
+    virtual void getDokanWallBgPointData(ActorBgCollisionCheck::Sensor* p_sensor) = 0;
 
     // Address: 0x02900088
-    virtual void setDokanWaitAnm(bool);
+    virtual void setDokanWaitAnm(bool move_in);
+
+    // Address: 0x029000C8
+    void initDemoOutDokanBase();
 
     virtual void initDemoOutDokan() = 0;
-    virtual bool setDokanOutAngle() = 0;
+    // Address: 0x028FE1E8
+    void endDemoOutDokan();
+
+    // Address: 0x028FDE40
+    void initDemoOutDokanUD(DokanDir dir);
+    // Address: 0x028FE06C
+    void executeDemoOutDokanUD();
+
+    // Address: 0x028FE230
+    void initDemoOutDokanLR(DokanDir dir);
+    // Address: 0x028FE4C4
+    void executeDemoOutDokanLR();
+
+    // Address: 0x028FE694
+    void initDemoOutDokanRoll();
+
+    virtual bool setOutDokanAngle() = 0;
+
+    // Address: 0x02900174
+    void initDemoInDokanBase(DokanDir dir);
+
     virtual void initDemoInDokan(DokanDir dir) = 0;
+    // Address: 0x028FF348
+    void endDemoInDokan();
+
+private:
+    inline void initDemoInDokanUD_(DokanDir dir);
+
+public:
+    // Address: 0x028FF4C0
+    void initDemoInDokanLR(DokanDir dir);
+
+    // Address: 0x028FF004
+    void executeDemoInDokan();
+
+    // Address: 0x029002B4
+    f32 getDokanCannonMoveXStep() const;
+    // Address: 0x029002C0
+    f32 getDokanCannonMoveXThreshold() const;
+    // Address: 0x029002CC
+    f32 getDokanCannonMoveYStep() const;
+    // Address: 0x029002D8
+    f32 getDokanWaitAnmFixFrame() const;
 
     // Address: Deleted
     virtual void vf5B4();
@@ -1776,6 +1900,9 @@ public:
         return getMukiAngle(mDirection);
     }
 
+    // Address: 0x02907A00
+    Angle addCalcAngleY(Angle target, f32 rate);
+
     // Address: 0x0290B89C
     void forceSlipToStoop();
 
@@ -1906,7 +2033,7 @@ protected:
     sead::Vector2f                  _2100;                  // Target for movement in a specific direction
     sead::Vector2f                  _2108;                  // Speed ^^^
     sead::Vector3f                  mFaderPos;
-    bool                            mIsLastPlayer;          // Maybe?
+    bool                            mIsLastPlayer;
     f32                             _2120;
     f32                             _2124;
     s32                             _2128;
@@ -1919,15 +2046,15 @@ protected:
     s32                             _214c;
     DokanDir                        mDokanDir;
     sead::Vector3f                  mDokanPos;
-    sead::Vector3f                  mDokanPosPrev;
+    sead::Vector3f                  mDokanFaderPos;
     sead::Vector2f                  mDokanPosMoveDelta;
     DokanType                       mDokanType;
-    f32                             _2178;
-    f32                             _217c;
+    f32                             mDokanMoveYOffset;
+    f32                             mDokanMoveXThreshold;
     u32                             mDokanInTimerL;
     u32                             mDokanInTimerR;
     ActorBoxBgCollision*            mpDokanBgCollision;
-    bool                            mIsDokanSwim;           // Maybe?
+    bool                            mIsDokanSwim;
     f32                             _2190;
     u32                             _2194;
     bool                            _2198;
