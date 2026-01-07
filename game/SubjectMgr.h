@@ -33,4 +33,15 @@ public:
 
     // Address: 0x024CFB00
     void onAcBlockHit();
+
+    bool isDisableAreaExit() const
+    {
+        return mIsDisableAreaExit;
+    }
+
+protected:
+    u32     _10[(0x1E54 - 0x10) / sizeof(u32)];
+    bool    mIsDisableAreaExit;
+    u8      _1E55[0x1E84 - 0x1E55];
 };
+static_assert(sizeof(SubjectMgr) == 0x1E84);
