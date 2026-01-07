@@ -309,17 +309,17 @@ public:
     // Address: 0x0218CE74
     const Sensor* getSensor(u8 direction) const;
 
-    bool isSensor1Set(u8 direction) const
+    bool isSensor1Set(u32 direction) const
     {
         return mIsSensor1Set[direction];
     }
 
-    bool isSensor1Null(u8 direction) const
+    bool isSensor1Null(u32 direction) const
     {
         return mIsSensor1Null[direction];
     }
 
-    bool isSensor2Set(u8 direction) const
+    bool isSensor2Set(u32 direction) const
     {
         return mIsSensor2Set[direction];
     }
@@ -334,32 +334,46 @@ public:
         return mSensor2;
     }
 
-    Sensor* getSensor1(u8 direction)
+    Sensor* getSensor1(u32 direction)
     {
         return &(mSensor1[direction]);
     }
 
-    const Sensor* getSensor1(u8 direction) const
+    const Sensor* getSensor1(u32 direction) const
     {
         return &(mSensor1[direction]);
     }
 
-    Sensor* getSensor2(u8 direction)
+    Sensor* getSensor2(u32 direction)
     {
         return &(mSensor2[direction]);
     }
 
-    const Sensor* getSensor2(u8 direction) const
+    const Sensor* getSensor2(u32 direction) const
     {
         return &(mSensor2[direction]);
     }
 
-    SensorFlag& getSensorFlag(u8 direction)
+    const Sensor* getSensorEffective(u32 direction) const
+    {
+        if (isSensor1Set(direction))
+        {
+            if (!isSensor1Null(direction))
+                return getSensor1(direction);
+        }
+        else if (isSensor2Set(direction))
+        {
+            return getSensor2(direction);
+        }
+        return nullptr;
+    }
+
+    SensorFlag& getSensorFlag(u32 direction)
     {
         return mSensorFlag[direction];
     }
 
-    const SensorFlag& getSensorFlag(u8 direction) const
+    const SensorFlag& getSensorFlag(u32 direction) const
     {
         return mSensorFlag[direction];
     }
