@@ -59,9 +59,9 @@ public:
         mIsNewGame = new_game;
     }
 
-    bool isStory() const
+    bool isShadowkunQuest() const
     {
-        return mIsStory;
+        return mIsShadowkunQuest;
     }
 
     CourseExitType getCourseExitType() const
@@ -93,7 +93,7 @@ protected:
     CourseBeatenType    mCourseBeatenType;
     u32                 _28[(0x21DDC - 0x28) / sizeof(u32)];
     u8                  _21ddc[30];
-    bool                mIsStory;
+    bool                mIsShadowkunQuest;
     u32                 _21dfc[(0x21E18 - 0x21DFC) / sizeof(u32)];
 };
 static_assert(sizeof(MainGame) == 0x21E18);
