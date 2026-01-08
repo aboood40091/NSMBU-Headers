@@ -1,14 +1,14 @@
 #pragma once
-#include <seadDisposer.h>
-#include <seadSafeString.h>
+#include <graphics/LayerMgr.h>
+#include <layout_sys/AnimLayout.h>
 #include <layout_sys/LayoutAllocator.h>
+#include <layout_sys/TagProcessor.h>
+#include <lyt/lyt_Animator.h>
 #include <lyt/lyt_DrawInfo.h>
 #include <seadBuffer.h>
-#include <layout_sys/TagProcessor.h>
-#include <Mtx.h>
-#include <graphics/LayerMgr.h>
-#include <lyt/lyt_Animator.h>
-#include <layout_sys/AnimLayout.h>
+#include <seadDisposer.h>
+#include <seadSafeString.h>
+
 
 class Multi2D : public sead::IDisposer
 {
