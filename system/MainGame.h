@@ -74,6 +74,16 @@ public:
         mCourseBeatenType = type;
     }
 
+    u32 getcsInventoryItem(u32 index) const
+    {
+        return csInventoryItems[index];
+    }
+
+    void setcsInventoryItem(u32 index, u32 value)
+    {
+        csInventoryItems[index] = value;
+    }
+
 protected:
     u32                 _10;
     bool                mIsSinglePlayerDRC;
