@@ -82,7 +82,7 @@ protected:
     CourseExitType      mCourseExitType;
     CourseBeatenType    mCourseBeatenType;
     u32                 _28[(0x180B8 - 0x28) / sizeof(u32)];
-    u32                 csInventoryItems[10];
+    u32                 csInventoryItems[10];// 0=Mushroom, 1=Fire Flower, 2=Super Star, 3=Ice Flower, 4=Ice Flower, 5=Propeller, 6=Mini Mushroom, 7=Penguin, 8=Acorn, 9=P-Acorn
     u32                 _180E0[(0x21DDC - 0x180E0) / sizeof(u32)];
     u8                  _21ddc[30];
     bool                mIsStory;
