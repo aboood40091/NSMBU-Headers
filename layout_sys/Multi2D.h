@@ -18,7 +18,7 @@ public:
 
 public:
 
-    // Adress: 0x02672A4C
+   // Adress: 0x02672A4C
    void AnimePlay(LayerMgr* viewLayerId, sead::Matrix34* modelMtx);
    // Adress: 0x02671C54
    void AnimeResRegister(sead::SafeString* resName, u32 animNumber);
