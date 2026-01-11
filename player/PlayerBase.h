@@ -24,11 +24,41 @@ struct PlayerBgPointHIO
 };
 static_assert(sizeof(PlayerBgPointHIO) == 0x24);
 
+struct PlayerPowerSpeedData
+{
+    f32 _0;
+    f32 _4;
+    f32 _8;
+    f32 _c;         // Turn decel?
+    f32 _10;
+    f32 x_accel;
+    f32 _18;
+    f32 _1c;
+    f32 _20;
+};
+static_assert(sizeof(PlayerPowerSpeedData) == 0x24);
+
+struct PlayerSpeedHIO
+{
+    f32 x_move_speed;
+    f32 _4;
+    f32 x_move_speed_dush;
+    PlayerPowerSpeedData power_data[3];
+};
+static_assert(sizeof(PlayerSpeedHIO) == 0x78);
+
+struct PlayerGravityHIO
+{
+    f32 gravity;
+    f32 _4[5];
+    f32 _18[6];
+    f32 _30[6];
+};
+static_assert(sizeof(PlayerGravityHIO) == 0x48);
+
 class   ActorBoxBgCollision;
-struct  PlayerGravityHIO;
 class   PlayerModelBase;
 class   PlayerModelBaseMgr;
-struct  PlayerSpeedHIO;
 
 class PlayerBase : public Actor // vtbl Address: 0x10166E84
 {
@@ -71,8 +101,8 @@ public:
         cStatus_1                   =   1,  // NSMBW: Bit 0x01
         cStatus_2,                          // NSMBW: Bit 0x7D
         cStatus_3,                          // NSMBW: Bit 0x02
-
-        cStatus_DemoMode            =   5,  // NSMBW: Boolean
+        cStatus_AnimePlayMulti,             // NSMBW: Bit 0x03
+        cStatus_DemoMode,                   // NSMBW: Boolean
         cStatus_6,                          // NSMBW: Bit 0xB5 (MAYBE)
         cStatus_DispOut,                    // NSMBW: Bit 0xB9
         cStatus_DispOutDanger,              // NSMBW: Bit 0xBA
@@ -102,13 +132,14 @@ public:
         cStatus_52                  =  52,  // NSMBW: Bit 0x1F
 
         cStatus_56                  =  56,  // NSMBW: Bit 0xC4
-
-        cStatus_58                  =  58,
+        cStatus_57,                         // NSMBW: Bit 0x24
+        cStatus_58,
 
         cStatus_60                  =  60,  // Disable block-hit bounce
 
         cStatus_62                  =  62,
         cStatus_63,
+        cStatus_64,                         // NSMBW: Bit 0x73 (MAYBE)
 
         cStatus_68                  =  68,  // NSMBW: Bit 0x2A
         cStatus_69,                         // NSMBW: Bit 0x2B
@@ -123,6 +154,8 @@ public:
         cStatus_82                  =  82,
 
         cStatus_84                  =  84,  // NSMBW: Bit 0x3A
+
+        cStatus_89                  =  89,
 
         cStatus_93                  =  93,
 
@@ -164,8 +197,8 @@ public:
         cStatus_146,                        // NSMBW: Bit 0x87
         cStatus_147,                        // NSMBW: Bit 0x88
         cStatus_148,                        // NSMBW: Bit 0x89
-
-        cStatus_150                 = 150,  // NSMBW: Bit 0x2C
+        cStatus_149,                        // NSMBW: Bit 0x8A (Spin action request maybe?)
+        cStatus_150,                        // NSMBW: Bit 0x2C
         cStatus_151,                        // NSMBW: Bit 0x8B
         cStatus_152,                        // NSMBW: Bit 0x8C
         cStatus_153,                        // NSMBW: Bit 0x8D
@@ -194,13 +227,16 @@ public:
         cStatus_227                 = 227,  // NSMBW: Bit 0x6F
 
         cStatus_235                 = 235,  // NSMBW: Bit 0x71
-        cStatus_NoSlipSaka          = 236,
-
-        cStatus_DemoControl         = 238,  // NSMBW: Bit 0x72
-
-        cStatus_242                 = 242,  // NSMBW: Bit 0x76
+        cStatus_NoSlipSaka,                 // NSMBW: Bit 0x73 (MAYBE)
+        cStatus_237,
+        cStatus_DemoControl,                // NSMBW: Bit 0x72
+        cStatus_239,                        // NSMBW: Bit 0x74
+        cStatus_240,                        // NSMBW: Bit 0x63 (MAYBE)
+        cStatus_241,                        // NSMBW: Bit 0x60 (MAYBE)
+        cStatus_242,                        // NSMBW: Bit 0x76
         cStatus_243,
-        cStatus_244,                        // NSMBW: Bit 0x5F
+        cStatus_DemoOnLandStop,             // NSMBW: Bit 0x5F
+        cStatus_DemoAnmLoop,
 
         cStatus_247                 = 247,  // NSMBW: Bit 0x7E
         cStatus_248,                        // NSMBW: Bit 0x7F
@@ -604,6 +640,32 @@ public:
     };
     static_assert(sizeof(HangAction) == 4);
 
+    enum AnimePlayAction
+    {
+        cAnimePlayAction_Start = 0,
+        cAnimePlayAction_End = 5,
+
+        cAnimePlayAction_Glad_KimeStart = cAnimePlayAction_Start + 1,
+        cAnimePlayAction_Glad_PutOnCap,
+        cAnimePlayAction_Glad_KimeWait,
+        cAnimePlayAction_Glad_Wait,
+        cAnimePlayAction_Glad_Num,
+
+        cAnimePlayAction_BossAttention_Turn = cAnimePlayAction_Start + 1,
+        cAnimePlayAction_BossAttention_Num,
+
+        cAnimePlayAction_BossKeyGet_Cheer = cAnimePlayAction_Start + 1,
+        cAnimePlayAction_BossKeyGet_Num,
+
+        cAnimePlayAction_TitleSlip_Move = cAnimePlayAction_Start + 1,
+        cAnimePlayAction_TitleSlip_Num
+    };
+    static_assert(sizeof(AnimePlayAction) == 4);
+    static_assert(cAnimePlayAction_Glad_Num <= cAnimePlayAction_End);
+    static_assert(cAnimePlayAction_BossAttention_Num <= cAnimePlayAction_End);
+    static_assert(cAnimePlayAction_BossKeyGet_Num <= cAnimePlayAction_End);
+    static_assert(cAnimePlayAction_TitleSlip_Num <= cAnimePlayAction_End);
+
     union ActionType
     {
         WalkAction              walk;
@@ -631,6 +693,7 @@ public:
         TarzanRopeAction        tarzan_rope;
         KaniAction              kani;
         HangAction              hang;
+        AnimePlayAction         anime_play;
         // And still many more...
     };
     static_assert(sizeof(ActionType) == 4);
@@ -686,6 +749,23 @@ public:
         // And more...
     };
     static_assert(sizeof(DemoActionType) == 4);
+
+    enum DemoControlSubAction
+    {
+        cDemoControlSubAction_Wait = 0,
+        cDemoControlSubAction_Walk,
+        cDemoControlSubAction_Anm,
+        cDemoControlSubAction_AnmMulti,
+        cDemoControlSubAction_4
+    };
+    static_assert(sizeof(DemoControlSubAction) == 4);
+
+    union DemoSubActionType
+    {
+        DemoControlSubAction    control;
+        // And more...
+    };
+    static_assert(sizeof(DemoSubActionType) == 4);
 
     enum FunsuiType
     {
@@ -746,6 +826,31 @@ public:
         cCheckBgDokanInUDRes_Blocked
     };
 
+    enum AnimePlayType
+    {
+        cAnimePlayType_Normal = 0,
+        cAnimePlayType_BossSetUp,
+        cAnimePlayType_BossGlad,
+        cAnimePlayType_BossAttention,
+        cAnimePlayType_BossKeyGet,
+        cAnimePlayType_LastBoss2Glad,
+        cAnimePlayType_LastBoss1Glad,
+        cAnimePlayType_TitleSlip,
+        cAnimePlayType_EndingGlad,
+        cAnimePlayType_EndingGladWait,
+        cAnimePlayType_TottenItem
+    };
+    static_assert(sizeof(AnimePlayType) == 4);
+
+    enum CourseClearType
+    {
+        cCourseClearType_Normal = 0,
+        cCourseClearType_Boss,
+        cCourseClearType_Fanfare,
+        cCourseClearType_LastBoss
+    };
+    static_assert(sizeof(CourseClearType) == 4);
+
     // Address: 0x10166E60
     static const f32 cDirSpeed[cDirType_NumX];
     // Address: 0x10166E68
@@ -762,6 +867,9 @@ public:
     static const f32 cTurnPowerUpRate;              // 3.0f
     // Address: 0x10166E80
     static const f32 cWaterCancelCrouchAnmSpeed;    // 0.1f
+
+    static const s32 cAddCalcAngleYFrameNum_Default = 10;
+    static const s32 cAddCalcAngleYFrameNum_DemoOutDoor = 5;
 
 public:
     // Address: 0x028F23C0
@@ -1311,6 +1419,66 @@ public:
 
     virtual void initializeDemoControl(bool carry_chibi_yoshi = true) = 0;
 
+    // Address: 0x029006AC
+    void setControlDemoPos(const sead::Vector3f& pos);
+    // Address: 0x029007C8
+    void setControlDemoDir(s32 dir);
+
+    // Address: 0x0290087C
+    void setControlDemoWait();
+    // Address: 0x029008FC
+    bool isControlDemoWait();
+
+    // Address: 0x02900924
+    void setControlDemoWalk(f32 target_pos_x, f32 speed);
+    // Address: 0x029009F4
+    bool isControlDemoWalk();
+
+    // Address: 0x02900A1C
+    void setControlDemoAnm(s32 anm_id, bool loop);
+    // Address: Deleted
+    bool isControlDemoAnm(s32 anm_id);
+
+    // Address: 0x02900AD0
+    void setControlDemoAnmMulti(AnimePlayType type);
+    // Address: 0x02900AF4
+    bool isControlDemoAnmMulti(AnimePlayType type);
+
+    // Address: 0x02900B34
+    bool isDemoLand();
+    // Address: 0x02900B68
+    bool isBossDemoLand();
+    // Address: 0x02900B6C
+    bool isEnemyStageClearDemoLand();
+
+    // Address: 0x02901A60
+    bool isEnableControlDemoKoopaSwitch();
+    // Address: 0x02900C44
+    bool startControlDemoKoopaSwitch();
+
+    // Address: 0x02900BBC
+    bool startControlDemo(bool status);
+    // Address: 0x02900CB0
+    void endControlDemo();
+
+    // Address: 0x02900D34
+    void checkDemoControl();
+
+    void setEnemyStageClearDemo(const Actor& box)
+    {
+        mSpeed.x = 0.0f;
+        mSpeedF = 0.0f;
+        if (mPos.x >= box.getPos().x)
+            setControlDemoDir(cDirType_Left);
+        else
+            setControlDemoDir(cDirType_Right);
+    }
+
+protected:
+    // Address: 0x02900CC0
+    bool isUnkDemoLand_();
+
+public:
     // Address: 0x028FB6EC
     virtual void onDemoType(DemoType type);
     // Address: 0x028FB704
@@ -1370,6 +1538,9 @@ public:
 
     virtual bool setTimeOverDemo() = 0;
 
+    // Address: 0x0290288C
+    void initDemoKimePose();
+
     virtual bool vf504() = 0;
     virtual void vf50C(const sead::Vector2f& pos, f32 walk_target_pos_x, bool secret_exit) = 0; // Goal-related
     virtual bool vf514() = 0;
@@ -1380,11 +1551,14 @@ public:
     // Address: 0x02902ECC
     virtual void vf534();
 
+    // Address: 0x02902F78
+    void startGoalDemoVoice(CourseClearType course_clear_type);
+
     virtual void executeDemoGoal_RideOffJump() = 0;
     virtual void executeDemoGoal_Run() = 0;
     virtual void executeDemoGoal_PreRun() = 0;
     virtual void executeDemoGoal_Item() = 0;
-    virtual bool setGoalPutOnCapAnm(s32 course_clear_type) = 0;
+    virtual bool setGoalPutOnCapAnm(CourseClearType course_clear_type) = 0;
     virtual void finDemoKimePose() = 0;
 
     // Address: 0x028FDDE0
@@ -1497,9 +1671,6 @@ public:
     // Bounce player
     virtual bool bouncePlayer1(f32 speed_y, f32 speed_F, bool, BounceType bounce_type, JumpSe jump_se_type) = 0;   // Does lots of checks that can cancel the bounce, calls bouncePlayer2 otherwise
     virtual bool bouncePlayer2(f32 speed_y, f32 speed_F, bool, BounceType bounce_type, JumpSe jump_se_type) = 0;
-
-    // Address: 0x02900D34
-    void checkDemoControl();
 
     // Address: 0x02906B04
     void changeState(const StateID& state_id, s32 param);
@@ -1634,8 +1805,28 @@ public:
     {
     }
 
+    // Address: 0x02900E78
+    void DemoAnmNormal();
+    // Address: 0x02900F00
+    void DemoAnmBossSetUp();
+    // Address: 0x02900F60
+    void DemoAnmBossGlad();
+    // Address: 0x029010AC
+    void DemoAnmBossAttention();
+    // Address: 0x029011EC
+    void DemoAnmBossKeyGet();
+    // Address: 0x029012A0
+    void DemoAnmLastBoss2Glad();
+    // Address: 0x029013E0
+    void DemoAnmLastBoss1Glad();
+    // Address: 0x0290152C
+    void DemoAnmTitleSlip();
+    // Address: 0x02901634
+    void DemoAnmEndingGlad();
+    // Address: 0x02901780
+    void DemoAnmEndingGladWait();
     // Address: 0x02901A68
-    virtual void DemoAnm_Unk10();
+    virtual void DemoAnmTottenItem();
 
     // Address: 0x028F3B44
     void coinJumpOnStampCB(s32 coin_num);
@@ -1701,6 +1892,14 @@ public:
 
     // Address: 0x02904CF4
     virtual void maxFallSpeedSet();
+    // Address: 0x02904F3C
+    void gravitySet();
+    // Address: 0x02905110
+    void moveSpeedSet();
+    // Address: 0x02905594
+    void simpleMoveSpeedSet();
+    // Address: 0x02906224
+    void powerSet();
 
     virtual void setFallAction() = 0;
 
@@ -1886,6 +2085,14 @@ public:
         return mMode;
     }
 
+    PlayerSpeedHIO* getSpeedData()
+    {
+        if (isStar())
+            return mpSpeedData_Star;
+        else
+            return mpSpeedData_Normal;
+    }
+
     // Address: 0x029050C8
     s32 getPowerChangeType(bool);
 
@@ -1900,8 +2107,17 @@ public:
         return getMukiAngle(mDirection);
     }
 
+    // Address: 0x02906608
+    bool turnAngle();
+
     // Address: 0x02907A00
     Angle addCalcAngleY(Angle target, f32 rate);
+
+    Angle addCalcAngleY(Angle target, s32 num_frame)
+    {
+        f32 rate = 1.0f / static_cast<f32>(num_frame);
+        return addCalcAngleY(target, rate);
+    }
 
     // Address: 0x0290B89C
     void forceSlipToStoop();
@@ -2023,7 +2239,7 @@ protected:
     s32                             mChangeDemoStateParam;
     sead::BitFlag32                 mDemoTypeFlag;
     s32                             mDemoAction;            // See DemoActionType
-    s32                             mDemoSubAction;         // TODO: Union
+    s32                             mDemoSubAction;         // See DemoSubActionType
     s32                             mDemoActionTimer;
     s32                             _20ec;
     ActorUniqueID                   mPlayerJumpDaiID;
@@ -2080,7 +2296,7 @@ protected:
     s32                             mFrameEndFollowMameKuribo;
     s32                             mFollowMameKuribo;
     s32                             mPenguinSlideCooldown;  // Maybe?
-    s32                             mAnimePlayStep;
+    AnimePlayType                   mAnimePlayType;
     EffectObj                       mEffectObjCommon;       // Used for: Wall Slide Effect, Quake Numb Effect, Elec Effect, Fire Jump Smoke Effect, and quite possibly more
     EffectObj                       mSlipSmokeEffect;
     EffectObj                       _22fc;
