@@ -1,6 +1,6 @@
 #pragma once
 
-#include <basis/seadTypes.h>
+#include <input/PadCommon.h>
 
 class PlayerKey
 {
@@ -11,6 +11,13 @@ public:
         cStatus_NoCross,            // NSMBW: Bit 1
 
         cStatus_Demo        = 10    // NSMBW: Bit 7
+    };
+
+    enum Key
+    {
+        cKey_Jump   = cPadIdxCommon_Jump,
+        cKey_Left   = cPadIdxCommon_Left,
+        cKey_Right  = cPadIdxCommon_Right
     };
 
 public:
@@ -40,6 +47,9 @@ public:
 
     void onStatus(s32 bit);
     void offStatus(s32 bit);
+
+    void onDemoTrigger(s32 key);
+    void offDemoTrigger(s32 key);
 
 private:
     u8  _0[0x94];
