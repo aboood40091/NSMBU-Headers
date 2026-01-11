@@ -23,6 +23,8 @@ public:
 
     bool isPlayerGameStop();
 
+    bool isGoalDemoKimeWait();
+
     void stopOther();
     void playOther();
 
