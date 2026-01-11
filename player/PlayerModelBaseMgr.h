@@ -347,6 +347,11 @@ public:
         return mpModelBase->getAnmResFile();
     }
 
+    s32 getAnmID() const
+    {
+        return mpModelBase->getAnmID();
+    }
+
 protected:
     PlayerModelBase*    mpModelBase;
     DrawType            mDrawType;

@@ -314,6 +314,11 @@ public:
 
     virtual f32 getBaseScale() = 0;
 
+    s32 getAnmID() const
+    {
+        return mAnm;
+    }
+
     ModelResource* getModelResFile() const
     {
         return mpModelRes;
