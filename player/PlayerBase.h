@@ -226,7 +226,7 @@ public:
 
         cStatus_227                 = 227,  // NSMBW: Bit 0x6F
 
-        cStatus_235                 = 235,  // NSMBW: Bit 0x71
+        cStatus_DemoControlReq      = 235,  // NSMBW: Bit 0x71
         cStatus_NoSlipSaka,                 // NSMBW: Bit 0x73 (MAYBE)
         cStatus_237,
         cStatus_DemoControl,                // NSMBW: Bit 0x72
@@ -1940,6 +1940,14 @@ public:
     virtual bool setDamage2(Actor* p_actor, DamageType type) = 0;
     virtual bool setPressBgDamage(DamageType type, bool) = 0;
 
+    // Address: 0x02901AD8
+    bool isFlyDamageType(DamageType type);
+
+    // Address: 0x02901B00
+    void setYoganDamageEffect();
+    // Address: 0x02901C20
+    void setPoisonDamageEffect();
+
     // Address: 0x028F4F48
     void clearTreadCount();
     s8 getTreadCount() const { return mTreadCnt; }
@@ -1978,7 +1986,7 @@ public:
     virtual EffectID getWaterSplashSEffectID() = 0;
     virtual EffectID getPoisonSplashEffectID(bool big) = 0;
     virtual EffectID getLavaSplashEffectID(bool big) = 0;
-    virtual EffectID getLavaWaveSplashEffectID(bool) = 0;
+    virtual EffectID getLavaWaveSplashEffectID(bool big) = 0;
 
     // Address: 0x02904284
     virtual void setTurnSmokeEffect(bool with_brake);
