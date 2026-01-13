@@ -6,6 +6,7 @@
 #include <math/seadVector.h>
 #include <prim/seadBitFlag.h>
 
+class PlayerBase;
 class PlayerObject;
 class Yoshi;
 
@@ -76,6 +77,8 @@ public:
     {
         return mPlayerNextGotoBlockInfo.countOnBit();
     }
+
+    PlayerBase* getCtrlPlayer(s32 player_no);
 
     bool isAcceptQuake(s32 player_no);
 
