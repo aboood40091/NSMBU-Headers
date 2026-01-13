@@ -1,6 +1,7 @@
 #pragma once
 
 #include <heap/seadDisposer.h>
+#include <prim/seadBitFlag.h>
 
 enum CourseExitType
 {
@@ -84,6 +85,11 @@ public:
         mCourseBeatenType = type;
     }
 
+    bool isOtehon() const
+    {
+        return mReplayFlag.isOnBit(0);
+    }
+
 protected:
     u32                 _10;
     bool                mIsSinglePlayerDRC;
@@ -91,7 +97,9 @@ protected:
     bool                mIsNewGame;
     CourseExitType      mCourseExitType;
     CourseBeatenType    mCourseBeatenType;
-    u32                 _28[(0x21DDC - 0x28) / sizeof(u32)];
+    u32                 _28;
+    sead::BitFlag32     mReplayFlag;
+    u32                 _30[(0x21DDC - 0x30) / sizeof(u32)];
     u8                  _21ddc[30];
     bool                mIsShadowkunQuest;
     u32                 _21dfc[(0x21E18 - 0x21DFC) / sizeof(u32)];
