@@ -24,8 +24,13 @@ public:
         mStopTimerInfo.resetBit(player_no);
     }
 
+    void onFreezeFrame()
+    {
+        mFreezeTime++;
+    }
+
 protected:
-    u32             _10;
+    u32             mFreezeTime;
     u32             mTime;          // seconds << 12
     u32             mBeginTime;
     bool            mIsHurryUp;
