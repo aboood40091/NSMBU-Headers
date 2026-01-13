@@ -101,7 +101,7 @@ public:
         cStatus_1                   =   1,  // NSMBW: Bit 0x01
         cStatus_2,                          // NSMBW: Bit 0x7D
         cStatus_3,                          // NSMBW: Bit 0x02
-        cStatus_AnimePlayMulti,             // NSMBW: Bit 0x03
+        cStatus_DemoScript,                 // NSMBW: Bit 0x03
         cStatus_DemoMode,                   // NSMBW: Boolean
         cStatus_6,                          // NSMBW: Bit 0xB5 (MAYBE)
         cStatus_DispOut,                    // NSMBW: Bit 0xB9
@@ -216,6 +216,8 @@ public:
         cStatus_179,                        // NSMBW: Bit 0xBF
         cStatus_180,                        // NSMBW: Bit 0xC1
 
+        cStatus_188                 = 188,
+
         cStatus_191                 = 191,
 
         cStatus_193                 = 193,
@@ -224,7 +226,22 @@ public:
         cStatus_SceneChangeNext,            // NSMBW: Bit 0x64
         cStatus_210,
 
-        cStatus_227                 = 227,  // NSMBW: Bit 0x6F
+        cStatus_212                 = 212,  // NSMBW: Bit 0x65
+        cStatus_213,                        // NSMBW: Bit 0x66
+        cStatus_214,                        // NSMBW: Bit 0x67
+        cStatus_215,                        // NSMBW: Bit 0x68
+        cStatus_216,
+        cStatus_217,
+        cStatus_218,                        // NSMBW: Bit 0x69
+        cStatus_219,                        // NSMBW: Bit 0x6A
+        cStatus_220,
+        cStatus_221,                        // NSMBW: Bit 0x6B
+        cStatus_222,
+        cStatus_223,                        // NSMBW: Bit 0x6C
+        cStatus_224,                        // NSMBW: Bit 0x6D
+        cStatus_225,
+        cStatus_226,                        // NSMBW: Bit 0x6E
+        cStatus_227,                        // NSMBW: Bit 0x6F
 
         cStatus_DemoControlReq      = 235,  // NSMBW: Bit 0x71
         cStatus_NoSlipSaka,                 // NSMBW: Bit 0x73 (MAYBE)
@@ -739,6 +756,19 @@ public:
     };
     static_assert(sizeof(DemoInDokanAction) == 4);
 
+    enum DemoGoalAction
+    {
+        cDemoGoalAction_Pole = 0,
+        cDemoGoalAction_MultiJump,
+        cDemoGoalAction_Wait,
+        cDemoGoalAction_KimePose,
+        cDemoGoalAction_RideOffJump,
+        cDemoGoalAction_Run,
+        cDemoGoalAction_PreRun,
+        cDemoGoalAction_Item
+    };
+    static_assert(sizeof(DemoGoalAction) == 4);
+
     union DemoActionType
     {
         DemoNextGotoBlockAction next_goto_block;
@@ -746,6 +776,7 @@ public:
         DemoWaitAction          wait;
         DemoOutDokanAction      out_dokan;
         DemoInDokanAction       in_dokan;
+        DemoGoalAction          goal;
         // And more...
     };
     static_assert(sizeof(DemoActionType) == 4);
@@ -755,7 +786,7 @@ public:
         cDemoControlSubAction_Wait = 0,
         cDemoControlSubAction_Walk,
         cDemoControlSubAction_Anm,
-        cDemoControlSubAction_AnmMulti,
+        cDemoControlSubAction_AnmSeq,
         cDemoControlSubAction_4
     };
     static_assert(sizeof(DemoControlSubAction) == 4);
@@ -1440,9 +1471,9 @@ public:
     bool isControlDemoAnm(s32 anm_id);
 
     // Address: 0x02900AD0
-    void setControlDemoAnmMulti(AnimePlayType type);
+    void setControlDemoAnmSeq(AnimePlayType type);
     // Address: 0x02900AF4
-    bool isControlDemoAnmMulti(AnimePlayType type);
+    bool isControlDemoAnmSeq(AnimePlayType type);
 
     // Address: 0x02900B34
     bool isDemoLand();
@@ -1537,13 +1568,27 @@ public:
     }
 
     virtual bool setTimeOverDemo() = 0;
-
-    // Address: 0x0290288C
-    void initDemoKimePose();
-
     virtual bool vf504() = 0;
-    virtual void vf50C(const sead::Vector2f& pos, f32 walk_target_pos_x, bool secret_exit) = 0; // Goal-related
-    virtual bool vf514() = 0;
+
+    // Address: 0x02901D70
+    void setDemoGoalMode(s32 demo_action, s32 demo_sub_action);
+
+    // Address: 0x02902B30
+    bool isEnableGoal();
+    // Address: 0x02902B08
+    bool isEnableGoalCollision();
+
+    // Address: 0x02902B84
+    s32 calcGoalBonusCoinNum();
+
+    // Address: 0x02902BA0
+    bool isGoalRingLand();
+
+    // Address: 0x02902BEC
+    void setGoalDemoBase(const sead::Vector2f& pos, f32 walk_target_pos_x, bool secret_exit);
+
+    virtual void setGoalDemo(const sead::Vector2f& pos, f32 walk_target_pos_x, bool secret_exit) = 0;
+    virtual bool setHideNotGoalPlayer() = 0;
     virtual bool vf51C(u32) = 0;
     virtual bool setDoorDemo(Actor*, u32) = 0;
     virtual void setGoalPoleCatchVoice() = 0;
@@ -1551,16 +1596,47 @@ public:
     // Address: 0x02902ECC
     virtual void vf534();
 
+    // Address: 0x02902EE4
+    bool setHideNotGoalPlayerBase();
+
     // Address: 0x02902F78
     void startGoalDemoVoice(CourseClearType course_clear_type);
 
+    // Address: 0x02903088
+    bool vf51C_Base(u32);
+
+    // Address: 0x02902338
+    f32 getDemoGoalLandPos();
+    // Address: 0x029023C0
+    s32 calcGoalLandNumFrame(f32 pos, f32 land_pos, f32 jump_speed);
+    // Address: 0x02902408
+    void initGoalMultiJump();
+    // Address: 0x02902520
+    bool calcGoalJump();
+
+    // Address: 0x02901E90
+    void executeDemoGoal_Pole();
+    // Address: 0x02902630
+    void executeDemoGoal_MultiJump();
+    // Address: 0x029028A4
+    void executeDemoGoal_Wait();
+    // Address: 0x02902934
+    void executeDemoGoal_KimePose();
     virtual void executeDemoGoal_RideOffJump() = 0;
     virtual void executeDemoGoal_Run() = 0;
     virtual void executeDemoGoal_PreRun() = 0;
     virtual void executeDemoGoal_Item() = 0;
+
     virtual bool setGoalPutOnCapAnm(CourseClearType course_clear_type) = 0;
+
+    // Address: 0x0290288C
+    void initDemoKimePose();
     virtual void finDemoKimePose() = 0;
 
+private:
+    inline void initGoalJump_(const sead::Vector3f& pos, f32 jump_speed);
+
+public:
     // Address: 0x028FDDE0
     void stopOutDokanOther();
 
@@ -1991,6 +2067,9 @@ public:
     // Address: 0x02904284
     virtual void setTurnSmokeEffect(bool with_brake);
 
+    // Address: 0x029046D8
+    void setLandJumpEffect();
+
     // Address: 0x029049F8
     void setSandEffect();
 
@@ -2258,14 +2337,14 @@ protected:
     sead::Vector2f                  _2108;                  // Speed ^^^
     sead::Vector3f                  mFaderPos;
     bool                            mIsLastPlayer;
-    f32                             _2120;
-    f32                             _2124;
-    s32                             _2128;
-    s32                             _212c;
+    f32                             mGoalPoleHeight;
+    f32                             mGoalBaseLandPos;
+    s32                             mGoalDemoNo;
+    s32                             mGoalDemoOrder;
     f32                             mGoalBasePosY;
-    s32                             _2134;
-    u32                             _2138;
-    sead::Vector3f                  _213c;
+    s32                             mGoalYoshiSpitOutTimer;
+    s32                             mGoalLandTimer;
+    sead::Vector3f                  mGoalLandPos;
     u32                             _2148;
     s32                             _214c;
     DokanDir                        mDokanDir;
