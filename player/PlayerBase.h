@@ -165,7 +165,8 @@ public:
 
         cStatus_102                 = 102,  // NSMBW: Bit 0x3E
 
-        cStatus_105                 = 105,
+        cStatus_104                 = 104,
+        cStatus_105,
         cStatus_106,
         cStatus_107,                        // NSMBW: Bit 0x45 (Is carried maybe?)
 
@@ -215,6 +216,12 @@ public:
         cStatus_178                 = 178,  // NSMBW: Bit 0xBE
         cStatus_179,                        // NSMBW: Bit 0xBF
         cStatus_180,                        // NSMBW: Bit 0xC1
+
+        cStatus_183                 = 183,
+        cStatus_184,
+        cStatus_185,
+        cStatus_186,
+        cStatus_187,
 
         cStatus_188                 = 188,
 
@@ -1427,21 +1434,21 @@ public:
     // executeState_DemoControl     Address: 0x02900420
     // finalizeState_DemoControl    Address: 0x02900644
     DECLARE_STATE_VIRTUAL_ID_BASE(PlayerBase, DemoControl)
-    // StateID_DemoState23          Address: 0x1022A320
-    // initializeState_DemoState23  Address: 0x029031E8
-    // executeState_DemoState23     Address: 0x02903288
-    // finalizeState_DemoState23    Address: 0x0290338C
-    DECLARE_STATE_VIRTUAL_ID_BASE(PlayerBase, DemoState23)
-    // StateID_DemoState24          Address: 0x1022A344
-    // initializeState_DemoState24  Address: 0x0290339C
-    // executeState_DemoState24     Address: 0x029033BC
-    // finalizeState_DemoState24    Address: 0x0290340C
-    DECLARE_STATE_VIRTUAL_ID_BASE(PlayerBase, DemoState24)
-    // StateID_DemoState25          Address: 0x1022A368
-    // initializeState_DemoState25  Address: 0x02903F24
-    // executeState_DemoState25     Address: 0x02903F28
-    // finalizeState_DemoState25    Address: 0x02903F2C
-    DECLARE_STATE_VIRTUAL_ID_BASE(PlayerBase, DemoState25)
+    // StateID_DemoSubjectClearLand         Address: 0x1022A320
+    // initializeState_DemoSubjectClearLand Address: 0x029031E8
+    // executeState_DemoSubjectClearLand    Address: 0x02903288
+    // finalizeState_DemoSubjectClearLand   Address: 0x0290338C
+    DECLARE_STATE_VIRTUAL_ID_BASE(PlayerBase, DemoSubjectClearLand)
+    // StateID_DemoSubjectClearAir          Address: 0x1022A344
+    // initializeState_DemoSubjectClearAir  Address: 0x0290339C
+    // executeState_DemoSubjectClearAir     Address: 0x029033BC
+    // finalizeState_DemoSubjectClearAir    Address: 0x0290340C
+    DECLARE_STATE_VIRTUAL_ID_BASE(PlayerBase, DemoSubjectClearAir)
+    // StateID_DemoShadowFail           Address: 0x1022A368
+    // initializeState_DemoShadowFail   Address: 0x02903F24
+    // executeState_DemoShadowFail      Address: 0x02903F28
+    // finalizeState_DemoShadowFail     Address: 0x02903F2C
+    DECLARE_STATE_VIRTUAL_ID_BASE(PlayerBase, DemoShadowFail)
 
     // Address: 0x028FAF1C
     void changeDemoState(const StateID& state_id, s32 param);
@@ -1627,10 +1634,9 @@ public:
     virtual void executeDemoGoal_PreRun() = 0;
     virtual void executeDemoGoal_Item() = 0;
 
-    virtual bool setGoalPutOnCapAnm(CourseClearType course_clear_type) = 0;
-
     // Address: 0x0290288C
     void initDemoKimePose();
+    virtual bool execDemoKimePose(CourseClearType course_clear_type) = 0;
     virtual void finDemoKimePose() = 0;
 
 private:
@@ -2073,39 +2079,61 @@ public:
     // Address: 0x029049F8
     void setSandEffect();
 
+    // StateID_SubjectWait          Address: 0x1022A3B8
+    // initializeState_SubjectWait  Address: 0x02903F30
+    // executeState_SubjectWait     Address: 0x02903504
+    // finalizeState_SubjectWait    Address: 0x02903F34
+    DECLARE_STATE_VIRTUAL_ID_BASE(PlayerBase, SubjectWait)
+    // StateID_SubjectCoinEndWait           Address: 0x1022A3DC
+    // initializeState_SubjectCoinEndWait   Address: 0x02903628
+    // executeState_SubjectCoinEndWait      Address: 0x02903638
+    // finalizeState_SubjectCoinEndWait     Address: 0x02903F38
+    DECLARE_STATE_VIRTUAL_ID_BASE(PlayerBase, SubjectCoinEndWait)
+    // StateID_SubjectClearGoalWait         Address: 0x1022A400
+    // initializeState_SubjectClearGoalWait Address: 0x02903F3C
+    // executeState_SubjectClearGoalWait    Address: 0x0290363C
+    // finalizeState_SubjectClearGoalWait   Address: 0x02903F40
+    DECLARE_STATE_VIRTUAL_ID_BASE(PlayerBase, SubjectClearGoalWait)
+    // StateID_SubjectClear         Address: 0x1022A424
+    // initializeState_SubjectClear Address: 0x02903654
+    // executeState_SubjectClear    Address: 0x02903778
+    // finalizeState_SubjectClear   Address: 0x0290379C
+    DECLARE_STATE_VIRTUAL_ID_BASE(PlayerBase, SubjectClear)
+    // StateID_SubjectClearWait         Address: 0x1022A448
+    // initializeState_SubjectClearWait Address: 0x029037B0
+    // executeState_SubjectClearWait    Address: 0x029037FC
+    // finalizeState_SubjectClearWait   Address: 0x0290387C
+    DECLARE_STATE_VIRTUAL_ID_BASE(PlayerBase, SubjectClearWait)
+
     // Address: 0x0290345C
-    void changeChallengeState(const StateID& state_id);
+    void changeSubjectState(const StateID& state_id);
+    // Address: 0x0290388C
+    void executeSubjectState();
 
-    // StateID_ChallengeState1          Address: 0x1022A3B8
-    // initializeState_ChallengeState1  Address: 0x02903F30
-    // executeState_ChallengeState1     Address: 0x02903504
-    // finalizeState_ChallengeState1    Address: 0x02903F34
-    DECLARE_STATE_VIRTUAL_ID_BASE(PlayerBase, ChallengeState1)
-    // StateID_ChallengeState2          Address: 0x1022A3DC
-    // initializeState_ChallengeState2  Address: 0x02903628
-    // executeState_ChallengeState2     Address: 0x02903638
-    // finalizeState_ChallengeState2    Address: 0x02903F38
-    DECLARE_STATE_VIRTUAL_ID_BASE(PlayerBase, ChallengeState2)
-    // StateID_ChallengeState3          Address: 0x1022A400
-    // initializeState_ChallengeState3  Address: 0x02903F3C
-    // executeState_ChallengeState3     Address: 0x0290363C
-    // finalizeState_ChallengeState3    Address: 0x02903F40
-    DECLARE_STATE_VIRTUAL_ID_BASE(PlayerBase, ChallengeState3)
-    // StateID_ChallengeState4          Address: 0x1022A424
-    // initializeState_ChallengeState4  Address: 0x02903654
-    // executeState_ChallengeState4     Address: 0x02903778
-    // finalizeState_ChallengeState4    Address: 0x0290379C
-    DECLARE_STATE_VIRTUAL_ID_BASE(PlayerBase, ChallengeState4)
-    // StateID_ChallengeState5          Address: 0x1022A448
-    // initializeState_ChallengeState5  Address: 0x029037B0
-    // executeState_ChallengeState5     Address: 0x029037FC
-    // finalizeState_ChallengeState5    Address: 0x0290387C
-    DECLARE_STATE_VIRTUAL_ID_BASE(PlayerBase, ChallengeState5)
+    // Address: 0x02903234
+    void setSubjectClearCourseOut();
 
-    virtual void vfA2C() = 0;
-    virtual void vfA34() = 0;
-    virtual void vfA3C() = 0;
-    virtual void vfA44() = 0;
+    // Address: 0x0290341C
+    bool isSubjectDone();
+
+    // Address: 0x02903464
+    void subjectClearRequest();
+
+    // Address: 0x02903490
+    void trySetSubjectCoinClear();
+
+    // Address: 0x029038C4
+    void setDownFinishSubjectCoin();
+    // Address: 0x0290393C
+    void setDownFinishSubject();
+
+    // Address: 0x029039B0
+    bool setFumiSubjectCoinEndClear();
+
+    virtual void setSubjectCoinTimeUp() = 0;
+    virtual void setSubjectClear() = 0;
+    virtual void setSubjectFail() = 0;
+    virtual void setShadowFail() = 0;
 
     // Address: 0x028F5E90
     void calcHeadAttentionAngle();
@@ -2404,8 +2432,8 @@ protected:
     u32                             _265c;
     u32                             _2660;
     sead::SafeArray<Effect, 3>      mWaterEffect;           // [0] = waterSplash, [2] = waterSplashS
-    FStateMgr<PlayerBase>           mChallengeStateMgr;     // Maybe?
-    u32                             _2748;
-    bool                            _274c;
+    FStateMgr<PlayerBase>           mSubjectStateMgr;
+    s32                             mSubjectClearWaitTimer;
+    bool                            mIsSubjectClear;
 };
 static_assert(sizeof(PlayerBase) == 0x2750);
