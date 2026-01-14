@@ -1,5 +1,7 @@
 #pragma once
 
+#include <state/FStateID.h>
+
 #include <container/seadRingBuffer.h>
 #include <heap/seadDisposer.h>
 #include <math/seadVector.h>
@@ -21,6 +23,9 @@ public:
 
 public:
     void setDemoMode(Mode mode);
+    bool isDemoMode(const StateID& state_id) const;
+
+    bool isGoalDemoMode() const;
 
     bool isPlayerGameStop();
 
