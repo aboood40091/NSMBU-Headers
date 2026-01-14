@@ -21,6 +21,11 @@ public:
     // Address: 0x024BC950
     virtual ~CourseTask();
 
+    // Address: 0x024C01DC
+    void setSubjectClear();
+    // Address: 0x024C01F4
+    void setSubjectFail();
+
     GamesceneBase* getGamescene()
     {
         return mpGamescene;
