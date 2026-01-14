@@ -27,6 +27,11 @@ public:
         mPlayerData[index].coin_cnt = num;
     }
 
+    s32 getCoinNum() const
+    {
+        return mCoinNum;
+    }
+
     const FieldGameMode& getGameMode() const
     {
         return mGameMode;
@@ -38,7 +43,8 @@ private:
         FieldPlayerData,
         4
     >                   mPlayerData;
-    u32                 _134[(0x15C - 0x134) / sizeof(u32)];
+    s32                 mCoinNum;
+    u32                 _138[(0x15C - 0x138) / sizeof(u32)];
     FieldGameMode       mGameMode;
     u32                 _160[(0x1E4 - 0x160) / sizeof(u32)];
 };
