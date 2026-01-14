@@ -86,6 +86,8 @@ public:
 
     bool isEnableStopOutDokanOther(s32 player_no);
 
+    void setSubjectClear();
+
     s32 getCoinNumMin();
 
 private:
