@@ -32,6 +32,8 @@ public:
     bool isGoalDemoKimeWait();
     bool isGoalDemoItem();
 
+    void setSubjectClear();
+
     void stopOther();
     void playOther();
 
