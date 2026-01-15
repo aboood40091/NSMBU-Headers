@@ -5,6 +5,7 @@
 #include <audio/GameAudio.h>
 #include <collision/ActorBgCollisionPlayerCheck.h>
 #include <effect/EffectObj.h>
+#include <effect/FollowEffect.h>
 #include <game/Quake.h>
 #include <map/NextGotoType.h>
 #include <player/PlayerDrcTouchCB.h>
@@ -117,6 +118,8 @@ public:
         cStatus_19                  =  19,  // NSMBW: Bit 0x08
 
         cStatus_25                  =  25,  // NSMBW: Bit 0x0A
+
+        cStatus_29                  =  29,  // NSMBW: Bit 0x0E
 
         cStatus_36                  =  36,  // NSMBW: Bit 0x13
         cStatus_37,
@@ -2070,14 +2073,54 @@ public:
     virtual EffectID getLavaSplashEffectID(bool big) = 0;
     virtual EffectID getLavaWaveSplashEffectID(bool big) = 0;
 
+    // Address: 0x02903FF0
+    void setHipAttackEffect();
+    // Address: 0x029040C0
+    bool updateHipAttackEffect();
+
+    // Address: 0x02904128
+    void setHipAttackDropEffect();
+
+    // Address: 0x02904180
+    void setSlipSmokeEffect();
+    void setBrakeSmokeEffect() { setSlipSmokeEffect(); }
+
     // Address: 0x02904284
     virtual void setTurnSmokeEffect(bool with_brake);
+    // Address: 0x02904220
+    void fadeOutTurnEffect();
 
+    // Address: 0x029044B8
+    void setRunFootEffect();
+
+    // Address: 0x02904600
+    void setLandSmokeEffectLight();
+
+    // Address: 0x0290469C
+    void setStartJumpEffect(bool with_smoke);
     // Address: 0x029046D8
-    void setLandJumpEffect();
+    void setLandJumpEffect(/* bool with_smoke = true */);
+
+    // Address: 0x0290470C
+    void endWaterFunsuiEffect();
+    // Address: 0x0290475C
+    void updateWaterFunsuiEffect();
+
+    // Address: 0x02904770
+    void setWaterInEffect(const sead::Vector3f& pos, bool deep);
+    // Address: 0x029047E8
+    void setWaterOutEffect(const sead::Vector3f& pos, bool deep);
+    // Address: 0x02904858
+    void updateWaterEffect();
+
+    // Address: 0x02904958
+    void setHipDropExEffect();
 
     // Address: 0x029049F8
     void setSandEffect();
+
+    // Address: 0x029049FC
+    void setVsPlHipAttackEffect();
 
     // StateID_SubjectWait          Address: 0x1022A3B8
     // initializeState_SubjectWait  Address: 0x02903F30
@@ -2245,195 +2288,198 @@ public:
     // Address: 0x0290BC6C
     void setHitBlockSE();
 
+    // Address: 0x0290BE64
+    void setLandSE();
+
 protected:
-    s32                             mExecuteFreezeTimer;
-    PlayerModelBaseMgr*             mpModelBaseMgr;
-    sead::Vector3f                  _284;
-    s32                             mMaskPosInterpSrcType;  // Interpolation source; 1 = ankle joints center pos, everything else = player pos
-    s32                             mMaskPosInterpTimer;
-    sead::Vector3f                  mMaskPos;
-    s32                             _2a4;
-    PlayerKey                       mPlayerKey;
-    GameAudio::AudioObjctPly        mAudioObj;
-    AttentionLookat                 mAttentionLookat;
-    Bitfield<cStatus_MaxBitNum>     mStatus;
-    f32                             mCenterOffsetY;         // Or height?
-    u32                             _4b8;
-    sead::Vector3f                  mFrameEndPosDelta;
-    sead::Vector3f                  _4c8;
-    PlayerSpeedHIO*                 mpSpeedData_Normal;
-    PlayerSpeedHIO*                 mpSpeedData_Star;
-    PlayerGravityHIO*               mpGravityData;
-    s32                             mNoGravityTimer;
-    f32                             _4e4;
-    bool                            _4e8;
-    sead::Vector3f                  mNextFrameSpeed;
-    s8                              mPriority;
-    s8                              mTreadCnt;
-    s8                              mComboCnt;
-    PlayerCharacter                 mCharacter;
-    PlayerMode                      mMode;
-    ActorBgCollisionPlayerCheck     mBgCheckPlayer;
-    ActorBgCollisionCheck::Sensor   mBcSensorHead;
-    ActorBgCollisionCheck::Sensor   mBcSensorFoot;
-    ActorBgCollisionCheck::Sensor   mBcSensorWall;
-    Bitfield<cBgCross_MaxBitNum>    mNowBgCross;
-    Bitfield<cBgCross_MaxBitNum>    mOldBgCross;
+    s32                                 mExecuteFreezeTimer;
+    PlayerModelBaseMgr*                 mpModelBaseMgr;
+    sead::Vector3f                      _284;
+    s32                                 mMaskPosInterpSrcType;  // Interpolation source; 1 = ankle joints center pos, everything else = player pos
+    s32                                 mMaskPosInterpTimer;
+    sead::Vector3f                      mMaskPos;
+    s32                                 _2a4;
+    PlayerKey                           mPlayerKey;
+    GameAudio::AudioObjctPly            mAudioObj;
+    AttentionLookat                     mAttentionLookat;
+    Bitfield<cStatus_MaxBitNum>         mStatus;
+    f32                                 mCenterOffsetY;         // Or height?
+    u32                                 _4b8;
+    sead::Vector3f                      mFrameEndPosDelta;
+    sead::Vector3f                      _4c8;
+    PlayerSpeedHIO*                     mpSpeedData_Normal;
+    PlayerSpeedHIO*                     mpSpeedData_Star;
+    PlayerGravityHIO*                   mpGravityData;
+    s32                                 mNoGravityTimer;
+    f32                                 _4e4;
+    bool                                _4e8;
+    sead::Vector3f                      mNextFrameSpeed;
+    s8                                  mPriority;
+    s8                                  mTreadCnt;
+    s8                                  mComboCnt;
+    PlayerCharacter                     mCharacter;
+    PlayerMode                          mMode;
+    ActorBgCollisionPlayerCheck         mBgCheckPlayer;
+    ActorBgCollisionCheck::Sensor       mBcSensorHead;
+    ActorBgCollisionCheck::Sensor       mBcSensorFoot;
+    ActorBgCollisionCheck::Sensor       mBcSensorWall;
+    Bitfield<cBgCross_MaxBitNum>        mNowBgCross;
+    Bitfield<cBgCross_MaxBitNum>        mOldBgCross;
     sead::SafeArray<
         BOOL,
         cOldBgCrossFootNum
-    >                               mOldBgCrossFoot;        // Array of cBgCross_IsFoot of the past 10 frames
-    f32                             _1b0c;
-    f32                             mKaniPosY;
-    ActorBgCollisionCheck::SakaType mSakaType;
-    Angle                           mSpeedSakaAngle;
-    Angle                           mSpeedSakaAnglePrev;
-    Angle                           mBaseSakaAngle;
-    Angle                           mBaseSakaAnglePrev;
-    sead::Vector3f                  _1b28;
-    BgAttr                          mBgAttr;
-    Angle                           mWallAngle;
-    f32                             mWaterSurfacePosY;
-    f32                             mWaterSurfacePosYPrev;
-    WaterType                       mWaterType;
-    s32                             mWaterDepthType;        // TODO: enum
-    sead::Vector3f                  mAirWaterHitPos;        // "AirWater" = Floating Water Bubble
-    Angle                           mAirWaterHitAngle;
-    f32                             mSinkSandSurfacePosY;
-    sead::Vector2f                  mBgSpeed;
-    sead::Vector2f                  mBgSpeedPrev;
-    f32                             mSandSinkRate;
-    f32                             mDispSideLimitPad;
-    bool                            mIsBgDamageEnable;
-    BgUnitCode::TypeInfo_Damage     mDamageBgTypeInfo;
+    >                                   mOldBgCrossFoot;        // Array of cBgCross_IsFoot of the past 10 frames
+    f32                                 _1b0c;
+    f32                                 mKaniPosY;
+    ActorBgCollisionCheck::SakaType     mSakaType;
+    Angle                               mSpeedSakaAngle;
+    Angle                               mSpeedSakaAnglePrev;
+    Angle                               mBaseSakaAngle;
+    Angle                               mBaseSakaAnglePrev;
+    sead::Vector3f                      _1b28;
+    BgAttr                              mBgAttr;
+    Angle                               mWallAngle;
+    f32                                 mWaterSurfacePosY;
+    f32                                 mWaterSurfacePosYPrev;
+    WaterType                           mWaterType;
+    s32                                 mWaterDepthType;        // TODO: enum
+    sead::Vector3f                      mAirWaterHitPos;        // "AirWater" = Floating Water Bubble
+    Angle                               mAirWaterHitAngle;
+    f32                                 mSinkSandSurfacePosY;
+    sead::Vector2f                      mBgSpeed;
+    sead::Vector2f                      mBgSpeedPrev;
+    f32                                 mSandSinkRate;
+    f32                                 mDispSideLimitPad;
+    bool                                mIsBgDamageEnable;
+    BgUnitCode::TypeInfo_Damage         mDamageBgTypeInfo;
     sead::FixedRingBuffer<
         ActorUniqueID,
         2
-    >                               mBgPressIDBuffer;
-    ActorUniqueID                   mLineSpinLiftID;
-    u32                             _1b9c;
-    s32                             mNoHitObjBgTimer;
-    f32                             mAirDriftSpeedFStart;
-    f32                             mAirDriftSpeedF;
-    f32                             mAirDriftSpeedFDecelStep;
-    f32                             mAddBgSpeedF;
-    s32                             _1bb4;
-    ActorCollisionCheck             mCollisionCheck2_React; // First collision check is also for react
-    ActorCollisionCheck             mCollisionCheck3_React;
-    ActorCollisionCheck             mCollisionCheck4_Attack;
-    ActorCollisionCheck             mCollisionCheck5_Attack;
-    PlayerDrcTouchCB                mDrcTouchCallback;
-    s32                             _205c;
-    s32                             _2060;
-    s32                             _2064;
-    s32                             _2068;
-    s32                             _206c;
-    s32                             _2070;
-    f32                             mCcPlayerRevSpeedFScale;
-    f32                             mCcPlayerRevSpeedFStart;
-    f32                             mCcPlayerRevSpeedF;
-    f32                             _2080;
-    bool                            _2084;
-    bool                            _2085;
-    s32                             mNoHitPlayerTimer;
-    ActorUniqueID                   mNoHitPlayerID;
-    ReductionMode                   mReductionMode;
-    u32                             mReductionStep;
-    f32                             mReductionScale;
-    s32                             _209c;
-    s32                             _20a0;
+    >                                   mBgPressIDBuffer;
+    ActorUniqueID                       mLineSpinLiftID;
+    u32                                 _1b9c;
+    s32                                 mNoHitObjBgTimer;
+    f32                                 mAirDriftSpeedFStart;
+    f32                                 mAirDriftSpeedF;
+    f32                                 mAirDriftSpeedFDecelStep;
+    f32                                 mAddBgSpeedF;
+    s32                                 _1bb4;
+    ActorCollisionCheck                 mCollisionCheck2_React; // First collision check is also for react
+    ActorCollisionCheck                 mCollisionCheck3_React;
+    ActorCollisionCheck                 mCollisionCheck4_Attack;
+    ActorCollisionCheck                 mCollisionCheck5_Attack;
+    PlayerDrcTouchCB                    mDrcTouchCallback;
+    s32                                 _205c;
+    s32                                 _2060;
+    s32                                 _2064;
+    s32                                 _2068;
+    s32                                 _206c;
+    s32                                 _2070;
+    f32                                 mCcPlayerRevSpeedFScale;
+    f32                                 mCcPlayerRevSpeedFStart;
+    f32                                 mCcPlayerRevSpeedF;
+    f32                                 _2080;
+    bool                                _2084;
+    bool                                _2085;
+    s32                                 mNoHitPlayerTimer;
+    ActorUniqueID                       mNoHitPlayerID;
+    ReductionMode                       mReductionMode;
+    u32                                 mReductionStep;
+    f32                                 mReductionScale;
+    s32                                 _209c;
+    s32                                 _20a0;
     sead::SafeArray<
         u32,
         cDirType_NumX
-    >                               _20a4;
+    >                                   _20a4;
     sead::SafeArray<
         f32,
         cDirType_NumX
-    >                               _20ac;
-    FStateMgr<PlayerBase>           mDemoStateMgr;
-    s32                             mChangeDemoStateParam;
-    sead::BitFlag32                 mDemoTypeFlag;
-    s32                             mDemoAction;            // See DemoActionType
-    s32                             mDemoSubAction;         // See DemoSubActionType
-    s32                             mDemoActionTimer;
-    s32                             _20ec;
-    ActorUniqueID                   mPlayerJumpDaiID;
-    s32                             mDstNextGotoID;
-    NextGotoType                    mNextGotoType;          // i.e., "Create Action"
-    NextGotoBlockDelay              mNextGotoDelay;
-    sead::Vector2f                  _2100;                  // Target for movement in a specific direction
-    sead::Vector2f                  _2108;                  // Speed ^^^
-    sead::Vector3f                  mFaderPos;
-    bool                            mIsLastPlayer;
-    f32                             mGoalPoleHeight;
-    f32                             mGoalBaseLandPos;
-    s32                             mGoalDemoNo;
-    s32                             mGoalDemoOrder;
-    f32                             mGoalBasePosY;
-    s32                             mGoalYoshiSpitOutTimer;
-    s32                             mGoalLandTimer;
-    sead::Vector3f                  mGoalLandPos;
-    u32                             _2148;
-    s32                             _214c;
-    DokanDir                        mDokanDir;
-    sead::Vector3f                  mDokanPos;
-    sead::Vector3f                  mDokanFaderPos;
-    sead::Vector2f                  mDokanPosMoveDelta;
-    DokanType                       mDokanType;
-    f32                             mDokanMoveYOffset;
-    f32                             mDokanMoveXThreshold;
-    u32                             mDokanInTimerL;
-    u32                             mDokanInTimerR;
-    ActorBoxBgCollision*            mpDokanBgCollision;
-    bool                            mIsDokanSwim;
-    f32                             _2190;
-    u32                             _2194;
-    bool                            _2198;
-    FStateMgr<PlayerBase>           mStateMgr;
-    JumpInf*                        mpChangeStateJmpInf;
-    s32                             mChangeStateParam;
-    s32                             mAction;                // See ActionType
-    s32                             mActionTimer;
-    u32                             mStunMode;
-    ActorUniqueID                   mRideActorID;
-    s32                             _21d8;
-    u32                             _21dc;
-    s32                             _21e0;
-    s32                             _21e4;
-    s32                             _21e8;
-    FunsuiType                      mFunsuiType;
-    sead::Vector2f                  mFunsuiPos;
-    f32                             mJumpDaiSpeedFReserve;
-    sead::Vector3f                  mRidePlayerPosDelta;
-    sead::Vector3f                  _2208;
-    u32                             mHipdropEffectStep;     // Maybe?
-    f32                             mRideNatPosY;
-    s32                             mFrameEndFollowMameKuribo;
-    s32                             mFollowMameKuribo;
-    s32                             mPenguinSlideCooldown;  // Maybe?
-    AnimePlayType                   mAnimePlayType;
-    EffectObj                       mEffectObjCommon;       // Used for: Wall Slide Effect, Quake Numb Effect, Elec Effect, Fire Jump Smoke Effect, and quite possibly more
-    EffectObj                       mSlipSmokeEffect;
-    EffectObj                       _22fc;
-    EffectObj                       mFootEffect;
-    EffectObj                       mHipAttackDropEffect;
-    Effect                          mHipdropEffect;
-    sead::Vector3f                  mHipdropPos;
-    HipdropExEffect                 mHipdropExEffect;
-    EffectObj                       _2498;
-    EffectObj                       _2500;
-    Effect                          mTurnBrakeEffect;
-    Effect                          mTurnBrakeSmokeEffect;
-    BgAttr                          mTurnBrakeBgAttr;
-    bool                            mIsTurnBrakeEffectEnable;
-    bool                            mIsTurnBrakeSmokeEffectEnable;
-    u32                             _25f0;
-    EffectObj                       _25f4;
-    u32                             _265c;
-    u32                             _2660;
-    sead::SafeArray<Effect, 3>      mWaterEffect;           // [0] = waterSplash, [2] = waterSplashS
-    FStateMgr<PlayerBase>           mSubjectStateMgr;
-    s32                             mSubjectClearWaitTimer;
-    bool                            mIsSubjectClear;
+    >                                   _20ac;
+    FStateMgr<PlayerBase>               mDemoStateMgr;
+    s32                                 mChangeDemoStateParam;
+    sead::BitFlag32                     mDemoTypeFlag;
+    s32                                 mDemoAction;            // See DemoActionType
+    s32                                 mDemoSubAction;         // See DemoSubActionType
+    s32                                 mDemoActionTimer;
+    s32                                 _20ec;
+    ActorUniqueID                       mPlayerJumpDaiID;
+    s32                                 mDstNextGotoID;
+    NextGotoType                        mNextGotoType;          // i.e., "Create Action"
+    NextGotoBlockDelay                  mNextGotoDelay;
+    sead::Vector2f                      _2100;                  // Target for movement in a specific direction
+    sead::Vector2f                      _2108;                  // Speed ^^^
+    sead::Vector3f                      mFaderPos;
+    bool                                mIsLastPlayer;
+    f32                                 mGoalPoleHeight;
+    f32                                 mGoalBaseLandPos;
+    s32                                 mGoalDemoNo;
+    s32                                 mGoalDemoOrder;
+    f32                                 mGoalBasePosY;
+    s32                                 mGoalYoshiSpitOutTimer;
+    s32                                 mGoalLandTimer;
+    sead::Vector3f                      mGoalLandPos;
+    u32                                 _2148;
+    s32                                 _214c;
+    DokanDir                            mDokanDir;
+    sead::Vector3f                      mDokanPos;
+    sead::Vector3f                      mDokanFaderPos;
+    sead::Vector2f                      mDokanPosMoveDelta;
+    DokanType                           mDokanType;
+    f32                                 mDokanMoveYOffset;
+    f32                                 mDokanMoveXThreshold;
+    u32                                 mDokanInTimerL;
+    u32                                 mDokanInTimerR;
+    ActorBoxBgCollision*                mpDokanBgCollision;
+    bool                                mIsDokanSwim;
+    f32                                 _2190;
+    u32                                 _2194;
+    bool                                _2198;
+    FStateMgr<PlayerBase>               mStateMgr;
+    JumpInf*                            mpChangeStateJmpInf;
+    s32                                 mChangeStateParam;
+    s32                                 mAction;                // See ActionType
+    s32                                 mActionTimer;
+    u32                                 mStunMode;
+    ActorUniqueID                       mRideActorID;
+    s32                                 _21d8;
+    u32                                 _21dc;
+    s32                                 _21e0;
+    s32                                 _21e4;
+    s32                                 _21e8;
+    FunsuiType                          mFunsuiType;
+    sead::Vector2f                      mFunsuiPos;
+    f32                                 mJumpDaiSpeedFReserve;
+    sead::Vector3f                      mRidePlayerPosDelta;
+    sead::Vector3f                      _2208;
+    u32                                 mHipAttackEffectStep;     // Maybe?
+    f32                                 mRideNatPosY;
+    s32                                 mFrameEndFollowMameKuribo;
+    s32                                 mFollowMameKuribo;
+    s32                                 mPenguinSlideCooldown;  // Maybe?
+    AnimePlayType                       mAnimePlayType;
+    EffectObj                           mEffectObjCommon;       // Used for: Wall Slide Effect, Quake Numb Effect, Elec Effect, Fire Jump Smoke Effect, and quite possibly more
+    EffectObj                           mSlipSmokeEffect;
+    EffectObj                           _22fc;
+    EffectObj                           mFootEffect;
+    EffectObj                           mHipAttackDropEffect;
+    FollowEffect                        mHipAttackEffect;
+    sead::Vector3f                      mHipAttackEffectPos;
+    HipdropExEffect                     mHipdropExEffect;
+    EffectObj                           _2498;
+    EffectObj                           _2500;
+    FollowEffect                        mTurnBrakeEffect;
+    FollowEffect                        mTurnBrakeSmokeEffect;
+    BgAttr                              mTurnBrakeBgAttr;
+    bool                                mIsTurnBrakeEffectEnable;
+    bool                                mIsTurnBrakeSmokeEffectEnable;
+    u32                                 _25f0;
+    EffectObj                           mWaterFunsuiEffect;     // Completely dysfunctional
+    u32                                 mWaterFunsuiEffectStep; // 0: Normal, 1: Fade, 2: Destroyed
+    s32                                 mWaterFunsuiEffectTimer;
+    sead::SafeArray<FollowEffect, 3>    mWaterEffect;           // [0] = waterSplash, [2] = waterSplashS
+    FStateMgr<PlayerBase>               mSubjectStateMgr;
+    s32                                 mSubjectClearWaitTimer;
+    bool                                mIsSubjectClear;
 };
 static_assert(sizeof(PlayerBase) == 0x2750);
