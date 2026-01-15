@@ -21,6 +21,8 @@ public:
 
     void createModel();
 
+    void set(const sead::Vector3f& pos);
+
     // TODO
 
 //protected:
