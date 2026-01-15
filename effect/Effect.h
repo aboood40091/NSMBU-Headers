@@ -67,6 +67,16 @@ public:
     // Address: 0x022AAD70
     bool follow(const sead::Matrixf& mtx, bool mtx_has_scale);
 
+    const sead::Matrixf& getMtx() const
+    {
+        return mMtx;
+    }
+
+    bool getMtxHasScale() const
+    {
+        return mMtxHasScale;
+    }
+
 protected:
     // Address: 0x022AAA68
     void update_();
