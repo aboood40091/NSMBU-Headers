@@ -2,7 +2,7 @@
 
 #include <basis/seadTypes.h>
 
-class PlayerFaceAngleUtil
+class PlayerCommon
 {
 public:
     // Address: 0x10169648
