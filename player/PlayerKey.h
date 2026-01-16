@@ -10,6 +10,8 @@ public:
         cStatus_NoInput     =  1,   // NSMBW: Bit 0
         cStatus_NoCross,            // NSMBW: Bit 1
 
+        cStatus_NoJump      =  6,   // NSMBW: Bit 4
+
         cStatus_Demo        = 10    // NSMBW: Bit 7
     };
 
@@ -36,6 +38,7 @@ public:
     bool triggerUp() const;
     bool triggerDown() const;
 
+    bool buttonDush() const;
     bool buttonWalk(s32* p_dir = nullptr) const;
 
     bool buttonJump() const;
