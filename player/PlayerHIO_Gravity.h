@@ -44,3 +44,30 @@ struct PlayerGravityHIO
     PlayerJumpGravityData   jump_data;
 };
 static_assert(sizeof(PlayerGravityHIO) == 0x48);
+
+// Address: 0x1016A760
+extern const PlayerJumpGravityData cPlayerUnkJumpGravityData; /* = {
+    {
+        2.5f,
+        1.5f,
+        0.3f,
+        -0.12f,
+        -3.0f
+    },
+    {
+        -0.04f,
+        -0.06f,
+        -0.09f,
+        -0.06f,
+        -0.09f,
+        -0.09f
+    },
+    {
+        -0.04f,
+        -0.06f,
+        -0.09f,
+        -0.06f,
+        -0.09f,
+        -0.09f
+    }
+}; */
