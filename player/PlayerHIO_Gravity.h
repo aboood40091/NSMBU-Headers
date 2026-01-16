@@ -1,0 +1,46 @@
+#pragma once
+
+#include <basis/seadTypes.h>
+
+struct PlayerPowerSpeedData
+{
+    f32 x_accel_def;
+    f32 stop_x_accel;
+    f32 stop_turn_decel;
+    f32 turn_decel;
+    f32 x_accel_stage0;
+    f32 x_accel_stage1;
+    f32 x_accel_stage1_dush;
+    f32 x_accel_stage2;
+    f32 x_accel_stage3;
+};
+static_assert(sizeof(PlayerPowerSpeedData) == 0x24);
+
+struct PlayerSpeedHIO
+{
+    // stage 0 max speed is always 0.5f
+    f32 max_run_speed_lo; // stage 1 max speed
+    f32 max_run_speed_md; // stage 2 max speed
+    f32 max_run_speed_hi; // dush max speed
+    PlayerPowerSpeedData power_data_normal;
+    PlayerPowerSpeedData power_data_ice;
+    PlayerPowerSpeedData power_data_snow;
+};
+static_assert(sizeof(PlayerSpeedHIO) == 0x78);
+
+#define PLAYER_JUMP_GRAVITY_MAX_STAGES 5
+
+struct PlayerJumpGravityData
+{
+    f32 thresholds[PLAYER_JUMP_GRAVITY_MAX_STAGES];
+    f32 normal_gravity[PLAYER_JUMP_GRAVITY_MAX_STAGES + 1];
+    f32 button_gravity[PLAYER_JUMP_GRAVITY_MAX_STAGES + 1];
+};
+static_assert(sizeof(PlayerJumpGravityData) == 0x44);
+
+struct PlayerGravityHIO
+{
+    f32                     gravity;
+    PlayerJumpGravityData   jump_data;
+};
+static_assert(sizeof(PlayerGravityHIO) == 0x48);

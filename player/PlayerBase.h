@@ -10,6 +10,7 @@
 #include <map/NextGotoType.h>
 #include <player/PlayerDrcTouchCB.h>
 #include <player/PlayerEnum.h>
+#include <player/PlayerHIO_Gravity.h>
 #include <player/PlayerKey.h>
 #include <player/util/HipdropExEffect.h>
 #include <state/FStateMgr.h>
@@ -24,38 +25,6 @@ struct PlayerBgPointHIO
     ActorBgCollisionCheck::Sensor   sensor_wall;
 };
 static_assert(sizeof(PlayerBgPointHIO) == 0x24);
-
-struct PlayerPowerSpeedData
-{
-    f32 _0;
-    f32 _4;
-    f32 _8;
-    f32 _c;         // Turn decel?
-    f32 _10;
-    f32 x_accel;
-    f32 _18;
-    f32 _1c;
-    f32 _20;
-};
-static_assert(sizeof(PlayerPowerSpeedData) == 0x24);
-
-struct PlayerSpeedHIO
-{
-    f32 x_move_speed;
-    f32 _4;
-    f32 x_move_speed_dush;
-    PlayerPowerSpeedData power_data[3];
-};
-static_assert(sizeof(PlayerSpeedHIO) == 0x78);
-
-struct PlayerGravityHIO
-{
-    f32 gravity;
-    f32 _4[5];
-    f32 _18[6];
-    f32 _30[6];
-};
-static_assert(sizeof(PlayerGravityHIO) == 0x48);
 
 class   ActorBoxBgCollision;
 class   PlayerModelBase;
