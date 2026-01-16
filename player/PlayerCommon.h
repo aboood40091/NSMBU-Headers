@@ -17,4 +17,10 @@ public:
 
     // Address: 0x10169658
     static const s32 cMaxAngleY;    // 113 degrees
+
+    // Address: 0x1016965C
+    static const f32 cSandSinkRate; // -1.26f
+
+    // Address: 0x10169660
+    static const u32 cUnk;          // 0
 };
