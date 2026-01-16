@@ -125,6 +125,7 @@ public:
 
     const sead::BoundBox2f& getScrollBound() const { return mScroll; }
     const sead::BoundBox2f& getScreenRect() const { return mScreen; }
+    const sead::BoundBox2f& getScreenRectPrev() const { return mScreenPrev; }
     const sead::BoundBox2f& getScreenRectDefault() const { return mScreenDefault; }
 
     f32 getScreenWidth() const { return mScreenWidth; }
