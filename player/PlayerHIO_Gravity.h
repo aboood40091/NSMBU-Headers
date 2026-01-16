@@ -28,6 +28,23 @@ struct PlayerSpeedHIO
 };
 static_assert(sizeof(PlayerSpeedHIO) == 0x78);
 
+struct PlayerPowerTurnData
+{
+    f32 normal;
+    f32 saka_up;
+    f32 saka_down;
+    f32 _c;
+};
+static_assert(sizeof(PlayerPowerTurnData) == 0x10);
+
+struct PlayerTurnHIO
+{
+    PlayerPowerTurnData power_turn_normal[2]; // [normal/star]
+    PlayerPowerTurnData power_turn_ice[2];
+    PlayerPowerTurnData power_turn_snow[2];
+};
+static_assert(sizeof(PlayerTurnHIO) == 0x60);
+
 #define PLAYER_JUMP_GRAVITY_MAX_STAGES 5
 
 struct PlayerJumpGravityData
@@ -71,3 +88,6 @@ extern const PlayerJumpGravityData cPlayerUnkJumpGravityData; /* = {
         -0.09f
     }
 }; */
+
+// Address: 0x1016AA7C
+extern const PlayerTurnHIO cPlayerTurnData[2]; // [mario/luigi]
