@@ -90,7 +90,8 @@ public:
 
         cStatus_29                  =  29,  // NSMBW: Bit 0x0E
 
-        cStatus_36                  =  36,  // NSMBW: Bit 0x13
+        cStatus_35                  =  35,
+        cStatus_36,                         // NSMBW: Bit 0x13
         cStatus_37,
         cStatus_38,
 
@@ -119,6 +120,7 @@ public:
         cStatus_71                  =  71,  // NSMBW: Bit 0x2D
 
         cStatus_73                  =  73,  // NSMBW: Bit 0x30
+        cStatus_74,                         // NSMBW: Bit 0x31
 
         cStatus_78                  =  78,  // NSMBW: Bit 0x35
         cStatus_79,                         // NSMBW: Bit 0x36
@@ -159,8 +161,8 @@ public:
 
         cStatus_133                 = 133,  // NSMBW: Bit 0x5E
         cStatus_134,                        // NSMBW: Bit 0x61
-
-        cStatus_136                 = 136,  // NSMBW: Bit 0x62
+        cStatus_135,
+        cStatus_136,                        // NSMBW: Bit 0x62
         cStatus_137,
         cStatus_138,
 
@@ -200,6 +202,12 @@ public:
         cStatus_191                 = 191,
 
         cStatus_193                 = 193,
+
+        cStatus_195                 = 195,  // NSMBW: Bit 0x96
+
+        cStatus_197                 = 197,  // NSMBW: Bit 0x98
+
+        cStatus_205                 = 205,  // NSMBW: Bit 0xAD
 
         cStatus_208                 = 208,
         cStatus_SceneChangeNext,            // NSMBW: Bit 0x64
@@ -246,6 +254,7 @@ public:
         cStatus_256,                        // NSMBW: Bit 0x83
 
         cStatus_258                 = 258,
+        cStatus_259,                        // NSMBW: Bit 0x52
 
         cStatus_DispOutPosYAdj      = 260,
 
@@ -861,6 +870,23 @@ public:
     };
     static_assert(sizeof(CourseClearType) == 4);
 
+    enum SakaUpDown
+    {
+        cSakaUpDown_Downhill = 0,
+        cSakaUpDown_Uphill,
+        cSakaUpDown_Num
+    };
+    static_assert(cSakaUpDown_Num == 2);
+
+    enum PowerChangeType
+    {
+        cPowerChangeType_Normal = 0,
+        cPowerChangeType_Ice,
+        cPowerChangeType_Snow,
+        cPowerChangeType_Num
+    };
+    static_assert(cPowerChangeType_Num == 3);
+
     // Address: 0x10166E60
     static const f32 cDirSpeed[cDirType_NumX];
     // Address: 0x10166E68
@@ -1020,6 +1046,11 @@ public:
     // Address: 0x028F7204
     bool checkSinkSand();
 
+    bool isOnSinkSand()
+    {
+        return isNowBgCross(cBgCross_IsSlightlyInsideSinkSand) || isNowBgCross(cBgCross_IsPartiallySubmergedInSinkSand);
+    }
+
     // Address: 0x028F730C
     bool checkBgWall(u8 dir);
 
@@ -1082,7 +1113,7 @@ public:
     // Address: 0x028F716C
     Angle getSakaAngleBySpeed(f32 speed_F);
     // Address: 0x028F8804
-    bool getSakaUpDown(s32 dir);    // true => moving "up"hill, false => moving "down"hill
+    SakaUpDown getSakaUpDown(s32 dir);
 
     // Address: 0x028F76A0
     void checkDamageBg();
@@ -1944,6 +1975,18 @@ public:
         return mpGravityData;
     }
 
+    // Address: 0x02904A6C
+    ActorBgCollisionCheck::SakaType getSakaType(s32 dir);
+
+    // Address: 0x02904ACC
+    f32 getSakaMaxSpeedRatio(s32 dir);
+    // Address: 0x02904B68
+    f32 getSakaStopAccele(s32 dir);
+    // Address: 0x02904C04
+    f32 getSakaMoveAccele(s32 dir);
+    // Address: 0x02904CA0
+    f32 getIceSakaSlipOffSpeed();
+
     // Address: 0x02904CF4
     virtual void maxFallSpeedSet();
     // Address: 0x02904F3C
@@ -1954,6 +1997,73 @@ public:
     void simpleMoveSpeedSet();
     // Address: 0x02906224
     void powerSet();
+
+    // Address: 0x02905F78
+    void grandPowerSet();
+
+    // Address: 0x029057b0
+    void slipPowerSet();
+    // Address: 0x02905A24
+    void normalPowerSet();
+
+    void slipPowerSet(bool slip)
+    {
+        if (slip)
+            slipPowerSet();
+        else
+            normalPowerSet();
+    }
+
+    // Address: 0x0290603C
+    void airPowerSet();
+
+    // Address: 0x02904E84
+    void setJumpGravity();
+
+    // Address: 0x02904DD8
+    void setNormalJumpGravity();
+    // Address: 0x02904D50
+    void setButtonJumpGravity();
+    // Address: 0x02904D04
+    void setUnkJumpGravity();
+
+    void setJumpGravity(const f32* thresholds, const f32* gravities)
+    {
+        mAccelY = gravities[PLAYER_JUMP_GRAVITY_MAX_STAGES];
+        for (s32 i = 0; i < PLAYER_JUMP_GRAVITY_MAX_STAGES; i++)
+        {
+            if (mSpeed.y > thresholds[i])
+            {
+                mAccelY = gravities[i];
+                break;
+            }
+        }
+    }
+
+    // Address: 0x02904FB0
+    bool setSandMoveSpeed();
+
+    // Address: 0x029050C8
+    PowerChangeType getPowerChangeType(bool penguin_slide);
+
+    // Address: 0x029056C8
+    void icePowerChange(bool);
+
+    PlayerSpeedHIO* getSpeedData() const
+    {
+        if (isStar())
+            return mpSpeedData_Star;
+        else
+            return mpSpeedData_Normal;
+    }
+
+    // Address: 0x0290587C
+    void getPowerSpeedData(PlayerPowerSpeedData& out_data);
+    // Address: 0x02906238
+    void getPowerTurnData(PlayerPowerTurnData& out_data);
+
+    // Address: 0x029063AC
+    void setJumpAirDrift();
 
     virtual void setFallAction() = 0;
 
@@ -2212,20 +2322,6 @@ public:
         return mMode;
     }
 
-    PlayerSpeedHIO* getSpeedData()
-    {
-        if (isStar())
-            return mpSpeedData_Star;
-        else
-            return mpSpeedData_Normal;
-    }
-
-    // Address: 0x029050C8
-    s32 getPowerChangeType(bool);
-
-    // Address: 0x029063AC
-    void setJumpAirDrift();
-
     // Address: 0x029065F0
     Angle getMukiAngle(u32 dir);
 
@@ -2245,6 +2341,9 @@ public:
         f32 rate = 1.0f / static_cast<f32>(num_frame);
         return addCalcAngleY(target, rate);
     }
+
+    // Address: 0x0290AF34
+    bool checkSakaReverse();
 
     // Address: 0x0290B89C
     void forceSlipToStoop();
@@ -2272,7 +2371,7 @@ protected:
     GameAudio::AudioObjctPly            mAudioObj;
     AttentionLookat                     mAttentionLookat;
     Bitfield<cStatus_MaxBitNum>         mStatus;
-    f32                                 mCenterOffsetY;         // Or height?
+    f32                                 mHeight;
     u32                                 _4b8;
     sead::Vector3f                      mFrameEndPosDelta;
     sead::Vector3f                      _4c8;
