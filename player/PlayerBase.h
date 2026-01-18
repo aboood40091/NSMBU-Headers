@@ -2047,7 +2047,7 @@ public:
     PowerChangeType getPowerChangeType(bool penguin_slide);
 
     // Address: 0x029056C8
-    void icePowerChange(bool);
+    void icePowerChange(bool slip);
 
     PlayerSpeedHIO* getSpeedData() const
     {
@@ -2063,7 +2063,7 @@ public:
     void getPowerTurnData(PlayerPowerTurnData& out_data);
 
     // Address: 0x029063AC
-    void setJumpAirDrift();
+    void setHopAirDrift();
 
     virtual void setFallAction() = 0;
 
@@ -2454,8 +2454,8 @@ protected:
     ReductionMode                       mReductionMode;
     u32                                 mReductionStep;
     f32                                 mReductionScale;
-    s32                                 _209c;
-    s32                                 _20a0;
+    s32                                 mReductionSimpleMoveTimer;
+    s32                                 mNoStampPlayerJumpTimer;
     sead::SafeArray<
         u32,
         cDirType_NumX
