@@ -44,6 +44,9 @@ public:
     // Address: 0x024CEEE0
     void onAcComboCntClr();
 
+    // Address: 0x024CEF28
+    void onPlChangeState();
+
     // Address: 0x024CF4A0
     FinishType getFinishType() const;
 
