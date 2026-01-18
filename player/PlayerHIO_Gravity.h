@@ -2,7 +2,7 @@
 
 #include <basis/seadTypes.h>
 
-struct PlayerPowerSpeedData
+struct PlayerPowerData
 {
     f32 x_accel_def;
     f32 stop_x_accel;
@@ -14,7 +14,7 @@ struct PlayerPowerSpeedData
     f32 x_accel_stage2;
     f32 x_accel_stage3;
 };
-static_assert(sizeof(PlayerPowerSpeedData) == 0x24);
+static_assert(sizeof(PlayerPowerData) == 0x24);
 
 struct PlayerSpeedHIO
 {
@@ -22,9 +22,9 @@ struct PlayerSpeedHIO
     f32 max_run_speed_lo; // stage 1 max speed
     f32 max_run_speed_md; // stage 2 max speed
     f32 max_run_speed_hi; // dush max speed
-    PlayerPowerSpeedData power_data_normal;
-    PlayerPowerSpeedData power_data_ice;
-    PlayerPowerSpeedData power_data_snow;
+    PlayerPowerData power_data_normal;
+    PlayerPowerData power_data_ice;
+    PlayerPowerData power_data_snow;
 };
 static_assert(sizeof(PlayerSpeedHIO) == 0x78);
 

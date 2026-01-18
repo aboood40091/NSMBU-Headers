@@ -2058,7 +2058,7 @@ public:
     }
 
     // Address: 0x0290587C
-    void getPowerSpeedData(PlayerPowerSpeedData& out_data);
+    void getPowerData(PlayerPowerData& out_data);
     // Address: 0x02906238
     void getPowerTurnData(PlayerPowerTurnData& out_data);
 
