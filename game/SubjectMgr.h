@@ -50,6 +50,9 @@ public:
     // Address: 0x024CF4A0
     FinishType getFinishType() const;
 
+    // Address: 0x024CF734
+    void setCloudOn();
+
     // Address: 0x024CF74C
     void onComboCntInc(s32 cnt, ComboType type);
 
