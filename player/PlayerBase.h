@@ -122,6 +122,8 @@ public:
         cStatus_73                  =  73,  // NSMBW: Bit 0x30
         cStatus_74,                         // NSMBW: Bit 0x31
 
+        cStatus_76                  =  76,  // NSMBW: Bit 0x33
+
         cStatus_78                  =  78,  // NSMBW: Bit 0x35
         cStatus_79,                         // NSMBW: Bit 0x36
 
@@ -150,7 +152,8 @@ public:
         cStatus_118,
         cStatus_119,                        // NSMBW: Bit 0x4E
 
-        cStatus_122                 = 122,  // NSMBW: Bit 0x53
+        cStatus_121                 = 121,  // NSMBW: Bit 0x51
+        cStatus_122,                        // NSMBW: Bit 0x53
         cStatus_123,                        // Make visible next frame
 
         cStatus_RideNatDone         = 127,  // NSMBW: Bit 0x58 (Ride Nat target reached)
@@ -167,6 +170,8 @@ public:
         cStatus_138,
 
         cStatus_141                 = 141,
+
+        cStatus_143                 = 143,
 
         cStatus_145                 = 145,  // NSMBW: Bit 0x86
         cStatus_146,                        // NSMBW: Bit 0x87
@@ -204,12 +209,16 @@ public:
         cStatus_193                 = 193,
 
         cStatus_195                 = 195,  // NSMBW: Bit 0x96
+        cStatus_196,                        // NSMBW: Bit 0x97
+        cStatus_197,                        // NSMBW: Bit 0x98
 
-        cStatus_197                 = 197,  // NSMBW: Bit 0x98
+        cStatus_199                 = 199,  // NSMBW: Bit 0xA7
+        cStatus_200,                        // NSMBW: Bit 0xA8
 
         cStatus_205                 = 205,  // NSMBW: Bit 0xAD
 
-        cStatus_208                 = 208,
+        cStatus_207                 = 207,
+        cStatus_208,
         cStatus_SceneChangeNext,            // NSMBW: Bit 0x64
         cStatus_210,
 
@@ -243,7 +252,7 @@ public:
         cStatus_DemoAnmLoop,
 
         cStatus_247                 = 247,  // NSMBW: Bit 0x7E
-        cStatus_248,                        // NSMBW: Bit 0x7F
+        cStatus_248,                        // NSMBW: Bit 0x7F (Funsui ascend?)
         cStatus_CheckBg,                    // NSMBW: Bit 0x80
         cStatus_250,
         cStatus_ShadowkunCatch,
@@ -254,7 +263,7 @@ public:
         cStatus_256,                        // NSMBW: Bit 0x83
 
         cStatus_258                 = 258,
-        cStatus_259,                        // NSMBW: Bit 0x52
+        cStatus_SlideSlope,
 
         cStatus_DispOutPosYAdj      = 260,
 
@@ -307,7 +316,7 @@ public:
         cBgCross_IsSnow,                            // NSMBW Bit: 0x16
         cBgCross_IsIce,                             // NSMBW Bit: 0x17
         cBgCross_IsIceLowSlip,                      // NSMBW Bit: 0x18
-        cBgCross_SlipAttr6,
+        cBgCross_IsSlideSlope,
         cBgCross_OnSakaUnderRoof,                   // NSMBW Bit: 0x19
         cBgCross_IsWaterAttr,
         cBgCross_32,
@@ -671,6 +680,13 @@ public:
     static_assert(cAnimePlayAction_BossKeyGet_Num <= cAnimePlayAction_End);
     static_assert(cAnimePlayAction_TitleSlip_Num <= cAnimePlayAction_End);
 
+    enum FunsuiAction
+    {
+        cFunsuiAction_Ascend = 0,
+        cFunsuiAction_Release
+    };
+    static_assert(sizeof(FunsuiAction) == 4);
+
     union ActionType
     {
         WalkAction              walk;
@@ -699,6 +715,7 @@ public:
         KaniAction              kani;
         HangAction              hang;
         AnimePlayAction         anime_play;
+        FunsuiAction            funsui;
         // And still many more...
     };
     static_assert(sizeof(ActionType) == 4);
@@ -789,9 +806,11 @@ public:
     enum FunsuiType
     {
         cFunsuiType_Sand = 0,
-        cFunsuiType_Water
+        cFunsuiType_Water,
+        cFunsuiType_Num
     };
     static_assert(sizeof(FunsuiType) == 4);
+    static_assert(cFunsuiType_Num == 2);
 
     enum DemoType
     {
@@ -1114,6 +1133,11 @@ public:
     Angle getSakaAngleBySpeed(f32 speed_F);
     // Address: 0x028F8804
     SakaUpDown getSakaUpDown(s32 dir);
+
+    SakaUpDown getSakaUpDown()
+    {
+        return getSakaUpDown(mDirection);
+    }
 
     // Address: 0x028F76A0
     void checkDamageBg();
@@ -1757,11 +1781,6 @@ public:
     virtual bool bouncePlayer1(f32 speed_y, f32 speed_F, bool, BounceType bounce_type, JumpSe jump_se_type) = 0;   // Does lots of checks that can cancel the bounce, calls bouncePlayer2 otherwise
     virtual bool bouncePlayer2(f32 speed_y, f32 speed_F, bool, BounceType bounce_type, JumpSe jump_se_type) = 0;
 
-    // Address: 0x02906B04
-    void changeState(const StateID& state_id, s32 param);
-    // Address: 0x02906B0C
-    void changeState(const StateID& state_id, const JumpInf& jmp_inf);
-
     // StateID_None         Address: 0x1022A484
     // initializeState_None Address: 0x02908AE4
     // executeState_None    Address: 0x02908AE8
@@ -1853,11 +1872,37 @@ public:
     // finalizeState_AnimePlay      Address: 0x02901A04
     DECLARE_STATE_VIRTUAL_ID_BASE(PlayerBase, AnimePlay)
 
+    // Address: 0x02906A00
+    void executeState();
+
+    // Address: 0x02906B04
+    void changeState(const StateID& state_id, s32 param);
+    // Address: 0x02906B0C
+    void changeState(const StateID& state_id, const JumpInf& jmp_inf);
+
+    // Address: 0x02906A38
+    void changeStateImpl(const StateID& state_id, s32 param, const JumpInf* p_jmp_inf);
+
     virtual bool checkWalkNextAction() = 0;
 
     virtual void setWaitActionAnm(AnmBlend blend) = 0;
     virtual void setWalkActionAnm(AnmBlend blend) = 0;
     virtual void walkActionInit_Wait(AnmBlend blend) = 0;
+
+    // Address: 0x02906B18
+    void walkAction_SetAnm(AnmBlend blend);
+    // Address: 0x02906B28
+    void walkAction_Move();
+
+    // Address: 0x02906CDC
+    void calcSpeedOnIceLift();
+    // Address: 0x02906E0C
+    void calcAccOnIceLift();
+
+    // Address: 0x02906E8C
+    bool checkTurn();
+    // Address: 0x02906FA4
+    void setTurnEnd();
 
     virtual bool isWaitFrameCountMax()
     {
@@ -1873,21 +1918,89 @@ public:
     virtual void setHipAttack_StandNormalEnd() = 0;
 
     virtual bool checkCrouch() = 0;
+    // Address: 0x02906FE8
+    void setCrouchActionAnm();
+    // Address: 0x02907108
+    void setCrouchWallSpeed();
+    // Address: 0x0290718C
+    void setCrouchSmokeEffect();
     // Address: 0x029071E8
     virtual bool setCancelCrouch();
     // Address: 0x029072EC
     virtual bool setCrouchJump();
 
+    // Address: 0x02907354
+    bool checkSitJumpRoof();
+
     virtual bool vf7EC() = 0;
 
     virtual bool vf7F4(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other) = 0;
 
+    // Address: 0x02907420
+    bool setFunsui(FunsuiType type);
+
+    // Address: 0x02907508
+    bool updateFunsuiPos(f32 x, f32 y);
+
+    // Address: 0x029075F4
+    bool releaseFunsui(f32 speed_y);
+
     virtual void releaseFunsuiAction() = 0;
+
+    // Address: 0x029076D0
+    bool setCloudOn(Actor* p_cloud_actor);
+    // Address: 0x02906964
+    void cancelCloudOn();
 
     virtual f32 getCloudOffsetY() = 0;
 
+    // Address: 0x029077B8
+    void getCloudPos(sead::Vector3f& pos);
+
+    // Address: 0x029078D8
+    bool updateCloudMove();
+
+    // Address: 0x02907830
+    Actor* getCloud();
+
     virtual void throwCarryActor()
     {
+    }
+
+    // Address: 0x02907A00
+    Angle addCalcAngleY(const Angle& target, f32 rate);
+
+    Angle addCalcAngleY(Angle target, s32 num_frame)
+    {
+        f32 rate = 1.0f / static_cast<f32>(num_frame);
+        return addCalcAngleY(target, rate);
+    }
+
+    // Address: 0x02906608
+    bool turnAngle();
+
+    // Address: 0x02907AA4
+    bool turnBesideAngle(s32 dir);
+
+    bool turnBesideAngle()
+    {
+        return turnBesideAngle(mDirection);
+    }
+
+    // Address: 0x029065F0
+    Angle getMukiAngle(s32 dir);
+
+    Angle getMukiAngle()
+    {
+        return getMukiAngle(mDirection);
+    }
+
+    // Address: 0x02907A60
+    Angle getBesideMukiAngle(s32 dir);
+
+    Angle getBesideMukiAngle()
+    {
+        return getBesideMukiAngle(mDirection);
     }
 
     // Address: 0x02900E78
@@ -2118,8 +2231,8 @@ public:
     // Address: 0x028F4F84
     s8 calcTreadCount(s32 max);
 
-    void clearComboCount() { mComboCnt = 0; }
-    s8 getComboCount() const { return mComboCnt; }
+    void clearComboCount() { mPlComboCnt = 0; }
+    s8 getComboCount() const { return mPlComboCnt; }
     // Address: 0x028F4FA8
     s8 calcComboCount(s32 max);
 
@@ -2322,26 +2435,6 @@ public:
         return mMode;
     }
 
-    // Address: 0x029065F0
-    Angle getMukiAngle(u32 dir);
-
-    Angle getMukiAngle()
-    {
-        return getMukiAngle(mDirection);
-    }
-
-    // Address: 0x02906608
-    bool turnAngle();
-
-    // Address: 0x02907A00
-    Angle addCalcAngleY(Angle target, f32 rate);
-
-    Angle addCalcAngleY(Angle target, s32 num_frame)
-    {
-        f32 rate = 1.0f / static_cast<f32>(num_frame);
-        return addCalcAngleY(target, rate);
-    }
-
     // Address: 0x0290AF34
     bool checkSakaReverse();
 
@@ -2358,6 +2451,9 @@ public:
 
     // Address: 0x0290BE64
     void setLandSE();
+
+    // Address: 0x0290BE90
+    void setSlipSE();
 
 protected:
     s32                                 mExecuteFreezeTimer;
@@ -2384,7 +2480,7 @@ protected:
     sead::Vector3f                      mNextFrameSpeed;
     s8                                  mPriority;
     s8                                  mTreadCnt;
-    s8                                  mComboCnt;
+    s8                                  mPlComboCnt;
     PlayerCharacter                     mCharacter;
     PlayerMode                          mMode;
     ActorBgCollisionPlayerCheck         mBgCheckPlayer;
@@ -2504,7 +2600,7 @@ protected:
     u32                                 _2194;
     bool                                _2198;
     FStateMgr<PlayerBase>               mStateMgr;
-    JumpInf*                            mpChangeStateJmpInf;
+    const JumpInf*                      mpChangeStateJmpInf;
     s32                                 mChangeStateParam;
     s32                                 mAction;                // See ActionType
     s32                                 mActionTimer;
