@@ -17,6 +17,7 @@ public:
     enum ShockType
     {
         cShockType_4 = 4,
+        cShockType_5,
         cShockType_PlayerImpact = 8,
         cShockType_PlayerRepeat,
         cShockType_Pow = 12,
