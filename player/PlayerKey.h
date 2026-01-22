@@ -10,7 +10,8 @@ public:
         cStatus_NoInput     =  1,   // NSMBW: Bit 0
         cStatus_NoCross,            // NSMBW: Bit 1
 
-        cStatus_NoJump      =  6,   // NSMBW: Bit 4
+        cStatus_ForceJump   =  5,   // NSMBW: Bit 3
+        cStatus_NoJump,             // NSMBW: Bit 4
 
         cStatus_Demo        = 10    // NSMBW: Bit 7
     };
