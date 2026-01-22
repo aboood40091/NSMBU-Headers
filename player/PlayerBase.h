@@ -87,10 +87,12 @@ public:
         cStatus_19                  =  19,  // NSMBW: Bit 0x08
 
         cStatus_25                  =  25,  // NSMBW: Bit 0x0A
+        cStatus_26,
 
         cStatus_29                  =  29,  // NSMBW: Bit 0x0E
 
-        cStatus_35                  =  35,
+        cStatus_34                  =  34,  // NSMBW: Bit 0x12
+        cStatus_35,
         cStatus_36,                         // NSMBW: Bit 0x13
         cStatus_37,
         cStatus_38,
@@ -148,7 +150,8 @@ public:
 
         cStatus_113                 = 113,  // NSMBW: Bit 0x4A
 
-        cStatus_117                 = 117,
+        cStatus_116                 = 116,  // NSMBW: Bit 0x4D
+        cStatus_117,
         cStatus_118,
         cStatus_119,                        // NSMBW: Bit 0x4E
 
@@ -186,7 +189,10 @@ public:
         cStatus_155                 = 155,
         cStatus_156,                        // NSMBW: Bit 0x95
 
+        cStatus_166                 = 166,  // NSMBW: Bit 0xA0
+
         cStatus_EnableDokanIn       = 171,
+        cStatus_172,                        // NSMBW: Bit 0xA5
 
         cStatus_FollowMameKuribo    = 174,  // NSMBW: Bit 0xAC
         cStatus_Invisible,                  // NSMBW: Bit 0xBB
@@ -201,8 +207,7 @@ public:
         cStatus_185,
         cStatus_186,
         cStatus_187,
-
-        cStatus_188                 = 188,
+        cStatus_188,
 
         cStatus_191                 = 191,
 
@@ -215,7 +220,8 @@ public:
         cStatus_199                 = 199,  // NSMBW: Bit 0xA7
         cStatus_200,                        // NSMBW: Bit 0xA8
 
-        cStatus_205                 = 205,  // NSMBW: Bit 0xAD
+        cStatus_204                 = 204,  // NSMBW: Bit 0xAB
+        cStatus_205,                        // NSMBW: Bit 0xAD
 
         cStatus_207                 = 207,
         cStatus_208,
@@ -264,8 +270,7 @@ public:
 
         cStatus_258                 = 258,
         cStatus_SlideSlope,
-
-        cStatus_DispOutPosYAdj      = 260,
+        cStatus_DispOutPosYAdj,
 
         cStatus_RDash_DispPinch     = 262,
         cStatus_263,                        // NSMBW: Bit 0x77
@@ -1781,6 +1786,9 @@ public:
     virtual bool bouncePlayer1(f32 speed_y, f32 speed_F, bool, BounceType bounce_type, JumpSe jump_se_type) = 0;   // Does lots of checks that can cancel the bounce, calls bouncePlayer2 otherwise
     virtual bool bouncePlayer2(f32 speed_y, f32 speed_F, bool, BounceType bounce_type, JumpSe jump_se_type) = 0;
 
+    // Address: 0x02908BCC
+    bool setWaitJumpAction();
+
     // StateID_None         Address: 0x1022A484
     // initializeState_None Address: 0x02908AE4
     // executeState_None    Address: 0x02908AE8
@@ -2203,8 +2211,22 @@ public:
     // Address: 0x028F4EE8
     bool checkJumpTrigger();
 
+    // Address: 0x02909050
+    bool setWaitJump();
+
+private:
+    inline bool setWaitJump_(f32 speed_y);
+
+public:
+    // Address: 0x029090E0
+    void setJumpSpeed();
+
+    // Address: 0x0290911C
+    f32 getJumpSpeedBase();
+
     virtual f32 getJumpSpeed() = 0;
-    virtual f32 vf89C() = 0;
+    virtual f32 getMoveJumpSpeed() = 0;
+
     virtual void setJumpSound(JumpSe jump_se_type) = 0;
     virtual void vf8AC(bool) = 0;
 
