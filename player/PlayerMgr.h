@@ -88,6 +88,8 @@ public:
 
     void setSubjectClear();
 
+    void setHipAttackQuake(s32 type, s32 player_no, bool ext);
+
     s32 getCoinNumMin();
 
 private:
