@@ -18,49 +18,49 @@ class Scene
     SEAD_SINGLETON_DISPOSER(Scene)
 
 public:
-    class WipeInfo
+    class FaderInfo
     {
     public:
         enum Mask
         {
-            cMask_FadeinWipeType  = 0x0000FFFF,
-            cMask_FadeoutWipeType = 0xFFFF0000
+            cMask_InFaderType  = 0x0000FFFF,
+            cMask_OutFaderType = 0xFFFF0000
         };
 
         enum Shift
         {
-            cShift_FadeinWipeType = 0,
-            cShift_FadeoutWipeType = 16
+            cShift_InFaderType = 0,
+            cShift_OutFaderType = 16
         };
     
-        static u32 make(u16 fadeout_wipe_type, u16 fadein_wipe_type)
+        static u32 make(u16 out_fader_type, u16 in_fader_type)
         {
             u32 data = 0;
-            setFadeoutWipeType(data, fadeout_wipe_type);
-            setFadeinWipeType(data, fadein_wipe_type);
+            setOutFaderType(data, out_fader_type);
+            setInFaderType(data, in_fader_type);
             return data;
         }
 
-        static u16 getFadeoutWipeType(u32 data)
+        static u16 getOutFaderType(u32 data)
         {
-            return (data & cMask_FadeoutWipeType) >> cShift_FadeoutWipeType;
+            return (data & cMask_OutFaderType) >> cShift_OutFaderType;
         }
 
-        static void setFadeoutWipeType(u32& data, u16 type)
+        static void setOutFaderType(u32& data, u16 type)
         {
-            data &= ~cMask_FadeoutWipeType;
-            data |= (u32(type) << cShift_FadeoutWipeType) & cMask_FadeoutWipeType;
+            data &= ~cMask_OutFaderType;
+            data |= (u32(type) << cShift_OutFaderType) & cMask_OutFaderType;
         }
 
-        static u16 getFadeinWipeType(u32 data)
+        static u16 getInFaderType(u32 data)
         {
-            return (data & cMask_FadeinWipeType) >> cShift_FadeinWipeType;
+            return (data & cMask_InFaderType) >> cShift_InFaderType;
         }
 
-        static void setFadeinWipeType(u32& data, u16 type)
+        static void setInFaderType(u32& data, u16 type)
         {
-            data &= ~cMask_FadeinWipeType;
-            data |= (u32(type) << cShift_FadeinWipeType) & cMask_FadeinWipeType;
+            data &= ~cMask_InFaderType;
+            data |= (u32(type) << cShift_InFaderType) & cMask_InFaderType;
         }
     };
 
@@ -69,7 +69,7 @@ public:
     Scene();
 
     // Address: 0x02994164
-    bool createScene(sead::TaskBase* p_src_task, const sead::TaskClassID& next_scene, u32 wipe_info = WipeInfo::make(0, 0), u32 snd_param_unused = 0);
+    bool setNextScene(sead::TaskBase* p_src_task, const sead::TaskClassID& next_scene, u32 fader_info = FaderInfo::make(0, 0), u32 snd_param_unused = 0);
 
     // Address: 0x029941D0
     bool setCourse_Story(sead::TaskBase* p_src_task, s32 world_no, s32 course_no);
@@ -87,14 +87,14 @@ public:
         return mpTaskMgr;
     }
 
-    u32& getWipeInfo()
+    u32& getFaderInfo()
     {
-        return mWipeInfo;
+        return mFaderInfo;
     }
 
-    const u32& getWipeInfo() const
+    const u32& getFaderInfo() const
     {
-        return mWipeInfo;
+        return mFaderInfo;
     }
 
     sead::Vector3f& getFadeCenter()
@@ -114,7 +114,7 @@ protected:
     sead::TaskClassID                           mNextScene;
     sead::TaskMgr*                              mpTaskMgr;
     Fader*                                      mpFader;
-    u32                                         mWipeInfo;
+    u32                                         mFaderInfo;
     u8                                          _70;
     sead::Vector3f                              mFadeCenter;
     u32                                         _80;
