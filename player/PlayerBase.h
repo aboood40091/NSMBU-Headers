@@ -103,10 +103,13 @@ public:
         cStatus_46                  =  46,
         cStatus_47,
         cStatus_48,                         // NSMBW: Bit 0x1C
+        cStatus_49,                         // NSMBW: Bit 0x1D
+        cStatus_50,                         // NSMBW: Bit 0x1E
+        cStatus_51,
+        cStatus_52,                         // NSMBW: Bit 0x1F
 
-        cStatus_52                  =  52,  // NSMBW: Bit 0x1F
-
-        cStatus_56                  =  56,  // NSMBW: Bit 0xC4
+        cStatus_HipAttackOnEnemy    =  55,  // NSMBW: Bit 0x22
+        cStatus_56,                         // NSMBW: Bit 0xC4
         cStatus_57,                         // NSMBW: Bit 0x24
         cStatus_58,
 
@@ -189,7 +192,12 @@ public:
         cStatus_155                 = 155,
         cStatus_156,                        // NSMBW: Bit 0x95
 
-        cStatus_166                 = 166,  // NSMBW: Bit 0xA0
+        cStatus_158                 = 158,  // NSMBW: Bit 0x91
+
+        cStatus_160                 = 160,
+
+        cStatus_165                 = 165,  // NSMBW: Bit 0x9F
+        cStatus_166,                        // NSMBW: Bit 0xA0
 
         cStatus_EnableDokanIn       = 171,
         cStatus_172,                        // NSMBW: Bit 0xA5
@@ -220,9 +228,10 @@ public:
         cStatus_199                 = 199,  // NSMBW: Bit 0xA7
         cStatus_200,                        // NSMBW: Bit 0xA8
 
-        cStatus_204                 = 204,  // NSMBW: Bit 0xAB
+        cStatus_203                 = 203,  // NSMBW: Bit 0xAA
+        cStatus_204,                        // NSMBW: Bit 0xAB
         cStatus_205,                        // NSMBW: Bit 0xAD
-
+        cStatus_206,                        // NSMBW: Bit 0xAE
         cStatus_207                 = 207,
         cStatus_208,
         cStatus_SceneChangeNext,            // NSMBW: Bit 0x64
@@ -447,7 +456,8 @@ public:
         cHipAction_Ground,
         cHipAction_StandNormal,
         cHipAction_StandNormalEnd,
-        cHipAction_ToStoop
+        cHipAction_ToStoop,
+        cHipAction_Num
     };
     static_assert(sizeof(HipAction) == 4);
 
@@ -1112,6 +1122,9 @@ public:
 
     // Address: 0x028F86EC
     bool isSlipSaka();
+
+    // Address: 0x0290AB0C
+    f32 getSlipMaxSpeedF();
 
 private:
     inline void checkBgCross_();
@@ -1920,10 +1933,55 @@ public:
     virtual void setSlipAction() = 0;
     virtual bool vf7AC() = 0;
 
-    virtual bool setHipAttackOnEnemy(const sead::Vector3f&) = 0;
+    virtual bool setHipAttackOnEnemy(const sead::Vector3f& target_pos) = 0;
     virtual void setHipBlockBreak() = 0;
+
+private:
+    inline void setHipAttack_Ready_();
+
+public:
+    // Address: 0x0290A020
+    void setHipAttack_AttackStartBase();
     virtual void setHipAttack_AttackStart() = 0;
+
+    // Address: 0x0290A0C4
+    void setHipAttack_AttackFall();
+
+    // Address: 0x0290A148
+    void setHipAttack_StandNormal();
+
+    // Address: 0x0290A1F8
+    void setHipAttack_StandNormalEndBase();
     virtual void setHipAttack_StandNormalEnd() = 0;
+
+    // Address: 0x0290A24C
+    void setHipAttack_ToStoop();
+
+    // Address: 0x0290A2A0
+    void HipAction_Ready();
+    // Address: 0x0290A2F0
+    void HipAction_AttackStart();
+    // Address: 0x0290A38C
+    void HipAction_AttackFall();
+    // Address: 0x0290A6C4
+    void HipAction_Ground();
+    // Address: 0x0290A738
+    void HipAction_StandNormal();
+    // Address: 0x0290A8DC
+    void HipAction_StandNormalEnd();
+    // Address: 0x0290A994
+    void HipAction_ToStoop();
+
+    // Address: 0x0290A300
+    void setHipAttackSE();
+
+    // Address: 0x0290A9FC
+    void setHipAttackOnEnemyBase(const sead::Vector3f& target_pos);
+    // Address: 0x02909EBC
+    void updateHipAttackOnEnemy();
+
+    // Address: 0x0290AA24
+    void updateHipDropExEffect();
 
     virtual bool checkCrouch() = 0;
     // Address: 0x02906FE8
@@ -1940,7 +1998,7 @@ public:
     // Address: 0x02907354
     bool checkSitJumpRoof();
 
-    virtual bool vf7EC() = 0;
+    virtual bool setHipAttackToKaniHangAction() = 0;
 
     virtual bool vf7F4(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other) = 0;
 
@@ -2648,7 +2706,7 @@ protected:
     sead::Vector2f                      mFunsuiPos;
     f32                                 mJumpDaiSpeedFReserve;
     sead::Vector3f                      mRidePlayerPosDelta;
-    sead::Vector3f                      _2208;
+    sead::Vector3f                      mHipAttackOnEnemyPos;
     u32                                 mHipAttackEffectStep;     // Maybe?
     f32                                 mRideNatPosY;
     s32                                 mFrameEndFollowMameKuribo;
