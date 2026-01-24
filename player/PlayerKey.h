@@ -44,6 +44,8 @@ public:
 
     bool buttonJump() const;
 
+    bool buttonCrouch() const;
+
     bool triggerShakeJump() const;
     bool triggerAttack() const;
     bool triggerSwim() const;
