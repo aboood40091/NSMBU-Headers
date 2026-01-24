@@ -20,6 +20,8 @@ public:
     HipdropExEffect();
 
     void createModel();
+    void calcModel();
+    void drawModel();
 
     void set(const sead::Vector3f& pos);
 
