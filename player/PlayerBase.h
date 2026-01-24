@@ -634,8 +634,8 @@ public:
         cTarzanRopeAction_Up,
         cTarzanRopeAction_Down,
         cTarzanRopeAction_HasigoMove,
-        cTarzanRopeAction_5,
-        cTarzanRopeAction_6
+        cTarzanRopeAction_HasigoHangDown,
+        cTarzanRopeAction_HasigoHangUp
     };
     static_assert(sizeof(TarzanRopeAction) == 4);
 
