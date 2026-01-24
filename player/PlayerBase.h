@@ -1241,7 +1241,7 @@ public:
     // Address: 0x028FA8D8
     virtual void initStampReduction();
     // Address: 0x028FA910
-    virtual void calcJumpDaiReductionScale(s32, s32);
+    virtual void calcJumpDaiReductionScale(s32 t, s32 max_t);
     // Address: 0x028FA97C
     virtual void setReductionBoyon();
 
@@ -2230,6 +2230,17 @@ public:
     virtual void setJumpSound(JumpSe jump_se_type) = 0;
     virtual void vf8AC(bool) = 0;
 
+    // Address: 0x02909BC0
+    bool setJumpDaiRide();
+
+    // Address: 0x02909C1C
+    bool setPlayerJumpDai(PlayerBase* p_player_other);
+    // Address: 0x0290944C
+    PlayerBase* getPlayerJumpDai();
+
+    // Address: 0x02909D38
+    void setPlayerJumoDaiPos();
+
     virtual bool isNoDamage() = 0;
     virtual bool isNoDamagePlayer() = 0;  // Only used by Yoshi, called at 0x0295FAF8
     virtual bool setNormalDamage(ActorCollisionCheck* p_cc) = 0;
@@ -2626,7 +2637,7 @@ protected:
     s32                                 mChangeStateParam;
     s32                                 mAction;                // See ActionType
     s32                                 mActionTimer;
-    u32                                 mStunMode;
+    s32                                 mActionSubTimer;
     ActorUniqueID                       mRideActorID;
     s32                                 _21d8;
     u32                                 _21dc;
