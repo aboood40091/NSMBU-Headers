@@ -1118,9 +1118,6 @@ public:
     // Address: 0x028F86EC
     bool isSlipSaka();
 
-    // Address: 0x0290AB0C
-    f32 getSlipMaxSpeedF();
-
 private:
     inline void checkBgCross_();
     inline void checkCarryObjBgCarried_(const ActorBgCollisionCheck::Output& output, u8 dir);
@@ -1936,7 +1933,45 @@ public:
     }
 
     virtual void setSlipAction() = 0;
+
+    // Address: 0x0290B714
+    bool checkSlip();
+    // Address: 0x
+    bool checkCrouchSlip();
+    // Address: 0x0290ABF8
+    bool checkSlipEndKey();
+
+    // Address: 0x0290AB0C
+    f32 getSlipMaxSpeedF();
+
+    // Address: 0x0290ACD0
+    void changeActionSlipEnd(AnmBlend blend);
+
+    // Address: 0x0290B89C
+    void forceSlipToStoop();
+
+    // Address: 0x0290B85C
+    void setSlipAction_ToStoop();
+    // Address: 0x0290AE28
+    bool setSlipAction_ToEnd(AnmBlend blend = cAnmBlend_Enable);
+
+    // Address: 0x0290AF68
+    void setSlipActionEnd();
+    // Address: 0x0290AEE4
+    void setSlipActionViewLimitEnd();
+
+    // Address: 0x0290AF34
+    bool checkSakaReverse();
+
+    // Address: 0x0290AFB8
+    void slipActionMove(bool turned);
     virtual bool checkSlipMoveEnd() = 0;
+
+    void setSlipEffect()
+    {
+        setSlipSmokeEffect();
+        setSlipSE();
+    }
 
     virtual bool setHipAttackOnEnemy(const sead::Vector3f& target_pos) = 0;
     virtual void setHipBlockBreak() = 0;
@@ -2530,12 +2565,6 @@ public:
     {
         return mMode;
     }
-
-    // Address: 0x0290AF34
-    bool checkSakaReverse();
-
-    // Address: 0x0290B89C
-    void forceSlipToStoop();
 
     // Address: 0x0290B9A4
     void startSound(const char* label, u32 = 0);
