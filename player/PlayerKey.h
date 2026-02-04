@@ -39,6 +39,8 @@ public:
 
     bool triggerUp() const;
     bool triggerDown() const;
+    bool triggerLeft() const;
+    bool triggerRight() const;
     bool triggerCross() const;
 
     bool buttonDush() const;
