@@ -73,7 +73,7 @@ public:
         cStatus_3,                          // NSMBW: Bit 0x02
         cStatus_DemoScript,                 // NSMBW: Bit 0x03
         cStatus_DemoMode,                   // NSMBW: Boolean
-        cStatus_6,                          // NSMBW: Bit 0xB5 (MAYBE)
+        cStatus_DisableSound,               // NSMBW: Bit 0xB5
         cStatus_DispOut,                    // NSMBW: Bit 0xB9
         cStatus_DispOutDanger,              // NSMBW: Bit 0xBA
         cStatus_FaderPosSet,
@@ -294,7 +294,9 @@ public:
 
         cStatus_282                 = 282,
 
-        cStatus_LastBit             = 286,  // Not sure if bit 287 is used
+        cStatus_EndingDisableSound  = 286,  // NSMBW: Bit 0x75
+
+        cStatus_LastBit = cStatus_EndingDisableSound,   // Not sure if bit 287 is used
         cStatus_BitNum,
         cStatus_MaxBitNum = (cStatus_BitNum + 31) / 32 * 32
     };
@@ -364,7 +366,9 @@ public:
         cBgCross_66 = 66,                           // NSMBW Bit: 0x35
         cBgCross_67,                                // NSMBW Bit: 0x36
         cBgCross_68,                                // NSMBW Bit: 0x37 (MAYBE)
-        cBgCross_69,                                // NSMBW Bit: 0x38 (MAYBE)
+        cBgCross_69,                                // NSMBW Bit: 0x38
+        cBgCross_70,                                // NSMBW Bit: 0x39
+        cBgCross_71,                                // NSMBW Bit: 0x3A
 
         cBgCross_HitBgActorYuka = 73,               // NSMBW Bit: 0x3B (MAYBE)
         cBgCross_74,                                // NSMBW Bit: 0x3D
@@ -385,7 +389,7 @@ public:
         cBgAttr_Sand,
         cBgAttr_Ice,
         cBgAttr_Dirt,
-        cBgAttr_Water1,
+        cBgAttr_Water1,     // Surface of regular water
         cBgAttr_Cloud,
         cBgAttr_SandFunsui, // i.e., sand pillar
         cBgAttr_Manta,      // Used for beanstalk
@@ -393,7 +397,7 @@ public:
         cBgAttr_Carpet,
         cBgAttr_Leaf,
         cBgAttr_Wood,
-        cBgAttr_Water2,     // Water pillar?
+        cBgAttr_Water2,     // Objects with water bg unit code attr
         cBgAttr_Num
     };
     static_assert(cBgAttr_Num == 14);
@@ -920,6 +924,12 @@ public:
         cPowerChangeType_Num
     };
     static_assert(cPowerChangeType_Num == 3);
+
+    enum StartSoundType
+    {
+        cStartSoundType_Normal = 0,
+        cStartSoundType_DisableInEnding
+    };
 
     // Address: 0x10166E60
     static const f32 cDirSpeed[cDirType_NumX];
@@ -2445,6 +2455,43 @@ public:
     // Address: 0x029049FC
     void setVsPlHipAttackEffect();
 
+    // Address: 0x0290B93C
+    bool isDisableSound(StartSoundType type);
+
+    // Address: 0x0290B9A4
+    void startSound(const char* label, StartSoundType type = cStartSoundType_Normal);
+    // Address: 0x0290BA20
+    void startSound(const char* label, s16 seq_var, StartSoundType type = cStartSoundType_Normal);
+
+    // Address: 0x0290BAB0
+    void holdSound(const char* label, StartSoundType type = cStartSoundType_Normal);
+    // Address: 0x0290BB2C
+    void holdSound(const char* label, s16 seq_var, StartSoundType type = cStartSoundType_Normal);
+
+    // Address: 0x0290BBBC
+    void startVoiceSound(PlayerVoiceID voice_id, StartSoundType type = cStartSoundType_Normal);
+
+    // Address: 0x0290BC60
+    void setItemCompleteVoice();
+
+    // Address: 0x0290BC6C
+    void setHitBlockSE();
+
+    // Address: 0x0290BD04
+    void startFootSoundPlayer(const char* label);
+
+    // Address: 0x0290BDEC
+    void setFootSound();
+
+    // Address: 0x0290BD78
+    void setFootSE(BgAttr attr);
+    // Address: 0x0290BE64
+    void setLandSE();
+    // Address: 0x0290BE90
+    void setSlipSE();
+    // Address: 0x0290BF08
+    void setTurnSE();
+
     // StateID_SubjectWait          Address: 0x1022A3B8
     // initializeState_SubjectWait  Address: 0x02903F30
     // executeState_SubjectWait     Address: 0x02903504
@@ -2565,20 +2612,6 @@ public:
     {
         return mMode;
     }
-
-    // Address: 0x0290B9A4
-    void startSound(const char* label, u32 = 0);
-    // Address: 0x0290BBBC
-    void startVoiceSound(PlayerVoiceID voice_id, u32 = 0);
-
-    // Address: 0x0290BC6C
-    void setHitBlockSE();
-
-    // Address: 0x0290BE64
-    void setLandSE();
-
-    // Address: 0x0290BE90
-    void setSlipSE();
 
 protected:
     s32                                 mExecuteFreezeTimer;
