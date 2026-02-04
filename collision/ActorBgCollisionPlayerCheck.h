@@ -18,6 +18,14 @@ public:
     };
     static_assert(sizeof(VineType) == 4);
 
+    enum Flag
+    {
+        cFlag_IsVine        = 1 << 0,
+        cFlag_IsWallSlide   = 1 << 1,
+        cFlag_IsSakaReverse = 1 << 2,
+        cFlag_IsMame        = 1 << 3
+    };
+
 public:
     // Address: 0x021934C0
     ActorBgCollisionPlayerCheck();
@@ -30,6 +38,11 @@ public:
     void clearBg() override;
     // Address: 0x0219371C
     void atFrameStart() override;
+
+    bool isSakaReverse() const
+    {
+        return mFlag.isOn(cFlag_IsSakaReverse);
+    }
 
     // Address: 0x02193828
     bool checkDokanDown(sead::Vector3f* p_pos, s32* p_dst_next_goto_no);
@@ -80,7 +93,7 @@ public:
 private:
     List::Node      _14e0;
     s8              mPlayerNo;
-    sead::BitFlag16 _14ee;
+    sead::BitFlag16 mFlag;
     bool            mIsMameDokan;
     VineType        mVineType;
     BgCollision*    mpVineBgCollision;
