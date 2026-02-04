@@ -1936,7 +1936,7 @@ public:
     }
 
     virtual void setSlipAction() = 0;
-    virtual bool vf7AC() = 0;
+    virtual bool checkSlipMoveEnd() = 0;
 
     virtual bool setHipAttackOnEnemy(const sead::Vector3f& target_pos) = 0;
     virtual void setHipBlockBreak() = 0;
