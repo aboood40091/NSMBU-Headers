@@ -35,9 +35,11 @@ public:
     bool buttonDown() const;
     bool buttonLeft() const;
     bool buttonRight() const;
+    bool buttonCross() const;
 
     bool triggerUp() const;
     bool triggerDown() const;
+    bool triggerCross() const;
 
     bool buttonDush() const;
     bool buttonWalk(s32* p_dir = nullptr) const;
