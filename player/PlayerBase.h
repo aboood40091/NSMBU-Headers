@@ -1115,11 +1115,6 @@ public:
 
     virtual f32 getStandHeadBgPointY() = 0;
 
-    bool isSaka()
-    {
-        return isNowBgCross(cBgCross_IsSaka);
-    }
-
     // Address: 0x028F86EC
     bool isSlipSaka();
 
