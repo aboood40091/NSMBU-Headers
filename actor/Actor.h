@@ -292,11 +292,11 @@ protected:
     void calcSpeedY_(f32 accel_y, f32 speed_max_y);
     void calcSpeedY_() { calcSpeedY_(mAccelY, mSpeedMax.y); }
 
-    void calcSpeedF_(f32 accelF, f32 speedF_max) { sead::Mathf::chase(&mSpeedF, speedF_max, accelF); }
-    void calcSpeedF_() { calcSpeedF_(mAccelF, mSpeedFMax); }
+    void calcSpeedF_(f32 accelF, f32 max_speedF) { sead::Mathf::chase(&mSpeedF, max_speedF, accelF); }
+    void calcSpeedF_() { calcSpeedF_(mAccelF, mMaxSpeedF); }
     // Address: 0x0200144C
-    void calcFallSpeed_(f32 accel_y, f32 fall_speed_max);
-    void calcFallSpeed_() { calcFallSpeed_(mAccelY, mFallSpeedMax); }
+    void calcFallSpeed_(f32 accel_y, f32 max_fall_speed);
+    void calcFallSpeed_() { calcFallSpeed_(mAccelY, mMaxFallSpeed); }
 
     void posMove_(sead::Vector3f& delta)
     {
@@ -365,8 +365,8 @@ protected:
     u8                      mLayer;                     // Inited to ActorCreateParam::layer
     sead::BitFlag8          mCollisionMask;
     f32                     mSpeedF;                    // Horizontal speed
-    f32                     mSpeedFMax;                 // Maximum horizontal speed
-    f32                     mFallSpeedMax;              // Maximum fall speed
+    f32                     mMaxSpeedF;                 // Maximum horizontal speed
+    f32                     mMaxFallSpeed;              // Maximum fall speed
     f32                     mAccelY;                    // Vertical acceleration
     f32                     mAccelF;                    // Horizontal acceleration
     sead::Vector3f          mPos;

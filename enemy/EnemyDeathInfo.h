@@ -38,7 +38,7 @@ public:
     // Address: 0x101CE360
     static sead::Vector2f sDefaultSpeed;    // 1.5f, 3.9f
     // Address: 0x101CE368
-    static f32 sDefaultFallSpeedMax;        // -4.0f
+    static f32 sDefaultMaxFallSpeed;        // -4.0f
     // Address: 0x101CE36C
     static f32 sDefaultAccelY;              // -0.24375f
     // Address: 0x101CE370
@@ -49,7 +49,7 @@ public:
 public:
     EnemyDeathInfo()
         : mSpeed(sDefaultSpeed)
-        , mFallSpeedMax(sDefaultFallSpeedMax)
+        , mMaxFallSpeed(sDefaultMaxFallSpeed)
         , mAccelY(sDefaultAccelY)
         , mpStateID(spDefaultStateID)
         , mKillArg(sDefaultKillArg)
@@ -58,11 +58,11 @@ public:
     }
 
     EnemyDeathInfo(const sead::Vector2f& speed,
-                   f32 fall_speed_max,
+                   f32 max_fall_speed,
                    f32 accel_y,
                    const StateID* p_state_id)
         : mSpeed(speed)
-        , mFallSpeedMax(fall_speed_max)
+        , mMaxFallSpeed(max_fall_speed)
         , mAccelY(accel_y)
         , mpStateID(p_state_id)
     {
@@ -85,7 +85,7 @@ public:
 
 private:
     sead::Vector2f  mSpeed;
-    f32             mFallSpeedMax;
+    f32             mMaxFallSpeed;
     f32             mAccelY;
     const StateID*  mpStateID;
     KillArg         mKillArg;

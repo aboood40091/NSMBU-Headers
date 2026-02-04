@@ -222,7 +222,7 @@ protected:
     sead::Vector2f              mBgSpeed;
     sead::Vector2f              mBgSpeedPrev;
     f32                         mWaterSpeedMaxY;        // Maximum ascension speed
-    f32                         mWaterFallSpeedMax;
+    f32                         mWaterMaxFallSpeed;
     f32                         mWaterGravity;
     bool                        mCheckWaterNeeded;
     bool                        mIsInQuicksand;
