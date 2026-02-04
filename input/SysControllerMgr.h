@@ -17,6 +17,8 @@ public:
 public:
     SysControllerMgr();
 
+    bool isURCC(s32 controller_index) const;
+
     void enterHBM();
     void exitHBM();
 
