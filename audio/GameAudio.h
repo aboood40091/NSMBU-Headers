@@ -330,6 +330,11 @@ public:
             convertAudioObjctPos(&screen_pos, pos);
             SndObjctPly::calc(screen_pos);
         }
+
+        void startPlyVoiceSound(PlayerVoiceID voice_id, nw::snd::OutputLine line_flag = nw::snd::OUTPUT_LINE_MAIN)
+        {
+            SndObjctPly::startPlyVoiceSound(voice_id, line_flag);
+        }
     };
     static_assert(sizeof(AudioObjctPly) == sizeof(SndObjctPly));
 
