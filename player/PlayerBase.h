@@ -1147,6 +1147,16 @@ public:
     // Address: 0x028F8804
     SakaUpDown getSakaUpDown(s32 dir);
 
+    Angle getSakaAngle()
+    {
+        return getSakaAngle(mDirection);
+    }
+
+    Angle getSakaAngleBySpeed()
+    {
+        return getSakaAngleBySpeed(mSpeedF);
+    }
+
     SakaUpDown getSakaUpDown()
     {
         return getSakaUpDown(mDirection);
