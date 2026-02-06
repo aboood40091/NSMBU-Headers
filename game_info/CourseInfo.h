@@ -2,7 +2,7 @@
 
 #include <heap/seadDisposer.h>
 
-class Info
+class CourseInfo
 {
     // createInstance()                             Address: 0x024D2884
     // deleteInstance()                             Address: Deleted
@@ -10,11 +10,11 @@ class Info
     // SingletonDisposer_::~SingletonDisposer_()    Address: 0x024D3F08
     // SingletonDisposer_::sStaticDisposer          Address: 0x101D18F0
     // SingletonDisposer_::vtbl                     Address: 0x100B9AA8
-    SEAD_SINGLETON_DISPOSER(Info)
+    SEAD_SINGLETON_DISPOSER(CourseInfo)
 
 public:
     // Address: 0x024D281C
-    Info();
+    CourseInfo();
 
     u8 getWorldNo() const { return mCourseNow.world_no; }
     u8 getCourseNo() const { return mCourseNow.course_no; }
@@ -59,4 +59,4 @@ private:
         u32 scene_enter_type;
     }   mCourseNext;
 };
-static_assert(sizeof(Info) == 0x24);
+static_assert(sizeof(CourseInfo) == 0x24);
