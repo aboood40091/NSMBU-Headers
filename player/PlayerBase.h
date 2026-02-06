@@ -2685,7 +2685,7 @@ protected:
     f32                                 mAirDriftSpeedF;
     f32                                 mAirDriftSpeedFDecelStep;
     f32                                 mAddBgSpeedF;
-    s32                                 _1bb4;
+    s32                                 mJumpAddSpeedHoldTimer;
     ActorCollisionCheck                 mCollisionCheck2_React; // First collision check is also for react
     ActorCollisionCheck                 mCollisionCheck3_React;
     ActorCollisionCheck                 mCollisionCheck4_Attack;
