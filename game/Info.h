@@ -34,7 +34,7 @@ public:
     // Address: 0x024D299C
     void setNextSceneEnterType(u32);
 
-    // Address: 0x
+    // Address: 0x024D3910
     bool isShortPlay() const;
 
     // Address: 0x024D3940
