@@ -1946,7 +1946,7 @@ public:
 
     // Address: 0x0290B714
     bool checkSlip();
-    // Address: 0x
+    // Address: 0x0290B7B4
     bool checkCrouchSlip();
     // Address: 0x0290ABF8
     bool checkSlipEndKey();
