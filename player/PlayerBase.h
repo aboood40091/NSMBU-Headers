@@ -2273,7 +2273,7 @@ public:
     bool setSandMoveSpeed();
 
     // Address: 0x029050C8
-    PowerChangeType getPowerChangeType(bool penguin_slide);
+    PowerChangeType getPowerChangeType(bool penguin_slide = false);
 
     // Address: 0x029056C8
     void icePowerChange(bool slip);
