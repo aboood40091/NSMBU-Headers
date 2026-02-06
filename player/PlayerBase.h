@@ -68,32 +68,32 @@ public:
 
     enum Status
     {
-        cStatus_1                   =   1,  // NSMBW: Bit 0x01
-        cStatus_2,                          // NSMBW: Bit 0x7D
-        cStatus_3,                          // NSMBW: Bit 0x02
+        cStatus_ActiveThisFrame     =   1,  // NSMBW: Bit 0x01
+        cStatus_DisableUpdate,              // NSMBW: Bit 0x7D
+        cStatus_DisableAttention,           // NSMBW: Bit 0x02
         cStatus_DemoScript,                 // NSMBW: Bit 0x03
         cStatus_DemoMode,                   // NSMBW: Boolean
         cStatus_DisableSound,               // NSMBW: Bit 0xB5
         cStatus_DispOut,                    // NSMBW: Bit 0xB9
         cStatus_DispOutDanger,              // NSMBW: Bit 0xBA
         cStatus_FaderPosSet,
-        cStatus_10,                         // Force-disable jump (accelY = 0)
-        cStatus_11,
+        cStatus_NoGravityUntilFall,
+        cStatus_JumpAddSpeed,
 
-        cStatus_14                  =  14,  // NSMBW: Bit 0x04
+        cStatus_OutOfPlay           =  14,  // NSMBW: Bit 0x04 (Dead or inside bubble)
 
-        cStatus_17                  =  17,  // NSMBW: Bit 0x06
+        cStatus_Stunned             =  17,  // NSMBW: Bit 0x06 (Stunned either by electric shock or ice)
 
-        cStatus_19                  =  19,  // NSMBW: Bit 0x08
+        cStatus_Quake               =  19,  // NSMBW: Bit 0x08
 
-        cStatus_25                  =  25,  // NSMBW: Bit 0x0A
-        cStatus_26,
+        cStatus_Jump                =  25,  // NSMBW: Bit 0x0A
+        cStatus_Fall,
 
-        cStatus_29                  =  29,  // NSMBW: Bit 0x0E
+        cStatus_SinkSandJumpSplash  =  29,  // NSMBW: Bit 0x0E
 
-        cStatus_34                  =  34,  // NSMBW: Bit 0x12
-        cStatus_35,
-        cStatus_36,                         // NSMBW: Bit 0x13
+        cStatus_WaitJump            =  34,  // NSMBW: Bit 0x12
+        cStatus_UnkJumpGravity,
+        cStatus_WallSlide,                  // NSMBW: Bit 0x13
         cStatus_37,
         cStatus_38,
 
@@ -134,7 +134,7 @@ public:
 
         cStatus_82                  =  82,
 
-        cStatus_84                  =  84,  // NSMBW: Bit 0x3A
+        cStatus_Swim                =  84,  // NSMBW: Bit 0x3A
 
         cStatus_89                  =  89,
 
@@ -267,7 +267,7 @@ public:
         cStatus_DemoAnmLoop,
 
         cStatus_247                 = 247,  // NSMBW: Bit 0x7E
-        cStatus_248,                        // NSMBW: Bit 0x7F (Funsui ascend?)
+        cStatus_NoBgCrossUpdate,            // NSMBW: Bit 0x7F
         cStatus_CheckBg,                    // NSMBW: Bit 0x80
         cStatus_250,
         cStatus_ShadowkunCatch,
