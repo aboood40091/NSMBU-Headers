@@ -952,6 +952,8 @@ public:
     static const s32 cAddCalcAngleYFrameNum_DemoOutDoor = 5;
 
 public:
+    // ------------------------------------ PlayerBase.cpp (1) ------------------------------------ //
+
     // Address: 0x028F23C0
     PlayerBase(const ActorCreateParam& param);
     // Address: 0x028F2CA8
@@ -1059,21 +1061,21 @@ public:
     // Address: 0x028F3A94
     f32 getFollowMameKuriboSpeedScaleY();
 
+    // ------------------------------------ PlayerBaseBg.cpp (1) ------------------------------------ //
+
     // Address: 0x028F6274
     BgAttr getFootBgAttr(BgUnitCode::Attr attr);
 
-protected:
     // Address: 0x028F684C
-    void postBgCrossImpl_();
+    void postBgCrossBase();
     // Address: 0x028F6298
-    bool checkLedge_();
+    bool checkLedge();
     // Address: 0x028F658C
-    bool vsPlayerCarryPush_();
+    bool vsPlayerCarryPush();
 
     // Address: 0x028F6B04
-    void setBcSensorFlagsImpl_();
+    void setBcSensorFlags();
 
-public:
     // Address: 0x028F77B4
     void bgCheck(bool side_view_check);
 
@@ -1204,6 +1206,8 @@ public:
     // Address: 0x028F8ABC
     void setAddLiftSpeedF();
 
+    // ------------------------------------ PlayerBaseCc.cpp ------------------------------------ //
+
     // Address: 0x028F9858
     virtual void initCollision(const ActorCollisionCheck::CollisionData& cc_data_react, const ActorCollisionCheck::CollisionData& cc_data_attack);
     // Address: 0x028F98FC
@@ -1281,6 +1285,8 @@ public:
     // Address: 0x028FAB14
     void getReductionModelScale(sead::Vector3f* p_scale);
 
+    // ------------------------------------ PlayerBaseBg.cpp (2) ------------------------------------ //
+
     // Address: 0x028F8B18
     void dispPinchRequestRDash();
 
@@ -1299,9 +1305,9 @@ public:
     bool isLenientOutCheck();
 
     // Address: 0x028F8C50
-    void setFallDownDemo();
+    void setFallDownDemoBase();
 
-    virtual void setFallDownDemoImpl() = 0;
+    virtual void setFallDownDemo() = 0;
 
     // Address: 0x028F8FA8
     bool checkDispOutLR();
@@ -1317,7 +1323,7 @@ public:
     // Address: 0x028f9694
     bool isBgPress(Actor* p_actor);
     // Address: 0x028f9710
-    bool setPressBgDamageImpl(DamageType type);
+    bool setPressBgDamageBase(DamageType type);
     // Address: 0x028F8F18
     bool checkPressBg();
 
@@ -1332,6 +1338,8 @@ private:
     void setPressBgCollision_(const BgCollision* p_bg_collision);
 
 public:
+    // ------------------------------------ PlayerBaseDemoCreate.cpp ------------------------------------ //
+
     // Address: 0x028FD318
     virtual void setCreate(const sead::Vector3f& pos, NextGotoType next_goto_type, s32 dir);
     // Address: 0x028FD394
@@ -1380,6 +1388,8 @@ public:
     virtual void initialBoxingKoopaJr(NextGotoType next_goto_type);
     // Address: 0x028FDD68
     virtual void initialTitle(NextGotoType next_goto_type);
+
+    // ------------------------------------ PlayerBaseDemo.cpp (1) ------------------------------------ //
 
     // StateID_DemoCreate           Address: 0x1022A008
     // initializeState_DemoCreate   Address: 0x028FD8B4
@@ -1512,6 +1522,8 @@ public:
     // Address: 0x028FB568
     bool executeDemoState();
 
+    // ------------------------------------ PlayerBaseDemoDosa.cpp (1) ------------------------------------ //
+
     virtual void initializeDemoControl(bool carry_chibi_yoshi = true) = 0;
 
     // Address: 0x029006AC
@@ -1569,11 +1581,11 @@ public:
             setControlDemoDir(cDirType_Right);
     }
 
-protected:
     // Address: 0x02900CC0
-    bool isUnkDemoLand_();
+    bool isUnkDemoLand();
 
-public:
+    // ------------------------------------ PlayerBaseDemo.cpp (2) ------------------------------------ //
+
     // Address: 0x028FB6EC
     virtual void onDemoType(DemoType type);
     // Address: 0x028FB704
@@ -1601,13 +1613,11 @@ public:
     // Address: 0x028FB948
     bool isDisableGoalDemo();
 
-protected:
     // Address: 0x028FB888
-    bool isDemo3Any_();
+    bool isDemo3Any();
     // Address: 0x028FB118
-    bool isDemo5Any_();
+    bool isDemo5Any();
 
-public:
     // Address: 0x028FB1D8
     void setFaderPos(const sead::Vector3f& pos);
     // Address: 0x028FB338
@@ -1633,6 +1643,8 @@ public:
 
     virtual bool setTimeOverDemo() = 0;
     virtual bool vf504() = 0;
+
+    // ------------------------------------ PlayerBaseDemoGoal.cpp ------------------------------------ //
 
     // Address: 0x02901D70
     void setDemoGoalMode(s32 demo_action, s32 demo_sub_action);
@@ -1700,6 +1712,8 @@ private:
     inline void initGoalJump_(const sead::Vector3f& pos, f32 jump_speed);
 
 public:
+    // ------------------------------------ PlayerBaseDokan.cpp ------------------------------------ //
+
     // Address: 0x028FDDE0
     void stopOutDokanOther();
 
@@ -1804,6 +1818,8 @@ public:
     // Address: 0x029002D8
     f32 getDokanWaitAnmFixFrame() const;
 
+    // ------------------------------------ ??? ------------------------------------ //
+
     // Address: Deleted
     virtual void vf5B4();
 
@@ -1813,6 +1829,8 @@ public:
 
     // Address: 0x02908BCC
     bool setWaitJumpAction();
+
+    // ------------------------------------ PlayerBaseState.cpp (1) ------------------------------------ //
 
     // StateID_None         Address: 0x1022A484
     // initializeState_None Address: 0x02908AE4
@@ -1942,6 +1960,8 @@ public:
         return false;
     }
 
+    // ------------------------------------ PlayerBaseSlip.cpp ------------------------------------ //
+
     virtual void setSlipAction() = 0;
 
     // Address: 0x0290B714
@@ -1982,6 +2002,8 @@ public:
         setSlipSmokeEffect();
         setSlipSE();
     }
+
+    // ------------------------------------ PlayerBaseStateKetsuAttack.cpp ------------------------------------ //
 
     virtual bool setHipAttackOnEnemy(const sead::Vector3f& target_pos) = 0;
     virtual void setHipBlockBreak() = 0;
@@ -2032,6 +2054,8 @@ public:
 
     // Address: 0x0290AA24
     void updateHipDropExEffect();
+
+    // ------------------------------------ PlayerBaseState.cpp (2) ------------------------------------ //
 
     virtual bool checkCrouch() = 0;
     // Address: 0x02906FE8
@@ -2119,6 +2143,8 @@ public:
         return getBesideMukiAngle(mDirection);
     }
 
+    // ------------------------------------ PlayerBaseDemoDosa.cpp (2) ------------------------------------ //
+
     // Address: 0x02900E78
     void DemoAnmNormal();
     // Address: 0x02900F00
@@ -2141,6 +2167,8 @@ public:
     void DemoAnmEndingGladWait();
     // Address: 0x02901A68
     virtual void DemoAnmTottenItem();
+
+    // ------------------------------------ PlayerBase.cpp (2) ------------------------------------ //
 
     // Address: 0x028F3B44
     void coinJumpOnStampCB(s32 coin_num);
@@ -2203,6 +2231,8 @@ public:
     {
         return mpGravityData;
     }
+
+    // ------------------------------------ PlayerBaseSpeed.cpp ------------------------------------ //
 
     // Address: 0x02904A6C
     ActorBgCollisionCheck::SakaType getSakaType(s32 dir);
@@ -2294,7 +2324,7 @@ public:
     // Address: 0x029063AC
     void setHopAirDrift();
 
-    virtual void setFallAction() = 0;
+    // ------------------------------------ PlayerBase.cpp (3) ------------------------------------ //
 
     // Address: 0x028F40D8
     f32 getThrowSpeed();
@@ -2319,6 +2349,10 @@ public:
     // Address: 0x028F4EE8
     bool checkJumpTrigger();
 
+    // ------------------------------------ PlayerBaseStateJump.cpp ------------------------------------ //
+
+    virtual void setFallAction() = 0;
+
     // Address: 0x02909050
     bool setWaitJump();
 
@@ -2338,6 +2372,8 @@ public:
     virtual void setJumpSound(JumpSe jump_se_type) = 0;
     virtual void vf8AC(bool) = 0;
 
+    // ------------------------------------ PlayerBaseStateJumpDai.cpp ------------------------------------ //
+
     // Address: 0x02909BC0
     bool setJumpDaiRide();
 
@@ -2348,6 +2384,8 @@ public:
 
     // Address: 0x02909D38
     void setPlayerJumoDaiPos();
+
+    // ------------------------------------ PlayerBaseDemoDown.cpp ------------------------------------ //
 
     virtual bool isNoDamage() = 0;
     virtual bool isNoDamagePlayer() = 0;  // Only used by Yoshi, called at 0x0295FAF8
@@ -2365,6 +2403,8 @@ public:
     void setYoganDamageEffect();
     // Address: 0x02901C20
     void setPoisonDamageEffect();
+
+    // ------------------------------------ PlayerBase.cpp (4) ------------------------------------ //
 
     // Address: 0x028F4F48
     void clearTreadCount();
@@ -2389,6 +2429,8 @@ public:
     {
         onStatus(cStatus_133);
     }
+
+    // ------------------------------------ PlayerBaseEffect.cpp ------------------------------------ //
 
     virtual EffectID getHipDropEffectID() = 0;
     virtual EffectID getHipDropExEffectID() = 0;
@@ -2455,6 +2497,8 @@ public:
     // Address: 0x029049FC
     void setVsPlHipAttackEffect();
 
+    // ------------------------------------ PlayerBaseVoice.cpp ------------------------------------ //
+
     // Address: 0x0290B93C
     bool isDisableSound(StartSoundType type);
 
@@ -2491,6 +2535,8 @@ public:
     void setSlipSE();
     // Address: 0x0290BF08
     void setTurnSE();
+
+    // ------------------------------------ PlayerBaseDemoSubject.cpp ------------------------------------ //
 
     // StateID_SubjectWait          Address: 0x1022A3B8
     // initializeState_SubjectWait  Address: 0x02903F30
@@ -2548,6 +2594,8 @@ public:
     virtual void setSubjectFail() = 0;
     virtual void setShadowFail() = 0;
 
+    // ------------------------------------ PlayerBaseAttention.cpp ------------------------------------ //
+
     // Address: 0x028F5E90
     void calcHeadAttentionAngle();
 
@@ -2558,6 +2606,8 @@ private:
     bool calcHeadAttentionAngle_(const sead::Vector2f& target_pos, sead::BitFlag32 flag, Angle max_angle_y);
 
 public:
+    // ------------------------------------ Common ------------------------------------ //
+
     const PlayerKey& getPlayerKey() const
     {
         return mPlayerKey;
