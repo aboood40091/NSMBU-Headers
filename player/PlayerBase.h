@@ -129,8 +129,8 @@ public:
 
         cStatus_76                  =  76,  // NSMBW: Bit 0x33
 
-        cStatus_78                  =  78,  // NSMBW: Bit 0x35
-        cStatus_79,                         // NSMBW: Bit 0x36
+        cStatus_Pole                =  78,  // NSMBW: Bit 0x35
+        cStatus_PoleRope,                   // NSMBW: Bit 0x36
 
         cStatus_82                  =  82,
 
