@@ -115,7 +115,7 @@ public:
 
         cStatus_60                  =  60,  // Disable block-hit bounce
 
-        cStatus_62                  =  62,
+        cStatus_62                  =  62,  // Carry-related
         cStatus_63,
         cStatus_64,                         // NSMBW: Bit 0x73 (MAYBE)
 
@@ -1320,9 +1320,9 @@ public:
     // Address: 0x028F9560
     bool checkStandUpRoof();
 
-    // Address: 0x028f9694
+    // Address: 0x028F9694
     bool isBgPress(Actor* p_actor);
-    // Address: 0x028f9710
+    // Address: 0x028F9710
     bool setPressBgDamageBase(DamageType type);
     // Address: 0x028F8F18
     bool checkPressBg();
