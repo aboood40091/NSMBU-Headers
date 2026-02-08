@@ -344,6 +344,11 @@ public:
         return mAnmFlag[type];
     }
 
+    bool isAnmFlag(AnmFlagType type, AnmFlagBit bit) const
+    {
+        return mAnmFlag[type] >> bit & 1;
+    }
+
     void changeFaceAngleOverrideFlag(FaceAngleOverrideFlag flag, bool enable)
     {
         mFaceAngleOverrideFlag.change(flag, enable);

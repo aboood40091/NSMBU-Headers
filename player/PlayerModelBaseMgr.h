@@ -304,6 +304,11 @@ public:
         return mpModelBase->getAnmFlag(type);
     }
 
+    bool isAnmFlag(PlayerModelBase::AnmFlagType type, PlayerModelBase::AnmFlagBit bit) const
+    {
+        return mpModelBase->isAnmFlag(type, bit);
+    }
+
     void changeFaceAngleOverrideFlag(PlayerModelBase::FaceAngleOverrideFlag flag, bool enable)
     {
         mpModelBase->changeFaceAngleOverrideFlag(flag, enable);
