@@ -108,7 +108,7 @@ public:
 
     enum AnmFlagBit
     {
-        cAnmFlagBit_0               =  0,
+        cAnmFlagBit_Sit             =  0,
         // ...
         cAnmFlagBit_7               =  7,
         cAnmFlagBit_8               =  8,
