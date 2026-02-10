@@ -240,6 +240,11 @@ public:
         return ActorType(mActorType);
     }
 
+    void setKind(ActorType type)
+    {
+        mActorType = type;
+    }
+
     bool getManualDeletedFlag() const
     {
         return mManualDeletedFlag;
