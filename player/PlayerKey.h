@@ -26,6 +26,8 @@ public:
 public:
     PlayerKey();
 
+    void setPlayerNo(s32 player_no);
+
     void update();
     void updateEnd();
 
