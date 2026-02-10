@@ -260,6 +260,141 @@ public:
 
     // ------------------------------------ Uncategorized ------------------------------------ //
 
+    void executeMain() override;
+    void executeLastPlayer() override;
+    void executeLastAll() override;
+
+    void setPlayerModeImpl(PlayerMode mode, bool temporary) override;
+
+    using PlayerBase::getTallType;
+    PlayerTallType getTallType(PlayerMode mode) override;
+
+    void getMaskPos(sead::Vector3f& pos) override;
+    void getMaskCaveCheckPos(sead::Vector3f* p_pos, f32* p_y_offset) override;
+
+    PlayerBgPointHIO* getBgPointData() override;
+
+    f32 getStandHeadBgPointY() override;
+
+    void checkBgCrossSub() override;
+    void postBgCross() override;
+
+    void clearJumpActionInfo() override;
+
+    bool vf19C() override;
+
+    void setFallDownDemo() override;
+
+    bool setBalloonInDispOut(s32) override;
+    bool setBalloonDispOut() override;
+
+    void initializeDemoControl(bool carry_chibi_yoshi = true) override;
+
+    bool isChange() override;
+
+    bool setTimeOverDemo() override;
+    bool vf504() override;
+
+    void setGoalDemo(const sead::Vector2f& pos, f32 walk_target_pos_x, bool secret_exit) override;
+    bool setHideNotGoalPlayer() override;
+    bool vf51C(u32) override;
+    bool setDoorDemo(Actor*, u32) override;
+    void setGoalPoleCatchVoice() override;
+
+    void executeDemoGoal_RideOffJump() override;
+    void executeDemoGoal_Run() override;
+    void executeDemoGoal_PreRun() override;
+    void executeDemoGoal_Item() override;
+
+    bool execDemoKimePose(CourseClearType course_clear_type) override;
+    void finDemoKimePose() override;
+
+    bool isEnableDokanInStatus() override;
+    bool isEnableMameDokanIn() override;
+
+    f32 vf584() override;
+    void getDokanWallBgPointData(ActorBgCollisionCheck::Sensor* p_sensor) override;
+
+    void initDemoOutDokan() override;
+
+    bool setOutDokanAngle() override;
+
+    bool bouncePlayer1(f32 speed_y, f32 speed_F, bool, BounceType bounce_type, JumpSe jump_se_type) override;
+    bool bouncePlayer2(f32 speed_y, f32 speed_F, bool, BounceType bounce_type, JumpSe jump_se_type) override;
+
+    bool checkWalkNextAction() override;
+
+    void setWaitActionAnm(AnmBlend blend) override;
+    void setWalkActionAnm(AnmBlend blend) override;
+    void walkActionInit_Wait(AnmBlend blend) override;
+
+    void setSlipAction() override;
+
+    bool checkSlipMoveEnd() override;
+
+    bool setHipAttackOnEnemy(const sead::Vector3f& target_pos) override;
+    void setHipBlockBreak() override;
+
+    void setHipAttack_AttackStart() override;
+
+    void setHipAttack_StandNormalEnd() override;
+
+    bool checkCrouch() override;
+
+    bool setHipAttackToKaniHangAction() override;
+
+    bool vf7F4(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other) override;
+
+    void releaseFunsuiAction() override;
+
+    f32 getCloudOffsetY() override;
+
+    void setZPosition() override;
+    void setZPosition(f32 z) override;
+    void setZPositionDirect(f32 z) override;
+    void offZPosSetNone() override;
+
+    void setFallAction() override;
+
+    f32 getJumpSpeed() override;
+    f32 getMoveJumpSpeed() override;
+
+    void setJumpSound(JumpSe jump_se_type) override;
+    void vf8AC(bool) override;
+
+    bool isNoDamage() override;
+    bool isNoDamagePlayer() override;
+    bool setNormalDamage(ActorCollisionCheck* p_cc) override;
+    bool setPressBgDamage(DamageType type, bool) override;
+
+    void clearStarCount() override;
+    s8 getStarCount() const override;
+    s8 calcStarCount(s32 max) override;
+    void setStar(StarSet, s32 time) override;
+    void endStar() override;
+    void setVirusStar(PlayerBase* p_other) override;
+
+    EffectID getHipDropEffectID() override;
+    EffectID getHipDropExEffectID() override;
+    EffectID getHipDropSurfaceEffectID() override;
+    EffectID getHipDropBlurEffectID() override;
+    EffectID getSlipSmokeEffectID() override;
+    EffectID getTurnBrakeEffectID() override;
+    EffectID getTurnBrakeSmokeEffectID() override;
+    EffectID getRunSmokeEffectID() override;
+    EffectID getDashSmokeEffectID() override;
+    EffectID getLandingSmokeEffectID() override;
+    EffectID getWaterSplashEffectID(bool big) override;
+    EffectID getWaterSplashSEffectID() override;
+    EffectID getPoisonSplashEffectID(bool big) override;
+    EffectID getLavaSplashEffectID(bool big) override;
+    EffectID getLavaWaveSplashEffectID(bool big) override;
+
+    void setSubjectCoinTimeUp() override;
+    void setSubjectClear() override;
+    void setSubjectFail() override;
+    void setShadowFail() override;
+
     // StateID_Balloon          Address: 0x1022B18C
     // initializeState_Balloon  Address: 0x029265C0
     // executeState_Balloon     Address: 0x02926AA0
