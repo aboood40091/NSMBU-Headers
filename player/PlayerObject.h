@@ -1,8 +1,16 @@
 #pragma once
 
+#include <actor/PropelParts.h>
+#include <graphics/Light.h>
 #include <map/CarryType.h>
 #include <player/PlayerBase.h>
+#include <player/PlayerEatData.h>
 #include <player/PlayerModelMgr.h>
+#include <player/PlyOrchestra.h>
+#include <player/util/ChangeMgr.h>
+
+class EventDie;
+class EventPlayerChange;
 
 class PlayerObject : public PlayerBase  // vtbl Address: 0x1016C150
 {
@@ -38,6 +46,20 @@ public:
         cCarryStep_LiftUp,
         cCarryStep_Carry
     };
+    static_assert(sizeof(CarryStep) == 4);
+
+    enum DokanCannonType
+    {
+        cDokanCannonType_ShootUp = 0,
+        cDokanCannonType_ShootDiagonal,
+        cDokanCannonType_WarpCannon
+    };
+    static_assert(sizeof(DokanCannonType) == 4);
+
+    enum QuakeMode
+    {
+    };
+    static_assert(sizeof(QuakeMode) == 4);
 
 public:
     // ------------------------------------ PlayerObject.cpp ------------------------------------ //
@@ -250,19 +272,200 @@ public:
     }
 
 protected:
-    PlayerModelMgr  mModelMgr;
-    u32             _2760[(0x2784 - 0x2760) / sizeof(u32)];
-    ActorUniqueID   mCarryActorID;
-    CarryStep       mCarryStep;
-    CarryStep       mCarryStepPrev;
-    f32             mCarryStepTimer;
-    f32             mCarryStepLength;
-    u32             _2798[(0x2AC8 - 0x2798) / sizeof(u32)];
-    u32             _2ac8;
-    u32             _2acc;
-    u32             _2ad0[(0x34CC - 0x2AD0) / sizeof(u32)];
-    f32             mJumpTimerF;
-    s32             mJumpAnmID;
-    s32             _34d4;  // Some random timer
+    PlayerModelMgr                  mModelMgr;
+    ActorBgCollisionCheck::Sensor   _2760;
+    PlayerMode                      mModePrev;                      // Maybe?
+    PlayerMode                      mModeNext;                      // ^^^
+    sead::Vector2f                  _2774;
+    s32                             mStarTimer;
+    s32                             mStarCnt;
+    ActorUniqueID                   mCarryActorID;
+    CarryStep                       mCarryStep;
+    CarryStep                       mCarryStepPrev;
+    f32                             mCarryStepTimer;
+    f32                             mCarryStepLength;
+    sead::SafeArray<s32, 3>         _2798;
+    sead::SafeArray<s32, 3>         _27a4;
+    f32                             _27b0[2];
+    f32                             _27b8[2];
+    sead::Vector3f                  _27c0;
+    u32                             _27cc;
+    u32                             mScrollMode;
+    PropelParts                     mPropelParts;
+    Light                           mLight;
+    s32                             _2998;
+    s32                             _299c;
+    u8                              _29a0;
+    EventPlayerChange*              mpEventPlayerChange;
+    ChangeMgr                       mChangeMgr;
+    f32                             _29d0;
+    u8                              _29d4;
+    EventDie*                       mpEventDie;
+    u8                              _29dc;
+    bool                            mPlayerEatDieNow;
+    sead::Vector3f                  _29e0;
+    f32                             mEffectScale;
+    DokanCannonType                 mDokanCannonType;
+    sead::Vector2f                  mDemoInBossMoveTarget;
+    u32                             mPMusaTransformStep;
+    DirType                         _2a00;
+    bool                            _2a04;
+    u32                             _2a08;
+    u32                             _2a0c;
+    u32                             _2a10;
+    u8                              _2a14;
+    u32                             mWhichJump;
+    u32                             _2a1c;
+    u32                             _2a20;
+    u32                             _2a24;
+    u32                             _2a28;
+    Angle                           mSpinRotStep;
+    Angle                           mMissSpinAngle;
+    u32                             _2a34;
+    u32                             _2a38;
+    f32                             _2a3c;
+    u32                             _2a40;
+    u32                             _2a44;
+    f32                             _2a48;
+    DirType                         mWallSlideDir;
+    ActorUniqueID                   mLiftUpActorID;
+    f32                             _2a54;
+    f32                             _2a58;
+    u32                             _2a5c;
+    s32                             _2a60;
+    f32                             _2a64;
+    u8                              _2a68;
+    s32                             _2a6c;
+    s32                             _2a70;
+    u32                             _2a74;
+    s32                             _2a78;
+    u8                              _2a7c;
+    u32                             _2a80;
+    u32                             _2a84;
+    u32                             _2a88;
+    s32                             _2a8c;
+    u32                             mBalloonControllerConnectStatus;
+    u32                             _2a94;
+    sead::Vector3f                  _2a98;
+    u32                             mCannonType;
+    u32                             _2aa8;
+    sead::Vector3f                  _2aac;
+    f32                             _2ab8;
+    f32                             _2abc;
+    u32                             _2ac0;
+    Angle                           _2ac4;
+    u32                             _2ac8;
+    s32                             _2acc;
+    EffectObj                       _2ad0;
+    u32                             _2b38;
+    sead::Vector2f                  _2b3c;
+    u8                              _2b44;
+    u32                             _2b48;
+    u32                             _2b4c;
+    u32                             _2b50;
+    u32                             _2b54;
+    u32                             _2b58;
+    f32                             _2b5c;
+    sead::Vector2f                  _2b60;
+    u32                             _2b68;
+    f32                             _2b6c;
+    f32                             _2b70;
+    u32                             _2b74;
+    u32                             _2b78;
+    u8                              mPropelActionSubTimer;
+    bool                            mPropelFlyTime;
+    u32                             _2b80;
+    s32                             _2b84;
+    EffectObj                       mPropelFallSpinEffect;
+    EffectObj                       _2bf0;
+    Angle                           _2c58;
+    EffectObj                       mSpinHipAttackEffect;
+    u32                             _2cc4;
+    u32                             _2cc8;
+    ActorUniqueID                   mPlyIceActorID;
+    QuakeMode                       mQuakeMode;
+    s32                             mQuakeRumbleTimer;
+    f32                             _2cd8;
+    bool                            _2cdc;
+    s32                             _2ce0;
+    s32                             _2ce4;
+    sead::BitFlag16                 mPenguinSwimFlag;
+    u32                             mTarzanRopeBgType;              // 0 = ivy, 1 = kusari, 2 = rope(?)
+    f32                             _2cf0;
+    u32                             _2cf4;
+    u32                             _2cf8;
+    u32                             _2cfc;
+    Angle                           mRopeAngleNow;
+    Angle                           mRopeAngleDiffNow;
+    Angle                           mRopeAngleOld;
+    Angle                           mRopeAngleDiffOld;
+    u32                             _2d10;
+    f32                             mMameWallWalkSpeed;
+    sead::Vector2f                  _2d18;
+    u32                             _2d20;
+    u32                             _2d24;
+    u32                             _2d28;
+    f32                             mKaniPosY;
+    bool                            _2d30;
+    u32                             mMusaJumpStep;
+    f32                             _2d38;
+    f32                             _2d3c;
+    Angle                           _2d40;
+    Angle                           _2d44;
+    bool                            mMusaStartWallSlide;
+    bool                            mMusaCanDoJump;
+    u8                              _2d4a;
+    u32                             _2d4c;
+    u32                             _2d50;
+    u32                             mMusaFlyStep;
+    PlayerEatData                   mEatData;
+    sead::Vector2f                  mEatPosOffset;
+    bool                            _2d84;
+    sead::Vector2f                  mEatPosReserve;
+    DirType                         _2d90;
+    ActorUniqueID                   mPlayerHangChildActorID;
+    ActorUniqueID                   mPlayerHangParentActorID;
+    u32                             _2d9c;
+    sead::Matrix34f                 mJrCrownMtx;
+    u32                             _2dd0;
+    u32                             mQuakeTimer;
+    bool                            mQuakeEffectFlag;
+    Effect                          mItemGetEffect1;
+    Effect                          mItemGetEffect2;
+    Effect                          mPowerUpEffect;
+    EffectObj                       mSwimEffect;
+    EffectObj                       mPaddleSwimEffectL;
+    EffectObj                       mPaddleSwimEffectR;
+    EffectObj                       _2fd4;
+    EffectObj                       _303c;
+    Effect                          mSpinJumpEffect;
+    Effect                          mMissSpinJumpEffect;
+    EffectObj                       _3124;
+    EffectObj                       mMusaFlyEffect;
+    s32                             mMusaFlyUpEffectIndex;
+    sead::SafeArray<EffectObj, 2>   mMusaFlyUpEffectDoubleBuffer;
+    u32                             mStarEffectStep;                // 0 = Idle, 1 = Active, 2 = Fading
+    EffectObj                       mStarEffect;
+    u32                             mPMusaEffectStep;               // ^^^
+    EffectObj                       mPMusaEffect;
+    u32                             mPMusaFlyEffectStep;            // ^^^
+    EffectObj                       mPMusaFlyEffect;
+    u32                             _340c;
+    u32                             _3410;
+    EffectObj                       _3414;
+    PlyOrchestra                    mOrchestra;
+    s32                             _3490;                          // Ending Dance related
+    s32                             _3494;                          // ^^^
+    sead::SafeArray<s32, 3>         _3498;                          // ^^^
+    sead::BitFlag8                  _34a4;                          // ^^^
+    s32                             mIdleCounter;                   // ^^^
+    u32                             _34ac;                          // ^^^
+    sead::SafeArray<s32, 5>         _34b0;                          // ^^^
+    bool                            _34c4;                          // ^^^
+    bool                            _34c5;                          // ^^^
+    f32                             mJumpAnmRate;
+    f32                             mJumpTimerF;
+    s32                             mJumpAnmID;
+    s32                             _34d4;                          // Some random timer
 };
 static_assert(sizeof(PlayerObject) == 0x34D8);
