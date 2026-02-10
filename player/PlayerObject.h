@@ -271,6 +271,46 @@ public:
         return *mStateMgr.getStateID() == StateID_Balloon;
     }
 
+    static s32 getParamPlayerNo(u32 param_0)
+    {
+        return param_0 & 0xF;
+    }
+
+    static PlayerMode getParamPlayerMode(u32 param_0)
+    {
+        return PlayerMode(param_0 >> 4 & 0xF);
+    }
+
+    static PlayerCharacter getParamPlayerCharacter(u32 param_0)
+    {
+        return PlayerCharacter(param_0 >> 8 & 0xF);
+    }
+
+    static PlayerModelBase::Type getParamPlayerModelType(u32 param_0)
+    {
+        switch (getParamPlayerCharacter(param_0))
+        {
+        case cPlayerCharacter_Mario:
+        default:
+            return PlayerModelBase::cType_Mario;
+        case cPlayerCharacter_Luigi:
+            return PlayerModelBase::cType_Luigi;
+        case cPlayerCharacter_YellowToad:
+            return PlayerModelBase::cType_YellowToad;
+        case cPlayerCharacter_BlueToad:
+            return PlayerModelBase::cType_BlueToad;
+        case cPlayerCharacter_Nabbit:
+            return PlayerModelBase::cType_Nabbit;
+        case cPlayerCharacter_Mii:
+            return PlayerModelBase::cType_Mii;
+        }
+    }
+
+    static DirType getParamPlayerFacingDir(u32 param_0)
+    {
+        return DirType(param_0 >> 24 & 0xF);
+    }
+
 protected:
     PlayerModelMgr                  mModelMgr;
     ActorBgCollisionCheck::Sensor   _2760;
