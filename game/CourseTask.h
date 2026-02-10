@@ -44,6 +44,11 @@ public:
         return &mGameData;
     }
 
+    const FieldPlayerData* getPlayerData(s32 index) const
+    {
+        return &mGameData.getPlayerData(index);
+    }
+
     FieldGameMode::Mode getGameMode() const
     {
         return mGameData.getGameMode().getMode();
