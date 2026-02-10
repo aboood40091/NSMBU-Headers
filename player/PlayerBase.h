@@ -17,6 +17,7 @@
 #include <state/FStateVirtualID.h>
 
 #include <container/seadRingBuffer.h>
+#include <container/seadSafeArray.h>
 
 struct PlayerBgPointHIO
 {
