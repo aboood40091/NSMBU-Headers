@@ -21,6 +21,9 @@ public:
     // Address: 0x0202B144
     static nw::snd::OutputLine getRemotePlayer(s32 player_no);
 
+    // Address: 0x0202B184
+    static SndObjctPly::PlyMode getPlyMode(PlayerMode player_mode);
+
 public:
     class SoundID
     {
