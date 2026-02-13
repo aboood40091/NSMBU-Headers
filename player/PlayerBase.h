@@ -84,13 +84,14 @@ public:
         cStatus_OutOfPlay           =  14,  // NSMBW: Bit 0x04 (Dead or inside bubble)
 
         cStatus_Stunned             =  17,  // NSMBW: Bit 0x06 (Stunned either by electric shock or ice)
-
-        cStatus_Quake               =  19,  // NSMBW: Bit 0x08
+        cStatus_18,                         // NSMBW: Bit 0x07
+        cStatus_Quake,                      // NSMBW: Bit 0x08
 
         cStatus_Jump                =  25,  // NSMBW: Bit 0x0A
         cStatus_Fall,
 
-        cStatus_SinkSandJumpSplash  =  29,  // NSMBW: Bit 0x0E
+        cStatus_SinkSandSurfJump    =  29,  // NSMBW: Bit 0x0E
+        cStatus_SitJump,                    // NSMBW: Bit 0x0F
 
         cStatus_WaitJump            =  34,  // NSMBW: Bit 0x12
         cStatus_UnkJumpGravity,
@@ -101,7 +102,8 @@ public:
         cStatus_40                  =  40,  // NSMBW: Bit 0x15
         cStatus_41,                         // NSMBW: Bit 0x16
 
-        cStatus_46                  =  46,
+        cStatus_45                  =  45,  // NSMBW: Bit 0x19
+        cStatus_46,
         cStatus_47,
         cStatus_48,                         // NSMBW: Bit 0x1C
         cStatus_49,                         // NSMBW: Bit 0x1D
@@ -121,17 +123,18 @@ public:
         cStatus_64,                         // NSMBW: Bit 0x73 (MAYBE)
 
         cStatus_68                  =  68,  // NSMBW: Bit 0x2A
-        cStatus_69,                         // NSMBW: Bit 0x2B
+        cStatus_Spin,                       // NSMBW: Bit 0x2B
 
         cStatus_71                  =  71,  // NSMBW: Bit 0x2D
 
         cStatus_73                  =  73,  // NSMBW: Bit 0x30
         cStatus_74,                         // NSMBW: Bit 0x31
 
-        cStatus_76                  =  76,  // NSMBW: Bit 0x33
-
-        cStatus_Pole                =  78,  // NSMBW: Bit 0x35
+        cStatus_Vine                =  76,  // NSMBW: Bit 0x33
+        cStatus_Hang,                       // NSMBW: Bit 0x34
+        cStatus_Pole,                       // NSMBW: Bit 0x35
         cStatus_PoleRope,                   // NSMBW: Bit 0x36
+        cStatus_KaniHang,                   // NSMBW: Bit 0x37
 
         cStatus_82                  =  82,
 
@@ -150,17 +153,18 @@ public:
         cStatus_104                 = 104,
         cStatus_105,
         cStatus_106,
-        cStatus_107,                        // NSMBW: Bit 0x45 (Is carried maybe?)
+        cStatus_RidePlayer,                 // NSMBW: Bit 0x45
 
         cStatus_113                 = 113,  // NSMBW: Bit 0x4A
+        cStatus_RideYoshi,                  // NSMBW: Bit 0x4B
 
         cStatus_116                 = 116,  // NSMBW: Bit 0x4D
         cStatus_117,
         cStatus_118,
-        cStatus_119,                        // NSMBW: Bit 0x4E
-
-        cStatus_121                 = 121,  // NSMBW: Bit 0x51
-        cStatus_122,                        // NSMBW: Bit 0x53
+        cStatus_RideCloud,                  // NSMBW: Bit 0x4E
+        cStatus_RideJrCrown,                // NSMBW: Bit 0x4F
+        cStatus_121,                        // NSMBW: Bit 0x51
+        cStatus_RideBalloon,                // NSMBW: Bit 0x53
         cStatus_123,                        // Make visible next frame
 
         cStatus_RideNatDone         = 127,  // NSMBW: Bit 0x58 (Ride Nat target reached)
@@ -225,13 +229,13 @@ public:
         cStatus_195                 = 195,  // NSMBW: Bit 0x96
         cStatus_196,                        // NSMBW: Bit 0x97
         cStatus_197,                        // NSMBW: Bit 0x98
-
-        cStatus_199                 = 199,  // NSMBW: Bit 0xA7
+        cStatus_ZPosSetNone,
+        cStatus_199,                        // NSMBW: Bit 0xA7
         cStatus_200,                        // NSMBW: Bit 0xA8
 
         cStatus_203                 = 203,  // NSMBW: Bit 0xAA
         cStatus_204,                        // NSMBW: Bit 0xAB
-        cStatus_205,                        // NSMBW: Bit 0xAD
+        cStatus_Penguin,                        // NSMBW: Bit 0xAD
         cStatus_206,                        // NSMBW: Bit 0xAE
         cStatus_207                 = 207,
         cStatus_208,
@@ -336,7 +340,7 @@ public:
         cBgCross_IsSlideSlope,
         cBgCross_OnSakaUnderRoof,                   // NSMBW Bit: 0x19
         cBgCross_IsWaterAttr,
-        cBgCross_32,
+        cBgCross_32,                                // On Ride that's moving up?
         cBgCross_IsSand,                            // NSMBW Bit: 0x1A
         cBgCross_IsSinkSand,
         cBgCross_IsSlightlyInsideSinkSand,          // NSMBW Bit: 0x1B
@@ -850,7 +854,9 @@ public:
 
     enum StarSet
     {
-        cStarSet_Num = 3
+        cStarSet_Virus = 0,
+        cStarSet_CustomTime,
+        cStarSet_Default
     };
 
     enum BounceType
@@ -1825,8 +1831,8 @@ public:
     virtual void vf5B4();
 
     // Bounce player
-    virtual bool bouncePlayer1(f32 speed_y, f32 speed_F, bool, BounceType bounce_type, JumpSe jump_se_type) = 0;   // Does lots of checks that can cancel the bounce, calls bouncePlayer2 otherwise
-    virtual bool bouncePlayer2(f32 speed_y, f32 speed_F, bool, BounceType bounce_type, JumpSe jump_se_type) = 0;
+    virtual bool bouncePlayer1(f32 speed_y, f32 speed_F, bool enable_LR, BounceType bounce_type, JumpSe jump_se_type) = 0;   // Does lots of checks that can cancel the bounce, calls bouncePlayer2 otherwise
+    virtual bool bouncePlayer2(f32 speed_y, f32 speed_F, bool enable_LR, BounceType bounce_type, JumpSe jump_se_type) = 0;
 
     // Address: 0x02908BCC
     bool setWaitJumpAction();
@@ -2228,7 +2234,7 @@ public:
         return false;
     }
 
-    virtual PlayerGravityHIO* getGravityData()
+    virtual const PlayerGravityHIO* getGravityData()
     {
         return mpGravityData;
     }
@@ -2421,7 +2427,7 @@ public:
     virtual void clearStarCount() = 0;
     virtual s8 getStarCount() const = 0;
     virtual s8 calcStarCount(s32 max) = 0;
-    virtual void setStar(StarSet, s32 time) = 0;
+    virtual void setStar(StarSet set_type = cStarSet_Default, s32 time = 0) = 0;
     virtual bool isStar() const = 0;
     virtual void endStar() = 0;
     virtual void setVirusStar(PlayerBase* p_other) = 0;
@@ -2682,12 +2688,12 @@ protected:
     sead::Vector3f                      _4c8;
     PlayerSpeedHIO*                     mpSpeedData_Normal;
     PlayerSpeedHIO*                     mpSpeedData_Star;
-    PlayerGravityHIO*                   mpGravityData;
+    const PlayerGravityHIO*             mpGravityData;
     s32                                 mNoGravityTimer;
     f32                                 _4e4;
     bool                                _4e8;
     sead::Vector3f                      mNextFrameSpeed;
-    s8                                  mPriority;
+    u8                                  mPriority;
     s8                                  mTreadCnt;
     s8                                  mPlComboCnt;
     PlayerCharacter                     mCharacter;
