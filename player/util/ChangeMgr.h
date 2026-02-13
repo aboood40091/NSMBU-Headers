@@ -34,6 +34,11 @@ public:
     // Address: 0x02975AE0
     ChangeMgr();
 
+    bool isChange() const
+    {
+        return mStep != cStep_None;
+    }
+
 private:
     PlayerMode      mModeFrom;
     PlayerMode      mModeTo;
