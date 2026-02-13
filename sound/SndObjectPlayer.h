@@ -32,6 +32,11 @@ public:
     {
     }
 
+    void setVoice(PlayerCharacterVoice voice)
+    {
+        mVoice = voice;
+    }
+
     void setPlyMode(PlyMode mode)
     {
         mPlyMode = mode;
