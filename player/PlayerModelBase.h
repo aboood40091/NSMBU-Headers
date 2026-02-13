@@ -87,12 +87,12 @@ public:
     static_assert(cTexAnmType_Num == 37);
     static_assert(sizeof(cTexAnmType_Num) == 4);
 
-    enum TevColorOverrideType
+    enum DarkTargetType
     {
-        cTevColorOverrideType_InvTevColor0 = 0,
-        cTevColorOverrideType_TevKColor3
+        cDarkTargetType_InvTevColor0 = 0,   // Set for normal & tower door
+        cDarkTargetType_TevKColor3          // Set for castle door
     };
-    static_assert(sizeof(TevColorOverrideType) == 4);
+    static_assert(sizeof(DarkTargetType) == 4);
 
     enum Flag
     {
@@ -163,7 +163,7 @@ public:
     virtual void setModelDrawBufferIndex(s32 idx_opa, s32 idx_xlu) = 0;
     virtual void setModelDrawFlagDirect(u32 flag) = 0;
 
-    virtual void setTevColorOverride(TevColorOverrideType type, f32 value) = 0;
+    virtual void setDark(DarkTargetType type, f32 value) = 0;
 
     // Address: 0x02920F88
     void reset();

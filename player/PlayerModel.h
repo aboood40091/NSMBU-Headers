@@ -96,7 +96,7 @@ public:
     void setModelDrawFlagDirect(u32 flag) override;
 
     // Address: 0x0291A720
-    void setTevColorOverride(TevColorOverrideType type, f32 value) override;
+    void setDark(DarkTargetType type, f32 value) override;
 
     // Address: 0x0291A744
     void onStarAnm() override;
@@ -265,8 +265,8 @@ protected:
     f32                                                 mBlendRate_v0;
     f32                                                 mBlendRate_v1;
     f32                                                 mBlendRate_v2;
-    TevColorOverrideType                                mTevColorOverrideType;
-    f32                                                 mTevColorOverrideValue;
+    DarkTargetType                                      mDarkTargetType;
+    f32                                                 mDarkColorValue;
     sead::BitFlag32                                     mEnvTypeFlag;
     bool                                                mOverrideLightMap;
 };
