@@ -7,12 +7,34 @@
 class SndObjctPly : public NMSndObject
 {
 public:
+    enum PlyMode
+    {
+        cPlyMode_Small = 0,
+        cPlyMode_Normal,
+        cPlyMode_Fire,
+        cPlyMode_Mini,
+        cPlyMode_Propeller,
+        cPlyMode_Penguin,
+        cPlyMode_Ice,
+        cPlyMode_Squirrel,
+        cPlyMode_PSquirrel,
+        cPlyMode_Num
+    };
+    static_assert(cPlyMode_Num == 9);
+    static_assert(sizeof(PlyMode) == 4);
+
+public:
     SndObjctPly(ObjType type, nw::snd::OutputLine line_flag)
         : NMSndObject(type, line_flag)
         , mVoice(cVoice_Num)
-        , mPlyMode(cPlayerMode_Num)
+        , mPlyMode(cPlyMode_Num)
         , _124(0)
     {
+    }
+
+    void setPlyMode(PlyMode mode)
+    {
+        mPlyMode = mode;
     }
 
     // Address: 0x029BF2D4
@@ -44,7 +66,7 @@ public:
 
 protected:
     PlayerCharacterVoice    mVoice;
-    PlayerMode              mPlyMode;
+    PlyMode                 mPlyMode;
     u8                      _124;
 };
 static_assert(sizeof(SndObjctPly) == 0x128);
