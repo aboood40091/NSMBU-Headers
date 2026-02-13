@@ -26,6 +26,11 @@ public:
     // Address: 0x029BBE20
     virtual u8 vf34(const char* label, s32 actor_player_id);
 
+    void setOutputLine(nw::snd::OutputLine line_flag)
+    {
+        mOutputLine = line_flag;
+    }
+
 protected:
     u32                 mHandleNum;
     nw::snd::OutputLine mOutputLine;
