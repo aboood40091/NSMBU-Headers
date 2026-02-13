@@ -9,6 +9,7 @@ public:
     {
         cStatus_NoInput     =  1,   // NSMBW: Bit 0
         cStatus_NoCross,            // NSMBW: Bit 1
+        cStatus_NoShakeJump,
 
         cStatus_ForceJump   =  5,   // NSMBW: Bit 3
         cStatus_NoJump,             // NSMBW: Bit 4
