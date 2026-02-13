@@ -44,6 +44,21 @@ public:
         return mFlag.isOn(cFlag_IsSakaReverse);
     }
 
+    void onMame()
+    {
+        mFlag.set(cFlag_IsMame);
+    }
+
+    void offMame()
+    {
+        mFlag.reset(cFlag_IsMame);
+    }
+
+    bool isMame() const
+    {
+        return mFlag.isOn(cFlag_IsMame);
+    }
+
     // Address: 0x02193828
     bool checkDokanDown(sead::Vector3f* p_pos, s32* p_dst_next_goto_no);
     // Address: 0x02193B38
