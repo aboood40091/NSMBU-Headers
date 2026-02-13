@@ -53,6 +53,21 @@ public:
         mActPlayerInfo.resetBit(player_no);
     }
 
+    void setDemoWaitFlgDisable()
+    {
+        mDemoWaitFlgDisable.makeAllOne();
+    }
+
+    void resetDemoWaitFlgDisable()
+    {
+        mDemoWaitFlgDisable.makeAllZero();
+    }
+
+    bool isDemoWaitFlgDisable(s32 player_no)
+    {
+        return mDemoWaitFlgDisable.isOnBit(player_no);
+    }
+
     void onDemo(s32 player_no)
     {
         mDemoInfo.setBit(player_no);
@@ -80,11 +95,16 @@ public:
 
     PlayerBase* getCtrlPlayer(s32 player_no);
 
+    void setPlayer(s32 player_no, PlayerObject* p_player_obj);
+    void resetPlayer(s32 player_no);
+
     bool isAcceptQuake(s32 player_no);
 
     s32 getNumInGame();
 
     bool isEnableStopOutDokanOther(s32 player_no);
+
+    bool isCourseInStar(s32 player_no);
 
     void setSubjectClear();
 
@@ -102,7 +122,7 @@ private:
     sead::FixedRingBuffer<Yoshi*, 4>    mYoshi2;
     u32                                 _84;
     u8                                  _88;
-    sead::BitFlag32                     mPauseDisable;      // Maybe?
+    sead::BitFlag32                     mDemoWaitFlgDisable;
     sead::BitFlag32                     mDemoInfo;
     bool                                mDisableOrchestra;
     sead::BitFlag32                     mCreateBalloonFlag;
