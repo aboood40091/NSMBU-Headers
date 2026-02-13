@@ -62,6 +62,9 @@ struct PlayerGravityHIO
 };
 static_assert(sizeof(PlayerGravityHIO) == 0x48);
 
+// Address: 0x101E5078
+extern PlayerSpeedHIO sPlayerSpeedData[2 * 2 * 2]; // [mario/luigi][mini/normal][normal/star]
+
 // Address: 0x1016A760
 extern const PlayerJumpGravityData cPlayerUnkJumpGravityData; /* = {
     {
@@ -88,6 +91,14 @@ extern const PlayerJumpGravityData cPlayerUnkJumpGravityData; /* = {
         -0.09f
     }
 }; */
+
+// Address: 0x1016A7F0
+extern const f32 cPlayerMusaSpinJumpSpeed; // 4.15f
+
+// Address: 0x1016A7FC
+extern const PlayerGravityHIO cPlayerGravityData[2 * 2]; // [mario/luigi][normal/mini]
+// Address: 0x1016A91C
+extern const PlayerGravityHIO cPlayerGravityData_Unk;
 
 // Address: 0x1016AA7C
 extern const PlayerTurnHIO cPlayerTurnData[2]; // [mario/luigi]
