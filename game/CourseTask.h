@@ -44,6 +44,11 @@ public:
         return &mGameData;
     }
 
+    FieldPlayerData* getPlayerData(s32 index)
+    {
+        return &mGameData.getPlayerData(index);
+    }
+
     const FieldPlayerData* getPlayerData(s32 index) const
     {
         return &mGameData.getPlayerData(index);

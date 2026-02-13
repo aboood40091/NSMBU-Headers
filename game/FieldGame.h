@@ -12,6 +12,11 @@ public:
     // Address: 0x024C1B04
     FieldGameData();
 
+    FieldPlayerData& getPlayerData(s32 index)
+    {
+        return mPlayerData[index];
+    }
+
     const FieldPlayerData& getPlayerData(s32 index) const
     {
         return mPlayerData[index];
