@@ -102,6 +102,11 @@ public:
         cFlag_IsBubbleChibiYoshiShake   = 1 <<  3,
         // ...
         cFlag_IsStarAnm                 = 1 << 10,
+        cFlag_IsOnHDokan                = 1 << 11,
+        cFlag_IsWaitL                   = 1 << 12,
+        cFlag_IsWaitR                   = 1 << 13,
+        cFlag_IsRideCloudWait           = 1 << 14,
+        cFlag_IsRideLiftWait            = 1 << 15,
 
         cFlag_None                      = 0
     };
@@ -109,6 +114,8 @@ public:
     enum AnmFlagBit
     {
         cAnmFlagBit_Sit             =  0,
+        // ...
+        cAnmFlagBit_2               =  2,
         // ...
         cAnmFlagBit_7               =  7,
         cAnmFlagBit_8               =  8,
@@ -374,6 +381,77 @@ public:
     void resetFaceAngleOverrideFlag()
     {
         mFaceAngleOverrideFlag.makeAllZero();
+    }
+
+    void onOnHDokan()
+    {
+        mFlag.set(cFlag_IsOnHDokan);
+    }
+
+    void offOnHDokan()
+    {
+        mFlag.reset(cFlag_IsOnHDokan);
+    }
+
+    bool isOnHDokan() const
+    {
+        return mFlag.isOn(cFlag_IsOnHDokan);
+    }
+
+    void onWaitL()
+    {
+        mFlag.set(cFlag_IsWaitL);
+    }
+
+    void onWaitR()
+    {
+        mFlag.set(cFlag_IsWaitR);
+    }
+
+    void offWait()
+    {
+        mFlag.reset(cFlag_IsWaitL);
+        mFlag.reset(cFlag_IsWaitR);
+    }
+
+    bool isWaitL() const
+    {
+        return mFlag.isOn(cFlag_IsWaitL);
+    }
+
+    bool isWaitR() const
+    {
+        return mFlag.isOn(cFlag_IsWaitR);
+    }
+
+    void onRideCloudWait()
+    {
+        mFlag.set(cFlag_IsRideCloudWait);
+    }
+
+    void offRideCloudWait()
+    {
+        mFlag.reset(cFlag_IsRideCloudWait);
+    }
+
+    bool isRideCloudWait() const
+    {
+        return mFlag.isOn(cFlag_IsRideCloudWait);
+    }
+
+    void onRideLiftWait()
+    {
+        mFlag.set(cFlag_IsRideLiftWait);
+    }
+
+    void offRideLiftWait()
+    {
+        mFlag.reset(cFlag_IsRideLiftWait);
+    }
+
+    bool isRideLiftWait() const
+    {
+        return mFlag.isOn(cFlag_IsRideLiftWait);
     }
 
 protected:
