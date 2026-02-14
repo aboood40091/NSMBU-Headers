@@ -8,6 +8,12 @@ public:
     // Address: 0x0295BD1C
     PlyOrchestra();
 
+    // Address: 0x0295BDC4
+    void init(s32 player_no);
+
+    // Address: 0x0295BDDC
+    void update();
+
 private:
     u32             _0;
     s32             mPlayerNo;
