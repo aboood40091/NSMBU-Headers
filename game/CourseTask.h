@@ -59,6 +59,11 @@ public:
         return mGameData.getGameMode().getMode();
     }
 
+    bool isMiniGame() const
+    {
+        return mGameData.getGameMode().isMiniGame();
+    }
+
 private:
     bool            mCourseRestart;
     GamesceneBase*  mpGamescene;
