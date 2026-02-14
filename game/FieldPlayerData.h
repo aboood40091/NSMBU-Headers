@@ -14,7 +14,7 @@ struct FieldPlayerData
     s32             _14;
     Mii::SlotID     mii_slot;
     bool            mii_cap_visible;
-    bool            is_spawned;
+    bool            is_connected;
     bool            has_star;
     u8              _1f;
     Bitfield<64>    fukidashi_flag; // I believe only 48 bits are used
