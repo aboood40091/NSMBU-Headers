@@ -128,7 +128,7 @@ protected:
 public:
     // Address: 0x029246FC
     void executeLastPlayer() override;
-    // Address: 0x
+    // Address: 0x02924BA0
     void executeLastAll() override;
 
     // Address: 0x02924CBC
