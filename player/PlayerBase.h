@@ -71,8 +71,8 @@ public:
     {
         cStatus_ActiveThisFrame         =   1,  // NSMBW: Bit 0x01
         cStatus_DisableUpdate,                  // NSMBW: Bit 0x7D
-        cStatus_DisableAttention,               // NSMBW: Bit 0x02
-        cStatus_DemoScript,                     // NSMBW: Bit 0x03
+        cStatus_DisableAnm,                     // NSMBW: Bit 0x02
+        cStatus_ControlledState,                // NSMBW: Bit 0x03
         cStatus_DemoMode,                       // NSMBW: Boolean
         cStatus_DisableSound,                   // NSMBW: Bit 0xB5
         cStatus_DispOut,                        // NSMBW: Bit 0xB9
