@@ -22,6 +22,18 @@ public:
         return mMode;
     }
 
+    // Address: 0x024C28D8
+    void setMode(Mode mode);
+
+    // Address: 0x024C28EC
+    bool isMiniGame() const;
+
+    // Address: 0x024C2910
+    bool isWmMode() const;
+
+    // Address: 0x024C2924
+    bool isDvMiiMode() const;
+
 private:
     Mode    mMode;
 };
