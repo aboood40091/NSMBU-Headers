@@ -7,6 +7,8 @@
 #include <math/seadVector.h>
 #include <prim/seadBitFlag.h>
 
+class EventGoalActorStop;
+
 class PlayerDemoMgr
 {
     SEAD_SINGLETON_DISPOSER(PlayerDemoMgr)
@@ -151,6 +153,11 @@ public:
 
     void stopBgmGoalDemo();
 
+    EventGoalActorStop* getGoalStopEvent() const
+    {
+        return mpEventGoalActorStop;
+    }
+
     bool isUnderwaterKoopaJrDemo() const
     {
         return mFlag.isOnBit(0);
@@ -178,6 +185,8 @@ protected:
     u32                             _1bc;
     bool                            mIsEnableCheckDemoNo;
     sead::BitFlag32                 mFlag;
-    u32                             _1c8[(0x1F4 - 0x1C8) / sizeof(u32)];
+    u32                             _1c8[(0x1D8 - 0x1C8) / sizeof(u32)];
+    EventGoalActorStop*             mpEventGoalActorStop;
+    u32                             _1dc[(0x1F4 - 0x1DC) / sizeof(u32)];
 };
 static_assert(sizeof(PlayerDemoMgr) == 0x1F4);
