@@ -9,7 +9,7 @@
 #include <player/PlyOrchestra.h>
 #include <player/util/ChangeMgr.h>
 
-class EventDie;
+class EventDown;
 class EventPlayerChange;
 class Yoshi;
 
@@ -846,7 +846,7 @@ protected:
     ChangeMgr                       mChangeMgr;
     f32                             _29d0;
     u8                              _29d4;
-    EventDie*                       mpEventDie;
+    EventDown*                      mpEventDown;
     u8                              _29dc;
     bool                            mPlayerEatDieNow;
     sead::Vector3f                  _29e0;
