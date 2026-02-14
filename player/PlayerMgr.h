@@ -6,6 +6,7 @@
 #include <math/seadVector.h>
 #include <prim/seadBitFlag.h>
 
+class FieldGameData;
 class PlayerBase;
 class PlayerObject;
 class Yoshi;
@@ -83,6 +84,26 @@ public:
         return mPauseDisable.isOnBit(player_no);
     }
 
+    bool isDisableOrchestra() const
+    {
+        return mDisableOrchestra;
+    }
+
+    bool isCreateBalloon(s32 player_no)
+    {
+        return mCreateBalloonFlag.isOnBit(player_no);
+    }
+
+    void setAllBalloon()
+    {
+        mAllBalloon = true;
+    }
+
+    bool isAllBalloon() const
+    {
+        return mAllBalloon;
+    }
+
     s32 getCannonJumpTimer() const
     {
         return mCannonJumpTimer;
@@ -98,6 +119,8 @@ public:
         return mPlayerNextGotoBlockInfo.countOnBit();
     }
 
+    bool isNormalCourse();
+
     PlayerBase* getCtrlPlayer(s32 player_no);
 
     void setPlayer(s32 player_no, PlayerObject* p_player_obj);
@@ -106,6 +129,10 @@ public:
     bool isAcceptQuake(s32 player_no);
 
     s32 getNumInGame();
+
+    s32 getEntryNum();
+
+    FieldGameData* getGameData();
 
     bool isEnableStopOutDokanOther(s32 player_no);
 
