@@ -54,6 +54,7 @@ public:
     bool buttonCrouch() const;
 
     bool triggerShakeJump() const;
+    bool triggerA() const;
     bool triggerAttack() const;
     bool triggerSwim() const;
     bool triggerJumpBuf(s32 buf_frame) const;
