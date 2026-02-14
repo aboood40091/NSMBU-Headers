@@ -69,237 +69,240 @@ public:
 
     enum Status
     {
-        cStatus_ActiveThisFrame     =   1,  // NSMBW: Bit 0x01
-        cStatus_DisableUpdate,              // NSMBW: Bit 0x7D
-        cStatus_DisableAttention,           // NSMBW: Bit 0x02
-        cStatus_DemoScript,                 // NSMBW: Bit 0x03
-        cStatus_DemoMode,                   // NSMBW: Boolean
-        cStatus_DisableSound,               // NSMBW: Bit 0xB5
-        cStatus_DispOut,                    // NSMBW: Bit 0xB9
-        cStatus_DispOutDanger,              // NSMBW: Bit 0xBA
+        cStatus_ActiveThisFrame         =   1,  // NSMBW: Bit 0x01
+        cStatus_DisableUpdate,                  // NSMBW: Bit 0x7D
+        cStatus_DisableAttention,               // NSMBW: Bit 0x02
+        cStatus_DemoScript,                     // NSMBW: Bit 0x03
+        cStatus_DemoMode,                       // NSMBW: Boolean
+        cStatus_DisableSound,                   // NSMBW: Bit 0xB5
+        cStatus_DispOut,                        // NSMBW: Bit 0xB9
+        cStatus_DispOutDanger,                  // NSMBW: Bit 0xBA
         cStatus_FaderPosSet,
         cStatus_NoGravityUntilFall,
         cStatus_JumpAddSpeed,
 
-        cStatus_OutOfPlay           =  14,  // NSMBW: Bit 0x04 (Dead or inside bubble)
+        cStatus_OutOfPlay               =  14,  // NSMBW: Bit 0x04 (Dead or inside bubble)
 
-        cStatus_Stunned             =  17,  // NSMBW: Bit 0x06 (Stunned either by electric shock or ice)
-        cStatus_18,                         // NSMBW: Bit 0x07
-        cStatus_Quake,                      // NSMBW: Bit 0x08
+        cStatus_Down                    =  16,  // NSMBW: Bit 0x05 (Dead)
+        cStatus_Stunned,                        // NSMBW: Bit 0x06 (Stunned either by electric shock or ice)
+        cStatus_18,                             // NSMBW: Bit 0x07
+        cStatus_Quake,                          // NSMBW: Bit 0x08
 
-        cStatus_Jump                =  25,  // NSMBW: Bit 0x0A
+        cStatus_Jump                    =  25,  // NSMBW: Bit 0x0A
         cStatus_Fall,
 
-        cStatus_SinkSandSurfJump    =  29,  // NSMBW: Bit 0x0E
-        cStatus_SitJump,                    // NSMBW: Bit 0x0F
+        cStatus_SinkSandSurfJump        =  29,  // NSMBW: Bit 0x0E
+        cStatus_SitJump,                        // NSMBW: Bit 0x0F
 
-        cStatus_WaitJump            =  34,  // NSMBW: Bit 0x12
+        cStatus_WaitJump                =  34,  // NSMBW: Bit 0x12
         cStatus_UnkJumpGravity,
-        cStatus_WallSlide,                  // NSMBW: Bit 0x13
+        cStatus_WallSlide,                      // NSMBW: Bit 0x13
         cStatus_37,
         cStatus_38,
 
-        cStatus_40                  =  40,  // NSMBW: Bit 0x15
-        cStatus_41,                         // NSMBW: Bit 0x16
+        cStatus_40                      =  40,  // NSMBW: Bit 0x15
+        cStatus_41,                             // NSMBW: Bit 0x16
 
-        cStatus_45                  =  45,  // NSMBW: Bit 0x19
+        cStatus_45                      =  45,  // NSMBW: Bit 0x19
         cStatus_46,
         cStatus_47,
-        cStatus_48,                         // NSMBW: Bit 0x1C
-        cStatus_49,                         // NSMBW: Bit 0x1D
-        cStatus_50,                         // NSMBW: Bit 0x1E
+        cStatus_48,                             // NSMBW: Bit 0x1C
+        cStatus_49,                             // NSMBW: Bit 0x1D
+        cStatus_50,                             // NSMBW: Bit 0x1E
         cStatus_51,
-        cStatus_52,                         // NSMBW: Bit 0x1F
+        cStatus_52,                             // NSMBW: Bit 0x1F
 
-        cStatus_HipAttackOnEnemy    =  55,  // NSMBW: Bit 0x22
-        cStatus_56,                         // NSMBW: Bit 0xC4
-        cStatus_57,                         // NSMBW: Bit 0x24
+        cStatus_HipAttackOnEnemy        =  55,  // NSMBW: Bit 0x22
+        cStatus_56,                             // NSMBW: Bit 0xC4
+        cStatus_57,                             // NSMBW: Bit 0x24
         cStatus_58,
 
-        cStatus_60                  =  60,  // Disable block-hit bounce
+        cStatus_60                      =  60,  // Disable block-hit bounce
 
-        cStatus_62                  =  62,  // Carry-related
+        cStatus_62                      =  62,  // Carry-related
         cStatus_63,
-        cStatus_64,                         // NSMBW: Bit 0x73 (MAYBE)
+        cStatus_64,                             // NSMBW: Bit 0x73 (MAYBE)
 
-        cStatus_68                  =  68,  // NSMBW: Bit 0x2A
-        cStatus_Spin,                       // NSMBW: Bit 0x2B
+        cStatus_NoPropelRoll            =  68,  // NSMBW: Bit 0x2A
+        cStatus_Spin,                           // NSMBW: Bit 0x2B
 
-        cStatus_71                  =  71,  // NSMBW: Bit 0x2D
+        cStatus_71                      =  71,  // NSMBW: Bit 0x2D
 
-        cStatus_73                  =  73,  // NSMBW: Bit 0x30
-        cStatus_74,                         // NSMBW: Bit 0x31
+        cStatus_73                      =  73,  // NSMBW: Bit 0x30
+        cStatus_74,                             // NSMBW: Bit 0x31
 
-        cStatus_Vine                =  76,  // NSMBW: Bit 0x33
-        cStatus_Hang,                       // NSMBW: Bit 0x34
-        cStatus_Pole,                       // NSMBW: Bit 0x35
-        cStatus_PoleRope,                   // NSMBW: Bit 0x36
-        cStatus_KaniHang,                   // NSMBW: Bit 0x37
+        cStatus_Vine                    =  76,  // NSMBW: Bit 0x33
+        cStatus_Hang,                           // NSMBW: Bit 0x34
+        cStatus_Pole,                           // NSMBW: Bit 0x35
+        cStatus_PoleRope,                       // NSMBW: Bit 0x36
+        cStatus_KaniHang,                       // NSMBW: Bit 0x37
 
-        cStatus_82                  =  82,
+        cStatus_82                      =  82,
 
-        cStatus_Swim                =  84,  // NSMBW: Bit 0x3A
+        cStatus_Swim                    =  84,  // NSMBW: Bit 0x3A
 
-        cStatus_89                  =  89,
+        cStatus_89                      =  89,
 
-        cStatus_93                  =  93,
+        cStatus_93                      =  93,
 
-        cStatus_97                  =  97,
-        cStatus_98,                         // NSMBW: Bit 0x3B
-        cStatus_99,                         // NSMBW: Bit 0x3C
+        cStatus_97                      =  97,
+        cStatus_98,                             // NSMBW: Bit 0x3B
+        cStatus_99,                             // NSMBW: Bit 0x3C
 
-        cStatus_102                 = 102,  // NSMBW: Bit 0x3E
+        cStatus_102                     = 102,  // NSMBW: Bit 0x3E
 
-        cStatus_104                 = 104,
+        cStatus_104                     = 104,
         cStatus_105,
         cStatus_106,
-        cStatus_RidePlayer,                 // NSMBW: Bit 0x45
+        cStatus_RidePlayer,                     // NSMBW: Bit 0x45
 
-        cStatus_113                 = 113,  // NSMBW: Bit 0x4A
-        cStatus_RideYoshi,                  // NSMBW: Bit 0x4B
+        cStatus_113                     = 113,  // NSMBW: Bit 0x4A
+        cStatus_RideYoshi,                      // NSMBW: Bit 0x4B
 
-        cStatus_116                 = 116,  // NSMBW: Bit 0x4D
+        cStatus_116                     = 116,  // NSMBW: Bit 0x4D
         cStatus_117,
         cStatus_118,
-        cStatus_RideCloud,                  // NSMBW: Bit 0x4E
-        cStatus_RideJrCrown,                // NSMBW: Bit 0x4F
-        cStatus_121,                        // NSMBW: Bit 0x51
-        cStatus_RideBalloon,                // NSMBW: Bit 0x53
-        cStatus_123,                        // Make visible next frame
+        cStatus_RideCloud,                      // NSMBW: Bit 0x4E
+        cStatus_RideJrCrown,                    // NSMBW: Bit 0x4F
+        cStatus_121,                            // NSMBW: Bit 0x51
+        cStatus_RideBalloon,                    // NSMBW: Bit 0x53
+        cStatus_RideBalloonSetVisible,          // NSMBW: Bit 0x54 (Make visible next frame)
+        cStatus_RideBalloonAll,                 // NSMBW: Bit 0x57
+        cStatus_RideBalloonContVoiceReq,
+        cStatus_RideBalloonCheckAllFade,
+        cStatus_RideNatDone,                    // NSMBW: Bit 0x58 (Ride Nat target reached)
+        cStatus_RideNat,                        // NSMBW: Bit 0x59
+        cStatus_129,                            // NSMBW: Bit 0x5A
+        cStatus_130,                            // NSMBW: Bit 0x5C
+        cStatus_131,                            // NSMBW: Bit 0x5D
 
-        cStatus_RideNatDone         = 127,  // NSMBW: Bit 0x58 (Ride Nat target reached)
-        cStatus_RideNat,                    // NSMBW: Bit 0x59
-        cStatus_129,                        // NSMBW: Bit 0x5A
-        cStatus_130,                        // NSMBW: Bit 0x5C
-        cStatus_131,                        // NSMBW: Bit 0x5D
-
-        cStatus_133                 = 133,  // NSMBW: Bit 0x5E
-        cStatus_134,                        // NSMBW: Bit 0x61
+        cStatus_133                     = 133,  // NSMBW: Bit 0x5E
+        cStatus_134,                            // NSMBW: Bit 0x61
         cStatus_135,
-        cStatus_136,                        // NSMBW: Bit 0x62
+        cStatus_136,                            // NSMBW: Bit 0x62
         cStatus_137,
         cStatus_138,
 
-        cStatus_141                 = 141,
+        cStatus_141                     = 141,
 
-        cStatus_143                 = 143,
+        cStatus_143                     = 143,
 
-        cStatus_145                 = 145,  // NSMBW: Bit 0x86
-        cStatus_146,                        // NSMBW: Bit 0x87
-        cStatus_147,                        // NSMBW: Bit 0x88
-        cStatus_148,                        // NSMBW: Bit 0x89
-        cStatus_149,                        // NSMBW: Bit 0x8A (Spin action request maybe?)
-        cStatus_150,                        // NSMBW: Bit 0x2C
-        cStatus_151,                        // NSMBW: Bit 0x8B
-        cStatus_152,                        // NSMBW: Bit 0x8C
-        cStatus_153,                        // NSMBW: Bit 0x8D
+        cStatus_145                     = 145,  // NSMBW: Bit 0x86
+        cStatus_146,                            // NSMBW: Bit 0x87
+        cStatus_147,                            // NSMBW: Bit 0x88
+        cStatus_148,                            // NSMBW: Bit 0x89
+        cStatus_149,                            // NSMBW: Bit 0x8A (Spin action request maybe?)
+        cStatus_150,                            // NSMBW: Bit 0x2C
+        cStatus_151,                            // NSMBW: Bit 0x8B
+        cStatus_152,                            // NSMBW: Bit 0x8C
+        cStatus_153,                            // NSMBW: Bit 0x8D
 
-        cStatus_155                 = 155,
-        cStatus_156,                        // NSMBW: Bit 0x95
+        cStatus_155                     = 155,
+        cStatus_156,                            // NSMBW: Bit 0x95
 
-        cStatus_158                 = 158,  // NSMBW: Bit 0x91
+        cStatus_158                     = 158,  // NSMBW: Bit 0x91
 
-        cStatus_160                 = 160,
+        cStatus_160                     = 160,
 
-        cStatus_165                 = 165,  // NSMBW: Bit 0x9F
-        cStatus_166,                        // NSMBW: Bit 0xA0
+        cStatus_165                     = 165,  // NSMBW: Bit 0x9F
+        cStatus_166,                            // NSMBW: Bit 0xA0
 
-        cStatus_EnableDokanIn       = 171,
-        cStatus_172,                        // NSMBW: Bit 0xA5
+        cStatus_EnableDokanIn           = 171,
+        cStatus_172,                            // NSMBW: Bit 0xA5
 
-        cStatus_FollowMameKuribo    = 174,  // NSMBW: Bit 0xAC
-        cStatus_Invisible,                  // NSMBW: Bit 0xBB
-        cStatus_HideTemporarily,            // NSMBW: Bit 0xBC
+        cStatus_FollowMameKuribo        = 174,  // NSMBW: Bit 0xAC
+        cStatus_Invisible,                      // NSMBW: Bit 0xBB
+        cStatus_HideTemporarily,                // NSMBW: Bit 0xBC
 
-        cStatus_178                 = 178,  // NSMBW: Bit 0xBE
-        cStatus_179,                        // NSMBW: Bit 0xBF
-        cStatus_180,                        // NSMBW: Bit 0xC1
+        cStatus_178                     = 178,  // NSMBW: Bit 0xBE
+        cStatus_179,                            // NSMBW: Bit 0xBF
+        cStatus_180,                            // NSMBW: Bit 0xC1
 
-        cStatus_183                 = 183,
+        cStatus_183                     = 183,
         cStatus_184,
         cStatus_185,
         cStatus_186,
         cStatus_187,
         cStatus_188,
 
-        cStatus_191                 = 191,
+        cStatus_191                     = 191,
 
-        cStatus_193                 = 193,
+        cStatus_193                     = 193,
 
-        cStatus_195                 = 195,  // NSMBW: Bit 0x96
-        cStatus_196,                        // NSMBW: Bit 0x97
-        cStatus_197,                        // NSMBW: Bit 0x98
+        cStatus_195                     = 195,  // NSMBW: Bit 0x96
+        cStatus_196,                            // NSMBW: Bit 0x97
+        cStatus_197,                            // NSMBW: Bit 0x98
         cStatus_ZPosSetNone,
-        cStatus_199,                        // NSMBW: Bit 0xA7
-        cStatus_200,                        // NSMBW: Bit 0xA8
+        cStatus_199,                            // NSMBW: Bit 0xA7
+        cStatus_200,                            // NSMBW: Bit 0xA8
 
-        cStatus_203                 = 203,  // NSMBW: Bit 0xAA
-        cStatus_204,                        // NSMBW: Bit 0xAB
+        cStatus_NoSwimAction            = 203,  // NSMBW: Bit 0xAA
+        cStatus_204,                            // NSMBW: Bit 0xAB
         cStatus_Penguin,                        // NSMBW: Bit 0xAD
-        cStatus_206,                        // NSMBW: Bit 0xAE
-        cStatus_207                 = 207,
+        cStatus_206,                            // NSMBW: Bit 0xAE
+        cStatus_207                     = 207,
         cStatus_208,
-        cStatus_SceneChangeNext,            // NSMBW: Bit 0x64
+        cStatus_SceneChangeNext,                // NSMBW: Bit 0x64
         cStatus_210,
 
-        cStatus_212                 = 212,  // NSMBW: Bit 0x65
-        cStatus_213,                        // NSMBW: Bit 0x66
-        cStatus_214,                        // NSMBW: Bit 0x67
-        cStatus_215,                        // NSMBW: Bit 0x68
+        cStatus_212                     = 212,  // NSMBW: Bit 0x65
+        cStatus_213,                            // NSMBW: Bit 0x66
+        cStatus_214,                            // NSMBW: Bit 0x67
+        cStatus_215,                            // NSMBW: Bit 0x68
         cStatus_216,
         cStatus_217,
-        cStatus_218,                        // NSMBW: Bit 0x69
-        cStatus_219,                        // NSMBW: Bit 0x6A
+        cStatus_218,                            // NSMBW: Bit 0x69
+        cStatus_219,                            // NSMBW: Bit 0x6A
         cStatus_220,
-        cStatus_221,                        // NSMBW: Bit 0x6B
+        cStatus_221,                            // NSMBW: Bit 0x6B
         cStatus_222,
-        cStatus_223,                        // NSMBW: Bit 0x6C
-        cStatus_224,                        // NSMBW: Bit 0x6D
+        cStatus_223,                            // NSMBW: Bit 0x6C
+        cStatus_224,                            // NSMBW: Bit 0x6D
         cStatus_225,
-        cStatus_226,                        // NSMBW: Bit 0x6E
-        cStatus_227,                        // NSMBW: Bit 0x6F
+        cStatus_226,                            // NSMBW: Bit 0x6E
+        cStatus_227,                            // NSMBW: Bit 0x6F
 
-        cStatus_DemoControlReq      = 235,  // NSMBW: Bit 0x71
-        cStatus_NoSlipSaka,                 // NSMBW: Bit 0x73 (MAYBE)
+        cStatus_DemoControlReq          = 235,  // NSMBW: Bit 0x71
+        cStatus_NoSlipSaka,                     // NSMBW: Bit 0x73 (MAYBE)
         cStatus_237,
-        cStatus_DemoControl,                // NSMBW: Bit 0x72
-        cStatus_239,                        // NSMBW: Bit 0x74
-        cStatus_240,                        // NSMBW: Bit 0x63 (MAYBE)
-        cStatus_241,                        // NSMBW: Bit 0x60 (MAYBE)
-        cStatus_242,                        // NSMBW: Bit 0x76
+        cStatus_DemoControl,                    // NSMBW: Bit 0x72
+        cStatus_239,                            // NSMBW: Bit 0x74
+        cStatus_240,                            // NSMBW: Bit 0x63 (MAYBE)
+        cStatus_241,                            // NSMBW: Bit 0x60 (MAYBE)
+        cStatus_242,                            // NSMBW: Bit 0x76
         cStatus_243,
-        cStatus_DemoOnLandStop,             // NSMBW: Bit 0x5F
+        cStatus_DemoOnLandStop,                 // NSMBW: Bit 0x5F
         cStatus_DemoAnmLoop,
 
-        cStatus_247                 = 247,  // NSMBW: Bit 0x7E
-        cStatus_NoBgCrossUpdate,            // NSMBW: Bit 0x7F
-        cStatus_CheckBg,                    // NSMBW: Bit 0x80
+        cStatus_IgnoreBgCross           = 247,  // NSMBW: Bit 0x7E
+        cStatus_NoBgCrossUpdate,                // NSMBW: Bit 0x7F
+        cStatus_CheckBg,                        // NSMBW: Bit 0x80
         cStatus_250,
         cStatus_ShadowkunCatch,
-        cStatus_252,                        // NSMBW: Bit 0x81
-        cStatus_253,                        // NSMBW: Bit 0xB8
+        cStatus_252,                            // NSMBW: Bit 0x81
+        cStatus_253,                            // NSMBW: Bit 0xB8
         cStatus_254,
-        cStatus_255,                        // NSMBW: Bit 0x82
-        cStatus_256,                        // NSMBW: Bit 0x83
+        cStatus_255,                            // NSMBW: Bit 0x82
+        cStatus_256,                            // NSMBW: Bit 0x83
 
-        cStatus_258                 = 258,
+        cStatus_258                     = 258,
         cStatus_SlideSlope,
         cStatus_DispOutPosYAdj,
 
-        cStatus_RDash_DispPinch     = 262,
-        cStatus_263,                        // NSMBW: Bit 0x77
-        cStatus_264,                        // NSMBW: Bit 0x78
-        cStatus_265,                        // NSMBW: Bit 0x79
-        cStatus_266,                        // NSMBW: Bit 0x7A
+        cStatus_RDash_DispPinch         = 262,
+        cStatus_263,                            // NSMBW: Bit 0x77
+        cStatus_264,                            // NSMBW: Bit 0x78
+        cStatus_265,                            // NSMBW: Bit 0x79
+        cStatus_NoEntryReactCc,                 // NSMBW: Bit 0x7A
         cStatus_267,
 
-        cStatus_270                 = 270,  // NSMBW: Bit 0x84
+        cStatus_270                     = 270,  // NSMBW: Bit 0x84
 
-        cStatus_280                 = 280,  // NSMBW: Bit 0xCA
+        cStatus_280                     = 280,  // NSMBW: Bit 0xCA
 
-        cStatus_282                 = 282,
+        cStatus_282                     = 282,
 
-        cStatus_EndingDisableSound  = 286,  // NSMBW: Bit 0x75
+        cStatus_EndingDisableSound      = 286,  // NSMBW: Bit 0x75
 
         cStatus_LastBit = cStatus_EndingDisableSound,   // Not sure if bit 287 is used
         cStatus_BitNum,
