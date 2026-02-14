@@ -57,6 +57,8 @@ public:
 
     void exit();
 
+    void moveMissFin();
+
     void startBossClearFanfare(BossClearType type);
 
     SEAD_SINGLETON_DISPOSER(SndSceneMgr)
