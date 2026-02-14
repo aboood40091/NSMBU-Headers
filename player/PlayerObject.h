@@ -65,7 +65,7 @@ public:
     enum ScrollMode
     {
         cScrollMode_0 = 0,
-        cScrollMode_1,      // Only used for NSMBW's ItemKinopio, which was removed in NSMBU
+        cScrollMode_1,      // Cannot affect scroll?
         cScrollMode_2,
         cScrollMode_3,
         cScrollMode_4,
@@ -254,8 +254,44 @@ public:
         return *mStateMgr.getStateID() == StateID_Balloon;
     }
 
+    // Address: 0x02926574
+    bool isNotBalloonCourse();
+
+    // Address: 0x02926A24
+    bool checkAllBalloonFade();
+
+    // Address: 0x02927018
+    bool setBalloonInCreate();
+    // Address: 0x029270B0
+    bool setBalloonInDamage();
+    // Address: 0x02927190
+    bool setBalloonDispOutBase();
     // Address: 0x02927294
     bool setBalloonButtonA();
+    // Address: 0x0292746C
+    bool setBalloonInDispOutBase(s32 type, bool by_yoshi);
+    // Address: 0x029275EC
+    bool setBalloonInDispOutByYoshi(s32 type);
+    // Address: 0x029275F4
+    bool setBalloonInNextgoto();
+    // Address: 0x029276F8
+    bool setBalloonInDispOut(s32 type) override;
+    // Address: 0x02927740
+    bool setBalloonDispOut() override;
+
+    // Address: 0x029277C0
+    void setBreakBalloonJump(Angle angle);
+
+    // Address: 0x02927998
+    void setDrawBalloonInPlayer(sead::Vector3f& pos);
+    // Address: 0x02927A90
+    void setDrawBalloonInPlayerEnable();
+
+    // Address: 0x02927AA8
+    void setBalloonHelpVoice();
+
+    // Address: 0x02927B18
+    void setBalloonCheckAllFade();
 
     // ------------------------------------ PlayerObjectBg.cpp ------------------------------------ //
 
@@ -303,6 +339,9 @@ public:
 
     // Address: 0x02931B34
     virtual bool canChangeTo(PlayerMode mode);
+
+    // Address: 0x02931D18
+    bool setPlayerModeForce(PlayerMode mode);
 
     // ------------------------------------ PlayerObjectDemoDoa.cpp ------------------------------------ //
 
@@ -492,6 +531,12 @@ public:
 
     // ------------------------------------ PlayerObjectSWIM.cpp ------------------------------------ //
 
+    // StateID_Swim         Address: 0x1022B5B4
+    // initializeState_Swim Address: 0x0294BD5C
+    // executeState_Swim    Address: 0x0294EA34
+    // finalizeState_Swim   Address: 0x0294EE2C
+    DECLARE_STATE_VIRTUAL_ID_OVERRIDE(PlayerObject, Swim)
+
     // Address: 0x0294EF64
     bool setSwimAction();
 
@@ -547,6 +592,9 @@ public:
 
     // Address: 0x0292C170
     PlayerObject* getCarryPlayer();
+
+    // Address: 0x0292D048
+    void releaseCarryActor();
 
     // Address: 0x0292D138
     virtual bool setCarry(Actor* p_actor, CarryType type);
@@ -650,9 +698,6 @@ public:
     bool vf19C() override;
 
     void setFallDownDemo() override;
-
-    bool setBalloonInDispOut(s32) override;
-    bool setBalloonDispOut() override;
 
     void initializeDemoControl(bool carry_chibi_yoshi = true) override;
 
@@ -888,8 +933,8 @@ protected:
     u8                              _2a7c;
     u32                             _2a80;
     u32                             _2a84;
-    u32                             _2a88;
-    s32                             _2a8c;
+    s32                             mBalloonHelpVoiceTimer;
+    s32                             mBalloonCheckAllFadeTimer;
     u32                             mBalloonControllerConnectStatus;
     u32                             _2a94;
     sead::Vector3f                  _2a98;
