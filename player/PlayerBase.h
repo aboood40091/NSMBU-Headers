@@ -212,7 +212,7 @@ public:
 
         cStatus_FollowMameKuribo        = 174,  // NSMBW: Bit 0xAC
         cStatus_Invisible,                      // NSMBW: Bit 0xBB
-        cStatus_HideTemporarily,                // NSMBW: Bit 0xBC
+        cStatus_HideTemporarily,                // NSMBW: Bit 0xBC (for invincibility frames)
 
         cStatus_178                     = 178,  // NSMBW: Bit 0xBE
         cStatus_179,                            // NSMBW: Bit 0xBF
@@ -2751,7 +2751,7 @@ protected:
     ActorCollisionCheck                 mCollisionCheck4_Attack;
     ActorCollisionCheck                 mCollisionCheck5_Attack;
     PlayerDrcTouchCB                    mDrcTouchCallback;
-    s32                                 _205c;
+    s32                                 mInvincibilityTimer;
     s32                                 _2060;
     s32                                 _2064;
     s32                                 _2068;
