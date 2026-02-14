@@ -53,6 +53,11 @@ public:
         return false;
     }
 
+    bool isRequested() const
+    {
+        return mListNode.isLinked();
+    }
+
 protected:
     sead::ListNode  mListNode;
 
