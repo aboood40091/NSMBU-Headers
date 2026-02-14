@@ -32,7 +32,7 @@ public:
     // Address: 0x024A5168
     void enter() override;
     // Address: 0x024A52A8
-    ExecuteState execute() override;
+    Result execute() override;
     // Address: 0x024A52F0
     bool isJoin(const ActorBase* p_actor) const override;
 

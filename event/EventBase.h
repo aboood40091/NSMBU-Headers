@@ -10,10 +10,10 @@ class EventMgr;
 class EventBase : public sead::IDisposer    // vtbl Address: 0x100B4480
 {
 public:
-    enum ExecuteState
+    enum Result
     {
-        cState_Waiting      = 0,
-        cState_RequestExit
+        cResult_Keep    = 0,
+        cResult_Exit
     };
 
 public:
@@ -31,9 +31,9 @@ public:
     {
     }
 
-    virtual ExecuteState execute()
+    virtual Result execute()
     {
-        return cState_Waiting;
+        return cResult_Keep;
     }
 
     virtual void exit()

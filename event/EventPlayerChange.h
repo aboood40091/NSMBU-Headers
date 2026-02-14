@@ -20,7 +20,7 @@ public:
     // Address: 0x024A6200
     void enter() override;
     // Address: 0x024A6260
-    ExecuteState execute() override;
+    Result execute() override;
     // Address: 0x024A6300
     bool isJoin(const ActorBase* p_actor) const override;
 
