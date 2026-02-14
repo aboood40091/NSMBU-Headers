@@ -4,6 +4,7 @@
 
 #include <container/seadSafeArray.h>
 #include <heap/seadDisposer.h>
+#include <math/seadVector.h>
 
 class BalloonMgr
 {
@@ -25,6 +26,9 @@ public:
     {
         mIsActive = true;
     }
+
+    // Address: 0x024B953C
+    void createRevivalBallon(const sead::Vector3f& pos, s32 type, s32 player_no);
 
 protected:
     u32     _10;
