@@ -25,6 +25,16 @@ public:
         return mpCurrentEvent;
     }
 
+    bool isActive() const
+    {
+        return mpCurrentEvent != nullptr;
+    }
+
+    bool isActive(EventBase* p_event) const
+    {
+        return mpCurrentEvent != nullptr && mpCurrentEvent == p_event;
+    }
+
     // Address: 0x024A5BAC
     bool isNormal() const;
 
@@ -39,14 +49,14 @@ public:
 
     void clearEvent()
     {
-        mEventList.clear();
+        mRequestList.clear();
     }
 
     // Address: 0x024A5FDC
     void eraseEvent(EventBase* p_event);
 
 protected:
-    sead::OffsetList<EventBase> mEventList;     // This actually functions like a queue
+    sead::OffsetList<EventBase> mRequestList;   // This actually functions like a queue
     EventBase*                  mpCurrentEvent;
 };
 static_assert(sizeof(EventMgr) == 0x24);
