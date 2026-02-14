@@ -27,6 +27,18 @@ public:
         mIsActive = true;
     }
 
+    bool isEnableRevivalBallon() const
+    {
+        switch (_20)
+        {
+        default:
+            return true;
+        case 1:
+        case 2:
+            return false;
+        }
+    }
+
     // Address: 0x024B953C
     void createRevivalBallon(const sead::Vector3f& pos, s32 type, s32 player_no);
 
