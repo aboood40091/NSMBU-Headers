@@ -2,7 +2,7 @@
 
 #include <event/EventBase.h>
 
-class EventDie : public EventBase   // vtbl Address: 0x100B4754
+class EventDown : public EventBase  // vtbl Address: 0x100B4754
 {
 public:
     enum DieType
@@ -18,15 +18,15 @@ public:
 
 public:
     // Address: 0x024A50EC
-    EventDie(s32 player_no);
+    EventDown(s32 player_no);
 
-    virtual ~EventDie()
+    virtual ~EventDown()
     {
     }
 
     // getRuntimeTypeInfoStatic()::typeInfo initialization guard variable   Address: 0x101E9EBC
     // getRuntimeTypeInfoStatic()::typeInfo                                 Address: 0x101EA81C
-    SEAD_RTTI_OVERRIDE(EventDie, EventBase)
+    SEAD_RTTI_OVERRIDE(EventDown, EventBase)
 
 public:
     // Address: 0x024A5168
@@ -43,4 +43,4 @@ private:
     u8      _1e;
     DieType mDieType;
 };
-static_assert(sizeof(EventDie) == 0x24);
+static_assert(sizeof(EventDown) == 0x24);
