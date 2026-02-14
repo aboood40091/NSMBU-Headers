@@ -68,14 +68,19 @@ public:
         return mDemoWaitFlgDisable.isOnBit(player_no);
     }
 
-    void onDemo(s32 player_no)
+    void setPauseDisable(s32 player_no)
     {
-        mDemoInfo.setBit(player_no);
+        mPauseDisable.setBit(player_no);
     }
 
-    void offDemo(s32 player_no)
+    void setPauseEnable(s32 player_no)
     {
-        mDemoInfo.resetBit(player_no);
+        mPauseDisable.resetBit(player_no);
+    }
+
+    bool isPauseDisable(s32 player_no)
+    {
+        return mPauseDisable.isOnBit(player_no);
     }
 
     s32 getCannonJumpTimer() const
@@ -123,7 +128,7 @@ private:
     u32                                 _84;
     u8                                  _88;
     sead::BitFlag32                     mDemoWaitFlgDisable;
-    sead::BitFlag32                     mDemoInfo;
+    sead::BitFlag32                     mPauseDisable;
     bool                                mDisableOrchestra;
     sead::BitFlag32                     mCreateBalloonFlag;
     bool                                mAllBalloon;
