@@ -14,9 +14,9 @@ public:
     }
 
     // Address: 0x0267C0C4
-    virtual Operation Process(u16 code, ContextType* pContext);
+    Operation Process(u16 code, ContextType* pContext) override;
     // Address: 0x0267C3FC
-    virtual Operation CalcRect(nw::ut::Rect* pRect, u16 code, ContextType* pContext);
+    Operation CalcRect(nw::ut::Rect* pRect, u16 code, ContextType* pContext) override;
 
 protected:
     f32 mFontSize;
