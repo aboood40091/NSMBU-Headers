@@ -909,14 +909,14 @@ public:
     };
     static_assert(sizeof(AnimePlayType) == 4);
 
-    enum CourseClearType
+    enum ClearType
     {
-        cCourseClearType_Normal = 0,
-        cCourseClearType_Boss,
-        cCourseClearType_Fanfare,
-        cCourseClearType_LastBoss
+        cClearType_Normal = 0,
+        cClearType_Boss,
+        cClearType_Fanfare,
+        cClearType_LastBoss
     };
-    static_assert(sizeof(CourseClearType) == 4);
+    static_assert(sizeof(ClearType) == 4);
 
     enum SakaUpDown
     {
@@ -1671,9 +1671,9 @@ public:
     bool isGoalRingLand();
 
     // Address: 0x02902BEC
-    void setGoalDemoBase(const sead::Vector2f& pos, f32 walk_target_pos_x, bool secret_exit);
+    void setDemoGoalBase(const sead::Vector2f& pos, f32 walk_target_pos_x, bool secret_exit);
 
-    virtual void setGoalDemo(const sead::Vector2f& pos, f32 walk_target_pos_x, bool secret_exit) = 0;
+    virtual void setDemoGoal(const sead::Vector2f& pos, f32 walk_target_pos_x, bool secret_exit) = 0;
     virtual bool setHideNotGoalPlayer() = 0;
     virtual bool vf51C(u32) = 0;
     virtual bool setDoorDemo(Actor*, u32) = 0;
@@ -1686,7 +1686,7 @@ public:
     bool setHideNotGoalPlayerBase();
 
     // Address: 0x02902F78
-    void startGoalDemoVoice(CourseClearType course_clear_type);
+    void startKimePoseVoice(ClearType clear_type);
 
     // Address: 0x02903088
     bool vf51C_Base(u32);
@@ -1715,7 +1715,7 @@ public:
 
     // Address: 0x0290288C
     void initDemoKimePose();
-    virtual bool execDemoKimePose(CourseClearType course_clear_type) = 0;
+    virtual bool updateDemoKimePose(ClearType clear_type) = 0;
     virtual void finDemoKimePose() = 0;
 
 private:

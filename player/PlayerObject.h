@@ -709,7 +709,7 @@ public:
     bool setTimeOverDemo() override;
     bool vf504() override;
 
-    void setGoalDemo(const sead::Vector2f& pos, f32 walk_target_pos_x, bool secret_exit) override;
+    void setDemoGoal(const sead::Vector2f& pos, f32 walk_target_pos_x, bool secret_exit) override;
     bool setHideNotGoalPlayer() override;
     bool vf51C(u32) override;
     bool setDoorDemo(Actor*, u32) override;
@@ -720,7 +720,7 @@ public:
     void executeDemoGoal_PreRun() override;
     void executeDemoGoal_Item() override;
 
-    bool execDemoKimePose(CourseClearType course_clear_type) override;
+    bool updateDemoKimePose(ClearType clear_type) override;
     void finDemoKimePose() override;
 
     bool isEnableDokanInStatus() override;
