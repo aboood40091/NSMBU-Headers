@@ -9,7 +9,7 @@ class LayoutAllocator : public nw::ut::IAllocator // vtbl Address: 0x100E38C0
 public:
     // GetRuntimeTypeInfoStatic()::s_TypeInfo initialization guard variable Address: 0x101E9DC4
     // GetRuntimeTypeInfoStatic()::s_TypeInfo                               Address: 0x101EAF40
-    NW_UT_RUNTIME_TYPEINFO(nw::ut::IAllocator);
+    NW_UT_RUNTIME_TYPEINFO(nw::ut::IAllocator)
 
     LayoutAllocator()
         : mpHeap(nullptr)
