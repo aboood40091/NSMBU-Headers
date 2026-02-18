@@ -32,11 +32,13 @@ public:
 
     // Address: 0x02192044
     void vf54() override;
+
+protected:
     // Address: 0x021920FC
-    void checkFoot() override;
+    void checkFoot_() override;
     // Address: 0x0219215C
-    void checkHead() override;
+    void checkHead_() override;
     // Address: 0x021921BC
-    void checkWall(u8 direction) override;
+    void checkWall_(u8 direction) override;
 };
 static_assert(sizeof(ActorBgCollisionEnemyCheck) == sizeof(ActorBgCollisionCheck));
