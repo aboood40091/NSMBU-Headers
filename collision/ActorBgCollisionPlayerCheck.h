@@ -39,6 +39,11 @@ public:
     // Address: 0x0219371C
     void atFrameStart() override;
 
+    void setCarryPlayerNo(s8 player_no)
+    {
+        mCarryPlayerNo = player_no;
+    }
+
     bool isSakaReverse() const
     {
         return mFlag.isOn(cFlag_IsSakaReverse);
@@ -107,7 +112,7 @@ public:
 
 private:
     List::Node      _14e0;
-    s8              mPlayerNo;
+    s8              mCarryPlayerNo;
     sead::BitFlag16 mFlag;
     bool            mIsMameDokan;
     VineType        mVineType;
