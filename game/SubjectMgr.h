@@ -77,6 +77,11 @@ public:
         return mSkipClearWait;
     }
 
+    bool isDisableKaniAction() const
+    {
+        return mIsDisableKaniAction;
+    }
+
     Mode getMode() const
     {
         return static_cast<Mode>(mMode);
@@ -89,7 +94,9 @@ protected:
     bool    mIsSubjectCoin;
     u8      _1e58[0x1E5E - 0x1E58];
     bool    mSkipClearWait;
-    u8      _1e5f[0x1E7F - 0x1E5F];
+    u8      _1e5f[0x1E68 - 0x1E5F];
+    bool    mIsDisableKaniAction;
+    u8      _1e69[0x1E7F - 0x1E69];
     u8      mMode;
     u8      _1e80[0x1E84 - 0x1E80];
 };
