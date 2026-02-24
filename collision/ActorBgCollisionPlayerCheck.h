@@ -26,6 +26,16 @@ public:
         cFlag_IsMame        = 1 << 3
     };
 
+    struct PcCheckArea
+    {
+        f32 center_x;
+        f32 center_y;
+        f32 half_size_y1;
+        f32 half_size_y2;
+        f32 half_size_x;
+    };
+    static_assert(sizeof(PcCheckArea) == 0x14);
+
 public:
     // Address: 0x021934C0
     ActorBgCollisionPlayerCheck();
@@ -93,6 +103,11 @@ public:
         return mpVineBgCollision;
     }
 
+    void setPcCheckArea(const PcCheckArea& area)
+    {
+        mPcCheckArea = area;
+    }
+
     // Address: 0x021950D0
     bool checkGround(const sead::Vector3f& pos, f32 check_distance, BgCollisionCheckResultArea* p_res = nullptr);
 
@@ -117,6 +132,8 @@ private:
     bool            mIsMameDokan;
     VineType        mVineType;
     BgCollision*    mpVineBgCollision;
-    u32             _14fc[(0x15A0 - 0x14FC) / sizeof(u32)];
+    PcCheckArea     mPcCheckArea;
+    PcCheckArea     mPcCheckAreaPrev;
+    u32             _1524[(0x15A0 - 0x1524) / sizeof(u32)];
 };
 static_assert(sizeof(ActorBgCollisionPlayerCheck) == 0x15A0);
