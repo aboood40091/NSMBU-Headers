@@ -250,15 +250,9 @@ public:
 public:
     struct Sensor
     {
-        f32 p1;
-        f32 p2;
-        f32 center_offset;
-
-        Sensor invert() const
-        {
-            Sensor inv = { p1, p2, -center_offset };
-            return inv;
-        }
+        f32 p1;             // Typically -> Horizontal sensors: Left edge of sensor. Vertical sensors: Bottom edge of sensor. Player vine sensor: Top edge of sensor.
+        f32 p2;             // Typically -> Horizontal sensors: Right edge of sensor. Vertical sensors: Top edge of sensor. Player vine sensor: Bottom edge of sensor.
+        f32 center_offset;  // Typically -> Horizontal sensors: Vertical offset from actor position to sensor center. Vertical sensors & Player vine sensor: Horizontal offset from actor position to sensor center.
     };
     static_assert(sizeof(Sensor) == 0xC);
 
@@ -322,6 +316,31 @@ public:
     void setSensor(const Sensor* sensor, u8 direction);
     // Address: 0x0218CE74
     const Sensor* getSensor(u8 direction) const;
+
+    void setSensorFoot(const Sensor* p_foot)
+    {
+        setSensor(p_foot, cDirType_Down);
+    }
+
+    void setSensorHead(const Sensor* p_head)
+    {
+        setSensor(p_head, cDirType_Up);
+    }
+
+    void setSensorWall(const Sensor* p_wall_r)
+    {
+        setSensor(p_wall_r, cDirType_Right);
+        if (p_wall_r != nullptr)
+        {
+            Sensor wall_l = *p_wall_r;
+            wall_l.center_offset *= -1.0f;
+            setSensor(&wall_l, cDirType_Left);
+        }
+        else
+        {
+            setSensor(nullptr, cDirType_Left);
+        }
+    }
 
     bool isSensor1Set(u32 direction) const
     {
