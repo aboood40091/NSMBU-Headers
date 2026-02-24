@@ -94,11 +94,11 @@ PROFILE_INFO_ACCESS_SPEC_PRIVATE
         cDrawPriority_14D                                       =  48,
         cDrawPriority_14E                                       =  49,
         cDrawPriority_14F                                       =  50,
-        cDrawPriority_150                                       =  51,
+        cDrawPriority_ObjPipeDown                               =  51,
         cDrawPriority_151                                       =  52,
         cDrawPriority_152                                       =  53,
         cDrawPriority_153                                       =  54,
-        cDrawPriority_154                                       =  55,
+        cDrawPriority_ObjPipeDownGroup                          =  55,
         cDrawPriority_082                                       =  56,
         cDrawPriority_083                                       =  57,
         cDrawPriority_084                                       =  58,
@@ -106,7 +106,7 @@ PROFILE_INFO_ACCESS_SPEC_PRIVATE
         cDrawPriority_155                                       =  60,
         cDrawPriority_156                                       =  61,
         cDrawPriority_157                                       =  62,
-        cDrawPriority_086                                       =  63,
+        cDrawPriority_ObjPipeDownNG                             =  63,
         cDrawPriority_087                                       =  64,
         cDrawPriority_088                                       =  65,
         cDrawPriority_089                                       =  66,
@@ -1239,7 +1239,7 @@ PROFILE_INFO_ACCESS_SPEC_PUBLIC
     // Address: 0x10003F68
     PROFILE_INFO_STORAGE_STATIC const s32 cProfileID_085;                                       // 133
     // Address: 0x10003F6C
-    PROFILE_INFO_STORAGE_STATIC const s32 cProfileID_086;                                       // 134
+    PROFILE_INFO_STORAGE_STATIC const s32 cProfileID_ObjPipeDownNG;                             // 134
     // Address: 0x10003F70
     PROFILE_INFO_STORAGE_STATIC const s32 cProfileID_087;                                       // 135
     // Address: 0x10003F74
@@ -1643,7 +1643,7 @@ PROFILE_INFO_ACCESS_SPEC_PUBLIC
     // Address: 0x10004290
     PROFILE_INFO_STORAGE_STATIC const s32 cProfileID_14F;                                       // 335
     // Address: 0x10004294
-    PROFILE_INFO_STORAGE_STATIC const s32 cProfileID_150;                                       // 336
+    PROFILE_INFO_STORAGE_STATIC const s32 cProfileID_ObjPipeDown;                               // 336
     // Address: 0x10004298
     PROFILE_INFO_STORAGE_STATIC const s32 cProfileID_151;                                       // 337
     // Address: 0x1000429C
@@ -1651,7 +1651,7 @@ PROFILE_INFO_ACCESS_SPEC_PUBLIC
     // Address: 0x100042A0
     PROFILE_INFO_STORAGE_STATIC const s32 cProfileID_153;                                       // 339
     // Address: 0x100042A4
-    PROFILE_INFO_STORAGE_STATIC const s32 cProfileID_154;                                       // 340
+    PROFILE_INFO_STORAGE_STATIC const s32 cProfileID_ObjPipeDownGroup;                          // 340
     // Address: 0x100042A8
     PROFILE_INFO_STORAGE_STATIC const s32 cProfileID_155;                                       // 341
     // Address: 0x100042AC
