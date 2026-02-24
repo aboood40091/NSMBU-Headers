@@ -204,6 +204,7 @@ public:
         enum Bit
         {
             cBit_0  =  0,
+            cBit_1,
 
             cBit_3  =  3,
             cBit_4,
@@ -215,20 +216,33 @@ public:
             cBit_10,
 
             cBit_13 = 13,
+            cBit_14,
+            cBit_15,
+            cBit_16,
 
             cBit_18 = 18,
 
             cBit_21 = 21,
             cBit_22,
             cBit_23,
+            cBit_24,
 
             cBit_26 = 26,
+            cBit_27,
+            cBit_28,
+
+            cBit_Inactive = 30,
 
             cBit_38 = 38,
 
-            cBit_50 = 50,
+            cBit_46 = 46,
 
-            cBit_52 = 52
+            cBit_50 = 50,
+            cBit_51,
+            cBit_52,
+
+            cBit_54 = 54,
+            cBit_55
         };
     };
     static_assert(sizeof(SensorFlag) == 8);
