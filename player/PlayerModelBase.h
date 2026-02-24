@@ -115,7 +115,9 @@ public:
     {
         cAnmFlagBit_Sit             =  0,
         // ...
-        cAnmFlagBit_2               =  2,
+        cAnmFlagBit_Hang            =  2,
+        // ...
+        cAnmFlagBit_Swim            =  4,
         // ...
         cAnmFlagBit_7               =  7,
         cAnmFlagBit_8               =  8,
@@ -354,6 +356,21 @@ public:
     bool isAnmFlag(AnmFlagType type, AnmFlagBit bit) const
     {
         return mAnmFlag[type] >> bit & 1;
+    }
+
+    bool isSitAnm() const
+    {
+        return isAnmFlag(cAnmFlagType_Main, cAnmFlagBit_Sit);
+    }
+
+    bool isHangAnm() const
+    {
+        return isAnmFlag(cAnmFlagType_Main, cAnmFlagBit_Hang);
+    }
+
+    bool isSwimAnm() const
+    {
+        return isAnmFlag(cAnmFlagType_Main, cAnmFlagBit_Swim);
     }
 
     void changeFaceAngleOverrideFlag(FaceAngleOverrideFlag flag, bool enable)
