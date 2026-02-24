@@ -94,6 +94,9 @@ public:
     // Address: 0x021941D8
     VineResult checkVine(const Sensor& vine_sensor);
 
+    // Address: 0x02194F18
+    bool checkPole(const sead::Vector2f& offset);
+
     // Address: 0x0219587C
     Actor* getOwnerAtRevCheck(f32 bg_collision_pos_y) const override;
     // Address: 0x021958E8
