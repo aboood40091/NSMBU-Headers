@@ -36,6 +36,11 @@ public:
     };
     static_assert(sizeof(PcCheckArea) == 0x14);
 
+    struct VineResult
+    {
+        u16 flag;
+    };
+
 public:
     // Address: 0x021934C0
     ActorBgCollisionPlayerCheck();
@@ -85,6 +90,9 @@ public:
     {
         return mIsMameDokan;
     }
+
+    // Address: 0x021941D8
+    VineResult checkVine(const Sensor& vine_sensor);
 
     // Address: 0x0219587C
     Actor* getOwnerAtRevCheck(f32 bg_collision_pos_y) const override;
