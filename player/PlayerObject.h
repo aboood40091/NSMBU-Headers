@@ -9,6 +9,7 @@
 #include <player/PlyOrchestra.h>
 #include <player/util/ChangeMgr.h>
 
+class CarryObjBase;
 class EventDown;
 class EventPlayerChange;
 class Yoshi;
@@ -99,6 +100,37 @@ public:
         cSpinActionMode_ChibiYoshiBubble,
         cSpinActionMode_ChibiYoshiLight,    // Maybe?
         cSpinActionMode_Musa
+    };
+
+    enum BgPointType
+    {
+        cBgPointType_Normal = 0,
+        cBgPointType_PenguinSlide,
+        cBgPointType_PenguinSwim
+    };
+
+    enum BgPointAnmType
+    {
+        cBgPointAnmType_Normal = 0,
+        cBgPointAnmType_Squat,
+        cBgPointAnmType_Hang,
+        cBgPointAnmType_Swim,
+        cBgPointAnmType_StarRoll,
+        cBgPointAnmType_Num
+    };
+    static_assert(cBgPointAnmType_Num == 5);
+
+    enum CarryPlayerType
+    {
+        cCarryPlayerType_Normal = 0,
+        cCarryPlayerType_ForceCrouch,
+        cCarryPlayerType_Blocked
+    };
+
+    enum BcMode
+    {
+        cBcMode_Chase,
+        cBcMode_Direct
     };
 
 public:
@@ -295,11 +327,78 @@ public:
 
     // ------------------------------------ PlayerObjectBg.cpp ------------------------------------ //
 
+    // Address: 0x02927F48
+    void setBcSensorFlags();
+    // Address: 0x02927BF4
+    void setBcSensorFlagsPlayer();
+
     // Address: 0x02928DC0
     void initBcData();
 
+    // Address: 0x0292897C
+    void setBcData(BcMode mode);
+
+    // Address: 0x02927BC4
+    BgPointType getBgPointType();
+
+    // Address: 0x029282A8
+    const PlayerBgPointHIO* getBgPointDataBase(PlayerMode mode, BgPointAnmType anm_type);
+
+    const PlayerBgPointHIO* getBgPointDataBase(BgPointAnmType anm_type = cBgPointAnmType_Normal)
+    {
+        return getBgPointDataBase(mMode, anm_type);
+    }
+
+    // Address: 0x029282F8
+    void reviseBgPointDataCarryHardBlock(ActorBgCollisionCheck::Sensor& wall, ActorBgCollisionCheck::Sensor& head);
+    // Address: 0x02928798
+    void reviseBgPointDataCarryPlayer(ActorBgCollisionCheck::Sensor& wall, ActorBgCollisionCheck::Sensor& head);
+    // Address: 0x0292817C
+    void reviseBgPointDataCarryUnk(ActorBgCollisionCheck::Sensor& foot, ActorBgCollisionCheck::Sensor& head, ActorBgCollisionCheck::Sensor& wall);
+
+    // Address: 0x0292861C
+    void reviseBgPointDataCarryPlayerBase(ActorBgCollisionCheck::Sensor& wall, ActorBgCollisionCheck::Sensor& head, bool carry_force_crouch);
+
+    // Address: 0x029283A4
+    CarryPlayerType checkCarryPlayerRoof(const ActorBgCollisionCheck::Sensor& wall, const ActorBgCollisionCheck::Sensor& head);
+
+    // Address: 0x02928E10
+    bool checkChibiYoshiLiftUpBlocked();
+
+    // Address: 0x02928F58
+    bool checkCancelTarzanRopeLR(u8 dir);
+    // Address: 0x02929014
+    bool checkCancelTarzanRopeUp();
+    // Address: 0x0292908C
+    bool checkCancelTarzanRopeUpRDash();
+
+    // Address: 0x02929144
+    const PlayerBgPointHIO* getBgPointData() override;
+
+    // Address: 0x02929228
+    f32 getStandHeadBgPointY() override;
+
+    // Address: 0x029292B4
+    void checkBgCrossSub() override;
+    // Address: 0x029293BC
+    void postBgCross() override;
+
+    // Address: 0x0292990C
+    void clearJumpActionInfo() override;
+
+    // Address: 0x029288BC
+    const ActorBgCollisionPlayerCheck::PcCheckArea& getRopeCheckArea();
+
+    // Address: 0x029299A8
+    bool checkPole();
+
+    // Address: 0x02929AA0
+    f32 getHangBcOffsetY();
+
     // Address: 0x02929B28
-    f32 getBcAreaCenterY();
+    f32 getTarzanRopeCenterY();
+    // Address: 0x02929B4C
+    f32 getTarzanRopeBcOffsetY();
 
     // ------------------------------------ PlayerObjectCYoshi.cpp ------------------------------------ //
 
@@ -454,6 +553,9 @@ public:
     // Address: 0x02954D8C
     bool setVineAction();
 
+    // Address: 0x02954E94
+    bool isAmiRollAction();
+
     // ------------------------------------ PlayerObjectWalk.cpp ------------------------------------ //
 
     // Address: 0x02957034
@@ -467,6 +569,11 @@ public:
 
     // Address: 0x02957430
     virtual void setTurnAction_Turned();
+
+    // ------------------------------------ PlayerObjectWalkWall.cpp ------------------------------------ //
+
+    // Address: 0x029587B4
+    void checkWalkWallBgCross();
 
     // ------------------------------------ PlayerObjectWallJump.cpp ------------------------------------ //
 
@@ -507,6 +614,9 @@ public:
 
     // Address: 0x0294AD20
     bool setSpinActionReq();
+
+    // Address: 0x0294ADD0
+    void resetMissSpin();
 
     // Address: 0x0294AF60
     bool setSpinAction();
@@ -592,7 +702,11 @@ public:
 
     // Address: 0x0292C170
     PlayerObject* getCarryPlayer();
+    // Address: 0x0292C20C
+    CarryObjBase* getCarryHardBlock();
 
+    // Address: 0x0292CF48
+    void releaseCarryActorBase();
     // Address: 0x0292D048
     void releaseCarryActor();
 
@@ -605,6 +719,8 @@ public:
     // Address: 0x0292D564
     f32 getCarryStepRatio();
 
+    // Address: 0x0292D704
+    void getCarryPos(sead::Vector3f* p_pos);
     // Address: 0x0292D704
     bool getCarryMtx(sead::Matrixf* p_mtx);
 
@@ -685,15 +801,6 @@ public:
     // ------------------------------------ Uncategorized ------------------------------------ //
 
     void executeMain() override;
-
-    PlayerBgPointHIO* getBgPointData() override;
-
-    f32 getStandHeadBgPointY() override;
-
-    void checkBgCrossSub() override;
-    void postBgCross() override;
-
-    void clearJumpActionInfo() override;
 
     bool vf19C() override;
 
@@ -858,7 +965,7 @@ public:
 
 protected:
     PlayerModelMgr                  mModelMgr;
-    ActorBgCollisionCheck::Sensor   _2760;
+    ActorBgCollisionCheck::Sensor   mBcSensorVine;
     PlayerMode                      mModePrev;                      // Maybe?
     PlayerMode                      mModeNext;                      // ^^^
     sead::Vector2f                  _2774;
@@ -916,7 +1023,7 @@ protected:
     u32                             _2a38;
     f32                             _2a3c;
     u32                             _2a40;
-    u32                             _2a44;
+    s32                             mSlideAttackBgTimer;
     f32                             _2a48;
     DirType                         mWallSlideDir;
     ActorUniqueID                   mLiftUpActorID;
@@ -991,7 +1098,7 @@ protected:
     Angle                           mRopeAngleOld;
     Angle                           mRopeAngleDiffOld;
     u32                             _2d10;
-    f32                             mMameWallWalkSpeed;
+    f32                             mWalkWallSpeed;
     sead::Vector2f                  _2d18;
     u32                             _2d20;
     u32                             _2d24;

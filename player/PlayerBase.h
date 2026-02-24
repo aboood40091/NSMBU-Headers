@@ -99,13 +99,13 @@ public:
         cStatus_WallSlide,                      // NSMBW: Bit 0x13
         cStatus_37,
         cStatus_38,
-
+        cStatus_39,
         cStatus_40                      =  40,  // NSMBW: Bit 0x15
         cStatus_41,                             // NSMBW: Bit 0x16
 
         cStatus_45                      =  45,  // NSMBW: Bit 0x19
-        cStatus_46,
-        cStatus_47,
+        cStatus_46,                             // NSMBW: Bit 0x1A
+        cStatus_47,                             // NSMBW: Bit 0x1B
         cStatus_48,                             // NSMBW: Bit 0x1C
         cStatus_49,                             // NSMBW: Bit 0x1D
         cStatus_50,                             // NSMBW: Bit 0x1E
@@ -146,15 +146,19 @@ public:
         cStatus_93                      =  93,
 
         cStatus_97                      =  97,
-        cStatus_98,                             // NSMBW: Bit 0x3B
-        cStatus_99,                             // NSMBW: Bit 0x3C
+        cStatus_PenguinSwim,                    // NSMBW: Bit 0x3B
+        cStatus_PenguinSlide,                   // NSMBW: Bit 0x3C
 
-        cStatus_102                     = 102,  // NSMBW: Bit 0x3E
+        cStatus_InitialSlip             = 102,  // NSMBW: Bit 0x3E
 
         cStatus_104                     = 104,
         cStatus_105,
         cStatus_106,
         cStatus_RidePlayer,                     // NSMBW: Bit 0x45
+        cStatus_LiftUp,                         // NSMBW: Bit 0x46
+        cStatus_109,                            // NSMBW: Bit 0x47
+        cStatus_110,
+        cStatus_111,                            // NSMBW: Bit 0x48
 
         cStatus_113                     = 113,  // NSMBW: Bit 0x4A
         cStatus_RideYoshi,                      // NSMBW: Bit 0x4B
@@ -184,8 +188,8 @@ public:
         cStatus_138,
 
         cStatus_141                     = 141,
-
-        cStatus_143                     = 143,
+        cStatus_142,
+        cStatus_143,
 
         cStatus_145                     = 145,  // NSMBW: Bit 0x86
         cStatus_146,                            // NSMBW: Bit 0x87
@@ -213,12 +217,13 @@ public:
         cStatus_FollowMameKuribo        = 174,  // NSMBW: Bit 0xAC
         cStatus_Invisible,                      // NSMBW: Bit 0xBB
         cStatus_HideTemporarily,                // NSMBW: Bit 0xBC (for invincibility frames)
-
-        cStatus_178                     = 178,  // NSMBW: Bit 0xBE
+        cStatus_CannonJump,                     // NSMBW: Bit 0xBD
+        cStatus_178,                            // NSMBW: Bit 0xBE
         cStatus_179,                            // NSMBW: Bit 0xBF
-        cStatus_180,                            // NSMBW: Bit 0xC1
-
-        cStatus_183                     = 183,
+        cStatus_CanWaterWalk,                   // NSMBW: Bit 0xC1
+        cStatus_IsWaterWalk,                    // NSMBW: Bit 0xC2
+        cStatus_182,                            // NSMBW: Bit 0xC3
+        cStatus_183,
         cStatus_184,
         cStatus_185,
         cStatus_186,
@@ -282,14 +287,14 @@ public:
         cStatus_252,                            // NSMBW: Bit 0x81
         cStatus_253,                            // NSMBW: Bit 0xB8
         cStatus_254,
-        cStatus_255,                            // NSMBW: Bit 0x82
-        cStatus_256,                            // NSMBW: Bit 0x83
+        cStatus_ControlledMove,                 // NSMBW: Bit 0x82
+        cStatus_ControlledMoveReq,              // NSMBW: Bit 0x83
 
         cStatus_258                     = 258,
         cStatus_SlideSlope,
         cStatus_DispOutPosYAdj,
-
-        cStatus_RDash_DispPinch         = 262,
+        cStatus_BgPointDataCarryRev,
+        cStatus_RDash_DispPinch,
         cStatus_263,                            // NSMBW: Bit 0x77
         cStatus_264,                            // NSMBW: Bit 0x78
         cStatus_265,                            // NSMBW: Bit 0x79
@@ -322,8 +327,8 @@ public:
         cBgCross_CarryRelatedR,                     // NSMBW Bit: 0x08
         cBgCross_CarryObjBgCarriedL,                // NSMBW Bit: 0x09
         cBgCross_CarryObjBgCarriedR,                // NSMBW Bit: 0x0A
-        cBgCross_WallWalkEnableL,
-        cBgCross_WallWalkEnableR,
+        cBgCross_WalkWallEnableL,
+        cBgCross_WalkWallEnableR,
         cBgCross_IsWaterPillarL,                    // Maybe?
         cBgCross_IsWaterPillarR,                    // ^^^
         cBgCross_15,                                // NSMBW Bit: 0x0B (MAYBE)
@@ -332,7 +337,7 @@ public:
         cBgCross_IsUnderwater,                      // NSMBW Bit: 0x0E
         cBgCross_IsWater,                           // NSMBW Bit: 0x0F (All liquids)
         cBgCross_IsCompletelyUnderwater,            // NSMBW Bit: 0x10
-
+        cBgCross_IsWaterShallow,                    // NSMBW Bit: 0x11
         cBgCross_RDash_IsNonWaterLiquid = 22,       // i.e. Lava, Lava Wave, Poison & Quicksand
         cBgCross_IsAirWater,                        // NSMBW Bit: 0x12
         cBgCross_DispSideLimitL,
@@ -369,9 +374,15 @@ public:
         cBgCross_IsKani,                            // NSMBW Bit: 0x28
         cBgCross_IsKani2,                           // NSMBW Bit: 0x29
         cBgCross_IsKani3,                           // NSMBW Bit: 0x2A (Never actually set at runtime)
-        cBgCross_IsPole,
-
-        cBgCross_66 = 66,                           // NSMBW Bit: 0x35
+        cBgCross_IsPole,                            // NSMBW Bit: 0x2B
+        cBgCross_IsVine,                            // NSMBW Bit: 0x2C (MAYBE)
+        cBgCross_60,                                // NSMBW Bit: 0x2E (MAYBE)
+        cBgCross_61,                                // NSMBW Bit: 0x2F (MAYBE)
+        cBgCross_62,                                // NSMBW Bit: 0x30 (MAYBE)
+        cBgCross_63,                                // NSMBW Bit: 0x33 (MAYBE)
+        cBgCross_64,                                // NSMBW Bit: 0x34 (MAYBE)
+        cBgCross_65,                                // NSMBW Bit: 0x31 (MAYBE)
+        cBgCross_66,                                // NSMBW Bit: 0x35
         cBgCross_67,                                // NSMBW Bit: 0x36
         cBgCross_68,                                // NSMBW Bit: 0x37 (MAYBE)
         cBgCross_69,                                // NSMBW Bit: 0x38
@@ -1084,7 +1095,7 @@ public:
     bool vsPlayerCarryPush();
 
     // Address: 0x028F6B04
-    void setBcSensorFlags();
+    void setBcSensorFlagsBase();
 
     // Address: 0x028F77B4
     void bgCheck(bool side_view_check);
@@ -1118,19 +1129,19 @@ public:
     // Address: 0x028F7428
     void checkWater();
 
-    virtual PlayerBgPointHIO* getBgPointData() = 0;
+    virtual const PlayerBgPointHIO* getBgPointData() = 0;
 
-    ActorBgCollisionCheck::Sensor* getHeadBgPointData()
+    const ActorBgCollisionCheck::Sensor* getHeadBgPointData()
     {
         return &getBgPointData()->sensor_head;
     }
 
-    ActorBgCollisionCheck::Sensor* getWallBgPointData()
+    const ActorBgCollisionCheck::Sensor* getWallBgPointData()
     {
         return &getBgPointData()->sensor_wall;
     }
 
-    ActorBgCollisionCheck::Sensor* getFootBgPointData()
+    const ActorBgCollisionCheck::Sensor* getFootBgPointData()
     {
         return &getBgPointData()->sensor_foot;
     }
