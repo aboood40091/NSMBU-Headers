@@ -505,6 +505,11 @@ public:
         mIndex = index;
     }
 
+    void setLine(const sead::BitFlag8& line_kind)
+    {
+        mCollisionMask = line_kind;
+    }
+
     void setLayer(u8 layer)
     {
         mLayer = layer;
