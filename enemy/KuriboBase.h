@@ -228,6 +228,27 @@ protected:
     // Address: 0x023DD708
     static BlendModel* createModel_(ModelResource* p_mdl_res, const sead::SafeString& name, bool not_set_walk_anm);
 
+    // Address: 0x023DB42C
+    bool checkRyusa_();
+
+    // Address: 0x023DB388
+    void setLayerPos_();
+
+    // Address: 0x023DB1F0
+    void setCcLine_();
+
+    // Address: 0x023DB4E8
+    bool checkGround_();
+
+    // Address: 0x023DB588
+    void landonEffect_();
+
+    // Address: 0x023DBA74
+    u8 checkBgIn_();
+
+    // Address: 0x023DBB48
+    void setDeathInfo_Hasami_();
+
 protected:
     ModelResource*              mpModelResource;
     BlendModel*                 mpBlendModel;
@@ -239,8 +260,8 @@ protected:
     f32                         mZOffset;
     f32                         _1a00;
     u32                         _1a04;                      // Some kind of angle (only used by Kakibo?)
-    u8                          _1a08;
-    u8                          _1a09;
+    bool                        _1a08;
+    bool                        _1a09;
     bool                        mAllowDrcTouchInAir;
     u8                          _1a0b;
     u8                          _1a0c;
