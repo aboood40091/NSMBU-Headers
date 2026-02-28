@@ -150,7 +150,7 @@ public:
         cDamageFrom_Unk27           = 1 << cAttack_Unk27,
 
         cDamageFrom_None            = 0,
-        cDamageFrom_All             = 0xFFFFFFFF
+        cDamageFrom_All             = ~(cDamageFrom_YoshiMouth | cDamageFrom_SpinLiftUp)
     };
     static_assert(sizeof(DamageFrom) == 4);
 
