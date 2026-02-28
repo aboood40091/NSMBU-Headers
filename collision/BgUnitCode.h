@@ -384,6 +384,14 @@ public:
         cTypeInfo_SenLift_Num
     };
 
+    enum TypeInfo_Vine
+    {
+        cTypeInfo_Vine_Ivy,
+        cTypeInfo_Vine_Rock,
+        cTypeInfo_Vine_Wire,
+        cTypeInfo_Vine_Num
+    };
+
     enum TypeOpt_DokanColor
     {
         cTypeOpt_DokanColor_Green,
