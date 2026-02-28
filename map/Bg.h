@@ -21,11 +21,22 @@ public:
         return getBgCheckData(u16(x), u16(-y), layer, with_p_sw);
     }
 
-
-    BgUnitCode::HitType getHitType(u16 x, u16 y, u8 layer);
-    BgUnitCode::HitType getHitType(f32 x, f32 y, u8 layer)
+    BgUnitCode::HitType getUnitHitType(u16 x, u16 y, u8 layer);
+    BgUnitCode::HitType getUnitHitType(f32 x, f32 y, u8 layer)
     {
-        return getHitType(u16(x), u16(-y), layer);
+        return getUnitHitType(u16(x), u16(-y), layer);
+    }
+
+    BgUnitCode::Type getUnitType(u16 x, u16 y, u8 layer);
+    BgUnitCode::Type getUnitType(f32 x, f32 y, u8 layer)
+    {
+        return getUnitType(u16(x), u16(-y), layer);
+    }
+
+    BgUnitCode::TypeInfo getUnitTypeInfo(u16 x, u16 y, u8 layer);
+    BgUnitCode::TypeInfo getUnitTypeInfo(f32 x, f32 y, u8 layer)
+    {
+        return getUnitTypeInfo(u16(x), u16(-y), layer);
     }
 
     void setWaterInWave(const sead::Vector2f& pos, u8 wave_scale);
