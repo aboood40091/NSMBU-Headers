@@ -200,88 +200,6 @@ public:
     static_assert(sizeof(Info) == 4);
 
 public:
-    friend TargetKind operator|(const TargetKind& lhs, const TargetKind& rhs)
-    {
-        return (TargetKind)((u32)lhs | (u32)rhs);
-    }
-
-    friend TargetKind& operator|=(TargetKind& lhs, const TargetKind& rhs)
-    {
-        lhs = lhs | rhs;
-        return lhs;
-    }
-
-    friend TargetKind operator&(const TargetKind& lhs, const TargetKind& rhs)
-    {
-        return (TargetKind)((u32)lhs & (u32)rhs);
-    }
-
-    friend TargetKind& operator&=(TargetKind& lhs, const TargetKind& rhs)
-    {
-        lhs = lhs & rhs;
-        return lhs;
-    }
-
-    friend TargetKind operator~(const TargetKind& val)
-    {
-        return (TargetKind)(~(u32)val);
-    }
-
-    friend DamageFrom operator|(const DamageFrom& lhs, const DamageFrom& rhs)
-    {
-        return (DamageFrom)((u32)lhs | (u32)rhs);
-    }
-
-    friend DamageFrom& operator|=(DamageFrom& lhs, const DamageFrom& rhs)
-    {
-        lhs = lhs | rhs;
-        return lhs;
-    }
-
-    friend DamageFrom operator&(const DamageFrom& lhs, const DamageFrom& rhs)
-    {
-        return (DamageFrom)((u32)lhs & (u32)rhs);
-    }
-
-    friend DamageFrom& operator&=(DamageFrom& lhs, const DamageFrom& rhs)
-    {
-        lhs = lhs & rhs;
-        return lhs;
-    }
-
-    friend DamageFrom operator~(const DamageFrom& val)
-    {
-        return (DamageFrom)(~(u32)val);
-    }
-
-    friend Status operator|(const Status& lhs, const Status& rhs)
-    {
-        return (Status)((u32)lhs | (u32)rhs);
-    }
-
-    friend Status& operator|=(Status& lhs, const Status& rhs)
-    {
-        lhs = lhs | rhs;
-        return lhs;
-    }
-
-    friend Status operator&(const Status& lhs, const Status& rhs)
-    {
-        return (Status)((u32)lhs & (u32)rhs);
-    }
-
-    friend Status& operator&=(Status& lhs, const Status& rhs)
-    {
-        lhs = lhs & rhs;
-        return lhs;
-    }
-
-    friend Status operator~(const Status& val)
-    {
-        return (Status)(~(u32)val);
-    }
-
-public:
     // Address: 0x0219A960
     ActorCollisionCheck();
     // Address: 0x0219AB90
@@ -462,12 +380,12 @@ public:
 
     void onDamage(DamageFrom vs_damage)
     {
-        mCollisionData.vs_damage |= vs_damage;
+        mCollisionData.vs_damage = DamageFrom(mCollisionData.vs_damage | vs_damage);
     }
 
     void offDamage(DamageFrom vs_damage)
     {
-        mCollisionData.vs_damage &= ~vs_damage;
+        mCollisionData.vs_damage = DamageFrom(mCollisionData.vs_damage & ~vs_damage);
     }
 
     bool hasDamage(DamageFrom vs_damage) const
@@ -487,12 +405,12 @@ public:
 
     void onStatus(Status status)
     {
-        mCollisionData.status |= status;
+        mCollisionData.status = Status(mCollisionData.status | status);
     }
 
     void offStatus(Status status)
     {
-        mCollisionData.status &= ~status;
+        mCollisionData.status = Status(mCollisionData.status & ~status);
     }
 
     bool hasStatus(Status status)
