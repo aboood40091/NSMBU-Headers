@@ -416,3 +416,14 @@ protected:
     s8                      _187e;
 };
 static_assert(sizeof(Enemy) == 0x1880);
+
+#define ENEMY_MAKE_DEATH_INFO_ARG_FALL(arg_name)    \
+    EnemyDeathInfo::Arg arg_name = {                \
+        sead::Vector2f(),                           \
+        0.0f,                                       \
+        0.0f,                                       \
+        &Enemy::StateID_DieFall,                    \
+        -1,                                         \
+        0,                                          \
+        -1                                          \
+    }
