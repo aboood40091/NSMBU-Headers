@@ -2,13 +2,13 @@
 
 #include <geom/seadLine.h>
 
-class Ride2Point
+class Segment
 {
 public:
     // Address: 0x021AF714
-    Ride2Point();
+    Segment();
     // Address: 0x021AF794
-    Ride2Point(const sead::Vector2f& p0, const sead::Vector2f& p1);
+    Segment(const sead::Vector2f& p0, const sead::Vector2f& p1);
 
     const sead::Segment2f& getSegment() const
     {
@@ -18,4 +18,4 @@ public:
 private:
     sead::Segment2f mSegment;
 };
-static_assert(sizeof(Ride2Point) == 0x10);
+static_assert(sizeof(Segment) == 0x10);
