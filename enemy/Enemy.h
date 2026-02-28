@@ -27,6 +27,10 @@ public:
     static const f32 cDefaultMaxFallSpeed;
     // Address: 0x10072EA8
     static const f32 cDieFallInitSpeedY;
+    // Address: 0x10072EAC
+    static const f32 cDieFallMaxFallSpeed;
+    // Address: 0x102010AC
+    static const f32 cDieFallGravity; // 1.3 * cDefaultGravity
 
     // Address: 0x10200DD8
     static const Angle cBaseAngleY[cDirType_NumX];
