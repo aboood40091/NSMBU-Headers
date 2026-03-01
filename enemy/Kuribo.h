@@ -74,7 +74,7 @@ public:
 
     bool disallowDrcTouchOnGround() override
     {
-        return *mStateMgr.getStateID() == StateID_KuriboState10;
+        return isState(StateID_KuriboState10);
     }
 
     bool vf54C() override
@@ -84,7 +84,7 @@ public:
 
     bool vf554() override
     {
-        return *mStateMgr.getOldStateID() == StateID_Touch;
+        return isOldState(StateID_Touch);
     }
 
     // StateID_Touch            Address: 0x102047D4
@@ -95,8 +95,8 @@ public:
 
     bool isWakidashi() const override
     {
-        return *mStateMgr.getStateID() == StateID_Auto_Walk ||
-               *mStateMgr.getStateID() == StateID_Down;
+        return isState(StateID_Auto_Walk) ||
+               isState(StateID_Down);
     }
 
     // Address: 0x023D8170

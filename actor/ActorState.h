@@ -15,9 +15,24 @@ public:
     ActorState(const ActorCreateParam& param);
     virtual ~ActorState() { }
 
+    void executeState()
+    {
+        mStateMgr.executeState();
+    }
+
     void changeState(const StateID& state_id)
     {
         mStateMgr.changeState(state_id);
+    }
+
+    bool isState(const StateID& state_id) const
+    {
+        return *mStateMgr.getStateID() == state_id;
+    }
+
+    bool isOldState(const StateID& state_id) const
+    {
+        return *mStateMgr.getOldStateID() == state_id;
     }
 
 protected:
@@ -37,9 +52,24 @@ public:
     ActorMultiState(const ActorCreateParam& param);
     virtual ~ActorMultiState() { }
 
+    void executeState()
+    {
+        mStateMgr.executeState();
+    }
+
     virtual void changeState(const StateID& state_id)
     {
         mStateMgr.changeState(state_id);
+    }
+
+    bool isState(const StateID& state_id) const
+    {
+        return *mStateMgr.getStateID() == state_id;
+    }
+
+    bool isOldState(const StateID& state_id) const
+    {
+        return *mStateMgr.getOldStateID() == state_id;
     }
 
 protected:
