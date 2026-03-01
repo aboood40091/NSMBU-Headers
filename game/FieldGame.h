@@ -2,6 +2,7 @@
 
 #include <game/FieldGameMode.h>
 #include <game/FieldPlayerData.h>
+#include <game/InfoStats.h>
 
 #include <container/seadSafeArray.h>
 #include <heap/seadDisposer.h>
@@ -42,6 +43,16 @@ public:
         return mGameMode;
     }
 
+    InfoStats& getStatsData()
+    {
+        return mStatsData;
+    }
+
+    const InfoStats& getStatsData() const
+    {
+        return mStatsData;
+    }
+
 private:
     u32                 mCheckPoint[0x14 / sizeof(u32)];    // TODO: CheckPoint
     sead::SafeArray<
@@ -51,7 +62,9 @@ private:
     s32                 mCoinNum;
     u32                 _138[(0x15C - 0x138) / sizeof(u32)];
     FieldGameMode       mGameMode;
-    u32                 _160[(0x1E4 - 0x160) / sizeof(u32)];
+    u32                 _160[(0x1A8 - 0x160) / sizeof(u32)];
+    InfoStats           mStatsData;
+    bool                _1e0;
 };
 static_assert(sizeof(FieldGameData) == 0x1E4);
 
