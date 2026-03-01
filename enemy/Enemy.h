@@ -8,6 +8,25 @@
 #include <enemy/IceMgr.h>
 #include <state/FStateVirtualID.h>
 
+// TODO: Move to own header
+class Enemy;
+
+struct UniqueFumiCheckInf;
+
+struct EnemyFumiCheck
+{
+    Enemy* p_enemy;
+    UniqueFumiCheckInf* p_fumi_check_inf;
+    u8 _8;
+};
+static_assert(sizeof(EnemyFumiCheck) == 0xC);
+
+struct EnemyFumiProc
+{
+    EnemyFumiCheck fumi_check;
+};
+static_assert(sizeof(EnemyFumiProc) == 0xC);
+
 class ActorCollisionCheck;
 
 class Enemy : public ActorMultiState    // vtbl Address: 0x1007209C
@@ -400,10 +419,7 @@ protected:
     IceMgr                  mIceMgr;
     EnemyChibiYoshiAwaData  mChibiYoshiAwaData;
 
-    // TODO: EnemyFumiProc
-    Enemy*                  _1860;
-    void*                   _1864;
-    u8                      _1868;
+    EnemyFumiProc           mFumiProc;
 
     u16                     _186c;
     u16                     _186e;
