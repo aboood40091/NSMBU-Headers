@@ -48,9 +48,9 @@ PROFILE_INFO_ACCESS_SPEC_PRIVATE
         cDrawPriority_TottenPlayer                              =   2,
         cDrawPriority_Yoshi                                     =   3,
         cDrawPriority_1BD                                       =   4,
-        cDrawPriority_1D3                                       =   5,
+        cDrawPriority_Kuribo                                    =   5,
         cDrawPriority_1D4                                       =   6,
-        cDrawPriority_1D5                                       =   7,
+        cDrawPriority_PataKuribo                                =   7,
         cDrawPriority_1D6                                       =   8,
         cDrawPriority_1D7                                       =   9,
         cDrawPriority_1D8                                       =  10,
@@ -653,7 +653,7 @@ PROFILE_INFO_ACCESS_SPEC_PRIVATE
         cDrawPriority_165                                       = 607,
         cDrawPriority_11D                                       = 608,
         cDrawPriority_11E                                       = 609,
-        cDrawPriority_0DE                                       = 610,
+        cDrawPriority_Maruta                                    = 610,
         cDrawPriority_0DF                                       = 611,
         cDrawPriority_0EC                                       = 612,
         cDrawPriority_FloorGyration                             = 613,
@@ -1415,7 +1415,7 @@ PROFILE_INFO_ACCESS_SPEC_PUBLIC
     // Address: 0x100040C8
     PROFILE_INFO_STORAGE_STATIC const s32 cProfileID_0DD;                                       // 221
     // Address: 0x100040CC
-    PROFILE_INFO_STORAGE_STATIC const s32 cProfileID_0DE;                                       // 222
+    PROFILE_INFO_STORAGE_STATIC const s32 cProfileID_Maruta;                                    // 222
     // Address: 0x100040D0
     PROFILE_INFO_STORAGE_STATIC const s32 cProfileID_0DF;                                       // 223
     // Address: 0x100040D4
@@ -1905,11 +1905,11 @@ PROFILE_INFO_ACCESS_SPEC_PUBLIC
     // Address: 0x1000449C
     PROFILE_INFO_STORAGE_STATIC const s32 cProfileID_1D2;                                       // 466
     // Address: 0x100044A0
-    PROFILE_INFO_STORAGE_STATIC const s32 cProfileID_1D3;                                       // 467
+    PROFILE_INFO_STORAGE_STATIC const s32 cProfileID_Kuribo;                                    // 467
     // Address: 0x100044A4
     PROFILE_INFO_STORAGE_STATIC const s32 cProfileID_1D4;                                       // 468
     // Address: 0x100044A8
-    PROFILE_INFO_STORAGE_STATIC const s32 cProfileID_1D5;                                       // 469
+    PROFILE_INFO_STORAGE_STATIC const s32 cProfileID_PataKuribo;                                // 469
     // Address: 0x100044AC
     PROFILE_INFO_STORAGE_STATIC const s32 cProfileID_1D6;                                       // 470
     // Address: 0x100044B0
