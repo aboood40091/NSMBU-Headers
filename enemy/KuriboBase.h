@@ -1,5 +1,6 @@
 #pragma once
 
+#include <actor/Profile.h>
 #include <collision/ActorCollisionDrcTouchCallback.h>
 #include <enemy/Enemy.h>
 #include <enemy/EnemyBoyoMgr.h>
@@ -7,16 +8,6 @@
 #include <enemy/EnemyEatData.h>
 #include <enemy/MiddleKuribo.h>
 #include <graphics/CalcRatioSRT.h>
-
-class KuriboDrcTouchCB : public ActorCollisionDrcTouchCallback  // vtbl Address: 0x10091CD4
-{
-public:
-    // Address: 0x023DDBF8
-    bool ccSetTouchNormal(ActorCollisionCheck* p_cc, const sead::Vector2f& pos) override;
-    // Address: 0x023DDC90
-    void ccOnTouch(ActorCollisionCheck* p_cc, const sead::Vector2f& pos) override;
-};
-static_assert(sizeof(KuriboDrcTouchCB) == sizeof(ActorCollisionDrcTouchCallback));
 
 class BlendModel;
 class ModelResource;
@@ -29,8 +20,15 @@ class KuriboBase : public Enemy // vtbl Address: 0x100916DC
     SEAD_RTTI_OVERRIDE(KuriboBase, Enemy)
 
 public:
-    // Address: 0x023DBE54
-    static void normal_collcheck(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
+    class DrcTouchCB : public ActorCollisionDrcTouchCallback    // vtbl Address: 0x10091CD4
+    {
+    public:
+        // Address: 0x023DDBF8
+        bool ccSetTouchNormal(ActorCollisionCheck* p_cc, const sead::Vector2f& pos) override;
+        // Address: 0x023DDC90
+        void ccOnTouch(ActorCollisionCheck* p_cc, const sead::Vector2f& pos) override;
+    };
+    static_assert(sizeof(DrcTouchCB) == sizeof(ActorCollisionDrcTouchCallback));
 
 public:
     // Address: 0x023DAF04
@@ -55,48 +53,32 @@ protected:
     }
 
 public:
-    // Address: 0x023DDA28
-    void removeCollisionCheck() override;
-    // Address: 0x023DD97C
-    void reviveCollisionCheck() override;
-    // Address: 0x023DDBA8
-    void allEnemyDeathEffSet() override;
-    // Address: 0x023DCAC4
-    void yoganSplashEffect(const sead::Vector3f&) override;
-
-    // Address: 0x023DDAB4
-    bool setDamage(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other) override;
     // Address: 0x023DBE44
     void calcMdl_Base() override;
-    // Address: 0x023DC1E8
-    bool hitYoshiEat(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other) override;
+
+    // Address: 0x023DBE54
+    static void normal_collcheck(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
+
     // Address: 0x023DBF0C
     void vsEnemyHitCheck_Normal(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other) override;
+
     // Address: 0x023DBFB0
     void vsPlayerHitCheck_Normal(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other) override;
+
     // Address: 0x023DC0C4
     void vsYoshiHitCheck_Normal(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other) override;
-    // Address: 0x023DC3B4
-    void vsChibiYoshiHitCheck_Normal(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other) override;
+    // Address: 0x023DC1E8
+    void hitYoshiEat(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other) override;
     // Address: 0x023DC2B4
     bool hitCallback_YoshiHipAttk(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other) override;
+
+    // Address: 0x023DC3B4
+    void vsChibiYoshiHitCheck_Normal(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other) override;
     // Address: 0x023DC3C4
-    bool hitCallback_ChibiYoshiBubble(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other) override; // I think
+    bool hitCallback_ChibiYoshiUnk(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other) override;
     // Address: 0x023DC490
-    void vf35C(Actor*) override;
+    void setAwaHit(Actor* p_awa) override;
 
-    // StateID_DieFall          Address: 0x102048C8
-    // initializeState_DieFall  Address: 0x023DD640
-    // executeState_DieFall     Address: 0x023DD6D0
-    // finalizeState_DieFall    Address: 0x023DD704
-    DECLARE_STATE_VIRTUAL_ID_OVERRIDE(KuriboBase, DieFall)
-    // StateID_DieOther         Address: 0x102048A4
-    // initializeState_DieOther Address: 0x023DD444
-    // executeState_DieOther    Address: 0x023DD620
-    // finalizeState_DieOther   Address: 0x023DD63C
-    DECLARE_STATE_VIRTUAL_ID_OVERRIDE(KuriboBase, DieOther)
-
-public:
     virtual void initialize()
     {
     }
@@ -125,10 +107,10 @@ public:
     }
 
     // Address: 0x023DCA88
-    virtual void reactFumiProc(Actor*);
+    virtual void reactFumiProc(Actor* p_player);
 
     // Address: Deleted
-    virtual void reactMameFumiProc(Actor*)
+    virtual void reactMameFumiProc(Actor* p_player)
     {
     }
 
@@ -164,6 +146,9 @@ public:
         return false;
     }
 
+    // Address: 0x023DCAC4
+    void yoganSplashEffect(const sead::Vector3f& pos) override;
+
     // StateID_Walk         Address: 0x10204814
     // initializeState_Walk Address: 0x023DCB48
     // executeState_Walk    Address: 0x023DCC38
@@ -184,6 +169,20 @@ public:
     // executeState_TrplnJump       Address: 0x023DD2D8
     // finalizeState_TrplnJump      Address: 0x023DE668
     DECLARE_STATE_VIRTUAL_ID_BASE(KuriboBase, TrplnJump)
+
+    // StateID_DieOther         Address: 0x102048A4
+    // initializeState_DieOther Address: 0x023DD444
+    // executeState_DieOther    Address: 0x023DD620
+    // finalizeState_DieOther   Address: 0x023DD63C
+    DECLARE_STATE_VIRTUAL_ID_OVERRIDE(KuriboBase, DieOther)
+    // StateID_DieFall          Address: 0x102048C8
+    // initializeState_DieFall  Address: 0x023DD640
+    // executeState_DieFall     Address: 0x023DD6D0
+    // finalizeState_DieFall    Address: 0x023DD704
+    DECLARE_STATE_VIRTUAL_ID_OVERRIDE(KuriboBase, DieFall)
+
+    // Address: 0x023DD708
+    static BlendModel* createModel(ModelResource* p_mdl_res, const sead::SafeString& name, bool not_set_walk_anm);
 
     // Address: 0x023DD7E4
     virtual void setWalkAnm();
@@ -221,12 +220,20 @@ public:
     {
     }
 
+    // Address: 0x023DD97C
+    void reviveCollisionCheck() override;
+    // Address: 0x023DDA28
+    void removeCollisionCheck() override;
+
+    // Address: 0x023DDAB4
+    bool setDamage(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other) override;
+
+    // Address: 0x023DDBA8
+    void allEnemyDeathEffSet() override;
+
 protected:
     // Address: 0x023DC4AC
-    void calcModel_(BlendModel* p_model);
-
-    // Address: 0x023DD708
-    static BlendModel* createModel_(ModelResource* p_mdl_res, const sead::SafeString& name, bool not_set_walk_anm);
+    void calcModel_(BlendModel* p_blend_model);
 
     // Address: 0x023DB42C
     bool checkRyusa_();
@@ -255,11 +262,11 @@ protected:
     TexturePatternAnimation*    mpTexAnim;
     CalcRatioSRT                mCalcRatio;
     MiddleKuribo*               mpParentMiddleKuribo;
-    ActorCollisionCheck         mCollisionCheckDrcTouch;    // Maybe?
+    ActorCollisionCheck         mCollisionCheckDrcTouch;
     f32                         mWalkAnmRate;               // Stored, but never read
     f32                         mZOffset;
     f32                         _1a00;
-    u32                         _1a04;                      // Some kind of angle (only used by Kakibo?)
+    Angle                       _1a04;                      // Some kind of angle (only used by Kakibo?)
     bool                        _1a08;
     bool                        _1a09;
     bool                        mAllowDrcTouchInAir;
@@ -273,6 +280,19 @@ protected:
     EnemyEatData                mEatData;
     EnemyChibiYoshiEatData      mChibiYoshiEatData;
     EnemyBoyoMgr                mBoyoMgr;
-    KuriboDrcTouchCB            mDrcTouchCallback;
+    DrcTouchCB                  mDrcTouchCallback;
+
+    // Address: 0x10091658
+    static const f32 cPataTurnMaxSpeedX;    // 1.0f
+    // Address: 0x1009165C
+    static const f32 cPataWalkMaxSpeedY;    // -4.0f
+
+    // Address: 0x10091660
+    static const ActorCreateInfo cActorCreateInfo;
+
+    // Address: 0x10091684
+    static const ActorCollisionCheck::CollisionData cCcData_Normal;
+    // Address: 0x100916B0
+    static const ActorCollisionCheck::CollisionData cCcData_DrcTouch;
 };
 static_assert(sizeof(KuriboBase) == 0x1A88);

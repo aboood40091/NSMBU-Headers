@@ -134,7 +134,7 @@ public:
     // Address: 0x02329520
     virtual bool enemyPreDamageCheck(bool* p_dead, ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
     // Address: 0x02329578
-    virtual bool hitYoshiEat(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
+    virtual void hitYoshiEat(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
     // Address: 0x0232957C
     virtual bool yoshiDamageCheck(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
     // Address: 0x023296E8
@@ -180,7 +180,7 @@ public:
     // Address: 0x0232D938
     virtual bool hitCallback_YoshiFire(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
     // Address: 0x0232DA04
-    virtual bool hitCallback_ChibiYoshiBubble(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other); // I think
+    virtual bool hitCallback_ChibiYoshiUnk(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
     // Address: 0x0232DA0C
     virtual bool hitCallback_ChibiYoshiLight(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
     // Address: 0x0232DA14
@@ -246,13 +246,13 @@ public:
     virtual bool checkDispIn(); // Checks if enemy is inside the camera view
 
     // Address: 0x0232A364
-    virtual void vf35C(Actor*); // Callback for ChibiYoshiAwaData
+    virtual void setAwaHit(Actor* p_awa); // Callback for ChibiYoshiAwaData
     // Address: 0x0232A418
-    virtual void vf364(Actor*); // ^^^
+    virtual void awaCatchMove(Actor* p_awa); // ^^^
     // Address: 0x0232A4CC
-    virtual void vf36C(Actor*); // ^^^
+    virtual void setAwaCatchEnd(Actor* p_awa); // ^^^
     // Address: 0x0232A864
-    virtual void vf374(Actor*); // ^^^
+    virtual void setAwaInvalid(Actor* p_awa); // ^^^
 
     // ------------------------------------ EnemyDeath.cpp ------------------------------------ //
 
@@ -286,11 +286,11 @@ public:
     // executeState_DieOther    Address: 0x0232EEE4
     // finalizeState_DieOther   Address: 0x0232EEE8
     DECLARE_STATE_VIRTUAL_ID_BASE(Enemy, DieOther)
-    // StateID_DieUnk2          Address: 0x10201088
-    // initializeState_DieUnk2  Address: 0x0232E7E0
-    // executeState_DieUnk2     Address: 0x0232EEEC
-    // finalizeState_DieUnk2    Address: 0x0232EEF0
-    DECLARE_STATE_VIRTUAL_ID_BASE(Enemy, DieUnk2)
+    // StateID_DieAwa           Address: 0x10201088
+    // initializeState_DieAwa   Address: 0x0232E7E0
+    // executeState_DieAwa      Address: 0x0232EEEC
+    // finalizeState_DieAwa     Address: 0x0232EEF0
+    DECLARE_STATE_VIRTUAL_ID_BASE(Enemy, DieAwa)
 
     // ------------------------------------ EnemyState.cpp ------------------------------------ //
 
