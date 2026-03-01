@@ -1119,7 +1119,7 @@ public:
     }
 
     // Address: 0x028F730C
-    bool checkBgWall(u8 dir);
+    bool checkBgWall(DirType dir);
 
     // Address: 0x028F73F4
     f32 getWaterCheckPosY();
@@ -1153,14 +1153,14 @@ public:
 
 private:
     inline void checkBgCross_();
-    inline void checkCarryObjBgCarried_(const ActorBgCollisionCheck::Output& output, u8 dir);
+    inline void checkCarryObjBgCarried_(const ActorBgCollisionCheck::Output& output, DirType dir);
 
 public:
     virtual void checkBgCrossSub() = 0;
     virtual void postBgCross() = 0;
 
     // Address: 0x028F872C
-    bool checkBGCrossWall(s32 dir);
+    bool checkBGCrossWall(DirType dir);
 
     // Address: 0x028F8760
     bool checkOldBgCrossFoot(s32 frame_cnt);
@@ -1171,11 +1171,11 @@ public:
     void setJumpSandSinkRate();
 
     // Address: 0x028F87C8
-    Angle getSakaAngle(s32 dir);
+    Angle getSakaAngle(DirType dir);
     // Address: 0x028F716C
     Angle getSakaAngleBySpeed(f32 speed_F);
     // Address: 0x028F8804
-    SakaUpDown getSakaUpDown(s32 dir);
+    SakaUpDown getSakaUpDown(DirType dir);
 
     Angle getSakaAngle()
     {
@@ -1362,14 +1362,14 @@ public:
     // ------------------------------------ PlayerBaseDemoCreate.cpp ------------------------------------ //
 
     // Address: 0x028FD318
-    virtual void setCreate(const sead::Vector3f& pos, NextGotoType next_goto_type, s32 dir);
+    virtual void setCreate(const sead::Vector3f& pos, NextGotoType next_goto_type, DirType dir);
     // Address: 0x028FD394
     virtual void reset();
     // Address: 0x028FD424
     void resetBg();
 
     // Address: 0x028FD4C0
-    void setPosAndDir(const sead::Vector3f& pos, s32 dir);
+    void setPosAndDir(const sead::Vector3f& pos, DirType dir);
 
     // Address: 0x028FD588
     void stopCreateOther();
@@ -1550,7 +1550,7 @@ public:
     // Address: 0x029006AC
     void setControlDemoPos(const sead::Vector3f& pos);
     // Address: 0x029007C8
-    void setControlDemoDir(s32 dir);
+    void setControlDemoDir(DirType dir);
 
     // Address: 0x0290087C
     void setControlDemoWait();
@@ -2141,7 +2141,7 @@ public:
     bool turnAngle();
 
     // Address: 0x02907AA4
-    bool turnBesideAngle(s32 dir);
+    bool turnBesideAngle(DirType dir);
 
     bool turnBesideAngle()
     {
@@ -2149,7 +2149,7 @@ public:
     }
 
     // Address: 0x029065F0
-    Angle getMukiAngle(s32 dir);
+    Angle getMukiAngle(DirType dir);
 
     Angle getMukiAngle()
     {
@@ -2157,7 +2157,7 @@ public:
     }
 
     // Address: 0x02907A60
-    Angle getBesideMukiAngle(s32 dir);
+    Angle getBesideMukiAngle(DirType dir);
 
     Angle getBesideMukiAngle()
     {
@@ -2256,14 +2256,14 @@ public:
     // ------------------------------------ PlayerBaseSpeed.cpp ------------------------------------ //
 
     // Address: 0x02904A6C
-    ActorBgCollisionCheck::SakaType getSakaType(s32 dir);
+    ActorBgCollisionCheck::SakaType getSakaType(DirType dir);
 
     // Address: 0x02904ACC
-    f32 getSakaMaxSpeedRatio(s32 dir);
+    f32 getSakaMaxSpeedRatio(DirType dir);
     // Address: 0x02904B68
-    f32 getSakaStopAccele(s32 dir);
+    f32 getSakaStopAccele(DirType dir);
     // Address: 0x02904C04
-    f32 getSakaMoveAccele(s32 dir);
+    f32 getSakaMoveAccele(DirType dir);
     // Address: 0x02904CA0
     f32 getIceSakaSlipOffSpeed();
 
@@ -2413,7 +2413,7 @@ public:
     virtual bool setNormalDamage(ActorCollisionCheck* p_cc) = 0;
     virtual bool setDamage(Actor* p_actor, DamageType type) = 0;
     virtual bool setForcedDamage(Actor* p_actor, DamageType type) = 0;
-    virtual bool setFlyDamage(DamageType type, s32 dir, bool, bool, f32 speed_F, f32 speed_y) = 0;
+    virtual bool setFlyDamage(DamageType type, DirType dir, bool, bool, f32 speed_F, f32 speed_y) = 0;
     virtual bool setDamage2(Actor* p_actor, DamageType type) = 0;
     virtual bool setPressBgDamage(DamageType type, bool) = 0;
 

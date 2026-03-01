@@ -366,7 +366,7 @@ public:
     bool checkChibiYoshiLiftUpBlocked();
 
     // Address: 0x02928F58
-    bool checkCancelTarzanRopeLR(u8 dir);
+    bool checkCancelTarzanRopeLR(DirType dir);
     // Address: 0x02929014
     bool checkCancelTarzanRopeUp();
     // Address: 0x0292908C
@@ -693,7 +693,7 @@ public:
     bool setForcedDamage(Actor* p_actor, DamageType type) override;
 
     // Address: 0x0293153C
-    bool setFlyDamage(DamageType type, s32 dir, bool, bool, f32 speed_F, f32 speed_y) override;
+    bool setFlyDamage(DamageType type, DirType dir, bool, bool, f32 speed_F, f32 speed_y) override;
 
     // Address: 0x02931678
     virtual void setRideOffDamage();

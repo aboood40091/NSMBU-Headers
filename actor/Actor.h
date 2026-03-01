@@ -101,10 +101,21 @@ public:
 
     // Address: 0x020005A4
     s32 searchNearPlayer(sead::Vector2f& out); // Returns -1 if no player found
+
     // Address: 0x020005EC
-    u32 directionToPlayerH(const sead::Vector3f& position);
+    DirType getPlayerDirLR(const sead::Vector3f& position);
     // Address: 0x020006B4
-    u32 directionToPlayerV(const sead::Vector3f& position);
+    DirType getPlayerDirUD(const sead::Vector3f& position);
+
+    DirType getPlayerDirLR()
+    {
+        return getPlayerDirLR(mPos);
+    }
+
+    DirType getPlayerDirUD()
+    {
+        return getPlayerDirUD(mPos);
+    }
 
     // Address: 0x020007A0
     bool screenOutCheck(u16 flag);
@@ -150,12 +161,12 @@ public:
         return mIsDrawEnable;
     }
 
-    u32 getDirection() const
+    DirType getDirection() const
     {
         return mDirection;
     }
 
-    void setDirection(u32 dir)
+    void setDirection(DirType dir)
     {
         mDirection = dir;
     }
@@ -351,7 +362,7 @@ private:
     bool canPress_(const BgCollision* p_bg_collision);
 
     // Address: 0x02001C08
-    bool checkPressLR_(const ActorBgCollisionCheck& bc, u32 direction);
+    bool checkPressLR_(const ActorBgCollisionCheck& bc, DirType direction);
     // Address: 0x02002098
     bool checkPressU_(const ActorBgCollisionCheck& bc);
     // Address: 0x02001F04
@@ -364,7 +375,7 @@ private:
     u32 calcTottenToSrcDir_(const sead::BoundBox2f& src_range) const;
 
 protected:
-    u32                     mDirection;
+    DirType                 mDirection;
     s8                      mPlayerNo;
     s8                      mControllerLytPlayerNo;
     u8                      mLayer;                     // Inited to ActorCreateParam::layer
@@ -402,7 +413,7 @@ protected:
     u32                     mBumpDamageTimer;
     u32                     mBumpDirection;
     u8                      _220;
-    u32                     mCarryDirection;
+    DirType                 mCarryDirection;
     u32                     mThrowPlayerNo;
     s32                     mComboCnt;
     u32                     mProfFlag;                  // Inited to Profile::mFlag

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <utility/Direction.h>
+
 #include <heap/seadDisposer.h>
 #include <math/seadVector.h>
 
@@ -19,7 +21,7 @@ public:
     struct CoinJumpArg
     {
         sead::Vector3f pos;
-        s32 dir;
+        DirType dir;
         u8 count;
         u8 layer;
         u8 spawn_height;
@@ -35,7 +37,7 @@ public:
     ActorCoinMgr();
 
     // Address: 0x026CABB4
-    void spawnItemCoin(const sead::Vector3f& pos, s32 dir, s32 player_no) const;
+    void spawnItemCoin(const sead::Vector3f& pos, DirType dir, s32 player_no) const;
     // Address: 0x026CB06C
     void spawnCoinJump(const CoinJumpArg& arg, u32 flag = 3) const;
     // Address: 0x026CBA7C

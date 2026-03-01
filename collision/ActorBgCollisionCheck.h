@@ -181,7 +181,7 @@ public:
             return (checkLeftWall() || isOnBit(cBit_Unk23)) && !isOnBit(cBit_Unk29);
         }
 
-        bool checkWallEx(u8 direction) const
+        bool checkWallEx(DirType direction) const
         {
             return (isOnBit(cBit_WallRCollision + direction) || isOnBit(cBit_Unk22 + direction)) && !isOnBit(cBit_Unk28 + direction);
         }
@@ -342,17 +342,17 @@ public:
         }
     }
 
-    bool isSensor1Set(u32 direction) const
+    bool isSensor1Set(DirType direction) const
     {
         return mIsSensor1Set[direction];
     }
 
-    bool isSensor1Null(u32 direction) const
+    bool isSensor1Null(DirType direction) const
     {
         return mIsSensor1Null[direction];
     }
 
-    bool isSensor2Set(u32 direction) const
+    bool isSensor2Set(DirType direction) const
     {
         return mIsSensor2Set[direction];
     }
@@ -367,27 +367,27 @@ public:
         return mSensor2;
     }
 
-    Sensor* getSensor1(u32 direction)
+    Sensor* getSensor1(DirType direction)
     {
         return &(mSensor1[direction]);
     }
 
-    const Sensor* getSensor1(u32 direction) const
+    const Sensor* getSensor1(DirType direction) const
     {
         return &(mSensor1[direction]);
     }
 
-    Sensor* getSensor2(u32 direction)
+    Sensor* getSensor2(DirType direction)
     {
         return &(mSensor2[direction]);
     }
 
-    const Sensor* getSensor2(u32 direction) const
+    const Sensor* getSensor2(DirType direction) const
     {
         return &(mSensor2[direction]);
     }
 
-    const Sensor* getSensorEffective(u32 direction) const
+    const Sensor* getSensorEffective(DirType direction) const
     {
         if (isSensor1Set(direction))
         {
@@ -401,12 +401,12 @@ public:
         return nullptr;
     }
 
-    SensorFlag& getSensorFlag(u32 direction)
+    SensorFlag& getSensorFlag(DirType direction)
     {
         return mSensorFlag[direction];
     }
 
-    const SensorFlag& getSensorFlag(u32 direction) const
+    const SensorFlag& getSensorFlag(DirType direction) const
     {
         return mSensorFlag[direction];
     }
@@ -436,7 +436,7 @@ public:
         return getOutput().checkHeadEx();
     }
 
-    bool checkWall(u8 direction) const
+    bool checkWall(DirType direction) const
     {
         return getOutput().checkWallEx(direction);
     }
@@ -471,20 +471,20 @@ public:
     // Address: 0x0218ACA8
     BgCollision* getHitBgCollisionHead() const;
     // Address: 0x0218AD6C
-    BgCollision* getHitBgCollisionWall(u32 direction) const;
+    BgCollision* getHitBgCollisionWall(DirType direction) const;
 
-    const u64& getBgCheckData(u32 direction) const
+    const u64& getBgCheckData(DirType direction) const
     {
         return mBgCheckData[direction];
     }
 
-    const u64& getBgCheckDataPrev(u32 direction) const
+    const u64& getBgCheckDataPrev(DirType direction) const
     {
         return mBgCheckDataPrev[direction];
     }
 
     // Address: 0x0218B214
-    Angle getSakaBaseAngle();       // Angle of the slope surface tangent (only values between -90 deg and 90 deg make sense)
+    Angle getSakaBaseAngle();           // Angle of the slope surface tangent (only values between -90 deg and 90 deg make sense)
     // Address: 0x0218B254
     Angle getHeadSakaBaseAngle();
 
@@ -497,15 +497,15 @@ public:
     }
 
     // Address: 0x0218E234
-    SakaDir getSakaDir();           // Returns the downhill direction along the slope surface, left if the slope descends leftwards, right if the slope descends rightwards.
+    SakaDir getSakaDir();               // Returns the downhill direction along the slope surface, left if the slope descends leftwards, right if the slope descends rightwards.
 
     // Address: 0x0218E260
-    Angle getSakaAngle(s32 dir);    // Slope tangent angle signed in the move direction: + => moving uphill, - => moving downhill
+    Angle getSakaAngle(DirType dir);    // Slope tangent angle signed in the move direction: + => moving uphill, - => moving downhill
     // Address: 0x0218E28C
-    Angle getHeadSakaAngle(s32 dir);
+    Angle getHeadSakaAngle(DirType dir);
 
     // Address: 0x0218E2B8
-    Angle getWallAngle(s32 dir);
+    Angle getWallAngle(DirType dir);
 
     BasicBgCollisionCheck& getBgCheck()
     {

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <input/PadCommon.h>
+#include <utility/Direction.h>
 
 class PlayerKey
 {
@@ -47,7 +48,7 @@ public:
     bool triggerCross() const;
 
     bool buttonDush() const;
-    bool buttonWalk(s32* p_dir = nullptr) const;
+    bool buttonWalk(DirType* p_dir = nullptr) const;
 
     bool buttonJump() const;
 

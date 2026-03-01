@@ -84,7 +84,7 @@ public:
     // Address: 0x02193B38
     bool checkDokanUp(sead::Vector3f* p_pos, s32* p_dst_next_goto_no);
     // Address: 0x02193E54
-    bool checkDokanLR(sead::Vector3f* p_pos, s32* p_dst_next_goto_no, u32 direction, const Sensor& wall);
+    bool checkDokanLR(sead::Vector3f* p_pos, s32* p_dst_next_goto_no, DirType direction, const Sensor& wall);
 
     bool isMameDokan() const
     {
