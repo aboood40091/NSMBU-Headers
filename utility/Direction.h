@@ -14,12 +14,12 @@ enum DirType
 };
 static_assert(sizeof(DirType) == 4);
 
-inline u32 InvDirX(u32 dir)
+inline DirType InvDirX(DirType dir)
 {
-    return dir ^ 1;
+    return static_cast<DirType>(dir ^ 1);
 }
 
-inline u32 InvDirection(u32 dir)
+inline DirType InvDirection(DirType dir)
 {
     switch (dir)
     {
