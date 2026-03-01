@@ -57,7 +57,7 @@ public:
     // Address: 0x024DFC78
     void init(ModelResource* p_mdl_res, const sead::PtrArray<ModelResource>* p_anim_mdl_res_array = nullptr, sead::Heap* heap = nullptr);
 
-    // Address: 0x024dfc7c
+    // Address: 0x024DFC7C
     void playAnmFrameCtrl();
 
     // Address: 0x024DFD04
