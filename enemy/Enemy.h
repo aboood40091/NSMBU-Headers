@@ -355,8 +355,20 @@ public:
     void setDeathInfo_Fall(DirType direction, s32 player_no = -1, ScoreMgr::ScoreType score_type = ScoreMgr::cScoreType_Invalid);
     // Address: 0x0232CB08
     void setDeathInfo_Fall(const sead::Vector2f* speeds, DirType direction, s32 player_no = -1, ScoreMgr::ScoreType score_type = ScoreMgr::cScoreType_Invalid);
+
     // Address: 0x0232DA34
-    void setDeathInfo_Fumi(Actor*, sead::Vector2f speed, const StateID& state_id);
+    void setDeathInfo_Fumi(Actor* p_player, const sead::Vector2f& speed, const StateID& state_id);
+
+    void setDeathInfo_Fumi(Actor* p_player, const sead::Vector2f& speed)
+    {
+        setDeathInfo_Fumi(p_player, speed, StateID_DieFumi);
+    }
+
+    void setDeathInfo_FumiOther(Actor* p_player, const sead::Vector2f& speed)
+    {
+        setDeathInfo_Fumi(p_player, speed, StateID_DieOther);
+    }
+
     // Address: 0x0232CC98
     void setDeathInfo_SpinFumi(Actor*);
     // Address: 0x0232D31C
