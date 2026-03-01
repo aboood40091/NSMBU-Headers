@@ -1543,6 +1543,16 @@ public:
     // Address: 0x028FB568
     bool executeDemoState();
 
+    bool isDemoState(const StateID& state_id) const
+    {
+        return *mDemoStateMgr.getStateID() == state_id;
+    }
+
+    bool isOldDemoState(const StateID& state_id) const
+    {
+        return *mDemoStateMgr.getOldStateID() == state_id;
+    }
+
     // ------------------------------------ PlayerBaseDemoDosa.cpp (1) ------------------------------------ //
 
     virtual void initializeDemoControl(bool carry_chibi_yoshi = true) = 0;
@@ -1954,6 +1964,16 @@ public:
 
     // Address: 0x02906A38
     void changeStateImpl(const StateID& state_id, s32 param, const JumpInf* p_jmp_inf);
+
+    bool isState(const StateID& state_id) const
+    {
+        return *mStateMgr.getStateID() == state_id;
+    }
+
+    bool isOldState(const StateID& state_id) const
+    {
+        return *mStateMgr.getOldStateID() == state_id;
+    }
 
     virtual bool checkWalkNextAction() = 0;
 
@@ -2589,6 +2609,16 @@ public:
     void changeSubjectState(const StateID& state_id);
     // Address: 0x0290388C
     void executeSubjectState();
+
+    bool isSubjectState(const StateID& state_id) const
+    {
+        return *mSubjectStateMgr.getStateID() == state_id;
+    }
+
+    bool isOldSubjectState(const StateID& state_id) const
+    {
+        return *mSubjectStateMgr.getOldStateID() == state_id;
+    }
 
     // Address: 0x02903234
     void setSubjectClearCourseOut();

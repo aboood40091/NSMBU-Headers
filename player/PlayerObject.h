@@ -281,11 +281,6 @@ public:
     // finalizeState_Balloon    Address: 0x02926EF4
     DECLARE_STATE_ID(PlayerObject, Balloon)
 
-    bool isBalloon() const
-    {
-        return *mStateMgr.getStateID() == StateID_Balloon;
-    }
-
     // Address: 0x02926574
     bool isNotBalloonCourse();
 
