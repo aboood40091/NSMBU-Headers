@@ -19,7 +19,7 @@ class KuriboBase : public Enemy // vtbl Address: 0x100916DC
     // getRuntimeTypeInfoStatic()::typeInfo                                 Address: 0x101EA140
     SEAD_RTTI_OVERRIDE(KuriboBase, Enemy)
 
-public:
+protected:
     class DrcTouchCB : public ActorCollisionDrcTouchCallback    // vtbl Address: 0x10091CD4
     {
     public:
@@ -29,6 +29,12 @@ public:
         void ccOnTouch(ActorCollisionCheck* p_cc, const sead::Vector2f& pos) override;
     };
     static_assert(sizeof(DrcTouchCB) == sizeof(ActorCollisionDrcTouchCallback));
+
+    enum ModelType
+    {
+        cModelType_Normal = 0,
+        cModelType_Kakibo
+    };
 
 public:
     // Address: 0x023DAF04
@@ -46,7 +52,7 @@ protected:
 
     void blockHitInit_() override
     {
-        if (_1a0b)
+        if (mBlockHitImmune)
             return;
 
         Enemy::blockHitInit_();
@@ -233,7 +239,12 @@ public:
 
 protected:
     // Address: 0x023DC4AC
-    void calcModel_(BlendModel* p_blend_model);
+    void calcModelBase_(BlendModel* p_blend_model);
+
+    void calcModelBase_()
+    {
+        calcModelBase_(mpBlendModel);
+    }
 
     // Address: 0x023DB42C
     bool checkRyusa_();
@@ -265,18 +276,18 @@ protected:
     ActorCollisionCheck         mCollisionCheckDrcTouch;
     f32                         mWalkAnmRate;               // Stored, but never read
     f32                         mZOffset;
-    f32                         _1a00;
-    Angle                       _1a04;                      // Some kind of angle (only used by Kakibo?)
-    bool                        _1a08;
-    bool                        _1a09;
+    f32                         mKakiboHaScale;
+    Angle                       mKakiboHaAngleZ;
+    bool                        mHasLanded;
+    bool                        mForceLanded;
     bool                        mAllowDrcTouchInAir;
-    u8                          _1a0b;
-    u8                          _1a0c;
+    bool                        mBlockHitImmune;
+    bool                        mIsDrcTouch;
     bool                        mIsKakibo;
-    u8                          mType;                      // 0 = Kuribo, 1 = Kakibo
-    u8                          _1a0f;
-    u8                          _1a10;
-    f32                         _1a14;
+    u8                          mModelType;
+    s8                          mSubstate;
+    bool                        mDisableScreenOutCheck;
+    f32                         mEnemyHitRevX;
     EnemyEatData                mEatData;
     EnemyChibiYoshiEatData      mChibiYoshiEatData;
     EnemyBoyoMgr                mBoyoMgr;
