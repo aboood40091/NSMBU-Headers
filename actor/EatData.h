@@ -55,6 +55,11 @@ public:
     // Address: 0x0200D9AC
     virtual void calcEatInScale(Actor* p_yoshi);
 
+    const ActorUniqueID& getYoshiID() const
+    {
+        return mYoshiID;
+    }
+
     u32 getState() const
     {
         return mState;
@@ -97,7 +102,7 @@ public:
 
 protected:
     ActorUniqueID   mOwnerID;
-    u32             mYoshiID;
+    ActorUniqueID   mYoshiID;
     u32             mState;
     EatType         mEatType;
     sead::Vector3f  mScale;
