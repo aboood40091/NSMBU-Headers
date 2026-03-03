@@ -25,13 +25,6 @@ public:
         cBoundingMode_EnableSubBounding
     };
 
-    // Why are these here... ?
-
-    // Address: 0x024EE440
-    static Model* createG3d(const ModelResource& res, const sead::SafeString& name, s32 num_skl_anim, s32 num_tex_anim, s32 num_shu_anim, s32 num_vis_anim, s32 num_sha_anim, BoundingMode bounding_mode, sead::Heap* heap);
-    // Address: 0x024EE320
-    static Model* createG3d(const ModelResource& res, const sead::SafeString& name, s32 num_view, s32 num_skl_anim, s32 num_tex_anim, s32 num_shu_anim, s32 num_vis_anim, s32 num_sha_anim, BoundingMode bounding_mode, sead::Heap* heap);
-
 public:
     // Address: 0x024EE298
     Model();
@@ -90,3 +83,12 @@ protected:
     s32 mXluBufferIdx;
 };
 static_assert(sizeof(Model) == 0x28);
+
+class ModelUtil
+{
+public:
+    // Address: 0x024EE440
+    static Model* createG3d(const ModelResource& res, const sead::SafeString& name, s32 num_skl_anim, s32 num_tex_anim, s32 num_shu_anim, s32 num_vis_anim, s32 num_sha_anim, Model::BoundingMode bounding_mode, sead::Heap* heap);
+    // Address: 0x024EE320
+    static Model* createG3d(const ModelResource& res, const sead::SafeString& name, s32 num_view, s32 num_skl_anim, s32 num_tex_anim, s32 num_shu_anim, s32 num_vis_anim, s32 num_sha_anim, Model::BoundingMode bounding_mode, sead::Heap* heap);
+};
