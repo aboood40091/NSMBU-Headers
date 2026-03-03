@@ -72,6 +72,11 @@ public:
         return *mStateMgr.getOldStateID() == state_id;
     }
 
+    bool isMainState(const StateID& state_id) const
+    {
+        return *mStateMgr.getMainStateID() == state_id;
+    }
+
 protected:
     FStateStateMgr<ActorMultiState> mStateMgr;
 };
