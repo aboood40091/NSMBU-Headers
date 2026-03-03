@@ -68,6 +68,12 @@ public:
         return mpParent;
     }
 
+    template <typename T>
+    T* getParent() const
+    {
+        return sead::DynamicCast<T>(mpParent);
+    }
+
     // Address: 0x02002C8C
     void removeChild(ActorBase* p_child);
 
