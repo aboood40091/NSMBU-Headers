@@ -49,7 +49,7 @@ PROFILE_INFO_ACCESS_SPEC_PRIVATE
         cDrawPriority_Yoshi                                     =   3,
         cDrawPriority_1BD                                       =   4,
         cDrawPriority_Kuribo                                    =   5,
-        cDrawPriority_1D4                                       =   6,
+        cDrawPriority_Kakibo                                    =   6,
         cDrawPriority_PataKuribo                                =   7,
         cDrawPriority_1D6                                       =   8,
         cDrawPriority_1D7                                       =   9,
@@ -1907,7 +1907,7 @@ PROFILE_INFO_ACCESS_SPEC_PUBLIC
     // Address: 0x100044A0
     PROFILE_INFO_STORAGE_STATIC const s32 cProfileID_Kuribo;                                    // 467
     // Address: 0x100044A4
-    PROFILE_INFO_STORAGE_STATIC const s32 cProfileID_1D4;                                       // 468
+    PROFILE_INFO_STORAGE_STATIC const s32 cProfileID_Kakibo;                                    // 468
     // Address: 0x100044A8
     PROFILE_INFO_STORAGE_STATIC const s32 cProfileID_PataKuribo;                                // 469
     // Address: 0x100044AC
