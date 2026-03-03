@@ -219,8 +219,8 @@ public:
             cBit_14,
             cBit_15,
             cBit_16,
-
-            cBit_18 = 18,
+            cBit_17,
+            cBit_18,
 
             cBit_21 = 21,
             cBit_22,
