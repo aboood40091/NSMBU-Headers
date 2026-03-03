@@ -46,7 +46,7 @@ public:
     // Address: 0x0240B150
     void onDrcTouch() override;
 
-    void vf5F4() override
+    void setWalkState() override
     {
         changeState(StateID_Walk);
     }

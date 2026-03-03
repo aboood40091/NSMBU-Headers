@@ -33,7 +33,8 @@ protected:
     enum ModelType
     {
         cModelType_Normal = 0,
-        cModelType_Kakibo
+        cModelType_Kakibo,
+        cModelType_Num
     };
 
 public:
@@ -133,7 +134,7 @@ public:
         setDeathInfo_YoshiFumi(p_yoshi);
     }
 
-    virtual void vf53C(const ActorCollisionCheck&)  // Seems to detach the actor from its balloon in Kuribo
+    virtual void balloonCollCheck(ActorCollisionCheck* cc_other)  // Seems to detach the actor from its balloon in Kuribo
     {
     }
 
@@ -214,15 +215,15 @@ public:
     }
 
     // Address: Deleted
-    virtual void vf5E4()    // Somehow not deleted in Kuribo, sets info for DRC Touch (maybe) ActorCollisionCheck
+    virtual void resetCcDrcTouch()
     {
     }
 
-    virtual void vf5EC()
+    virtual void calcDrcTouch()
     {
     }
 
-    virtual void vf5F4()    // Changes state to Walk state in Kuribo & PataKuribo
+    virtual void setWalkState()
     {
     }
 
@@ -279,7 +280,7 @@ protected:
     f32                         mKakiboHaScale;
     Angle                       mKakiboHaAngleZ;
     bool                        mHasLanded;
-    bool                        mForceLanded;
+    bool                        mForceLanded;               // Controlled externally by Maruta (Floating Log)
     bool                        mAllowDrcTouchInAir;
     bool                        mBlockHitImmune;
     bool                        mIsDrcTouch;
@@ -293,10 +294,13 @@ protected:
     EnemyBoyoMgr                mBoyoMgr;
     DrcTouchCB                  mDrcTouchCallback;
 
+public:
+    static const s32 cTurnSpeed = 0x2000000;
+
     // Address: 0x10091658
-    static const f32 cPataTurnMaxSpeedX;    // 1.0f
+    static const f32 cMaxSpeedX;    // 1.0f
     // Address: 0x1009165C
-    static const f32 cPataWalkMaxSpeedY;    // -4.0f
+    static const f32 cMaxSpeedY;    // -4.0f
 
     // Address: 0x10091660
     static const ActorCreateInfo cActorCreateInfo;
