@@ -78,6 +78,7 @@ public:
     {
         cEnFlag_Shell               = 1 <<  0,
         cEnFlag_Carry               = 1 <<  1,
+        cEnFlag_16                  = 1 << 16,
         cEnFlag_NoCeilCheckPlayer   = 1 << 24
     };
 
