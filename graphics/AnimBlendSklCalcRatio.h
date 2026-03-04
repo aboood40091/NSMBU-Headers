@@ -51,7 +51,7 @@ private:
     sead::Buffer<sead::Vector3f>    mBoneScale;
     sead::Buffer<BoneFlag>          mBoneFlag;
     s32                             mBoneNumMax;
-    f32                             _24;
+    f32                             mBlendWeight;
     f32                             mCounter;
     f32                             mInvDuration;
     f32                             mRatioA;    // Source
