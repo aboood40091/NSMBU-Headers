@@ -8,6 +8,13 @@ class Model;
 
 class AnimBlendSklCalcRatio
 {
+private:
+    enum BoneFlag
+    {
+        cBoneFlag_BlendEnable = 0,
+        cBoneFlag_BlendDisable
+    };
+
 public:
     // Address: 0x024D4FB8
     AnimBlendSklCalcRatio(s32 bone_num_max);
@@ -42,7 +49,7 @@ private:
     sead::Buffer<sead::Vector3f>    mBoneTrans;
     sead::Buffer<sead::Quatf>       mBoneRot;
     sead::Buffer<sead::Vector3f>    mBoneScale;
-    sead::Buffer<sead::BitFlag32>   mBoneFlag;
+    sead::Buffer<BoneFlag>          mBoneFlag;
     s32                             mBoneNumMax;
     f32                             _24;
     f32                             mCounter;
