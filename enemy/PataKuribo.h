@@ -63,12 +63,12 @@ public:
     DECLARE_STATE_ID(PataKuribo, Pata_Turn)
 
 protected:
-    BlendModel*     mpBlendModelWing;
-    sead::Vector3f  mWingRootPos;
-    u8              _1a98;
-    u8              _1a99;
-    u8              _1a9a;
-    bool            mHasWing;
-    bool            mIsNotStartInWalkAnm;
+    JointBlendModel*    mpBlendModelWing;
+    sead::Vector3f      mWingRootPos;
+    u8                  _1a98;
+    u8                  _1a99;
+    u8                  _1a9a;
+    bool                mHasWing;
+    bool                mIsNotStartInWalkAnm;
 };
 static_assert(sizeof(PataKuribo) == 0x1AA0);

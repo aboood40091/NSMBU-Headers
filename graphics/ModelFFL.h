@@ -96,13 +96,13 @@ public:
     // Address: 0x024F0708
     void calc() override;
     // Address: 0x024EFBF4
-    void updateView(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderMgr* p_render_mgr) override;
+    void updateView(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderObjRenderMgr* p_render_mgr) override;
     // Address: 0x024EFBF8
-    void calcGPU(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderMgr* p_render_mgr) override;
+    void calcGPU(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderObjRenderMgr* p_render_mgr) override;
     // Address: 0x024EFE58
-    void drawOpa(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderMgr* p_render_mgr) override;
+    void drawOpa(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderObjRenderMgr* p_render_mgr) override;
     // Address: 0x024F009C
-    void drawXlu(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderMgr* p_render_mgr) override;
+    void drawXlu(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderObjRenderMgr* p_render_mgr) override;
 
     // Address: 0x024F0134
     bool getAdditionalInfo(FFLAdditionalInfo* p_additional_info, BOOL checkFontRegion) const;
@@ -151,11 +151,11 @@ private:
     bool allocBuffer_();
 
     // Address: 0x024EFBFC
-    void setEnvUniform_(RenderMgr* p_render_mgr);
+    void setEnvUniform_(RenderObjRenderMgr* p_render_mgr);
     // Address: 0x024EFC70
-    void setEnvViewUniform_(const sead::Matrix34f& model_mtx, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderMgr* p_render_mgr);
+    void setEnvViewUniform_(const sead::Matrix34f& model_mtx, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderObjRenderMgr* p_render_mgr);
     // Address: 0x024EFCD4
-    void setEnvViewUniformWithLightmapEnable_(const sead::Matrix34f& model_mtx, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderMgr* p_render_mgr);
+    void setEnvViewUniformWithLightmapEnable_(const sead::Matrix34f& model_mtx, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderObjRenderMgr* p_render_mgr);
 
     // Address: 0x024EFD74
     void drawOpaNormal_();

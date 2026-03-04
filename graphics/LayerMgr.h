@@ -7,7 +7,7 @@
 #include <gfx/seadViewport.h>
 #include <layer/aglDrawMethod.h>
 
-class RenderMgr;
+class RenderObjRenderMgr;
 
 class LayerMgr : public sead::TaskBase  // vtbl Address: 0x100BB268
 {
@@ -72,7 +72,7 @@ public:
     void calcParallelExec();
 
     // Address: 0x024E1260
-    void removeRenderMgr(RenderMgr* p_render_mgr);
+    void removeRenderMgr(RenderObjRenderMgr* p_render_mgr);
 
     void setDRCUniqueView(bool enable)
     {
@@ -80,19 +80,19 @@ public:
     }
 
 protected:
-    agl::lyr::DrawMethod        mDrawMethod;
-    sead::MethodTreeNode        _b8;
-    sead::MethodTreeNode        _10c;
-    sead::MethodTreeNode        _160;
-    sead::Viewport              mViewport;
-    sead::OrthoProjection       mProjection;
-    sead::OrthoCamera           mCamera;
-    bool                        mIsDRCUniqueView;                                   // false = TV framebuffer is duplicated to the DRC
-    sead::OffsetList<RenderMgr> mRenderMgr;
-    sead::CriticalSection       mCriticalSection;
-    u32                         _320[4 / sizeof(u32)];
-    u32                         mRenderObjParallelExecuter[0x4024 / sizeof(u32)];   // TODO: RenderObjParallelExecuter
-    u32                         gpuCalcObjTV[8 / sizeof(u32)];                      // TODO: GpuCalcObj
-    u32                         gpuCalcObjDRC[8 / sizeof(u32)];                     // ^^^
+    agl::lyr::DrawMethod                    mDrawMethod;
+    sead::MethodTreeNode                    _b8;
+    sead::MethodTreeNode                    _10c;
+    sead::MethodTreeNode                    _160;
+    sead::Viewport                          mViewport;
+    sead::OrthoProjection                   mProjection;
+    sead::OrthoCamera                       mCamera;
+    bool                                    mIsDRCUniqueView;                                   // false = TV framebuffer is duplicated to the DRC
+    sead::OffsetList<RenderObjRenderMgr>    mRenderMgr;
+    sead::CriticalSection                   mCriticalSection;
+    u32                                     _320[4 / sizeof(u32)];
+    u32                                     mRenderObjParallelExecuter[0x4024 / sizeof(u32)];   // TODO: RenderObjParallelExecuter
+    u32                                     mGpuCalcObjTV[8 / sizeof(u32)];                     // TODO: GpuCalcObj
+    u32                                     mGpuCalcObjDRC[8 / sizeof(u32)];                    // ^^^
 };
 static_assert(sizeof(LayerMgr) == 0x4358);

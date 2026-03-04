@@ -28,7 +28,7 @@ protected:
 };
 static_assert(sizeof(BomheiDrcTouchCB) == 8);
 
-class BlendModel;
+class JointBlendModel;
 class ModelResource;
 
 class Bomhei : public CarryEnemy    // vtbl Address: 0x1005D794
@@ -219,7 +219,7 @@ public:
     void explode();
 
 protected:
-    BlendModel*             mpBlendModel;
+    JointBlendModel*        mpBlendModel;
     ModelResource*          mpModelResource;
     s32                     mCurrentSklAnimIndex;
     sead::BitFlag16         mBomHeiFlag;

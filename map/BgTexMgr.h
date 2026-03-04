@@ -1,6 +1,6 @@
 #pragma once
 
-#include <graphics/RenderMgr.h>
+#include <graphics/RenderObjRenderMgr.h>
 
 #include <common/aglRenderBuffer.h>
 #include <common/aglRenderTarget.h>
@@ -19,7 +19,7 @@ class BgTexMgr
     SEAD_SINGLETON_DISPOSER(BgTexMgr)
 
 private:
-    class RenderCallback : public RenderMgr::CallbackBase
+    class RenderCallback : public RenderObjRenderMgr::CallbackBase
     {
     public:
         void preDrawOpa(s32 view_index, s32 buffer_index, const agl::lyr::RenderInfo& render_info) override;

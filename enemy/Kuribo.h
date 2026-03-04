@@ -1,7 +1,7 @@
 #pragma once
 
 #include <enemy/KuriboBase.h>
-#include <graphics/BlendModel.h>
+#include <graphics/JointBlendModel.h>
 #include <graphics/SkeletalAnimation.h>
 
 class BalloonHangActor;

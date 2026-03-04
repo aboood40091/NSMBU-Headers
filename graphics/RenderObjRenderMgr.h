@@ -19,7 +19,7 @@ class CullViewFrustum;
 class RenderObj;
 class RenderObjLayerBase;
 
-class RenderMgr : public sead::IDisposer, public sead::INamable // vtbl Address: 0x100BDBA4
+class RenderObjRenderMgr : public sead::IDisposer, public sead::INamable    // vtbl Address: 0x100BDBA4
 {
 public:
     struct ViewInfo
@@ -44,9 +44,9 @@ public:
 
 public:
     // Address: 0x024FAF58
-    RenderMgr(const sead::SafeString& name);
+    RenderObjRenderMgr(const sead::SafeString& name);
     // Address: 0x024FB0AC
-    virtual ~RenderMgr();
+    virtual ~RenderObjRenderMgr();
 
     // Address: 0x024FB128
     void initialize(s32 view_max_num, s32 render_obj_max_num, s32 opa_buffer_max_num, s32 xlu_buffer_max_num, sead::Heap* heap);
@@ -131,4 +131,4 @@ private:
     sead::Buffer<ViewInfo>                      mViewInfo;
     sead::ListNode                              mListNode;          // For sead::OffsetList in LayerMgr
 };
-static_assert(sizeof(RenderMgr) == 0x4D4);
+static_assert(sizeof(RenderObjRenderMgr) == 0x4D4);

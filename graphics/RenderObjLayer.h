@@ -1,14 +1,14 @@
 #pragma once
 
-#include <graphics/Layer.h>
+#include <graphics/ProcLayerBase.h>
 
-class RenderMgr;
+class RenderObjRenderMgr;
 
-class RenderObjLayerBase : public Layer // vtbl Address: 0x100BDCE8
+class RenderObjLayerBase : public ProcLayerBase // vtbl Address: 0x100BDCE8
 {
     // getRuntimeTypeInfoStatic()::typeInfo initialization guard variable   Address: 0x101E9E60
     // getRuntimeTypeInfoStatic()::typeInfo                                 Address: 0x101EA074
-    SEAD_RTTI_OVERRIDE(RenderObjLayerBase, Layer)
+    SEAD_RTTI_OVERRIDE(RenderObjLayerBase, ProcLayerBase)
 
 public:
     // Address: 0x024FC968
@@ -22,20 +22,20 @@ public:
     {
     }
 
-    RenderMgr* getRenderMgr() const
+    RenderObjRenderMgr* getRenderMgr() const
     {
         return mpRenderMgr;
     }
 
     // Address: 0x024FCA24
-    void setRenderMgr(RenderMgr* p_render_mgr);
+    void setRenderMgr(RenderObjRenderMgr* p_render_mgr);
 
     // ...
 
 protected:
-    RenderMgr*  mpRenderMgr;
-    s32         mViewIndex;
-    void*       _428;
+    RenderObjRenderMgr* mpRenderMgr;
+    s32                 mViewIndex;
+    void*               _428;
 };
 static_assert(sizeof(RenderObjLayerBase) == 0x42C);
 

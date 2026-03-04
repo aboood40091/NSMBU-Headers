@@ -6,13 +6,13 @@
 
 class Model;
 
-class CalcRatioSRT
+class AnimBlendSklCalcRatio
 {
 public:
     // Address: 0x024D4FB8
-    CalcRatioSRT(s32 bone_num_max);
+    AnimBlendSklCalcRatio(s32 bone_num_max);
     // Address: 0x024D5210
-    virtual ~CalcRatioSRT();
+    virtual ~AnimBlendSklCalcRatio();
 
     // Address: 0x024D5248
     void set(f32 duration);
@@ -52,4 +52,4 @@ private:
     bool                            mIsFramesPrepared;
     bool                            mIsActive;
 };
-static_assert(sizeof(CalcRatioSRT) == 0x40);
+static_assert(sizeof(AnimBlendSklCalcRatio) == 0x40);

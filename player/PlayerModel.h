@@ -1,6 +1,6 @@
 #pragma once
 
-#include <graphics/CalcRatioSRT.h>
+#include <graphics/AnimBlendSklCalcRatio.h>
 #include <player/PlayerEnum.h>
 #include <player/PlayerModelBase.h>
 
@@ -250,7 +250,7 @@ protected:
     sead::BitFlag16                                     mModeModelLoadFlag;
     sead::SafeArray<s32, cJointID_Num>                  mJointMap;
     s32                                                 mPlayerNo;
-    CalcRatioSRT                                        mCalcRatio;
+    AnimBlendSklCalcRatio                               mCalcRatio;
     PlayerMode                                          mPlayerMode;
     PlayerMode                                          mPlayerModeOverride;
     ColorType                                           mColorType;

@@ -8,7 +8,7 @@
 #include <nn/ffl.h>
 
 class ModelFFL;
-class RenderMgr;
+class RenderObjRenderMgr;
 
 namespace Mii {
 
@@ -88,7 +88,7 @@ public:
     // Address: 0x024EBB20
     void setLightmapEnableUniform(bool enable) const;
     // Address: 0x024EBB98
-    void setFogUniform(RenderMgr* p_render_mgr) const;
+    void setFogUniform(RenderObjRenderMgr* p_render_mgr) const;
 
     // Address: 0x024EA654
     static void setCulling(FFLCullMode mode);

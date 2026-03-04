@@ -14,18 +14,18 @@ class PerspectiveProjection;
 
 class CullViewFrustum
 {
-    struct Sub
+    struct Plane
     {
-        Sub()
-            : _0(sead::Vector3f::ex)
-            , _c(0.0f)
+        Plane()
+            : normal(sead::Vector3f::ex)
+            , distance(0.0f)
         {
         }
 
-        sead::Vector3f  _0;
-        f32             _c;
+        sead::Vector3f  normal;
+        f32             distance;
     };
-    static_assert(sizeof(Sub) == 0x10);
+    static_assert(sizeof(Plane) == 0x10);
 
 public:
     // Address: 0x024D78A4
@@ -43,7 +43,7 @@ public:
     bool testIntersectionAABB(const sead::Vector3f& min, const sead::Vector3f& max) const;
 
 private:
-    sead::UnsafeArray<Sub, 4>   _0;
+    sead::UnsafeArray<Plane, 4> mPlane;
     nw::g3d::ViewVolume         mViewVolume;
 };
 static_assert(sizeof(CullViewFrustum) == 0xC0);

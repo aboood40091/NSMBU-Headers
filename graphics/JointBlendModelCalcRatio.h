@@ -2,15 +2,11 @@
 
 #include <basis/seadTypes.h>
 
-class CalcRatio
+class JointBlendModelCalcRatio
 {
-    // Actual name of this class is unknown.
-    // In NSMBW, it is m3d::calcRatio_c.
-    // However, "CalcRatio" is not consistent with the code order in NSMBU.
-
 public:
     // Address: 0x024D7F1C
-    CalcRatio();
+    JointBlendModelCalcRatio();
 
     // Address: 0x024D7FE0
     void set(f32 duration);
@@ -49,4 +45,4 @@ private:
     f32     mInvDuration;
     bool    mIsActive;
 };
-static_assert(sizeof(CalcRatio) == 0x14);
+static_assert(sizeof(JointBlendModelCalcRatio) == 0x14);

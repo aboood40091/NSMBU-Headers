@@ -19,7 +19,7 @@ public:
 };
 static_assert(sizeof(BrosDrcTouchCB) == sizeof(ActorCollisionDrcTouchCallback));
 
-class BlendModel;
+class JointBlendModel;
 
 class BrosBase : public Enemy   // vtbl Address: 0x1005F078
 {
@@ -247,7 +247,7 @@ public:
     bool calcTurnAngle();
 
 protected:
-    BlendModel*                 mpBlendModel;
+    JointBlendModel*            mpBlendModel;
     sead::Matrixf               mBone6Transform;
     sead::Matrixf               mBone4Transform;
     sead::Matrixf               mBone0Transform;

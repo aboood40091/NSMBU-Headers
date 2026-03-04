@@ -184,10 +184,10 @@ public:
 
     // Address: 0x024F30DC
     // Updates buffers for the GPU
-    void calcGPU(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderMgr* p_render_mgr) override;
+    void calcGPU(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderObjRenderMgr* p_render_mgr) override;
 
     // (Does nothing)
-    void updateView(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderMgr* p_render_mgr) override
+    void updateView(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderObjRenderMgr* p_render_mgr) override
     {
     }
 
@@ -198,19 +198,19 @@ public:
     // 2. Shadow casting for a shape is automatically enabled if "shadow_cast" is not present in its material's render info
 
     // Address: 0x024F3884
-    void drawOpa(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderMgr* p_render_mgr) override;
+    void drawOpa(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderObjRenderMgr* p_render_mgr) override;
     // Address: 0x024F398C
-    void drawXlu(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderMgr* p_render_mgr) override;
+    void drawXlu(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderObjRenderMgr* p_render_mgr) override;
 
     // Address: 0x024F3A94
     // This draws the shadow of shadow-casting shapes
-    void drawShadowOpa(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderMgr* p_render_mgr) override;
+    void drawShadowOpa(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderObjRenderMgr* p_render_mgr) override;
 
     // These draws the reflection on shapes
     // Address: 0x024F3D64
-    void drawReflectionOpa(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderMgr* p_render_mgr) override;
+    void drawReflectionOpa(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderObjRenderMgr* p_render_mgr) override;
     // Address: 0x024F3E6C
-    void drawReflectionXlu(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderMgr* p_render_mgr) override;
+    void drawReflectionXlu(s32 view_index, const sead::Matrix34f& view_mtx, const sead::Matrix44f& proj_mtx, RenderObjRenderMgr* p_render_mgr) override;
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -315,7 +315,7 @@ public:
     }
 
     // Address: 0x024F4B6C
-    void calcViewShapeShadowFlags(agl::sdw::DepthShadow* p_depth_shadow, RenderObjLayerBase* p_shadow_layer, RenderMgr* p_render_mgr) override;
+    void calcViewShapeShadowFlags(agl::sdw::DepthShadow* p_depth_shadow, RenderObjLayerBase* p_shadow_layer, RenderObjRenderMgr* p_render_mgr) override;
 
     sead::SafeString getName() const override
     {
@@ -429,12 +429,12 @@ private:
     static void setBoundingFlagArray_(BoundingFlagArray& flag_array, const SkeletalAnimation& anim);
 
     // Address: 0x024F37B4
-    void drawOpa_(DrawInfo& draw_info, const RenderMgr* p_render_mgr) const;
+    void drawOpa_(DrawInfo& draw_info, const RenderObjRenderMgr* p_render_mgr) const;
     // Address: 0x024F381C
-    void drawXlu_(DrawInfo& draw_info, const RenderMgr* p_render_mgr) const;
+    void drawXlu_(DrawInfo& draw_info, const RenderObjRenderMgr* p_render_mgr) const;
 
     // Address: 0x024F30E8
-    void drawShape_(DrawInfo& draw_info, const ShapeRenderInfo& render_info, const RenderMgr* p_render_mgr) const;
+    void drawShape_(DrawInfo& draw_info, const ShapeRenderInfo& render_info, const RenderObjRenderMgr* p_render_mgr) const;
 
 private:
     agl::g3d::ModelEx                               mModelEx;
