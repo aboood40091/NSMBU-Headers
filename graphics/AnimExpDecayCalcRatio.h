@@ -6,7 +6,7 @@
 
 class Model;
 
-class AnimBlendSklCalcRatio
+class AnimExpDecayCalcRatio
 {
 private:
     enum BoneFlag
@@ -17,9 +17,9 @@ private:
 
 public:
     // Address: 0x024D4FB8
-    AnimBlendSklCalcRatio(s32 bone_num_max);
+    AnimExpDecayCalcRatio(s32 bone_num_max);
     // Address: 0x024D5210
-    virtual ~AnimBlendSklCalcRatio();
+    virtual ~AnimExpDecayCalcRatio();
 
     // Address: 0x024D5248
     void set(f32 duration);
@@ -59,4 +59,4 @@ private:
     bool                            mIsFramesPrepared;
     bool                            mIsActive;
 };
-static_assert(sizeof(AnimBlendSklCalcRatio) == 0x40);
+static_assert(sizeof(AnimExpDecayCalcRatio) == 0x40);

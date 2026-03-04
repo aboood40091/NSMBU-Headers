@@ -7,7 +7,7 @@
 #include <enemy/EnemyChibiYoshiEatData.h>
 #include <enemy/EnemyEatData.h>
 #include <enemy/MiddleKuribo.h>
-#include <graphics/AnimBlendSklCalcRatio.h>
+#include <graphics/AnimExpDecayCalcRatio.h>
 
 class JointBlendModel;
 class ModelResource;
@@ -272,7 +272,7 @@ protected:
     ModelResource*              mpModelResource;
     JointBlendModel*            mpBlendModel;
     TexturePatternAnimation*    mpTexAnim;
-    AnimBlendSklCalcRatio       mCalcRatio;
+    AnimExpDecayCalcRatio       mCalcRatio;
     MiddleKuribo*               mpParentMiddleKuribo;
     ActorCollisionCheck         mCollisionCheckDrcTouch;
     f32                         mWalkAnmRate;               // Stored, but never read
