@@ -1,6 +1,7 @@
 #pragma once
 
 #include <actor/ActorState.h>
+#include <actor/ScoreMgr.h>
 #include <collision/ActorBoxBgCollision.h>
 #include <state/FStateVirtualID.h>
 
@@ -9,6 +10,13 @@ class BlockCoinBase : public ActorMultiState
     SEAD_RTTI_OVERRIDE(BlockCoinBase, ActorMultiState)
 
 public:
+    enum VSpawnType // i.e., vertical spawn type
+    {
+        cVSpawnType_None = 0,   // Either nothing is being spawned, or the spawn direction is determined by the content type
+        cVSpawnType_MoveUp,
+        cVSpawnType_MoveDown
+    };
+
     enum Content
     {
         cContent_FireMushroom = 0,
@@ -143,12 +151,17 @@ public:
         return mBoxBgCollision;
     }
 
+    VSpawnType getVSpawnType() const
+    {
+        return (VSpawnType)mVSpawnType;
+    }
+
     Content getBaseContent() const
     {
         return mContent;
     }
 
-    u32 getSpawnDirection() const
+    DirType getSpawnDirection() const
     {
         return mSpawnDirection;
     }
@@ -178,7 +191,7 @@ protected:
     f32                             _1a8c;
     u32                             _1a90;
     u32                             _1a94;
-    s32                             _1a98;
+    DirType                         _1a98;
     u32                             _1a9c;
     u16                             _1aa0;
     u16                             _1aa2;
@@ -191,16 +204,16 @@ protected:
     u8                              _1aab;
     u8                              _1aac;
     u8                              _1aad;
-    u8                              _1aae;
+    u8                              mVSpawnType;            // VSpawnType
     u8                              _1aaf;
     u8                              _1ab0;
-    u8                              _1ab1;
+    u8                              _1ab1;                  // DirType
     u8                              mPlayerNo2;
     u8                              _1ab3;
     u32                             _1ab4;
     Content                         mContent;
     s32                             mHitPlayerNo;
-    u32                             mSpawnDirection;
+    DirType                         mSpawnDirection;
     u8                              _1ac4;
     u32                             _1ac8;
     bool                            mBlockHitNotBoundable;
@@ -212,7 +225,7 @@ protected:
     f32                             _1ad8;
     u32                             _1adc;
     u32                             _1ae0;
-    u32                             _1ae4;
+    ScoreMgr::ScoreType             mScore;
     u32                             _1ae8;
     u32                             _1aec;
     sead::SafeArray<s8[12], 4>      _1af0;
