@@ -12,7 +12,7 @@ class BalloonChibiYoshi : public ChibiYoshiBase // vtbl Address: 0x100FA7FC
 
 public:
     // Address: 0x026E3AB4
-    bool setSpin(PlayerObject* p_player); // TODO: virtual (0x33C)
+    bool setShakeAction(PlayerObject* p_player); // TODO: virtual (0x33C)
 
 private:
     u32 _1f48[(0x3660 - 0x1F48) / sizeof(u32)];
