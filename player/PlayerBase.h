@@ -19,6 +19,8 @@
 #include <container/seadRingBuffer.h>
 #include <container/seadSafeArray.h>
 
+#define PLAYER_JUMP_SPEED (3.628f)
+
 struct PlayerBgPointHIO
 {
     ActorBgCollisionCheck::Sensor   sensor_foot;
@@ -186,8 +188,9 @@ public:
         cStatus_136,                            // NSMBW: Bit 0x62
         cStatus_137,
         cStatus_138,
-
-        cStatus_141                     = 141,
+        cStatus_CanFlyBalloonChibiYoshi,
+        cStatus_CanSetSpeedChibiYoshi,
+        cStatus_141,
         cStatus_142,
         cStatus_143,
 
@@ -203,13 +206,15 @@ public:
 
         cStatus_155                     = 155,
         cStatus_156,                            // NSMBW: Bit 0x95
-
-        cStatus_158                     = 158,  // NSMBW: Bit 0x91
+        cStatus_157,                            // NSMBW: Bit 0x8F
+        cStatus_158,                            // NSMBW: Bit 0x91
 
         cStatus_160                     = 160,
 
-        cStatus_165                     = 165,  // NSMBW: Bit 0x9F
+        cStatus_EnableSpin              = 165,  // NSMBW: Bit 0x9F
         cStatus_166,                            // NSMBW: Bit 0xA0
+
+        cStatus_168                     = 168,
 
         cStatus_EnableDokanIn           = 171,
         cStatus_172,                            // NSMBW: Bit 0xA5
@@ -248,7 +253,7 @@ public:
         cStatus_207                     = 207,
         cStatus_208,
         cStatus_SceneChangeNext,                // NSMBW: Bit 0x64
-        cStatus_210,
+        cStatus_DemoDokan,
 
         cStatus_212                     = 212,  // NSMBW: Bit 0x65
         cStatus_213,                            // NSMBW: Bit 0x66
@@ -306,6 +311,7 @@ public:
         cStatus_280                     = 280,  // NSMBW: Bit 0xCA
 
         cStatus_282                     = 282,
+        cStatus_BalloonChibiYoshiFly,
 
         cStatus_EndingDisableSound      = 286,  // NSMBW: Bit 0x75
 
@@ -527,7 +533,7 @@ public:
 
     enum CloudAction
     {
-        cCloudAction_Idle,
+        cCloudAction_Idle = 0,
         cCloudAction_Move,
         cCloudAction_Crouch,
         cCloudAction_CrouchEnd,
@@ -725,35 +731,44 @@ public:
     };
     static_assert(sizeof(FunsuiAction) == 4);
 
+    enum BalloonChibiYoshiFlyAction
+    {
+        cBalloonChibiYoshiFlyAction_Fly = 0,
+        cBalloonChibiYoshiFlyAction_Fall,
+        cBalloonChibiYoshiFlyAction_FlyForceFall
+    };
+    static_assert(sizeof(BalloonChibiYoshiFlyAction) == 4);
+
     union ActionType
     {
-        WalkAction              walk;
-        HipAction               hip;
-        JumpAction              jump;
-        PoleAction              pole;
-        VineAction              vine;
-        CrouchAction            crouch;
-        SlipAction              slip;
-        CloudAction             cloud;
-        SwimAction              swim;
-        JumpDaiAction           jump_dai;
-        PlayerJumpDaiAction     player_jump_dai;
-        FireAction              fire;
-        ThrowAction             throw_;
-        WallSlideAction         wall_slide;
-        CarryPlayerAction       carry_player;
-        FlyDamageAction         fly_damage;
-        BalloonAction           balloon;
-        CannonJumpAction        cannon_jump;
-        PropelAction            propel;
-        SpinHipAttackAction     spin_hip_attack;
-        PenguinSlideAction      penguin_slide;
-        BalloonChibiYoshiAction balloon_chibi_yoshi;
-        TarzanRopeAction        tarzan_rope;
-        KaniAction              kani;
-        HangAction              hang;
-        AnimePlayAction         anime_play;
-        FunsuiAction            funsui;
+        WalkAction                  walk;
+        HipAction                   hip;
+        JumpAction                  jump;
+        PoleAction                  pole;
+        VineAction                  vine;
+        CrouchAction                crouch;
+        SlipAction                  slip;
+        CloudAction                 cloud;
+        SwimAction                  swim;
+        JumpDaiAction               jump_dai;
+        PlayerJumpDaiAction         player_jump_dai;
+        FireAction                  fire;
+        ThrowAction                 throw_;
+        WallSlideAction             wall_slide;
+        CarryPlayerAction           carry_player;
+        FlyDamageAction             fly_damage;
+        BalloonAction               balloon;
+        CannonJumpAction            cannon_jump;
+        PropelAction                propel;
+        SpinHipAttackAction         spin_hip_attack;
+        PenguinSlideAction          penguin_slide;
+        BalloonChibiYoshiAction     balloon_chibi_yoshi;
+        TarzanRopeAction            tarzan_rope;
+        KaniAction                  kani;
+        HangAction                  hang;
+        AnimePlayAction             anime_play;
+        FunsuiAction                funsui;
+        BalloonChibiYoshiFlyAction  balloon_chibi_yoshi_fly;
         // And still many more...
     };
     static_assert(sizeof(ActionType) == 4);
