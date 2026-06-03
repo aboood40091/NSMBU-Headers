@@ -280,7 +280,7 @@ public:
     void onCarry();
     // Address: 0x029225D0
     void onLiftUp();
-    // Address: 0x029225f4
+    // Address: 0x029225F4
     void onBalloonChibiYoshiFly();
 
     void onBubbleChibiYoshiShake()
@@ -304,6 +304,16 @@ public:
     bool isCarry();
     // Address: 0x02921218
     bool isLiftUp();
+
+    bool isBalloonChibiYoshiFly() const
+    {
+        return mFlag.isOn(cFlag_IsBalloonChibiYoshiFly);
+    }
+
+    bool isBubbleChibiYoshiShake() const
+    {
+        return mFlag.isOn(cFlag_IsBubbleChibiYoshiShake);
+    }
 
     virtual void onStarAnm()
     {
