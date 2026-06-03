@@ -273,6 +273,9 @@ public:
     // Address: 0x02925C70
     bool bouncePlayerSpin(f32 speed_y, f32 speed_F);
 
+    // Address: 0x02925EFC
+    bool isEnableZoom();
+
     // ------------------------------------ PlayerObjectBalloon.cpp ------------------------------------ //
 
     // StateID_Balloon          Address: 0x1022B18C
@@ -395,22 +398,61 @@ public:
     // Address: 0x02929B4C
     f32 getTarzanRopeBcOffsetY();
 
-    // ------------------------------------ PlayerObjectCYoshi.cpp ------------------------------------ //
+    // ------------------------------------ PlayerObjectByYoshi.cpp ------------------------------------ //
 
+    // StateID_Cloud2           Address: 0x1022B5D8
+    // initializeState_Cloud2   Address: 0x02929D24
+    // executeState_Cloud2      Address: 0x02929E8C
+    // finalizeState_Cloud2     Address: 0x0292A154
+    DECLARE_STATE_VIRTUAL_ID_OVERRIDE(PlayerObject, Cloud2) // Unused, but functions almost exactly the same as Cloud
     // StateID_BalloonChibiYoshiFly         Address: 0x1022B24C
     // initializeState_BalloonChibiYoshiFly Address: 0x0292A2E4
     // executeState_BalloonChibiYoshiFly    Address: 0x0292A474
     // finalizeState_BalloonChibiYoshiFly   Address: 0x0292A8F8
     DECLARE_STATE_ID(PlayerObject, BalloonChibiYoshiFly)
 
+    // Address: 0x02929D28
+    void setCloud2StateMove();
+    // Address: 0x02929D6C
+    void setCloud2StateFireCreate();
+    // Address: 0x02929DF4
+    bool checkCloud2StateCrouch();
+
+    // Address: 0x0292A95C
+    bool setBalloonChibiYoshiFly();
     // Address: 0x0292AB0C
     bool setBalloonChibiYoshiFlySmall(f32 speed_y, f32 speed_F);
 
-    // Address: 0x0292AEE4
-    bool setChibiYoshiBubbleSpin();
+    // Address: 0x0292A1BC
+    void setBalloonChibiYoshiFlyAnm(s32 anm_id, f32 blend_duration);
 
-    // Address: 0x02925EFC
-    bool isEnableZoom();
+    // Address: 0x0292A468
+    bool isEnableBalloonChibiYoshiFlySpin();
+
+    // Address: 0x0292AC44
+    void updateBalloonChibiYoshiFly();
+
+    // Address: 0x0292AD84
+    void setPlayerHangChild(PlayerObject* p_player);
+    // Address: 0x0292AE70
+    void releasePlayerHangChild();
+    // Address: 0x0292AE7C
+    bool isPlayerHangChild();
+
+    // Address: 0x0292AEE4
+    bool setBubbleChibiYoshiShake();
+
+    // Address: 0x0292AE8C
+    void setBubbleChibiYoshiShakeAnm(f32 blend_duration);
+
+    // Address: 0x0292AF2C
+    void updateBubbleChibiYoshiShake();
+
+    // Address: 0x0292B1AC
+    bool setLightChibiYoshiShake();
+
+    // Address: 0x0292B294
+    void setChibiYoshiSpeed(f32 speed_y, f32 speed_F);
 
     // ------------------------------------ PlayerObjectCc.cpp ------------------------------------ //
 
@@ -460,6 +502,12 @@ public:
     bool setShadowkunHouseReadAction();
 
     // ------------------------------------ PlayerObjectFire.cpp ------------------------------------ //
+
+    // Address: 0x0293AD58
+    void createFireBall(bool spin = false);
+
+    // Address: 0x0293B018
+    bool checkSetFireBall();
 
     // Address: 0x0293B3E4
     bool setFireBallAction();
@@ -528,6 +576,18 @@ public:
 
     // ------------------------------------ PlayerObjectThrow.cpp ------------------------------------ //
 
+    // Address: 0x02953314
+    bool checkEnableThrow();
+    // Address: 0x029533D4
+    bool checkCarryThrow(bool throw_hard = false);
+    // Address: 0x02952F20
+    void setThrowActor(bool throw_hard = false);
+
+    // Address: 0x02952C2C
+    void initializeThrowCommonBase();
+    // Address: 0x02953218
+    void finalizeThrowCommonBase();
+
     // Address: 0x02953494
     bool setThrowPlayer();
 
@@ -587,6 +647,11 @@ public:
     // executeState_Fall    Address: 0x0293FE7C
     // finalizeState_Fall   Address: 0x0293FF8C
     DECLARE_STATE_VIRTUAL_ID_OVERRIDE(PlayerObject, Fall)
+    // StateID_Land         Address: 0x1022B4B8
+    // initializeState_Land Address: 0x0293FFE8
+    // executeState_Land    Address: 0x02940068
+    // finalizeState_Land   Address: 0x029401C0
+    DECLARE_STATE_VIRTUAL_ID_OVERRIDE(PlayerObject, Land)
     // StateID_SitJump          Address: 0x1022B500
     // initializeState_SitJump  Address: 0x029401E8
     // executeState_SitJump     Address: 0x02940310
@@ -603,6 +668,9 @@ public:
     // executeState_SpinJump    Address: 0x0294AAF4
     // finalizeState_SpinJump   Address: 0x0294AB78
     DECLARE_STATE_ID(PlayerObject, SpinJump)
+
+    // Address: 0x0294AC64
+    bool isEnableSpinAction();
 
     // Address: 0x0294AD14
     u16 makeSpinJumpParam(s32 type, JumpSe jump_se_type);
@@ -762,10 +830,13 @@ public:
     // Address: 0x0293D5DC
     void updateMusaEffect();
 
-    // ------------------------------------ PlayerObjectHang.cpp ------------------------------------ //
+    // ------------------------------------ PlayerObjectHangPlayer.cpp ------------------------------------ //
 
     // Address: 0x0293DF70
     virtual bool isPlayerHang(PlayerObject* p_player_obj_parent);
+
+    // Address: 0x0293E1A4
+    void setPlayerHangChildAnm(s32 anm_id, f32 blend_duration);
 
     // ------------------------------------ PlayerObjectFukidashi.cpp ------------------------------------ //
 
@@ -1027,12 +1098,12 @@ protected:
     u32                             _2a5c;
     s32                             mLiftUpCounter;
     f32                             mLiftUpOffsetScale;
-    u8                              _2a68;
+    bool                            mThrowHard;
     s32                             _2a6c;
-    s32                             _2a70;
+    s32                             mBalloonChibiYoshiFlyAscendGravityTimer;
     u32                             _2a74;
     s32                             _2a78;
-    u8                              _2a7c;
+    bool                            mIsBubbleChibiYoshiShake;
     u32                             _2a80;
     u32                             _2a84;
     s32                             mBalloonHelpVoiceTimer;
