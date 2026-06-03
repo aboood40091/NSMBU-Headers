@@ -14,6 +14,11 @@ public:
     // Address: 0x026E3AB4
     bool setShakeAction(PlayerObject* p_player); // TODO: virtual (0x33C)
 
+    // Address: 0x026E3B54
+    bool isBalloonFly();
+    // Address: 0x026E3BB0
+    bool setBalloonFlyEnd();
+
 private:
     u32 _1f48[(0x3660 - 0x1F48) / sizeof(u32)];
 };
