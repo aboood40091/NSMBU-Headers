@@ -442,6 +442,16 @@ public:
         return mpModelBase->isRideLiftWait();
     }
 
+    bool isBalloonChibiYoshiFly() const
+    {
+        return mpModelBase->isBalloonChibiYoshiFly();
+    }
+
+    bool isBubbleChibiYoshiShake() const
+    {
+        return mpModelBase->isBubbleChibiYoshiShake();
+    }
+
 protected:
     PlayerModelBase*    mpModelBase;
     DrawType            mDrawType;
