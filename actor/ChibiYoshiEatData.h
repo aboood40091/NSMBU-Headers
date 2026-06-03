@@ -38,7 +38,7 @@ public:
     // Address: 0x0200D314
     virtual void setEatSpitOut(Actor* p_chibi_yoshi);
     // Address: 0x0200D1B4
-    virtual bool handleEaten(void*);
+    virtual bool handleEaten(Actor* p_chibi_yoshi);
     // Address: 0x0200D318
     virtual void vf3C();
 
