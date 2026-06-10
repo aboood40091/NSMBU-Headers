@@ -104,6 +104,16 @@ public:
         return mAllBalloon;
     }
 
+    void setCannonJump(s32 player_no)
+    {
+        mCannonJumpFlag.setBit(player_no);
+    }
+
+    void resetCannonJump(s32 player_no)
+    {
+        mCannonJumpFlag.resetBit(player_no);
+    }
+
     s32 getCannonJumpTimer() const
     {
         return mCannonJumpTimer;
