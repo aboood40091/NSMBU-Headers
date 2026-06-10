@@ -96,7 +96,9 @@ public:
         cStatus_SinkSandSurfJump        =  29,  // NSMBW: Bit 0x0E
         cStatus_SitJump,                        // NSMBW: Bit 0x0F
 
-        cStatus_WaitJump                =  34,  // NSMBW: Bit 0x12
+        cStatus_CannonJump              =  32,  // NSMBW: Bit 0x11
+        cStatus_CannonWarp,
+        cStatus_WaitJump,                       // NSMBW: Bit 0x12
         cStatus_UnkJumpGravity,
         cStatus_WallSlide,                      // NSMBW: Bit 0x13
         cStatus_37,
@@ -203,8 +205,8 @@ public:
         cStatus_151,                            // NSMBW: Bit 0x8B
         cStatus_152,                            // NSMBW: Bit 0x8C
         cStatus_153,                            // NSMBW: Bit 0x8D
-
-        cStatus_155                     = 155,
+        cStatus_154,                            // NSMBW: Bit 0x8E
+        cStatus_155,
         cStatus_156,                            // NSMBW: Bit 0x95
         cStatus_157,                            // NSMBW: Bit 0x8F
         cStatus_158,                            // NSMBW: Bit 0x91
@@ -222,7 +224,7 @@ public:
         cStatus_FollowMameKuribo        = 174,  // NSMBW: Bit 0xAC
         cStatus_Invisible,                      // NSMBW: Bit 0xBB
         cStatus_HideTemporarily,                // NSMBW: Bit 0xBC (for invincibility frames)
-        cStatus_CannonJump,                     // NSMBW: Bit 0xBD
+        cStatus_CannonShot,                     // NSMBW: Bit 0xBD
         cStatus_178,                            // NSMBW: Bit 0xBE
         cStatus_179,                            // NSMBW: Bit 0xBF
         cStatus_CanWaterWalk,                   // NSMBW: Bit 0xC1
