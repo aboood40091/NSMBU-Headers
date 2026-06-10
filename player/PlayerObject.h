@@ -58,6 +58,13 @@ public:
     };
     static_assert(sizeof(DokanCannonType) == 4);
 
+    enum CannonJumpSoundType
+    {
+        cCannonJumpSoundType_Normal = 0,
+        cCannonJumpSoundType_Warp
+    };
+    static_assert(sizeof(CannonJumpSoundType) == 4);
+
     enum QuakeMode
     {
     };
@@ -454,6 +461,42 @@ public:
     // Address: 0x0292B294
     void setChibiYoshiSpeed(f32 speed_y, f32 speed_F);
 
+    // ------------------------------------ PlayerObjectCannon.cpp ------------------------------------ //
+
+    // StateID_DemoBossCannonWarp           Address: 0x1022AF08
+    // initializeState_DemoBossCannonWarp   Address: 0x0292B568
+    // executeState_DemoBossCannonWarp      Address: 0x0292B5C8
+    // finalizeState_DemoBossCannonWarp     Address: 0x0292B634
+    DECLARE_STATE_ID(PlayerObject, DemoBossCannonWarp)
+
+    // StateID_CannonJump           Address: 0x1022B1AC
+    // initializeState_CannonJump   Address: 0x0292B674
+    // executeState_CannonJump      Address: 0x0292B718
+    // finalizeState_CannonJump     Address: 0x0292BD38
+    DECLARE_STATE_ID(PlayerObject, CannonJump)
+
+    // Address: 0x0292BE1C
+    void setCannonJumpCommon(const sead::Vector3f& pos, const sead::Vector2f& speed);
+
+    // Address: 0x0292BED8
+    bool setCannonJump(const sead::Vector3f& pos, const sead::Vector2f& speed, s32 jump_time);
+    // Address: 0x0292BFA4
+    bool setDemoBossCannonWarp(const sead::Vector3f& pos, const sead::Vector2f& speed, CannonJumpSoundType jump_sound_type = cCannonJumpSoundType_Warp);
+
+    // Address: 0x0292B35C
+    void initCannonJump();
+    // Address: 0x0292B5F4
+    void finCannonJump();
+
+    // Address: 0x0292BFF8
+    bool setCannonWarpPos(const sead::Vector3f& pos);
+    // Address: 0x0292C05C
+    bool setCannonWarpSpeed(const sead::Vector2f& speed);
+    // Address: 0x0292C08C
+    bool setCannonWarpScale(f32 scale);
+    // Address: 0x0292C0B8
+    bool setCannonWarpAngleX(Angle angle_x);
+
     // ------------------------------------ PlayerObjectCc.cpp ------------------------------------ //
 
     // Address: 0x0292E92C
@@ -490,6 +533,9 @@ public:
     void initDemoInDokan(DokanDir dir) override;
     // Address: 0x02936130
     virtual void initDemoInDokanAngle(DokanDir dir);
+
+    // Address: 0x02936288
+    void endDemoDokanCannon();
 
     // ------------------------------------ PlayerObjectDemoDown.cpp ------------------------------------ //
 
@@ -612,6 +658,12 @@ public:
     bool isAmiRollAction();
 
     // ------------------------------------ PlayerObjectWalk.cpp ------------------------------------ //
+
+    // StateID_Walk         Address: 0x1022B44C
+    // initializeState_Walk Address: 0x029551A4
+    // executeState_Walk    Address: 0x029554C8
+    // finalizeState_Walk   Address: 0x029555C0
+    DECLARE_STATE_VIRTUAL_ID_OVERRIDE(PlayerObject, Walk)
 
     // Address: 0x02957034
     virtual void setWalkAnm(s32 anm_id, AnmBlend blend, f32 rate);
@@ -767,6 +819,9 @@ public:
     PlayerObject* getCarryPlayer();
     // Address: 0x0292C20C
     CarryObjBase* getCarryHardBlock();
+
+    // Address: 0x0292C7FC
+    Actor* getCarryChibiYoshi();
 
     // Address: 0x0292CF48
     void releaseCarryActorBase();
@@ -1109,9 +1164,9 @@ protected:
     s32                             mBalloonHelpVoiceTimer;
     s32                             mBalloonCheckAllFadeTimer;
     u32                             mBalloonControllerConnectStatus;
-    u32                             _2a94;
-    sead::Vector3f                  _2a98;
-    u32                             mCannonType;
+    s32                             mCannonJumpTimer;
+    sead::Vector3f                  mCannonJumpStartPos;
+    CannonJumpSoundType             mCannonJumpSoundType;
     u32                             _2aa8;
     sead::Vector3f                  _2aac;
     f32                             _2ab8;
