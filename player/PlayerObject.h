@@ -1104,7 +1104,7 @@ protected:
     u32                             _2a74;
     s32                             _2a78;
     bool                            mIsBubbleChibiYoshiShake;
-    u32                             _2a80;
+    s32                             _2a80;
     u32                             _2a84;
     s32                             mBalloonHelpVoiceTimer;
     s32                             mBalloonCheckAllFadeTimer;
