@@ -8,7 +8,8 @@ typedef nw::snd::SoundArchive::ItemId SndItemID;
 
 enum SndItemID_
 {
-    SE_VOC_YS_GOKUN                         = nw::snd::internal::ItemType_Sound      << 24 | 0x000000,
+    ITEM_ID_SOUND_START                     = nw::snd::internal::ItemType_Sound      << 24 | 0x000000,
+    SE_VOC_YS_GOKUN                         = ITEM_ID_SOUND_START,
     SE_VCO_YS_DAMAGE,
     SE_VOC_YS_EAT,
     SE_VOC_YS_ATTACK,
@@ -3212,8 +3213,10 @@ enum SndItemID_
     SE_OBJ_CS_CMN_APPEAR,
     SE_OBJ_CS_W9_STAR_TSUUKA,
     SE_PLY_CS_CH_YS_LAND,
+    ITEM_ID_SOUND_END,
 
-    WSDSET_SE_PLY_YOSHI                     = nw::snd::internal::ItemType_SoundGroup << 24 | 0x000000,
+    ITEM_ID_SOUND_GROUP_START               = nw::snd::internal::ItemType_SoundGroup << 24 | 0x000000,
+    WSDSET_SE_PLY_YOSHI                     = ITEM_ID_SOUND_GROUP_START,
     WSDSET_SE_VOC_MiiMAN1,
     WSDSET_SE_VOC_MiiMAN2,
     WSDSET_SE_VOC_MiiMAN3,
@@ -3327,8 +3330,10 @@ enum SndItemID_
     SEQSET_SE_WATANABE,
     SEQSET_SE_MIYAGAWA,
     SEQSET_SE_YOKOYAMA,
+    ITEM_ID_SOUND_GROUP_END,
 
-    BANK_SE_BASE                            = nw::snd::internal::ItemType_Bank       << 24 | 0x000000,
+    ITEM_ID_BANK_START                      = nw::snd::internal::ItemType_Bank       << 24 | 0x000000,
+    BANK_SE_BASE                            = ITEM_ID_BANK_START,
     BANK_SE_SYS_BASE,
     BANK_SE_PLY_BASE,
     BANK_SE_EMY_BASE,
@@ -3412,8 +3417,10 @@ enum SndItemID_
     RP_BANK_SE_DEMO,
     RP_BANK_SE_BOSS,
     RP_BANK_SE_COURSESELECT,
+    ITEM_ID_BANK_END,
 
-    PLAYER_START                            = nw::snd::internal::ItemType_Player     << 24 | 0x000000,
+    ITEM_ID_PLAYER_START                    = nw::snd::internal::ItemType_Player     << 24 | 0x000000,
+    PLAYER_START                            = ITEM_ID_PLAYER_START,
     PLAYER_SE_SYS_GAME_PAUSE,
     PLAYER_SE_SYS,
     PLAYER_SE_PLY,
@@ -3437,8 +3444,10 @@ enum SndItemID_
     PLAYER_BGM_COURSE_SUB2,
     PLAYER_BGM_CONTROL_TRACK,
     PLAYER_BGM_COURSE_DRC,
+    ITEM_ID_PLAYER_END,
 
-    GROUP_BOOT                              = nw::snd::internal::ItemType_Group      << 24 | 0x000000,
+    ITEM_ID_GROUP_START                     = nw::snd::internal::ItemType_Group      << 24 | 0x000000,
+    GROUP_BOOT                              = ITEM_ID_GROUP_START,
     GROUP_DEMO_OP,
     GROUP_DEMO_ED,
     GROUP_TITLE,
@@ -3472,20 +3481,21 @@ enum SndItemID_
     GROUP_BGM_HIKOUSEN_ROUKA,
     GROUP_BGM_LAST_BOSS,
     GROUP_BGM_LAST_BOSS2,
-    GROUP_BGM_SHIRO_LAST
+    GROUP_BGM_SHIRO_LAST,
+    ITEM_ID_GROUP_END
 };
 // Sound
-static_assert(SE_VOC_YS_GOKUN         == 0x01000000);
-static_assert(SE_PLY_CS_CH_YS_LAND    == 0x01000C83);
+static_assert(ITEM_ID_SOUND_START       == 0x01000000);
+static_assert(ITEM_ID_SOUND_END-1       == 0x01000C83);
 // SoundGroup
-static_assert(WSDSET_SE_PLY_YOSHI     == 0x02000000);
-static_assert(SEQSET_SE_YOKOYAMA      == 0x02000071);
+static_assert(ITEM_ID_SOUND_GROUP_START == 0x02000000);
+static_assert(ITEM_ID_SOUND_GROUP_END-1 == 0x02000071);
 // Bank
-static_assert(BANK_SE_BASE            == 0x03000000);
-static_assert(RP_BANK_SE_COURSESELECT == 0x03000053);
+static_assert(ITEM_ID_BANK_START        == 0x03000000);
+static_assert(ITEM_ID_BANK_END-1        == 0x03000053);
 // Player
-static_assert(PLAYER_START            == 0x04000000);
-static_assert(PLAYER_BGM_COURSE_DRC   == 0x04000017);
+static_assert(ITEM_ID_PLAYER_START      == 0x04000000);
+static_assert(ITEM_ID_PLAYER_END-1      == 0x04000017);
 // Group
-static_assert(GROUP_BOOT              == 0x06000000);
-static_assert(GROUP_BGM_SHIRO_LAST    == 0x06000022);
+static_assert(ITEM_ID_GROUP_START       == 0x06000000);
+static_assert(ITEM_ID_GROUP_END-1       == 0x06000022);
