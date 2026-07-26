@@ -1,6 +1,7 @@
 #pragma once
 
 #include <sound/AudAudioMgr.h>
+#include <sound/SndItemID.h>
 
 #include <heap/seadDisposer.h>
 #include <math/seadVector.h>
@@ -27,4 +28,7 @@ public:
 
     // Address: 0x029B5934
     void startDrcTouchSound(const sead::Vector2f& world_pos, u32 type);
+
+    // Address: 0x029B7548
+    bool loadData(SndItemID item_id);
 };
