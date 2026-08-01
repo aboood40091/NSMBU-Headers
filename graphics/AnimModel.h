@@ -167,6 +167,13 @@ inline void AnimModel::destroy(
     {
         Model* p_model = p_anim_model->getModel();
         delete p_model;
+
+        p_anim_model->mpSklAnim.freeBuffer();
+        p_anim_model->mpTexAnim.freeBuffer();
+        p_anim_model->mpShuAnim.freeBuffer();
+        p_anim_model->mpVisAnim.freeBuffer();
+        p_anim_model->mpShaAnim.freeBuffer();
+
         delete p_anim_model;
         p_anim_model = nullptr;
     }
