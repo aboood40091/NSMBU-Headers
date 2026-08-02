@@ -576,7 +576,7 @@ protected:
     sead::Vector3f              mSpeed_PreIce;
     f32                         mAccelY_PreIce;
     f32                         mAccelF_PreIce;
-    u32                         _186c_PreIce;               // 0x1B70
+    u32                         mStateTimer_PreIce;         // 0x1B70
     u32                         _186e_PreIce;               // 0x1B74
 };
 static_assert(sizeof(Boss) == 0x1B78);

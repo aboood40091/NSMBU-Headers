@@ -439,7 +439,7 @@ protected:
 
     EnemyFumiProc           mFumiProc;
 
-    u16                     _186c;
+    u16                     mStateTimer;
     u16                     _186e;
     u32                     _1870;
     u8                      mDieFallDirection;
