@@ -20,6 +20,7 @@ struct FieldPlayerData
     Bitfield<64>    fukidashi_flag; // I believe only 48 bits are used
     u32             _28[(0x34 - 0x28) / sizeof(u32)];
     s32             coin_cnt;
-    u32             _38[(0x48 - 0x38) / sizeof(u32)];
+    s32             enemy_down_cnt;
+    u32             _3c[(0x48 - 0x3C) / sizeof(u32)];
 };
 static_assert(sizeof(FieldPlayerData) == 0x48);

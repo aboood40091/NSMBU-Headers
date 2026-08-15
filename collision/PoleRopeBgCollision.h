@@ -1,6 +1,7 @@
 #pragma once
 
 #include <collision/BgCollision.h>
+#include <player/PlayerEnum.h>
 
 #include <container/seadBuffer.h>
 #include <container/seadSafeArray.h>
@@ -58,8 +59,8 @@ public:
 
 protected:
     LineNodeMgr<ActorBgCollisionPlayerCheck>    mPlayerBcList;
-    sead::UnsafeArray<s32,              4>      _164;
-    sead::UnsafeArray<sead::BitFlag32,  4>      _174;   // I think? (unused)
+    sead::UnsafeArray<s32,      cPlayerNum>     mReleaseTimer;
+    sead::UnsafeArray<Angle,    cPlayerNum>     mRotShakeAngle;
     sead::Buffer<Angle>                         mLineAngle;
     sead::Buffer<sead::Vector2f>                mPoint;
     sead::Buffer<sead::Vector2f>                mPointPrev;

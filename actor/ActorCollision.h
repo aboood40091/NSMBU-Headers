@@ -27,6 +27,13 @@ protected:
         cWaterCalcType_ForceOut
     };
 
+    enum QuakeType
+    {
+        cQuakeType_Normal = 0,
+        cQuakeType_Big,
+        cQuakeType_Small        // Used in NSMB2, but NSMBU no longer uses it
+    };
+
 protected:
     friend BgCheckFlag operator|(const BgCheckFlag& lhs, const BgCheckFlag& rhs)
     {
@@ -85,9 +92,10 @@ protected:
     }
 
     // Address: 0x02004008
-    virtual bool vf13C();               // returns false, Determines whether vf144 should be called
+    virtual bool isQuakeEnable_();          // Default: returns false. Determines whether setQuake should be called.
     // Address: 0x0200375C
-    virtual void vf144(s32);            // nullsub, parameter is based on the flag bit in Quake (either 0 or 1, can even be 2 in NSMB2 but that was removed here)
+    virtual void setQuake_(QuakeType type);
+
     // Address: 0x02003760
     virtual void setSmokeDamage_(Actor* p_actor);
 

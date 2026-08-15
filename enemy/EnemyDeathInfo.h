@@ -2,6 +2,7 @@
 
 #include <math/seadVector.h>
 
+class Enemy;
 class StateID;
 
 class EnemyDeathInfo
@@ -41,5 +42,7 @@ public:
 private:
     Arg     mArg;
     bool    mIsDead;
+
+    friend class Enemy;
 };
 static_assert(sizeof(EnemyDeathInfo) == 0x1C);

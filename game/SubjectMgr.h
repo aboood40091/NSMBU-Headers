@@ -56,8 +56,14 @@ public:
     // Address: 0x024CF74C
     void onComboCntInc(s32 cnt, ComboType type);
 
+    // Address: 0x024CFAA0
+    void onEnSpinFumi();
+
     // Address: 0x024CFB00
-    void onAcBlockHit();
+    void onAcDamage();
+
+    // Address: 0x024CFE14
+    void onEnDeath(s32);
 
     // Address: 0x024D03C0
     void setFinishSubjectCoin(s32 coin_num);
@@ -82,6 +88,11 @@ public:
         return mIsDisableKaniAction;
     }
 
+    bool isFumiScoreBySpinOnly() const
+    {
+        return mFumiScoreBySpinOnly;
+    }
+
     Mode getMode() const
     {
         return static_cast<Mode>(mMode);
@@ -96,7 +107,9 @@ protected:
     bool    mSkipClearWait;
     u8      _1e5f[0x1E68 - 0x1E5F];
     bool    mIsDisableKaniAction;
-    u8      _1e69[0x1E7F - 0x1E69];
+    u8      _1e69[0x1E7A - 0x1E69];
+    bool    mFumiScoreBySpinOnly;
+    u8      _1e7b[0x1E7F - 0x1E7B];
     u8      mMode;
     u8      _1e80[0x1E84 - 0x1E80];
 };

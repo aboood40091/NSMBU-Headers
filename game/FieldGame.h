@@ -3,6 +3,7 @@
 #include <game/FieldGameMode.h>
 #include <game/FieldPlayerData.h>
 #include <game/InfoStats.h>
+#include <player/PlayerEnum.h>
 
 #include <container/seadSafeArray.h>
 #include <heap/seadDisposer.h>
@@ -57,7 +58,7 @@ private:
     u32                 mCheckPoint[0x14 / sizeof(u32)];    // TODO: CheckPoint
     sead::SafeArray<
         FieldPlayerData,
-        4
+        cPlayerNum
     >                   mPlayerData;
     s32                 mCoinNum;
     u32                 _138[(0x15C - 0x138) / sizeof(u32)];

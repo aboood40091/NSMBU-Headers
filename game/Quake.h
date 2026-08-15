@@ -30,6 +30,13 @@ public:
         cShockFlag_ShockMotor   = 1 << 1
     };
 
+    enum Flag
+    {
+        cTypeFlag_Small    = 1 << 0,
+        cTypeFlag_Normal   = 1 << 1,
+        cTypeFlag_Big      = 1 << 2
+    };
+
 public:
     // Address: 0x024C46CC
     Quake();

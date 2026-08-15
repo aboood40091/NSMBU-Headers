@@ -57,12 +57,12 @@ protected:
     ObjBgCollisionCullCheck         mColliderActiveInfo;
     sead::Vector2f                  mColliderActiveAreaSize;
     u32                             _1c68;
-    u8                              _1c6c[4];
+    bool                            _1c6c;
     UnitID                          mUnitID;
     ParentMovementType              mParentMovementType;
     u32                             mParentMovementID;
     u8                              _1c7c[0x1CA0 - 0x1C7C];
     ChangeBlockCoinDrcTouchCB       mDrcTouchCallback;
-    u8                              _1ca4[4];
+  //u32                             _1ca4[4 / sizeof(u32)]; // Alignment???
 };
 static_assert(sizeof(ChangeBlockCoinBase) == 0x1CA8);

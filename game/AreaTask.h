@@ -1,5 +1,8 @@
 #pragma once
 
+#include <input/SysControllerWrapper.h>
+#include <player/PlayerEnum.h>
+
 #include <framework/seadCalculateTask.h>
 #include <framework/seadTaskMgr.h>
 #include <layer/aglRenderInfo.h>
@@ -51,12 +54,12 @@ public:
     f32 getLoopPosX(f32 x);
 
 private:
-    u8                  _c9;
-    bool                mIsPrepareDone;
-    bool                mIsDrawMethodReady;
-    u32                 mControllerWrapper[4][0x194 / sizeof(u32)]; // ControllerWrapper[4]
-    sead::BoundBox2f    mBound;
-    u32                 mLoopType;
-    u32                 _730[(0xBE4 - 0x730) / sizeof(u32)];
+    u8                      _c9;
+    bool                    mIsPrepareDone;
+    bool                    mIsDrawMethodReady;
+    SysControllerWrapper    mControllerWrapper[cPlayerNum];
+    sead::BoundBox2f        mBound;
+    u32                     mLoopType;
+    u32                     _730[(0xBE4 - 0x730) / sizeof(u32)];
 };
 static_assert(sizeof(AreaTask) == 0xBE4);

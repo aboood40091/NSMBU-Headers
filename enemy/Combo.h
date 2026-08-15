@@ -10,16 +10,18 @@ public:
     enum Type
     {
         cType_Null = 0,
-        cType_1 = 1,
-        cType_2 = 2
+        cType_1,
+        cType_2,
+        cType_Num
     };
     static_assert(sizeof(Type) == 4);
+    static_assert(cType_Num == 3);
 
 public:
     // Address: 0x02302F88
     Combo();
 
-    bool getType() const
+    Type getType() const
     {
         return mType;
     }

@@ -64,6 +64,11 @@ public:
         return mGameData.getGameMode().isMiniGame();
     }
 
+    void incEnemyDown(s32 player_no)
+    {
+        getPlayerData(player_no)->enemy_down_cnt++;
+    }
+
 private:
     bool            mCourseRestart;
     GamesceneBase*  mpGamescene;

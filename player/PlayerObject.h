@@ -140,6 +140,9 @@ public:
         cBcMode_Direct
     };
 
+    // Address: 0x1022AFF0
+    static const f32 cJumpSpeed;    // Same as PlayerBase::cJumpSpeedBase
+
 public:
     // ------------------------------------ PlayerObject.cpp ------------------------------------ //
 

@@ -2,11 +2,13 @@
 
 #include <map_obj/ChibiYoshiAwaData.h>
 
+class Enemy;
+
 class EnemyChibiYoshiAwaData : public ChibiYoshiAwaData // vtbl Address: 0x1007262C
 {
 public:
     // Address: 0x0232AB90
-    EnemyChibiYoshiAwaData(ActorUniqueID owner_id);
+    EnemyChibiYoshiAwaData(Enemy* p_owner);
 
     // Address: 0x0232ABFC
     void setAwaHit(Actor* p_awa) override;

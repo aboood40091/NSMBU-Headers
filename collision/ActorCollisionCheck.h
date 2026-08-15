@@ -101,7 +101,7 @@ public:
         cAttack_Spin,
 
         cAttack_SpinFall        = 13,
-        cAttack_Explosion,
+        cAttack_Explode,
         cAttack_YoshiEat,
         cAttack_YoshiMouth,
         cAttack_Cannon,
@@ -111,8 +111,8 @@ public:
         cAttack_YoshiIce,
         cAttack_Intermittent,
         cAttack_ChibiYoshiAwa,
-
-        cAttack_Unk25           = 25,
+        cAttack_Unk24,
+        cAttack_Unk25,
         cAttack_ChibiYoshiLight,
         cAttack_Unk27,
         // ... ?
@@ -134,7 +134,7 @@ public:
         cDamageFrom_Spin            = 1 << cAttack_Spin,
 
         cDamageFrom_SpinFall        = 1 << cAttack_SpinFall,
-        cDamageFrom_Explosion       = 1 << cAttack_Explosion,
+        cDamageFrom_Explode         = 1 << cAttack_Explode,
         cDamageFrom_YoshiEat        = 1 << cAttack_YoshiEat,
         cDamageFrom_YoshiMouth      = 1 << cAttack_YoshiMouth,
         cDamageFrom_Cannon          = 1 << cAttack_Cannon,
@@ -144,7 +144,7 @@ public:
         cDamageFrom_YoshiIce        = 1 << cAttack_YoshiIce,
         cDamageFrom_Intermittent    = 1 << cAttack_Intermittent,
         cDamageFrom_ChibiYoshiAwa   = 1 << cAttack_ChibiYoshiAwa,
-
+        cDamageFrom_Unk24           = 1 << cAttack_Unk24,
         cDamageFrom_Unk25           = 1 << cAttack_Unk25,
         cDamageFrom_ChibiYoshiLight = 1 << cAttack_ChibiYoshiLight,
         cDamageFrom_Unk27           = 1 << cAttack_Unk27,

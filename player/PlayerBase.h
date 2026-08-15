@@ -972,7 +972,7 @@ public:
     // Address: 0x10166E60
     static const f32 cDirSpeed[cDirType_NumX];
     // Address: 0x10166E68
-    static const f32 cJumpSpeed;                    // 3.628f
+    static const f32 cJumpSpeedBase;                // 3.628f
     // Address: 0x10166E6C
     static const f32 cUnkZero;                      // 0.0f
     // Address: 0x10166E70
@@ -1322,6 +1322,16 @@ public:
     void calcReductionScale();
     // Address: 0x028FAB14
     void getReductionModelScale(sead::Vector3f* p_scale);
+
+    void setCcEnemyFumiRevExtend()
+    {
+        mCcEnemyFumiRevExtendTimer = 1;
+    }
+
+    bool isCcEnemyFumiRevExtend()
+    {
+        return mCcEnemyFumiRevExtendTimer != 0;
+    }
 
     // ------------------------------------ PlayerBaseBg.cpp (2) ------------------------------------ //
 
@@ -2346,12 +2356,12 @@ public:
 
     void setJumpGravity(const f32* thresholds, const f32* gravities)
     {
-        mAccelY = gravities[PLAYER_JUMP_GRAVITY_MAX_STAGES];
+        mGravity = gravities[PLAYER_JUMP_GRAVITY_MAX_STAGES];
         for (s32 i = 0; i < PLAYER_JUMP_GRAVITY_MAX_STAGES; i++)
         {
             if (mSpeed.y > thresholds[i])
             {
-                mAccelY = gravities[i];
+                mGravity = gravities[i];
                 break;
             }
         }
@@ -2814,7 +2824,7 @@ protected:
     s32                                 _2064;
     s32                                 _2068;
     s32                                 _206c;
-    s32                                 _2070;
+    s32                                 mCcEnemyFumiRevExtendTimer;
     f32                                 mCcPlayerRevSpeedFScale;
     f32                                 mCcPlayerRevSpeedFStart;
     f32                                 mCcPlayerRevSpeedF;

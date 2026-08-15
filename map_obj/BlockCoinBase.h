@@ -3,6 +3,7 @@
 #include <actor/ActorState.h>
 #include <actor/ScoreMgr.h>
 #include <collision/ActorBoxBgCollision.h>
+#include <player/PlayerEnum.h>
 #include <state/FStateVirtualID.h>
 
 class BlockCoinBase : public ActorMultiState
@@ -228,7 +229,10 @@ protected:
     ScoreMgr::ScoreType             mScore;
     u32                             _1ae8;
     u32                             _1aec;
-    sead::SafeArray<s8[12], 4>      _1af0;
+    sead::SafeArray<
+        s8[12],
+        cPlayerNum
+    >                               _1af0;
     u8                              _1b20;
     u32                             _1b24;
 };

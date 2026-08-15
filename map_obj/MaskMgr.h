@@ -1,5 +1,7 @@
 #pragma once
 
+#include <player/PlayerEnum.h>
+
 #include <container/seadSafeArray.h>
 #include <heap/seadDisposer.h>
 
@@ -32,11 +34,11 @@ protected:
     u32 _0[(0x1C - 0x10) / sizeof(u32)];
     sead::SafeArray<
         PlayerMask,
-        4
+        cPlayerNum
     > mPlayerMask;
     sead::SafeArray<
         PlayerMask,
-        4
+        cPlayerNum
     > mPlayerMask2;
 };
 static_assert(sizeof(MaskMgr) == 0xA1C);

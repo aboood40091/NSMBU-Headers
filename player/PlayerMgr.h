@@ -1,5 +1,7 @@
 #pragma once
 
+#include <player/PlayerEnum.h>
+
 #include <container/seadRingBuffer.h>
 #include <container/seadSafeArray.h>
 #include <heap/seadDisposer.h>
@@ -155,32 +157,44 @@ public:
     s32 getCoinNumMin();
 
 private:
-    u32                                 _10[(0x20 - 0x10) / sizeof(u32)];
-    sead::SafeArray<PlayerObject*, 4>   mPlayerObject;
-    sead::SafeArray<PlayerObject*, 4>   mPlayerObject2;     // Idk why
-    sead::BitFlag8                      mCreateFlag;
-    sead::BitFlag16                     mActPlayerInfo;
-    sead::FixedRingBuffer<Yoshi*, 4>    mYoshi;
-    sead::FixedRingBuffer<Yoshi*, 4>    mYoshi2;
-    u32                                 _84;
-    u8                                  _88;
-    sead::BitFlag32                     mDemoWaitFlgDisable;
-    sead::BitFlag32                     mPauseDisable;
-    bool                                mDisableOrchestra;
-    sead::BitFlag32                     mCreateBalloonFlag;
-    bool                                mAllBalloon;
-    sead::BitFlag8                      mCannonJumpFlag;
-    s32                                 mCannonJumpTimer;
-    sead::BitFlag16                     mBgmState;
-    u32                                 _a8;
-    s32                                 mPreFanfareTimer;
-    bool                                mOdaiClear;
-    u8                                  _b1;
-    s32                                 mHpDpSpecialType;
-    s32                                 mCoinMaxNum;
-    sead::Vector3f                      mPlayerSetPos;
-    sead::BitFlag16                     mPlayerNextGotoBlockInfo;
-    sead::BitFlag16                     _ca;
-    RDashPhysicsType                    mRDashPhysics;
+    u32                     _10[(0x20 - 0x10) / sizeof(u32)];
+    sead::SafeArray<
+        PlayerObject*,
+        cPlayerNum
+    >                       mPlayerObject;
+    sead::SafeArray<
+        PlayerObject*,
+        cPlayerNum
+    >                       mPlayerObject2;     // Idk why
+    sead::BitFlag8          mCreateFlag;
+    sead::BitFlag16         mActPlayerInfo;
+    sead::FixedRingBuffer<
+        Yoshi*,
+        cPlayerNum
+    >                       mYoshi;
+    sead::FixedRingBuffer<
+        Yoshi*,
+        cPlayerNum
+    >                       mYoshi2;
+    u32                     _84;
+    u8                      _88;
+    sead::BitFlag32         mDemoWaitFlgDisable;
+    sead::BitFlag32         mPauseDisable;
+    bool                    mDisableOrchestra;
+    sead::BitFlag32         mCreateBalloonFlag;
+    bool                    mAllBalloon;
+    sead::BitFlag8          mCannonJumpFlag;
+    s32                     mCannonJumpTimer;
+    sead::BitFlag16         mBgmState;
+    u32                     _a8;
+    s32                     mPreFanfareTimer;
+    bool                    mOdaiClear;
+    u8                      _b1;
+    s32                     mHpDpSpecialType;
+    s32                     mCoinMaxNum;
+    sead::Vector3f          mPlayerSetPos;
+    sead::BitFlag16         mPlayerNextGotoBlockInfo;
+    sead::BitFlag16         _ca;
+    RDashPhysicsType        mRDashPhysics;
 };
 static_assert(sizeof(PlayerMgr) == 0xD0);

@@ -48,7 +48,7 @@ private:
   //u32             _24[4 / sizeof(u32)];   // Alignment???
     u64             mBgCheckData;           // See BgUnitCode
     f32             _30;
-    u32             _34;
+    Angle           _34;
 };
 static_assert(sizeof(ActorBgCollisionCheckResult) == 0x38);
 

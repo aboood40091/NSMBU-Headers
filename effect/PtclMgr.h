@@ -1,5 +1,7 @@
 #pragma once
 
+#include <player/PlayerEnum.h>
+
 #include <container/seadPtrArray.h>
 #include <container/seadTList.h>
 #include <heap/seadDisposer.h>
@@ -55,7 +57,7 @@ public:
         PlayerNoSetter(s32 player_no)
             : mPrevPlayerNo(PtclMgr::instance()->mPlayerNo)
         {
-            if (0 <= player_no && player_no < 4)
+            if (0 <= player_no && player_no < cPlayerNum)
                 PtclMgr::instance()->mPlayerNo = player_no;
         }
 

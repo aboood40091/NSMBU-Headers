@@ -5,6 +5,7 @@
 #include <collision/ActorCollisionDrcTouchCallback.h>
 #include <enemy/Enemy.h>
 #include <enemy/EnemyBoyoMgr.h>
+#include <player/PlayerEnum.h>
 
 class BossDrcTouchCB : public ActorCollisionDrcTouchCallback    // vtbl Address: 0x10005E2C
 {
@@ -102,8 +103,9 @@ protected:
     bool hitCallback_Fire(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other) override;
     // Address: 0x0202CBCC
     bool hitCallback_Ice(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other) override;
+
     // Address: 0x0202CCB0
-    void setDeathInfo_Quake(s32) override;
+    void setDeathInfo_Quake(QuakeDeathType type) override;
 
     void setDeathInfo_IceBreak() override
     {
@@ -563,7 +565,10 @@ protected:
     s32                         _1888;                      // Unknown counter
     bool                        mIsShock;                   // Is currently shocked from a quake
     bool                        mIsDemoWait;
-    sead::SafeArray<s32, 4>     _1890;
+    sead::SafeArray<
+        s32,
+        cPlayerNum
+    >                           _1890;
     GameAudio::AudioObjctEmy    mAudioObj;
     s16                         mAudioObjSeqVar;
     AttentionLookat             mAttentionLookat;
@@ -576,7 +581,7 @@ protected:
     sead::Vector3f              mSpeed_PreIce;
     f32                         mAccelY_PreIce;
     f32                         mAccelF_PreIce;
-    u32                         mStateTimer_PreIce;         // 0x1B70
-    u32                         _186e_PreIce;               // 0x1B74
+    u32                         mStateTimer_PreIce;
+    u32                         mStateSubTimer_PreIce;
 };
 static_assert(sizeof(Boss) == 0x1B78);

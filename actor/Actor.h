@@ -22,13 +22,13 @@ class Actor : public ActorBase  // vtbl Address: 0x10000268
     SEAD_RTTI_OVERRIDE(Actor, ActorBase)
 
 public:
-    enum ActorType
+    enum ActorKind
     {
-        cActorType_Generic  = 0,
-        cActorType_Player,
-        cActorType_Yoshi,
-        cActorType_Enemy,
-        cActorType_ChibiYoshi
+        cActorKind_Generic  = 0,
+        cActorKind_Player,
+        cActorKind_Yoshi,
+        cActorKind_Enemy,
+        cActorKind_ChibiYoshi
     };
 
     enum CarryFlag
@@ -246,14 +246,14 @@ public:
         return mAngle;
     }
 
-    ActorType getActorType() const
+    ActorKind getKind() const
     {
-        return ActorType(mActorType);
+        return ActorKind(mActorKind);
     }
 
-    void setKind(ActorType type)
+    void setKind(ActorKind kind)
     {
-        mActorType = type;
+        mActorKind = kind;
     }
 
     bool getManualDeletedFlag() const
@@ -269,6 +269,11 @@ public:
     u32 getProfFlag() const
     {
         return mProfFlag;
+    }
+
+    f32 getSpeedF() const
+    {
+        return mSpeedF;
     }
 
 protected:
@@ -306,13 +311,13 @@ protected:
     void calcSpeedX_();
     // Address: 0x02001430
     void calcSpeedY_(f32 accel_y, f32 speed_max_y);
-    void calcSpeedY_() { calcSpeedY_(mAccelY, mSpeedMax.y); }
+    void calcSpeedY_() { calcSpeedY_(mGravity, mSpeedMax.y); }
 
     void calcSpeedF_(f32 accelF, f32 max_speedF) { sead::Mathf::chase(&mSpeedF, max_speedF, accelF); }
-    void calcSpeedF_() { calcSpeedF_(mAccelF, mMaxSpeedF); }
+    void calcSpeedF_() { calcSpeedF_(mPow, mMaxSpeedF); }
     // Address: 0x0200144C
     void calcFallSpeed_(f32 accel_y, f32 max_fall_speed);
-    void calcFallSpeed_() { calcFallSpeed_(mAccelY, mMaxFallSpeed); }
+    void calcFallSpeed_() { calcFallSpeed_(mGravity, mMaxFallSpeed); }
 
     void posMove_(sead::Vector3f& delta)
     {
@@ -383,8 +388,8 @@ protected:
     f32                     mSpeedF;                    // Horizontal speed
     f32                     mMaxSpeedF;                 // Maximum horizontal speed
     f32                     mMaxFallSpeed;              // Maximum fall speed
-    f32                     mAccelY;                    // Vertical acceleration
-    f32                     mAccelF;                    // Horizontal acceleration
+    f32                     mGravity;                   // Vertical acceleration
+    f32                     mPow;                       // Horizontal acceleration
     sead::Vector3f          mPos;
     sead::Vector3f          mSpeed;
     sead::Vector3f          mSpeedMax;
@@ -401,7 +406,7 @@ protected:
                                                         //              80.0 + ActorCreateInfo::cull_range.left,
                                                         //              80.0 + ActorCreateInfo::cull_range.right }
     u8                      mAreaNo;
-    u8                      mActorType;                 // ActorType
+    u8                      mActorKind;                 // ActorKind
     bool                    mIsExecEnable;
     bool                    mIsDrawEnable;
     bool                    mManualDeletedFlag;
@@ -410,8 +415,8 @@ protected:
     u8                      mSwitchFlag0;
     u8                      mSwitchFlag1;
     u16                     mCreateFlag;                // Inited to ActorCreateInfo::flag
-    u32                     mBumpDamageTimer;
-    u32                     mBumpDirection;
+    u32                     mBlockHitTimer;
+    DirType                 mBlockHitDirection;
     u8                      _220;
     DirType                 mCarryDirection;
     u32                     mThrowPlayerNo;

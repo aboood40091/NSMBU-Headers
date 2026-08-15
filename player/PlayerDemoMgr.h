@@ -1,5 +1,6 @@
 #pragma once
 
+#include <player/PlayerEnum.h>
 #include <state/FStateID.h>
 
 #include <container/seadRingBuffer.h>
@@ -179,7 +180,10 @@ protected:
     u32                             _10c[(0x128 - 0x10C) / sizeof(u32)];
     sead::Vector3f                  mHanabiPos;
     u32                             _134[(0x158 - 0x134) / sizeof(u32)];
-    sead::FixedRingBuffer<s32, 4>   mCourseOutList;
+    sead::FixedRingBuffer<
+        s32,
+        cPlayerNum
+    >                               mCourseOutList;
     u32                             _178[(0x1B8 - 0x178) / sizeof(u32)];
     s32                             mCourseOutPlayerNo;
     u32                             _1bc;
