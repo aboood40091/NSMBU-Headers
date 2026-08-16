@@ -18,7 +18,7 @@ class ActorCoinMgr
     SEAD_SINGLETON_DISPOSER(ActorCoinMgr)
 
 public:
-    struct CoinJumpArg
+    struct UpCoinArg
     {
         sead::Vector3f pos;
         DirType dir;
@@ -30,7 +30,7 @@ public:
         u8 _15;
         u8 curve_type;
     };
-    static_assert(sizeof(CoinJumpArg) == 0x18);
+    static_assert(sizeof(UpCoinArg) == 0x18);
 
 public:
     // Address: 0x026CA34C
@@ -38,10 +38,12 @@ public:
 
     // Address: 0x026CABB4
     void spawnItemCoin(const sead::Vector3f& pos, DirType dir, s32 player_no) const;
+
     // Address: 0x026CB06C
-    void spawnCoinJump(const CoinJumpArg& arg, u32 flag = 3) const;
+    void createUpCoin(const UpCoinArg& arg, u32 flag = 3) const;
     // Address: 0x026CBA7C
-    void spawnCoinJump(const CoinJumpArg& arg, bool alter_dir, s32 player_no) const;
+    void createUpCoinCB(const UpCoinArg& arg, bool alter_dir, s32 player_no) const;
+
     // Address: 0x026CBD10
     void spawnCoinSpringFunsui(const sead::Vector3f& pos, s32 player_no, s32 coin_count, s32 angle_type, Actor* p_eat_die_actor);
 };
