@@ -45,10 +45,20 @@ public:
             mKakiboNum = 0;
     }
 
+    s32 getQuakeComboCount() const
+    {
+        return mQuakeComboCount;
+    }
+
+    // Address: 0x0200B904
+    void incQuakeComboCount(s32 = 0);
+
 protected:
     u32 _10[(0xAC - 0x10) / sizeof(u32)];
     s32 mKuriboNum;
     s32 mKakiboNum;
-    u32 _b4[(0x9F4 - 0xB4) / sizeof(u32)];
+    u32 _b4[(0xF0 - 0xB4) / sizeof(u32)];
+    s32 mQuakeComboCount;
+    u32 _f4[(0x9F4 - 0xF4) / sizeof(u32)];
 };
 static_assert(sizeof(ActorStatus) == 0x9F4);
