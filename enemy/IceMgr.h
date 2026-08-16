@@ -44,6 +44,15 @@ public:
     static const s32 cIceMaxNum = 12;
 
 public:
+    enum DestroyMode
+    {
+        cDestroyMode_None = 0,
+        cDestroyMode_Break,
+        cDestroyMode_2,
+        cDestroyMode_Vanish
+    };
+
+public:
     struct IceStatus
     {
         union
@@ -113,7 +122,12 @@ public:
 
     bool isDestroy() const
     {
-        return mDestroyMode != 0;
+        return mDestroyMode != cDestroyMode_None;
+    }
+
+    DestroyMode getDestroyMode() const
+    {
+        return DestroyMode(mDestroyMode);
     }
 
     void setPlayerNo(s8 player_no)
