@@ -47,6 +47,9 @@ public:
     // Address: 0x024CEF28
     void onPlChangeState();
 
+    // Address: 0x024CEF94
+    void incEnDieAwa();
+
     // Address: 0x024CF4A0
     FinishType getFinishType() const;
 
