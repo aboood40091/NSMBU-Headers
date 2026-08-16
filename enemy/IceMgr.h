@@ -98,6 +98,9 @@ public:
     // Address: 0x0237CB94
     void setIceStatus(const IceStatus& status);
 
+    // Address: 0x0237D068
+    void initialize();
+
     // Address: 0x0237D63C
     bool createIce(IceInfo* p_info, s32 num);
 
