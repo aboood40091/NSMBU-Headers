@@ -118,6 +118,11 @@ public:
     // Address: 0x0237CCC8
     void removeIce();
 
+    void setIce(bool enable)
+    {
+        mHasIce = enable;
+    }
+
     bool hasIce() const
     {
         return mHasIce;
