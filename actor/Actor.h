@@ -6,6 +6,9 @@
 #include <utility/Angle3.h>
 #include <utility/Direction.h>
 
+#define ACTOR_DEFAULT_GRAVITY           (-0.1875f)
+#define ACTOR_DEFAULT_MAX_FALL_SPEED    (-4.0f)
+
 class ActorBgCollisionCheck;
 class BgCollision;
 class ChibiYoshiAwaData;
