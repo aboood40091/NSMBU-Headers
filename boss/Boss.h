@@ -53,7 +53,7 @@ protected:
     }
 
     // Address: 0x0202CE40
-    bool setTouchDrcDamage_(const sead::Vector2f& pos) override;
+    bool setTouchDrcDamage_(const sead::Vector3f& pos) override;
 
     void getBox_(sead::BoundBox2f& box) override
     {

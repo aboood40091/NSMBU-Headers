@@ -12,6 +12,8 @@
 #define ENEMY_DEFAULT_GRAVITY           (-0.1875f)
 #define ENEMY_DEFAULT_MAX_FALL_SPEED    (-4.0f)
 #define ENEMY_DIE_FALL_INIT_SPEED_X     (1.5f)
+#define ENEMY_DIE_FALL_INIT_SPEED_Y     (3.9f)
+#define ENEMY_DIE_FALL_BOUND_SPEED_Y    (3.0f)
 #define ENEMY_FUMI_JUMP_SPEED           (0.2815f)
 
 // TODO: Move to own header
@@ -150,8 +152,11 @@ class Enemy : public ActorMultiState    // vtbl Address: 0x1007209C
     SEAD_RTTI_OVERRIDE(Enemy, ActorMultiState)
 
 public:
+    static const s32 cNoHitPlayerTimerDefault = 5;
+
     // Address: 0x10072064
     static const f32 cDieFallInitSpeedX[cDirType_NumX];
+
     // Address: 0x1007206C
     static const f32 cFumiJumpSpeed;
     // Address: 0x10072070
@@ -164,6 +169,7 @@ public:
     static const f32 cDefaultMaxSpeedF;
     // Address: 0x10072080
     static const f32 cDefaultMaxSpeedY;
+
     // Address: 0x10072084
     static const f32 cWaterGravity;
     // Address: 0x10072088
@@ -177,19 +183,12 @@ public:
     static const Angle cBaseAngleY[cDirType_NumX];
     // Address: 0x10200DE0
     static const Angle cBaseAngleYAdd[cDirType_NumX];
-    // Address: 0x10200DE8
-    static const f32 cDeadNetSpeedX[cDirType_NumX];
+
     // Address: 0x10072094
     static const s8 cEnMuki[cDirType_NumX];
 
-    // Address: 0x102010AC
-    static const f32 cDieFallGravity; // 1.3 * cDefaultGravity
-    // Address: 0x10072EA8
-    static const f32 cDieFallInitSpeedY;
-    // Address: 0x10072EAC
-    static const f32 cDieFallMaxFallSpeed;
-
-    static const s32 cNoHitPlayerTimerDefault = 5;
+    // Address: 0x10200DE8
+    static const f32 cDeadNetSpeedX[cDirType_NumX];
 
     static f32 getDeadNetSpeedX()
     {
@@ -216,8 +215,10 @@ public:
     enum QuakeDeathType
     {
         cQuakeDeathType_NormalQuake = 0,
-        cQuakeDeathType_BigQuake
+        cQuakeDeathType_BigQuake,
+        cQuakeDeathType_Num
     };
+    static_assert(cQuakeDeathType_Num == 2);
 
 public:
     // Address: 0x02328494
@@ -230,14 +231,12 @@ protected:
     // Address: 0x02328914
     void blockHitInit_() override;
 
-    // Address: 0x0232DC88
-    void setSmokeDamage_(Actor*) override;
-    // Address: 0x0232E1A4
-    bool setTouchDrcDamage_(const sead::Vector2f& pos) override;
-
 public:
     // Address: 0x02330404
     void changeState(const StateID& state_id) override;
+
+    // Address: 0x02328608
+    void setNicePoint_Death();
 
     // Address: 0x02328AEC
     bool area_XY_check(f32 x, f32 y);
@@ -268,6 +267,14 @@ public:
     // Address: 0x02329168
     void bound(f32 eps_y, f32 scale_x, f32 scale_y);
 
+    // Address: 0x0232CAEC
+    bool isDead() const;
+    // Address: 0x0232CCE8
+    void setDeadMode(Actor* p_actor);
+
+    // Address: 0x0232CE28
+    void cancelCarry();
+
     // Address: 0x023304F8
     virtual bool createIceActor();
     // Address: 0x023310BC
@@ -276,6 +283,12 @@ public:
     virtual void returnAnm_Ice();
     // Address: 0x02330568
     virtual void returnState_Ice();
+
+    void killIce()
+    {
+        mIceMgr.removeIce();
+    }
+
     // Address: 0x0232A858
     virtual void calcMdl_Base();
 
@@ -347,13 +360,64 @@ public:
     // Address: 0x0232DA24
     virtual bool hitCallback_AttackUnk27(bool* p_dead, ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
 
+    // Address: 0x0232DA34
+    void setDeathInfo_Fumi(Actor* p_player, const sead::Vector2f& speed, const StateID& state_id);
+
+    void setDeathInfo_Fumi(Actor* p_player, const sead::Vector2f& speed)
+    {
+        setDeathInfo_Fumi(p_player, speed, StateID_DieFumi);
+    }
+
+    void setDeathInfo_FumiFall(Actor* p_player, const sead::Vector2f& speed)
+    {
+        setDeathInfo_Fumi(p_player, speed, StateID_DieFall);
+    }
+
+    void setDeathInfo_FumiOther(Actor* p_player, const sead::Vector2f& speed)
+    {
+        setDeathInfo_Fumi(p_player, speed, StateID_DieOther);
+    }
+
+    // Address: 0x0232CBA4
+    void setDeathInfo_Fall(DirType direction, s32 player_no = -1, ScoreMgr::ScoreType score_type = ScoreMgr::cScoreType_Invalid);
+    // Address: 0x0232CB08
+    void setDeathInfo_Fall(const sead::Vector2f* speeds, DirType direction, s32 player_no = -1, ScoreMgr::ScoreType score_type = ScoreMgr::cScoreType_Invalid);
+
     // Address: 0x0232DAF0
     virtual void setDeathInfo_Quake(QuakeDeathType type);
+
+    // Address: 0x0232CC98
+    void setDeathInfo_SpinFumi(Actor* p_player);
+    // Address: 0x0232D31C
+    void setDeathInfo_YoshiFumi(Actor* p_player);
+
+protected:
+    // Address: 0x0232DC88
+    void setSmokeDamage_(Actor* p_actor) override;
+
+public:
     // Address: 0x0232DD48
     virtual void setDeathInfo_IceBreak();
+    // Address: 0x0232DD90
+    void setDeathInfo_IceVanish();
+
+    // Address: 0x0232DE90
+    void setDeathInfo_Other(Actor* p_actor);
+
+    // Address: 0x0232DF14
+    void setDeathInfo_Hasami();
+
     // Address: 0x0232E048
     virtual bool setDeathInfo_Star(ActorCollisionCheck* cc_self, ActorCollisionCheck* cc_other);
 
+    // Address: 0x0232E144
+    Angle applyWaterRollDec(Angle ang);
+
+protected:
+    // Address: 0x0232E1A4
+    bool setTouchDrcDamage_(const sead::Vector3f& pos) override;
+
+public:
     // Address: 0x0232E2EC
     virtual bool isQuakeDamage();   // Return if enemy is on ground && damageable by quake
 
@@ -361,9 +425,17 @@ public:
     virtual void setDeathSound_Fire();
     // Address: 0x0232E358
     virtual void setDeathSound_HipAttk();
+    // Address: 0x0232CE94
+    void setDeathSound_Slip(Actor* p_player);
+
+    // Address: 0x0232E3FC
+    void initDieState();
 
     // Address: 0x0232E4A8
     void setDeathInfo_Awa(Actor* p_awa);
+
+    // Address: 0x0232D694
+    void createUpCoin(DirType dir);
 
     static void fireballInvalid(ActorCollisionCheck* cc_other)  // Inline in NSMBU, but not NSMBW
     {
@@ -449,6 +521,14 @@ public:
     // Address: 0x0232A088
     void setFumiSound(Actor* p_player, const GameAudio::SoundID combo_se[], u32 combo_max);
 
+    // Address: 0x023288BC
+    void hitdamageEffect(const sead::Vector3f& pos);
+
+    void hitdamageEffect(const sead::Vector2f& pos)
+    {
+        hitdamageEffect(sead::Vector3f(pos, 0.0f));
+    }
+
     // Address: 0x0232A2D4
     virtual void hipatkEffect(const sead::Vector3f& effect_pos);
 
@@ -505,6 +585,15 @@ public:
     // finalizeState_DieAwa     Address: 0x0232EEF0
     DECLARE_STATE_VIRTUAL_ID_BASE(Enemy, DieAwa)
 
+    // Address: 0x102010AC
+    static const f32 cDieFallGravity; // 1.3 * cDefaultGravity
+    // Address: 0x10072EA8
+    static const f32 cDieFallInitSpeedY;
+    // Address: 0x10072EAC
+    static const f32 cDieFallMaxFallSpeed;
+
+    static const s32 cDieFallSpinSpeed = 0x0C000000;
+
     // ------------------------------------ EnemyState.cpp ------------------------------------ //
 
     // StateID_EatIn            Address: 0x1020111C
@@ -548,58 +637,6 @@ public:
     // finalizeState_Ice    Address: 0x02330944
     DECLARE_STATE_VIRTUAL_ID_BASE(Enemy, Ice)
 
-    // ---------------------------------------------------------------------------------------- //
-
-    // Address: 0x02328608
-    void setNicePoint_Death();
-
-    // Address: 0x0232CBA4
-    void setDeathInfo_Fall(DirType direction, s32 player_no = -1, ScoreMgr::ScoreType score_type = ScoreMgr::cScoreType_Invalid);
-    // Address: 0x0232CB08
-    void setDeathInfo_Fall(const sead::Vector2f* speeds, DirType direction, s32 player_no = -1, ScoreMgr::ScoreType score_type = ScoreMgr::cScoreType_Invalid);
-
-    // Address: 0x0232DA34
-    void setDeathInfo_Fumi(Actor* p_player, const sead::Vector2f& speed, const StateID& state_id);
-
-    void setDeathInfo_Fumi(Actor* p_player, const sead::Vector2f& speed)
-    {
-        setDeathInfo_Fumi(p_player, speed, StateID_DieFumi);
-    }
-
-    void setDeathInfo_FumiFall(Actor* p_player, const sead::Vector2f& speed)
-    {
-        setDeathInfo_Fumi(p_player, speed, StateID_DieFall);
-    }
-
-    void setDeathInfo_FumiOther(Actor* p_player, const sead::Vector2f& speed)
-    {
-        setDeathInfo_Fumi(p_player, speed, StateID_DieOther);
-    }
-
-    // Address: 0x0232CC98
-    void setDeathInfo_SpinFumi(Actor*);
-    // Address: 0x0232D31C
-    void setDeathInfo_YoshiFumi(Actor*);
-
-    // Address: 0x0232CAEC
-    bool isDead() const;
-
-    // Address: 0x023288BC
-    void hitdamageEffect(const sead::Vector3f& pos);
-
-    void hitdamageEffect(const sead::Vector2f& pos)
-    {
-        hitdamageEffect(sead::Vector3f(pos, 0.0f));
-    }
-
-    // Address: 0x0232E144
-    Angle applyWaterRollDec(Angle ang);
-
-    void killIce()
-    {
-        mIceMgr.removeIce();
-    }
-
 protected:
     EnemyDeathInfo          mDeathInfo;
     EnemyCounter            mPlayerNoHitTimer;
@@ -612,7 +649,7 @@ protected:
     u16                     mStateTimer;
     u16                     mStateSubTimer;
     u32                     _1870;
-    u8                      mDieFallDirection;
+    u8                      mDieDirection;
     u8                      mPreIceDirection;   // Maybe?
     Combo                   mCombo;
     bool                    mIsDamageFrame;
@@ -621,22 +658,153 @@ protected:
 };
 static_assert(sizeof(Enemy) == 0x1880);
 
-#define _ENEMY_MAKE_DEATH_INFO_ARG_COMMON(arg_name, state_id, player_no)    \
-    EnemyDeathInfo::Arg arg_name = {                                        \
-        sead::Vector2f(),                                                   \
-        0.0f,                                                               \
-        0.0f,                                                               \
-        &state_id,                                                          \
-        -1,                                                                 \
-        0,                                                                  \
-        player_no                                                           \
+#define _ENEMY_MAKE_DEATH_INFO_ARG_COMMON(arg_name, p_state_id, score_type, player_no)    \
+    EnemyDeathInfo::Arg arg_name = {    \
+        sead::Vector2f(),               \
+        0.0f,                           \
+        0.0f,                           \
+        p_state_id,                     \
+        score_type,                     \
+        0,                              \
+        player_no                       \
     }
 
-#define _ENEMY_MAKE_DEATH_INFO_ARG_FALL_COMMON(arg_name, player_no) \
-    _ENEMY_MAKE_DEATH_INFO_ARG_COMMON(arg_name, Enemy::StateID_DieFall, player_no)
+// --- Custom state ---
+
+#define _ENEMY_MAKE_DEATH_INFO_ARG_CUSTOM_COMMON(arg_name, score_type, player_no)   \
+    _ENEMY_MAKE_DEATH_INFO_ARG_COMMON(arg_name, nullptr, score_type, player_no)
+
+#define ENEMY_MAKE_DEATH_INFO_ARG_CUSTOM(arg_name)  \
+    _ENEMY_MAKE_DEATH_INFO_ARG_CUSTOM_COMMON(arg_name, 0, 0)
+
+#define ENEMY_MAKE_DEATH_INFO_ARG_CUSTOM_NO_PLAYER(arg_name)    \
+    _ENEMY_MAKE_DEATH_INFO_ARG_CUSTOM_COMMON(arg_name, 0, -1)
+
+#define ENEMY_MAKE_DEATH_INFO_ARG_CUSTOM_ALL_PLAYER(arg_name)   \
+    _ENEMY_MAKE_DEATH_INFO_ARG_CUSTOM_COMMON(arg_name, 0, cPlayerNum)
+
+#define ENEMY_MAKE_DEATH_INFO_ARG_CUSTOM_NO_SCORE(arg_name) \
+    _ENEMY_MAKE_DEATH_INFO_ARG_CUSTOM_COMMON(arg_name, -1, 0)
+
+#define ENEMY_MAKE_DEATH_INFO_ARG_CUSTOM_NO_SCORE_NO_PLAYER(arg_name)   \
+    _ENEMY_MAKE_DEATH_INFO_ARG_CUSTOM_COMMON(arg_name, -1, -1)
+
+// --- DieFall ---
+
+#define _ENEMY_MAKE_DEATH_INFO_ARG_FALL_COMMON(arg_name, score_type, player_no) \
+    _ENEMY_MAKE_DEATH_INFO_ARG_COMMON(arg_name, &Enemy::StateID_DieFall, score_type, player_no)
 
 #define ENEMY_MAKE_DEATH_INFO_ARG_FALL(arg_name)    \
-    _ENEMY_MAKE_DEATH_INFO_ARG_FALL_COMMON(arg_name, 0)
+    _ENEMY_MAKE_DEATH_INFO_ARG_FALL_COMMON(arg_name, 0, 0)
 
-#define ENEMY_MAKE_DEATH_INFO_ARG_FALL_NO_PLAYER(arg_name)    \
-    _ENEMY_MAKE_DEATH_INFO_ARG_FALL_COMMON(arg_name, -1)
+#define ENEMY_MAKE_DEATH_INFO_ARG_FALL_NO_PLAYER(arg_name)  \
+    _ENEMY_MAKE_DEATH_INFO_ARG_FALL_COMMON(arg_name, 0, -1)
+
+#define ENEMY_MAKE_DEATH_INFO_ARG_FALL_ALL_PLAYER(arg_name) \
+    _ENEMY_MAKE_DEATH_INFO_ARG_FALL_COMMON(arg_name, 0, cPlayerNum)
+
+#define ENEMY_MAKE_DEATH_INFO_ARG_FALL_NO_SCORE(arg_name)   \
+    _ENEMY_MAKE_DEATH_INFO_ARG_FALL_COMMON(arg_name, -1, 0)
+
+#define ENEMY_MAKE_DEATH_INFO_ARG_FALL_NO_SCORE_NO_PLAYER(arg_name) \
+    _ENEMY_MAKE_DEATH_INFO_ARG_FALL_COMMON(arg_name, -1, -1)
+
+// --- DieYoshiFumi ---
+
+#define _ENEMY_MAKE_DEATH_INFO_ARG_YOSHI_FUMI_COMMON(arg_name, score_type, player_no)   \
+    _ENEMY_MAKE_DEATH_INFO_ARG_COMMON(arg_name, &Enemy::StateID_DieYoshiFumi, score_type, player_no)
+
+#define ENEMY_MAKE_DEATH_INFO_ARG_YOSHI_FUMI(arg_name)  \
+    _ENEMY_MAKE_DEATH_INFO_ARG_YOSHI_FUMI_COMMON(arg_name, 0, 0)
+
+#define ENEMY_MAKE_DEATH_INFO_ARG_YOSHI_FUMI_NO_PLAYER(arg_name)    \
+    _ENEMY_MAKE_DEATH_INFO_ARG_YOSHI_FUMI_COMMON(arg_name, 0, -1)
+
+#define ENEMY_MAKE_DEATH_INFO_ARG_YOSHI_FUMI_ALL_PLAYER(arg_name)   \
+    _ENEMY_MAKE_DEATH_INFO_ARG_YOSHI_FUMI_COMMON(arg_name, 0, cPlayerNum)
+
+#define ENEMY_MAKE_DEATH_INFO_ARG_YOSHI_FUMI_NO_SCORE(arg_name) \
+    _ENEMY_MAKE_DEATH_INFO_ARG_YOSHI_FUMI_COMMON(arg_name, -1, 0)
+
+#define ENEMY_MAKE_DEATH_INFO_ARG_YOSHI_FUMI_NO_SCORE_NO_PLAYER(arg_name)   \
+    _ENEMY_MAKE_DEATH_INFO_ARG_YOSHI_FUMI_COMMON(arg_name, -1, -1)
+
+// --- DieSmoke ---
+
+#define _ENEMY_MAKE_DEATH_INFO_ARG_SMOKE_COMMON(arg_name, score_type, player_no)    \
+    _ENEMY_MAKE_DEATH_INFO_ARG_COMMON(arg_name, &Enemy::StateID_DieSmoke, score_type, player_no)
+
+#define ENEMY_MAKE_DEATH_INFO_ARG_SMOKE(arg_name)   \
+    _ENEMY_MAKE_DEATH_INFO_ARG_SMOKE_COMMON(arg_name, 0, 0)
+
+#define ENEMY_MAKE_DEATH_INFO_ARG_SMOKE_NO_PLAYER(arg_name) \
+    _ENEMY_MAKE_DEATH_INFO_ARG_SMOKE_COMMON(arg_name, 0, -1)
+
+#define ENEMY_MAKE_DEATH_INFO_ARG_SMOKE_ALL_PLAYER(arg_name)    \
+    _ENEMY_MAKE_DEATH_INFO_ARG_SMOKE_COMMON(arg_name, 0, cPlayerNum)
+
+#define ENEMY_MAKE_DEATH_INFO_ARG_SMOKE_NO_SCORE(arg_name)  \
+    _ENEMY_MAKE_DEATH_INFO_ARG_SMOKE_COMMON(arg_name, -1, 0)
+
+#define ENEMY_MAKE_DEATH_INFO_ARG_SMOKE_NO_SCORE_NO_PLAYER(arg_name)    \
+    _ENEMY_MAKE_DEATH_INFO_ARG_SMOKE_COMMON(arg_name, -1, -1)
+
+// --- DieIceVanish ---
+
+#define _ENEMY_MAKE_DEATH_INFO_ARG_ICE_VANISH_COMMON(arg_name, score_type, player_no)   \
+    _ENEMY_MAKE_DEATH_INFO_ARG_COMMON(arg_name, &Enemy::StateID_DieIceVanish, score_type, player_no)
+
+#define ENEMY_MAKE_DEATH_INFO_ARG_ICE_VANISH(arg_name)  \
+    _ENEMY_MAKE_DEATH_INFO_ARG_ICE_VANISH_COMMON(arg_name, 0, 0)
+
+#define ENEMY_MAKE_DEATH_INFO_ARG_ICE_VANISH_NO_PLAYER(arg_name)    \
+    _ENEMY_MAKE_DEATH_INFO_ARG_ICE_VANISH_COMMON(arg_name, 0, -1)
+
+#define ENEMY_MAKE_DEATH_INFO_ARG_ICE_VANISH_ALL_PLAYER(arg_name)   \
+    _ENEMY_MAKE_DEATH_INFO_ARG_ICE_VANISH_COMMON(arg_name, 0, cPlayerNum)
+
+#define ENEMY_MAKE_DEATH_INFO_ARG_ICE_VANISH_NO_SCORE(arg_name) \
+    _ENEMY_MAKE_DEATH_INFO_ARG_ICE_VANISH_COMMON(arg_name, -1, 0)
+
+#define ENEMY_MAKE_DEATH_INFO_ARG_ICE_VANISH_NO_SCORE_NO_PLAYER(arg_name)   \
+    _ENEMY_MAKE_DEATH_INFO_ARG_ICE_VANISH_COMMON(arg_name, -1, -1)
+
+// --- DieOther ---
+
+#define _ENEMY_MAKE_DEATH_INFO_ARG_OTHER_COMMON(arg_name, score_type, player_no)    \
+    _ENEMY_MAKE_DEATH_INFO_ARG_COMMON(arg_name, &Enemy::StateID_DieOther, score_type, player_no)
+
+#define ENEMY_MAKE_DEATH_INFO_ARG_OTHER(arg_name)   \
+    _ENEMY_MAKE_DEATH_INFO_ARG_OTHER_COMMON(arg_name, 0, 0)
+
+#define ENEMY_MAKE_DEATH_INFO_ARG_OTHER_NO_PLAYER(arg_name) \
+    _ENEMY_MAKE_DEATH_INFO_ARG_OTHER_COMMON(arg_name, 0, -1)
+
+#define ENEMY_MAKE_DEATH_INFO_ARG_OTHER_ALL_PLAYER(arg_name)    \
+    _ENEMY_MAKE_DEATH_INFO_ARG_OTHER_COMMON(arg_name, 0, cPlayerNum)
+
+#define ENEMY_MAKE_DEATH_INFO_ARG_OTHER_NO_SCORE(arg_name)  \
+    _ENEMY_MAKE_DEATH_INFO_ARG_OTHER_COMMON(arg_name, -1, 0)
+
+#define ENEMY_MAKE_DEATH_INFO_ARG_OTHER_NO_SCORE_NO_PLAYER(arg_name)    \
+    _ENEMY_MAKE_DEATH_INFO_ARG_OTHER_COMMON(arg_name, -1, -1)
+
+// --- DieAwa ---
+
+#define _ENEMY_MAKE_DEATH_INFO_ARG_AWA_COMMON(arg_name, score_type, player_no)  \
+    _ENEMY_MAKE_DEATH_INFO_ARG_COMMON(arg_name, &Enemy::StateID_DieAwa, score_type, player_no)
+
+#define ENEMY_MAKE_DEATH_INFO_ARG_AWA(arg_name) \
+    _ENEMY_MAKE_DEATH_INFO_ARG_AWA_COMMON(arg_name, 0, 0)
+
+#define ENEMY_MAKE_DEATH_INFO_ARG_AWA_NO_PLAYER(arg_name)   \
+    _ENEMY_MAKE_DEATH_INFO_ARG_AWA_COMMON(arg_name, 0, -1)
+
+#define ENEMY_MAKE_DEATH_INFO_ARG_AWA_ALL_PLAYER(arg_name)  \
+    _ENEMY_MAKE_DEATH_INFO_ARG_AWA_COMMON(arg_name, 0, cPlayerNum)
+
+#define ENEMY_MAKE_DEATH_INFO_ARG_AWA_NO_SCORE(arg_name)    \
+    _ENEMY_MAKE_DEATH_INFO_ARG_AWA_COMMON(arg_name, -1, 0)
+
+#define ENEMY_MAKE_DEATH_INFO_ARG_AWA_NO_SCORE_NO_PLAYER(arg_name)  \
+    _ENEMY_MAKE_DEATH_INFO_ARG_AWA_COMMON(arg_name, -1, -1)

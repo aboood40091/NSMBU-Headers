@@ -106,7 +106,7 @@ public:
     }
 
 protected:
-    virtual bool setTouchDrcDamage_(const sead::Vector2f& pos)
+    virtual bool setTouchDrcDamage_(const sead::Vector3f& pos)
     {
         return false;
     }
