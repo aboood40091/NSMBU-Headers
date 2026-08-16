@@ -15,6 +15,9 @@ public:
         convertAudioObjctPos(p_screen_pos, sead::Vector2f(bg_pos.x, bg_pos.y));
     }
 
+    // Address: 0x020299C4
+    static void breakdownSE(s32 combo_count, const sead::Vector3f& pos);
+
     // Address: 0x02029ACC
     static void setClapSE();
 
