@@ -9,6 +9,15 @@ class Actor;
 class ChibiYoshiEatData // vtbl Address: 0x1000145C
 {
 public:
+    enum State
+    {
+        cState_None = 0,
+        cState_EatTongue,
+        cState_EatMouth,
+        // ...?
+    };
+    static_assert(sizeof(State) == 4);
+
     enum EatType
     {
         cEatType_None = 0,
@@ -42,12 +51,12 @@ public:
     // Address: 0x0200D318
     virtual void vf3C();
 
-    u32 getState() const
+    State getState() const
     {
         return mState;
     }
 
-    void setState(u32 state)
+    void setState(State state)
     {
         mState = state;
     }
@@ -86,7 +95,7 @@ protected:
     ActorUniqueID   mOwnerID;
     u32             mYoshiChibiID;
     sead::Vector3f  mScale;
-    u32             mState;
+    State           mState;
     EatType         mEatType;
     ScoreType       mScoreType;
 };

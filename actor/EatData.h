@@ -9,6 +9,16 @@ class Actor;
 class EatData   // vtbl Address: 0x10001594
 {
 public:
+    enum State
+    {
+        cState_None = 0,
+        cState_EatTongue,
+        cState_EatMouth,
+        cState_DamageSpitOut,
+        cState_SpitOut
+    };
+    static_assert(sizeof(State) == 4);
+
     enum EatType
     {
         cEatType_None = 0,
@@ -60,12 +70,12 @@ public:
         return mYoshiID;
     }
 
-    u32 getState() const
+    State getState() const
     {
         return mState;
     }
 
-    void setState(u32 state)
+    void setState(State state)
     {
         mState = state;
     }
@@ -103,7 +113,7 @@ public:
 protected:
     ActorUniqueID   mOwnerID;
     ActorUniqueID   mYoshiID;
-    u32             mState;
+    State           mState;
     EatType         mEatType;
     sead::Vector3f  mScale;
     ScoreType       mScoreType;
