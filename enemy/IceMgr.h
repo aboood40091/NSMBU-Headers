@@ -111,6 +111,11 @@ public:
         return mHasIce;
     }
 
+    bool isDestroy() const
+    {
+        return mDestroyMode != 0;
+    }
+
 protected:
     u8                                          mIceNum;
     sead::SafeArray<ActorUniqueID, cIceMaxNum>  mIceID;
@@ -125,7 +130,7 @@ protected:
     u8                                          _47;
     u8                                          _48;
     u8                                          _49;
-    u8                                          _4a;
+    s8                                          mDestroyMode;
     s8                                          mPlayerNo;
     u8                                          _4c;
 };
