@@ -139,6 +139,9 @@ public:
         return mHasIce;
     }
 
+    // Address: 0x0237D934
+    void breakEffect();
+
     bool isYoganDive() const
     {
         return mYoganDive;
