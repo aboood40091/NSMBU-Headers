@@ -116,6 +116,11 @@ public:
         return mDestroyMode != 0;
     }
 
+    void setPlayerNo(s8 player_no)
+    {
+        mPlayerNo = player_no;
+    }
+
 protected:
     u8                                          mIceNum;
     sead::SafeArray<ActorUniqueID, cIceMaxNum>  mIceID;
