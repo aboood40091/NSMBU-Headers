@@ -16,7 +16,7 @@ public:
     // Address: 0x02922A38
     PlayerModelBaseMgr();
 
-    virtual void setCapMode(PlayerModelBase::CapMode mode)
+    virtual void setHeadID(PlayerModelBase::HeadType id)
     {
     }
 

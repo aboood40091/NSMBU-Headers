@@ -134,7 +134,7 @@ public:
     {
     }
 
-    virtual void setCapMode(CapMode mode)
+    virtual void setHeadID(HeadType id)
     {
     }
 
@@ -162,7 +162,6 @@ public:
 
     BodyType getBodyID()
     {
-        return mNowModeModel;
         return mNowBodyID;
     }
 

@@ -143,12 +143,12 @@ public:
         cFaceAngleOverrideFlag_Z = 1 << 2
     };
 
-    enum CapMode
+    enum HeadType
     {
-        cCapMode_Normal = 0,
-        cCapMode_Bonus
+        cHeadType_Normal = 0,
+        cHeadType_BonusCap
     };
-    static_assert(sizeof(CapMode) == 4);
+    static_assert(sizeof(HeadType) == 4);
     
 public:
     // Address: 0x02920CA8

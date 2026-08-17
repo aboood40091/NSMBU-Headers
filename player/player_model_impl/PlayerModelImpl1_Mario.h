@@ -35,7 +35,7 @@ public:
     void setModelDrawFlagDirect(u32 flag) override;
 
     // Address: 0x0296D494
-    void setCapMode(CapMode mode) override;
+    void setHeadID(HeadType id) override;
     // Address: Deleted
     void updateBonusCap() override;
 
@@ -75,7 +75,7 @@ public:
 protected:
     ModelResource*                              mpLuigiAnmRes;
     sead::SafeArray<AnimModel*, cBonusCap_Num>  mBonusCap;
-    CapMode                                     mCapMode;
+    HeadType                                    mHeadID;
     BonusCapType                                mBonusCapType;
     bool                                        mIsBonusCap;
     sead::SafeArray<f32, cMaterialMaxNum>       mTevColor0Alpha;
