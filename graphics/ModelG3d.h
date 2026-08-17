@@ -375,9 +375,19 @@ public:
         return const_cast<SkeletalAnimation**>(reinterpret_cast<SkeletalAnimation* const*>(getSklAnims()));
     }
 
+    u32 getSklAnimBufferSize() const
+    {
+        return mpSklAnim.size();
+    }
+
     TexturePatternAnimation** getTexAnimBuffer()
     {
         return const_cast<TexturePatternAnimation**>(reinterpret_cast<TexturePatternAnimation* const*>(getTexAnims()));
+    }
+
+    u32 getTexAnimBufferSize() const
+    {
+        return mpTexAnim.size();
     }
 
     ShaderParamAnimation** getShuAnimBuffer()
@@ -385,14 +395,30 @@ public:
         return const_cast<ShaderParamAnimation**>(reinterpret_cast<ShaderParamAnimation* const*>(getShuAnims()));
     }
 
+    u32 getShuAnimBufferSize() const
+    {
+        return mpShuAnim.size();
+    }
+
     VisibilityAnimation** getVisAnimBuffer()
     {
         return const_cast<VisibilityAnimation**>(reinterpret_cast<VisibilityAnimation* const*>(getVisAnims()));
     }
 
+
+    u32 getVisAnimBufferSize() const
+    {
+        return mpVisAnim.size();
+    }
+
     ShapeAnimation** getShaAnimBuffer()
     {
         return const_cast<ShapeAnimation**>(reinterpret_cast<ShapeAnimation* const*>(getShaAnims()));
+    }
+
+    u32 getShaAnimBufferSize() const
+    {
+        return mpShaAnim.size();
     }
 
 public:
