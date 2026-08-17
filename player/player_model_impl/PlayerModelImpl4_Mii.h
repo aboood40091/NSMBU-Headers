@@ -61,7 +61,7 @@ public:
     void calcImpl() override;
 
     // Address: 0x0297444C
-    void setModeModel(PlayerModeModel mode_mdl) override;
+    void setBodyID(BodyType id) override;
     
     // Address: 0x029744EC
     void setTexAnmTypeImpl(TexAnmType type) override;
@@ -80,9 +80,9 @@ public:
     // Address: 0x02974B68
     void setStarAnm() override;
     // Address: 0x02974CD0
-    void removeStarAnm_NowModeModel() override;
+    void removeStarAnm_NowBodyID() override;
     // Address: 0x02974CDC
-    void removeStarAnm_OldModeModel() override;
+    void removeStarAnm_OldBodyID() override;
 
     // Address: 0x02974D18
     f32 vf144() override;

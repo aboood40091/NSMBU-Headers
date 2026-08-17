@@ -4,15 +4,7 @@
 #include <player/PlayerEnum.h>
 #include <player/PlayerModelBase.h>
 
-struct PlayerObjectResHIO
-{
-    sead::SafeString    model_res_key;
-    sead::SafeString    anm_res_key;
-    sead::SafeString    body_mdl_name[cPlayerModeModel_Num];
-    sead::SafeString    head_mdl_name[cPlayerModeModel_Num];
-    f32                 head_top_offs[cPlayerModeModel_Num];
-};
-static_assert(sizeof(PlayerObjectResHIO) == 0x74);
+struct PlayerObjectResHIO;
 
 class PlayerModel : public PlayerModelBase // vtbl Address: 0x1016BA2C
 {
@@ -21,6 +13,18 @@ class PlayerModel : public PlayerModelBase // vtbl Address: 0x1016BA2C
     SEAD_RTTI_OVERRIDE(PlayerModel, PlayerModelBase)
 
 public:
+    enum BodyType
+    {
+        cBodyType_Normal = 0,
+        cBodyType_Small,
+        cBodyType_Propeller,
+        cBodyType_Penguin,
+        cBodyType_Squirrel,
+        cBodyType_Num
+    };
+    static_assert(cBodyType_Num == 5);
+    static_assert(sizeof(BodyType) == 4);
+
     enum ColorType
     {
         cColorType_Invalid = 0,
@@ -156,13 +160,14 @@ public:
         return false;
     }
 
-    PlayerModeModel getModeModel()
+    BodyType getBodyID()
     {
         return mNowModeModel;
+        return mNowBodyID;
     }
 
     // Address: 0x0291BEEC
-    virtual void setModeModel(PlayerModeModel mode_mdl);
+    virtual void setBodyID(BodyType id);
 
     // Address: 0x0291BF94
     void setTexAnmType(TexAnmType type) override;
@@ -197,9 +202,9 @@ public:
     // Address: 0x0291F8F8
     virtual void setStarAnm();
     // Address: 0x0291FB58
-    virtual void removeStarAnm_NowModeModel();
+    virtual void removeStarAnm_NowBodyID();
     // Address: 0x0291FB64
-    virtual void removeStarAnm_OldModeModel();
+    virtual void removeStarAnm_OldBodyID();
 
     virtual f32 getTevColor0Alpha(s32 idx_material) = 0;
     virtual void setTevColor0Alpha(s32 idx_material, f32 value) = 0;
@@ -230,44 +235,54 @@ public:
         mPropelScale = scale;
     }
 
-    AnimModel* getBodyModel(PlayerModeModel mode_mdl)
+    AnimModel* getBodyModel(BodyType type)
     {
-        return mModelArray[mode_mdl];
+        return mModelArray[type];
     }
 
-    AnimModel* getHeadModel(PlayerModeModel mode_mdl)
+    AnimModel* getHeadModel(BodyType type)
     {
-        return mModelArray[mode_mdl];
+        return mModelArray[type];
     }
 
 protected:
-    sead::SafeArray<AnimModel*, cPlayerModeModel_Num>   mModelArray;
-    sead::SafeArray<AnimModel*, cPlayerModeModel_Num>   mHeadModelArray;
-    const PlayerObjectResHIO&                           mResHio;
-    AnimModel*                                          mpHeadModel;
-    PlayerModeModel                                     mOldModeModel;
-    PlayerModeModel                                     mNowModeModel;
-    sead::BitFlag16                                     mModeModelLoadFlag;
-    sead::SafeArray<s32, cJointID_Num>                  mJointMap;
-    s32                                                 mPlayerNo;
-    AnimExpDecayCalcRatio                               mCalcRatio;
-    PlayerMode                                          mPlayerMode;
-    PlayerMode                                          mPlayerModeOverride;
-    ColorType                                           mColorType;
-    Angle                                               mFaceAngle;
-    Angle                                               mFaceAngleTarget;
-    s32                                                 mFaceRotTimer;
-    s32                                                 mFaceRotFrameCnt;
-    bool                                                mClampFaceRotTimer;
-    Angle                                               mPropelRollAngle;
-    Angle                                               mPropelRollSpeed;
-    f32                                                 mPropelScale;
-    f32                                                 mBlendRate_v0;
-    f32                                                 mBlendRate_v1;
-    f32                                                 mBlendRate_v2;
-    DarkTargetType                                      mDarkTargetType;
-    f32                                                 mDarkColorValue;
-    sead::BitFlag32                                     mEnvTypeFlag;
-    bool                                                mOverrideLightMap;
+    sead::SafeArray<AnimModel*, cBodyType_Num>  mModelArray;
+    sead::SafeArray<AnimModel*, cBodyType_Num>  mHeadModelArray;
+    const PlayerObjectResHIO&                   mResHio;
+    AnimModel*                                  mpHeadModel;
+    BodyType                                    mOldBodyID;
+    BodyType                                    mNowBodyID;
+    sead::BitFlag16                             mBodyTypeLoadFlag;
+    sead::SafeArray<s32, cJointID_Num>          mJointMap;
+    s32                                         mPlayerNo;
+    AnimExpDecayCalcRatio                       mCalcRatio;
+    PlayerMode                                  mPlayerMode;
+    PlayerMode                                  mPlayerModeOverride;
+    ColorType                                   mColorType;
+    Angle                                       mFaceAngle;
+    Angle                                       mFaceAngleTarget;
+    s32                                         mFaceRotTimer;
+    s32                                         mFaceRotFrameCnt;
+    bool                                        mClampFaceRotTimer;
+    Angle                                       mPropelRollAngle;
+    Angle                                       mPropelRollSpeed;
+    f32                                         mPropelScale;
+    f32                                         mBlendRate_v0;
+    f32                                         mBlendRate_v1;
+    f32                                         mBlendRate_v2;
+    DarkTargetType                              mDarkTargetType;
+    f32                                         mDarkColorValue;
+    sead::BitFlag32                             mEnvTypeFlag;
+    bool                                        mOverrideLightMap;
 };
 static_assert(sizeof(PlayerModel) == 0x218);
+
+struct PlayerObjectResHIO
+{
+    sead::SafeString    model_res_key;
+    sead::SafeString    anm_res_key;
+    sead::SafeString    body_mdl_name[PlayerModel::cBodyType_Num];
+    sead::SafeString    head_mdl_name[PlayerModel::cBodyType_Num];
+    f32                 head_top_offs[PlayerModel::cBodyType_Num];
+};
+static_assert(sizeof(PlayerObjectResHIO) == 0x74);

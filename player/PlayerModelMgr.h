@@ -81,9 +81,9 @@ public:
         return mpModel->isMiiCapVisible();
     }
 
-    PlayerModeModel getModeModel()
+    PlayerModel::BodyType getBodyID()
     {
-        return mpModel->getModeModel();
+        return mpModel->getBodyID();
     }
 
     void setPropelRollAngle(const Angle& angle)
@@ -101,14 +101,14 @@ public:
         mpModel->setPropelScale(scale);
     }
 
-    AnimModel* getBodyModel(PlayerModeModel mode_mdl)
+    AnimModel* getBodyModel(PlayerModel::BodyType type)
     {
-        return mpModel->getBodyModel(mode_mdl);
+        return mpModel->getBodyModel(type);
     }
 
-    AnimModel* getHeadModel(PlayerModeModel mode_mdl)
+    AnimModel* getHeadModel(PlayerModel::BodyType type)
     {
-        return mpModel->getHeadModel(mode_mdl);
+        return mpModel->getHeadModel(type);
     }
 
 private:

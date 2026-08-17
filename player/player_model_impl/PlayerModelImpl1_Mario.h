@@ -46,7 +46,7 @@ public:
     void calcImpl() override;
 
     // Address: 0x0296D840
-    void setModeModel(PlayerModeModel mode_mdl) override;
+    void setBodyID(BodyType id) override;
 
     // Address: 0x0296D880
     void setTexAnmTypeImpl(TexAnmType type) override;

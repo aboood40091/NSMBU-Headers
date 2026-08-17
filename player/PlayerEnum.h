@@ -21,18 +21,6 @@ enum PlayerMode
 static_assert(cPlayerMode_Num == 9);
 static_assert(sizeof(PlayerMode) == 4);
 
-enum PlayerModeModel
-{
-    cPlayerModeModel_Normal = 0,
-    cPlayerModeModel_Small,
-    cPlayerModeModel_Propeller,
-    cPlayerModeModel_Penguin,
-    cPlayerModeModel_Squirrel,
-    cPlayerModeModel_Num
-};
-static_assert(cPlayerModeModel_Num == 5);
-static_assert(sizeof(PlayerModeModel) == 4);
-
 enum PlayerCharacter
 {
     cPlayerCharacter_Mario = 0,

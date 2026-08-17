@@ -43,15 +43,15 @@ public:
     // Address: 0x02971CCC
     void setStarAnm() override;
     // Address: 0x02971D84
-    void removeStarAnm_NowModeModel() override;
+    void removeStarAnm_NowBodyID() override;
     // Address: 0x02971D88
-    void removeStarAnm_OldModeModel() override;
+    void removeStarAnm_OldBodyID() override;
 
     // Address: 0x02971F3C
     void calcImpl() override;
 
     // Address: 0x02971FD4
-    void setModeModel(PlayerModeModel mode_mdl) override;
+    void setBodyID(BodyType id) override;
 
     // Address: 0x02971FE4
     void setTexAnmTypeImpl(TexAnmType type) override;
