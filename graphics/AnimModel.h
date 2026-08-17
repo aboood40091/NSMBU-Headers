@@ -166,15 +166,15 @@ inline void AnimModel::destroy(
     if (p_anim_model != nullptr)
     {
         Model* p_model = p_anim_model->getModel();
-        delete p_model;
 
-        p_anim_model->mpSklAnim.freeBuffer();
-        p_anim_model->mpTexAnim.freeBuffer();
-        p_anim_model->mpShuAnim.freeBuffer();
-        p_anim_model->mpVisAnim.freeBuffer();
-        p_anim_model->mpShaAnim.freeBuffer();
+        // TODO: This function may not be worth it,
+        // since a lot of resources would need to be freed manually
+        // for perfectly isolated destruction
+        // (It's more worthwhile to make proper use of sead heaps)
 
         delete p_anim_model;
         p_anim_model = nullptr;
+
+        delete p_model;
     }
 }
