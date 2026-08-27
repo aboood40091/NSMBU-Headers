@@ -1,18 +1,17 @@
 #pragma once
 
-#include <basis/seadTypes.h>
+#include <player/PlayerAirData.h>
 
-struct PlayerAirHIO
+class PlayerMgr;
+
+class PlayerHIO_Air
 {
-    f32 x_accel_def;
-    f32 x_accel_stage0;
-    f32 x_accel_stage1;
-    f32 x_accel_stage1_dush;
-    f32 x_accel_stage2;
-    f32 x_accel_stage3;
-    f32 turn_decel;
-};
-static_assert(sizeof(PlayerAirHIO) == 0x1C);
+public:
+    // Address: 0x10169664
+    static const PlayerAirData cData[2][2]; // [mario/luigi][normal/star]
 
-// Address: 0x10169664
-extern const PlayerAirHIO cPlayerAirData[2][2]; // [mario/luigi][normal/star]
+public:
+    // Address: 0x029120F0
+    PlayerHIO_Air(PlayerMgr& mgr);
+};
+static_assert(sizeof(PlayerHIO_Air) == 1);

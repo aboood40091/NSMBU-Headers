@@ -1,6 +1,13 @@
 #pragma once
 
-#include <player/PlayerEnum.h>
+#include <player/PlayerHIO_Air.h>
+#include <player/PlayerHIO_Anm.h>
+#include <player/PlayerHIO_ChibiYoshi.h>
+#include <player/PlayerHIO_FlyMusa.h>
+#include <player/PlayerHIO_General.h>
+#include <player/PlayerHIO_Gravity.h>
+#include <player/PlayerHIO_Speed.h>
+#include <player/PlayerHIO_Turn.h>
 
 #include <container/seadRingBuffer.h>
 #include <container/seadSafeArray.h>
@@ -86,9 +93,9 @@ public:
         return mPauseDisable.isOnBit(player_no);
     }
 
-    bool isDisableOrchestra() const
+    bool isDisablePlayerInstrument() const
     {
-        return mDisableOrchestra;
+        return mDisablePlayerInstrument;
     }
 
     bool isCreateBalloon(s32 player_no)
@@ -157,7 +164,20 @@ public:
     s32 getCoinNumMin();
 
 private:
-    u32                     _10[(0x20 - 0x10) / sizeof(u32)];
+    PlayerHIO_General       mPlayerHIO_General;
+    PlayerHIO_Speed         mPlayerHIO_Speed;
+    PlayerHIO_Air           mPlayerHIO_Air;
+    PlayerHIO_Turn          mPlayerHIO_Turn;
+    PlayerHIO_Gravity       mPlayerHIO_Gravity;
+    u8                      mPlayerHIO_Jump;        // TODO
+    u8                      mPlayerHIO_Swim;        // TODO
+    PlayerHIO_Anm           mPlayerHIO_Anm;
+    u8                      mPlayerHIO_Propel;      // TODO
+    u8                      mPlayerHIO_Penguin;     // TODO
+    PlayerHIO_FlyMusa       mPlayerHIO_FlyMusa;
+    PlayerHIO_ChibiYoshi    mPlayerHIO_ChibiYoshi;
+    u8                      mPlayerHIO_Yoshi;       // TODO
+    u8                      mPlayerHIO_Totten;      // TODO
     sead::SafeArray<
         PlayerObject*,
         cPlayerNum
@@ -180,7 +200,7 @@ private:
     u8                      _88;
     sead::BitFlag32         mDemoWaitFlgDisable;
     sead::BitFlag32         mPauseDisable;
-    bool                    mDisableOrchestra;
+    bool                    mDisablePlayerInstrument;
     sead::BitFlag32         mCreateBalloonFlag;
     bool                    mAllBalloon;
     sead::BitFlag8          mCannonJumpFlag;

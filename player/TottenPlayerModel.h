@@ -2,18 +2,18 @@
 
 #include <player/PlayerModel.h>
 
-class ShadowModel : public PlayerModel   // vtbl Address: 0x101748B8
+class TottenPlayerModel : public PlayerModel    // vtbl Address: 0x101748B8
 {
     // getRuntimeTypeInfoStatic()::typeInfo initialization guard variable   Address: 0x101EBA84
     // getRuntimeTypeInfoStatic()::typeInfo                                 Address: 0x101EBA90
-    SEAD_RTTI_OVERRIDE(ShadowModel, PlayerModel)
+    SEAD_RTTI_OVERRIDE(TottenPlayerModel, PlayerModel)
 
 public:
     static const s32 cMaterialMaxNum = 4;
 
 public:
     // Address: 0x02971880
-    ShadowModel(Type type, PlayerMode mode, SceneType scene_type, bool override_lightmap);
+    TottenPlayerModel(Type type, PlayerMode mode, SceneType scene_type, bool override_lightmap);
 
     // Address: 0x02971B34
     // void func(); // Sets _22C and _230
@@ -128,4 +128,4 @@ protected:
     s32                                     _22C;
     f32                                     _230;
 };
-static_assert(sizeof(ShadowModel) == 0x234);
+static_assert(sizeof(TottenPlayerModel) == 0x234);

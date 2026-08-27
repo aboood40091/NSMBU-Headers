@@ -2,11 +2,11 @@
 
 #include <prim/seadBitFlag.h>
 
-class PlyOrchestra
+class PlayerInstrument
 {
 public:
     // Address: 0x0295BD1C
-    PlyOrchestra();
+    PlayerInstrument();
 
     // Address: 0x0295BDC4
     void init(s32 player_no);
@@ -15,10 +15,10 @@ public:
     void update();
 
 private:
-    u32             _0;
+    u32             mDirection; // 0 = U, 1 = D, 2 = L, 3 = R
     s32             mPlayerNo;
     sead::BitFlag32 mPadHold;
     sead::BitFlag32 mPadTrig;
     sead::BitFlag32 mPadRelease;
 };
-static_assert(sizeof(PlyOrchestra) == 0x14);
+static_assert(sizeof(PlayerInstrument) == 0x14);

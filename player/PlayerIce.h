@@ -2,7 +2,7 @@
 
 #include <actor/Actor.h>
 
-class PlyIce : public Actor
+class PlayerIce : public Actor
 {
 public:
     // Address: 0x0295B6BC

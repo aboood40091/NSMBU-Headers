@@ -3,11 +3,11 @@
 #include <actor/PropelParts.h>
 #include <graphics/Light.h>
 #include <map/CarryType.h>
+#include <player/ChangeMgr.h>
 #include <player/PlayerBase.h>
 #include <player/PlayerEatData.h>
+#include <player/PlayerInstrument.h>
 #include <player/PlayerModelMgr.h>
-#include <player/PlyOrchestra.h>
-#include <player/util/ChangeMgr.h>
 
 class CarryObjBase;
 class EventDown;
@@ -191,7 +191,7 @@ public:
     void setModeGravity();
 
     // Address: 0x0292507C
-    const PlayerGravityHIO* getGravityData() override;
+    const PlayerGravityData* getGravityData() override;
 
     using PlayerBase::getTallType;
     // Address: 0x02925128
@@ -1204,7 +1204,7 @@ protected:
     EffectObj                       mSpinHipAttackEffect;
     u32                             _2cc4;
     u32                             _2cc8;
-    ActorUniqueID                   mPlyIceActorID;
+    ActorUniqueID                   mPlayerIceActorID;
     QuakeMode                       mQuakeMode;
     s32                             mQuakeRumbleTimer;
     f32                             _2cd8;
@@ -1275,7 +1275,7 @@ protected:
     u32                             _340c;
     u32                             _3410;
     EffectObj                       _3414;
-    PlyOrchestra                    mOrchestra;
+    PlayerInstrument                mPlayerInstrument;
     s32                             _3490;                          // Ending Dance related
     s32                             _3494;                          // ^^^
     sead::SafeArray<s32, 3>         _3498;                          // ^^^

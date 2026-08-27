@@ -693,7 +693,7 @@ PROFILE_INFO_ACCESS_SPEC_PRIVATE
         cDrawPriority_Draw_Prof_323,
         cDrawPriority_Draw_Prof_324,
         cDrawPriority_Draw_Prof_325,
-        cDrawPriority_Draw_PlyIce,
+        cDrawPriority_Draw_PlayerIce,
         cDrawPriority_Draw_Prof_326,
         cDrawPriority_Draw_Prof_144,
         cDrawPriority_Draw_Prof_145,
@@ -757,7 +757,7 @@ PROFILE_INFO_ACCESS_SPEC_PRIVATE
         cDrawPriority_Draw_Prof_0FD,
         cDrawPriority_Draw_Prof_0FE,
         cDrawPriority_Draw_Prof_0FF,
-        cDrawPriority_Draw_SlotYoshiChibi,
+        cDrawPriority_Draw_SlotChibiYoshi,
         cDrawPriority_Draw_MiniGamePanelItem,
         cDrawPriority_Draw_SlotItem,
         cDrawPriority_Draw_ShuffleBlock,
@@ -777,14 +777,14 @@ PROFILE_INFO_ACCESS_SPEC_PRIVATE
         cDrawPriority_Draw_Prof_350,
         cDrawPriority_Draw_StaffRollMgr,
         cDrawPriority_Draw_StaffRollMgrRDash,
-        cDrawPriority_Draw_StaffCreditChibiYoshiABC,
-        cDrawPriority_Draw_StaffCreditChibiYoshiBalloon,
-        cDrawPriority_Draw_StaffCreditChibiYoshiBalloonCheer,
-        cDrawPriority_Draw_StaffCreditChibiYoshiLight,
-        cDrawPriority_Draw_StaffCreditChibiYoshiLightCheer,
-        cDrawPriority_Draw_StaffCreditSoapABC,
-        cDrawPriority_Draw_StaffCreditSoapCoin,
-        cDrawPriority_Draw_StaffCreditTottenKun,
+        cDrawPriority_Draw_StaffRollChibiYoshiChar,
+        cDrawPriority_Draw_StaffRollChibiYoshiBalloon,
+        cDrawPriority_Draw_StaffRollChibiYoshiBalloonCheer,
+        cDrawPriority_Draw_StaffRollChibiYoshiLight,
+        cDrawPriority_Draw_StaffRollChibiYoshiLightCheer,
+        cDrawPriority_Draw_StaffRollAwaChar,
+        cDrawPriority_Draw_StaffRollAwaCoin,
+        cDrawPriority_Draw_StaffRollTottenKun,
         cDrawPriority_Draw_CourseSelectPlayer,
         cDrawPriority_Draw_CourseSelectPlayer2PSub,
         cDrawPriority_Draw_CourseSelectChibiYoshi,
@@ -1457,7 +1457,7 @@ PROFILE_INFO_ACCESS_SPEC_PUBLIC
     // Address: 0x10004104
     PROFILE_INFO_STORAGE_STATIC const s32 cProfileID_0EC;                                       // 236
     // Address: 0x10004108
-    PROFILE_INFO_STORAGE_STATIC const s32 cProfileID_PlyIce;                                    // 237
+    PROFILE_INFO_STORAGE_STATIC const s32 cProfileID_PlayerIce;                                 // 237
     // Address: 0x1000410C
     PROFILE_INFO_STORAGE_STATIC const s32 cProfileID_TarzanIvy;                                 // 238
     // Address: 0x10004110
@@ -1889,7 +1889,7 @@ PROFILE_INFO_ACCESS_SPEC_PUBLIC
     // Address: 0x10004464
     PROFILE_INFO_STORAGE_STATIC const s32 cProfileID_1C4;                                       // 452
     // Address: 0x10004468
-    PROFILE_INFO_STORAGE_STATIC const s32 cProfileID_SlotYoshiChibi;                            // 453
+    PROFILE_INFO_STORAGE_STATIC const s32 cProfileID_SlotChibiYoshi;                            // 453
     // Address: 0x1000446C
     PROFILE_INFO_STORAGE_STATIC const s32 cProfileID_1C6;                                       // 454
     // Address: 0x10004470
@@ -2663,21 +2663,21 @@ PROFILE_INFO_ACCESS_SPEC_PUBLIC
     // Address: 0x10004A70
     PROFILE_INFO_STORAGE_STATIC const s32 cProfileID_347;                                       // 839
     // Address: 0x10004A74
-    PROFILE_INFO_STORAGE_STATIC const s32 cProfileID_StaffCreditChibiYoshiABC;                  // 840
+    PROFILE_INFO_STORAGE_STATIC const s32 cProfileID_StaffRollChibiYoshiChar;                   // 840
     // Address: 0x10004A78
-    PROFILE_INFO_STORAGE_STATIC const s32 cProfileID_StaffCreditChibiYoshiBalloon;              // 841
+    PROFILE_INFO_STORAGE_STATIC const s32 cProfileID_StaffRollChibiYoshiBalloon;                // 841
     // Address: 0x10004A7C
-    PROFILE_INFO_STORAGE_STATIC const s32 cProfileID_StaffCreditChibiYoshiBalloonCheer;         // 842
+    PROFILE_INFO_STORAGE_STATIC const s32 cProfileID_StaffRollChibiYoshiBalloonCheer;           // 842
     // Address: 0x10004A80
-    PROFILE_INFO_STORAGE_STATIC const s32 cProfileID_StaffCreditChibiYoshiLight;                // 843
+    PROFILE_INFO_STORAGE_STATIC const s32 cProfileID_StaffRollChibiYoshiLight;                  // 843
     // Address: 0x10004A84
-    PROFILE_INFO_STORAGE_STATIC const s32 cProfileID_StaffCreditChibiYoshiLightCheer;           // 844
+    PROFILE_INFO_STORAGE_STATIC const s32 cProfileID_StaffRollChibiYoshiLightCheer;             // 844
     // Address: 0x10004A88
-    PROFILE_INFO_STORAGE_STATIC const s32 cProfileID_StaffCreditSoapABC;                        // 845
+    PROFILE_INFO_STORAGE_STATIC const s32 cProfileID_StaffRollAwaChar;                          // 845
     // Address: 0x10004A8C
-    PROFILE_INFO_STORAGE_STATIC const s32 cProfileID_StaffCreditSoapCoin;                       // 846
+    PROFILE_INFO_STORAGE_STATIC const s32 cProfileID_StaffRollAwaCoin;                          // 846
     // Address: 0x10004A90
-    PROFILE_INFO_STORAGE_STATIC const s32 cProfileID_StaffCreditTottenKun;                      // 847
+    PROFILE_INFO_STORAGE_STATIC const s32 cProfileID_StaffRollTottenKun;                        // 847
     // Address: 0x10004A94
     PROFILE_INFO_STORAGE_STATIC const s32 cProfileID_350;                                       // 848
     // Address: 0x10004A98
