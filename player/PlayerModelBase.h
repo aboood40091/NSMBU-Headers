@@ -350,6 +350,11 @@ public:
         return mpAnmRes;
     }
 
+    const sead::Matrixf& getMtxSr() const
+    {
+        return mMtxSr;
+    }
+
     sead::Vector3f* getHeadTopPosP()
     {
         return &mHeadTopPos;
