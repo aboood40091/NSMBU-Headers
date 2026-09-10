@@ -324,6 +324,11 @@ public:
         return mpModelBase->isSwimAnm();
     }
 
+    bool isCarryLongAnm() const
+    {
+        return mpModelBase->isCarryLongAnm();
+    }
+
     void changeFaceAngleOverrideFlag(PlayerModelBase::FaceAngleOverrideFlag flag, bool enable)
     {
         mpModelBase->changeFaceAngleOverrideFlag(flag, enable);

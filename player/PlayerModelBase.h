@@ -124,6 +124,8 @@ public:
         cAnmFlagBit_9               =  9,
         // ...
         cAnmFlagBit_IsSlopeBodyAnm  = 12,
+        // ...
+        cAnmFlagBit_CarryLong       = 22,
     };
     static_assert(sizeof(AnmFlagBit) == 4);
 
@@ -381,6 +383,11 @@ public:
     bool isSwimAnm() const
     {
         return isAnmFlag(cAnmFlagType_Main, cAnmFlagBit_Swim);
+    }
+
+    bool isCarryLongAnm() const
+    {
+        return isAnmFlag(cAnmFlagType_Main, cAnmFlagBit_CarryLong);
     }
 
     void changeFaceAngleOverrideFlag(FaceAngleOverrideFlag flag, bool enable)
