@@ -9,9 +9,13 @@
 #include <player/PlayerInstrument.h>
 #include <player/PlayerModelMgr.h>
 
+class BalloonChibiYoshi;
+class BubbleChibiYoshi;
 class CarryObjBase;
+class ChibiYoshiBase;
 class EventDown;
 class EventPlayerChange;
+class PropBlock;
 class Yoshi;
 
 class PlayerObject : public PlayerBase  // vtbl Address: 0x1016C150
@@ -44,9 +48,9 @@ public:
     enum CarryStep
     {
         cCarryStep_None = 0,
-        cCarryStep_Carry_NoTimer,
+        cCarryStep_Carry,
         cCarryStep_LiftUp,
-        cCarryStep_Carry
+        cCarryStep_CarryLong
     };
     static_assert(sizeof(CarryStep) == 4);
 
@@ -606,6 +610,9 @@ public:
     // Address: 0x02948FCC
     bool setRideOffPlayerJump(f32 speed_y, f32 speed_f);
 
+    // Address: 0x029497C0
+    f32 getLiftUpOffset();
+
     // Address: 0x02949A28
     void setPlayerHandPos();
 
@@ -818,24 +825,79 @@ public:
 
     // ------------------------------------ PlayerObjectCarry.cpp ------------------------------------ //
 
+    // StateID_LiftUp           Address: 0x1022B04C
+    // initializeState_LiftUp   Address: 0x0292C2A8
+    // executeState_LiftUp      Address: 0x0292C414
+    // finalizeState_LiftUp     Address: 0x0292C670
+    DECLARE_STATE_ID(PlayerObject, LiftUp)
+
     // Address: 0x0292C170
-    PlayerObject* getCarryPlayer();
+    PlayerObject* getCarryPlayer() const;
+
     // Address: 0x0292C20C
     CarryObjBase* getCarryHardBlock();
 
+    // Address: 0x0292C670
+    const ChibiYoshiBase* getCarryChibiYoshi() const;
     // Address: 0x0292C7FC
-    Actor* getCarryChibiYoshi();
+    ChibiYoshiBase* getCarryChibiYoshi();
+
+    // Address: 0x0292C898
+    const PropBlock* getCarryPropelBlock() const;
+    // Address: 0x0292C934
+    PropBlock* getCarryPropelBlock();
+
+    // Address: 0x0292C9D0
+    const Actor* getCarryPropelActor() const;
+    // Address: 0x0292CA18
+    Actor* getCarryPropelActor();
+
+    // Address: 0x0292CA60
+    const BalloonChibiYoshi* getCarryBalloonChibiYoshi() const;
+
+    // Address: 0x0292CAFC
+    const BubbleChibiYoshi* getCarryBubbleChibiYoshi() const;
+
+    // Address: 0x0292CB98
+    bool isLiftUp() override;
+    // Address: 0x0292CC08
+    bool isCarryMamePlayer() override;
+    // Address: 0x0292CC54
+    bool isLiftUpExceptMame() override;
+
+    // Address: 0x0292CCCC
+    void setCarryFall(Actor*, s32) override;
+
+    // Address: 0x0292CD4C
+    bool isSpinLiftUpEnable() override;
+    // Address: 0x0292CDE8
+    void setSpinLiftUpActor(Actor* p_player) override;
+
+    // Address: 0x0292CEAC
+    bool isCarry() override;
 
     // Address: 0x0292CF48
     void releaseCarryActorBase();
     // Address: 0x0292D048
     void releaseCarryActor();
 
+    // Address: 0x0292C70C
+    void setCarryBase(ActorUniqueID actor_id, CarryType type);
+    // Address: 0x0292D060
+    void setLiftUpBase(ActorUniqueID actor_id, CarryType type);
     // Address: 0x0292D138
     virtual bool setCarry(Actor* p_actor, CarryType type);
 
     // Address: 0x0292CEBC
     void cancelCarry(Actor* p_actor);
+
+    // Address: 0x0292D2F8
+    bool setLiftUpTotten(Actor* p_actor);
+    // Address: 0x0292D474
+    bool setCarryToLiftUp();
+
+    // Address: 0x0292D534
+    bool checkCarryActor(PlayerObject* p_player);
 
     // Address: 0x0292D564
     f32 getCarryStepRatio();
@@ -845,9 +907,13 @@ public:
     // Address: 0x0292D704
     bool getCarryMtx(sead::Matrixf* p_mtx);
 
+    // Address: 0x0292D780
+    void calcCarryStep();
+
     // Address: 0x0292D8A4
     void clearSpinLiftUpReserve();
-
+    // Address: 0x0292D8BC
+    void checkSpinLiftUpReserve(ActorCollisionCheck* p_cc);
     // Address: 0x0292D9A4
     void setSpinLiftUpReserve();
 
@@ -1032,18 +1098,9 @@ public:
     void setSubjectFail() override;
     void setShadowFail() override;
 
-    void setCarryFall(Actor*, s32) override;
-    bool isSpinLiftUpEnable() override;
-    void setSpinLiftUpActor(Actor* p_player) override;
-
     bool vf4F4() override;
 
     void throwCarryActor() override;
-
-    bool isCarry() override;
-    bool isLiftUp() override;
-    bool isCarryMamePlayer() override;
-    bool isLiftUpExceptMame() override;
 
     void resetLight() override;
 
@@ -1151,9 +1208,9 @@ protected:
     f32                             _2a48;
     DirType                         mWallSlideDir;
     ActorUniqueID                   mLiftUpActorID;
-    f32                             _2a54;
+    f32                             mLiftUpReserveSpeed;
     f32                             mLiftUpOffsetRatio;
-    u32                             _2a5c;
+    CarryType                       mCarryType;
     s32                             mLiftUpCounter;
     f32                             mLiftUpOffsetScale;
     bool                            mThrowHard;
