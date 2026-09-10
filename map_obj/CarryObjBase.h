@@ -11,6 +11,18 @@ class CarryObjBase : public ActorState
     SEAD_RTTI_OVERRIDE(CarryObjBase, ActorState)
 
 public:
+    struct FukidashiInfo
+    {
+        s32             type;
+        sead::Vector2f  range;
+        bool            enable;
+    };
+    static_assert(sizeof(FukidashiInfo) == 0x10);
+
+public:
+    // Address: 0x02721B68
+    CarryObjBase(const ActorCreateParam& param, const FukidashiInfo& fukidashi_info);
+
     // Address: 0x027221E8
     PlayerObject* getCarryPlayer() const;
 
