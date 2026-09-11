@@ -14,7 +14,7 @@ public:
     // Address: 0x02923190
     PlayerModelMgr(PlayerModelBase::Type type, PlayerMode mode, PlayerModelBase::SceneType scene_type, bool override_lightmap = true);
     // Address: 0x02923394
-    PlayerModelMgr(PlayerMode mode, PlayerCharacter mii_color, const Mii::SlotID& slot_id, sead::Heap* p_ffl_tmp_heap, bool override_lightmap = true);
+    PlayerModelMgr(PlayerMode mode, PlayerCharacter mii_color, Mii::SlotID slot_id, sead::Heap* p_ffl_tmp_heap, bool override_lightmap = true);
 
     PlayerMode getPlayerMode()
     {

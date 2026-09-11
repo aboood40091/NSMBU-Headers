@@ -28,7 +28,7 @@ public:
 
 public:
     // Address: 0x029735D8
-    MiiModel(Type type, PlayerMode mode, SceneType scene_type, PlayerCharacter color, const Mii::SlotID& slot_id, sead::Heap* p_ffl_tmp_heap, bool override_lightmap);
+    MiiModel(Type type, PlayerMode mode, SceneType scene_type, PlayerCharacter color, Mii::SlotID slot_id, sead::Heap* p_ffl_tmp_heap, bool override_lightmap);
 
     // Address: 0x02973800
     void play() override;
