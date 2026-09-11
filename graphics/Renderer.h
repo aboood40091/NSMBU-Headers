@@ -56,6 +56,28 @@ public:
         }
     };
 
+    template <s32 temp_layer_id, s32 post_layer_id, RenderPassType render_pass_type>
+    class LayerSwitcher
+    {
+    public:
+        LayerSwitcher()
+        {
+            setLayer_(temp_layer_id);
+        }
+
+        ~LayerSwitcher()
+        {
+            setLayer_(post_layer_id);
+        }
+
+    private:
+        void setLayer_(s32 layer_id)
+        {
+            Renderer::instance()->resetLayer();
+            Renderer::instance()->setLayer(agl::lyr::Renderer::instance()->getLayer(layer_id), render_pass_type);
+        }
+    };
+
 public:
     // Address: 0x024FA5A0
     Renderer();
