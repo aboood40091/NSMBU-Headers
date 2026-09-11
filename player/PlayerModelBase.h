@@ -171,7 +171,7 @@ public:
     virtual void calcImpl() = 0;
     virtual void calc2Impl() = 0;
 
-    virtual void setModelDrawBufferIndex(s32 idx_opa, s32 idx_xlu) = 0;
+    virtual void setModelRenderPass(s32 idx_opa, s32 idx_xlu) = 0;
     virtual void setModelG3dRenderFlag(u32 flag) = 0;   // ModelG3d::RenderFlag
 
     virtual void setDark(DarkTargetType type, f32 value) = 0;

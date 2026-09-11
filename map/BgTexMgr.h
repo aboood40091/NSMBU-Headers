@@ -22,10 +22,10 @@ private:
     class RenderCallback : public RenderObjRenderMgr::CallbackBase
     {
     public:
-        void preDrawOpa(s32 view_index, s32 buffer_index, const agl::lyr::RenderInfo& render_info) override;
-        void preDrawXlu(s32 view_index, s32 buffer_index, const agl::lyr::RenderInfo& render_info) override;
-        void postDrawOpa(s32 view_index, s32 buffer_index, const agl::lyr::RenderInfo& render_info) override;
-        void postDrawXlu(s32 view_index, s32 buffer_index, const agl::lyr::RenderInfo& render_info) override;
+        void preDrawOpa(s32 view_index, s32 render_pass, const agl::lyr::RenderInfo& render_info) override;
+        void preDrawXlu(s32 view_index, s32 render_pass, const agl::lyr::RenderInfo& render_info) override;
+        void postDrawOpa(s32 view_index, s32 render_pass, const agl::lyr::RenderInfo& render_info) override;
+        void postDrawXlu(s32 view_index, s32 render_pass, const agl::lyr::RenderInfo& render_info) override;
     };
     static_assert(sizeof(RenderCallback) == 4);
 

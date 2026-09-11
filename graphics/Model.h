@@ -72,15 +72,15 @@ public:
     virtual Animation* const* getVisAnims() const = 0;
     virtual Animation* const* getShaAnims() const = 0;
 
-    s32 getOpaBufferIdx() const { return mOpaBufferIdx; }
-    s32 getXluBufferIdx() const { return mXluBufferIdx; }
+    s32 getOpaRenderPass() const { return mOpaRenderPass; }
+    s32 getXluRenderPass() const { return mXluRenderPass; }
 
-    void setOpaBufferIdx(s32 index) { mOpaBufferIdx = index; }
-    void setXluBufferIdx(s32 index) { mXluBufferIdx = index; }
+    void setOpaRenderPass(s32 index) { mOpaRenderPass = index; }
+    void setXluRenderPass(s32 index) { mXluRenderPass = index; }
 
 protected:
-    s32 mOpaBufferIdx;
-    s32 mXluBufferIdx;
+    s32 mOpaRenderPass;
+    s32 mXluRenderPass;
 };
 static_assert(sizeof(Model) == 0x28);
 

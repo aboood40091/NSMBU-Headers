@@ -25,26 +25,27 @@ class Renderer
     SEAD_SINGLETON_DISPOSER(Renderer)
 
 public:
-    enum GatherType
+    enum RenderPassType
     {
-        cGatherType_0 = 0,  // AreaTask
-        cGatherType_1,      // CourseSelectTask, DarkCloudDemoScene, GameSetupScene, MultiPlayCourseSelectScene, ResultScene
-        cGatherType_2,      // DemoTestScene
-        cGatherType_3       // CourseTask, ChallengeResultScene, WithMiiPackSelectScene
+        cRenderPassType_Course = 0,     // AreaTask
+        cRenderPassType_CourseSelect,   // CourseSelectTask, DarkCloudDemoScene, GameSetupScene, MultiPlayCourseSelectScene, ResultScene
+        cRenderPassType_DemoScene,      // DemoTestScene
+        cRenderPassType_Misc            // CourseTask, ChallengeResultScene, WithMiiPackSelectScene
     };
 
 public:
+    template <RenderPassType render_pass_type>
     class LayerSetter
     {
     public:
-        LayerSetter(s32 layer_id, GatherType type)
+        LayerSetter(s32 layer_id)
         {
-            Renderer::instance()->setLayer(agl::lyr::Renderer::instance()->getLayer<RenderObjLayerBase>(layer_id), type);
+            Renderer::instance()->setLayer(agl::lyr::Renderer::instance()->getLayer<RenderObjLayerBase>(layer_id), render_pass_type);
         }
 
-        LayerSetter(RenderObjLayerBase* p_layer, GatherType type)
+        LayerSetter(RenderObjLayerBase* p_layer)
         {
-            Renderer::instance()->setLayer(p_layer, type);
+            Renderer::instance()->setLayer(p_layer, render_pass_type);
         }
 
         ~LayerSetter()
@@ -66,7 +67,7 @@ public:
     void calcForAreaTask();
 
     // Address: 0x024FAA50
-    void setLayer(agl::lyr::Layer* p_layer, GatherType type);
+    void setLayer(agl::lyr::Layer* p_layer, RenderPassType render_pass_type);
     // Address: 0x024FAB4C
     void resetLayer();
 
@@ -87,8 +88,8 @@ private:
     sead::OrthoProjection   mProjection3D;
     sead::OrthoCamera       mCamera3D;
     RenderObjLayerBase*     mpLayer;
-    s32                     mDefaultOpaBufferIdx;
-    s32                     mDefaultXluBufferIdx;
+    s32                     mDefaultOpaRenderPass;
+    s32                     mDefaultXluRenderPass;
     sead::OrthoProjection   mProjectionFinalKoopa;
     sead::OrthoCamera       mCameraFinalKoopa;
 };

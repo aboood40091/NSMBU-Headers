@@ -30,7 +30,7 @@ public:
     void draw() override;
 
     // Address: 0x0296D310
-    void setModelDrawBufferIndex(s32 idx_opa, s32 idx_xlu) override;
+    void setModelRenderPass(s32 idx_opa, s32 idx_xlu) override;
     // Address: 0x0296D3CC
     void setModelG3dRenderFlag(u32 flag) override;
 

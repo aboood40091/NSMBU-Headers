@@ -95,7 +95,7 @@ public:
     f32 getBaseScale() override;
 
     // Address: 0x0291A444
-    void setModelDrawBufferIndex(s32 idx_opa, s32 idx_xlu) override;
+    void setModelRenderPass(s32 idx_opa, s32 idx_xlu) override;
     // Address: 0x0291A530
     void setModelG3dRenderFlag(u32 flag) override;
 

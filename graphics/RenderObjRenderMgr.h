@@ -36,10 +36,10 @@ public:
     class CallbackBase
     {
     public:
-        virtual void preDrawOpa(s32 view_index, s32 buffer_index, const agl::lyr::RenderInfo& render_info) = 0;
-        virtual void preDrawXlu(s32 view_index, s32 buffer_index, const agl::lyr::RenderInfo& render_info) = 0;
-        virtual void postDrawOpa(s32 view_index, s32 buffer_index, const agl::lyr::RenderInfo& render_info) = 0;
-        virtual void postDrawXlu(s32 view_index, s32 buffer_index, const agl::lyr::RenderInfo& render_info) = 0;
+        virtual void preDrawOpa(s32 view_index, s32 render_pass, const agl::lyr::RenderInfo& render_info) = 0;  // Opa Render Pass Start
+        virtual void preDrawXlu(s32 view_index, s32 render_pass, const agl::lyr::RenderInfo& render_info) = 0;  // Xlu Render Pass Start
+        virtual void postDrawOpa(s32 view_index, s32 render_pass, const agl::lyr::RenderInfo& render_info) = 0; // Opa Render Pass End
+        virtual void postDrawXlu(s32 view_index, s32 render_pass, const agl::lyr::RenderInfo& render_info) = 0; // Xlu Render Pass End
     };
 
 public:
@@ -49,9 +49,9 @@ public:
     virtual ~RenderObjRenderMgr();
 
     // Address: 0x024FB128
-    void initialize(s32 view_max_num, s32 render_obj_max_num, s32 opa_buffer_max_num, s32 xlu_buffer_max_num, sead::Heap* heap);
+    void initialize(s32 view_max_num, s32 render_obj_max_num, s32 opa_render_pass_max_num, s32 xlu_render_pass_max_num, sead::Heap* heap);
     // Address: 0x024FB964
-    void initialize(s32 view_max_num, s32 render_obj_max_num, s32 opa_buffer_alloc_num, s32 opa_buffer_max_num, s32 xlu_buffer_max_num, sead::Heap* heap);
+    void initialize(s32 view_max_num, s32 render_obj_max_num, s32 opa_render_pass_obj_buffer_alloc_num, s32 opa_render_pass_max_num, s32 xlu_render_pass_max_num, sead::Heap* heap);
 
     // Address: 0x024FBEAC
     bool isFull() const;
@@ -78,9 +78,9 @@ public:
     void drawReflectionXlu(s32 view_index, const agl::lyr::RenderInfo& render_info);
 
     // Address: 0x024FC5EC
-    void pushBackRenderObj(RenderObj* obj, s32 opa_buffer_index, s32 xlu_buffer_index);
+    void pushBackRenderObj(RenderObj* obj, s32 opa_render_pass, s32 xlu_render_pass);
     // Address: 0x024FC71C
-    void pushBackRenderObj(RenderObj* obj, s32 opa_buffer_index, s32 xlu_buffer_index, const sead::Vector3f& order_pos);
+    void pushBackRenderObj(RenderObj* obj, s32 opa_render_pass, s32 xlu_render_pass, const sead::Vector3f& order_pos);
 
     // Address: 0x024FC738
     s32 createView(RenderObjLayerBase* p_layer);
@@ -119,8 +119,8 @@ private:
 private:
     bool                                        _18;
     sead::PtrArray<RenderObj>                   mRenderObj;
-    sead::Buffer< sead::PtrArray<RenderObj> >   mRenderObjOpa;
-    sead::Buffer< sead::PtrArray<RenderObj> >   mRenderObjXlu;
+    sead::Buffer< sead::PtrArray<RenderObj> >   mOpaRenderPassObj;
+    sead::Buffer< sead::PtrArray<RenderObj> >   mXluRenderPassObj;
     sead::PtrArray<RenderObj>                   mRenderObjShadow;
     agl::env::EnvObjMgr                         mEnvObjMgr;
     ModelEnvView                                mModelEnvView;

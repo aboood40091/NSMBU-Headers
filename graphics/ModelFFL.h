@@ -63,7 +63,7 @@ public:
 
 public:
     // Address: 0x024EF694
-    ModelFFL(s32 opa_buffer_idx, s32 xlu_buffer_idx);
+    ModelFFL(s32 opa_render_pass, s32 xlu_render_pass);
 
     // Address: 0x024F04CC
     virtual ~ModelFFL()
@@ -202,8 +202,8 @@ private:
     DrawType                mDrawType;
     Mii::WmModeDB::Model*   mpWmModeDBModel;
     Mii::SlotID             mSlotID;
-    s32                     mOpaBufferIdx;
-    s32                     mXluBufferIdx;
+    s32                     mOpaRenderPass;
+    s32                     mXluRenderPass;
 };
 static_assert(sizeof(ModelFFL) == 0x8F0);
 
