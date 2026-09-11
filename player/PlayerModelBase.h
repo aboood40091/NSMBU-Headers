@@ -39,9 +39,11 @@ public:
         cSceneType_Course = 0,
         cSceneType_CourseSelect,
         cSceneType_Unknown,
-        cSceneType_2D               // i.e., for menus
+        cSceneType_2D,              // i.e., for menus
+        cSceneType_Num
     };
     static_assert(sizeof(SceneType) == 4);
+    static_assert(cSceneType_Num == 4);
     
     enum TexAnmType
     {
@@ -363,6 +365,16 @@ public:
     sead::Vector3f* getHeadPosP()
     {
         return &mHeadPos;
+    }
+
+    SceneType getSceneType() const
+    {
+        return mSceneType;
+    }
+
+    bool isValidSceneType() const
+    {
+        return 0 <= mSceneType && mSceneType < cSceneType_Num;
     }
 
     u32 getAnmFlag(AnmFlagType type) const
