@@ -112,6 +112,9 @@ public:
     }
 
 private:
+    inline void construct_(PlayerModelBase::Type type, PlayerMode mode, PlayerModelBase::SceneType scene_type, s32 player_no, bool override_lightmap);
+
+private:
     PlayerModel*    mpModel;
 };
 static_assert(sizeof(PlayerModelMgr) == 0x10);
