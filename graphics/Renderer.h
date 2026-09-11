@@ -25,6 +25,8 @@ class Renderer
     SEAD_SINGLETON_DISPOSER(Renderer)
 
 public:
+    static const s32 cDefaultRenderPass = -2;
+
     enum RenderPassType
     {
         cRenderPassType_Course = 0,     // AreaTask
