@@ -16,6 +16,15 @@ class CourseTask : public sead::CalculateTask   // vtbl Address: 0x100B734C
     SEAD_TASK_SINGLETON_DISPOSER(CourseTask)
 
 public:
+    static FieldGameData& getActiveGameData()
+    { 
+        return
+            (instance() != nullptr)
+                ? *instance()->getGameData()
+                : FieldGame::instance()->getGameData();
+    }
+
+public:
     // Address: 0x024BCAA0
     CourseTask(const sead::TaskConstructArg& arg);
     // Address: 0x024BC950
