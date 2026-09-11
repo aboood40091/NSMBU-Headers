@@ -97,7 +97,7 @@ public:
     // Address: 0x0291A444
     void setModelDrawBufferIndex(s32 idx_opa, s32 idx_xlu) override;
     // Address: 0x0291A530
-    void setModelDrawFlagDirect(u32 flag) override;
+    void setModelG3dRenderFlag(u32 flag) override;
 
     // Address: 0x0291A720
     void setDark(DarkTargetType type, f32 value) override;

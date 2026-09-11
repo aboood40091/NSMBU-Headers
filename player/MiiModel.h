@@ -39,7 +39,7 @@ public:
     // Address: 0x02973908
     void setModelDrawBufferIndex(s32 idx_opa, s32 idx_xlu) override;
     // Address: 0x029739B0
-    void setModelDrawFlagDirect(u32 flag) override;
+    void setModelG3dRenderFlag(u32 flag) override;
 
     // Address: 0x02973BA0
     void setColorType(ColorType color_type, bool keep_head_konst3) override;

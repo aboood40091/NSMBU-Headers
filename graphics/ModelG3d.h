@@ -30,6 +30,18 @@ class ModelG3d : public Model    // vtbl Address: 0x100BCF30
     SEAD_RTTI_OVERRIDE(ModelG3d, Model)
 
 public:
+    enum RenderFlag
+    {
+        cRenderFlag_DrawOpa         = 1 << 0,
+        cRenderFlag_DrawXlu         = 1 << 1,
+        cRenderFlag_DrawOpaAtXlu    = 1 << 2,
+        cRenderFlag_DrawXluAtOpa    = 1 << 3,
+
+        cRenderFlag_Default = cRenderFlag_DrawOpa | cRenderFlag_DrawXlu,
+        cRenderFlag_DrawAllAtOpa = cRenderFlag_DrawOpa | cRenderFlag_DrawXluAtOpa,
+        cRenderFlag_DrawAllAtXlu = cRenderFlag_DrawOpaAtXlu | cRenderFlag_DrawXlu
+    };
+
     struct ShaderAssign
     {
         void initialize(const agl::ShaderProgram* p_shader_program)

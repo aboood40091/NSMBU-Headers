@@ -30,7 +30,7 @@ public:
     // Address: 0x02971C10
     void setModelDrawBufferIndex(s32 idx_opa, s32 idx_xlu) override;
     // Address: 0x02971C2C
-    void setModelDrawFlagDirect(u32 flag) override;
+    void setModelG3dRenderFlag(u32 flag) override;
 
     f32 getBaseScale() override
     {

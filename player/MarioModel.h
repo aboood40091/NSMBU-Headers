@@ -32,7 +32,7 @@ public:
     // Address: 0x0296D310
     void setModelDrawBufferIndex(s32 idx_opa, s32 idx_xlu) override;
     // Address: 0x0296D3CC
-    void setModelDrawFlagDirect(u32 flag) override;
+    void setModelG3dRenderFlag(u32 flag) override;
 
     // Address: 0x0296D494
     void setHeadID(HeadType id) override;
