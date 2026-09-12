@@ -66,9 +66,9 @@ public:
         mpModelBase->copyLinkAnm(blend_duration);
     }
 
-    void setJumpIndex(s32 rnd_type)
+    void setJumpAnmRand(PlayerModelBase::RndType rnd_type)
     {
-        mpModelBase->setJumpIndex(rnd_type);
+        mpModelBase->setJumpAnmRand(rnd_type);
     }
 
     void setRate(f32 rate)
@@ -151,14 +151,14 @@ public:
         return mpModelBase->checkBodyFrame(frame);
     }
 
-    bool checkFrameCtrlFlagUnk2()
+    bool isAnmLoopFrame()
     {
-        return mpModelBase->checkFrameCtrlFlagUnk2();
+        return mpModelBase->isAnmLoopFrame();
     }
 
-    bool checkBodyFrameCtrlFlagUnk2()
+    bool isBodyAnmLoopFrame()
     {
-        return mpModelBase->checkBodyFrameCtrlFlagUnk2();
+        return mpModelBase->isBodyAnmLoopFrame();
     }
 
     f32 getFrameEnd()

@@ -27,7 +27,7 @@ public:
         cType_YellowToad,
         cType_NpcToad,      // i.e., Red Toad
         cType_Nabbit,
-        cType_Unused,       // No idea why this exists
+        cType_Yoshi,
         cType_Mii,
         cType_Num
     };
@@ -103,6 +103,10 @@ public:
         cFlag_IsBalloonChibiYoshiFly    = 1 <<  2,
         cFlag_IsBubbleChibiYoshiShake   = 1 <<  3,
         // ...
+        cFlag_Bit5                      = 1 <<  5,
+        cFlag_Bit6                      = 1 <<  6,
+        // ...
+        cFlag_Bit9                      = 1 <<  9,
         cFlag_IsStarAnm                 = 1 << 10,
         cFlag_IsOnHDokan                = 1 << 11,
         cFlag_IsWaitL                   = 1 << 12,
@@ -116,16 +120,21 @@ public:
     enum AnmFlagBit
     {
         cAnmFlagBit_Sit             =  0,
-        // ...
-        cAnmFlagBit_Hang            =  2,
+        cAnmFlagBit_1,
+        cAnmFlagBit_Hang,
         // ...
         cAnmFlagBit_Swim            =  4,
-        // ...
-        cAnmFlagBit_7               =  7,
-        cAnmFlagBit_8               =  8,
-        cAnmFlagBit_9               =  9,
+        cAnmFlagBit_5,
+        cAnmFlagBit_6,
+        cAnmFlagBit_7,
+        cAnmFlagBit_8,
+        cAnmFlagBit_9,
+        cAnmFlagBit_Jump,
         // ...
         cAnmFlagBit_IsSlopeBodyAnm  = 12,
+        // ...
+        cAnmFlagBit_14              = 14,
+        cAnmFlagBit_15,
         // ...
         cAnmFlagBit_CarryLong       = 22,
     };
@@ -153,6 +162,12 @@ public:
         cHeadType_BonusCap
     };
     static_assert(sizeof(HeadType) == 4);
+
+    enum RndType
+    {
+        cRndType_Uniform = 0,
+        cRndType_RightSkew
+    };
     
 public:
     // Address: 0x02920CA8
@@ -177,6 +192,9 @@ public:
     virtual void setModelG3dRenderFlag(u32 flag) = 0;   // ModelG3d::RenderFlag
 
     virtual void setDark(DarkTargetType type, f32 value) = 0;
+
+    // Address: 0x02920EE0
+    void calcStoopOffset();
 
     // Address: 0x02920F88
     void reset();
@@ -203,7 +221,7 @@ public:
     virtual void setCarryBodyAnm(f32 blend_duration, bool bubble_reset_frame) = 0;
 
     // Address: 0x02921DB4
-    void setJumpIndex(s32 rnd_type);
+    void setJumpAnmRand(RndType rnd_type);
     // Address: 0x02921E50
     virtual bool getJumpAnmName(sead::BufferedSafeString* p_anm_name, s32 anm_id, bool body);
 
@@ -222,10 +240,17 @@ public:
     // Address: 0x029214E0
     f32 getBodyRate();
 
+    // Address: 0x02920FC4
+    void setRateImpl(s32 skl_anm_idx, f32 rate);
+    // Address: 0x029214B8
+    f32 getRateImpl(s32 skl_anm_idx);
+
     // Address: 0x0292211C
     bool isAnmStop();
     // Address: 0x02922124
     bool isBodyAnmStop();
+    // Address: 0x029220F0
+    bool isAnmStopImpl(s32 skl_anm_idx);
 
     // Address: 0x02921178
     void setFrame(f32 frame);
@@ -241,15 +266,24 @@ public:
     // Address: 0x029214E8
     f32 getBodyFrame();
 
+    // Address: 0x029210F8
+    void setFrameImpl(s32 skl_anm_idx, f32 frame);
+    // Address: 0x029211E8
+    f32 getFrameImpl(s32 skl_anm_idx);
+
     // Address: 0x02922158
     bool checkFrame(f32 frame);
     // Address: 0x02922160
     bool checkBodyFrame(f32 frame);
+    // Address: 0x02922134
+    bool checkFrameImpl(s32 skl_anm_idx, f32 frame);
 
     // Address: 0x02922194
-    bool checkFrameCtrlFlagUnk2();
+    bool isAnmLoopFrame();
     // Address: Deleted
-    bool checkBodyFrameCtrlFlagUnk2();
+    bool isBodyAnmLoopFrame();
+    // Address: 0x02922168
+    bool isAnmLoopFrameImpl(s32 skl_anm_idx);
 
     // Address: 0x0292219C
     f32 getFrameEnd();
@@ -335,6 +369,9 @@ public:
     // Address: 0x029227D0
     bool isCourseSelectScene();
 
+    // Address: 0x02921D48
+    u32 rndInt(u32 max);
+
     virtual f32 getBaseScale() = 0;
 
     s32 getAnmID() const
@@ -382,29 +419,79 @@ public:
         return mAnmFlag[type];
     }
 
+    u32 getAnmFlag() const
+    {
+        return mAnmFlag[cAnmFlagType_Main];
+    }
+
+    u32 getBodyAnmFlag() const
+    {
+        return mAnmFlag[cAnmFlagType_Body];
+    }
+
     bool isAnmFlag(AnmFlagType type, AnmFlagBit bit) const
     {
-        return mAnmFlag[type] >> bit & 1;
+        return mAnmFlag[type] & 1 << bit;
+    }
+
+    bool isAnmFlagMulti(AnmFlagType type, u32 flag) const
+    {
+        return mAnmFlag[type] & flag;
+    }
+
+    bool isAnmFlag(AnmFlagBit bit) const
+    {
+        return isAnmFlag(cAnmFlagType_Main, bit);
+    }
+
+    bool isAnmFlagMulti(u32 flag) const
+    {
+        return isAnmFlagMulti(cAnmFlagType_Main, flag);
     }
 
     bool isSitAnm() const
     {
-        return isAnmFlag(cAnmFlagType_Main, cAnmFlagBit_Sit);
+        return isAnmFlag(cAnmFlagBit_Sit);
     }
 
     bool isHangAnm() const
     {
-        return isAnmFlag(cAnmFlagType_Main, cAnmFlagBit_Hang);
+        return isAnmFlag(cAnmFlagBit_Hang);
     }
 
     bool isSwimAnm() const
     {
-        return isAnmFlag(cAnmFlagType_Main, cAnmFlagBit_Swim);
+        return isAnmFlag(cAnmFlagBit_Swim);
+    }
+
+    bool isJumpAnm() const
+    {
+        return isAnmFlag(cAnmFlagBit_Jump);
     }
 
     bool isCarryLongAnm() const
     {
-        return isAnmFlag(cAnmFlagType_Main, cAnmFlagBit_CarryLong);
+        return isAnmFlag(cAnmFlagBit_CarryLong);
+    }
+
+    bool isBodyAnmFlag(AnmFlagBit bit) const
+    {
+        return isAnmFlag(cAnmFlagType_Body, bit);
+    }
+
+    bool isBodyAnmFlagMulti(u32 flag) const
+    {
+        return isAnmFlagMulti(cAnmFlagType_Body, flag);
+    }
+
+    bool isJumpBodyAnm() const
+    {
+        return isBodyAnmFlag(cAnmFlagBit_Jump);
+    }
+
+    bool isSlopeBodyAnm() const
+    {
+        return isBodyAnmFlag(cAnmFlagBit_IsSlopeBodyAnm);
     }
 
     void changeFaceAngleOverrideFlag(FaceAngleOverrideFlag flag, bool enable)
@@ -535,5 +622,11 @@ protected:
     Angle3                  mFaceAngleOverride;     // X is always set to 0 and never actually used
     sead::BitFlag32         mFaceAngleOverrideFlag;
     bool                    mCarryStateChanged;
+
+    static const s32 cJumpMax = 3;
+
+    static const sead::SafeString cJumpAnmVarDt[cJumpMax];
+    static const sead::SafeString c2JumpAnmVarDt[cJumpMax];
+    static const sead::SafeString c2JumpedAnmVarDt[cJumpMax];
 };
 static_assert(sizeof(PlayerModelBase) == 0xF0);
