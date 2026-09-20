@@ -49,9 +49,9 @@ public:
         setFrame(frame);
     }
 
-    bool isRepeat() const
+    PlayMode getPlayMode() const
     {
-        return mFlag.isOn(cFlag_Repeat);
+        return mFlag.isOn(cFlag_Repeat) ? cMode_Repeat : cMode_NoRepeat;
     }
 
     bool isStartFrame() const
