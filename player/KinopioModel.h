@@ -38,7 +38,7 @@ public:
     // Address: 0x029711B4
     f32 getAimMotionShareScale() override;
 
-    f32 vf144() override
+    f32 getStoopOffsetTarget() override
     {
         return 0.0f;
     }

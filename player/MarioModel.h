@@ -57,7 +57,7 @@ public:
     // Address: 0x0296E140
     f32 getAimMotionShareScale() override;
     // Address: 0x0296E1D8
-    f32 vf144() override;
+    f32 getStoopOffsetTarget() override;
 
     f32 getTevColor0Alpha(s32 idx_material) override
     {

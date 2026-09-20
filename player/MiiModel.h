@@ -16,15 +16,15 @@ class MiiModel : public PlayerModel   // vtbl Address: 0x10174D6C
 public:
     static const s32 cMaterialMaxNum = 7;
 
-    enum ModeHeadModel
+    enum ModeHeadType
     {
-        cModeHeadModel_Normal = 0,
-        cModeHeadModel_Propeller,
-        cModeHeadModel_Penguin,
-        cModeHeadModel_Squirrel,
-        cModeHeadModel_Num
+        cModeHeadType_Normal = 0,
+        cModeHeadType_Propeller,
+        cModeHeadType_Penguin,
+        cModeHeadType_Squirrel,
+        cModeHeadType_Num
     };
-    static_assert(cModeHeadModel_Num == 4);
+    static_assert(cModeHeadType_Num == 4);
 
 public:
     // Address: 0x029735D8
@@ -85,7 +85,7 @@ public:
     void removeStarAnm_OldBodyID() override;
 
     // Address: 0x02974D18
-    f32 vf144() override;
+    f32 getStoopOffsetTarget() override;
 
     f32 getTevColor0Alpha(s32 idx_material) override
     {
@@ -113,14 +113,14 @@ protected:
     f32                                     mHeadPatAnmRate;
     FrameCtrl::PlayMode                     mHeadPatAnmPlayMode;
     sead::SafeArray<f32, cMaterialMaxNum>   mTevColor0Alpha;
-    ModeHeadModel                           mNowModeHeadModel;
-    ModeHeadModel                           mOldModeHeadModel;
+    ModeHeadType                            mNowModeHeadType;
+    ModeHeadType                            mOldModeHeadType;
     sead::SafeArray<
         AnimModel*,
-        cModeHeadModel_Num
+        cModeHeadType_Num
     >                                       mModeHeadModelArray;
     AnimModel*                              mpModeHeadModel;
-    sead::BitFlag16                         mModeHeadModelLoadFlag;
+    sead::BitFlag16                         mModeHeadTypeLoadFlag;
     bool                                    mIsCapVisible;
 };
 static_assert(sizeof(MiiModel) == 0x3A8);

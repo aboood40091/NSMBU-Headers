@@ -104,7 +104,7 @@ public:
     // Address: 0x02972654
     void onPMusaChange() override;
 
-    f32 vf144() override
+    f32 getStoopOffsetTarget() override
     {
         return 0.0f;
     }

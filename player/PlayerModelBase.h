@@ -102,7 +102,7 @@ public:
         cFlag_IsLiftUp                  = 1 <<  1,
         cFlag_IsBalloonChibiYoshiFly    = 1 <<  2,
         cFlag_IsBubbleChibiYoshiShake   = 1 <<  3,
-        // ...
+        cFlag_Bit4                      = 1 <<  4,
         cFlag_Bit5                      = 1 <<  5,
         cFlag_Bit6                      = 1 <<  6,
         // ...
@@ -119,11 +119,11 @@ public:
 
     enum AnmFlagBit
     {
-        cAnmFlagBit_Sit             =  0,
-        cAnmFlagBit_1,
+        cAnmFlagBit_Sit                 =  0,
+        cAnmFlagBit_Carry,
         cAnmFlagBit_Hang,
         // ...
-        cAnmFlagBit_Swim            =  4,
+        cAnmFlagBit_Swim                =  4,
         cAnmFlagBit_5,
         cAnmFlagBit_6,
         cAnmFlagBit_7,
@@ -131,12 +131,15 @@ public:
         cAnmFlagBit_9,
         cAnmFlagBit_Jump,
         // ...
-        cAnmFlagBit_IsSlopeBodyAnm  = 12,
+        cAnmFlagBit_Slope               = 12,
         // ...
-        cAnmFlagBit_14              = 14,
-        cAnmFlagBit_15,
+        cAnmFlagBit_Dir_L               = 14,
+        cAnmFlagBit_Dir_R,
+        cAnmFlagBit_16,
         // ...
-        cAnmFlagBit_CarryLong       = 22,
+        cAnmFlagBit_Personal_Musa       = 22,
+        cAnmFlagBit_Personal_Penguin,
+        cAnmFlagBit_Personal_Propeller
     };
     static_assert(sizeof(AnmFlagBit) == 4);
 
@@ -168,6 +171,14 @@ public:
         cRndType_Uniform = 0,
         cRndType_RightSkew
     };
+
+    enum
+    {
+        cSklAnm_Main = 0,
+        cSklAnm_Body,
+        cSklAnm_BaseNum
+    };
+    static_assert(cSklAnm_BaseNum == 2);
     
 public:
     // Address: 0x02920CA8
@@ -363,6 +374,11 @@ public:
         mFlag.reset(cFlag_IsStarAnm);
     }
 
+    bool isStarAnm() const
+    {
+        return mFlag.isOn(cFlag_IsStarAnm);
+    }
+
     // Address: 0x02922618
     bool isFootStepTiming();
 
@@ -429,69 +445,99 @@ public:
         return mAnmFlag[cAnmFlagType_Body];
     }
 
-    bool isAnmFlag(AnmFlagType type, AnmFlagBit bit) const
-    {
-        return mAnmFlag[type] & 1 << bit;
-    }
-
-    bool isAnmFlagMulti(AnmFlagType type, u32 flag) const
+    bool isAnmFlag(AnmFlagType type, u32 flag) const
     {
         return mAnmFlag[type] & flag;
     }
 
-    bool isAnmFlag(AnmFlagBit bit) const
+    bool isAnmFlagBit(AnmFlagType type, AnmFlagBit bit) const
     {
-        return isAnmFlag(cAnmFlagType_Main, bit);
+        return isAnmFlag(type, 1 << bit);
     }
 
-    bool isAnmFlagMulti(u32 flag) const
+    bool isAnmFlag(u32 flag) const
     {
-        return isAnmFlagMulti(cAnmFlagType_Main, flag);
+        return isAnmFlag(cAnmFlagType_Main, flag);
+    }
+
+    bool isAnmFlagBit(AnmFlagBit bit) const
+    {
+        return isAnmFlagBit(cAnmFlagType_Main, bit);
     }
 
     bool isSitAnm() const
     {
-        return isAnmFlag(cAnmFlagBit_Sit);
+        return isAnmFlagBit(cAnmFlagBit_Sit);
+    }
+
+    bool isCarryAnm() const
+    {
+        return isAnmFlagBit(cAnmFlagBit_Carry);
     }
 
     bool isHangAnm() const
     {
-        return isAnmFlag(cAnmFlagBit_Hang);
+        return isAnmFlagBit(cAnmFlagBit_Hang);
     }
 
     bool isSwimAnm() const
     {
-        return isAnmFlag(cAnmFlagBit_Swim);
+        return isAnmFlagBit(cAnmFlagBit_Swim);
     }
 
     bool isJumpAnm() const
     {
-        return isAnmFlag(cAnmFlagBit_Jump);
+        return isAnmFlagBit(cAnmFlagBit_Jump);
     }
 
-    bool isCarryLongAnm() const
+    bool isDirAnm() const
     {
-        return isAnmFlag(cAnmFlagBit_CarryLong);
+        return isAnmFlag(1 << cAnmFlagBit_Dir_L | 1 << cAnmFlagBit_Dir_R);
     }
 
-    bool isBodyAnmFlag(AnmFlagBit bit) const
+    bool isDirAnmL() const
     {
-        return isAnmFlag(cAnmFlagType_Body, bit);
+        return isAnmFlagBit(cAnmFlagBit_Dir_L);
     }
 
-    bool isBodyAnmFlagMulti(u32 flag) const
+    bool isDirAnmR() const
     {
-        return isAnmFlagMulti(cAnmFlagType_Body, flag);
+        return isAnmFlagBit(cAnmFlagBit_Dir_R);
+    }
+
+    bool isMusaPersonalAnm() const
+    {
+        return isAnmFlagBit(cAnmFlagBit_Personal_Musa);
+    }
+
+    bool isBodyAnmFlag(u32 flag) const
+    {
+        return isAnmFlag(cAnmFlagType_Body, flag);
+    }
+
+    bool isBodyAnmFlagBit(AnmFlagBit bit) const
+    {
+        return isAnmFlagBit(cAnmFlagType_Body, bit);
+    }
+
+    bool isCarryBodyAnm() const
+    {
+        return isBodyAnmFlagBit(cAnmFlagBit_Carry);
     }
 
     bool isJumpBodyAnm() const
     {
-        return isBodyAnmFlag(cAnmFlagBit_Jump);
+        return isBodyAnmFlagBit(cAnmFlagBit_Jump);
     }
 
     bool isSlopeBodyAnm() const
     {
-        return isBodyAnmFlag(cAnmFlagBit_IsSlopeBodyAnm);
+        return isBodyAnmFlagBit(cAnmFlagBit_Slope);
+    }
+
+    bool isPenguinPersonalBodyAnm() const
+    {
+        return isBodyAnmFlagBit(cAnmFlagBit_Personal_Penguin);
     }
 
     void changeFaceAngleOverrideFlag(FaceAngleOverrideFlag flag, bool enable)
@@ -625,8 +671,11 @@ protected:
 
     static const s32 cJumpMax = 3;
 
-    static const sead::SafeString cJumpAnmVarDt[cJumpMax];
-    static const sead::SafeString c2JumpAnmVarDt[cJumpMax];
-    static const sead::SafeString c2JumpedAnmVarDt[cJumpMax];
+    // Address: 0x1022AC80
+    static const sead::SafeString cJumpAnmVarDt[];
+    // Address: 0x1022AC98
+    static const sead::SafeString c2JumpAnmVarDt[];
+    // Address: 0x1022ACB0
+    static const sead::SafeString c2JumpedAnmVarDt[];
 };
 static_assert(sizeof(PlayerModelBase) == 0xF0);

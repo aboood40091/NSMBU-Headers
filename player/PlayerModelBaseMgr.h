@@ -304,14 +304,44 @@ public:
         return mpModelBase->getAnmFlag(type);
     }
 
-    bool isAnmFlag(PlayerModelBase::AnmFlagType type, PlayerModelBase::AnmFlagBit bit) const
+    u32 getAnmFlag() const
     {
-        return mpModelBase->isAnmFlag(type, bit);
+        return mpModelBase->getAnmFlag();
+    }
+
+    u32 getBodyAnmFlag() const
+    {
+        return mpModelBase->getBodyAnmFlag();
+    }
+
+    bool isAnmFlag(PlayerModelBase::AnmFlagType type, u32 flag) const
+    {
+        return mpModelBase->isAnmFlag(type, flag);
+    }
+
+    bool isAnmFlagBit(PlayerModelBase::AnmFlagType type, PlayerModelBase::AnmFlagBit bit) const
+    {
+        return mpModelBase->isAnmFlagBit(type, bit);
+    }
+
+    bool isAnmFlag(u32 flag) const
+    {
+        return mpModelBase->isAnmFlag(flag);
+    }
+
+    bool isAnmFlagBit(PlayerModelBase::AnmFlagBit bit) const
+    {
+        return mpModelBase->isAnmFlagBit(bit);
     }
 
     bool isSitAnm() const
     {
         return mpModelBase->isSitAnm();
+    }
+
+    bool isCarryAnm() const
+    {
+        return mpModelBase->isCarryAnm();
     }
 
     bool isHangAnm() const
@@ -324,9 +354,59 @@ public:
         return mpModelBase->isSwimAnm();
     }
 
-    bool isCarryLongAnm() const
+    bool isJumpAnm() const
     {
-        return mpModelBase->isCarryLongAnm();
+        return mpModelBase->isJumpAnm();
+    }
+
+    bool isDirAnm() const
+    {
+        return mpModelBase->isDirAnm();
+    }
+
+    bool isDirAnmL() const
+    {
+        return mpModelBase->isDirAnmL();
+    }
+
+    bool isDirAnmR() const
+    {
+        return mpModelBase->isDirAnmR();
+    }
+
+    bool isMusaPersonalAnm() const
+    {
+        return mpModelBase->isMusaPersonalAnm();
+    }
+
+    bool isBodyAnmFlag(u32 flag) const
+    {
+        return mpModelBase->isBodyAnmFlag(flag);
+    }
+
+    bool isBodyAnmFlagBit(PlayerModelBase::AnmFlagBit bit) const
+    {
+        return mpModelBase->isBodyAnmFlagBit(bit);
+    }
+
+    bool isCarryBodyAnm() const
+    {
+        return mpModelBase->isCarryBodyAnm();
+    }
+
+    bool isJumpBodyAnm() const
+    {
+        return mpModelBase->isJumpBodyAnm();
+    }
+
+    bool isSlopeBodyAnm() const
+    {
+        return mpModelBase->isSlopeBodyAnm();
+    }
+
+    bool isPenguinPersonalBodyAnm() const
+    {
+        return mpModelBase->isPenguinPersonalBodyAnm();
     }
 
     void changeFaceAngleOverrideFlag(PlayerModelBase::FaceAngleOverrideFlag flag, bool enable)
