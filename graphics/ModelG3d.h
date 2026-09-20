@@ -437,8 +437,8 @@ public:
     // Address: 0x024F1860
     void initialize(nw::g3d::res::ResModel* res_model, const agl::ShaderProgramArchive* shader_archive, s32 num_view, s32 num_skl_anim, s32 num_tex_anim, s32 num_shu_anim, s32 num_vis_anim, s32 num_sha_anim, BoundingMode bounding_mode, sead::Heap* heap);
 
-    agl::g3d::ModelEx& getModelEx() { return mModelEx; }
-    const agl::g3d::ModelEx& getModelEx() const { return mModelEx; }
+    agl::g3d::ModelEx* getModelEx() { return &mModelEx; }
+    const agl::g3d::ModelEx* getModelEx() const { return &mModelEx; }
 
     Shape& getShape(s32 index) { return mShape[index]; }
     const Shape& getShape(s32 index) const { return mShape[index]; }
