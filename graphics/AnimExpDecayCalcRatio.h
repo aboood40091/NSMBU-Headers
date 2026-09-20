@@ -8,6 +8,8 @@ class Model;
 
 class AnimExpDecayCalcRatio
 {
+    // NSMBW: m3d::mdl_c::mdlCallback_c
+
 private:
     enum BoneFlag
     {
@@ -38,19 +40,35 @@ public:
     void offUpdate();
 
     // Address: 0x024D52FC
-    bool isFramesPrepared() const;
+    bool isRunning() const;
+
+    bool isEnd() const
+    {
+        return mBlendWeight == 0.0f;
+    }
 
     // Address: 0x024D532C
     bool isBlendDisable(s32 bone_index) const;
     // Address: 0x024D57DC
     void setBlendDisable(s32 bone_index);
 
+    f32 ratio() const
+    {
+        return mRatioB;
+    }
+
 private:
+    // NSMBW: nw4r::g3d::ChrAnmResult
     sead::Buffer<sead::Vector3f>    mBoneTrans;
     sead::Buffer<sead::Quatf>       mBoneRot;
     sead::Buffer<sead::Vector3f>    mBoneScale;
+
+    // New in NSMBU: Per-bone blend disable
     sead::Buffer<BoneFlag>          mBoneFlag;
+
     s32                             mBoneNumMax;
+
+    // NSMBW: m3d::calcRatio_c
     f32                             mBlendWeight;
     f32                             mCounter;
     f32                             mInvDuration;
