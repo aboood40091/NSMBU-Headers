@@ -37,6 +37,9 @@ public:
     // Address: 0x024D3910
     bool isShortPlay() const;
 
+    // Address: 0x024D3928
+    bool isStaffCredit() const;
+
     // Address: 0x024D3940
     bool isTitle() const;
 
