@@ -110,7 +110,7 @@ public:
     {
         cShuAnm_Color_Star = 0,
         cShuAnm_1,
-        cShuAnm_2,
+        cShuAnm_Color_PtoNml,
         cShuAnm_Num
     };
     static_assert(cShuAnm_Num == 3);
