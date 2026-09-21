@@ -17,7 +17,15 @@ public:
     };
     static_assert(cBonusCap_Num == 2);
 
-    static const s32 cMaterialMaxNum = 4;
+    enum HeadMaterial
+    {
+        cHeadMaterial_Eye = 0,
+        cHeadMaterial_Face,
+        cHeadMaterial_Hair,
+        cHeadMaterial_Hat,
+        cHeadMaterial_Num
+    };
+    static_assert(cHeadMaterial_Num == 4);
 
 public:
     // Address: 0x0296CEB8
@@ -78,6 +86,6 @@ protected:
     HeadType                                    mHeadID;
     BonusCapType                                mBonusCapType;
     bool                                        mIsBonusCap;
-    sead::SafeArray<f32, cMaterialMaxNum>       mTevColor0Alpha;
+    sead::SafeArray<f32, cHeadMaterial_Num>     mTevColor0Alpha;
 };
 static_assert(sizeof(MarioModel) == 0x240);
