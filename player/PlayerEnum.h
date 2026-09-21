@@ -396,7 +396,7 @@ enum
     dm_escort__2,
     ending_wait,
     dead_pose__2,
-    stoop__2,
+    jump_stoop,
     spin_jump3__2,
     wait__10,
 
