@@ -23,9 +23,12 @@ public:
     {
         cType_Mario = 0,
         cType_Luigi,
-        cType_BlueToad,
+        cType_NumMario,
+
+        cType_BlueToad = cType_NumMario,
         cType_YellowToad,
         cType_NpcToad,      // i.e., Red Toad
+
         cType_Nabbit,
         cType_Yoshi,
         cType_Mii,
