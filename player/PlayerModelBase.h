@@ -125,8 +125,8 @@ public:
         cAnmFlagBit_Sit                 =  0,
         cAnmFlagBit_Carry,
         cAnmFlagBit_Hang,
-        // ...
-        cAnmFlagBit_Swim                =  4,
+        cAnmFlagBit_HangCliff,
+        cAnmFlagBit_Swim,
         cAnmFlagBit_5,
         cAnmFlagBit_6,
         cAnmFlagBit_7,
@@ -140,7 +140,9 @@ public:
         cAnmFlagBit_Dir_R,
         cAnmFlagBit_16,
         // ...
-        cAnmFlagBit_Personal_Musa       = 22,
+        cAnmFlagBit_Personal_Luigi      = 20,
+        cAnmFlagBit_Personal_Kinopio,
+        cAnmFlagBit_Personal_Musa,
         cAnmFlagBit_Personal_Penguin,
         cAnmFlagBit_Personal_Propeller
     };
@@ -483,6 +485,11 @@ public:
         return isAnmFlagBit(cAnmFlagBit_Hang);
     }
 
+    bool isHangCliffAnm() const
+    {
+        return isAnmFlagBit(cAnmFlagBit_HangCliff);
+    }
+
     bool isSwimAnm() const
     {
         return isAnmFlagBit(cAnmFlagBit_Swim);
@@ -508,9 +515,24 @@ public:
         return isAnmFlagBit(cAnmFlagBit_Dir_R);
     }
 
+    bool isLuigiPersonalAnm() const
+    {
+        return isAnmFlagBit(cAnmFlagBit_Personal_Luigi);
+    }
+
     bool isMusaPersonalAnm() const
     {
         return isAnmFlagBit(cAnmFlagBit_Personal_Musa);
+    }
+
+    bool isPenguinPersonalAnm() const
+    {
+        return isAnmFlagBit(cAnmFlagBit_Personal_Penguin);
+    }
+
+    bool isPropellerPersonalAnm() const
+    {
+        return isAnmFlagBit(cAnmFlagBit_Personal_Propeller);
     }
 
     bool isBodyAnmFlag(u32 flag) const

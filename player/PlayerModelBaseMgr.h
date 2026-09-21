@@ -349,6 +349,11 @@ public:
         return mpModelBase->isHangAnm();
     }
 
+    bool isHangCliffAnm() const
+    {
+        return mpModelBase->isHangCliffAnm();
+    }
+
     bool isSwimAnm() const
     {
         return mpModelBase->isSwimAnm();
@@ -374,9 +379,24 @@ public:
         return mpModelBase->isDirAnmR();
     }
 
+    bool isLuigiPersonalAnm() const
+    {
+        return mpModelBase->isLuigiPersonalAnm();
+    }
+
     bool isMusaPersonalAnm() const
     {
         return mpModelBase->isMusaPersonalAnm();
+    }
+
+    bool isPenguinPersonalAnm() const
+    {
+        return mpModelBase->isPenguinPersonalAnm();
+    }
+
+    bool isPropellerPersonalAnm() const
+    {
+        return mpModelBase->isPropellerPersonalAnm();
     }
 
     bool isBodyAnmFlag(u32 flag) const
