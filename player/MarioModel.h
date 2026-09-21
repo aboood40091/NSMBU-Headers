@@ -17,6 +17,13 @@ public:
     };
     static_assert(cBonusCap_Num == 2);
 
+    enum
+    {
+        cBonusCapTexAnm_Color = 0,
+        cBonusCapTexAnm_Num
+    };
+    static_assert(cBonusCapTexAnm_Num == 1);
+
     enum HeadMaterial
     {
         cHeadMaterial_Eye = 0,
