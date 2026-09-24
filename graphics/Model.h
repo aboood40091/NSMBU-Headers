@@ -38,8 +38,8 @@ public:
     // Can also be reinterpreted as "calcWorld"
     virtual void calcMdl() = 0;
 
-    virtual void setModelBaseMtx(const sead::Matrix34f& mtx) = 0;
-    virtual const sead::Matrix34f& getModelBaseMtx() const = 0;
+    virtual void setBaseModelMtx(const sead::Matrix34f& mtx) = 0;
+    virtual const sead::Matrix34f& getBaseModelMtx() const = 0;
     virtual void setLocalScale(const sead::Vector3f& scale) = 0;
     virtual const sead::Vector3f& getLocalScale() const = 0;
     virtual bool hasOpa() const = 0;

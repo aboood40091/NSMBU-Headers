@@ -242,15 +242,15 @@ public:
     // Address: 0x024F4518
     void calcMdl() override;
 
-    void setModelBaseMtx(const sead::Matrix34f& mtx) override
+    void setBaseModelMtx(const sead::Matrix34f& mtx) override
     {
-        mModelBaseMtx = mtx;
+        mBaseModelMtx = mtx;
         mBoundingEnableFlag.set(1 << 1);
     }
 
-    const sead::Matrix34f& getModelBaseMtx() const override
+    const sead::Matrix34f& getBaseModelMtx() const override
     {
-        return mModelBaseMtx;
+        return mBaseModelMtx;
     }
 
     void setLocalScale(const sead::Vector3f& scale) override
@@ -491,7 +491,7 @@ private:
     sead::Buffer<ShaderAssign>                      mShaderAssign;
     sead::Buffer<MaterialG3d*>                      mpMaterial;
     sead::Buffer<Shape>                             mShape;
-    sead::Matrix34f                                 mModelBaseMtx;
+    sead::Matrix34f                                 mBaseModelMtx;
     sead::Vector3f                                  mLocalScale;
     u8                                              _128;
     sead::BitFlag32                                 mRenderFlag;

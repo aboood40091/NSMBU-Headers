@@ -114,9 +114,9 @@ public:
     // Address: 0x024F03C8
     void initializeGpu();
 
-    void setModelBaseMtx(const sead::Matrix34f& mtx)
+    void setBaseModelMtx(const sead::Matrix34f& mtx)
     {
-        mModelBaseMtx = mtx;
+        mBaseModelMtx = mtx;
         calcModelMtx();
     }
 
@@ -188,7 +188,7 @@ private:
     u32                     _814;
     FFLCharModelDesc        mCharModelDesc;
     FFLCharModelSource      mCharModelSource;
-    sead::Matrix34f         mModelBaseMtx;
+    sead::Matrix34f         mBaseModelMtx;
     sead::Vector3f          mLocalScale;
     sead::Matrix34f         mModelMtx;
     sead::Color4f           mExLightRegColor;
