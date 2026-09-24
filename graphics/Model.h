@@ -33,10 +33,11 @@ public:
 
     virtual void calcAnm() = 0;
     virtual void calcMdl() = 0;
-    virtual void setMtxRT(const sead::Matrix34f& rt) = 0;
-    virtual const sead::Matrix34f& getMtxRT() const = 0;
-    virtual void setScale(const sead::Vector3f& scale) = 0;
-    virtual const sead::Vector3f& getScale() const = 0;
+
+    virtual void setModelBaseMtx(const sead::Matrix34f& mtx) = 0;
+    virtual const sead::Matrix34f& getModelBaseMtx() const = 0;
+    virtual void setLocalScale(const sead::Vector3f& scale) = 0;
+    virtual const sead::Vector3f& getLocalScale() const = 0;
     virtual bool hasOpa() const = 0;
     virtual bool hasXlu() const = 0;
     virtual s32 searchBoneIndex(const sead::SafeString& name) const = 0;

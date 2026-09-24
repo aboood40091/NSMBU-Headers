@@ -88,7 +88,7 @@ public:
     void setExRegColor(const sead::Color4f& light, const sead::Color4f& dark);
 
     // Address: 0x024EFB88
-    void updateMtxSRT();
+    void calcModelMtx();
 
     // Address: 0x024EFBE8
     void setSpecialDrawType();
@@ -114,16 +114,16 @@ public:
     // Address: 0x024F03C8
     void initializeGpu();
 
-    void setMtxRT(const sead::Matrix34f& mtx)
+    void setModelBaseMtx(const sead::Matrix34f& mtx)
     {
-        mMtxRT = mtx;
-        updateMtxSRT();
+        mModelBaseMtx = mtx;
+        calcModelMtx();
     }
 
-    void setScale(const sead::Vector3f& scale)
+    void setLocalScale(const sead::Vector3f& scale)
     {
-        mScale.set(scale);
-        updateMtxSRT();
+        mLocalScale.set(scale);
+        calcModelMtx();
     }
 
     agl::TextureData* getEnvTexture_Star() const
@@ -188,9 +188,9 @@ private:
     u32                     _814;
     FFLCharModelDesc        mCharModelDesc;
     FFLCharModelSource      mCharModelSource;
-    sead::Matrix34f         mMtxRT;
-    sead::Vector3f          mScale;
-    sead::Matrix34f         mMtxSRT;
+    sead::Matrix34f         mModelBaseMtx;
+    sead::Vector3f          mLocalScale;
+    sead::Matrix34f         mModelMtx;
     sead::Color4f           mExLightRegColor;
     sead::Color4f           mExDarkRegColor;
     agl::TextureData*       mEnvTexture_Star;

@@ -242,27 +242,26 @@ public:
     // Address: 0x024F4518
     void calcMdl() override;
 
-    // Rotation + Translation matrix
-    void setMtxRT(const sead::Matrix34f& rt) override
+    void setModelBaseMtx(const sead::Matrix34f& mtx) override
     {
-        mMtxRT = rt;
+        mModelBaseMtx = mtx;
         mBoundingEnableFlag.set(1 << 1);
     }
 
-    const sead::Matrix34f& getMtxRT() const override
+    const sead::Matrix34f& getModelBaseMtx() const override
     {
-        return mMtxRT;
+        return mModelBaseMtx;
     }
 
-    void setScale(const sead::Vector3f& scale) override
+    void setLocalScale(const sead::Vector3f& scale) override
     {
-        mScale = scale;
+        mLocalScale = scale;
         mBoundingEnableFlag.set(1 << 1);
     }
 
-    const sead::Vector3f& getScale() const override
+    const sead::Vector3f& getLocalScale() const override
     {
-        return mScale;
+        return mLocalScale;
     }
 
     // Address: 0x024F3F74
@@ -492,8 +491,8 @@ private:
     sead::Buffer<ShaderAssign>                      mShaderAssign;
     sead::Buffer<MaterialG3d*>                      mpMaterial;
     sead::Buffer<Shape>                             mShape;
-    sead::Matrix34f                                 mMtxRT;
-    sead::Vector3f                                  mScale;
+    sead::Matrix34f                                 mModelBaseMtx;
+    sead::Vector3f                                  mLocalScale;
     u8                                              _128;
     sead::BitFlag32                                 mRenderFlag;
     sead::BitFlag32                                 mBoundingEnableFlag;
