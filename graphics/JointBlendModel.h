@@ -55,11 +55,19 @@ public:
     // Address: 0x024DFC78
     void init(ModelResource* p_mdl_res, const sead::PtrArray<ModelResource>* p_anim_mdl_res_array = nullptr, sead::Heap* heap = nullptr);
 
+    // Progress frame counters for all bound animations
+    // Note: order against "calcBlend" does not matter (they operate independently)
     // Address: 0x024DFC7C
     void playAnmFrameCtrl();
 
+    // Apply animations & do world-space calculations
+    // Note: implicitly calls "calcBlend" first
+    // Note: "playAnmFrameCtrl" should be called at some point before this function
     // Address: 0x024DFD04
-    void calcMdl();
+    void calc();
+
+    // Update current progress of the blend calculation
+    // Note: order against "playAnmFrameCtrl" does not matter (they operate independently)
     // Address: 0x024DFC80
     void calcBlend();
 

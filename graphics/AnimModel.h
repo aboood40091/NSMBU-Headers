@@ -83,11 +83,14 @@ public:
     // Address: 0x024D49A0
     void init(ModelResource* p_mdl_res, const sead::PtrArray<ModelResource>* p_anim_mdl_res_array = nullptr, sead::Heap* heap = nullptr);
 
+    // Progress frame counters for all bound animations
     // Address: 0x024D4D20
     void playAnmFrameCtrl();
 
+    // Apply animations & do world-space calculations
+    // Note: "playAnmFrameCtrl" should be called at some point before this function
     // Address: 0x024D4E84
-    void calcMdl();
+    void calc();
 
 private:
     Model*                                  mpModel;
