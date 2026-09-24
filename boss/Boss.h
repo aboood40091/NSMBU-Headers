@@ -579,8 +579,8 @@ protected:
     sead::Vector3f              mIceScale;
     sead::Vector3f              mPos_PreIce;
     sead::Vector3f              mSpeed_PreIce;
-    f32                         mAccelY_PreIce;
-    f32                         mAccelF_PreIce;
+    f32                         mGravity_PreIce;
+    f32                         mPow_PreIce;
     u32                         mStateTimer_PreIce;
     u32                         mStateSubTimer_PreIce;
 };
