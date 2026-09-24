@@ -31,7 +31,11 @@ public:
     // Address: 0x024EE230
     virtual ~Model();
 
+    // Apply animations (e.g., skeletal/bone animations to the local space of bones)
+    // Can also be reinterpreted as "calcLocal"
     virtual void calcAnm() = 0;
+    // Do world-space calculations
+    // Can also be reinterpreted as "calcWorld"
     virtual void calcMdl() = 0;
 
     virtual void setModelBaseMtx(const sead::Matrix34f& mtx) = 0;
