@@ -143,7 +143,7 @@ public:
     // Address: 0x0291A78C
     void getFaceMtx(sead::Matrixf* p_mtx);
 
-    PlayerMode getPlayerMode()
+    PlayerMode getPlayerMode() const
     {
         return mPlayerMode;
     }
