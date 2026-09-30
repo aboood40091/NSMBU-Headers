@@ -61,26 +61,27 @@ protected:
     // Address: 0x02003724
     Result doDelete_() override;
 
-    virtual void setWaterFunsui_(bool enable)
+public:
+    virtual void setWaterFunsui(bool enable)
     {
         mIsWaterFunsui = enable;
     }
 
     // Address: Deleted
-    virtual bool isWaterFunsui_() const
+    virtual bool isWaterFunsui() const
     {
         return mIsWaterFunsui;
     }
 
-    virtual void beginFunsui_()
+    virtual void beginFunsui()
     {
     }
 
-    virtual void endFunsui_(f32 speed_y)
+    virtual void endFunsui(f32 speed_y)
     {
     }
 
-    virtual bool isFunsui_() const
+    virtual bool isFunsui() const
     {
         return false;
     }
@@ -91,6 +92,12 @@ protected:
         mSpeed.y = speed;
     }
 
+    ActorBgCollisionCheck* getBgCheck() override
+    {
+        return &mBgCheckObj;
+    }
+
+protected:
     // Address: 0x02004008
     virtual bool isQuakeEnable_();          // Default: returns false. Determines whether setQuake should be called.
     // Address: 0x0200375C
@@ -99,28 +106,23 @@ protected:
     // Address: 0x02003760
     virtual void setSmokeDamage_(Actor* p_actor);
 
-public:
-    ActorBgCollisionCheck* getBgCheck() override
-    {
-        return &mBgCheckObj;
-    }
-
-protected:
     virtual bool setTouchDrcDamage_(const sead::Vector3f& pos)
     {
         return false;
     }
 
-    virtual void setFunsuiPos_(sead::Vector2f dst)
+public:
+    virtual void setFunsuiPos(sead::Vector2f dst)
     {
         getPos2D() = dst;
     }
 
-    virtual void setFunsuiSpeedY_(f32 speed)
+    virtual void setFunsuiSpeedY(f32 speed)
     {
         mSpeed.y = speed;
     }
 
+protected:
     virtual bool smokeDamageEnable_Yogan_(f32 surface_pos_y)
     {
         return true;
@@ -137,10 +139,6 @@ protected:
             mPos.x - 16.0f, mPos.y,
             mPos.x + 16.0f, mPos.y + 32.0f
         );
-    }
-
-    virtual ~ActorCollision()
-    {
     }
 
     // Address: 0x020037F4

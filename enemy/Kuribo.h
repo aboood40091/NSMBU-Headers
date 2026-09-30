@@ -50,7 +50,8 @@ protected:
     // Address: 0x023D6F74
     Result doDelete_() override;
 
-    void beginFunsui_() override
+public:
+    void beginFunsui() override
     {
         mpBlendModel->getCurSklAnim()->getFrameCtrl().setRate(3.0f);
         mPreFunsuiSpeedX = mSpeed.x;
@@ -58,19 +59,18 @@ protected:
         mIsFunsui = true;
     }
 
-    void endFunsui_(f32 speed_y) override
+    void endFunsui(f32 speed_y) override
     {
         mpBlendModel->getCurSklAnim()->getFrameCtrl().setRate(2.0f);
         mSpeed.x = mPreFunsuiSpeedX;
         mIsFunsui = false;
     }
 
-    bool isFunsui_() const override
+    bool isFunsui() const override
     {
         return mIsFunsui;
     }
 
-public:
     // Address: 0x023D6FDC
     void setTurnByEnemyHit(Actor* actor_self, Actor* actor_other) override;
 
