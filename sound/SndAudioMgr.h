@@ -9,11 +9,24 @@
 #include <nw/snd/snd_SoundArchive.h>
 #include <nw/snd/snd_SoundHandle.h>
 
-class SndAudioMgr : public AudAudioMgr
+class SndAudioMgr : public AudAudioMgr  // vtbl Address: 0x1017C814
 {
     SEAD_SINGLETON_DISPOSER(SndAudioMgr)
 
 public:
+    struct Arg;
+
+public:
+    // Address: 0x029B41AC
+    virtual void initialize(const Arg& arg);
+    // Address: 0x029B4FFC
+    virtual void calc();
+    // Address: Deleted
+    virtual void vf1C();
+    // Address: 0x029B6B10
+    virtual bool startSoundImpl(nw::snd::SoundHandle* p_handle, const char* label);
+    // ...
+
     // Address: 0x029B3BA8
     nw::snd::SoundArchive* getSoundArchive();
 
@@ -31,4 +44,8 @@ public:
 
     // Address: 0x029B7548
     bool loadData(SndItemID item_id);
+
+private:
+    u32 _28[(0x3D0 - 0x28) / sizeof(u32)];
 };
+static_assert(sizeof(SndAudioMgr) == 0x3D4);
