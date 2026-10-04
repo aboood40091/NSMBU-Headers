@@ -10,17 +10,17 @@ public:
     // Address: 0x029E136C
     void XrotS(const Angle& angle);     // S: Set
     // Address: 0x029E1594
-    void XrotM(const Angle& angle);     // M: Mult (i.e., Apply)
+    void XrotM(const Angle& angle);     // M: Mult (i.e., Apply); this = this * R, so the last call is applied to vertices first
 
     // Address: 0x029E12C0
     void YrotS(const Angle& angle);     // S: Set
     // Address: 0x029E14C4
-    void YrotM(const Angle& angle);     // M: Mult (i.e., Apply)
+    void YrotM(const Angle& angle);     // M: Mult (i.e., Apply); ^^^
 
     // Address: 0x029E1418
     void ZrotS(const Angle& angle);     // S: Set
     // Address: 0x029E152C
-    void ZrotM(const Angle& angle);     // M: Mult (i.e., Apply)
+    void ZrotM(const Angle& angle);     // M: Mult (i.e., Apply); ^^^
 
     // Address: 0x029E15FC
     void ZXYrotM(const Angle3& angle);
