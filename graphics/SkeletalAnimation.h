@@ -43,6 +43,9 @@ public:
     // Address: 0x024FDCF8
     void enableBindFlag(s32 idx_bone);
 
+    // Address: Deleted
+    void disableBindFlag(s32 idx_bone);
+
     // Address: 0x024FDD1C
     void calc() override;
 
